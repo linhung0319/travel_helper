@@ -1,7 +1,7 @@
 // T32 載入和效率（網頁）：開機骨架、探索分批、照片照畫面給尺寸、快進畫面才載、打不開退回原圖。
 // 外站照片全部換成一張小圖（不連外站，結果固定）。
 import { test, type Page } from '@playwright/test';
-import { expect, ready } from './helpers.ts';
+import { expect, ready, exploreAll } from './helpers.ts';
 
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAEBgIApD5fRAAAAABJRU5ErkJggg==', 'base64');
 
@@ -50,6 +50,7 @@ test('探索分批畫：一開始 60 張，捲到底多畫；要捲到還沒畫�
   await stubPhotos(page);
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const items = page.getByTestId('explore-item');
   await expect(items).toHaveCount(60);
   const total = await page.evaluate(() => {
@@ -73,6 +74,7 @@ test('快進畫面才載照片：開探索只載前面幾張', async ({ page }) 
   const requested = await stubPhotos(page);
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   await expect(page.getByTestId('explore-item')).toHaveCount(60);
   await expect.poll(() => requested.length).toBeGreaterThan(0);
   await page.waitForTimeout(500);

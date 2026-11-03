@@ -34,6 +34,20 @@ export interface ActionSheetSpec {
   view?: ActionView;
 }
 
+/** 子地區的條件（"regions:<ID>"） */
+const isRegionToken = (t: string) => t.startsWith('regions:');
+
+/**
+ * 目前地區是探索、想去共用的一份（T42，interaction-design §18.1）：一邊換了地區、子地區，另一邊跟著換，其他條件各自記。
+ * 沒變時回傳原本的物件（zustand 不會多通知一次）。
+ */
+function withAreaOf<T extends { area: string | null; quick: string[] }>(target: T, from: { area: string | null; quick: string[] }): T {
+  const regions = from.quick.filter(isRegionToken);
+  const mine = target.quick.filter(isRegionToken);
+  if (target.area === from.area && mine.join() === regions.join()) return target;
+  return { ...target, area: from.area, quick: [...target.quick.filter((t) => !isRegionToken(t)), ...regions] };
+}
+
 /** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序。清單或照片牆、三段的收合在 shared/wishPrefs.ts（網頁版也用） */
 export interface WishView {
   type: ExploreType | 'all';
@@ -240,17 +254,23 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   },
   setFeed: (patch) => {
     if (patch.view) saveFeedView(patch.view);
-    set({ feed: { ...get().feed, ...patch } });
+    const feed = { ...get().feed, ...patch };
+    set({ feed, wish: withAreaOf(get().wish, feed) });
   },
   toggleFeedQuick: (token) => {
     const q = get().feed.quick;
-    set({ feed: { ...get().feed, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });
+    const feed = { ...get().feed, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] };
+    set({ feed, wish: withAreaOf(get().wish, feed) });
   },
   toggleWishQuick: (token) => {
     const q = get().wish.quick;
-    set({ wish: { ...get().wish, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] } });
+    const wish = { ...get().wish, quick: q.includes(token) ? q.filter((t) => t !== token) : [...q, token] };
+    set({ wish, feed: withAreaOf(get().feed, wish) });
   },
-  setWish: (patch) => set({ wish: { ...get().wish, ...patch } }),
+  setWish: (patch) => {
+    const wish = { ...get().wish, ...patch };
+    set({ wish, feed: withAreaOf(get().feed, wish) });
+  },
 }));
 
 // 換天：取消選到的卡、收起展開的卡（同步做，「在地圖上看」換天後馬上選卡才不會被清掉）

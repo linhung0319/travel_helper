@@ -87,8 +87,16 @@ export async function openDiscussion(page: Page) {
 
 /** 電腦版：點類型列（全部、景點、餐廳、住宿）；類型不在篩選面板裡（T33） */
 export async function pickType(page: Page, type: 'all' | 'spot' | 'restaurant' | 'lodging') {
-  await page.getByTestId(`ex-type-${type}`).click();
-  await expect(page.getByTestId(`ex-type-${type}`)).toHaveAttribute('aria-pressed', 'true');
+  // T42：類型收進篩選面板；只留這一類（all＝都不選）
+  await page.getByTestId('filter-open').click();
+  for (const t of ['spot', 'restaurant', 'lodging']) {
+    const opt = page.getByTestId(`filter-opt-type-${t}`);
+    const want = String(t === type);
+    if ((await opt.getAttribute('aria-pressed')) !== want) await opt.click();
+    await expect(opt).toHaveAttribute('aria-pressed', want);
+  }
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
 }
 
 /** 套用的條件不再列成晶片（T33）：打開篩選面板看這個選項有沒有選，看完關掉（手機、網頁都能用） */
@@ -99,7 +107,7 @@ export async function expectFilterOpt(page: Page, opt: string, pressed: boolean)
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
 }
 
-/** 電腦版：打開右欄的篩選抽屜，點幾個選項（例如 'tier-S'、'area-toba'、'map-inView'；已經選的再點是取消），按「顯示 N 個」關掉 */
+/** 電腦版：打開右欄的篩選抽屜，點幾個選項（例如 'tier-S'、'type-restaurant'、'map-inView'；已經選的再點是取消），按「顯示 N 個」關掉 */
 export async function pickFilter(page: Page, ...opts: string[]) {
   await page.getByTestId('filter-open').click();
   for (const o of opts) await page.getByTestId(`filter-opt-${o}`).click();
@@ -124,4 +132,16 @@ export async function likeMany(page: Page, n: number, type = 'spot'): Promise<st
     },
     [n, type] as const,
   );
+}
+
+/**
+ * T42：探索沒選地區、沒有條件時是概覽（不是照片牆）。測照片牆、清單本身的測試先呼叫這個：
+ * 面板裡三類都選（等於全部的地點，只是畫成照片牆或清單）；手機的 feed 也一樣。
+ */
+export async function exploreAll(page: Page) {
+  await page.evaluate(() => {
+    const w = window as any;
+    w.__th.appStore.getState().setFilter({ types: ['spot', 'restaurant', 'lodging'] });
+    w.__thMobile?.getState().setFeed({ type: 'all', quick: ['types:spot', 'types:restaurant', 'types:lodging'] });
+  });
 }

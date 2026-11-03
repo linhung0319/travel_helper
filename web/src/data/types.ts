@@ -24,6 +24,25 @@ export interface Region {
   center?: LonLat;
   needsCar?: boolean;
   note?: string | null;
+  /** 給人看的介紹（T40）：一句特色、代表的點、二月注意 */
+  intro?: RegionIntro;
+}
+
+/** 子地區的介紹（areas.json 的 regions[].intro） */
+export interface RegionIntro {
+  summary: string;
+  highlights?: string[];
+  febNote?: string | null;
+}
+
+/** 區的介紹（areas.json 的 intro，T40）：探索的概覽、選區後的頂端用 */
+export interface AreaIntro {
+  summary: string;
+  transport?: string;
+  /** 代表的點：資料點 ID */
+  highlights: string[];
+  /** 二月注意，照重要的順序 */
+  february?: { text: string; points?: string[] }[];
 }
 
 /** data/areas.json 的一筆。區域一律從這裡讀，程式裡不寫死區域 ID（PLAN T11） */
@@ -35,6 +54,7 @@ export interface Area {
   bbox: Bbox;
   stations?: string[];
   regions?: Region[];
+  intro?: AreaIntro;
 }
 
 export interface Photo {

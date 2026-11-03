@@ -1,4 +1,4 @@
-// 篩選：區域、子地區、類型、情境、分級、團體（15 人）、投票（T15m）。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
+// 篩選：區域、子地區、類型、情境、分級、團體（15 人）、投票（T15m）、下雨也行（T42）。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Context, Place, PlaceType, Tier } from '../data/types.ts';
@@ -13,7 +13,13 @@ export interface Filter {
   fit15: Fit15[];
   /** 投票（interaction-design §9）：有人按了 ❤️ 的（AI 問「想去的」用，畫面的篩選沒有這個按鈕）、大家喜歡的（❤️ 2 人以上）、我按了 ❤️ 的 */
   votes: VoteFilter[];
+  /** 下雨也行（資料點的 indoor 是 true，T42 的書架、interaction-design §18.1） */
+  indoor: IndoorFilter[];
 }
+
+export const INDOOR_VALUES = ['yes'] as const;
+export type IndoorFilter = (typeof INDOOR_VALUES)[number];
+export const INDOOR_LABEL = '下雨也行';
 
 export const VOTE_FILTER_VALUES = ['any', 'popular', 'mine'] as const;
 export type VoteFilter = (typeof VOTE_FILTER_VALUES)[number];
@@ -45,7 +51,7 @@ export type Fit15 = (typeof FIT15_VALUES)[number];
 
 export type FilterKey = keyof Filter;
 
-export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [], votes: [] };
+export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [], votes: [], indoor: [] };
 
 export const TYPE_LABELS: Record<PlaceType, string> = {
   station: '車站',
@@ -90,6 +96,7 @@ export function matchesFilter(p: Place, f: Filter): boolean {
     const v = placeFit15(p);
     if (!(v && f.fit15.includes(v))) return false;
   }
+  if (f.indoor.length && p.raw.indoor !== true) return false;
   if (f.votes.length) {
     const ok =
       (f.votes.includes('any') && (voteLookup?.likes(p.id) ?? 0) >= 1) || (f.votes.includes('popular') && (voteLookup?.likes(p.id) ?? 0) >= POPULAR_LIKES) || (f.votes.includes('mine') && !!voteLookup?.likedByMe(p.id));
@@ -130,6 +137,7 @@ export function filterChips(f: Filter, areas: Area[]): FilterChip[] {
     ...f.tiers.map((v) => ({ key: 'tiers' as const, value: v, label: `${v} 級` })),
     ...f.fit15.map((v) => ({ key: 'fit15' as const, value: v, label: FIT15_LABELS[v] })),
     ...f.votes.map((v) => ({ key: 'votes' as const, value: v, label: VOTE_FILTER_LABELS[v] })),
+    ...f.indoor.map((v) => ({ key: 'indoor' as const, value: v, label: INDOOR_LABEL })),
   ];
 }
 

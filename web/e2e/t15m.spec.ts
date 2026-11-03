@@ -6,7 +6,7 @@
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, expectFilterOpt, openAccountItem, openDiscussion, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter, pickType } from './helpers.ts';
+import { centerOn, expect, expectFilterOpt, openAccountItem, openDiscussion, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter, pickType, exploreAll } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -1783,6 +1783,7 @@ test('第七輪：詳情沒有「＋問 AI」按鈕', async ({ page }) => {
 test('篩選：往下捲也是同一列，打開的抽屜整個看得到', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   await expect(page.getByTestId('explore-item').first()).toBeVisible();
   await page.locator('.side-body').evaluate((el) => el.scrollTo(0, 1500));
   await expect(page.getByTestId('filter-bar')).toBeInViewport();
@@ -1797,14 +1798,14 @@ test('篩選：套用的條件看按鈕的數字，打開面板看條件、點�
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
   await page.getByTestId('filter-open').click();
-  await page.getByTestId('filter-opt-area-toba').click();
+  await page.getByTestId('filter-opt-type-restaurant').click();
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
   await expect(page.getByTestId('filter-count')).toHaveText('2');
-  await pickFilter(page, 'area-toba');
+  await pickFilter(page, 'type-restaurant');
   await expect(page.getByTestId('filter-count')).toHaveText('1');
-  await expectFilterOpt(page, 'area-toba', false);
+  await expectFilterOpt(page, 'type-restaurant', false);
   await expectFilterOpt(page, 'group-yes', true);
 });
 
@@ -1825,6 +1826,7 @@ test('清單列：長名稱不推動 ❤ 的位置', async ({ page }) => {
 test('網頁探索是兩欄', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   await page.getByTestId('view-photo').click();
   // DOM 順序是先左欄再右欄，所以用排名找第 1、2 張
   const item = (rank: number) => page.locator(`[data-testid="explore-item"][data-rank="${rank}"]`);
@@ -2415,6 +2417,7 @@ test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展�
   };
   // 探索清單：靠下面那列展開，捲到它的頂端在篩選列下面 8px
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   await page.getByTestId('view-list').click();
   const id = (await page.getByTestId('explore-item').nth(6).getAttribute('data-id'))!;
   const row = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
@@ -2444,6 +2447,7 @@ test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展�
 test('第八輪：探索的卡點了原地展開（照片牆橫跨兩欄、清單在原地），選中那個點；按「詳細資料」才開詳情；再點收起', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   await page.getByTestId('view-photo').click();
   const wall = page.getByTestId('explore-panel').locator('.pw').first();
   // 照片牆兩欄的 DOM 順序不是排名順序，展開後位置會變：用 data-id 找
@@ -2480,6 +2484,7 @@ test('第八輪：探索的卡點了原地展開（照片牆橫跨兩欄、清�
 test('指到：滑鼠在清單卡片上 → 地圖那個點有光圈，卡片自己不加框；拖曳中不算', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
+  await exploreAll(page);
   const item = page.getByTestId('explore-item').first();
   const id = (await item.getAttribute('data-id'))!;
   await item.hover();
@@ -2545,7 +2550,7 @@ test('探索選餐廳 → 到行程 → 回探索：餐廳還在（切回行程�
   await expect(page.getByTestId('filter-bar')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  await expectFilterOpt(page, 'type-restaurant', true);
 });
 
 test('選中時水滴跳一下（bounce）；減少動態時不跳', async ({ page }) => {
@@ -2595,8 +2600,7 @@ test('探索、想去各自一份篩選和搜尋：想去的「只看我按的�
   await expect(page.getByTestId('search')).toHaveValue('海');
   await expect(page.getByTestId('filter-count')).toHaveText('1');
   await expectFilterOpt(page, 'wish-mine', true);
-  await expect(page.getByTestId('ex-type-all')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByTestId('ex-type-restaurant')).toHaveAttribute('aria-pressed', 'false');
+  await expectFilterOpt(page, 'type-restaurant', false);
   await page.getByTestId('side-tab-explore').click();
   expect(await th(page, '__th.appStore.getState().filter.types')).toEqual(['restaurant']);
 });

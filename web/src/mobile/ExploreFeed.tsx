@@ -1,7 +1,8 @@
 // 手機版「探索」分頁（第七輪 §5）：沒有地圖。顯示方式有兩種（feed.view，記在 localStorage）：
 // 照片牆＝兩欄瀑布（shared/ui/PlaceWall、PlaceTile），清單＝88px 的列（shared/ui/PlaceRow）；兩種都是往下滑一批一批（60 張）出現。
 // 想去的愛心（VoteHeart）直接按、不開詳情；點卡片或列 → 整頁詳情（openPlace）。
-// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：第一列（搜尋、篩選、排序）黏在最上面，下面的類型、照片牆／清單切換和套用的條件跟著捲走。
+// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：第一列（搜尋、篩選、排序）黏在最上面，下面的地區、照片牆／清單切換和套用的條件跟著捲走。
+// 沒選地區、沒搜尋、沒其他條件時是概覽，選了一區是頂端加書架（shared/ui/ExploreHome，T42，interaction-design §18.1），其他時候才是照片牆或清單。
 // 清單的計算和網頁版共用 shared/placeLists.ts（useExploreList），篩選用 mobileStore 的 feed，不看地圖範圍。探索不放「加到某天」。
 // 這個檔也留著手機其他頁用的 useVoteIndex、placeAreaLabel、FeedVotes。
 
@@ -9,7 +10,10 @@ import { useDeferredValue, useMemo } from 'react';
 import { useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
-import { feedFilter } from '../lib/explore.ts';
+import { feedFilter, filterToFeed } from '../lib/explore.ts';
+import { exploreStage } from '../lib/shelves.ts';
+import { AreaHome, ExploreOverview } from '../shared/ui/ExploreHome.tsx';
+import { useData } from '../hooks.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
@@ -20,7 +24,7 @@ import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
 import type { VoteValue } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
 import { commands } from '../appCommands.ts';
-import { FeedFilters } from './FeedFilters.tsx';
+import { FeedFilters, onlyRegions, pickFeedArea, pickFeedRegion } from './FeedFilters.tsx';
 import { askList } from './mobileAi.ts';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { useBatch } from '../shared/useBatch.ts';
@@ -84,6 +88,12 @@ export function ExploreFeed() {
   // 換了篩選、搜尋、排序：從第一批重新開始（按票不算，不然滑到下面按一下就縮回去）
   const { shown, moreRef, hasMore } = useBatch({ total: list.length, batch: BATCH, resetOn: [filter, listQuery, feed.sort], scroller: '.m-page', memory: shownBefore });
   const shownList = useMemo(() => list.slice(0, shown), [list, shown]);
+  const stage = exploreStage(filter, listQuery, !!aiResult);
+  const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
+  const areaName = useData((s) => {
+    const a = feed.area ? s.areas.find((x) => x.id === feed.area) : undefined;
+    return a ? displayName(a.name, a.id) : null;
+  });
 
   return (
     <div className="m-feed" data-testid="m-feed">
@@ -97,7 +107,16 @@ export function ExploreFeed() {
         }}
       />
       <AddPlaceSuggest query={feed.query} surface="mobile" />
-      {feed.view === 'list' ? (
+      {stage === 'list' && !aiResult && areaName && (
+        <button type="button" className="ex-back-area flat" onClick={() => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' })} data-testid="back-to-area">
+          ‹ {areaName}
+        </button>
+      )}
+      {stage === 'overview' ? (
+        <ExploreOverview surface="mobile" onOpen={open} onPickArea={pickFeedArea} />
+      ) : stage === 'area' && feed.area ? (
+        <AreaHome areaId={feed.area} regionId={regionId} surface="mobile" onPickRegion={pickFeedRegion} onOpen={open} onShelfAll={(f) => mobileStore.getState().setFeed(filterToFeed(f))} />
+      ) : feed.view === 'list' ? (
         <div className="m-feed-list" data-count={list.length} data-testid="m-feed-wall">
           {shownList.map((place, i) => (
             <PlaceRow key={place.id} place={place} rank={i + 1} status={statusOf(place.id)} onOpen={() => open(place.id)} testId="place-row" {...aiProps(place.id)} />
@@ -113,8 +132,8 @@ export function ExploreFeed() {
           />
         </div>
       )}
-      {hasMore && <div ref={moreRef} className="m-feed-next" aria-hidden />}
-      {list.length === 0 && aiResult && (
+      {stage === 'list' && hasMore && <div ref={moreRef} className="m-feed-next" aria-hidden />}
+      {stage === 'list' && list.length === 0 && aiResult && (
         <div className="m-empty" data-testid="ai-result-empty">
           <p className="muted">AI 挑的 {aiResult.ids.length} 家沒有符合這些篩選的。</p>
           <button
@@ -129,7 +148,7 @@ export function ExploreFeed() {
           </button>
         </div>
       )}
-      {list.length === 0 && !aiResult && !ownsEmpty && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
+      {stage === 'list' && list.length === 0 && !aiResult && !ownsEmpty && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
     </div>
   );
 }

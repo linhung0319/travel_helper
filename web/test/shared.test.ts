@@ -82,22 +82,20 @@ const AREAS = [
   { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, tripOrder: 2, center: [136.8, 34.4], bbox: [136.7, 34.3, 136.9, 34.5] },
 ] as unknown as Area[];
 
-test('FILTER_GROUPS：順序、想去組兩個分頁不一樣', () => {
-  assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'area', 'group', 'context', 'wish', 'tier', 'map']);
+test('FILTER_GROUPS：順序、想去組兩個分頁不一樣；地區不在面板裡（T42）', () => {
+  assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'group', 'weather', 'context', 'wish', 'tier', 'map']);
   const wish = FILTER_GROUPS.find((g) => g.id === 'wish')!;
   assert.deepEqual(wish.options([], 'explore').map((o) => o.label), ['大家想去的']);
   assert.deepEqual(wish.options([], 'wish').map((o) => o.label), ['只看我按的']);
   assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
   assert.equal(FILTER_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
+  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'weather')!.options(AREAS, 'explore'), [{ value: 'yes', label: '下雨也行' }]);
 });
-test('FILTER_GROUPS：地區選項從 areas 來', () => {
-  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'area')!.options(AREAS, 'explore'), [{ value: 'toba', label: '鳥羽' }]);
-});
-test('appliedChips：手機不含類型', () => {
-  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], fit15: ['yes' as const] };
-  assert.equal(appliedChips(f, AREAS, { includeType: true }).length, 3);
-  assert.equal(appliedChips(f, AREAS, { includeType: false }).length, 2);
-  assert.equal(appliedChips(f, AREAS, { includeType: true })[0].key, 'types');
+test('appliedChips：含類型，不含地區、子地區（在外面一列）', () => {
+  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], indoor: ['yes' as const] };
+  const chips = appliedChips(f, AREAS);
+  assert.deepEqual(chips.map((c) => c.key), ['types', 'fit15', 'indoor']);
+  assert.equal(chips[2].label, '下雨也行');
 });
 
 test('rowHighlights：已排、候選在前，最多兩個', () => {

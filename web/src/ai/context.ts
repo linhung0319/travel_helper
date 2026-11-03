@@ -3,6 +3,7 @@
 import { jstNow } from '@travel-helper/engine';
 import { filterChips, matchesFilter } from '../lib/filter.ts';
 import { inBbox } from '../lib/areas.ts';
+import { currentArea } from '../lib/shelves.ts';
 import type { AiDeps } from './deps.ts';
 import type { ReadTools } from './readTools.ts';
 import type { Stage } from './stage.ts';
@@ -15,8 +16,12 @@ export function screenContext(d: AiDeps, stage: Stage): Record<string, unknown> 
   const { places, areas } = d.data.getState();
   // 手機的探索、想去有自己的篩選
   const own = stage.screenFilter();
+  const looking = stage.screenName();
+  // 探索、想去的目前地區（T42）：概覽（沒選）時是 null
+  const area = looking === 'explore' || looking === 'wish' ? currentArea(own ?? d.app.getState().filter) : undefined;
   return {
-    looking: stage.screenName(),
+    looking,
+    ...(area !== undefined ? { area } : {}),
     day: v.day,
     dayLabel: v.dayLabel,
     dayStops: v.dayStops,

@@ -1,7 +1,7 @@
 // 手機版（第六輪 §3）：底部 5 個分頁、我、地圖一直掛著、探索、想去、詳情、行程。mobile（390×844）、mobile-small（360×800）兩個 project 都跑。
 import { test } from '@playwright/test';
 import { expect, goTab, mobileState, ready, scrollsSideways, TABS } from './mobileHelpers.ts';
-import { centerOn, likeMany } from './helpers.ts';
+import { centerOn, likeMany, exploreAll } from './helpers.ts';
 
 test('底部 5 個分頁，切換', async ({ page }) => {
   await ready(page);
@@ -202,6 +202,7 @@ test('討論彈窗、預約整頁：打開推一筆 history，瀏覽器上一頁
 test('探索：兩欄圖片牆、沒有地圖、可以按想去不開詳情', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   const items = page.getByTestId('m-feed-item');
   await expect(items.nth(3)).toBeVisible();
   // 兩欄、每排照排名：排名第 1、2 的並排在最上面（第 1 張在左），第 3 張在左欄、第 1 張的下面
@@ -239,11 +240,13 @@ test('探索：兩欄圖片牆、沒有地圖、可以按想去不開詳情', as
   expect((await mobileState(page)).detail?.from).toBe('explore');
 });
 
-test('探索：類型篩選', async ({ page }) => {
+test('探索：類型篩選（T42 收進面板）', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
-  await page.getByTestId('m-feed-type-restaurant').click();
-  await expect(page.getByTestId('m-feed-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
+  await page.getByTestId('filter-open').click();
+  await page.getByTestId('filter-opt-type-restaurant').click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   const types = await page.getByTestId('m-feed-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['restaurant']));
@@ -252,7 +255,7 @@ test('探索：類型篩選', async ({ page }) => {
   await page.getByTestId('filter-open').click();
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.getByTestId('filter-count')).toHaveText('2');
   const n = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
   expect(n).toBeGreaterThan(0);
   expect(n).toBeLessThan(all);
@@ -261,7 +264,7 @@ test('探索：類型篩選', async ({ page }) => {
   await expect(page.getByTestId('filter-opt-group-yes')).toHaveAttribute('aria-pressed', 'true');
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveCount(0);
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   expect(Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'))).toBe(all);
 });
 
@@ -294,8 +297,10 @@ test('想去：分段切換、加到某天', async ({ page }) => {
   await ready(page);
   await goTab(page, 'wish');
   await expect(page.getByTestId('m-wish-item').first()).toBeVisible();
-  await page.getByTestId('m-wish-type-spot').click();
-  await expect(page.getByTestId('m-wish-type-spot')).toHaveAttribute('aria-pressed', 'true');
+  await page.getByTestId('filter-open').click();
+  await page.getByTestId('filter-opt-type-spot').click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('filter-count')).toHaveText('1');
   const types = await page.getByTestId('m-wish-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['spot']));
@@ -312,6 +317,7 @@ test('想去：分段切換、加到某天', async ({ page }) => {
 test('沒有照片的點顯示類型色塊', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   const id = (await page.getByTestId('m-feed-item').first().getAttribute('data-id'))!;
   await page.evaluate((id) => {
     const ds = (window as any).__th.dataStore;
@@ -330,6 +336,7 @@ test('沒有照片的點顯示類型色塊', async ({ page }) => {
 let feedTop = 0;
 async function openFromFeed(page: import('@playwright/test').Page, y: number) {
   await goTab(page, 'explore');
+  await exploreAll(page);
   await expect(page.getByTestId('m-feed-item').nth(3)).toBeVisible();
   // 圖片牆的高度照原圖比例：照片一張張載入時版面會動，瀏覽器的 scroll anchoring 會把捲動位置調個幾十 px（甚至讓 Playwright 的 click 再捲一次）。
   // 照片可能比 settle 等的 8 秒還慢，所以不要求剛好停在 y：等照片載完、位置穩定後，記下實際位置（feedTop），返回時和它比。
@@ -1178,13 +1185,13 @@ test('第七輪：日期晶片第二行只有星期', async ({ page }) => {
   await expect(page.getByTestId('m-day-2027-02-05')).toHaveText(/^2\/5\s*五$/);
 });
 
-// 2026-11-02 👤：類型列也黏在上面（搜尋列、幾個地點、螢幕太矮的情況見 mobile-ui-fixes-2026-11.spec.ts）
+// 2026-11-02 👤：類型列也黏在上面（T42 起是地區列）（搜尋列、幾個地點、螢幕太矮的情況見 mobile-ui-fixes-2026-11.spec.ts）
 test('探索頂部：往下捲時搜尋列和類型列都還在', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   const bar = page.getByTestId('filter-bar');
   expect((await bar.boundingBox())!.height).toBeLessThan(120);
-  const typeRow = page.getByTestId('m-feed-type-all');
+  const typeRow = page.getByTestId('m-feed-area-all');
   expect((await typeRow.boundingBox())!.y).toBeLessThan(160);
   await page.locator('.m-page').evaluate((el) => el.scrollTo(0, 1500));
   await expect(bar).toBeInViewport();
@@ -1195,6 +1202,7 @@ test('探索頂部：往下捲時搜尋列和類型列都還在', async ({ page 
 test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，重開還記得', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   await page.getByTestId('view-list').click();
   await expect(page.getByTestId('view-list')).toHaveAttribute('aria-pressed', 'true');
   const rows = page.getByTestId('place-row');
@@ -1285,18 +1293,22 @@ test('想去：第一次打開，第一列自己滑一下提示，只提示一�
   await expect.poll(() => page.evaluate(() => localStorage.getItem('th.wishSwipeHint'))).toBe('1');
 });
 
-test('想去：打開時是「全部」；上面沒有「想去」標題，類型晶片和探索一樣（第十輪）；記住選的類型', async ({ page }) => {
+test('想去：打開時是「全部」；上面沒有「想去」標題，地區晶片和探索一樣、第一顆叫「全部」（T42）；地區跟著探索', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   const explore = await page.getByTestId('m-feed-filters').locator('.ui-chip').allTextContents();
   await goTab(page, 'wish');
-  await expect(page.getByTestId('m-wish-type-all')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('m-wish-area-all')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByTestId('m-wish').getByRole('heading', { name: '想去', exact: true })).toHaveCount(0);
-  expect(await page.getByTestId('m-wish').locator('.fb-types .ui-chip').allTextContents()).toEqual(explore);
-  await page.getByTestId('m-wish-type-spot').click();
-  await goTab(page, 'trip');
+  const wish = await page.getByTestId('m-wish').locator('.fb-types .ui-chip').allTextContents();
+  expect(wish[0]).toBe('全部');
+  expect(explore[0]).toBe('概覽');
+  expect(wish.slice(1, explore.length)).toEqual(explore.slice(1));
+  await page.getByTestId('m-wish-area-toba').click();
+  await goTab(page, 'explore');
+  await expect(page.getByTestId('m-feed-area-toba')).toHaveAttribute('aria-pressed', 'true');
   await goTab(page, 'wish');
-  await expect(page.getByTestId('m-wish-type-spot')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('m-wish-area-toba')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('想去：照片牆的卡片有誰想去，沒有留言也沒有加到某天', async ({ page }) => {
@@ -1626,6 +1638,7 @@ test('很長的名稱：想去的列省略，❤ 在畫面裡，不橫向捲動'
 test('很長的名稱：探索照片牆的格子省略，兩欄一樣寬，不橫向捲動', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
+  await exploreAll(page);
   await page.getByTestId('view-photo').click();
   const tiles = page.getByTestId('m-feed-item');
   await expect(tiles.nth(1)).toBeVisible();
