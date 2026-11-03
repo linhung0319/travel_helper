@@ -32,6 +32,15 @@
       "shima-shimmei",
       "kashikojima"
     ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Ago_Bay_viewed_from_Yokoyama_Viewpoint.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Ago_Bay_viewed_from_Yokoyama_Viewpoint.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Saigen Jiro",
+        "license": "CC0"
+      }
+    ],
     "notes": "行程的第一站。bbox 取自 OSM 的志摩市行政界（含海域），只用來檢查座標。店家分散，很多地點要搭巴士或開車。",
     "sources": [
       {
@@ -45,6 +54,12 @@
         "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E6%91%A9%E5%B8%82",
         "retrieved": "2026-10-17",
         "note": "行政區"
+      },
+      {
+        "type": "other",
+        "url": "https://commons.wikimedia.org/wiki/File:Ago_Bay_viewed_from_Yokoyama_Viewpoint.jpg",
+        "retrieved": "2026-11-03",
+        "note": "代表照片（Wikimedia Commons）：作者 Saigen Jiro，CC0"
       }
     ],
     "intro": {
@@ -594,6 +609,15 @@
       "shiraki",
       "jr-toba"
     ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Toba_Mie_-_overview.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Toba_Mie_-_overview.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Michalkun",
+        "license": "CC BY-SA 2.5"
+      }
+    ],
     "notes": "試做區域（T2～T4）。bbox 取自 OSM 的鳥羽市行政界（含海域）。",
     "sources": [
       {
@@ -607,6 +631,12 @@
         "url": "https://ja.wikipedia.org/wiki/%E6%B1%A0%E3%81%AE%E6%B5%A6%E9%A7%85",
         "retrieved": "2026-10-17",
         "note": "池の浦站位於鳥羽市堅神町"
+      },
+      {
+        "type": "other",
+        "url": "https://commons.wikimedia.org/wiki/File:Toba_Mie_-_overview.jpg",
+        "retrieved": "2026-11-03",
+        "note": "代表照片（Wikimedia Commons）：作者 Michalkun，CC BY-SA 2.5"
       }
     ],
     "intro": {
@@ -928,6 +958,15 @@
       "jr-futaminoura",
       "jr-matsushita"
     ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Meoto_Iwa_rocks_01.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Meoto_Iwa_rocks_01.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Douglas Perkins",
+        "license": "CC BY 4.0"
+      }
+    ],
     "notes": "和伊勢一起規劃（T8）。OSM 沒有二見町的行政界，bbox 是依二見町各町名的位置和 JR 二見浦、松下站大致畫出的，只用來檢查座標。近鐵沒有經過二見，最近的是 JR 參宮線（不能用近鐵 5 日券）。",
     "sources": [
       {
@@ -947,6 +986,12 @@
         "url": "https://www.openstreetmap.org/node/8377436972",
         "retrieved": "2026-10-17",
         "note": "二見町江的位置"
+      },
+      {
+        "type": "other",
+        "url": "https://commons.wikimedia.org/wiki/File:Meoto_Iwa_rocks_01.jpg",
+        "retrieved": "2026-11-03",
+        "note": "代表照片（Wikimedia Commons）：作者 Douglas Perkins，CC BY 4.0"
       }
     ],
     "intro": {
@@ -1078,6 +1123,15 @@
       "obata",
       "miyamachi"
     ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Ise-Shrine_Naiku-Ujibashi-Torii.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Ise-Shrine_Naiku-Ujibashi-Torii.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: MaedaAkihiko",
+        "license": "CC0"
+      }
+    ],
     "notes": "最後一站，離大阪、關西機場比較近。bbox 取自 OSM 的伊勢市行政界（含二見町和海域）。",
     "sources": [
       {
@@ -1091,6 +1145,12 @@
         "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E5%8B%A2%E5%B8%82",
         "retrieved": "2026-10-17",
         "note": "行政區"
+      },
+      {
+        "type": "other",
+        "url": "https://commons.wikimedia.org/wiki/File:Ise-Shrine_Naiku-Ujibashi-Torii.jpg",
+        "retrieved": "2026-11-03",
+        "note": "代表照片（Wikimedia Commons）：作者 MaedaAkihiko，CC0"
       }
     ],
     "intro": {
@@ -1369,6 +1429,15 @@
       "izumisano",
       "hagurazaki"
     ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/%E9%96%A2%E8%A5%BF%E5%9B%BD%E9%9A%9B%E7%A9%BA%E6%B8%AF%E5%85%A8%E4%BD%93%E5%86%99%E7%9C%9F20220811_(cropped).jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:%E9%96%A2%E8%A5%BF%E5%9B%BD%E9%9A%9B%E7%A9%BA%E6%B8%AF%E5%85%A8%E4%BD%93%E5%86%99%E7%9C%9F20220811_(cropped).jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Ankou1192",
+        "license": "CC BY-SA 4.0"
+      }
+    ],
     "notes": "不在伊勢志摩，驗證腳本對這區的座標放寬到關西、中部。重點是住宿到機場的接駁（時間、班次、15 人和行李）。車站（関西空港、りんくうタウン、泉佐野、羽倉崎）T13 加進 stations.json，operator 是 other（JR・南海），近鐵 5 日券不能用。",
     "intro": {
       "summary": "回程前一晚住的機場周邊飯店，分成機場島上、臨空城、泉佐野三處。",
@@ -1468,6 +1537,12 @@
         "url": "https://ja.wikipedia.org/wiki/%E3%82%8A%E3%82%93%E3%81%8F%E3%81%86%E3%82%BF%E3%82%A6%E3%83%B3%E9%A7%85",
         "retrieved": "2026-10-17",
         "note": "りんくうタウン站的位置（center 是大致位置，T8b 用 Google Maps 確認）"
+      },
+      {
+        "type": "other",
+        "url": "https://commons.wikimedia.org/wiki/File:%E9%96%A2%E8%A5%BF%E5%9B%BD%E9%9A%9B%E7%A9%BA%E6%B8%AF%E5%85%A8%E4%BD%93%E5%86%99%E7%9C%9F20220811_(cropped).jpg",
+        "retrieved": "2026-11-03",
+        "note": "代表照片（Wikimedia Commons）：作者 Ankou1192，CC BY-SA 4.0"
       }
     ]
   },
@@ -1525,6 +1600,15 @@
       "metro-ebisucho",
       "metro-tanimachi-9chome",
       "metro-shitennojimae-yuhigaoka"
+    ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Dotonbori_Osaka_Japan01-r.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Dotonbori_Osaka_Japan01-r.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Oilstreet",
+        "license": "CC BY 2.5"
+      }
     ],
     "notes": "2026-10-26 加入（T27a）。tripOrder 和 kix 同為 4：最後一晚住大阪或關西機場周邊，由排行程時選。stations 由 T28 補（T27a 之後不改）。做法見 CONVENTIONS §4「大阪（都市區）的做法」。子地區的 center 是大致位置（車站或代表景點），之後用 Google Maps 確認。",
     "intro": {
@@ -1737,6 +1821,12 @@
         "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E5%B8%82",
         "retrieved": "2026-10-26",
         "note": "大阪市的範圍（bbox 是大致範圍，只用來檢查座標）"
+      },
+      {
+        "type": "other",
+        "url": "https://commons.wikimedia.org/wiki/File:Dotonbori_Osaka_Japan01-r.jpg",
+        "retrieved": "2026-11-03",
+        "note": "代表照片（Wikimedia Commons）：作者 Oilstreet，CC BY 2.5"
       }
     ]
   }

@@ -44,6 +44,15 @@
           "$ref": "common.schema.json#/$defs/id"
         }
       },
+      "photos": {
+        "description": "代表照片（T51）：探索概覽的卡片用，1 張；Wikimedia Commons 的照片要記 credit、license，sources 附 Commons 頁面",
+        "type": "array",
+        "items": {
+          "$ref": "common.schema.json#/$defs/photo"
+        },
+        "minItems": 1,
+        "maxItems": 3
+      },
       "notes": {
         "$ref": "common.schema.json#/$defs/nullableString",
         "description": "整理資料用的筆記，不給人看（給人看的寫在 intro）"
