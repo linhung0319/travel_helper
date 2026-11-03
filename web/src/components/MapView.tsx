@@ -14,7 +14,7 @@ import type { FeatureCollection } from 'geojson';
 import { appStore } from '../store.ts';
 import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
-import { initialExtent } from '../lib/areas.ts';
+import { initialExtent, MAP_MIN_ZOOM, mapMaxBounds } from '../lib/areas.ts';
 import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
 import { addMapIcons } from './mapIcons.ts';
 import { markMapLoaded } from '../lib/idle.ts';
@@ -237,6 +237,7 @@ export function MapView() {
   useEffect(() => {
     const { places: ps, areas: as } = dataStore.getState();
     const b: Bbox = initialExtent(as, ps) ?? [136.5, 34.2, 137.1, 34.65];
+    const max = mapMaxBounds(as);
     const map = new MapLibreMap({
       container: containerRef.current!,
       style: STYLE_URL,
@@ -245,6 +246,9 @@ export function MapView() {
         [b[2], b[3]],
       ],
       fitBoundsOptions: { padding: 30 },
+      // 只能看關西到伊勢志摩（T47）：拖不出去、縮不到全世界，圖磚才不會越抓越多
+      ...(max ? { maxBounds: [[max[0], max[1]], [max[2], max[3]]] as [[number, number], [number, number]] } : {}),
+      minZoom: MAP_MIN_ZOOM,
       attributionControl: { compact: true },
       // 手機上兩指旋轉容易誤觸，地圖一律朝北
       dragRotate: false,

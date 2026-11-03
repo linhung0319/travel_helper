@@ -1,7 +1,8 @@
 // 資料點：預設資料（places_base）與修改（place_edits）。architecture §3.2、§4。
 //
 // GET  /api/places                清單層全部（含已下架的），加上轉址。用最新的匯入 ID 當 ETag
-// GET  /api/places/details        詳情層全部：閒置時讀一次（lib/placeLayers.ts）
+// GET  /api/places/details?ids=   詳情層（lib/placeLayers.ts）：ids 給幾個點（逗號分隔，最多 MAX_DETAIL_IDS 個）只回那幾個，畫面、AI 用到才讀（T47）；
+//                                  不給 ids 是全部（匯出行程）
 // GET  /api/places/:id            一個點合併後的資料、改過的欄位、修改紀錄（轉址的舊 ID 會轉到新 ID）
 // GET  /api/edits?since=&place=   修改紀錄（含已復原、已收掉的），since 是 updated_at
 // POST /api/edits                 { placeId, fieldPath, value, note? }：先合併再用 schema 驗證，不符合就 400
@@ -80,11 +81,24 @@ export async function listPlaces({ db, req }: Ctx): Promise<Response> {
   return rawJson(body, { headers: { etag, 'cache-control': 'no-cache' } });
 }
 
-export async function listPlaceDetails({ db, req }: Ctx): Promise<Response> {
+/** 一次最多幾個點的詳情（D1 一句最多 100 個參數；網址也不要太長）。web/src/data/api.ts 照這個切 */
+export const MAX_DETAIL_IDS = 50;
+
+export async function listPlaceDetails({ db, req, url }: Ctx): Promise<Response> {
+  const idsParam = url.searchParams.get('ids');
+  const ids = idsParam === null ? null : [...new Set(idsParam.split(',').map((x) => x.trim()).filter(Boolean))];
+  if (ids && !ids.length) throw badRequest('ids 是空的');
+  if (ids && ids.length > MAX_DETAIL_IDS) throw badRequest(`ids 一次最多 ${MAX_DETAIL_IDS} 個`);
   const importId = await latestImportId(db);
   const etag = `"imp-${importId}"`;
   if (etagMatches(req.headers.get('if-none-match'), etag)) return new Response(null, { status: 304, headers: { etag } });
-  const rows = await db.prepare('SELECT data_detail FROM places_base ORDER BY type, id').all<{ data_detail: string }>();
+  // 沒有的 ID 不回傳（不是錯誤：前端記成沒有詳情）
+  const rows = ids
+    ? await db
+        .prepare(`SELECT data_detail FROM places_base WHERE id IN (${ids.map(() => '?').join(',')}) ORDER BY type, id`)
+        .bind(...ids)
+        .all<{ data_detail: string }>()
+    : await db.prepare('SELECT data_detail FROM places_base ORDER BY type, id').all<{ data_detail: string }>();
   const body = `{"importId":${importId},"details":[${rows.results.map((r) => r.data_detail).join(',')}]}`;
   return rawJson(body, { headers: { etag, 'cache-control': 'no-cache' } });
 }

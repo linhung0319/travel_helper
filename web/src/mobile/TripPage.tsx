@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { Icon } from '../components/Icon.tsx';
 import { appStore } from '../store.ts';
 import { commands } from '../appCommands.ts';
-import { useApp, useData, usePlan, useShared } from '../hooks.ts';
+import { useApp, useData, useNeedPlan, usePlan, useShared } from '../hooks.ts';
 import { dayPlanOf } from '../planStore.ts';
 import { dayCandidates } from '../lib/wishlist.ts';
 import { resizeMap } from '../components/mapRuntime.ts';
@@ -62,6 +62,7 @@ function MapButtons() {
 
 export function TripPage() {
   useFocusOnMap();
+  useNeedPlan();
   return (
     <div className="m-trip" data-testid="m-trip">
       <MapAiBar />

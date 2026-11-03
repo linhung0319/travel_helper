@@ -11,6 +11,9 @@ interface TimetableIndex {
   jr: { station: string; file: string }[];
 }
 
+/** 一次要幾個點的詳情：同 worker/src/api/places.ts 的 MAX_DETAIL_IDS */
+const MAX_DETAIL_IDS = 50;
+
 let indexOnce: Promise<TimetableIndex> | null = null;
 let engineOnce: Promise<EngineTimetables> | null = null;
 
@@ -32,8 +35,14 @@ export const apiSource: DataSource = {
     const r = await api<{ places: unknown[]; retired: Record<string, string> }>('GET', '/api/places');
     return normalizePlaceList(r.places).map((p) => (r.retired[p.id] ? { ...p, retiredAt: r.retired[p.id] } : p));
   },
-  async loadPlaceDetails() {
-    return (await api<{ details: { id: string }[] }>('GET', '/api/places/details')).details;
+  async loadPlaceDetails(ids) {
+    if (!ids) return (await api<{ details: { id: string }[] }>('GET', '/api/places/details')).details;
+    // 一次最多 MAX_DETAIL_IDS 個（Worker 的上限）；照順序排，同一組點的網址一樣，HTTP 快取才用得上
+    const sorted = [...new Set(ids)].sort();
+    const chunks: string[][] = [];
+    for (let i = 0; i < sorted.length; i += MAX_DETAIL_IDS) chunks.push(sorted.slice(i, i + MAX_DETAIL_IDS));
+    const lists = await Promise.all(chunks.map((c) => api<{ details: { id: string }[] }>('GET', `/api/places/details?ids=${c.map(encodeURIComponent).join(',')}`)));
+    return lists.flatMap((r) => r.details);
   },
   async loadTimetable(stationId) {
     const index = await once(() => indexOnce, (p) => (indexOnce = p), () => staticJson<TimetableIndex>('/static/timetables/index.json'));

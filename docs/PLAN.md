@@ -1046,6 +1046,19 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 照片縮圖不在這個任務（§6 待確認）；T42 的概覽本來就少照片。
 - **驗證**：改前改後各量一次（`npm run build` 的大小、dev server 的 resource timing）；e2e 的截圖因為字型改了要重拍。
 - **完成條件**：`npm test`、`npm run typecheck`、`npm run e2e` 通過；前後的數字寫在結果裡。正式環境的速度 👤 自己測（同 T39）。
+- **結果**（2026-11-03，本機 Worker＋D1、gzip 代理；電腦版 1280×800、沒有快取、不限速；進網站後再等 20 秒，閒置時讀的也算）：
+  | | 改前 | 改後 |
+  |---|---|---|
+  | 網頁字型 | 2826 KB（181 個檔） | 391 KB（19 個檔） |
+  | 詳情層 | 768 KB | 0（點開才讀那一個，`GET /api/places/details?ids=`） |
+  | 時刻表（engine.json） | 190 KB | 0（行程只有預設航班時不讀，打開行程才讀） |
+  | 照片／圖磚／程式／清單層 | 2335／266／546／229 KB | 不變（照片不在這個任務） |
+  | **合計** | **7342 KB** | **3949 KB** |
+  - 地圖：`maxBounds` 用各區 bbox 外加 0.4 度（`lib/areas.ts` 的 `mapMaxBounds`），`minZoom` 7。滾輪縮到最小、亂拖十次，最小停在 z8（範圍比畫面小時 MapLibre 會自己放大），共 16 塊圖磚。
+  - 「行程有東西」不算航班：新的行程本來就帶去回程航班（第一次量的時候時刻表還是被讀了才發現）。
+  - Worker 的 API 是 `?ids=`（一次最多 50 個），不是單一點的路徑：AI 一次問好幾個、行程卡同時展開時併成一個請求；單一點就是 `?ids=<id>`。
+  - `npm run build` 的大小幾乎不變（App 464 KB；字型不在 build 裡）。
+  - 驗證：`npm test`（956）、`npm run typecheck`、`npm run validate` 通過。e2e 只跑受影響的（👤 2026-11-03 說不用整包）：Worker 版 t15 的「載入」「詳情層骨架、重試」（手機＋電腦共 6 支）通過；dev 版 detail-popup、ai-core、t39、mobile-t39 共 16 支通過。t15m、flows、mobile 那一輪跑到一半，電腦記憶體不夠被系統停掉，**沒有結果**。截圖（`e2e/shots-*.mjs`）沒有重拍。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
