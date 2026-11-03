@@ -7,7 +7,8 @@ import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS, CONTEXT_LABELS } from '../lib/filter.ts';
-import { DAY_ROWS, closureOn, formatRanges, rowForDate } from '../lib/hours.ts';
+import { DAY_ROWS, closureOn, formatRanges, hoursLine, rowForDate } from '../lib/hours.ts';
+import { fitCells, priceLine, tipLine } from '../lib/placeSummary.ts';
 import {
   CONFIDENCE_LABELS,
   FIT15_LABELS,
@@ -458,47 +459,141 @@ function Tags({ place }: { place: Place }) {
   );
 }
 
+/** 四格「長輩／小孩／2 月／15 人」（T44b §18.2）：記號＋一句理由；點了展開完整的一句（兩行放不下時） */
+function FitGrid({ place }: { place: Place }) {
+  const cells = fitCells(place);
+  const [open, setOpen] = useState(false);
+  if (!cells.length) return null;
+  return (
+    <button type="button" className={`pd-fit ${open ? 'open' : ''}`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="detail-fit">
+      {cells.map((c) => (
+        <span key={c.key} className={`pd-fit-cell tone-${c.tone}`} data-testid={`detail-fit-${c.key}`}>
+          <b className="pd-fit-mark" aria-hidden>
+            {c.mark ?? '—'}
+          </b>
+          <span className="pd-fit-label">{c.label}</span>
+          <span className="pd-fit-why">{c.reason ?? '沒有資料'}</span>
+        </span>
+      ))}
+    </button>
+  );
+}
+
+/** 一行時間、一行費用、一行小提醒（T44b §18.2） */
+function QuickFacts({ place }: { place: Place }) {
+  const hours = hoursLine(place.hours, place.type === 'restaurant' ? '最後點餐' : '最後入場');
+  const stay = typeof place.raw.stayMinutes === 'number' ? `停留約 ${stayLabel(place.raw.stayMinutes)}` : null;
+  const price = priceLine(place);
+  const tip = tipLine(place);
+  if (!hours && !price && !tip && !stay) return null;
+  return (
+    <dl className="pd-quick" data-testid="detail-quick">
+      <Row k="時間" v={[hours ?? (place.hours ? null : '營業時間不明'), stay].filter(Boolean).join('・')} />
+      <Row
+        k="費用"
+        v={
+          price && (
+            <>
+              {price.text}
+              {price.estimate && <b className="pd-estimate">・{price.estimate}</b>}
+            </>
+          )
+        }
+      />
+      <Row k="小提醒" v={tip} />
+    </dl>
+  );
+}
+
+function stayLabel(min: number): string {
+  if (min < 60) return `${min} 分`;
+  const h = Math.round((min / 60) * 2) / 2;
+  return `${h} 小時`;
+}
+
 /**
- * 介紹：簡介（優缺點、標籤）、問 AI、車站時刻表、價格、排在哪幾天。
- * 網頁版的「總覽」分頁、手機版整頁詳情的「簡介」分頁共用（onDay 見 PlaceInTrip；onAsk：問 AI 的按鈕，手機和網頁各自接）
+ * 介紹（T44b §18.2）：四格 → 兩三句介紹 → 一行時間、費用、小提醒 → 排在哪幾天 → 問 AI。
+ * 車站照舊：介紹、問 AI、時刻表。其他（優缺點全文、無障礙、團體、整週的營業時間、價格明細）在 PlaceMore。
+ * 網頁、手機的「簡介」分頁共用（onDay 見 PlaceInTrip；onAsk：問 AI 的按鈕，手機和網頁各自接）
  */
 export function PlaceIntro({ place, onDay, onAsk }: { place: Place; onDay?(date: string): void; onAsk?(): void }) {
+  const station = place.type === 'station';
+  const ask = onAsk && (
+    <button type="button" className="ask-ai-button" onClick={onAsk} data-testid="detail-ask-ai">
+      <Icon name="spark" size={20} />問 AI 關於「{place.name.zh || place.name.ja}」
+    </button>
+  );
   return (
     <>
+      {!station && <FitGrid place={place} />}
       {place.summary && (
         <section className="detail-summary">
           <p>
             {place.summary.text}
             {editedOf(place, 'summary') && <EditedMark {...editedOf(place, 'summary')!} />}
           </p>
-          {!!place.summary.pros?.length && (
-            <ul className="pros">
-              {place.summary.pros.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-          )}
-          {!!place.summary.cons?.length && (
-            <ul className="cons">
-              {place.summary.cons.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-          )}
-          <Tags place={place} />
+          {station && <ProsCons place={place} />}
         </section>
       )}
-      {onAsk && (
-        <button type="button" className="ask-ai-button" onClick={onAsk} data-testid="detail-ask-ai">
-          <Icon name="spark" size={20} />問 AI 關於「{place.name.zh || place.name.ja}」
-        </button>
-      )}
-      {place.type === 'station' && <StationTimetablePanel place={place} />}
-      <PriceSection place={place} />
+      {!station && <QuickFacts place={place} />}
       <PlaceInTrip place={place} onDay={onDay} />
+      {ask}
+      {station && <StationTimetablePanel place={place} />}
     </>
   );
 }
+
+/** 優缺點全文和標籤 */
+function ProsCons({ place }: { place: Place }) {
+  const s = place.summary;
+  return (
+    <>
+      {!!s?.pros?.length && (
+        <ul className="pros">
+          {s.pros.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      )}
+      {!!s?.cons?.length && (
+        <ul className="cons">
+          {s.cons.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      )}
+      <Tags place={place} />
+    </>
+  );
+}
+
+/** 「更多 ›」（T44b §18.2）：優缺點全文、表演時間、無障礙、團體、整週的營業時間（黃金週這些說明）、價格明細 */
+export function PlaceMore({ place }: { place: Place }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <section className={`pd-more ${open ? 'open' : ''}`} data-testid="detail-more">
+      <button type="button" className="pd-more-btn" aria-expanded={open} onClick={() => setOpen(!open)} data-testid="detail-more-toggle">
+        <span className="pd-more-hint">{open ? '' : '優缺點、無障礙、團體、整週的時間、價格'}</span>
+        <span className="pd-more-go">
+          {open ? '收起' : '更多'} <Icon name="chevron" size={16} />
+        </span>
+      </button>
+      {open && (
+        <div className="pd-more-body">
+          {place.summary && (
+            <section className="detail-section">
+              <h3>優缺點</h3>
+              <ProsCons place={place} />
+            </section>
+          )}
+          <PlaceFacts place={place} />
+          <PriceSection place={place} />
+        </div>
+      )}
+    </section>
+  );
+}
+
 
 /** extra 的值：字串照樣、數字轉字、true 寫「是」、陣列用頓號接 */
 function extraText(v: unknown): string | null {

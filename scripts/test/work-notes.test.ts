@@ -29,7 +29,19 @@ describe('findWorkNotes', () => {
       notes: '兩站都不在 stations.json',
       assessment: { rationale: { groupFit: '15 人能在同一處訂到 → 4（T8g 規則）' } },
     };
-    assert.deepEqual(rulesOf(rec), ['nearestStation.note:tool', 'notes:file-name', 'assessment.rationale.groupFit:task-id']);
+    assert.deepEqual(rulesOf(rec), ['nearestStation.note:tool', 'notes:file-name', 'assessment.rationale.groupFit:task-id', 'assessment.rationale.groupFit:score-arrow']);
+  });
+
+  test('打分時的代號（T44b）：fit15、F③、→ 3、降一級；「→ 2/2」「1F→3F」不算', () => {
+    const rec = {
+      id: 'x',
+      summary: { pros: ['可以預約，fit15 yes（52 席）'], cons: ['週二休 → 2/2 要電話確認'] },
+      notes: '非住客也可以訂（F③）',
+      accessibility: { slope: 'B 棟 1F→3F 室外坡道' },
+      group: { source: '食べログ：11 席 → no' },
+      assessment: { rationale: { elderFit: '全座敷，要等位 降一級 1', recommend: '食べログ 3.6 → 大阪門檻的 4' } },
+    };
+    assert.deepEqual(rulesOf(rec), ['summary.pros[0]:score-code', 'notes:score-code', 'group.source:score-arrow', 'assessment.rationale.elderFit:score-step']);
   });
 
   test('給人看的寫法不算：Google、食べログ 有評分分頁；機場的 T1、T2 是航廈', () => {

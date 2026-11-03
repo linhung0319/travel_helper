@@ -11,10 +11,11 @@ async function aiReady(page: Page) {
   await fake(page, { delayMs: 0 });
 }
 
-test('詳情：問 AI 和上面的 tag 有間距', async ({ page }) => {
+test('詳情：問 AI 和上面那一塊有間距', async ({ page }) => {
   await ready(page);
   await page.evaluate(() => (window as any).__thMobile.getState().openPlace('toba-osakaya', 'explore'));
-  const tags = (await page.locator('.detail-tags').boundingBox())!;
+  // T44b：標籤收進「更多」，問 AI 上面是一行時間、費用、小提醒（或已排）
+  const tags = (await page.getByTestId('detail-ask-ai').locator('xpath=preceding-sibling::*[1]').boundingBox())!;
   const ask = (await page.getByTestId('detail-ask-ai').boundingBox())!;
   expect(ask.y - (tags.y + tags.height)).toBeGreaterThanOrEqual(8);
 });

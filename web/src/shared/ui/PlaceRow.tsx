@@ -1,6 +1,6 @@
 // 清單列（探索的清單、想去的列共用，兩邊一樣）：固定 88px。
-// 左邊 64px 方形縮圖，中間三行（名稱＋等級；類型色點・類型・地區・★；最多兩個重點膠囊），右邊固定一顆 ❤＋數字（right 可換掉）。
-// extra 有給就換掉第二、三行（想去用）。名稱太長就省略，不會推動右邊的 ❤。
+// 左邊 64px 方形縮圖，中間三行（名稱＋等級；類型色點・類型・地區；最多兩個重點膠囊），右邊固定一顆 ❤＋數字（right 可換掉）。
+// extra 有給就換掉第二、三行（想去用）；這時這團的標章（T44b）只放一個，接在名稱後面。評分（★）在詳情（T44b）。名稱太長就省略，不會推動右邊的 ❤。
 // 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）。樣式在 ui.css。
 
 import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
@@ -14,6 +14,7 @@ import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/vie
 import { PlaceTags } from './PlaceTags.tsx';
 import type { Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
+import { fitBadges } from '../../lib/placeSummary.ts';
 import { TierMark } from './TierMark.tsx';
 import { TypeLabel } from './TypeLabel.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
@@ -33,10 +34,10 @@ export function useDayStatus(): (placeId: string) => DayStatus {
 export { placeMetaText };
 
 /** 重點膠囊 */
-export function Highlights({ list }: { list: RowHighlight[] }) {
+export function Highlights({ list, testId = 'place-caps' }: { list: RowHighlight[]; testId?: string }) {
   if (!list.length) return null;
   return (
-    <span className="pr-caps" data-testid="place-caps">
+    <span className="pr-caps" data-testid={testId}>
       {list.map((h) => (
         <span key={h.label} className={`pr-cap pr-cap-${h.tone}`}>
           {h.label}
@@ -115,6 +116,7 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
           {letter && <b data-testid="ai-letter">{letter}.</b>}
           <span className="pr-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
+          {extra !== undefined && <Highlights list={fitBadges(place, 1)} testId="place-fit" />}
         </span>
         <PlaceTags place={place} />
         {extra ?? (
