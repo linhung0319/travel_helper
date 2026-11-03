@@ -1,6 +1,6 @@
 // 查資料的工具（規格 §4.1）：畫面不動。能算的交給引擎，資料沒寫就原樣回傳 null，不說成沒有。
 
-import { ItineraryError, bestInsertIndex, checkProposal, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
+import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, nightAreaOf, nightRunOf, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
 import type { ReservationStatus } from '../backend/types.ts';
 import { bookedConflicts, noteRows, reservationFor } from '../lib/reservations.ts';
@@ -74,6 +74,16 @@ export function createReadTools(d: AiDeps) {
   const likes = (id: string) => votes().filter((v) => v.placeId === id && v.value === 'like').length;
   const nameOf = (id: string | null | undefined) => (id ? placeName(places().byId.get(id), id) : '');
   const who = (id: string) => memberName(d.shared.store.getState().members, id);
+  const areaOf = (id: string) => places().byId.get(id)?.area;
+  const areaName = (id: string) => {
+    const a = places().areas.find((x) => x.id === id);
+    return a ? a.name.zh || a.name.ja || id : id;
+  };
+  /** 這晚住哪一區（T45c）：{ id, name }；還沒決定是 null */
+  const stayAreaOf = (it: Itinerary | null, date: string) => {
+    const id = it ? nightAreaOf(it, date, areaOf) : null;
+    return id ? { id, name: areaName(id) } : null;
+  };
 
   function needDate(date: unknown): string | null {
     return typeof date === 'string' && tripDates().includes(date) ? date : null;
@@ -182,6 +192,8 @@ export function createReadTools(d: AiDeps) {
     const confirmed = places().itinerary;
     return {
       date,
+      area: it ? dayAreaLabel(dayAreaOf(it, date, areaOf), areaName) : null,
+      ...(date === tripDates().at(-1) ? {} : { stayArea: stayAreaOf(it, date) }),
       lodging: lodging ? { id: lodging, name: nameOf(lodging), meals: lodgingMealsOn(it!, date), ...marksOf(date, lodging) } : null,
       entries: p.entries.map((e) => {
         const item = e.itemId && it ? findItem(it, e.itemId)?.item : null;
@@ -228,13 +240,22 @@ export function createReadTools(d: AiDeps) {
     if (!plan) return fail('行程引擎還沒算好，請稍等再查');
     const it = places().itinerary;
     const s = d.shared.store.getState();
+    const last = plan.days.at(-1)?.date;
+    const undecided = plan.days.filter((p) => p.date !== last && !(it && nightAreaOf(it, p.date, areaOf))).map((p) => p.date);
     return {
       ok: true,
+      // 還沒決定住哪一區的晚上（T45c）：整趟先定區、再挑住宿
+      undecidedNights: undecided,
       days: plan.days.map((p) => {
         const lodging = it ? lodgingOn(it, p.date) : null;
         const stops = p.entries.filter((e) => e.kind === 'visit' && e.placeId);
+        const run = it && p.date !== last ? nightRunOf(it, p.date, 'area', areaOf) : null;
         return {
           date: p.date,
+          // 這天在哪一區：「鳥羽」、移動日「志摩 → 鳥羽」、一日遊「鳥羽（去伊勢一日）」；還沒決定是 null
+          area: it ? dayAreaLabel(dayAreaOf(it, p.date, areaOf), areaName) : null,
+          // 這晚住哪一區、連住第幾晚（最後一天沒有晚上，不帶）
+          ...(p.date === last ? {} : { stayArea: stayAreaOf(it, p.date), ...(run ? { areaNight: `${run.index}/${run.total}` } : {}) }),
           regions: [...new Set(stops.map((e) => places().byId.get(e.placeId!)?.region).filter(Boolean))],
           stops: stops.map((e) => ({ name: nameOf(e.placeId), ...marksOf(p.date, e.placeId) })),
           lodging: lodging ? { name: nameOf(lodging), ...marksOf(p.date, lodging) } : null,
@@ -259,7 +280,8 @@ export function createReadTools(d: AiDeps) {
       return {
         ok: true,
         changes: r.changes,
-        summary: r.summary,
+        // 區要寫名字（checkProposal 的摘要只有地點名）
+        summary: describeChanges(r.changes, { nameOf: (id) => nameOf(id), areaName, plan: r.after }),
         newWarnings: r.newWarnings.map((w) => w.message),
         resolvedWarnings: r.resolvedWarnings.map((w) => w.message),
       };

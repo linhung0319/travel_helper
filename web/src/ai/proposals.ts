@@ -89,6 +89,7 @@ export function createProposals(d: ProposalDeps): Proposals {
       const it = d.data.getState().itinerary;
       if (!it) return 'failed';
       let dates: string[] = [];
+      let areasOnly = false;
       try {
         const r = d.commands.showProposal(after(it, ops), { summary: plain(summary) });
         if (!r.ok) {
@@ -96,13 +97,14 @@ export function createProposals(d: ProposalDeps): Proposals {
           return 'stale';
         }
         dates = r.dates;
+        areasOnly = r.changes.every((c) => c.kind === 'night-area' || c.kind === 'day-area');
       } catch (e) {
         if (!(e instanceof ItineraryError)) throw e;
         hide();
         return 'stale';
       }
-      // 看整趟時跳到改的那天，看得到結果
-      if (d.app.getState().day === 'all') d.app.getState().selectDay(dates[0]);
+      // 看整趟時跳到改的那天，看得到結果；只改每晚住哪一區時留在整趟，骨架看得到（T45c）
+      if (d.app.getState().day === 'all' && !areasOnly) d.app.getState().selectDay(dates[0]);
       const removed: Candidate[] = [];
       const added: number[] = [];
       const withdrawn = withdrawnByOps(it, ops);
