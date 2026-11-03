@@ -1,4 +1,5 @@
 // T42：手機的探索概覽、地區列、書架（interaction-design §18.1）。SHOT_DIR 有設時存截圖。
+// T50：子地區列在篩選列裡、書架的順序、返回鈕「‹ 可坐 15 人」、切換鈕只在清單層。
 
 import { test, expect, type Page } from '@playwright/test';
 import { ready } from './helpers.ts';
@@ -17,6 +18,10 @@ test('手機：概覽 → 選鳥羽 → 書架「全部 ›」→ 回到書架�
   await overview.locator('[data-area="toba"]').getByTestId('overview-go').click();
   await expect(page.getByTestId('m-feed-area-toba')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByTestId('area-home')).toBeVisible();
+  await expect(page.getByTestId('area-summary')).toHaveCount(0);
+  await expect(page.getByTestId('fb-stick').getByTestId('region-chips')).toBeVisible();
+  await expect(page.getByTestId('view-photo')).toHaveCount(0);
+  expect(await page.getByTestId('shelf').evaluateAll((els) => els.map((e) => e.getAttribute('data-shelf')))).toEqual(['must', 'fit15', 'stay', 'rain']);
   await shot(page, 'mobile-area-toba');
 
   await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
@@ -24,6 +29,9 @@ test('手機：概覽 → 選鳥羽 → 書架「全部 ›」→ 回到書架�
   const feed = await page.evaluate(() => (window as any).__thMobile.getState().feed);
   expect(feed).toMatchObject({ area: 'toba', type: 'restaurant' });
   expect(feed.quick).toContain('fit15:yes');
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 可坐 15 人');
+  await expect(page.locator('.fb-listhead').getByTestId('view-photo')).toBeVisible();
+  await shot(page, 'mobile-shelf-all');
   await page.getByTestId('filter-open').click();
   await expect(page.getByTestId('filter-opt-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
   await shot(page, 'mobile-filter-sheet');

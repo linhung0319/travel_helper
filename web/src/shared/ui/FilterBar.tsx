@@ -1,5 +1,6 @@
 // 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（有條件時顯示數字，類型不算）、排序（晶片選單）；
-// 第二列地區晶片（typeRow 由呼叫的畫面給，T42 從類型換成地區）和照片牆／清單切換；第三列幾個地點、「＋ 加地點」（只有探索）、問 AI。
+// 第二列地區晶片（typeRow 由呼叫的畫面給，T42 從類型換成地區），選了一區時下面接子地區列（subRow，T50）；
+// 再下一列是返回鈕（「‹ 一定要去」，T50）、幾個地點、「＋ 加地點」（只有探索）、問 AI，最右邊照片牆／清單切換（只在照片牆、清單那層，T50）。
 // 套用了什麼條件不列出來（T33）：要看就點「篩選」，打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
 // 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤，探索、想去是整頁，高度夠）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
@@ -131,7 +132,13 @@ function ViewToggle({ model }: { model: FilterModel }) {
   );
 }
 
-export function FilterBar({ source, surface, model, count, typeRow }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode }) {
+/** 清單層的返回鈕：「‹ 一定要去 · 5 個地點」（lib/shelves.ts 的 backLabel），點了回到書架 */
+export interface FilterBack {
+  label: string;
+  onClick(): void;
+}
+
+export function FilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean }) {
   const areas = useData((s) => s.areas);
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -150,17 +157,29 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
   const listHead = model.onAsk && (
     <div className="fb-listhead">
       {!desktop && !model.ai && backButton}
-      <span data-testid="list-count">{count} 個地點</span>
-      {model.onAdd && (
-        <button type="button" className="fb-add" onClick={model.onAdd} data-testid="add-place-open">
-          <Icon name="plus" size={16} /> 加地點
-        </button>
+      {back && (
+        <span className="fb-back">
+          <button type="button" className="ex-back-area flat" onClick={back.onClick} data-testid="back-to-area">
+            ‹ {back.label}
+          </button>
+          <span aria-hidden>·</span>
+        </span>
       )}
-      <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
-        <Icon name="spark" size={16} /> 問 AI
-      </button>
+      <span data-testid="list-count">{count} 個地點</span>
+      <span className="fb-listhead-end">
+        {model.onAdd && (
+          <button type="button" className="fb-add" onClick={model.onAdd} data-testid="add-place-open">
+            <Icon name="plus" size={16} /> 加地點
+          </button>
+        )}
+        <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
+          <Icon name="spark" size={16} /> 問 AI
+        </button>
+        {showView && <ViewToggle model={model} />}
+      </span>
     </div>
   );
+  const sub = subRow && <div className="fb-subrow">{subRow}</div>;
 
   const bar = (
     <div className={`fb fb-${surface}`} ref={rootRef} data-testid="filter-bar">
@@ -199,9 +218,9 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
       {desktop && typeRow && (
         <div className="fb-typerow">
           <div className="fb-types">{typeRow}</div>
-          <ViewToggle model={model} />
         </div>
       )}
+      {desktop && sub}
       {desktop && listHead}
     </div>
   );
@@ -239,8 +258,8 @@ export function FilterBar({ source, surface, model, count, typeRow }: { source: 
           )}
           <div className="fb-typerow">
             <div className="fb-types">{typeRow}</div>
-            <ViewToggle model={model} />
           </div>
+          {sub}
           {listHead}
         </div>
       </div>

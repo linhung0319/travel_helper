@@ -117,7 +117,7 @@ test('探索、想去：往下捲時三列都黏在上面，想去的段落標�
   const feed = page.getByTestId('m-feed');
   await scroll(1500);
   await expect(feed.getByTestId('list-count')).toBeInViewport();
-  await expect(feed.getByTestId('view-photo')).toBeInViewport();
+  // 概覽沒有照片牆／清單切換（T50）
   const stick = (await feed.getByTestId('fb-stick').boundingBox())!;
   const top = (await page.locator('.m-page').boundingBox())!.y;
   expect(Math.round(stick.y)).toBe(Math.round(top));

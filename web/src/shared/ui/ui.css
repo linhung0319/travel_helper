@@ -853,6 +853,68 @@
   overscroll-behavior-x: contain;
 }
 
+/* 子地區列（T50）：在篩選列裡、緊接在地區列下面；字小一號，選到的是淡靛藍底，看得出是下一層 */
+.fb-subrow {
+  min-width: 0;
+  padding: 0 0 4px;
+}
+
+.fb-subrow .ui-chip {
+  min-height: 30px;
+  padding: 0 11px;
+  font-size: 0.8125rem;
+}
+
+.fb-subrow .ui-chip::after {
+  inset: -7px 0;
+}
+
+.fb-subrow .ui-chip.on {
+  border-color: var(--indigo-line);
+  background: var(--indigo-wash);
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+/* 地點數那列的右半：加地點、問 AI、照片牆／清單切換（切換只在清單層，T50）。
+   窄的手機放不下返回鈕加全部時，右半整組換到下一行靠右，字不折行 */
+.fb-listhead {
+  flex-wrap: wrap;
+  row-gap: 2px;
+}
+
+.fb-listhead [data-testid='list-count'],
+.fb-listhead .fb-ask,
+.fb-listhead .fb-add,
+.fb-back {
+  white-space: nowrap;
+}
+
+.fb-listhead-end {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.fb-listhead-end .fb-add {
+  margin-left: 0;
+}
+
+.fb-desktop .fb-listhead .fb-view button {
+  width: 34px;
+  height: 30px;
+}
+
+/* 清單層的返回鈕「‹ 一定要去 · 」接在地點數前面（T50） */
+.fb-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 5px;
+  color: var(--ink-3);
+}
+
 /* 清單標題列的「＋ 加地點」（T33）：這一列本來就有空位，篩選、排序不用動 */
 .fb-add {
   display: inline-flex;
@@ -4909,13 +4971,6 @@ button.ui-sk-stay:disabled {
   margin-bottom: 4px;
 }
 
-.xa-summary {
-  margin: 0;
-  color: var(--ink-2);
-  font-size: 0.8125rem;
-  line-height: 1.55;
-}
-
 .xa-regions.m-chips {
   padding: 0;
 }
@@ -4960,6 +5015,22 @@ button.ui-sk-stay:disabled {
   font-family: var(--font-round);
   font-size: 0.9375rem;
   font-weight: 900;
+}
+
+/* 標題旁一行小字：這排的條件（T50） */
+.xs-note {
+  margin-left: 8px;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* 小卡右上角的類型圓章（T50，取代愛心） */
+.xs-seal {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: inline-flex;
 }
 
 .xs-all {
@@ -5017,10 +5088,10 @@ button.ui-sk-stay:disabled {
   overflow: hidden;
 }
 
-/* 選了一區、但套了條件或搜尋：「‹ 鳥羽」回到書架 */
+/* 選了一區、但套了條件或搜尋：地點數前面的「‹ 一定要去」回到書架（T50 從單獨一列搬進來） */
 .ex-back-area {
-  align-self: flex-start;
-  margin: 6px 12px 0;
+  position: relative;
+  flex: 0 0 auto;
   min-height: 30px;
   padding: 2px 12px;
   border: 1px solid var(--indigo-line);

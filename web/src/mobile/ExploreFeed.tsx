@@ -1,8 +1,8 @@
 // 手機版「探索」分頁（第七輪 §5）：沒有地圖。顯示方式有兩種（feed.view，記在 localStorage）：
 // 照片牆＝兩欄瀑布（shared/ui/PlaceWall、PlaceTile），清單＝88px 的列（shared/ui/PlaceRow）；兩種都是往下滑一批一批（60 張）出現。
 // 想去的愛心（VoteHeart）直接按、不開詳情；點卡片或列 → 整頁詳情（openPlace）。
-// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：第一列（搜尋、篩選、排序）黏在最上面，下面的地區、照片牆／清單切換和套用的條件跟著捲走。
-// 沒選地區、沒搜尋、沒其他條件時是概覽，選了一區是頂端加書架（shared/ui/ExploreHome，T42，interaction-design §20），其他時候才是照片牆或清單。
+// 上方是篩選列（FeedFilters → shared/ui/FilterBar）：搜尋、篩選、排序，下面一列地區；選了一區接子地區列，清單層的地點數那列有返回鈕和照片牆／清單切換（T50）。
+// 沒選地區、沒搜尋、沒其他條件時是概覽，選了一區是書架（shared/ui/ExploreHome，T42，interaction-design §20），其他時候才是照片牆或清單。
 // 清單的計算和網頁版共用 shared/placeLists.ts（useExploreList），篩選用 mobileStore 的 feed，不看地圖範圍。探索不放「加到某天」。
 // 這個檔也留著手機其他頁用的 useVoteIndex、placeAreaLabel、FeedVotes。
 
@@ -11,8 +11,8 @@ import { useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { feedFilter, filterToFeed } from '../lib/explore.ts';
-import { exploreStage } from '../lib/shelves.ts';
-import { AreaHome, ExploreOverview } from '../shared/ui/ExploreHome.tsx';
+import { backLabel, exploreStage } from '../lib/shelves.ts';
+import { AreaHome, ExploreOverview, RegionChips } from '../shared/ui/ExploreHome.tsx';
 import { useData } from '../hooks.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { addPlaceStore } from '../addPlaceStore.ts';
@@ -105,17 +105,15 @@ export function ExploreFeed() {
           ...(fromChat || aiResult ? { onBack: back } : {}),
           ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
         }}
+        subRow={stage === 'area' && feed.area ? <RegionChips areaId={feed.area} regionId={regionId} onPick={pickFeedRegion} /> : undefined}
+        back={stage === 'list' && !aiResult && areaName ? { label: backLabel(filter, feed.query, areaName), onClick: () => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' }) } : null}
+        showView={stage === 'list'}
       />
       <AddPlaceSuggest query={feed.query} surface="mobile" />
-      {stage === 'list' && !aiResult && areaName && (
-        <button type="button" className="ex-back-area flat" onClick={() => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' })} data-testid="back-to-area">
-          ‹ {areaName}
-        </button>
-      )}
       {stage === 'overview' ? (
         <ExploreOverview surface="mobile" onOpen={open} onPickArea={pickFeedArea} />
       ) : stage === 'area' && feed.area ? (
-        <AreaHome areaId={feed.area} regionId={regionId} surface="mobile" onPickRegion={pickFeedRegion} onOpen={open} onShelfAll={(f) => mobileStore.getState().setFeed(filterToFeed(f))} />
+        <AreaHome areaId={feed.area} regionId={regionId} surface="mobile" onOpen={open} onShelfAll={(f) => mobileStore.getState().setFeed(filterToFeed(f))} />
       ) : feed.view === 'list' ? (
         <div className="m-feed-list" data-count={list.length} data-testid="m-feed-wall">
           {shownList.map((place, i) => (

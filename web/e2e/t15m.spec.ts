@@ -1874,8 +1874,9 @@ test('篩選：套用的條件看按鈕的數字，打開面板看條件、點�
 test('清單列：長名稱不推動 ❤ 的位置', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
-  await page.getByTestId('view-list').click();
+  // 切換鈕只在照片牆、清單那層（T50）：先搜尋再切
   await page.getByTestId('search').fill('Bayside');
+  await page.getByTestId('view-list').click();
   const rows = page.getByTestId('explore-item');
   await expect(rows.nth(1)).toBeVisible();
   const hearts = [await rows.nth(0).getByTestId('card-like').boundingBox(), await rows.nth(1).getByTestId('card-like').boundingBox()];
