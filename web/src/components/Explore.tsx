@@ -23,8 +23,7 @@ import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { AreaHome, ExploreOverview } from '../shared/ui/ExploreHome.tsx';
 import { areaOnly, currentArea, exploreStage } from '../lib/shelves.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
-import { initialExtent } from '../lib/areas.ts';
-import { dataStore } from '../dataStore.ts';
+import { pickArea } from '../exploreArea.ts';
 import { displayName } from '../data/normalize.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
@@ -105,20 +104,6 @@ const Item = memo(function Item({ place, rank, view, hot, statusOf, isOpen, onTo
   };
   return view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
 });
-
-/** 地區列：換地區（子地區清掉、取消選中的點），地圖飛過去；概覽（null）時看整個伊勢志摩。「自己加 N」一起取消 */
-function pickArea(area: string | null) {
-  const s = appStore.getState();
-  wishPrefs.getState().setUserOnly(false);
-  s.select(null);
-  s.setFilter({ areas: area ? [area] : [], regions: [] });
-  if (area) commands.focus({ area });
-  else {
-    const { areas, places } = dataStore.getState();
-    const bbox = initialExtent(areas, places);
-    if (bbox) commands.focus({ bbox });
-  }
-}
 
 /** 選區後的子地區列：一次一個；null 是整區 */
 function pickRegion(region: string | null) {
