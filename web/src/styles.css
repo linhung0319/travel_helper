@@ -2134,59 +2134,225 @@ button.edited {
 /* ---------- 需要預約 ---------- */
 
 .reservation-list {
-  list-style: none;
-  padding: 0;
   margin: 8px 0;
 }
 
-.reservation {
-  padding: 4px 0 8px;
-  border-bottom: 1px solid var(--soft);
+/* T55：一筆一張卡、日期可以收合、計數鈕 */
+.note-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
 }
 
-.reservation h4 {
-  margin: 10px 0 4px;
+.note-filter {
+  margin-left: 0;
 }
 
-.reservation-main {
+.note-filter button {
+  padding: 0 10px;
+}
+
+.note-fold-all {
+  margin-left: auto;
+}
+
+.note-day {
+  margin: 4px 0 8px;
+}
+
+.note-day-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 40px;
+  padding: 4px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  text-align: left;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.note-day-caret {
+  width: 1em;
+  color: var(--muted);
+}
+
+.note-day-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.note-day-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.note-day-sum {
+  flex: none;
+  font-size: 0.85rem;
+}
+
+.note-day-sum.pending {
+  color: var(--warn);
+}
+
+.note-day-sum.done {
+  color: var(--good);
+}
+
+.note-day-names {
+  margin: 4px 0 0 30px;
+}
+
+.note-day-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.note-card {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 8px 10px;
+  background: var(--bg);
+}
+
+.note-card.st-pending {
+  border: 2px solid var(--warn);
+}
+
+.note-card.collapsed {
+  padding: 0;
+}
+
+.note-card-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 40px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  text-align: left;
+  color: var(--fg);
+}
+
+.note-card-line .note-card-name {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 60%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.note-card-line .note-card-note {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.note-card-line .note-status-badge {
+  flex: none;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.note-card-head {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
 }
 
-.reservation-main .badge {
+.note-card-name {
+  font-weight: 600;
+  text-align: left;
+}
+
+.note-card-head .note-status {
+  margin: 0 0 0 auto;
+}
+
+.note-card-head .note-status button {
+  min-height: 32px;
+  padding: 0 10px;
+}
+
+.note-card-fold {
+  min-width: 32px;
+}
+
+.note-status-badge {
   margin-left: 0;
+}
+
+.note-status-badge.st-booked {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+.note-status-badge.st-skip {
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.note-card p {
+  margin: 4px 0 0;
+}
+
+.note-when {
+  color: var(--muted);
 }
 
 .reservation-how {
   display: flex;
-  gap: 10px;
+  gap: 4px 14px;
   flex-wrap: wrap;
-  padding-left: 4px;
+  align-items: center;
+  margin-top: 4px;
 }
 
-.reservation p {
-  margin: 2px 0 0 4px;
+.note-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.reservation-day {
-  margin: 10px 0 4px;
+.note-copy {
+  font-size: 0.85rem;
 }
 
-.note-status {
-  margin: 6px 0 4px;
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.note-tag {
+  margin-left: 0;
+  background: var(--soft);
+  color: var(--ink-2);
 }
 
 .note-input {
   width: 100%;
   box-sizing: border-box;
   min-height: 36px;
-}
-
-.only-pending {
-  display: flex;
-  margin-bottom: 6px;
+  margin-top: 6px;
 }
 
 .reservation-tag {

@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { bookedConflicts, bookingByPlace, linkLabel, newPendingRows, noteRows, reservationFor } from '../src/lib/reservations.ts';
+import { bookedConflicts, bookingByPlace, cardOpenByDefault, dateLine, dayOpenByDefault, firstLine, linkLabel, newPendingRows, noteDays, noteRows, reservationFor, reservationTags, statusCounts } from '../src/lib/reservations.ts';
 import type { Reservation } from '../src/backend/types.ts';
 import { normalizePlace } from '../src/data/normalize.ts';
 import type { Place } from '../src/data/types.ts';
@@ -138,4 +138,52 @@ test('bookedConflicts：換掉已訂的、晚數變了要標；沒動、沒訂�
   assert.deepEqual(bookedConflicts(two, stays('hotel-b', 'hotel-b'), byId, []), []);
   const withDinner = dinner('2027-02-05', 'rest-r');
   assert.deepEqual(bookedConflicts(withDinner, stays('hotel-a'), byId, [rec({ placeId: 'rest-r' })]), ['rest-r 這天已訂，採用的話要記得自己去取消']);
+});
+
+// ---------- T55 ----------
+
+test('T55 dateLine：餐廳寫日期、時間、人數；住宿寫入住–退房、幾晚', () => {
+  const [lodge] = noteRows(stays('hotel-a', 'hotel-a'), null, byId, []);
+  assert.equal(dateLine(lodge), '2/5–2/7 · 2 晚 · 15 人');
+  assert.equal(dateLine({ role: 'main', date: '2027-02-03', endDate: null, nights: null, time: '12:00', people: 6 }), '2/3 · 12:00 · 6 人');
+  assert.equal(dateLine({ role: 'main', date: '2027-02-03', endDate: null, nights: null, time: null, people: 15 }), '2/3 · 15 人');
+});
+
+test('T55 reservationTags：只從訂位方式、幾天前、只接受團體拆', () => {
+  const base = { phone: null, url: null };
+  assert.deepEqual(reservationTags({ ...base, methods: ['phone', 'rakuten', 'xyz'], leadDays: 5, accepted: 'groups-only' }), ['電話', '楽天', 'xyz', '5 天前要訂', '只接受團體']);
+  assert.deepEqual(reservationTags({ ...base, methods: [], leadDays: null, accepted: 'yes' }), []);
+  // 卡片上已經有號碼、網址：不再寫「電話」「官網」
+  assert.deepEqual(reservationTags({ phone: '0599', url: 'https://x.jp/', methods: ['phone', 'official', 'jalan'], leadDays: null, accepted: null }), ['じゃらん']);
+});
+
+test('T55 住宿的 groupNote 併進店家的說明', () => {
+  const H = place('hotel-g', 'lodging', { reservation: { methods: ['phone'], groupNote: '15 人需電話洽詢' } });
+  const [row] = noteRows(stays('hotel-g'), null, new Map([[H.id, H]]), []);
+  assert.equal(row.placeNote, '15 人需電話洽詢');
+});
+
+test('T55 noteDays、statusCounts：照日期分組、算待訂', () => {
+  const it = stays('hotel-a', 'hotel-b', 'hotel-b');
+  const rows = noteRows(it, null, byId, [rec({ date: '2027-02-06', placeId: 'hotel-b', status: 'skip' })]);
+  const days = noteDays(rows);
+  assert.deepEqual(
+    days.map((d) => [d.date, d.rows.length, d.pending]),
+    [
+      ['2027-02-05', 1, 1],
+      ['2027-02-06', 1, 0],
+    ],
+  );
+  assert.equal(dayOpenByDefault(days[0]), true);
+  assert.equal(dayOpenByDefault(days[1]), false);
+  assert.deepEqual(statusCounts(rows), { pending: 1, booked: 0, skip: 1, all: 2 });
+});
+
+test('T55 卡片：待訂展開，已訂、不用訂收成一列；備註取第一行', () => {
+  assert.equal(cardOpenByDefault({ status: 'pending' }), true);
+  assert.equal(cardOpenByDefault({ status: 'booked' }), false);
+  assert.equal(cardOpenByDefault({ status: 'skip' }), false);
+  assert.equal(firstLine('王小明 15 位\n18:00 到'), '王小明 15 位');
+  assert.equal(firstLine(null), null);
+  assert.equal(firstLine('  '), null);
 });
