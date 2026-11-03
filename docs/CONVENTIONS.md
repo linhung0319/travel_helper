@@ -53,13 +53,19 @@ travel_helper/
 
 每個區域在 `areas.json` 有**子地區**（`regions`），是搜尋、缺漏檢查、地圖篩選的單位；資料點的 `region` 填子地區 ID。
 
+**給人看的介紹（`intro`，T40）**：探索的概覽和 AI 都讀這裡。區域的 `notes`、子地區的 `note` 是整理資料時的筆記，**不給人看**。
+- 區域的 `intro`：`summary`（一句特色，30～50 字，寫這區適合做什麼、要不要搭車，不寫行銷文案）、`transport`（要不要搭車的一句摘要）、`highlights`（代表的點，3～5 個這一區的資料點 ID，從 S、A 級挑，至少 1 間餐廳；這區沒有 S、A 級餐廳時例外，例如 `kix`）、`february`（二月注意：休園、休業、換船這類，照重要的順序，每一條寫 `text` 和 `points` 或 `sources`；沒有就空陣列）。
+- 子地區的 `intro`：`summary`、`highlights`（1～3 個這個子地區的點，B 級也可以；子地區沒有資料點時是空的）、`febNote`（沒有就 `null`）。要不要搭車看 `needsCar`。
+- 根據：從資料點整理出來的，把那幾個點的 ID 寫在 `basedOn`（二月注意寫在該條的 `points`）；有網址的來源寫 `sources`。兩種至少一種。
+- 不寫「建議住幾晚」這類意見。二見獨立一區（2026-11-03，T40；資料的 `area` 本來就分開）。
+
 ---
 
 ## 1.5 Schema 與驗證（T0 建立）
 
 - JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`urban-route`、`urban-transfers`（T28）、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
 - 驗證：`npm run validate`（或 `node scripts/validate.mjs`；bash 下可以直接跑 `scripts/validate`）。第一次使用前要先 `npm install`。
-  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、候選清單的 key 不重複而且 `pointId` 存在、有 `assessment` 時 `tier` 和推薦度一致、檔案在規定的位置。
+  - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、候選清單的 key 不重複而且 `pointId` 存在、有 `assessment` 時 `tier` 和推薦度一致、檔案在規定的位置、`areas.json` 的 `intro`（代表的點存在而且屬於那一區或那個子地區、區域的代表點是 S/A 級而且有餐廳、`basedOn` 和二月注意引用的點存在；沒有 `intro` 只警告）。
   - 座標不在所屬區域的 `bbox` 內只會警告（bbox 是大致範圍）。
 - `areas/*.json`、`stations.json` 等清單檔的最外層是**陣列**，每個元素一筆資料。
 - schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
@@ -86,7 +92,7 @@ travel_helper/
 | 檔案 | 誰可以寫 |
 |---|---|
 | `schema/`、`data/areas.json`、`data/stations.json` | 只有 T0、T7 |
-| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19、T27a）；其他欄位仍然只有 T0、T7。例外：T27a 新增 `osaka` 這一整筆，T28 補它的 `stations` |
+| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19、T27a）；其他欄位仍然只有 T0、T7。例外：T27a 新增 `osaka` 這一整筆，T28 補它的 `stations`；T40 加各區、各子地區的 `intro`（和 `schema/area.schema.json`） |
 | `data/timetables/kintetsu/`、`data/passes.json` | T1。例外：T28 在 `_travel-times.json` 加往返大阪的特急 |
 | `data/access/`、`data/raw/access/` | T1b（機場往返交通）。例外：T28 新增 `data/raw/access/osaka.md` |
 | `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充） |

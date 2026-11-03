@@ -45,13 +45,17 @@
         }
       },
       "notes": {
-        "$ref": "common.schema.json#/$defs/nullableString"
+        "$ref": "common.schema.json#/$defs/nullableString",
+        "description": "整理資料用的筆記，不給人看（給人看的寫在 intro）"
       },
       "sources": {
         "$ref": "common.schema.json#/$defs/sources"
       },
       "extra": {
         "type": "object"
+      },
+      "intro": {
+        "$ref": "#/$defs/intro"
       },
       "regions": {
         "description": "子地區：搜尋、缺漏檢查、地圖篩選的單位",
@@ -73,7 +77,11 @@
               "description": "大部分地點要搭車（巴士稀少）"
             },
             "note": {
-              "$ref": "common.schema.json#/$defs/nullableString"
+              "$ref": "common.schema.json#/$defs/nullableString",
+              "description": "整理資料用的筆記，不給人看（給人看的寫在 intro）"
+            },
+            "intro": {
+              "$ref": "#/$defs/regionIntro"
             }
           },
           "required": [
@@ -97,5 +105,167 @@
       "sources"
     ],
     "additionalProperties": false
+  },
+  "$defs": {
+    "intro": {
+      "description": "給人看的區域介紹（T40）：探索的概覽、AI 共用。每段要有根據：basedOn（資料點 ID）或 sources（網址），至少一種。不寫「建議住幾晚」這類意見。",
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "一句特色（30～50 字）：這區適合做什麼、要不要搭車；不寫行銷文案"
+        },
+        "transport": {
+          "type": "string",
+          "minLength": 1,
+          "description": "要不要搭車的一句摘要"
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "uniqueItems": true,
+          "minItems": 3,
+          "maxItems": 5,
+          "description": "代表的點：3～5 個這一區的資料點 ID，從 S、A 級挑，至少 1 間餐廳（這區沒有 S、A 級餐廳時例外）"
+        },
+        "february": {
+          "type": "array",
+          "description": "二月注意：休園、休業、換船這類，照重要的順序；沒有就空陣列",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "$ref": "common.schema.json#/$defs/id"
+                },
+                "uniqueItems": true,
+                "minItems": 1,
+                "description": "整理自哪些資料點"
+              },
+              "sources": {
+                "$ref": "common.schema.json#/$defs/sources"
+              }
+            },
+            "required": [
+              "text"
+            ],
+            "anyOf": [
+              {
+                "required": [
+                  "points"
+                ]
+              },
+              {
+                "required": [
+                  "sources"
+                ]
+              }
+            ],
+            "additionalProperties": false
+          }
+        },
+        "basedOn": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "uniqueItems": true,
+          "description": "summary、transport 整理自哪些資料點"
+        },
+        "sources": {
+          "$ref": "common.schema.json#/$defs/sources"
+        }
+      },
+      "required": [
+        "summary",
+        "transport",
+        "highlights",
+        "february"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "basedOn"
+          ],
+          "properties": {
+            "basedOn": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": [
+            "sources"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "regionIntro": {
+      "description": "給人看的子地區介紹（T40）。要不要搭車看子地區的 needsCar。",
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "一句特色"
+        },
+        "highlights": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "uniqueItems": true,
+          "maxItems": 3,
+          "description": "代表的點：1～3 個這個子地區的資料點 ID（子地區沒有資料點時可以是空的）"
+        },
+        "febNote": {
+          "$ref": "common.schema.json#/$defs/nullableString",
+          "description": "二月注意；沒有就 null"
+        },
+        "basedOn": {
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/id"
+          },
+          "uniqueItems": true,
+          "description": "整理自哪些資料點"
+        },
+        "sources": {
+          "$ref": "common.schema.json#/$defs/sources"
+        }
+      },
+      "required": [
+        "summary",
+        "highlights",
+        "febNote"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "basedOn"
+          ],
+          "properties": {
+            "basedOn": {
+              "minItems": 1
+            }
+          }
+        },
+        {
+          "required": [
+            "sources"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    }
   }
 }

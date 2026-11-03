@@ -301,6 +301,7 @@ function main() {
         if (Array.isArray(a.center) && Array.isArray(a.bbox) && !inBbox(a.center, a.bbox)) {
           err(shown, `[${a.id}] center 不在 bbox 內`);
         }
+        checkAreaIntro(a, shown, points, err, warn);
       }
     } else if (route.kind === 'timetable') {
       if (data?.station && points.size && points.get(data.station)?.record.type !== 'station') {
@@ -424,6 +425,62 @@ function main() {
     process.exit(1);
   }
   console.log('驗證通過。');
+}
+
+/**
+ * 區域、子地區給人看的介紹（T40）：
+ * - 代表的點（highlights）要存在、屬於這一區（子地區的要屬於這個子地區）
+ * - 區域的代表點從 S、A 級挑，至少 1 間餐廳（這區沒有 S、A 級餐廳時例外）
+ * - basedOn、february[].points 引用的點要存在
+ * - 沒有 intro、一句特色太短或太長：警告
+ */
+function checkAreaIntro(a, shown, points, err, warn) {
+  const ref = (where, id) => {
+    const p = points.get(id)?.record;
+    if (!p) err(shown, `${where} 引用的「${id}」不存在`);
+    return p;
+  };
+  const intro = a.intro;
+  if (!intro) warn(shown, `[${a.id}] 沒有 intro（給人看的介紹）`);
+  else checkTopIntro(a, intro, shown, points, err, warn, ref);
+  for (const r of a.regions ?? []) {
+    const rl = `[${a.id}/${r.id}] intro`;
+    if (!r.intro) {
+      warn(shown, `[${a.id}/${r.id}] 沒有 intro（給人看的介紹）`);
+      continue;
+    }
+    for (const id of r.intro.highlights ?? []) {
+      const p = ref(`${rl}.highlights`, id);
+      if (p && (p.area !== a.id || p.region !== r.id)) {
+        err(shown, `${rl}.highlights 的「${id}」不屬於這個子地區（在「${p.area}/${p.region}」）`);
+      }
+    }
+    const hasPoints = [...points.values()].some(({ record: p }) => p.area === a.id && p.region === r.id);
+    if (hasPoints && !(r.intro.highlights ?? []).length) warn(shown, `${rl}.highlights 是空的，但這個子地區有資料點`);
+    for (const id of r.intro.basedOn ?? []) ref(`${rl}.basedOn`, id);
+  }
+}
+
+/** 區域本身的 intro（checkAreaIntro 用） */
+function checkTopIntro(a, intro, shown, points, err, warn, ref) {
+  const label = `[${a.id}] intro`;
+  const len = [...(intro.summary ?? '')].length;
+  if (len && (len < 20 || len > 60)) warn(shown, `${label}.summary 是 ${len} 字（一句特色寫 30～50 字）`);
+  for (const id of intro.highlights ?? []) {
+    const p = ref(`${label}.highlights`, id);
+    if (!p) continue;
+    if (p.area !== a.id) err(shown, `${label}.highlights 的「${id}」不屬於這一區（area 是「${p.area}」）`);
+    if (p.tier !== 'S' && p.tier !== 'A') err(shown, `${label}.highlights 的「${id}」是 ${p.tier ?? '沒有'} 級，代表的點要從 S、A 級挑`);
+  }
+  const hasSARestaurant = [...points.values()].some(
+    ({ record: p }) => p.area === a.id && p.type === 'restaurant' && (p.tier === 'S' || p.tier === 'A'),
+  );
+  const hasRestaurant = (intro.highlights ?? []).some((id) => points.get(id)?.record.type === 'restaurant');
+  if (hasSARestaurant && !hasRestaurant) err(shown, `${label}.highlights 至少要有 1 間餐廳`);
+  for (const id of intro.basedOn ?? []) ref(`${label}.basedOn`, id);
+  (intro.february ?? []).forEach((f, i) => {
+    for (const id of f.points ?? []) ref(`${label}.february[${i}].points`, id);
+  });
 }
 
 const toMin = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));

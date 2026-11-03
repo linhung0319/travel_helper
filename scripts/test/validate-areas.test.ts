@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { ROOT, writeTestData, writeTestSchemas, testSpot } from './helpers/test-area.ts';
+import { ROOT, TEST_COORDS, writeTestData, writeTestSchemas, testSpot, testArea } from './helpers/test-area.ts';
 // @ts-expect-error 沒有型別宣告的 .mjs
 import { expandBbox, envelope } from '../validate.mjs';
 // @ts-expect-error 沒有型別宣告的 .mjs
@@ -73,6 +73,117 @@ describe('validate：新的區域（test-area）', () => {
   test('ID 不能用 user- 開頭（保留給網站上自己加的點）', () => {
     const r = validate(writeTestData({ spots: [testSpot('user-abc')] }));
     assert.match(r.out, /user-abc\] ID 不能用「user-」開頭/);
+  });
+});
+
+describe('validate：區域的介紹（intro，T40）', () => {
+  const spot = (id: string, over: Record<string, unknown> = {}) => testSpot(id, over);
+  const bTier = (id: string) => {
+    const s = testSpot(id) as Record<string, any>;
+    return { ...s, tier: 'B', assessment: { ...s.assessment, scores: { ...s.assessment.scores, recommend: 3 } } };
+  };
+  const intro = (over: Record<string, unknown> = {}) => ({
+    summary: '測試用的區域，一句特色寫在這裡，大概三十個字左右就夠了。',
+    transport: '走路就到。',
+    highlights: ['test-area-a', 'test-area-b', 'test-area-c'],
+    february: [{ text: '2 月照常', points: ['test-area-a'] }],
+    basedOn: ['test-area-a'],
+    ...over,
+  });
+  const regionIntro = (over: Record<string, unknown> = {}) => ({
+    summary: '子地區的特色',
+    highlights: ['test-area-a'],
+    febNote: null,
+    basedOn: ['test-area-a'],
+    ...over,
+  });
+  const run = (areaOver: Record<string, unknown>, spots = [spot('test-area-a'), spot('test-area-b'), spot('test-area-c')]) => {
+    const area = { ...testArea(), ...areaOver } as Record<string, any>;
+    return validate(writeTestData({ spots, extraFiles: { 'areas.json': [area] } }));
+  };
+  const regions = (ri: unknown) => [{ ...testArea().regions[0], intro: ri }];
+
+  test('正確的介紹可以通過，沒有警告', () => {
+    const r = run({ intro: intro(), regions: regions(regionIntro()) });
+    assert.ok(r.ok, r.out);
+    assert.match(r.out, /警告 0/);
+  });
+
+  test('沒有 intro：警告', () => {
+    const r = run({});
+    assert.ok(r.ok, r.out);
+    assert.match(r.out, /\[test-area\] 沒有 intro/);
+    assert.match(r.out, /\[test-area\/test-region\] 沒有 intro/);
+  });
+
+  test('代表的點不存在、不是 S/A 級、屬於別區：錯誤', () => {
+    const r = run(
+      { intro: intro({ highlights: ['test-area-a', 'test-area-b', 'nowhere'] }), regions: regions(regionIntro()) },
+      [spot('test-area-a'), bTier('test-area-b'), spot('test-area-c')],
+    );
+    assert.ok(!r.ok);
+    assert.match(r.out, /intro\.highlights 引用的「nowhere」不存在/);
+    assert.match(r.out, /「test-area-b」是 B 級/);
+
+    const other = run(
+      { intro: intro(), regions: regions(regionIntro()) },
+      [spot('test-area-a'), spot('test-area-b', { area: 'ise', region: 'ise-geku' }), spot('test-area-c')],
+    );
+    assert.match(other.out, /「test-area-b」不屬於這一區/);
+  });
+
+  test('這區有 S/A 級餐廳時，代表的點至少要有 1 間餐廳', () => {
+    const real = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/areas/ise/restaurants.json'), 'utf8')).find(
+      (x: Record<string, unknown>) => x.tier === 'A' || x.tier === 'S',
+    );
+    const rest = { ...real, id: 'test-area-r', area: 'test-area', region: 'test-region', coords: [135.502, 34.692], access: [], nearestStation: null };
+    delete rest.anchors;
+    const area = { ...testArea(), intro: intro(), regions: regions(regionIntro()) };
+    const dir = writeTestData({
+      spots: [spot('test-area-a'), spot('test-area-b'), spot('test-area-c')],
+      extraFiles: { 'areas.json': [area], 'areas/test-area/restaurants.json': [rest] },
+    });
+    const r = validate(dir);
+    assert.match(r.out, /intro\.highlights 至少要有 1 間餐廳/);
+  });
+
+  test('子地區的代表點要在這個子地區；basedOn、february 的點要存在', () => {
+    const r = run(
+      {
+        intro: intro({ basedOn: ['gone-1'], february: [{ text: 'x', points: ['gone-2'] }] }),
+        regions: [
+          { ...testArea().regions[0], intro: regionIntro({ highlights: ['test-area-c'], basedOn: ['gone-3'] }) },
+          { id: 'test-region-2', name: { ja: 'テスト2', zh: '測試2' }, center: TEST_COORDS, intro: regionIntro() },
+        ],
+      },
+      [spot('test-area-a', { region: 'test-region-2' }), spot('test-area-b'), spot('test-area-c')],
+    );
+    assert.ok(!r.ok);
+    assert.match(r.out, /intro\.basedOn 引用的「gone-1」不存在/);
+    assert.match(r.out, /february\[0\]\.points 引用的「gone-2」不存在/);
+    assert.match(r.out, /\[test-area\/test-region\] intro\.basedOn 引用的「gone-3」不存在/);
+    assert.doesNotMatch(r.out, /「test-area-c」不屬於這個子地區/);
+    assert.doesNotMatch(r.out, /test-region-2\] intro\.highlights/);
+
+    const wrong = run(
+      {
+        intro: intro(),
+        regions: [
+          { ...testArea().regions[0], intro: regionIntro({ highlights: ['test-area-a'] }) },
+          { id: 'test-region-2', name: { ja: 'テスト2', zh: '測試2' }, center: TEST_COORDS, intro: regionIntro({ highlights: [] }) },
+        ],
+      },
+      [spot('test-area-a', { region: 'test-region-2' }), spot('test-area-b'), spot('test-area-c')],
+    );
+    assert.ok(!wrong.ok);
+    assert.match(wrong.out, /\[test-area\/test-region\] intro\.highlights 的「test-area-a」不屬於這個子地區/);
+    assert.match(wrong.out, /\[test-area\/test-region-2\] intro\.highlights 是空的/);
+  });
+
+  test('schema：沒有 basedOn 也沒有 sources、二月注意沒有根據：錯誤', () => {
+    const { basedOn: _b, ...noBasis } = intro();
+    const r = run({ intro: { ...noBasis, february: [{ text: '沒有根據' }] }, regions: regions(regionIntro()) });
+    assert.ok(!r.ok);
   });
 });
 
