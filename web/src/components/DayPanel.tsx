@@ -12,12 +12,11 @@ import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRe
 import { DayCandidates } from './Wishlist.tsx';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
-import { askDay, askEmptyDay, askStart, askTrip } from './webAi.ts';
+import { askDay, askEmptyDay, askTrip } from './webAi.ts';
 import { showList } from './SidePanel.tsx';
 import { Icon } from './Icon.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { DayEmpty } from '../shared/ui/EmptyStates.tsx';
-import { StartCard } from '../shared/ui/StartCard.tsx';
 import { TripSkeleton } from '../shared/ui/TripSkeleton.tsx';
 import { NightLine } from '../shared/ui/NightLine.tsx';
 
@@ -27,7 +26,6 @@ function Overview() {
   const updatedBy = useShared((s) => s.updatedBy);
   const updatedAt = useShared((s) => s.updatedAt);
   const version = useShared((s) => s.version);
-  const proposal = useApp((s) => s.proposal);
   return (
     <div className="day-panel" data-testid="day-panel">
       <div className="day-head">
@@ -40,7 +38,6 @@ function Overview() {
           第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
         </span>
       </div>
-      {!proposal && <StartCard onExplore={() => showList('explore')} onAsk={askStart} />}
       {plan?.warnings.map((w, i) => (
         <p key={i} className={`small warning-${w.level}`}>
           <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}

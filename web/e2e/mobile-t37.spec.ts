@@ -1,4 +1,4 @@
-// T37 新手起步（interaction-design §17.1～§17.5）手機版：開始卡、整趟清單併列、訊息區的卡片（半屏放不下時只放第一張）、空白狀態、第一次按 ♡、怎麼用。
+// T37 新手起步（interaction-design §17.1～§17.5）手機版：引導彈窗（T46 取代開始卡）、整趟骨架、訊息區的卡片（半屏放不下時只放第一張）、空白狀態、第一次按 ♡、怎麼用。
 import { test, type Page } from '@playwright/test';
 import { exploreAll } from './helpers.ts';
 import { expect, goTab, ready, scrollsSideways } from './mobileHelpers.ts';
@@ -16,11 +16,10 @@ const showOverview = async (page: Page) => {
   await page.getByTestId('m-day-all').click();
 };
 
-test('只有航班的行程：開始卡、整趟的骨架一天一列（T45b 起不併列）、第一列是航班；沒有橫向捲動', async ({ page }) => {
+test('只有航班的行程：地圖上的引導 0/4、整趟的骨架一天一列（T45b 起不併列）、第一列是航班；沒有橫向捲動', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
-  await expect(page.getByTestId('start-card')).toHaveAttribute('data-view', 'steps');
-  await expect(page.getByTestId('start-count')).toHaveText('0 / 3');
+  await expect(page.getByTestId('m-guide-button')).toHaveText('排行程 0/4');
   const rows = page.getByTestId('sk-row');
   await expect(rows).toHaveCount(12);
   await expect(page.getByTestId('sk-flight-arrive')).toContainText('到關西');
@@ -53,11 +52,12 @@ test('半屏聊天放不下三張：第一張留著，其他縮成一行膠囊',
   await page.setViewportSize({ width: 390, height: 560 });
   await flightsOnly(page);
   await showOverview(page);
-  await page.getByTestId('start-step-2').getByTestId('start-ask').click();
+  await page.getByTestId('m-guide-button').click();
+  await page.getByTestId('guide-ask-lodging').click();
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
   await expect(page.getByTestId('chat-cards')).toHaveAttribute('data-compact', 'true');
   const cards = page.locator('[data-testid="chat-cards"] button');
-  await expect(cards.first()).toContainText('幫我先排每晚住哪一區');
+  await expect(cards.first()).toContainText('幫我決定前幾晚住哪');
   await expect(cards).toHaveCount(3);
   await expect(page.getByTestId('chat-empty')).toBeHidden();
   const a = (await cards.nth(1).boundingBox())!;

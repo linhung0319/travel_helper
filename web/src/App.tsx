@@ -2,7 +2,10 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { startAi } from './appAi.ts';
-import { connectWebAi } from './components/webAi.ts';
+import { askStart, connectWebAi } from './components/webAi.ts';
+import { commands } from './appCommands.ts';
+import { showItinerary } from './components/Explore.tsx';
+import { GuideButton, type GuideActions } from './shared/ui/GuideDialog.tsx';
 import { appStore } from './store.ts';
 import { loadData } from './dataStore.ts';
 import { useData, useIsDesktop } from './hooks.ts';
@@ -11,7 +14,7 @@ import { LazyMap } from './components/LazyMap.tsx';
 import { watchKeyboard } from './lib/keyboard.ts';
 import { ChatPanel } from './components/ChatPanel.tsx';
 import { dropAiProps } from './components/askAi.ts';
-import { DetailFloat, SidePanel } from './components/SidePanel.tsx';
+import { DetailFloat, showList, SidePanel } from './components/SidePanel.tsx';
 import { MapDays } from './components/MapDays.tsx';
 import { MapPanel } from './components/MapPanel.tsx';
 import { AddPlaceDialog } from './shared/ui/AddPlaceDialog.tsx';
@@ -29,6 +32,16 @@ import './styles.css';
  * 電腦版三欄（參考 puma.taipei/heart-island）：左邊聊天室；中間只有地圖（和彈窗）；
  * 右邊是行程／探索／詳情共用的一欄，頂端有日期列和頭像選單。聊天室和右欄都頂到最上面。
  */
+/** 引導彈窗的按鈕（T46）：① 右欄的探索 ② 右欄的行程、整趟 ③④ 左欄的聊天室 */
+const WEB_GUIDE: GuideActions = {
+  explore: () => showList('explore'),
+  trip: () => {
+    showItinerary();
+    commands.selectDay('all');
+  },
+  ask: askStart,
+};
+
 function DesktopLayout({ ready }: { ready: boolean }) {
   useEffect(connectWebAi, []);
   // 載入順序（T39，👤）：聊天室一開始就在；資料到了才有右欄的探索；地圖最後（LazyMap）
@@ -43,6 +56,8 @@ function DesktopLayout({ ready }: { ready: boolean }) {
         {ready && (
           <>
             <MapDays />
+            {/* 引導彈窗的入口（T46）：地圖右上，三個分頁都看得到；縮放鈕在右下 */}
+            <GuideButton className="map-guide" />
             <DetailFloat />
             <MapPanel />
             <DiscussionPanel surface="desktop" />
@@ -135,7 +150,7 @@ export default function App() {
       <DesktopLayout ready={status === 'ready'} />
       {status === 'ready' && (
         <>
-          <Dialogs />
+          <Dialogs guide={WEB_GUIDE} />
           <Toast />
         </>
       )}

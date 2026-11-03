@@ -94,7 +94,18 @@ function nightRange(nights: StarterDay[], start: number, open: (d: StarterDay) =
   return end > start ? `${monthDay(nights[start].date)}～${monthDay(nights[end].date)}` : monthDay(nights[start].date);
 }
 
-/** 第一張卡（interaction-design §17.2 的規則）：由上往下，第一個符合的就是。開始卡用同一個函式，兩邊一定一致 */
+/** 問住宿的那一句（§17.2 的規則 1、2）；每晚都有住宿是 null。引導彈窗第 ③ 步「選住宿」直接用它：區還沒定完也問住宿（T46） */
+export function lodgingStarter(i: StarterInput): Starter | null {
+  const nights = nightsOf(i);
+  const missing = nights.filter((d) => !d.lodging);
+  if (!missing.length) return null;
+  if (missing.length === nights.length) return { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
+  // 連續的晚上併成一段，最早的一段先
+  const range = nightRange(nights, nights.indexOf(missing[0]), (d) => !d.lodging, LODGING_STRETCH);
+  return { q: `幫我決定 ${range} 住哪`, why: `還有 ${missing.length} 晚沒住宿` };
+}
+
+/** 第一張卡（interaction-design §17.2 的規則）：由上往下，第一個符合的就是。引導彈窗第 ③、④ 步用同一份規則，兩邊一定一致 */
 export function firstStarter(i: StarterInput): Starter {
   const nights = nightsOf(i);
   // 先定每晚住哪一區，再挑住宿（T45c）：選了住宿的晚上區照住宿，不會在這裡
@@ -104,13 +115,8 @@ export function firstStarter(i: StarterInput): Starter {
     const range = nightRange(nights, nights.indexOf(noArea[0]), (d) => !d.area && !d.lodging);
     return { q: `幫我決定 ${range} 住哪一區`, why: `還有 ${noArea.length} 晚沒決定區` };
   }
-  const missing = nights.filter((d) => !d.lodging);
-  if (missing.length && missing.length === nights.length) return { q: '幫我決定前幾晚住哪', why: '從第一晚開始，15 人的住宿最難訂' };
-  if (missing.length) {
-    // 連續的晚上併成一段，最早的一段先
-    const range = nightRange(nights, nights.indexOf(missing[0]), (d) => !d.lodging, LODGING_STRETCH);
-    return { q: `幫我決定 ${range} 住哪`, why: `還有 ${missing.length} 晚沒住宿` };
-  }
+  const lodging = lodgingStarter(i);
+  if (lodging) return lodging;
   const empty = fullDaysOf(i).find((d) => !d.hasStops);
   if (empty) return dayStarter(empty);
   // 晚餐排在午餐前面：沒有一泊二食的晚上，15 人比較難找位子
@@ -145,12 +151,12 @@ export function startersFor(i: StarterInput): Starter[] {
 /** 想去頁空白時「問 AI 推薦」帶的那一句（§17.4） */
 export const WISH_EMPTY_LEAD: Starter = { q: '推薦幾個適合全家去的地方', why: '還沒有人按想去，先看看' };
 
-/** 開始卡第 ② 步：藍卡下面接著問住宿的事 */
+/** 引導彈窗第 ③ 步（選住宿）：藍卡下面接著問住宿的事 */
 export const LODGING_FOLLOWUPS = ['我已經訂好幾晚了', '15 人能包棟的住宿有哪些？'];
 /** 空的一天：沒有東西可以檢查，問怎麼排。不帶晶片（§17.1），所以直接寫日期 */
 export const emptyDayFollowups = (date: string) => [`想去的點哪些適合 ${monthDay(date)}？`, `${monthDay(date)} 長輩走起來輕鬆的安排`];
 
-/** 第一個還沒排的天（開始卡第 ③ 步）；都排了是 null */
+/** 第一個還沒排的天（引導彈窗第 ④ 步）；都排了是 null */
 export const firstEmptyDate = (i: StarterInput) => fullDaysOf(i).find((d) => !d.hasStops)?.date ?? null;
 
 /** 「整趟」晶片的建議問題：拿掉現在問了沒意義的（沒有提醒不問哪天最趕、住宿都定了不問哪幾晚） */

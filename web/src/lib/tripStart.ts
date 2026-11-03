@@ -1,49 +1,44 @@
-// 新手起步的純邏輯（interaction-design §17）：開始卡的進度和要不要顯示、重新打開網站要不要開新對話。
+// 新手起步的純邏輯（interaction-design §17）：引導彈窗的進度（T46）、重新打開網站要不要開新對話。
 
 import type { Itinerary } from '@travel-helper/engine/types';
 import { fullDaysOf, nightsOf, type StarterInput } from '../ai/prompts.ts';
 
-// ---------- 開始卡（§17.1） ----------
+// ---------- 引導彈窗（§17.1，T46） ----------
 
-/** 三步完成了沒：看行程本身的狀態，不看是不是第一次進來，家人什麼時候進來都看到同一份進度 */
-export interface StartProgress {
+/** 四步完成了沒：看行程本身的狀態，不看是不是第一次進來，家人什麼時候進來都看到同一份進度 */
+export interface GuideProgress {
+  /** ① 任何一位家人按過 ♡（不是只算自己） */
   liked: boolean;
+  /** ② 2/2～2/12 每晚都決定了住哪一區（選了住宿的晚上，區照住宿） */
+  areas: boolean;
+  /** ③ 2/2～2/12 每晚都有住宿 */
   lodging: boolean;
+  /** ④ 2/3～2/12 每天都排了景點或餐廳（航班那兩天除外） */
   stops: boolean;
   done: number;
 }
 
-export function startProgress(i: StarterInput): StartProgress {
+export const GUIDE_STEPS = 4;
+
+/** 「問 AI」問哪一步：③ 選住宿、④ 一天一天排 */
+export type GuideAsk = 'lodging' | 'day';
+
+export function guideProgress(i: StarterInput): GuideProgress {
+  const nights = nightsOf(i);
   const liked = i.anyLiked;
-  const lodging = nightsOf(i).every((d) => d.lodging);
+  const areas = nights.every((d) => !!d.area || d.lodging);
+  const lodging = nights.every((d) => d.lodging);
   const stops = fullDaysOf(i).every((d) => d.hasStops);
-  return { liked, lodging, stops, done: [liked, lodging, stops].filter(Boolean).length };
+  return { liked, areas, lodging, stops, done: [liked, areas, lodging, stops].filter(Boolean).length };
 }
 
-/** 這台裝置記的：什麼時候第一次看到全部完成、按過 ✕ 沒 */
-export interface StartCardMemory {
-  doneAt: string | null;
-  dismissed: boolean;
-}
-
-export const EMPTY_START_MEMORY: StartCardMemory = { doneAt: null, dismissed: false };
-
-const DONE_KEEP_MS = 3 * 24 * 3600_000;
-
-/** steps＝三步都列；last＝前兩步做完了，只留第 ③ 步；done＝一行「每天都排了東西」；hidden＝不出現 */
-export type StartCardView = 'steps' | 'last' | 'done' | 'hidden';
-
-export function startCardView(p: StartProgress, memory: StartCardMemory, nowMs: number): StartCardView {
-  if (p.done < 3) return p.liked && p.lodging ? 'last' : 'steps';
-  if (memory.dismissed) return 'hidden';
-  if (memory.doneAt && nowMs - Date.parse(memory.doneAt) >= DONE_KEEP_MS) return 'hidden';
-  return 'done';
-}
-
-/** 進度變了之後要記什麼：第一次完成記時間；又有東西沒排（有人刪了）就忘掉，之後完成再算一次 */
-export function nextStartMemory(p: StartProgress, memory: StartCardMemory, nowIso: string): StartCardMemory {
-  if (p.done < 3) return memory.doneAt || memory.dismissed ? EMPTY_START_MEMORY : memory;
-  return memory.doneAt ? memory : { ...memory, doneAt: nowIso };
+/** 現在該做的那一步（第一個還沒完成的，按鈕用實心）；全部完成是 null */
+export function guideCurrent(p: GuideProgress): 1 | 2 | 3 | 4 | null {
+  if (!p.liked) return 1;
+  if (!p.areas) return 2;
+  if (!p.lodging) return 3;
+  if (!p.stops) return 4;
+  return null;
 }
 
 export const flightCount = (it: Itinerary | null, date: string) => it?.days.find((d) => d.date === date)?.items.filter((x) => x.type === 'flight').length ?? 0;

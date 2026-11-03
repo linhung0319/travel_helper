@@ -9,8 +9,10 @@ import { HistoryDialog } from './EditHistory.tsx';
 import { DeleteUserPlaceDialog } from './DeleteUserPlaceDialog.tsx';
 import { HowToDialog } from './HowToDialog.tsx';
 import { Icon } from './Icon.tsx';
+import { GuideDialog, type GuideActions } from '../shared/ui/GuideDialog.tsx';
 
-export function Dialogs() {
+/** guide：引導彈窗每一步的按鈕（網頁、手機各自給） */
+export function Dialogs({ guide }: { guide: GuideActions }) {
   const d = useUi((s) => s.dialog);
   if (!d) return null;
   switch (d.kind) {
@@ -32,6 +34,8 @@ export function Dialogs() {
       return <DeleteUserPlaceDialog placeId={d.placeId} />;
     case 'how-to':
       return <HowToDialog />;
+    case 'guide':
+      return <GuideDialog actions={guide} />;
   }
 }
 

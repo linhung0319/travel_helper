@@ -891,7 +891,7 @@ dl {
   position: absolute;
   top: 8px;
   left: 8px;
-  right: 56px; /* 右上角是縮放按鈕 */
+  right: 150px; /* 右上角是引導彈窗的入口（.map-guide，T46） */
   z-index: 4;
   display: flex;
   flex-direction: column;
@@ -902,6 +902,7 @@ dl {
 /* 行程分頁：日期晶片在地圖左上，說明列排在它下面 */
 .map-column:has(.map-days) .command-bars {
   top: 120px;
+  right: 8px;
 }
 
 .command-bar {
@@ -2463,11 +2464,7 @@ button.edited {
 }
 
 /* 浮在地圖上方的日期、我 */
-/* 地圖的縮放鈕移到右下角，讓出上方（地圖上已經沒有浮動列） */
-.layout.desktop .maplibregl-ctrl-top-right {
-  top: auto;
-  bottom: 28px;
-}
+/* 地圖的縮放鈕在右下角（MapView 加在 bottom-right），右上是引導彈窗的入口（T46，.map-guide） */
 
 /* 右欄：分頁＋內容 */
 .side-panel {
