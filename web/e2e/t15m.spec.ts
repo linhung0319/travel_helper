@@ -339,13 +339,16 @@ test('預約筆記：改成已訂、時間軸 tag 跟著變', async ({ page }) =
   await row.getByTestId('note-text').fill(BOOK_NOTE);
   await row.getByTestId('note-text').press('Enter');
 
-  // 只看待訂（晶片開關，不用原生勾選框）：這列不見了
+  // 改了狀態卡片先留著展開（T55）
+  await expect(row).toHaveAttribute('data-open', 'true');
+
+  // 計數鈕「待訂」：這張卡不見了；按「全部」回來（T55，取代「只看待訂」；不用原生勾選框）
   await expect(panel.locator('input[type="checkbox"]')).toHaveCount(0);
-  await panel.getByTestId('only-pending').click();
-  await expect(panel.getByTestId('only-pending')).toHaveAttribute('aria-pressed', 'true');
+  await panel.getByTestId('note-filter-pending').click();
+  await expect(panel.getByTestId('note-filter-pending')).toHaveAttribute('aria-pressed', 'true');
   await expect(panel.locator(`[data-testid="note-row"][data-place="${placeId}"][data-status="booked"]`)).toHaveCount(0);
-  await panel.getByTestId('only-pending').click();
-  await expect(panel.getByTestId('only-pending')).toHaveAttribute('aria-pressed', 'false');
+  await panel.getByTestId('note-filter-all').click();
+  await expect(panel.getByTestId('note-filter-all')).toHaveAttribute('aria-pressed', 'true');
 
   // 關掉：那張卡片的 tag 寫已訂
   await page.getByTestId('map-panel-close').click();
@@ -353,17 +356,72 @@ test('預約筆記：改成已訂、時間軸 tag 跟著變', async ({ page }) =
   const tag = page.locator(`[data-testid="tl-row"] [data-testid="reservation-tag"][data-status="booked"]`).first();
   await expect(tag).toHaveText('✓ 已訂');
 
-  // 點 tag 回到預約筆記
+  // 點 tag 回到預約筆記：那天和那張卡展開（已訂的卡本來收成一列，T55）
   await tag.click();
   await expect(page.getByTestId('map-panel')).toBeVisible();
+  // （第一個已訂的 tag 可能是種子資料裡已訂的住宿；已訂的卡預設收著，展開的那張就是 tag 指的）
+  await expect(page.getByTestId('map-panel').locator('[data-testid="note-row"][data-status="booked"][data-open="true"]')).toHaveCount(1);
   await page.getByTestId('map-panel-close').click();
 
-  // 換人：同一個狀態和備註
+  // 換人：同一個狀態和備註；已訂的卡收成一列，寫著備註的第一行，點了展開（T55）
   await switchUser(page, 'dev-agong');
   await openAccountItem(page, 'reservations');
+  await openNoteDay(page.getByTestId('map-panel'), '2027-02-05');
   const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"][data-status="booked"]`).first();
-  await expect(again).toBeVisible();
+  await expect(again).toHaveAttribute('data-open', 'false');
+  await expect(again).toContainText(BOOK_NOTE);
+  await again.getByTestId('note-card-toggle').click();
   await expect(again.getByTestId('note-text')).toHaveValue(BOOK_NOTE);
+});
+
+/** 預約筆記的日期標題收合時打開（T55） */
+async function openNoteDay(panel: Locator, date: string) {
+  const day = panel.locator(`[data-testid="note-day"][data-date="${date}"]`);
+  if ((await day.getAttribute('data-open')) === 'false') await day.getByTestId('note-day-toggle').click();
+  await expect(day).toHaveAttribute('data-open', 'true');
+}
+
+test('T55 預約筆記：一筆一張卡、日期收合、計數鈕', async ({ page }) => {
+  await ready(page);
+  await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
+  await openAccountItem(page, 'reservations');
+  const panel = page.getByTestId('map-panel');
+  await expect(panel).toHaveAttribute('data-scope', 'trip');
+  await expect(panel.getByTestId('note-row').first()).toBeVisible();
+
+  // 種子資料：2/3 的 la mer 是不用訂、2/5 的住宿已訂；先全部展開，計數鈕的數字和卡片一樣
+  const count = (s: string) => panel.locator(`[data-testid="note-row"][data-status="${s}"]`).count();
+  if ((await panel.getByTestId('note-fold-all').textContent()) === '全部展開') await panel.getByTestId('note-fold-all').click();
+  await expect(panel.getByTestId('note-fold-all')).toHaveText('全部收合');
+  for (const s of ['pending', 'booked', 'skip']) {
+    await expect(panel.getByTestId(`note-filter-${s}`)).toContainText(String(await count(s)));
+  }
+
+  // 待訂的卡展開、紅框；已訂、不用訂收成一列
+  const pending = panel.locator('[data-testid="note-row"][data-status="pending"]').first();
+  await expect(pending).toHaveAttribute('data-open', 'true');
+  await expect(pending.getByTestId('note-when')).toContainText('人');
+  const skip = panel.locator('[data-testid="note-row"][data-status="skip"]').first();
+  await expect(skip).toHaveAttribute('data-open', 'false');
+  await expect(skip).toContainText('當天現場排隊就好');
+
+  // 全部收合：每天只剩標題和一行名稱
+  await panel.getByTestId('note-fold-all').click();
+  await expect(panel.getByTestId('note-row')).toHaveCount(0);
+  await expect(panel.getByTestId('note-day-names').first()).toBeVisible();
+  // 收合的狀態存在這台裝置：重新打開還是收著
+  await page.getByTestId('map-panel-close').click();
+  await openAccountItem(page, 'reservations');
+  await expect(panel.getByTestId('note-row')).toHaveCount(0);
+  const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('th.reservations.dayOpen') ?? '{}'));
+  expect(Object.values(stored).every((v) => v === false)).toBe(true);
+
+  // 點一天的標題展開；摘要寫待訂幾筆或都訂好了
+  const first = panel.getByTestId('note-day').first();
+  await first.getByTestId('note-day-toggle').click();
+  await expect(first).toHaveAttribute('data-open', 'true');
+  await expect(first.getByTestId('note-day-sum')).toHaveText(/待訂 \d+|✓ 都訂好了/);
+  await page.evaluate(() => localStorage.removeItem('th.reservations.dayOpen'));
 });
 
 test('預約筆記：打了備註不按 Enter 直接按狀態，兩個都存得下來', async ({ page }) => {
@@ -378,8 +436,10 @@ test('預約筆記：打了備註不按 Enter 直接按狀態，兩個都存得�
   await page.getByTestId('map-panel-close').click();
   await switchUser(page, 'dev-agong');
   await openAccountItem(page, 'reservations');
+  await openNoteDay(page.getByTestId('map-panel'), '2027-02-05');
   const again = page.getByTestId('map-panel').locator(`[data-testid="note-row"][data-place="${placeId}"]`).first();
   await expect(again).toHaveAttribute('data-status', 'booked');
+  await again.getByTestId('note-card-toggle').click();
   await expect(again.getByTestId('note-text')).toHaveValue(TEXT2);
 });
 

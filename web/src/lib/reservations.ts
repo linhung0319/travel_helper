@@ -49,7 +49,7 @@ function reservationOf(p: Place) {
     methods: Array.isArray(r?.methods) ? (r.methods as string[]) : [],
     phone: str('phone') ?? (typeof p.raw.phone === 'string' ? p.raw.phone : null),
     url: str('url') ?? p.links.official ?? null,
-    placeNote: str('note'),
+    placeNote: [str('note'), str('groupNote')].filter(Boolean).join('；') || null,
     leadDays: typeof r?.leadDays === 'number' ? r.leadDays : null,
   };
 }
@@ -219,3 +219,79 @@ export function linkLabel(url: string, place: Place): string {
   if (host === 'travel.rakuten.co.jp') return '楽天';
   return host;
 }
+
+// ---------- T55：預約筆記的卡片和日期分組 ----------
+
+const METHOD_LABELS: Record<string, string> = {
+  phone: '電話',
+  web: '網路',
+  line: 'LINE',
+  'instagram-dm': 'IG 私訊',
+  official: '官網',
+  rakuten: '楽天',
+  jalan: 'じゃらん',
+  booking: 'Booking.com',
+  airbnb: 'Airbnb',
+  knt: '近畿日本ツーリスト',
+  yahoo: 'Yahoo!トラベル',
+  stayjapan: 'STAY JAPAN',
+  'vacation-stay': 'Vacation STAY',
+  other: '其他方式',
+};
+
+/**
+ * 訂位條件的小標籤：只從現有的結構化欄位拆（訂位方式、幾天前要訂、只接受團體）。
+ * 店家怎麼說的那段文字（reservation.note、住宿的 groupNote）拆不了，照樣顯示成文字（PLAN T55）。
+ */
+export function reservationTags(row: Pick<NoteRow, 'methods' | 'leadDays' | 'accepted' | 'phone' | 'url'>): string[] {
+  // 卡片上已經有電話號碼、網址的連結，「電話」「官網」就不再寫一次
+  const shown = (m: string) => (m === 'phone' && !!row.phone) || (m === 'official' && !!row.url);
+  const out = row.methods.filter((m) => !shown(m)).map((m) => METHOD_LABELS[m] ?? m);
+  if (row.leadDays != null) out.push(`${row.leadDays} 天前要訂`);
+  if (row.accepted === 'groups-only') out.push('只接受團體');
+  return out;
+}
+
+const md = (d: string) => `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}`;
+
+/** 卡片的第二列：「2/3 · 12:00 · 15 人」；住宿「2/2–2/3 · 1 晚 · 15 人」 */
+export function dateLine(row: Pick<NoteRow, 'role' | 'date' | 'endDate' | 'nights' | 'time' | 'people'>): string {
+  const parts = row.role === 'lodging' && row.endDate ? [`${md(row.date)}–${md(row.endDate)}`, `${row.nights} 晚`] : [md(row.date), ...(row.time ? [row.time] : [])];
+  return [...parts, `${row.people} 人`].join(' · ');
+}
+
+export type StatusCounts = Record<ReservationStatus, number> & { all: number };
+
+/** 最上面的計數鈕 */
+export function statusCounts(rows: Pick<NoteRow, 'status'>[]): StatusCounts {
+  const c: StatusCounts = { pending: 0, booked: 0, skip: 0, all: rows.length };
+  for (const r of rows) c[r.status] += 1;
+  return c;
+}
+
+export interface NoteDay {
+  date: string;
+  rows: NoteRow[];
+  pending: number;
+}
+
+/** 照日期分組（rows 已照日期排好） */
+export function noteDays(rows: NoteRow[]): NoteDay[] {
+  const out: NoteDay[] = [];
+  for (const r of rows) {
+    let d = out[out.length - 1];
+    if (!d || d.date !== r.date) out.push((d = { date: r.date, rows: [], pending: 0 }));
+    d.rows.push(r);
+    if (r.status === 'pending') d.pending += 1;
+  }
+  return out;
+}
+
+/** 日期標題預設展開嗎：有待訂的展開，都訂好或不用訂的收合 */
+export const dayOpenByDefault = (day: Pick<NoteDay, 'pending'>) => day.pending > 0;
+
+/** 卡片預設展開嗎：待訂的展開，已訂、不用訂收成一列 */
+export const cardOpenByDefault = (row: Pick<NoteRow, 'status'>) => row.status === 'pending';
+
+/** 收起來的卡片顯示備註的第一行 */
+export const firstLine = (text: string | null) => (text ?? '').split(/\r?\n/)[0].trim() || null;

@@ -445,7 +445,7 @@ test('手機上預約列打開的詳情是整頁詳情', async ({ page }) => {
   await ready(page);
   await goTab(page, 'me');
   await page.getByTestId('m-me-reservations').click();
-  const row = page.getByTestId('note-row').first();
+  const row = page.locator('[data-testid="note-row"][data-status="pending"]').first();
   const id = await row.getAttribute('data-place');
   await row.locator('.link-button').first().click();
   await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
