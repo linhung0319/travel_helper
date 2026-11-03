@@ -12,6 +12,7 @@ import { CONTEXTS, PLACE_TYPES, TIERS, type Bbox, type LonLat, type Place } from
 import { FIT15_VALUES, INDOOR_VALUES, VOTE_FILTER_VALUES, filterChips, matchesFilter, type Filter } from './lib/filter.ts';
 import { areasExtent, extentOf, inBbox } from './lib/areas.ts';
 import { stopsOn } from './lib/itinerary.ts';
+import { hullAround } from './lib/mapLayers.ts';
 import { tripDates, dayLabel } from './lib/trip.ts';
 
 /** 指令的結果：成功時附上 AI 用得到的資訊；失敗時 error 是給人（和 AI）看的一句話，狀態不變 */
@@ -136,8 +137,15 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       const area = areas.find((a) => a.regions?.some((r) => r.id === target.region));
       if (!area) return { ok: false, error: `focus：沒有子地區 ${target.region}` };
       const coords = places.filter((p) => p.region === target.region).map((p) => p.coords);
+      // 有點：框子地區的範圍（T56：點外圍往外擴 1 km，和地圖畫的框一樣大，框不會被切掉）
+      const shape = hullAround(coords);
+      if (shape) {
+        const bbox = extentOf(shape.coordinates[0] as LonLat[])!;
+        app.getState().moveCamera({ bbox, zoom: FIT_MAX_ZOOM });
+        return { ok: true, bbox };
+      }
       const center = area.regions!.find((r) => r.id === target.region)!.center;
-      if (!coords.length && center) coords.push(center);
+      if (center) coords.push(center);
       const bbox = moveTo(coords);
       return bbox ? { ok: true, bbox } : { ok: false, error: `focus：子地區 ${target.region} 沒有資料點` };
     }

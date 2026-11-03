@@ -4102,3 +4102,18 @@ button.cand-up:disabled {
   outline: 2px solid var(--indigo);
   outline-offset: 2px;
 }
+
+/* 選了子地區（T56）：範圍上緣的子地區名，白底、那區顏色的框和字；點了沒有作用 */
+.region-name-label {
+  padding: 1px 8px;
+  border: 1.5px solid var(--region-color);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--region-color);
+  font-family: var(--font-round);
+  font-weight: 700;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px var(--shade-1);
+  pointer-events: none;
+}

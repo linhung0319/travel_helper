@@ -89,8 +89,11 @@ test('focus：區域、子地區從 areas.json 來；天數、bbox、center', ()
   assert.equal(bad.ok, false);
   assert.match(!bad.ok ? bad.error : '', /north、south/);
 
+  // 子地區（T56）：框點外圍往外擴 1 km 的範圍；只有一個點也是框（中心是那個點）
   assert.ok(cmd.focus({ region: 'north-port' }).ok);
-  assert.deepEqual(app.getState().camera?.center, [136.8, 34.5]);
+  const [w, s, e, n] = app.getState().camera!.bbox!;
+  assert.ok(Math.abs((w + e) / 2 - 136.8) < 1e-6 && Math.abs((s + n) / 2 - 34.5) < 1e-6);
+  assert.ok(Math.abs(n - 34.5 - 1000 / 111_195) < 1e-4, `${n}`);
 
   cmd.focus({ day: '2027-02-05' });
   assert.deepEqual(app.getState().camera?.bbox, [136.8, 34.5, 136.82, 34.51]);

@@ -16,7 +16,8 @@ import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
 import { areaColor, initialExtent, MAP_MIN_ZOOM, mapMaxBounds } from '../lib/areas.ts';
 import { nightsPerArea } from '../lib/tripSkeleton.ts';
-import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap } from '../lib/mapLayers.ts';
+import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap, shapeLabelAt } from '../lib/mapLayers.ts';
+import { displayName } from '../data/normalize.ts';
 import { currentArea, exploreStage } from '../lib/shelves.ts';
 import { pickArea } from '../exploreArea.ts';
 import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
@@ -183,6 +184,7 @@ export function MapView() {
   const [detailed, setDetailed] = useState(false);
   // 探索縮遠時各區的名稱標籤（T43）
   const areaNameRef = useRef<Marker[]>([]);
+  const regionNameRef = useRef<Marker | null>(null);
   const [, setTick] = useState(0); // 地圖移動時重畫小卡片的位置
   const canHover = useCanHover();
   const desktop = useIsDesktop();
@@ -690,15 +692,29 @@ export function MapView() {
     }
   }, [loaded, selectedId, anchorId, dropIdsKey, hoveredId]);
 
-  // 選了一區（T43 §21）：那區所有點外圍的形狀；只在探索
+  // 選了一區（T43 §21）：那區所有點外圍的形狀；只在探索。選了子地區（T56）只畫子地區的範圍，上緣放子地區名（點了沒有作用）
   const focusArea = mode === 'explore' ? currentArea(filter) : null;
+  const focusRegion = focusArea && filter.regions.length === 1 ? filter.regions[0] : null;
   const areasForFocus = useData((s) => s.areas);
   useEffect(() => {
     if (!loaded) return;
-    const f = areaFocusShape(places, focusArea);
-    if (f) f.properties = { ...f.properties, color: areaColor(areasForFocus, focusArea) };
-    (mapRef.current!.getSource(AREA_FOCUS_SOURCE) as GeoJSONSource).setData({ type: 'FeatureCollection', features: f ? [f] : [] });
-  }, [loaded, places, focusArea, areasForFocus]);
+    const map = mapRef.current!;
+    const color = areaColor(areasForFocus, focusArea);
+    const f = areaFocusShape(places, focusArea, focusRegion);
+    if (f) f.properties = { ...f.properties, color };
+    (map.getSource(AREA_FOCUS_SOURCE) as GeoJSONSource).setData({ type: 'FeatureCollection', features: f ? [f] : [] });
+    regionNameRef.current?.remove();
+    regionNameRef.current = null;
+    const region = focusRegion ? areasForFocus.find((a) => a.id === focusArea)?.regions?.find((r) => r.id === focusRegion) : null;
+    if (!f || !region) return;
+    const el = document.createElement('div');
+    el.className = 'region-name-label';
+    el.dataset.testid = 'region-name-label';
+    el.dataset.region = region.id;
+    el.style.setProperty('--region-color', color);
+    el.textContent = displayName(region.name, region.id);
+    regionNameRef.current = new Marker({ element: el, anchor: 'bottom', offset: [0, -2] }).setLngLat(shapeLabelAt(f.geometry)).addTo(map);
+  }, [loaded, places, focusArea, focusRegion, areasForFocus]);
 
   // 探索縮遠時（T43 §21）：每區的中心放區名（白底靛藍框），點了等於地區列選那一區；選中的那區靛藍底白字
   useEffect(() => {
