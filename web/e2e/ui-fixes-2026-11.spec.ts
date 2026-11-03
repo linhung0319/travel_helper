@@ -186,8 +186,8 @@ test('日期晶片在地圖上：寬地圖一排、窄地圖兩排，全部看�
     const d = (await days.boundingBox())!;
     return d.x >= m.x && d.x + d.width <= m.x + m.width;
   };
-  // 藍卡的一排要 652px（ui.css），視窗 1440 的地圖只有 640，1560 才有 760
-  await page.setViewportSize({ width: 1560, height: 800 });
+  // 地圖寬過 790px 才一排（ui.css：一排 628px，加上右上讓給引導彈窗的入口，T46）：視窗 1680 的地圖只有 780，1800 才有 900
+  await page.setViewportSize({ width: 1800, height: 800 });
   await expect.poll(tops).toBe(1);
   expect(await inMap()).toBe(true);
   await page.setViewportSize({ width: 1180, height: 800 });
@@ -259,7 +259,8 @@ test('某一天的標題：副標是「週五 · 地區」，沒有第 N 天；�
 
 // 2026-11-02 👤：日期晶片不論寬窄都包在藍色的卡裡
 test('地圖上的日期晶片：寬窄都包在藍色的卡裡，不超出地圖', async ({ page }) => {
-  for (const [width, rows] of [[1680, 1], [1100, 2]] as const) {
+  // 一排要地圖寬過 790px（T46）：視窗 1800 的地圖 900
+  for (const [width, rows] of [[1800, 1], [1100, 2]] as const) {
     await page.setViewportSize({ width, height: 800 });
     await ready(page);
     await page.getByTestId('side-tab-day').click();
