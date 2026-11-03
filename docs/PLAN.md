@@ -135,7 +135,7 @@
 | T45b | 整趟改成直的骨架（地區、子地區、住宿）、日期列的地區色線、單天頂端寫在哪一區 | M | T40、T45a | 4 | | ⬜ |
 | T45c | AI：提議「這晚住某區」、整趟和單天的提示詞 | S | T41、T45a | 4 | | ⬜ |
 | T46 | 引導彈窗：開始卡移出整趟，入口在地圖右上（網頁縮放鈕移右下），步驟改成四步 | S | T45b | 4 | | ⬜ |
-| T47 | 第一次載入瘦身：內文改系統字、地圖範圍限制、詳情點開才抓、時刻表延後 | S | — | 4 | | ⬜ |
+| T47 | 第一次載入瘦身：內文改系統字、地圖範圍限制、詳情點開才抓、時刻表延後 | S | — | 4 | | ✅ |
 
 ---
 
@@ -1072,6 +1072,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - Worker 的 API 是 `?ids=`（一次最多 50 個），不是單一點的路徑：AI 一次問好幾個、行程卡同時展開時併成一個請求；單一點就是 `?ids=<id>`。
   - `npm run build` 的大小幾乎不變（App 464 KB；字型不在 build 裡）。
   - 驗證：`npm test`（956）、`npm run typecheck`、`npm run validate` 通過。e2e 只跑受影響的（👤 2026-11-03 說不用整包）：Worker 版 t15 的「載入」「詳情層骨架、重試」（手機＋電腦共 6 支）通過；dev 版 detail-popup、ai-core、t39、mobile-t39 共 16 支通過。t15m、flows、mobile 那一輪跑到一半，電腦記憶體不夠被系統停掉，**沒有結果**。截圖（`e2e/shots-*.mjs`）沒有重拍。
+  - merge（2026-11-03）：和 T41 衝突在 `search_places`；另外 T41 的 `maxGuestsAtLeast` 比的 `group.maxGuests` 在詳情層，改成有這個條件時先讀所有住宿的詳情。merge 後 `npm test`（974）、typecheck、validate 通過，沒有再跑 e2e。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
