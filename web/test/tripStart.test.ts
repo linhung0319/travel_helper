@@ -1,7 +1,7 @@
 // 新手起步（interaction-design §17）：推薦問題的規則、引導彈窗的進度（T46）、重新打開網站開新對話。
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { blankCards, buildStarterInput, dayStarter, emptyDayFollowups, firstEmptyDate, firstStarter, lodgingStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
+import { blankCards, buildStarterInput, dayStarter, emptyDayFollowups, firstEmptyDate, firstStarter, lodgingStarter, nightLodgingStarter, startersFor, tripPrompts, type StarterDay, type StarterInput } from '../src/ai/prompts.ts';
 import { flightCount, guideCurrent, guideProgress, shouldStartFresh } from '../src/lib/tripStart.ts';
 import { tripDates } from '../src/lib/trip.ts';
 import { emptyItinerary } from '../src/dev-fixtures/seed.ts';
@@ -292,4 +292,9 @@ test('引導彈窗的問法：沒有晶片也有藍卡和下面兩張，拿掉�
   assert.deepEqual(s.contexts, []);
   assert.deepEqual(blankCards(s.lead, s.suggestions, [], s.contexts.length > 0).map((c) => c.q), [lead.q, 'a', 'b']);
   h.close();
+});
+
+test('nightLodgingStarter（T54）：整趟「未選住宿」問 AI，同第 ③ 步的問法帶日期和區；最多 3 晚', () => {
+  assert.deepEqual(nightLodgingStarter(['2027-02-09'], '二見'), { q: '幫我決定 2/9 在二見住哪', why: '二見還沒選住宿' });
+  assert.deepEqual(nightLodgingStarter(['2027-02-09', '2027-02-10', '2027-02-11', '2027-02-12'], '伊勢').q, '幫我決定 2/9～2/11 在伊勢住哪');
 });

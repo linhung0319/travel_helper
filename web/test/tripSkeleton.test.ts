@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { setDayArea, setLodging, setNightArea } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { dayRegions, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, skeletonDiff, skeletonRows, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
+import { dayRegions, isUndecided, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, openLodgingRun, skeletonCounts, skeletonDiff, skeletonRows, undecidedRun, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
 import type { Area, Place } from '../src/data/types.ts';
 import { itin, placeWith } from './helpers.ts';
 import { areaColor, areaTint } from '../src/lib/areas.ts';
@@ -76,11 +76,13 @@ test('子地區：照排了的點的順序，連續相同的併成一個；沒�
   assert.deepEqual(dayRegions(it, '2027-03-01', AREAS, byId), []);
 });
 
-test('住宿欄：選了住宿（已訂看連住的第一晚）、只定區、都沒有；最後一天是 null', () => {
-  const booked = (id: string, date: string) => id === 'toba-inn' && date === D(4);
-  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId, booked });
+test('住宿欄：選了住宿（預約狀態看連住的第一晚）、只定區、都沒有；最後一天是 null', () => {
+  const booking = (id: string, date: string) => (id === 'toba-inn' && date === D(4) ? ('booked' as const) : undefined);
+  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId, booking });
   assert.deepEqual(rows[0].stay, { kind: 'area', area: 'shima' });
-  assert.deepEqual(rows[3].stay, { kind: 'lodging', id: 'toba-inn', name: '鳥羽國際飯店', booked: true });
+  assert.deepEqual(rows[3].stay, { kind: 'lodging', id: 'toba-inn', name: '鳥羽國際飯店', booking: 'booked' });
+  assert.deepEqual(rows[4].stay, { kind: 'lodging', id: 'toba-inn', name: '鳥羽國際飯店', booking: 'booked' }); // 連住第二晚照第一晚
+  assert.deepEqual(rows[10].stay, { kind: 'lodging', id: 'kix-inn', name: '機場飯店', booking: 'pending' }); // 沒寫過是待訂
   assert.deepEqual(rows[5].stay, { kind: 'none' });
   assert.equal(rows[11].stay, null);
 });
@@ -122,10 +124,11 @@ test('看提議（T48）：骨架照提議之後畫，有變的格子給舊值�
   const rowsAfter = skeletonRows({ itinerary: after, areas: AREAS, byId });
   const diff = skeletonDiff(rowsAfter, skeletonRows({ itinerary: before, areas: AREAS, byId }), AREAS);
   // 2/9～2/11 原本沒決定 → 伊勢
-  assert.deepEqual(diff.get(D(9)), { where: { before: null }, stay: { before: '選住哪一區' } });
+  assert.deepEqual(diff.get(D(9)), { where: { before: null }, area: { before: null }, stay: { before: null } });
   assert.equal(rowsAfter.find((r) => r.date === D(9))!.nightArea, 'ise');
   // 2/3 志摩只定區 → 鳥羽國際飯店：這晚的住宿、2/3 和 2/4 在哪一區都變了
-  assert.deepEqual(diff.get(D(3))?.stay, { before: '志摩・還沒選住宿' });
+  assert.deepEqual(diff.get(D(3))?.stay, { before: '未選住宿' });
+  assert.deepEqual(diff.get(D(3))?.area, { before: '志摩' });
   assert.equal(diff.get(D(3))?.where?.before, '志摩');
   assert.equal(diff.get(D(4))?.where?.before, '志摩 → 鳥羽');
   assert.equal(diff.get(D(4))?.stay, undefined);
@@ -144,4 +147,47 @@ test('看提議（T48）：地圖的晚數照提議之後算，晚數有變的�
     { area: 'ise', nights: 3, changed: true },
     { area: 'kix', nights: 1, changed: false },
   ]);
+});
+
+test('整趟的數字（T54）：幾晚、區幾晚、住宿幾晚、已訂幾晚', () => {
+  const booking = (id: string, date: string) => (id === 'toba-inn' && date === D(4) ? ('booked' as const) : id === 'kix-inn' ? ('skip' as const) : undefined);
+  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId, booking });
+  assert.deepEqual(skeletonCounts(rows), { total: 11, areas: 6, lodgings: 4, booked: 3 });
+  assert.deepEqual(skeletonCounts(skeletonRows({ itinerary: empty(), areas: AREAS, byId })), { total: 11, areas: 0, lodgings: 0, booked: 0 });
+});
+
+test('每晚的狀態（T54）：未選區、未選住宿、待訂、已訂；「只看還沒決定的」留未選區、未選住宿的晚上', () => {
+  const booking = (id: string, date: string) => (id === 'toba-inn' && date === D(4) ? ('booked' as const) : undefined);
+  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId, booking });
+  const state = (r: (typeof rows)[number]) => (!r.stay ? null : r.stay.kind === 'none' ? '未選區' : r.stay.kind === 'area' ? '未選住宿' : r.stay.booking);
+  assert.deepEqual(rows.map(state), ['未選住宿', '未選住宿', 'booked', 'booked', 'booked', '未選區', '未選區', '未選區', '未選區', '未選區', 'pending', null]);
+  assert.deepEqual(rows.filter(isUndecided).map((r) => r.date), [D(2), D(3), D(7), D(8), D(9), D(10), D(11)]);
+});
+
+test('連著好幾晚沒決定區（T54 的「都套用」）：整段；有區、只有一晚、最後一天是 null', () => {
+  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId });
+  const run = [D(7), D(8), D(9), D(10), D(11)];
+  assert.deepEqual(undecidedRun(rows, D(7)), run);
+  assert.deepEqual(undecidedRun(rows, D(9)), run);
+  assert.equal(undecidedRun(rows, D(2)), null);
+  assert.equal(undecidedRun(rows, D(13)), null);
+  const one = skeletonRows({ itinerary: setNightArea(setNightArea(sample(), D(8), 'ise'), D(10), 'ise'), areas: AREAS, byId });
+  assert.equal(undecidedRun(one, D(9)), null);
+  assert.equal(undecidedRun(one, D(11)), null);
+});
+
+test('一次套好幾晚（T54）：setNightArea 依序套那一段，每晚都住那區', () => {
+  let it = sample();
+  for (const d of [7, 8, 9]) it = setNightArea(it, D(d), 'ise');
+  const rows = skeletonRows({ itinerary: it, areas: AREAS, byId });
+  assert.deepEqual(rows.slice(5, 9).map((r) => r.nightArea), ['ise', 'ise', 'ise', null]);
+  assert.deepEqual(undecidedRun(rows, D(10)), [D(10), D(11)]);
+});
+
+test('問 AI 推薦帶的晚上（T54）：從這晚起同一區還沒選住宿的連續晚上', () => {
+  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId });
+  assert.deepEqual(openLodgingRun(rows, D(2)), [D(2), D(3)]);
+  assert.deepEqual(openLodgingRun(rows, D(3)), [D(3)]);
+  assert.deepEqual(openLodgingRun(rows, D(4)), []);
+  assert.deepEqual(openLodgingRun(rows, D(8)), []);
 });

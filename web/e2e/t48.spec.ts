@@ -33,7 +33,9 @@ test('在 2/5 收到 2/10～2/11 改區的提議 → 右欄到整趟、骨架和
   await expect(row.getByTestId('sk-where')).toHaveText('伊勢 → 大阪');
   await expect(row.getByTestId('sk-where')).toHaveClass(/changed/);
   await expect(row.getByTestId('sk-old').first()).toHaveText('伊勢');
-  await expect(row.getByTestId('sk-stay')).toHaveText('大阪・還沒選住宿');
+  await expect(row.getByTestId('sk-area')).toHaveText('大阪');
+  await expect(row.getByTestId('sk-area-changed').getByTestId('sk-old')).toHaveText('伊勢');
+  await expect(row.getByTestId('sk-stay')).toHaveText('未選住宿');
   await expect(row.getByTestId('sk-stay-changed').getByTestId('sk-old')).not.toHaveText('');
   // 色帶是新的區；沒變的列沒有舊值
   await expect(row).toHaveAttribute('data-area', 'osaka');

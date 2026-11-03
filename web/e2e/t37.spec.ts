@@ -22,7 +22,7 @@ test('只有航班的行程：引導 0/4、整趟骨架一天一列、第一列�
   await expect(page.getByTestId('sk-row')).toHaveCount(12);
   await expect(page.getByTestId('sk-flight-arrive')).toContainText('到關西');
   await expect(page.getByTestId('sk-flight-depart')).toContainText('起飛');
-  await expect(page.getByTestId('sk-count')).toHaveText('11 晚 · 已決定 0 晚');
+  await expect(page.getByTestId('sk-count')).toHaveText('11 晚 · 區 0／11 · 住宿 0／11 · 已訂 0');
 
   await page.getByTestId('guide-button').click();
   await expect(page.getByTestId('guide-count')).toHaveText('0 / 4');

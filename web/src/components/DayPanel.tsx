@@ -12,13 +12,24 @@ import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRe
 import { DayCandidates } from './Wishlist.tsx';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
-import { askDay, askEmptyDay, askTrip } from './webAi.ts';
+import { askDay, askEmptyDay, askNightLodging, askTrip } from './webAi.ts';
+import { pickAreaChip } from '../exploreArea.ts';
 import { showList } from './SidePanel.tsx';
 import { Icon } from './Icon.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
 import { DayEmpty } from '../shared/ui/EmptyStates.tsx';
-import { TripSkeleton } from '../shared/ui/TripSkeleton.tsx';
+import { scrollToShelf, TripSkeleton, type SkeletonActions } from '../shared/ui/TripSkeleton.tsx';
 import { NightLine } from '../shared/ui/NightLine.tsx';
+
+/** 整趟「未選住宿」的捷徑（T54）：右欄換到探索、選那區、捲到住宿那排；問 AI 在左欄的聊天室 */
+const WEB_SKELETON: SkeletonActions = {
+  lodgingShelf: (area) => {
+    showList('explore');
+    pickAreaChip(area);
+    scrollToShelf('stay');
+  },
+  askLodging: askNightLodging,
+};
 
 /** 整趟（T45b）：最上面「整趟行程」、問 AI、討論；下面是直的骨架（地區、子地區、住宿，shared/ui/TripSkeleton.tsx） */
 function Overview() {
@@ -43,7 +54,7 @@ function Overview() {
           <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
         </p>
       ))}
-      <TripSkeleton />
+      <TripSkeleton actions={WEB_SKELETON} />
     </div>
   );
 }
