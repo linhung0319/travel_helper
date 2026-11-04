@@ -8,6 +8,30 @@ const shot = async (page: Page, name: string, fullPage = false) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}-${page.viewportSize()!.width}.png`, fullPage });
 };
 
+test('手機概覽（T52）：地區照片、四格書架的數字點進那排、子地區點進那區', async ({ page }) => {
+  await ready(page, { tab: 'default' });
+  const overview = page.getByTestId('explore-overview');
+  const toba = overview.locator('[data-area="toba"]');
+  await expect(toba.getByTestId('overview-credit')).toHaveText('Michalkun · CC BY-SA 2.5');
+  await expect(toba.getByTestId('overview-shelf')).toHaveCount(4);
+  await shot(page, 'mobile-overview-t52');
+
+  await toba.locator('[data-shelf="fit15"]').click();
+  const feed = await page.evaluate(() => (window as any).__thMobile.getState().feed);
+  expect(feed).toMatchObject({ area: 'toba', type: 'restaurant', query: '' });
+  expect(feed.quick).toContain('fit15:yes');
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 可坐 15 人');
+  await page.getByTestId('back-to-area').click();
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
+
+  await page.getByTestId('m-feed-area-all').click();
+  const region = toba.getByTestId('overview-region').first();
+  const rid = await region.getAttribute('data-region');
+  await region.click();
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
+  await expect(page.getByTestId(`region-${rid}`)).toHaveAttribute('aria-pressed', 'true');
+});
+
 test('手機：概覽 → 選鳥羽 → 書架「全部 ›」→ 回到書架；類型在面板裡', async ({ page }) => {
   await ready(page, { tab: 'default' });
   const overview = page.getByTestId('explore-overview');

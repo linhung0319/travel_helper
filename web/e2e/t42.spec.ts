@@ -56,6 +56,50 @@ test('進網站是探索的概覽：一區一張卡，代表的點開詳情，�
   await shot(page, 'web-area-toba');
 });
 
+test('概覽（T52）：地區照片、住幾晚、四格書架的數字點進那排、子地區點進那區', async ({ page }) => {
+  await ready(page, { tab: 'default' });
+  const overview = page.getByTestId('explore-overview');
+  const toba = overview.locator('[data-area="toba"]');
+  // 照片右下：作者和授權，連到 Commons
+  await expect(toba.getByTestId('overview-credit')).toHaveText('Michalkun · CC BY-SA 2.5');
+  await expect(toba.getByTestId('overview-credit')).toHaveAttribute('href', /commons\.wikimedia\.org/);
+  // 住幾晚：有住的區才寫
+  await expect(overview.getByTestId('overview-nights').first()).toHaveText(/^住 \d+ 晚 · \d+\/\d+–\d+\/\d+/);
+  await shot(page, 'web-overview-t52');
+
+  // 四格書架：順序同書架；0 的灰掉
+  const shelves = toba.getByTestId('overview-shelf');
+  expect(await shelves.evaluateAll((els) => els.map((e) => e.getAttribute('data-shelf')))).toEqual(['must', 'fit15', 'stay', 'rain']);
+  for (const el of await overview.getByTestId('overview-shelf').all()) {
+    if ((await el.locator('.xo-shelf-n').textContent()) === '0') await expect(el).toBeDisabled();
+  }
+  const n = Number(await toba.locator('[data-shelf="must"] .xo-shelf-n').textContent());
+  expect(n).toBeGreaterThan(0);
+  await toba.locator('[data-shelf="must"]').click();
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter)).toMatchObject({ areas: ['toba'], regions: [], types: ['spot'], tiers: ['S', 'A'] });
+  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
+  await expect(page.getByTestId('list-count')).toHaveText(`${n} 個地點`);
+  await page.getByTestId('back-to-area').click();
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
+
+  // 子地區：前 5 個加「+N」；點了進那區再選那個子地區
+  await page.getByTestId('ex-area-all').click();
+  const shima = overview.locator('[data-area="shima"]');
+  await expect(shima.getByTestId('overview-region')).toHaveCount(5);
+  await expect(shima.getByTestId('overview-region-more')).toHaveText(/^\+\d+$/);
+  const region = toba.getByTestId('overview-region').nth(1);
+  const rid = await region.getAttribute('data-region');
+  await region.click();
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
+  await expect(page.getByTestId(`region-${rid}`)).toHaveAttribute('aria-pressed', 'true');
+  // 「+N」進那區（子地區是全部）
+  await page.getByTestId('ex-area-all').click();
+  await shima.getByTestId('overview-region-more').click();
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'shima');
+  await expect(page.getByTestId('region-all')).toHaveAttribute('aria-pressed', 'true');
+});
+
 test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一定要去」回到書架；類型在篩選面板裡', async ({ page }) => {
   await ready(page, { tab: 'default' });
   await page.getByTestId('ex-area-toba').click();

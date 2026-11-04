@@ -117,6 +117,29 @@ export function nightsPerArea(it: Itinerary, areas: Area[], byId: Map<string, Pl
   return areas.filter((a) => count.has(a.id)).map((a) => ({ area: a.id, nights: count.get(a.id)! }));
 }
 
+/** 2027-02-05 → 2/5 */
+const md = (date: string) => `${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}`;
+
+/**
+ * 概覽的「住 3 晚 · 2/2–2/5」（T52）：這區住幾晚（同 nightsPerArea），日期是入住那天到退房那天；
+ * 中間斷開、住了兩段寫「住 3 晚 · 2/2–2/4、2/9–2/10」。沒住是 null。
+ */
+export function areaStayLine(it: Itinerary, area: string, byId: Map<string, Place>): string | null {
+  const areaOf = placeAreaOf(byId);
+  const days = it.days;
+  const runs: [string, string][] = [];
+  let nights = 0;
+  for (let i = 0; i < days.length - 1; i++) {
+    if (nightAreaOf(it, days[i].date, areaOf) !== area) continue;
+    nights++;
+    const last = runs.at(-1);
+    if (last && last[1] === days[i].date) last[1] = days[i + 1].date;
+    else runs.push([days[i].date, days[i + 1].date]);
+  }
+  if (!nights) return null;
+  return `住 ${nights} 晚 · ${runs.map(([a, b]) => `${md(a)}–${md(b)}`).join('、')}`;
+}
+
 /** 決定了幾晚、一共幾晚（「11 晚 · 已決定 6 晚」） */
 export function nightsDecided(it: Itinerary, byId: Map<string, Place>): { total: number; decided: number } {
   const areaOf = placeAreaOf(byId);

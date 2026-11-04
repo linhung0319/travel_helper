@@ -52,6 +52,8 @@ export interface Area {
   stations?: string[];
   regions?: Region[];
   intro?: AreaIntro;
+  /** 地區的代表照片（T51，Wikimedia Commons 的 width=960 縮圖網址）；概覽的卡用第一張（T52） */
+  photos?: Photo[];
 }
 
 export interface Photo {

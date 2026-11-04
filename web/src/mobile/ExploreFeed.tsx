@@ -111,7 +111,19 @@ export function ExploreFeed() {
       />
       <AddPlaceSuggest query={feed.query} surface="mobile" />
       {stage === 'overview' ? (
-        <ExploreOverview surface="mobile" onOpen={open} onPickArea={pickFeedArea} />
+        <ExploreOverview
+          surface="mobile"
+          onOpen={open}
+          onPickArea={pickFeedArea}
+          onShelf={(area, f) => {
+            pickFeedArea(area);
+            mobileStore.getState().setFeed(filterToFeed(f));
+          }}
+          onPickRegion={(area, region) => {
+            pickFeedArea(area);
+            pickFeedRegion(region);
+          }}
+        />
       ) : stage === 'area' && feed.area ? (
         <AreaHome areaId={feed.area} regionId={regionId} surface="mobile" onOpen={open} onShelfAll={(f) => mobileStore.getState().setFeed(filterToFeed(f))} />
       ) : feed.view === 'list' ? (
