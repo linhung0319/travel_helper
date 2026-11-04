@@ -46,7 +46,7 @@ test('conditionChips：書架帶來的是藍底、排前面；自己加的、搜
   const chips = conditionChips({ ...shelfFilter(fit15, port), contexts: ['lunch'] }, ' 海 ', AREAS, { inView: true });
   assert.deepEqual(
     chips.map((c) => `${c.preset ? '藍' : '白'}:${c.key}:${c.label}`),
-    ['藍:types:餐廳', '藍:fit15:可容納 15 人', '白:contexts:午餐', '白:query:搜尋「海」', '白:inView:只看地圖畫面裡的'],
+    ['藍:types:餐廳', '藍:who:全員 15 人', '白:contexts:午餐', '白:query:搜尋「海」', '白:inView:只看地圖畫面裡的'],
   );
   // 拿掉書架帶來的一個條件：剩下的都是白底（不再是書架）
   assert.ok(conditionChips(f({ ...port, types: ['restaurant'] }), '', AREAS).every((c) => !c.preset));
@@ -63,7 +63,8 @@ test('withoutChip：拿掉一顆條件、搜尋', () => {
 });
 
 test('listDraft：問 AI 那句寫地區、子地區、條件', () => {
-  assert.equal(listDraft(shelfFilter(fit15, port), '', AREAS), '在北・港邊找可容納 15 人的餐廳');
+  assert.equal(listDraft(shelfFilter(fit15, port), '', AREAS), '在北・港邊找全員 15 人能一起吃的餐廳');
+  assert.equal(listDraft(f({ weather: ['rain'] }), '', AREAS), '幫我找下雨也行的地點');
   assert.equal(listDraft(shelfFilter(must, north), '', AREAS), '在北找 S、A 級的景點');
   assert.equal(listDraft(f({ ...north, suits: ['elderly'], types: ['spot'] }), '', AREAS), '在北找適合長輩的景點');
   assert.equal(listDraft(f({ weather: ['indoor'] }), '', AREAS), '幫我找室內的地點');
@@ -73,32 +74,32 @@ test('listDraft：問 AI 那句寫地區、子地區、條件', () => {
   assert.equal(listDraft(EMPTY_FILTER, '', AREAS), null);
 });
 
-test('書架 0 個：寫「港邊沒有 S、A 級的景點」，下一步是看整區、降到 B 級、問 AI', () => {
-  const help = shelfEmptyHelp(PLACES, must, port, AREAS);
-  assert.equal(help.message, '港邊沒有 S、A 級的景點');
+// 港邊沒有 B 級景點、沒有餐廳的版本（書架兩級都 0 才畫這個框，T66）
+const BARE = PLACES.filter((p) => !['pier', 'shed', 'diner'].includes(p.id));
+
+test('書架兩級都 0 個：寫「港邊沒有 S、A、B 級的景點」，下一步只剩看整區、問 AI（放寬那顆拿掉，T66）', () => {
+  const help = shelfEmptyHelp(BARE, must, port, AREAS);
+  assert.equal(help.message, '港邊沒有 S、A、B 級的景點');
   assert.deepEqual(
     help.steps.map((s) => (s.kind === 'ask' ? `ask:${s.draft}` : `${s.kind}:${s.label}:${s.count}`)),
-    ['widen:看北全區的一定要去:2', 'relax:看港邊的 B 級景點:2', 'ask:港邊有什麼值得去的景點？'],
+    ['widen:看北全區的一定要去:2', 'ask:港邊有什麼值得去的景點？'],
   );
   const widen = help.steps[0];
   assert.ok(widen.kind === 'widen' && widen.filter.regions.length === 0 && widen.filter.tiers.join() === 'S,A');
 });
 
-test('書架 0 個：數字是 0 的下一步不放；可坐 15 人換成要分桌、下雨也行換成餐廳', () => {
-  // 可坐 15 人：整區有 1 家、港邊有要分桌的 1 家
-  assert.deepEqual(
-    shelfEmptyHelp(PLACES, fit15, port, AREAS).steps.map((s) => s.label),
-    ['看北全區的可坐 15 人', '看港邊 15 人要分桌的餐廳', '問 AI：港邊有哪裡可以 15 人一起吃飯？'],
-  );
-  // 住在這裡：整區也沒有、沒有放寬的條件，只剩問 AI
+test('書架兩級都 0 個：數字是 0 的下一步不放', () => {
+  // 全員吃飯：港邊沒有餐廳，整區有 1 家
+  const meal = shelfEmptyHelp(BARE, fit15, port, AREAS);
+  assert.equal(meal.message, '港邊沒有餐廳');
+  assert.deepEqual(meal.steps.map((s) => s.label), ['看北全區的全員吃飯', '問 AI：港邊有哪裡可以 15 人一起吃飯？']);
+  // 住在這裡：整區也沒有，只剩問 AI
   const inn = shelfEmptyHelp(PLACES, stay, port, AREAS);
-  assert.equal(inn.message, '港邊沒有住宿的資料');
+  assert.equal(inn.message, '港邊沒有住宿');
   assert.deepEqual(inn.steps.map((s) => s.kind), ['ask']);
-  // 下雨也行：港邊沒有室內的景點，整區有寺；餐廳都在室內
-  assert.deepEqual(
-    shelfEmptyHelp(PLACES, rain, port, AREAS).steps.map((s) => s.label),
-    ['看北全區的下雨也行', '看港邊的餐廳（都在室內）', '問 AI：港邊下雨天可以去哪裡？'],
-  );
+  // 下雨也行：第二級就是全區，全區也沒有才是 0，所以只剩問 AI
+  const dry = PLACES.filter((p) => p.id !== 'temple');
+  assert.deepEqual(shelfEmptyHelp(dry, rain, port, AREAS).steps.map((s) => s.label), ['問 AI：港邊下雨天可以去哪裡？']);
   // 沒選子地區：沒有「看全區」
   assert.deepEqual(shelfEmptyHelp(PLACES, stay, north, AREAS).steps.map((s) => s.kind), ['ask']);
 });
@@ -114,5 +115,5 @@ test('清單篩到 0 個：拿掉最後加的、有東西的那個條件；搜�
   assert.deepEqual(q.steps.map((s) => s.label), ['看北全區', '清掉搜尋', '問 AI：在北・港邊找地點，名稱有「塔」']);
   // 書架加了自己的條件：不用書架的放寬，拿掉自己加的
   const extra = emptyHelp(PLACES, { ...shelfFilter(fit15, north), contexts: ['dinner'] }, '', AREAS);
-  assert.deepEqual(extra.steps.map((s) => s.label), ['拿掉「晚餐」', '問 AI：在北找可容納 15 人、晚餐的餐廳']);
+  assert.deepEqual(extra.steps.map((s) => s.label), ['拿掉「晚餐」', '問 AI：在北找全員 15 人能一起吃、晚餐的餐廳']);
 });

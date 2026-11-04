@@ -9,7 +9,7 @@ import { TRAVEL_MODES } from '@travel-helper/engine/types';
 import { HIGHLIGHT_STYLES, type AppStore, type DaySelection, type HighlightStyle, type RouteEnd } from './store.ts';
 import type { DataState } from './dataStore.ts';
 import { CONTEXTS, PLACE_TYPES, TIERS, type Bbox, type LonLat, type Place } from './data/types.ts';
-import { FIT15_VALUES, LODGING_FILTER_VALUES, SUIT_VALUES, VOTE_FILTER_VALUES, WEATHER_VALUES, filterChips, matchesFilter, type Filter } from './lib/filter.ts';
+import { FIT15_VALUES, LODGING_FILTER_VALUES, STAY_VALUES, SUIT_VALUES, VOTE_FILTER_VALUES, WEATHER_VALUES, WHO_VALUES, filterChips, matchesFilter, type Filter } from './lib/filter.ts';
 import { areasExtent, extentOf, inBbox } from './lib/areas.ts';
 import { stopsOn } from './lib/itinerary.ts';
 import { hullAround } from './lib/mapLayers.ts';
@@ -306,6 +306,8 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       weather: WEATHER_VALUES,
       lodging: LODGING_FILTER_VALUES,
       suits: SUIT_VALUES,
+      who: WHO_VALUES,
+      stay: STAY_VALUES,
     };
     for (const [k, v] of Object.entries(patch)) {
       if (!(k in allowed)) return `不認得的篩選 ${k}（可用：${Object.keys(allowed).join('、')}）`;

@@ -1867,14 +1867,14 @@ test('篩選：套用的條件看按鈕的數字，打開面板看條件、點�
   await page.getByTestId('side-tab-explore').click();
   await page.getByTestId('filter-open').click();
   await page.getByTestId('filter-opt-type-restaurant').click();
-  await page.getByTestId('filter-opt-group-yes').click();
+  await page.getByTestId('filter-opt-group-all').click();
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   await pickFilter(page, 'type-restaurant');
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expectFilterOpt(page, 'type-restaurant', false);
-  await expectFilterOpt(page, 'group-yes', true);
+  await expectFilterOpt(page, 'group-all', true);
 });
 
 test('清單列：長名稱不推動 ❤ 的位置', async ({ page }) => {

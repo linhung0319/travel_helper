@@ -11,10 +11,10 @@ import type { Itinerary, VisitItem } from '@travel-helper/engine/types';
 import { cleanDinnerNote, detailLayer, EXTRA_HIDDEN, EXTRA_LABELS, listLayer } from '../../worker/src/lib/placeLayers.ts';
 import { normalizePlace } from '../src/data/normalize.ts';
 import { fullPlace } from '../src/dataStore.ts';
-import { placeBadges } from '../src/lib/badges.ts';
+import { placeBadges, stayCaption } from '../src/lib/badges.ts';
 import { closedDaysLabel } from '../src/lib/hours.ts';
 import { ratingOf } from '../src/lib/explore.ts';
-import { placeFit15 } from '../src/lib/filter.ts';
+import { WHO_VALUES, matchesWho, placeFit15, placeStay } from '../src/lib/filter.ts';
 import { rowHighlights } from '../src/shared/rowHighlights.ts';
 import { noteRows } from '../src/lib/reservations.ts';
 import { searchPlaces, type SearchInput } from '../src/ai/search.ts';
@@ -81,6 +81,10 @@ test('清單畫面的標章、重點、評分、篩選用清單層算出來一�
     assert.deepEqual(rowHighlights(l, status, 9), rowHighlights(f, status, 9), f.id);
     assert.equal(ratingOf(l), ratingOf(f), f.id);
     assert.equal(placeFit15(l), placeFit15(f), f.id);
+    // 書架兩級的條件（T66）：誰吃、住法、小卡第二行
+    assert.equal(placeStay(l), placeStay(f), f.id);
+    assert.deepEqual(WHO_VALUES.map((v) => matchesWho(l, v)), WHO_VALUES.map((v) => matchesWho(f, v)), f.id);
+    assert.deepEqual(stayCaption(l), stayCaption(f), f.id);
     assert.equal(closedDaysLabel(l.hours), closedDaysLabel(f.hours), f.id);
     assert.deepEqual([l.contexts, l.cuisine, l.tags, l.tier, l.area, l.region, l.coords, l.name], [f.contexts, f.cuisine, f.tags, f.tier, f.area, f.region, f.coords, f.name], f.id);
     assert.deepEqual(l.photos.map((p) => p.url), f.photos.map((p) => p.url), f.id);

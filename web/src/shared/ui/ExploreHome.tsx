@@ -3,16 +3,16 @@
 // 點子地區在卡片裡換成那個子地區的簡介、二月注意、代表點（overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）；
 // 代表的點是文字加類型圓章，點了開詳情；「看志摩 ›」「看賢島 ›」進那一區（選了子地區時再選好那個子地區）。
 // 選了一區（T50）：「2 月注意（N）」收合；下面幾排書架（lib/shelves.ts），每排 3 張小卡（右上角類型圓章）、「全部 ›」套那組條件。
-// 0 個的那排不藏（T64）：標題照樣在，下面虛線框寫「賢島沒有 S、A 級的景點」和下一步（NextSteps，lib/listConditions.ts 的 emptyHelp；照片牆、清單篩到 0 個也用）。
+// 書架兩級（T66，§32）：第一級 0 個退到第二級，標題旁的小字換成芥子黃的那句；小卡第二行寫這排在意的事（15 人坐不坐得下、住法和餐食）。
+// 兩級都 0 個的那排不藏（T64）：標題照樣在，下面虛線框寫「賢島沒有 S、A 級的景點」和下一步（NextSteps，lib/listConditions.ts 的 emptyHelp；照片牆、清單篩到 0 個也用）。
 // 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
 // 樣式在 ui.css（.xo-*、.xa-*、.xs-*）。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
-import { dataStore, ensureDetails, fullPlace } from '../../dataStore.ts';
 import { displayName } from '../../data/normalize.ts';
-import { shelfFilter, shelfRows } from '../../lib/shelves.ts';
+import { shelfRows } from '../../lib/shelves.ts';
 import { shelfEmptyHelp, type EmptyHelp } from '../../lib/listConditions.ts';
 import { allRegionsLabel, areaSubName, overviewContent } from '../../lib/overview.ts';
 import { overviewStore, useOverview } from '../overviewStore.ts';
@@ -226,19 +226,10 @@ export function NextSteps({ help, onApply, onAsk, testId = 'empty-help' }: { hel
 export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll, onAsk }: { areaId: string; regionId: string | null; surface: HomeSurface; onOpen: (id: string) => void; onShelfAll: (filter: Filter) => void; onAsk: (text: string) => void }) {
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
-  // 「住在這裡」可住 15 人在詳情層：讀這區的住宿（一區幾十間），讀到了重排
-  const details = useData((s) => s.details);
   const area = areas.find((a) => a.id === areaId);
   const region = area?.regions?.find((r) => r.id === regionId);
   const base = useMemo(() => ({ areas: [areaId], regions: regionId ? [regionId] : [] }), [areaId, regionId]);
-  useEffect(() => {
-    const ids = places.filter((p) => p.type === 'lodging' && p.area === areaId && p.origin !== 'user').map((p) => p.id);
-    if (ids.length) void ensureDetails(ids).catch(() => {});
-  }, [places, areaId]);
-  const rows = useMemo(() => {
-    const s = dataStore.getState();
-    return shelfRows(places, base, undefined, (id) => fullPlace(s, id));
-  }, [places, base, details]); // eslint-disable-line react-hooks/exhaustive-deps
+  const rows = useMemo(() => shelfRows(places, base, areas), [places, base, areas]);
   const [febOpen, setFebOpen] = useState(false);
   if (!area) return null;
   // 二月注意：選了子地區只看那個子地區的一句
@@ -261,17 +252,17 @@ export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll, onAsk 
           </div>
         </div>
       )}
-      {rows.map(({ shelf, items, total }) => (
-        <section key={shelf.id} className="xs" data-testid="shelf" data-shelf={shelf.id}>
+      {rows.map(({ shelf, tier, filter, note, fallback, items, total }) => (
+        <section key={shelf.id} className="xs" data-testid="shelf" data-shelf={shelf.id} data-tier={tier}>
           <header className="xs-head">
             <h3 className="xs-title">
               {shelf.title}
-              <span className="xs-note" data-testid="shelf-note">
-                {shelf.note}
+              <span className={`xs-note${fallback ? ' fallback' : ''}`} data-testid="shelf-note" data-fallback={fallback || undefined}>
+                {note}
               </span>
             </h3>
             {total > 0 && (
-              <button type="button" className="xs-all" onClick={() => onShelfAll(shelfFilter(shelf, base))} data-testid="shelf-all">
+              <button type="button" className="xs-all" onClick={() => onShelfAll(filter)} data-testid="shelf-all">
                 全部 {total} ›
               </button>
             )}
@@ -279,7 +270,7 @@ export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll, onAsk 
           {total > 0 ? (
             <div className="xs-row">
               {items.map((p) => (
-                <ShelfCard key={p.id} place={p} surface={surface} onOpen={onOpen} />
+                <ShelfCard key={p.id} place={p} surface={surface} onOpen={onOpen} caption={shelf.caption?.(p)} />
               ))}
             </div>
           ) : (

@@ -5208,6 +5208,11 @@ button.ui-sk-stay:disabled {
   font-weight: 400;
 }
 
+/* 退到第二級（T66）：小字換成芥子黃 */
+.xs-note.fallback {
+  color: var(--mustard-ink);
+}
+
 /* 小卡右上角的類型圓章（T50，取代愛心） */
 .xs-seal {
   position: absolute;
