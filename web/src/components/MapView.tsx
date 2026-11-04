@@ -1053,6 +1053,34 @@ export function MapView() {
       el.append(b, ` ${nights} 晚`);
       return [new Marker({ element: el }).setLngLat(a.center).addTo(map)];
     });
+    // 兩區的中心太近（伊勢和二見）縮到最遠時標籤會疊在一起：由上到下放，疊到上面已放好的就往下挪（地圖移動、縮放時重算）
+    const spread = () => {
+      const ms = areaNightsRef.current;
+      ms.forEach((m) => m.setOffset([0, 0]));
+      const GAP = 4;
+      const placed: { left: number; right: number; top: number; bottom: number }[] = [];
+      const order = ms.map((m) => ({ m, r: m.getElement().getBoundingClientRect() })).sort((a, b) => a.r.top - b.r.top || a.r.left - b.r.left);
+      for (const { m, r } of order) {
+        let rect = { left: r.left, right: r.right, top: r.top, bottom: r.bottom };
+        let dy = 0;
+        for (let i = 0; i < placed.length; i++) {
+          const p = placed[i];
+          if (rect.left < p.right + GAP && rect.right > p.left - GAP && rect.top < p.bottom + GAP && rect.bottom > p.top - GAP) {
+            const shift = p.bottom + GAP - rect.top;
+            dy += shift;
+            rect = { ...rect, top: rect.top + shift, bottom: rect.bottom + shift };
+            i = -1; // 挪了以後重新對所有已放好的檢查
+          }
+        }
+        if (dy) m.setOffset([0, dy]);
+        placed.push(rect);
+      }
+    };
+    spread();
+    map.on('move', spread);
+    return () => {
+      map.off('move', spread);
+    };
   }, [loaded, itinerary, proposal, areasAll, byId, day, mode, desktop]);
 
   // 交通時間的小標籤（在路線中點）不蓋住編號：和編號的圈、選中水滴旁邊的名稱重疊的，先藏起來（地圖移動、縮放時重算）

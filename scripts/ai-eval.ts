@@ -46,7 +46,8 @@ const CASES: Check[] = [
   { id: 'S1 找地點', says: ['鳥羽能坐 15 人的海鮮餐廳'], check: (t) => [...needs(t, 'search_places', 'show_places'), ...says(t, /\[\[place:/, '用地點標籤')] },
   { id: 'S2 問單點', chips: [{ kind: 'place', id: 'toba-osakaya' }], says: ['15 人坐得下嗎？'], check: (t) => [...needs(t, 'get_place'), ...says(t, /分|不行|不能/, '說要分桌')] },
   { id: 'S3 資料未查', says: ['漣坐得下 15 人嗎？'], check: (t) => [...never(t, 'show_places'), ...says(t, /沒有查到|沒查到|不確定|不知道|打電話/, '說資料沒查到')] },
-  { id: 'S4 比較', chips: [{ kind: 'place', id: 'toba-yakigai-iroha' }, { kind: 'place', id: 'toba-hakkai' }, { kind: 'place', id: 'toba-osakaya' }], says: ['比較這 3 家'], check: (t) => [...needs(t, 'get_place', 'show_places')] },
+  // T70 之後地點晶片已經帶分數、人數、座位和大家的意見，夠比較就不用 get_place（T71 實跑：Sonnet 只叫 show_places，比較的內容對）
+  { id: 'S4 比較', chips: [{ kind: 'place', id: 'toba-yakigai-iroha' }, { kind: 'place', id: 'toba-hakkai' }, { kind: 'place', id: 'toba-osakaya' }], says: ['比較這 3 家'], check: (t) => [...needs(t, 'show_places'), ...says(t, /15 人/, '講 15 人坐不坐得下')] },
   { id: 'S5 路線', says: ['從水族館走到珍珠島多久？'], check: (t) => [...needs(t, 'get_route'), ...says(t, /分/, '講分鐘'), ...says(t, /google\.[^/]+\/maps/, '附 Google Maps 連結')] },
   { id: 'S6a 寫留言', says: ['幫我跟大家說媽媽膝蓋不好，珍珠島不要爬太多樓梯'], check: (t, h) => [...needs(t, 'draft_comment'), ...(h.cardOf('draft_comment')?.status === 'pending' ? [] : ['草稿卡不是等待中'])] },
   { id: 'S6b 按想去', says: ['我想去鳥羽水族館'], check: (t) => needs(t, 'vote') },

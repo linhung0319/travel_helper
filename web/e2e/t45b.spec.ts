@@ -65,6 +65,15 @@ test('整趟：一天一列、細色帶、兩格（住哪區加鎖、住宿＋�
   await expect(rows.nth(11).getByTestId('sk-stay')).toHaveCount(0);
   await expect(rows.nth(11).getByTestId('sk-area')).toHaveCount(0);
   await expect(page.locator('[data-testid="area-nights-label"][data-area="shima"]')).toHaveText('志摩 3 晚');
+  // 地圖上各區的晚數標籤不互相疊住（伊勢和二見的中心很近，縮到最遠時本來會疊；T71）
+  const boxes = await page.locator('[data-testid="area-nights-label"]').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().toJSON()));
+  for (let i = 0; i < boxes.length; i++)
+    for (let j = i + 1; j < boxes.length; j++) {
+      const a = boxes[i];
+      const b = boxes[j];
+      const overlap = a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      expect(overlap, `晚數標籤 ${i} 和 ${j} 疊在一起`).toBe(false);
+    }
   await shot(page, 'web-trip');
   // 列的其他地方、航班點了都不跳天（進某一天用日期晶片）
   await rows.nth(4).getByTestId('sk-day').click();
