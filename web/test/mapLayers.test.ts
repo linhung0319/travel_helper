@@ -2,10 +2,10 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { AREA_BUFFER_METERS, areaFocusShape, convexHull, hullAround, isKeyPlace, isMinorOnMap, shapeLabelAt, type LayerContext } from '../src/lib/mapLayers.ts';
+import { AREA_BUFFER_METERS, areaFocusShape, convexHull, DETAIL_ZOOM, hullAround, isKeyPlace, isMinorOnMap, mapTierAt, REGION_ZOOM_MAX, regionShapes, shapeLabelAt, type LayerContext } from '../src/lib/mapLayers.ts';
 import { haversineMeters } from '../src/lib/geo/distance.ts';
 import { placeWith } from './helpers.ts';
-import type { LonLat } from '../src/data/types.ts';
+import type { Area, LonLat } from '../src/data/types.ts';
 
 const far: LayerContext = { explore: true, detailed: false, area: null, listing: false };
 const spotS = placeWith({}, { id: 's', type: 'spot', tier: 'S', area: 'toba' });
@@ -135,4 +135,46 @@ test('子地區只有 1 個點：半徑 1 km 的圓；標籤放在最北的那�
   assert.ok(Math.abs(haversineMeters([136.82, 34.28], at) - AREA_BUFFER_METERS) < 10);
   assert.ok(ring.every((q) => q[1] <= at[1]));
   assert.ok(Math.abs(at[0] - 136.82) < 0.001, '正北');
+});
+
+test('哪個縮放畫哪一層（T65）：縮遠地區名、中間子地區、放大只看點', () => {
+  assert.equal(mapTierAt(9), 'areas');
+  assert.equal(mapTierAt(DETAIL_ZOOM - 0.01), 'areas');
+  assert.equal(mapTierAt(DETAIL_ZOOM), 'regions');
+  assert.equal(mapTierAt(12), 'regions');
+  assert.equal(mapTierAt(REGION_ZOOM_MAX - 0.01), 'regions');
+  assert.equal(mapTierAt(REGION_ZOOM_MAX), 'points');
+  assert.equal(mapTierAt(15), 'points');
+});
+
+test('所有子地區的範圍（T65）：每個有點的子地區一個形狀、名字在上緣；選了的子地區、沒有點的不畫', () => {
+  const area = (id: string, regions: string[]): Area =>
+    ({ id, name: { ja: id, zh: id }, center: [136.8, 34.4], bbox: [136, 34, 137, 35], regions: regions.map((r) => ({ id: r, name: { ja: `${r}ja`, zh: `${r}名` } })) }) as Area;
+  const areas = [area('toba', ['toshijima', 'osatsu', 'empty']), area('ise', ['naiku'])];
+  const places = [
+    placeWith({}, { id: 't1', area: 'toba', region: 'toshijima', coords: [136.88, 34.52] }),
+    placeWith({}, { id: 't2', area: 'toba', region: 'toshijima', coords: [136.9, 34.51] }),
+    placeWith({}, { id: 'o1', area: 'toba', region: 'osatsu', coords: [136.91, 34.37] }),
+    placeWith({}, { id: 'n1', area: 'ise', region: 'naiku', coords: [136.72, 34.45] }),
+    placeWith({}, { id: 'x', area: 'ise', region: null, coords: [136.7, 34.5] }),
+  ];
+  const color = (a: string) => (a === 'toba' ? '#123456' : '#654321');
+  const all = regionShapes(places, areas, color);
+  assert.deepEqual(
+    all.shapes.map((f) => f.properties),
+    [
+      { area: 'toba', region: 'toshijima', name: 'toshijima名', color: '#123456' },
+      { area: 'toba', region: 'osatsu', name: 'osatsu名', color: '#123456' },
+      { area: 'ise', region: 'naiku', name: 'naiku名', color: '#654321' },
+    ],
+  );
+  assert.equal(all.labels.length, 3);
+  // 名字在範圍最北的那一點
+  assert.deepEqual(all.labels[0].geometry.coordinates, shapeLabelAt(all.shapes[0].geometry));
+  assert.ok(all.labels[0].geometry.coordinates[1] > 34.52);
+  // 選了答志島：T56 自己畫，這裡不再畫
+  assert.deepEqual(
+    regionShapes(places, areas, color, 'toshijima').shapes.map((f) => f.properties?.region),
+    ['osatsu', 'naiku'],
+  );
 });

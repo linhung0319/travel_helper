@@ -24,7 +24,7 @@ import { AreaHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/
 import { areaOnly, backLabel, currentArea, exploreStage } from '../lib/shelves.ts';
 import { emptyHelp, placeLabel } from '../lib/listConditions.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
-import { focusOverview, pickArea, pickAreaChip } from '../exploreArea.ts';
+import { focusOverview, overviewRegion, pickArea, pickAreaChip, pickRegion } from '../exploreArea.ts';
 import { overviewStore } from '../shared/overviewStore.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
@@ -107,21 +107,6 @@ const Item = memo(function Item({ place, rank, view, hot, statusOf, isOpen, onTo
   };
   return view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
 });
-
-/** 選區後的子地區列：一次一個；null 是整區 */
-function pickRegion(region: string | null) {
-  const s = appStore.getState();
-  s.setFilter({ regions: region ? [region] : [] });
-  const area = currentArea(s.filter);
-  if (region) commands.focus({ region });
-  else if (area) commands.focus({ area });
-}
-
-/** 概覽的「看賢島 ›」（T63）：進那一區再選那個子地區 */
-function overviewRegion(area: string, region: string) {
-  pickArea(area);
-  pickRegion(region);
-}
 
 /** 書架的「全部 ›」、0 個時的下一步：套那組條件（和搜尋）；子地區換了，地圖跟著框 */
 function applyShelf(filter: Filter, query?: string) {

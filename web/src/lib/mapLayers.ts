@@ -1,8 +1,8 @@
 // 探索的地圖分層（T43，interaction-design §21）：縮遠只畫地區標籤和 S、A 級景點；選了一區畫那區的範圍（凸包往外擴、圓角）。
 // 純邏輯，MapView 讀。區域一律從 areas.json／資料點來，不寫死區域 ID。
 
-import type { Feature, Polygon } from 'geojson';
-import type { LonLat, Place } from '../data/types.ts';
+import type { Feature, Point, Polygon } from 'geojson';
+import type { Area, LonLat, Place } from '../data/types.ts';
 
 /** 縮放到這裡以上（看一區）才畫全部的點、拿掉地區標籤；以下只畫 S、A 級景點 */
 export const DETAIL_ZOOM = 11;
@@ -94,4 +94,40 @@ export function areaFocusShape(places: Place[], area: string | null, region: str
 export function shapeLabelAt(poly: Polygon): LonLat {
   const ring = poly.coordinates[0] as LonLat[];
   return ring.reduce((best, c) => (c[1] > best[1] ? c : best), ring[0]);
+}
+
+/** 中間的縮放（T65）：DETAIL_ZOOM 到這裡以下畫所有子地區的範圍和名字；到這裡以上拿掉，只看點 */
+export const REGION_ZOOM_MAX = 13;
+
+/** 這個縮放畫哪一層（T65）：縮遠畫地區名、中間畫子地區、放大只看點。只在網頁的探索 */
+export type MapTier = 'areas' | 'regions' | 'points';
+export function mapTierAt(zoom: number): MapTier {
+  if (zoom < DETAIL_ZOOM) return 'areas';
+  if (zoom < REGION_ZOOM_MAX) return 'regions';
+  return 'points';
+}
+
+/** 一個子地區的範圍（T65）：形狀和上緣放名字的點，properties 都有 area、region、name、color */
+export interface RegionShapes {
+  shapes: Feature<Polygon>[];
+  labels: Feature<Point>[];
+}
+
+/**
+ * 中間的縮放畫的所有子地區範圍（T65）：同 T56 的算法（子地區所有點的外圍往外 1 km、圓角），名字放在範圍上緣。
+ * skip 是已經選了的子地區（T56 自己畫框和名字，這裡不再畫一次）；沒有點的子地區不畫。
+ */
+export function regionShapes(places: Place[], areas: Area[], color: (area: string) => string, skip: string | null = null): RegionShapes {
+  const out: RegionShapes = { shapes: [], labels: [] };
+  for (const a of areas) {
+    for (const r of a.regions ?? []) {
+      if (r.id === skip) continue;
+      const f = areaFocusShape(places, a.id, r.id);
+      if (!f) continue;
+      const properties = { area: a.id, region: r.id, name: r.name.zh || r.name.ja, color: color(a.id) };
+      out.shapes.push({ ...f, properties });
+      out.labels.push({ type: 'Feature', geometry: { type: 'Point', coordinates: shapeLabelAt(f.geometry) }, properties });
+    }
+  }
+  return out;
 }

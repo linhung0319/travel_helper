@@ -114,3 +114,33 @@ export function addMapIcons(map: MapLibreMap) {
   if (!map.hasImage('wish-candidate')) map.addImage('wish-candidate', wishRingIcon(), { pixelRatio: RATIO });
   if (!map.hasImage('route-arrow')) map.addImage('route-arrow', arrowIcon(), { pixelRatio: RATIO, sdf: true });
 }
+
+/** 子地區名的小標籤底（T65）：白底、那區顏色的圓角框，可伸縮（icon-text-fit 包住字）。一區一張，名字是 region-pill-<顏色> */
+const PILL_W = 40;
+const PILL_H = 20;
+export function addRegionPill(map: MapLibreMap, color: string): string {
+  const name = `region-pill-${color}`;
+  if (map.hasImage(name)) return name;
+  const el = document.createElement('canvas');
+  el.width = PILL_W * RATIO;
+  el.height = PILL_H * RATIO;
+  const c = el.getContext('2d')!;
+  c.scale(RATIO, RATIO);
+  const r = PILL_H / 2 - 1;
+  c.beginPath();
+  c.roundRect(1, 1, PILL_W - 2, PILL_H - 2, r);
+  c.fillStyle = '#ffffff';
+  c.fill();
+  c.lineWidth = 1.5;
+  c.strokeStyle = color;
+  c.stroke();
+  const mid = PILL_H / 2;
+  map.addImage(name, c.getImageData(0, 0, el.width, el.height), {
+    pixelRatio: RATIO,
+    // 只伸縮中間（圓角不變形）
+    stretchX: [[(r + 1) * RATIO, (PILL_W - r - 1) * RATIO]],
+    stretchY: [[(mid - 1) * RATIO, (mid + 1) * RATIO]],
+    content: [(r - 2) * RATIO, 3 * RATIO, (PILL_W - r + 2) * RATIO, (PILL_H - 3) * RATIO],
+  });
+  return name;
+}
