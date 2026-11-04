@@ -42,8 +42,8 @@ export const wishPrefs = createStore<WishPrefs>()((set) => ({
   view: loadView(),
   section: null,
   userOnly: false,
-  // 換地區、按「自己加」都回到三排書架（地區列的鈕回第一頁，T49）
-  setUserOnly: (userOnly) => set({ userOnly, section: null }),
+  // 「只看自己加的」是篩選（T69）：換它不離開現在看的那一排；換地區也不會清掉它
+  setUserOnly: (userOnly) => set({ userOnly }),
   setView: (view) => {
     set({ view });
     save(VIEW_KEY, view);

@@ -23,14 +23,14 @@ test('setView：改了記到 localStorage', () => {
   assert.equal(mem.get('travel-helper:wishView'), 'photo');
 });
 
-test('setSection 不記住；換地區、按「自己加」（setUserOnly）回到三排書架（T53）', () => {
+test('setSection 不記住；「只看自己加的」是篩選，不離開現在看的那一排（T53、T69）', () => {
   const before = new Map(mem);
   wishPrefs.getState().setSection('candidate');
   assert.equal(wishPrefs.getState().section, 'candidate');
   assert.deepEqual(mem, before);
   wishPrefs.getState().setUserOnly(true);
-  assert.equal(wishPrefs.getState().section, null);
-  wishPrefs.getState().setSection('scheduled');
+  assert.equal(wishPrefs.getState().section, 'candidate');
   wishPrefs.getState().setUserOnly(false);
-  assert.equal(wishPrefs.getState().section, null);
+  assert.equal(wishPrefs.getState().section, 'candidate');
+  wishPrefs.getState().setSection(null);
 });

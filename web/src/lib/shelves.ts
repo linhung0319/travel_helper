@@ -208,7 +208,45 @@ export function matchShelf(filter: Filter): Shelf | null {
  * 拿掉了書架帶來的條件、或本來就是自己在面板篩的寫「自己篩選」。畫面在前面加「‹ 」、後面接「· 志摩・賢島 · N 個地點」。
  */
 export function backLabel(filter: Filter): string {
-  return shelfOf(filter)?.title ?? '自己篩選';
+  const hit = shelfTierOf(filter);
+  if (!hit) return '自己篩選';
+  // 書架之外自己多加了幾個條件（T69）：「一定要去＋1」；換地區時照字面套用（rescopeFilter）
+  const own = new Set<FilterKey>(['areas', 'regions', ...shelfKeys(hit.shelf, hit.tier)]);
+  const extra = (Object.keys(EMPTY_FILTER) as FilterKey[]).filter((k) => !own.has(k)).reduce((n, k) => n + filter[k].length, 0);
+  return extra ? `${hit.shelf.title}＋${extra}` : hit.shelf.title;
+}
+
+/**
+ * 換地區、子地區時「看什麼」跟著走（T69，interaction-design §33）：地區、子地區換成 base，其他條件不動。
+ * 條件剛好是一排書架的某一級（沒自己加東西，matchShelf）時照新的範圍重挑那排的級數：第一級 0 個退第二級，跟書架同一個規則。
+ * 第二級是全區的（下雨也行）不退：選了子地區就照第一級（0 個時畫面給下一步），不然子地區會被清掉。
+ */
+export function rescopeFilter(filter: Filter, base: Pick<Filter, 'areas' | 'regions'>, places: Place[]): Filter {
+  const next = { ...filter, areas: [...base.areas], regions: [...base.regions] };
+  const shelf = matchShelf(filter);
+  if (!shelf) return next;
+  const row = shelfRow(places, shelf, base, [], 0);
+  return row.filter.regions.length === base.regions.length ? row.filter : shelfFilter(shelf, base, 1);
+}
+
+/**
+ * 有「看什麼」時，每個地區（和目前地區的每個子地區）照同一個篩選有幾個（T69）：地區分頁、子地區晶片後面的小數字。
+ * 每個範圍各自 rescopeFilter（書架照那裡的級數），所以數字和點進去看到的一樣。pool：探索是全部、想去是有人按想去的（已經照那一排篩好）；places 是全部的點（書架挑級數用）
+ */
+export function scopeCounts(pool: Place[], filter: Filter, query: string, areas: Area[], places: Place[]): Map<string, number> {
+  const out = new Map<string, number>();
+  const count = (base: Pick<Filter, 'areas' | 'regions'>) => explorePlaces(pool, rescopeFilter(filter, base, places), null, 'recommend', () => 0, query).length;
+  for (const a of areas) out.set(a.id, count({ areas: [a.id], regions: [] }));
+  const cur = filter.areas.length === 1 ? areas.find((a) => a.id === filter.areas[0]) : undefined;
+  for (const r of cur?.regions ?? []) out.set(r.id, count({ areas: [cur!.id], regions: [r.id] }));
+  return out;
+}
+
+/** 清單層的書架退到第二級時那句（「賢島沒有 S、A 級，這是 B 級」）；不是書架、或是第一級是 null */
+export function fallbackNote(filter: Filter, areas: Area[]): string | null {
+  const hit = shelfTierOf(filter);
+  if (!hit || hit.tier !== 2 || !matchShelf(filter)) return null;
+  return hit.shelf.fallback(shelfWhere(filter, areas));
 }
 
 /**

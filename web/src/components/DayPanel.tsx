@@ -13,7 +13,7 @@ import { DayCandidates } from './Wishlist.tsx';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
 import { askDay, askEmptyDay, askNightLodging, askTrip } from './webAi.ts';
-import { pickAreaChip } from '../exploreArea.ts';
+import { openAreaHome } from '../exploreArea.ts';
 import { showList } from './SidePanel.tsx';
 import { Icon } from './Icon.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
@@ -25,7 +25,7 @@ import { NightLine } from '../shared/ui/NightLine.tsx';
 const WEB_SKELETON: SkeletonActions = {
   lodgingShelf: (area) => {
     showList('explore');
-    pickAreaChip(area);
+    openAreaHome(area);
     scrollToShelf('stay');
   },
   askLodging: askNightLodging,

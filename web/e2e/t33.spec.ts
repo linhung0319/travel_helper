@@ -362,7 +362,13 @@ test('地區列取代類型列（T42）：類型在面板裡、算進篩選的�
   await expect(page.getByTestId('ex-area-all')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('[data-testid^="ex-type-"]')).toHaveCount(0);
   await page.getByTestId('ex-area-toba').click();
-  const count = async () => Number((await page.getByTestId('list-count').innerText()).replace(/\D/g, ''));
+  // T69：書架那層沒有地點數，看面板的「顯示 N 個」
+  const count = async () => {
+    await page.getByTestId('filter-open').click();
+    const n = Number((await page.getByTestId('filter-done').innerText()).replace(/\D/g, ''));
+    await page.getByTestId('filter-done').click();
+    return n;
+  };
   const area = await count();
   await pickType(page, 'restaurant');
   await expect.poll(count).toBeLessThan(area);

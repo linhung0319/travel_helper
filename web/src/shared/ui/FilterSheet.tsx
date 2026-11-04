@@ -1,6 +1,7 @@
 // 篩選面板（手機、網頁同一份內容），一組一排晶片，點了馬上套用。T67（interaction-design §32）照類型分段：
 // 標題「篩選 · 志摩・賢島」；第一列類型；選了類型只畫那幾類的組（shared/filterOptions.ts 的 FILTER_SECTIONS），
-// 沒選類型時三類各收成一列（圓章、名稱、組名小字），點了＝選那個類型；最下面是三類共用的等級、地圖（網頁）、想去（只有想去分頁）。
+// 類型是三塊「景／食／宿」大鈕（T69，取代 T67 的類型晶片和收著的三列）：鈕裡有圓章、名稱、選了會多哪些問題的小字；選了的那類實心、
+// 外框換那類的顏色，下面接那類的組，左邊一條同色線框成一組；最下面是三類共用的等級、地圖（網頁）、想去（只有想去分頁）。
 // 地區在篩選列下面一列、子地區在選區後的頂端（T42，interaction-design §20），面板裡沒有。
 // 下面「全部清除」「顯示 N 個」。外框兩種：手機是從下面出來的底部面板（掛到 body，蓋過底部分頁）；
 // 網頁是右欄的抽屜（掛到 .side-panel，蓋住分頁下面的整個右欄，自己捲動，頭和腳固定）。選項和字在 shared/filterOptions.ts。
@@ -8,7 +9,7 @@
 import { useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useData } from '../../hooks.ts';
-import { COMMON_GROUPS, FILTER_SECTIONS, TYPE_GROUP, panelLayout, sectionApplied, sectionSummary, sheetTitle, type FilterGroup, type FilterSource } from '../filterOptions.ts';
+import { COMMON_GROUPS, FILTER_SECTIONS, SECTION_ORDER, panelLayout, sectionApplied, sectionSummary, sheetTitle, type FilterGroup, type FilterSource } from '../filterOptions.ts';
 import { TYPE_LABELS, type FilterKey } from '../../lib/filter.ts';
 import { placeLabel } from '../../lib/listConditions.ts';
 import { TypeSeal } from './TypeLabel.tsx';
@@ -22,6 +23,32 @@ export type FilterSurface = 'desktop' | 'mobile';
 function drawerTop(host: HTMLElement): number {
   const tabs = host.querySelector<HTMLElement>('.side-tabs');
   return tabs ? tabs.offsetTop + tabs.offsetHeight : 0;
+}
+
+/** 類型的三塊大鈕（T69）：點了＝選那個類型（可以複選）；選了別類時沒選的變淡，還是能點；沒選的那類套了幾個條件寫在名稱旁 */
+function TypeTiles({ model }: { model: FilterModel }) {
+  const { types } = model.filter;
+  return (
+    <section className="fs-group fs-types" data-group="type">
+      <h3 className="fs-h">類型</h3>
+      <div className="fs-tiles">
+        {SECTION_ORDER.map((t) => {
+          const on = types.includes(t);
+          const n = on ? 0 : sectionApplied(t, model.filter);
+          return (
+            <button type="button" key={t} className={`fs-tile${on ? ' on' : ''}${types.length && !on ? ' off' : ''}`} data-type={t} aria-pressed={on} onClick={() => model.pick('types', t)} data-testid={`filter-opt-type-${t}`}>
+              <TypeSeal type={t} size="lg" />
+              <span className="fs-tile-name">
+                {TYPE_LABELS[t]}
+                {n > 0 && <span className="fs-fold-n">{n}</span>}
+              </span>
+              <span className="fs-tile-sub">{sectionSummary(t)}</span>
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 export function FilterSheet({ source, surface, model, count, host, onClose }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; host: HTMLElement | null; onClose(): void }) {
@@ -59,9 +86,9 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
     const items = g.options(areas, source).map((o) => ({ key: g.key, ...o, on: g.key === 'bounds' ? model.inView : (filter[g.key] as string[]).includes(o.value) }));
     return items.length ? [groupNode(g.id, g.title, !!g.dimmed?.(filter), items)] : [];
   };
-  const { open, collapsed } = panelLayout(filter.types);
+  const { open } = panelLayout(filter.types);
   const body = [
-    ...render(TYPE_GROUP),
+    <TypeTiles key="types" model={model} />,
     ...open.map((t) => (
       <div className="fs-section" key={t} data-section={t} data-testid={`filter-section-${t}`}>
         {open.length > 1 && (
@@ -73,26 +100,6 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
         {FILTER_SECTIONS[t].flatMap(render)}
       </div>
     )),
-    ...(collapsed.length
-      ? [
-          <div className="fs-collapsed" key="collapsed">
-            {collapsed.map((t) => {
-              const n = sectionApplied(t, filter);
-              return (
-                <button type="button" key={t} className="fs-fold" onClick={() => model.pick('types', t)} data-testid={`filter-fold-${t}`}>
-                  <TypeSeal type={t} />
-                  <span className="fs-fold-name">{TYPE_LABELS[t]}</span>
-                  <span className="fs-fold-sub">{sectionSummary(t)}</span>
-                  {n > 0 && <span className="fs-fold-n">{n}</span>}
-                  <span className="fs-fold-chev" aria-hidden>
-                    ›
-                  </span>
-                </button>
-              );
-            })}
-          </div>,
-        ]
-      : []),
     ...COMMON_GROUPS.flatMap(render),
   ];
   const title = sheetTitle(placeLabel(filter, areas));

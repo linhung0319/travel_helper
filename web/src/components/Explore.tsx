@@ -21,17 +21,18 @@ import type { Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { AreaHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/ExploreHome.tsx';
-import { areaOnly, backLabel, currentArea, exploreStage } from '../lib/shelves.ts';
-import { emptyHelp, placeLabel } from '../lib/listConditions.ts';
+import { areaOnly, backLabel, currentArea, exploreStage, fallbackNote } from '../lib/shelves.ts';
+import { emptyHelp } from '../lib/listConditions.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
-import { focusOverview, overviewRegion, pickArea, pickAreaChip, pickRegion } from '../exploreArea.ts';
+import { focusOverview, hasLens, lensUndo, overviewRegion, pickArea, pickAreaChip, pickRegion, undoLeave, useLensUndo } from '../exploreArea.ts';
 import { overviewStore } from '../shared/overviewStore.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { askDraft, askList, askPlace, askWishEmpty } from './webAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
-import { useAiPicked, usePlaceList, useWishUserChip } from '../shared/placeLists.ts';
+import { useAiPicked, usePlaceList, useScopeCounts, useSectionPool, useWishUserChip } from '../shared/placeLists.ts';
+import { UndoToast } from '../shared/ui/UndoToast.tsx';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
@@ -168,8 +169,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(query);
   const { pool, list: every } = usePlaceList(source, filter, listQuery, sort, bounds);
-  // 「自己加 N」：選它時類型、地區回到全部
-  const userChip = useWishUserChip(pool, every, () => appStore.getState().setFilter({ types: [], areas: [], regions: [] }));
+  // 想去的「只看自己加的 N」（T69：條件列最前面的開關，不再放在地區列）
+  const userChip = useWishUserChip(every);
   const all = wish ? userChip.list : every;
   const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, source === 'explore');
   const { shown, moreRef, reveal, hasMore } = useBatch({ total: list.length, batch: BATCH, resetOn: [filter, listQuery, sort, aiResult], scroller: '.side-body' });
@@ -224,13 +225,12 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const area = currentArea(filter);
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
-  const where = placeLabel(filter, areas);
-  // 選了一區、但套了其他條件或搜尋：地點數前面「‹ 可坐 15 人 · 志摩・賢島」（還是那排書架）或「‹ 自己篩選 · 志摩」，點了回到書架（T50、T64）
+  // 選了一區、但套了其他條件或搜尋：淡藍帶「‹ 書架 › 一定要去」（還是那排書架）或「‹ 書架 › 自己篩選」，點「‹ 書架」回到目前地區＋子地區的書架（T50、T64、T69）
   const back =
-    !wish && !aiResult && stage === 'list' && where
+    !wish && !aiResult && stage === 'list' && area
       ? {
           label: backLabel(filter),
-          where,
+          note: fallbackNote(filter, areas),
           onClick: () => {
             appStore.getState().setFilter(areaOnly(appStore.getState().filter));
             appStore.getState().setQuery('');
@@ -247,6 +247,12 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const wishSections = useWishSections(wish ? list : EMPTY_LIST);
   const wishBack = useWishBack();
   const wishCount = wishBack.section ? (wishSections.find((x) => x.id === wishBack.section)?.count ?? 0) : list.length;
+  // 地區分頁、子地區晶片的小數字（T69）：探索在照片牆／清單那層（不是 AI 挑的）；想去進了某一排、或有條件時。想去照那一排、自己加的算
+  const userOnly = useWishPrefs((s) => s.userOnly);
+  const countPool = useSectionPool(pool, wish ? wishBack.section : null, wish && userOnly);
+  const counting = wish ? !!wishBack.section || userOnly || hasLens(filter, listQuery) : stage === 'list' && !aiResult;
+  const counts = useScopeCounts(countPool, filter, listQuery, counting);
+  const undo = useLensUndo((s) => s.undo);
 
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
@@ -258,11 +264,13 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         typeRow={<AreaChips value={filter.areas.length === 1 ? filter.areas[0] : null} onPick={(a) => {
             setInView(false);
             pickAreaChip(a);
-          }} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" extra={wish ? userChip.chip : undefined} />}
-        subRow={stage === 'area' && area ? <RegionChips areaId={area} regionId={regionId} onPick={pickRegion} /> : undefined}
+          }} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" counts={counts} />}
+        subRow={area && (wish || stage !== 'overview') ? <RegionChips areaId={area} regionId={regionId} onPick={pickRegion} counts={counts} /> : undefined}
         back={wish ? wishBack.back : back}
         showView={wish ? !!wishBack.section : stage === 'list'}
+        extraCond={wish ? userChip.chip : undefined}
       />
+      {!wish && stage === 'overview' && undo && <UndoToast label={undo.label} onUndo={undoLeave} onClose={() => lensUndo.getState().set(null)} />}
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>
         {stage === 'overview' ? (

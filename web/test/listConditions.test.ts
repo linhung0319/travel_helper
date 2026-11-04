@@ -131,7 +131,7 @@ test('現在看的分布小字（T67）：誰吃、住法兩題才有，算現�
   assert.deepEqual(notes(f({ ...north, types: ['restaurant'], who: ['all'] })), ['who:能坐一起 1 · 要分桌 1']);
   assert.deepEqual(notes(f({ ...north, types: ['restaurant'], who: ['apart'] })), ['who:還沒查 1 · 坐不下 1']);
   assert.deepEqual(notes(f({ ...north, types: ['lodging'], stay: ['fits'] })), ['stay:包棟 1 · 旅館飯店 1']);
-  assert.deepEqual(notes(f({ ...port, types: ['lodging'], stay: ['whole', 'multi'] })), ['stay:包棟 1 · 包棟要兩棟 1']);
+  assert.deepEqual(notes(f({ ...port, types: ['lodging'], stay: ['whole', 'multi'] })), ['stay:包棟 1 · 包棟要分住 1']);
   // 其他條件沒有；沒給 places（想去、AI）也沒有
   assert.deepEqual(notes(f({ ...north, types: ['spot'], tiers: ['S'] })), []);
   assert.ok(conditionChips(f({ ...north, who: ['all'] }), '', AREAS).every((c) => !c.note));

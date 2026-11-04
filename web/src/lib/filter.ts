@@ -26,7 +26,7 @@ export interface Filter {
   kids: KidsFilter[];
   /** 怎麼去（T67）：車站旁（餐廳的 transit）、不用搭車（accessEase ≥ 4；餐廳沒有這個評分，看車站旁或車站走路 10 分內） */
   reach: ReachFilter[];
-  /** 住法（T66、T67）：包棟一棟全團、包棟要兩棟、旅館飯店；fits、apart 是書架「住在這裡」的兩級（面板沒有）。有值時只剩住宿 */
+  /** 住法（T66、T67、T69）：包棟一棟住全團、包棟要和別處分住、旅館飯店、民宿；fits、apart 是書架「住在這裡」的兩級（面板沒有）。有值時只剩住宿 */
   stay: StayFilter[];
   /** 住宿的晚餐（T67）：一泊二食、不含但走路有店、要開車找；有值時只剩住宿 */
   dinner: DinnerFilter[];
@@ -150,20 +150,21 @@ export function matchesReach(p: Place, v: ReachFilter): boolean {
 // ---- 住宿 ----
 
 /**
- * 住法（T66、T67）。面板三顆：包棟・一棟全團（能包棟、maxGuests ≥ 15）、包棟・要兩棟（能包棟、住不下或人數不明）、旅館飯店（kind 是 hotel、ryokan、other）。
+ * 住法（T66、T67、T69）。面板四顆：包棟・一棟住全團（能包棟、maxGuests ≥ 15）、包棟・要和別處分住（能包棟、住不下或人數不明；多半那裡只有一棟，要另外找一處，T69 從「要兩棟」改名）、
+ * 旅館・飯店（kind 是 hotel、ryokan、other，分房住）、民宿（其他：不能包棟的 minshuku、rental-house，T69 補上，之前篩不到）。
  * 書架「住在這裡」的兩級（面板沒有）：fits 一間住得下全團（包棟一棟，或旅館飯店 5 間房以上）、apart 其他（要分開住）
  */
-export const STAY_VALUES = ['whole', 'multi', 'hotel', 'fits', 'apart'] as const;
+export const STAY_VALUES = ['whole', 'multi', 'hotel', 'other', 'fits', 'apart'] as const;
 export type StayFilter = (typeof STAY_VALUES)[number];
-export const STAY_LABELS: Record<StayFilter, string> = { whole: '包棟・一棟全團', multi: '包棟・要兩棟', hotel: '旅館、飯店', fits: '一間住得下全團', apart: '要分開住' };
+export const STAY_LABELS: Record<StayFilter, string> = { whole: '包棟・一棟住全團', multi: '包棟・要和別處分住', hotel: '旅館・飯店', other: '民宿', fits: '一間住得下全團', apart: '要分開住' };
 /** 面板上的住法 */
-export const STAY_PANEL: readonly StayFilter[] = ['whole', 'multi', 'hotel'];
+export const STAY_PANEL: readonly StayFilter[] = ['whole', 'multi', 'hotel', 'other'];
 /** 旅館、飯店幾間房以上算住得下全團（👤 定：不補 maxGuests，用房間數判） */
 export const HOTEL_ROOMS_GROUP = 5;
 /** 算旅館、飯店的 kind（rental-house、minshuku 不算） */
 const HOTEL_KINDS = ['hotel', 'ryokan', 'other'];
 
-/** 住宿是哪一種：包棟一棟、包棟要兩棟、旅館飯店、其他（民宿等）；不是住宿是 null */
+/** 住宿是哪一種：包棟一棟、包棟要和別處分住、旅館飯店、其他（民宿等）；不是住宿是 null */
 export type StayKind = 'whole' | 'multi' | 'hotel' | 'other';
 export function placeStayKind(p: Place): StayKind | null {
   if (p.type !== 'lodging') return null;

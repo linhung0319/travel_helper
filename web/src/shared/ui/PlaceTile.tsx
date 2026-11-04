@@ -73,6 +73,10 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
         <span className="pt-type">
           <TypeLabel type={place.type} onPhoto />
         </span>
+        {/* 自己加、已訂、待訂放照片右上角（T69）：文字區固定是名稱、地點、重點，同排的卡對得齊 */}
+        <span className="pt-tags">
+          <PlaceTags place={place} />
+        </span>
         {letter && (
           <span className="ai-letter" data-testid="ai-letter">
             {letter}
@@ -87,9 +91,7 @@ export function PlaceTile({ place, status, onOpen, extra, testId, rank, hot, roo
           <span className="pt-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
         </span>
-        <PlaceTags place={place} />
-        {user && <span className="pt-user-by">{userSubtitle(place, members)}</span>}
-        {meta && <span className="pt-meta">{meta}</span>}
+        {(meta || user) && <span className="pt-meta">{[meta, user ? userSubtitle(place, members) : ''].filter(Boolean).join('・')}</span>}
         <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
         {aiNote && (
           <span className="ai-note" data-testid="ai-note">

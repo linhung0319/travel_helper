@@ -1236,7 +1236,7 @@ test('想去（T53）：三排書架、每排 3 張小卡；「全部 ›」進�
   expect(await scrollsSideways(page)).toBe(false);
   const total = Number(((await wish.getByTestId('wish-shelf-all-unscheduled').textContent()) ?? '').replace(/\D/g, ''));
   await openWishSection(page, 'unscheduled');
-  await expect(wish.getByTestId('back-to-area')).toHaveText('‹ 還沒排');
+  await expect(wish.getByTestId('lens-title')).toHaveText('還沒排');
   await expect(wish.getByTestId('list-count')).toHaveText(`${total} 個地點`);
   await expect(wish.getByTestId('view-photo')).toBeVisible();
   expect(await scrollsSideways(page)).toBe(false);

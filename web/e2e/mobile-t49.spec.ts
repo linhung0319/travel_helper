@@ -88,7 +88,7 @@ test('整趟的標題列：大字「整趟」、右邊問 AI 和討論同一列�
   await shot(page, 'mobile-t49-overview');
 });
 
-test('探索、想去：書架「全部 ›」後點概覽回概覽、點別區到那區的書架；子地區列只橫滑', async ({ page }) => {
+test('探索、想去：書架「全部 ›」後點概覽回概覽（可以復原）、點別區篩選留著（T69）；子地區列只橫滑', async ({ page }) => {
   await ready(page, { tab: 'default' });
   const feed = () => page.evaluate(() => {
     const f = (window as any).__thMobile.getState().feed;
@@ -100,10 +100,16 @@ test('探索、想去：書架「全部 ›」後點概覽回概覽、點別區�
   await page.getByTestId('m-feed-area-all').click();
   await expect(page.getByTestId('explore-overview')).toBeVisible();
   expect(await feed()).toEqual({ area: null, type: 'all', quick: [], query: '' });
+  await expect(page.getByTestId('lens-undo')).toContainText('全員吃飯 · 鳥羽');
 
   await page.getByTestId('m-feed-area-toba').click();
   await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
   await page.getByTestId('m-feed-area-ise').click();
+  // T69：換地區只換範圍，還是全員吃飯（不回書架）
+  await expect(page.getByTestId('fb-stick').getByTestId('lens-title')).toHaveText('全員吃飯');
+  expect(await feed()).toMatchObject({ area: 'ise', type: 'restaurant', query: '' });
+  // ‹ 書架 回到伊勢的書架
+  await page.getByTestId('fb-stick').getByTestId('back-to-area').click();
   await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'ise');
   expect(await feed()).toEqual({ area: 'ise', type: 'all', quick: [], query: '' });
 
@@ -116,7 +122,7 @@ test('探索、想去：書架「全部 ›」後點概覽回概覽、點別區�
   // 手機不畫 ‹ › 箭頭
   await expect(page.getByTestId('m-feed-filters-next')).toBeHidden();
 
-  // 想去：條件、搜尋清掉
+  // 想去：換地區條件、搜尋留著（T69）
   await goTab(page, 'wish');
   await page.evaluate(() => (window as any).__thMobile.getState().setWish({ type: 'spot', quick: ['tiers:S'], query: '神' }));
   await page.getByTestId('m-wish-area-toba').click();
@@ -124,5 +130,5 @@ test('探索、想去：書架「全部 ›」後點概覽回概覽、點別區�
     const w = (window as any).__thMobile.getState().wish;
     return { area: w.area, type: w.type, quick: w.quick, query: w.query };
   });
-  expect(wish).toEqual({ area: 'toba', type: 'all', quick: [], query: '' });
+  expect(wish).toEqual({ area: 'toba', type: 'spot', quick: ['tiers:S'], query: '神' });
 });

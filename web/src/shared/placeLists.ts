@@ -10,6 +10,8 @@ import { useWishPrefs, wishPrefs } from './wishPrefs.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { explorePlaces, typeCounts, type ExploreSort, type ExploreType } from '../lib/explore.ts';
 import type { Filter } from '../lib/filter.ts';
+import { scopeCounts } from '../lib/shelves.ts';
+import { wishSections, type SectionId } from './wishSections.ts';
 import type { Bbox, Place } from '../data/types.ts';
 
 /** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
@@ -78,14 +80,43 @@ export function useAiPicked(all: Place[], on: boolean) {
 /** 探索的清單：全部的點（車站不列） */
 export const useExploreList = (filter: Filter, query: string, sort: ExploreSort, bounds: Bbox | null = null) => usePlaceList('explore', filter, query, sort, bounds);
 
-/** 想去的「自己加 N」晶片（§17.7）：有自己加的點才出現；clearType：選它時類型回到全部 */
-export function useWishUserChip(pool: Place[], list: Place[], clearType: () => void) {
+/** 想去的「只看自己加的 N」（§17.7）：T69 從地區列搬到「現在看」的條件列，是篩選、不是地區；N 是現在的範圍和條件裡有幾個，0 個（又沒開）時不出現 */
+export interface WishUserChip {
+  label: string;
+  on: boolean;
+  testId: string;
+  onClick(): void;
+}
+
+export function useWishUserChip(list: Place[]): { list: Place[]; chip: WishUserChip | undefined } {
   const on = useWishPrefs((s) => s.userOnly);
-  const count = useMemo(() => pool.filter(isUserPlace).length, [pool]);
-  const active = on && count > 0;
-  const shown = useMemo(() => (active ? list.filter(isUserPlace) : list), [active, list]);
-  const chip = count > 0 ? { label: `自己加 ${count}`, on: active, testId: 'wish-type-user', onClick: () => { wishPrefs.getState().setUserOnly(!active); if (!active) clearType(); } } : undefined;
+  const mine = useMemo(() => list.filter(isUserPlace), [list]);
+  const shown = on ? mine : list;
+  const chip = mine.length > 0 || on ? { label: `只看自己加的 ${mine.length}`, on, testId: 'wish-type-user', onClick: () => wishPrefs.getState().setUserOnly(!on) } : undefined;
   return { list: shown, chip };
+}
+
+/**
+ * 地區分頁、子地區晶片的小數字（T69）：有「看什麼」（active）時，同一個篩選在每個地區、子地區有幾個；沒有是 null（不畫數字）。
+ * pool：探索是全部的點；想去是有人 ❤️ 的（進了某一排時只算那一排的，useSectionPool）
+ */
+export function useScopeCounts(pool: Place[], filter: Filter, query: string, active: boolean): Map<string, number> | null {
+  const areas = useData((s) => s.areas);
+  const places = useData((s) => s.places);
+  return useMemo(() => (active ? scopeCounts(pool, filter, query, areas, places) : null), [active, pool, filter, query, areas, places]);
+}
+
+/** 想去進了某一排（section）時，只留那一排的點（數字照那一排算）；三排那層照舊 */
+export function useSectionPool(pool: Place[], section: SectionId | null, userOnly: boolean): Place[] {
+  const candidates = useShared((s) => s.candidates);
+  const itinerary = useData((s) => s.itinerary);
+  const likes = useLikeCount();
+  return useMemo(() => {
+    const mine = userOnly ? pool.filter(isUserPlace) : pool;
+    if (!section) return mine;
+    const ids = new Set(wishSections(mine.map((p) => p.id), candidates, itinerary, likes).find((x) => x.id === section)?.groups.flatMap((g) => g.ids) ?? []);
+    return mine.filter((p) => ids.has(p.id));
+  }, [pool, section, userOnly, candidates, itinerary, likes]);
 }
 
 /** 想去的清單：有人 ❤️ 的點 */

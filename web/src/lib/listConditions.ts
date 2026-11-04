@@ -26,7 +26,7 @@ const NOTE_KEYS = ['who', 'stay'] as const;
 
 /**
  * 誰吃、住法兩題的分布（T67，interaction-design §32「現在看」）：現在符合的點裡，
- * 餐廳照 15 人分（能坐一起、要分桌、還沒查、坐不下），住宿照住法分（包棟、包棟要兩棟、旅館飯店、其他）；0 的那段不寫，全是 0 是空字串
+ * 餐廳照 15 人分（能坐一起、要分桌、還沒查、坐不下），住宿照住法分（包棟、包棟要分住、旅館飯店、民宿）；0 的那段不寫，全是 0 是空字串
  */
 export function distNote(key: (typeof NOTE_KEYS)[number], items: Place[]): string {
   if (key === 'who') {
@@ -42,9 +42,9 @@ export function distNote(key: (typeof NOTE_KEYS)[number], items: Place[]): strin
   const kind = (v: string) => items.filter((p) => placeStayKind(p) === v).length;
   return dist([
     ['包棟', kind('whole')],
-    ['包棟要兩棟', kind('multi')],
+    ['包棟要分住', kind('multi')],
     ['旅館飯店', kind('hotel')],
-    ['其他', kind('other')],
+    ['民宿', kind('other')],
   ]);
 }
 
