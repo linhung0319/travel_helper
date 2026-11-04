@@ -1423,6 +1423,16 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - engine 的單元測試，把上面每一段當一題：菅島燈塔有船班加提醒；賢島 → 間崎島要坐船；水族館 → 菅島港不會走去坂手；鳥羽駅 → 答志島走路到碼頭；島內不坐計程車；等太久有提醒；過海也有 `busCrowd`。
   - 加 `npm run validate`（改了 `areas.json` 和點的 `region`）。
 - **完成條件**：`npm run validate`、`npm test`、`npm run typecheck` 通過；改了哪些點的 `region` 列給 👤 看。
+- **結果**（2026-11-04，branch `t60`）：`npm run validate`、`npm test`（1076，`travel.test.ts` 多 9 項）、`npm run typecheck` 通過。e2e 沒跑（畫面沒改，提醒照舊進交通卡的補充資訊）。
+  - **子地區**：`areas.json` 加 `mazakijima`（間崎島，志摩）、`sakatejima`（坂手島，鳥羽，還沒有資料點，`intro` 的來源是観光三重的取材レポート）。`region` 改成 `mazakijima` 的點：`shima-mazakijima`（間崎島 あご湾定期船）、`shima-sushi-yuzen`（鮨裕禅）。**UMILABO 沒改**：地址是阿児町鵜方、座標在賢島西邊，不在間崎島，是住宿自己的船（不是あご湾定期船），照舊放 `shima-kashikojima`。
+  - **時刻表**：`gtfs-timetable.mjs` 加 `ISLAND_STOPS`（停留所名稱 → 島），離島的停留所寫 `island`，`near` 只收同一個島的點；重跑 6 條船（班次沒變，只有 `island`、`near`、`retrieved`）。坂手停留所不再連到水族館、真珠島。
+  - **引擎**（`travel.ts`）：
+    1. 上下車點只用同一個島的停靠點（`stopIslands`）。過海時島那端上限內沒有碼頭，才不設上限（`legAccess`），提醒「下船後要走 N 分」「走到碼頭要 N 分」（`long-walk`）。鳥羽駅 → 菅島燈塔：佐田浜 11:50 → 菅島，下船走 21 分。鳥羽駅 → 答志港照舊在答志下船，不在和具下船走 22 分。
+    2. 車站當端點時多收 `near` 寫了這站的**碼頭**（只有船；巴士停留所也收的話，伊勢市 → 朝熊會走 14 分去宇治山田搭車）。鳥羽駅走 10 分到佐田浜，不先坐かもめ巴士。
+    3. 島上沒有計程車、巴士（`data/raw/toba/transport.md`「島上移動」；間崎島「島上沒有車」）：同一個島走路，超過上限加 `island-walk`「島上沒有計程車，要走 N 分」；住宿那端加「可以問○○有沒有碼頭接送」。住宿的 `pickup` 在詳情層，引擎只用清單層，所以不寫接送的細節。答志島 桃取 → 和具 一帶要走 90～110 分，照實寫。
+    4. 轉乘空檔超過 `transferLongWait`（30 分，新的設定）加 `transfer-wait`「在佐田浜（鳥羽マリンターミナル）要等船 80 分」。
+    5. 過海那條也呼叫 `busCrowd`。
+  - CONVENTIONS §5.4 的「離島」改寫、加「轉乘等太久」；`data/timetables/README.md` 寫 `island`。
 
 #### T61 問 AI：算得出問題的放進輸入框 〔S〕（7）
 - **現況**（2026-11-04 盤點）：
