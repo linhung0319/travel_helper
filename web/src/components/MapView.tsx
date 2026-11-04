@@ -722,13 +722,14 @@ export function MapView() {
     regionNameRef.current = new Marker({ element: el, anchor: 'bottom', offset: [0, -2] }).setLngLat(shapeLabelAt(f.geometry)).addTo(map);
   }, [loaded, places, focusArea, focusRegion, areasForFocus]);
 
-  // 探索縮遠時（T43 §21）：每區的中心放區名（白底靛藍框），點了等於地區列選那一區；選中的那區靛藍底白字
+  // 探索縮遠時（T43 §21）：每區的中心放區名（白底靛藍框），點了等於地區列選那一區；選中的那區靛藍底白字。
+  // 手機的地圖只在行程分頁（mode 一直是 explore），不畫，不然和「伊勢 3 晚」疊成兩個框（T59）
   useEffect(() => {
     if (!loaded) return;
     const map = mapRef.current!;
     areaNameRef.current.forEach((m) => m.remove());
     areaNameRef.current = [];
-    if (mode !== 'explore' || detailed) return;
+    if (!desktop || mode !== 'explore' || detailed) return;
     areaNameRef.current = areasForFocus.map((a) => {
       const el = document.createElement('button');
       el.type = 'button';
@@ -743,7 +744,7 @@ export function MapView() {
       });
       return new Marker({ element: el }).setLngLat(a.center).addTo(map);
     });
-  }, [loaded, mode, detailed, areasForFocus, focusArea]);
+  }, [loaded, mode, detailed, areasForFocus, focusArea, desktop]);
 
   // AI 指給你看的水滴：只有最新的一組（舊的直接拿掉）；新出現的跳 3 下（地圖正要飛過去時，到了再跳）。
   // 也是選中的點、詳情那個點的不畫（它們有自己的水滴）

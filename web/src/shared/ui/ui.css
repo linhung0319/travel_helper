@@ -4471,7 +4471,7 @@ button.ll-main {
   grid-template-columns: var(--sk-cols);
   column-gap: var(--sk-gap);
   align-items: center;
-  min-height: 46px;
+  min-height: 58px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -4519,6 +4519,7 @@ button.ll-main {
 }
 
 .ui-sk-date small {
+  display: block;
   font-family: inherit;
   font-weight: 400;
   font-size: 0.6875rem;
@@ -4539,7 +4540,7 @@ button.ll-main {
 }
 
 .ui-sk-where b {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -4588,7 +4589,7 @@ button.ll-main {
   background: none;
   color: var(--ink);
   font: inherit;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   text-align: left;
 }
 
@@ -4696,20 +4697,16 @@ button.ui-sk-stay:disabled {
 }
 
 /* 點了格子展開在這列下面：地區鈕、鎖定的說明、未選住宿的捷徑 */
+/* 和上一列空 10px、淡靛藍底加圓角，看得出是這一列展開的東西（T59） */
 .ui-sk-pick {
   grid-column: 2 / -1;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 0 0 10px;
-}
-
-.ui-sk-apply {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8125rem;
-  color: var(--ink-2);
+  margin: 10px 0;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: var(--indigo-wash);
 }
 
 .ui-sk-note {
@@ -4789,6 +4786,24 @@ button.ui-sk-stay:disabled {
   border-color: var(--line);
   color: var(--ink-2);
   font-weight: 400;
+}
+
+/* 網頁的整趟每列加高到約 58px、日期分兩行、區名和住宿字大一號（T59）；手機照舊 */
+.m-app .ui-sk-row {
+  min-height: 46px;
+}
+
+.m-app .ui-sk-date small {
+  display: inline;
+}
+
+.m-app .ui-sk-where b {
+  font-size: 0.875rem;
+}
+
+.m-app .ui-sk-area,
+.m-app .ui-sk-stay {
+  font-size: 0.8125rem;
 }
 
 /* 日期列每天下面的地區色線（手機 DayStrip、網頁 MapDays）：還沒決定是虛線，最後一天沒有 */

@@ -28,7 +28,7 @@ const showAll = async (page: Page) => {
   await page.evaluate(() => (window as any).__thMobile.getState().setSnap('high'));
 };
 
-test('手機整趟：數字那行在標題列下面；未選區一次套好幾晚；列點了不跳天；進某天用日期列', async ({ page }) => {
+test('手機整趟：數字那行在標題列下面；未選區只改那一晚；列點了不跳天；進某天用日期列', async ({ page }) => {
   await ready(page);
   await setNights(page, { '2027-02-07': null, '2027-02-08': null });
   await showAll(page);
@@ -43,16 +43,20 @@ test('手機整趟：數字那行在標題列下面；未選區一次套好幾�
   await expect(page.getByTestId('m-day-2027-02-07').getByTestId('day-area-line')).toHaveClass(/undecided/);
   await shot(page, 't45b-m-trip');
   expect(await scrollsSideways(page)).toBe(false);
-  // 未選區 → 「2/7–2/8 都套用」→ 二見，兩晚都是
+  // 手機地圖同一區只有一個標籤：「志摩 x 晚」，不另外畫探索用的區名（T59）
+  await expect(page.locator('[data-testid="area-nights-label"][data-area="shima"]')).toHaveCount(1);
+  await expect(page.locator('[data-testid="area-nights-label"][data-area="shima"]')).toContainText('志摩');
+  await expect(page.getByTestId('area-name-label')).toHaveCount(0);
+  // 未選區 → 二見，只改 2/7（T59 拿掉「都套用」）
   const row = page.locator('[data-testid="sk-row"][data-date="2027-02-07"]');
   await row.getByTestId('sk-area').click();
-  await expect(row.getByTestId('sk-apply-all')).toContainText('2/7–2/8 都套用');
+  await expect(row.getByTestId('sk-apply-all')).toHaveCount(0);
   await row.locator('[data-testid="area-pick"][data-area="futami"]').scrollIntoViewIfNeeded();
   await shot(page, 't45b-m-picker');
   expect(await scrollsSideways(page)).toBe(false);
   await row.locator('[data-testid="area-pick"][data-area="futami"]').click();
   await expect(row.getByTestId('sk-area')).toHaveText('二見');
-  await expect(page.locator('[data-testid="sk-row"][data-date="2027-02-08"]').getByTestId('sk-area')).toHaveText('二見');
+  await expect(page.locator('[data-testid="sk-row"][data-date="2027-02-08"]').getByTestId('sk-area')).toHaveText('未選區');
   await expect(row.getByTestId('sk-stay')).toHaveText('未選住宿');
   // 列點了不跳天
   await page.locator('[data-testid="sk-row"][data-date="2027-02-03"]').getByTestId('sk-where').click();

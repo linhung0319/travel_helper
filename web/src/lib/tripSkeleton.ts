@@ -173,18 +173,6 @@ export function skeletonCounts(rows: SkeletonRow[]): { total: number; areas: num
 /** 「只看還沒決定的」留哪些列：區或住宿還沒定的晚上（最後一天沒有晚上，不留） */
 export const isUndecided = (r: SkeletonRow) => !!r.stay && r.stay.kind !== 'lodging';
 
-/** 這晚所在的「連著好幾晚都沒決定區」那一段（T54 的「2/9–2/11 都套用」）；這晚有區、或只有這一晚是 null */
-export function undecidedRun(rows: SkeletonRow[], date: string): string[] | null {
-  const open = (r: SkeletonRow | undefined) => !!r?.stay && !r.nightArea;
-  const i = rows.findIndex((r) => r.date === date);
-  if (!open(rows[i])) return null;
-  let a = i;
-  let b = i;
-  while (open(rows[a - 1])) a--;
-  while (open(rows[b + 1])) b++;
-  return b > a ? rows.slice(a, b + 1).map((r) => r.date) : null;
-}
-
 /** 從這晚起、同一區還沒選住宿的連續晚上（「問 AI 推薦」帶的日期）；這晚不是「未選住宿」是空的 */
 export function openLodgingRun(rows: SkeletonRow[], date: string): string[] {
   const i = rows.findIndex((r) => r.date === date);

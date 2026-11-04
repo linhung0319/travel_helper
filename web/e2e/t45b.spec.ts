@@ -94,13 +94,14 @@ test('未選區：整列淡灰底、住宿是「—」；點了展開地區鈕�
   await shot(page, 'web-trip-only-open');
   await page.getByTestId('sk-only-open').click();
   await expect(page.getByTestId('sk-row')).toHaveCount(12);
-  // 2/7：「2/7–2/10 都套用」預設勾著；取消勾只套這晚
+  // 2/7：只改這一晚（T59 拿掉「都套用」）；選區框和上一列空開、有淡底
   await r7.getByTestId('sk-area').click();
-  const apply = r7.getByTestId('sk-apply-all');
-  await expect(apply).toContainText('2/7–2/10 都套用');
-  await expect(apply.locator('input')).toBeChecked();
+  await expect(r7.getByTestId('sk-apply-all')).toHaveCount(0);
+  const pick = r7.getByTestId('sk-panel');
+  const cell = (await r7.getByTestId('sk-area').boundingBox())!;
+  expect((await pick.boundingBox())!.y).toBeGreaterThanOrEqual(cell.y + cell.height + 10);
+  expect(await pick.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe('rgba(0, 0, 0, 0)');
   await shot(page, 'web-trip-picker');
-  await apply.locator('input').uncheck();
   await r7.locator('[data-testid="area-pick"][data-area="futami"]').click();
   await expect(r7.getByTestId('sk-area')).toHaveText('二見');
   await expect(r7.getByTestId('sk-stay')).toHaveText('未選住宿');
@@ -108,16 +109,16 @@ test('未選區：整列淡灰底、住宿是「—」；點了展開地區鈕�
   await expect(rowOf(page, '2027-02-08').getByTestId('sk-area')).toHaveText('未選區');
   await expect(page.getByTestId('toast')).toContainText('復原');
   await expect(page.getByTestId('m-day-2027-02-07').getByTestId('day-area-line')).toHaveAttribute('data-area', 'futami');
-  // 2/8：「2/8–2/10」一次套伊勢
-  const r8 = rowOf(page, '2027-02-08');
-  await r8.getByTestId('sk-area').click();
-  await expect(r8.getByTestId('sk-apply-all')).toContainText('2/8–2/10 都套用');
-  await r8.locator('[data-testid="area-pick"][data-area="ise"]').click();
-  for (const d of ['2027-02-08', '2027-02-09', '2027-02-10']) await expect(rowOf(page, d).getByTestId('sk-area')).toHaveText('伊勢');
+  // 2/8～2/10 一晚一晚選伊勢
+  for (const d of ['2027-02-08', '2027-02-09', '2027-02-10']) {
+    const r = rowOf(page, d);
+    await r.getByTestId('sk-area').click();
+    await r.locator('[data-testid="area-pick"][data-area="ise"]').click();
+    await expect(r.getByTestId('sk-area')).toHaveText('伊勢');
+  }
   await expect(page.getByTestId('sk-count')).toHaveText('11 晚 · 區 11／11 · 住宿 7／11 · 已訂 1');
-  // 已經有區（沒住宿）的晚上點區名：地區鈕加「清掉」，沒有「都套用」
+  // 已經有區（沒住宿）的晚上點區名：地區鈕加「清掉」
   await r7.getByTestId('sk-area').click();
-  await expect(r7.getByTestId('sk-apply-all')).toHaveCount(0);
   await expect(r7.getByTestId('area-clear')).toBeVisible();
 });
 
