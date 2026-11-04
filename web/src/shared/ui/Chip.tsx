@@ -1,11 +1,11 @@
-// 晶片：一般（白底細框）、選中 on（墨色底）、已套用 applied（--indigo-wash，後面有 ✕ 可以拿掉）。樣式在 ui.css。
+// 晶片：一般（白底細框）、選中 on（墨色底）、已套用 applied（--indigo-wash，後面有 ✕ 可以拿掉）。className 給特別的晶片（地區列的「概覽」，T63）。樣式在 ui.css。
 
 import type { ReactNode } from 'react';
 import { Icon } from '../../components/Icon.tsx';
 
 /** 晶片按鈕；applied＋onRemove 時右邊多一個 ✕（獨立的按鈕，點了只拿掉）；count 是後面的小數字 */
-export function Chip({ on = false, applied = false, onRemove, count, onClick, testId, title, children }: { on?: boolean; applied?: boolean; onRemove?: () => void; count?: number; onClick?: () => void; testId?: string; title?: string; children: ReactNode }) {
-  const cls = `ui-chip ${on ? 'on' : ''} ${applied ? 'applied' : ''}`;
+export function Chip({ on = false, applied = false, onRemove, count, onClick, testId, title, className, children }: { on?: boolean; applied?: boolean; onRemove?: () => void; count?: number; onClick?: () => void; testId?: string; title?: string; className?: string; children: ReactNode }) {
+  const cls = `ui-chip ${on ? 'on' : ''} ${applied ? 'applied' : ''} ${className ?? ''}`;
   const main = (
     <button type="button" className={cls} aria-pressed={on} onClick={onClick} data-testid={testId} title={title}>
       {children}

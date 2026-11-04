@@ -41,6 +41,20 @@
   color: var(--indigo);
 }
 
+/* 地區列的「概覽」（想去的「全部」）：淡芥子黃，選到時實心芥子黃、深色字；看得出不是一個地區（T63 §27） */
+.ui-chip.ui-chip-overview {
+  border-color: var(--mustard-line);
+  background: var(--mustard-wash);
+  color: var(--mustard-ink);
+  font-weight: 700;
+}
+
+.ui-chip.ui-chip-overview.on {
+  border-color: var(--mustard);
+  background: var(--mustard);
+  color: var(--ink);
+}
+
 .ui-chip-count {
   font-family: var(--font-num);
   opacity: 0.8;
@@ -4907,14 +4921,24 @@ button.ui-sk-stay:disabled {
 
 .xo-name {
   position: absolute;
-  left: 12px;
+  left: 14px;
+  right: 40%;
   bottom: 8px;
   z-index: 1;
   margin: 0;
   font-family: var(--font-round);
-  font-size: 1.25rem;
+  font-size: 1.875rem;
   font-weight: 900;
-  line-height: 1.2;
+  line-height: 1.15;
+}
+
+/* 區名旁邊的日文名（T63） */
+.xo-name-ja {
+  margin-left: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0.92;
 }
 
 .xo-name button {
@@ -4966,101 +4990,28 @@ button.ui-sk-stay:disabled {
   padding: 8px 10px 8px;
 }
 
-/* 四格書架的數字：點了進那區那排的全部；0 灰掉 */
-.xo-shelves {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 8px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+/* 子地區一行（T63 §27）：照片下面第一行，「志摩全區」加全部的子地區，一排橫滑（網頁有 ‹ › 箭頭）；選到的是淡靛藍底 */
+.xo-regions.m-chips {
+  gap: 5px;
+  padding: 8px 10px 2px;
+  overflow-y: hidden;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
 }
 
-.xo-shelf {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-  min-width: 0;
-  min-height: 44px;
-  padding: 5px 2px;
-  border: 0;
-  border-left: 1px solid var(--line);
-  background: var(--paper);
-  color: var(--ink);
-  font: inherit;
-  cursor: pointer;
+.xo-regions .ui-chip {
+  min-height: 30px;
+  padding: 0 11px;
+  font-size: 0.8125rem;
 }
 
-.xo-shelf:first-child {
-  border-left: 0;
+.xo-regions .ui-chip::after {
+  inset: -7px 0;
 }
 
-.xo-shelf:hover:not(:disabled) {
+.xo-regions .ui-chip.on {
+  border-color: var(--indigo-line);
   background: var(--indigo-wash);
-}
-
-.xo-shelf-name {
-  max-width: 100%;
-  color: var(--ink-2);
-  font-size: 0.6875rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.xo-shelf-n {
-  color: var(--indigo);
-  font-family: var(--font-num);
-  font-size: 1rem;
-  line-height: 1.2;
-}
-
-.xo-shelf:disabled {
-  cursor: default;
-}
-
-.xo-shelf:disabled .xo-shelf-name,
-.xo-shelf:disabled .xo-shelf-n {
-  color: var(--ink-4);
-}
-
-/* 子地區一行：小字、可以點，前 5 個加「+N」 */
-/* 名字不省略；手機窄時折到第二行 */
-.xo-regions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 4px;
-  margin: 6px 0 0;
-  font-size: 0.75rem;
-}
-
-.xo-regions button {
-  max-width: 100%;
-  padding: 2px 6px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--wash);
-  color: var(--ink-2);
-  font: inherit;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-}
-
-.xo-regions .xo-more {
-  flex: none;
-  min-width: 0;
-  background: none;
-}
-
-.xo-regions button:hover {
-  color: var(--indigo);
-}
-
-.xo-regions .xo-more {
   color: var(--indigo);
   font-weight: 700;
 }
@@ -5068,14 +5019,14 @@ button.ui-sk-stay:disabled {
 .xo-summary {
   margin: 0;
   color: var(--ink-2);
-  font-size: 0.8125rem;
-  line-height: 1.5;
+  font-size: 0.9375rem;
+  line-height: 1.65;
 }
 
 .xo-feb {
-  margin: 3px 0 0;
+  margin: 4px 0 0;
   color: var(--warn);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.45;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -5090,6 +5041,15 @@ button.ui-sk-stay:disabled {
   gap: 5px;
   padding: 7px 10px;
   border-top: 1px solid var(--line);
+}
+
+/* 代表點的小標題：「志摩的代表地點」，跟著子地區換（T63） */
+.xo-reps-title {
+  flex: 0 0 100%;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .xo-rep {

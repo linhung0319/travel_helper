@@ -1,4 +1,5 @@
 // T42：手機的探索概覽、地區列、書架（interaction-design §18.1）。SHOT_DIR 有設時存截圖。
+// T63：概覽沒有四格書架，子地區在卡片裡換內容（§27）。
 // T50：子地區列在篩選列裡、書架的順序、返回鈕「‹ 可坐 15 人」、切換鈕只在清單層。
 
 import { test, expect, type Page } from '@playwright/test';
@@ -8,28 +9,31 @@ const shot = async (page: Page, name: string, fullPage = false) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}-${page.viewportSize()!.width}.png`, fullPage });
 };
 
-test('手機概覽（T52）：地區照片、四格書架的數字點進那排、子地區點進那區', async ({ page }) => {
+test('手機概覽（T52、T63）：地區照片；沒有四格書架；子地區在卡片裡換內容，「看賢島 ›」進那區', async ({ page }) => {
   await ready(page, { tab: 'default' });
   const overview = page.getByTestId('explore-overview');
   const toba = overview.locator('[data-area="toba"]');
   await expect(toba.getByTestId('overview-credit')).toHaveText('Michalkun · CC BY-SA 2.5');
-  await expect(toba.getByTestId('overview-shelf')).toHaveCount(4);
-  await shot(page, 'mobile-overview-t52');
+  await expect(overview.getByTestId('overview-shelf')).toHaveCount(0);
+  await expect(page.getByTestId('m-feed-area-all')).toHaveClass(/ui-chip-overview/);
+  await shot(page, 'mobile-overview-t63');
 
-  await toba.locator('[data-shelf="fit15"]').click();
-  const feed = await page.evaluate(() => (window as any).__thMobile.getState().feed);
-  expect(feed).toMatchObject({ area: 'toba', type: 'restaurant', query: '' });
-  expect(feed.quick).toContain('fit15:yes');
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 可坐 15 人');
-  await page.getByTestId('back-to-area').click();
-  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
+  const shima = overview.locator('[data-area="shima"]');
+  await expect(shima.getByTestId('overview-region-all')).toHaveAttribute('aria-pressed', 'true');
+  // 一排橫滑：不折行
+  const ys = await shima.locator('[data-testid^="overview-region-"]').evaluateAll((els) => [...new Set(els.map((e) => Math.round(e.getBoundingClientRect().top)))]);
+  expect(ys).toHaveLength(1);
+  await shima.getByTestId('overview-region-shima-kashikojima').click();
+  await expect(shima.getByTestId('overview-reps-title')).toHaveText('賢島的代表地點');
+  await expect(overview).toBeVisible();
+  await shot(page, 'mobile-overview-t63-region');
+  await shima.getByTestId('overview-go').click();
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'shima');
+  await expect(page.getByTestId('region-shima-kashikojima')).toHaveAttribute('aria-pressed', 'true');
 
+  // 「概覽」鈕：卡片換回全區
   await page.getByTestId('m-feed-area-all').click();
-  const region = toba.getByTestId('overview-region').first();
-  const rid = await region.getAttribute('data-region');
-  await region.click();
-  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
-  await expect(page.getByTestId(`region-${rid}`)).toHaveAttribute('aria-pressed', 'true');
+  await expect(shima).toHaveAttribute('data-region', '');
 });
 
 test('手機：概覽 → 選鳥羽 → 書架「全部 ›」→ 回到書架；類型在面板裡', async ({ page }) => {

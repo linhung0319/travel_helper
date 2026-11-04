@@ -1,8 +1,9 @@
 // 探索的概覽、選了一區之後的頂端和書架（T42，interaction-design §20）。手機、網頁共用；開詳情、換地區這些動作由呼叫的畫面給。
-// 概覽（T52 改版，interaction-design §26）：一區一張卡（那區的代表照片、住幾晚、一句特色、二月注意第一則、四格書架的數字、一行子地區、代表的點），
-// 代表的點是文字加類型圓章，點了開詳情；「看志摩 ›」進那一區。
+// 概覽（T52 §26、T63 §27）：一區一張卡（那區的代表照片、區名和日文名、住幾晚、子地區一行、簡介、二月注意第一則、代表的點），
+// 點子地區在卡片裡換成那個子地區的簡介、二月注意、代表點（overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）；
+// 代表的點是文字加類型圓章，點了開詳情；「看志摩 ›」「看賢島 ›」進那一區（選了子地區時再選好那個子地區）。
 // 選了一區（T50）：「2 月注意（N）」收合；下面幾排書架（lib/shelves.ts），每排 3 張小卡（右上角類型圓章）、「全部 ›」套那組條件。
-// 一句特色只在概覽；子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
+// 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
 // 樣式在 ui.css（.xo-*、.xa-*、.xs-*）。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -10,7 +11,9 @@ import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
 import { dataStore, ensureDetails, fullPlace } from '../../dataStore.ts';
 import { displayName } from '../../data/normalize.ts';
-import { shelfCounts, shelfFilter, shelfRows } from '../../lib/shelves.ts';
+import { shelfFilter, shelfRows } from '../../lib/shelves.ts';
+import { allRegionsLabel, areaSubName, overviewContent } from '../../lib/overview.ts';
+import { overviewStore, useOverview } from '../overviewStore.ts';
 import { areaStayLine } from '../../lib/tripSkeleton.ts';
 import { whenNearViewport } from '../../lib/nearViewport.ts';
 import type { Filter } from '../../lib/filter.ts';
@@ -29,12 +32,12 @@ const placeName = (p: Place) => p.name.zh || p.name.ja;
 const hoverProps = (surface: HomeSurface, id: string) =>
   surface === 'desktop' ? { onMouseEnter: () => appStore.getState().hover(id), onMouseLeave: () => appStore.getState().hover(null) } : {};
 
-/** 概覽的動作：開詳情、進那一區、進那一區那排書架的全部（filter 是 shelfFilter）、進那一區再選那個子地區 */
+/** 概覽的動作：開詳情、進那一區、進那一區再選那個子地區；onFocus（網頁）是點了卡片的子地區一行，地圖框到那裡 */
 export interface OverviewActions {
   onOpen: (id: string) => void;
   onPickArea: (area: string) => void;
-  onShelf: (area: string, filter: Filter) => void;
   onPickRegion: (area: string, region: string) => void;
+  onFocus?: (area: string, region: string | null) => void;
 }
 
 /** 概覽：一區一張卡 */
@@ -49,40 +52,41 @@ export function ExploreOverview({ surface, ...actions }: { surface: HomeSurface 
   );
 }
 
-/** 子地區一行放幾個，其他寫「+N」 */
-const REGIONS_SHOWN = 5;
-
 /** 照片右下的一行：作者 · 授權（資料裡的「Wikimedia: 」拿掉） */
-const creditOf = (p: PhotoData | undefined) => (p ? [p.credit?.replace(/^Wikimedia:\s*/, ''), p.license].filter(Boolean).join(' · ') : '');
+const creditOf = (p: PhotoData | undefined) => (p ? [p.credit?.replace(/^Wikimedia:s*/, ''), p.license].filter(Boolean).join(' · ') : '');
 
 /**
- * 概覽的一張卡（T52）：上半是那區的代表照片（區名壓在左下、住幾晚在右上、作者和授權在右下），
- * 下面一句特色、二月注意第一則、四格書架的數字（點了進那區那排的全部；0 的灰掉）、一行子地區（前 5 個加「+N」），最後一列代表的點和「看志摩 ›」。
+ * 概覽的一張卡（T52、T63）：上半是那區的代表照片（區名和日文名壓在左下、住幾晚在右上、作者和授權在右下），
+ * 下面子地區一行（「志摩全區」加全部的子地區，點了在卡片裡換內容）、簡介、二月注意一則，最後是代表點（有小標題）和「看志摩 ›」。
  */
-function AreaCard({ area, surface, onOpen, onPickArea, onShelf, onPickRegion }: { area: Area; surface: HomeSurface } & OverviewActions) {
+function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus }: { area: Area; surface: HomeSurface } & OverviewActions) {
   const byId = useData((s) => s.byId);
-  const places = useData((s) => s.places);
   const itinerary = useData((s) => s.itinerary);
-  const reps = (area.intro?.highlights ?? []).map((id) => byId.get(id)).filter((p): p is Place => !!p);
+  const picked = useOverview((s) => s.picks[area.id] ?? null);
+  const content = overviewContent(area, picked);
+  const reps = content.highlights.map((id) => byId.get(id)).filter((p): p is Place => !!p);
   const name = displayName(area.name, area.id);
-  const feb = area.intro?.february?.[0]?.text;
-  const onPick = () => onPickArea(area.id);
-  const base = useMemo(() => ({ areas: [area.id], regions: [] as string[] }), [area.id]);
-  const counts = useMemo(() => shelfCounts(places, base), [places, base]);
+  const sub = areaSubName(area);
+  // 進那一區；選了子地區時再選好那個子地區
+  const onPick = () => (content.regionId ? onPickRegion(area.id, content.regionId) : onPickArea(area.id));
   const stay = useMemo(() => (itinerary ? areaStayLine(itinerary, area.id, byId) : null), [itinerary, area.id, byId]);
   const photo = area.photos?.[0];
   const credit = creditOf(photo);
   const regions = area.regions ?? [];
-  const more = regions.length - REGIONS_SHOWN;
+  const pickRegion = (region: string | null) => {
+    overviewStore.getState().pick(area.id, region);
+    onFocus?.(area.id, region);
+  };
   return (
-    <article className="xo-card" data-testid="overview-card" data-area={area.id}>
+    <article className="xo-card" data-testid="overview-card" data-area={area.id} data-region={content.regionId ?? ''}>
       <div className="xo-cover">
-        <button type="button" className="xo-photo" onClick={onPick} aria-label={`看${name}`} tabIndex={-1}>
+        <button type="button" className="xo-photo" onClick={onPick} aria-label={`看${content.label}`} tabIndex={-1}>
           <AreaPhoto photo={photo} alt={name} />
         </button>
         <h3 className="xo-name">
           <button type="button" onClick={onPick} data-testid="overview-name">
             {name}
+            {sub && <small className="xo-name-ja" lang="ja">{sub}</small>}
           </button>
         </h3>
         {stay && (
@@ -101,45 +105,36 @@ function AreaCard({ area, surface, onOpen, onPickArea, onShelf, onPickRegion }: 
             </span>
           ))}
       </div>
+      {regions.length > 1 && (
+        <ChipScroller className="m-chips xo-regions" testId="overview-regions" activeKey={content.regionId ?? 'all'}>
+          <Chip on={!content.regionId} onClick={() => pickRegion(null)} testId="overview-region-all">
+            {allRegionsLabel(area)}
+          </Chip>
+          {regions.map((r) => (
+            <Chip key={r.id} on={content.regionId === r.id} onClick={() => pickRegion(r.id)} testId={`overview-region-${r.id}`}>
+              {displayName(r.name, r.id)}
+            </Chip>
+          ))}
+        </ChipScroller>
+      )}
       <div className="xo-text">
-        {area.intro?.summary && <p className="xo-summary">{area.intro.summary}</p>}
-        {feb && (
-          <p className="xo-feb" data-testid="overview-feb">
-            2 月：{feb}
+        {content.summary && (
+          <p className="xo-summary" data-testid="overview-summary">
+            {content.summary}
           </p>
         )}
-        <div className="xo-shelves">
-          {counts.map(({ shelf, total }) => (
-            <button
-              key={shelf.id}
-              type="button"
-              className="xo-shelf"
-              disabled={total === 0}
-              onClick={() => onShelf(area.id, shelfFilter(shelf, base))}
-              data-testid="overview-shelf"
-              data-shelf={shelf.id}
-            >
-              <span className="xo-shelf-name">{shelf.title}</span>
-              <b className="xo-shelf-n">{total}</b>
-            </button>
-          ))}
-        </div>
-        {regions.length > 1 && (
-          <p className="xo-regions" data-testid="overview-regions">
-            {regions.slice(0, REGIONS_SHOWN).map((r) => (
-              <button key={r.id} type="button" onClick={() => onPickRegion(area.id, r.id)} data-testid="overview-region" data-region={r.id}>
-                {displayName(r.name, r.id)}
-              </button>
-            ))}
-            {more > 0 && (
-              <button type="button" className="xo-more" onClick={onPick} data-testid="overview-region-more">
-                +{more}
-              </button>
-            )}
+        {content.feb && (
+          <p className="xo-feb" data-testid="overview-feb">
+            2 月：{content.feb}
           </p>
         )}
       </div>
       <div className="xo-reps">
+        {reps.length > 0 && (
+          <h4 className="xo-reps-title" data-testid="overview-reps-title">
+            {content.label}的代表地點
+          </h4>
+        )}
         {reps.map((p) => (
           <button key={p.id} type="button" className="xo-rep" onClick={() => onOpen(p.id)} data-testid="overview-rep" data-id={p.id} {...hoverProps(surface, p.id)}>
             <TypeSeal type={p.type} size="sm" />
@@ -147,7 +142,7 @@ function AreaCard({ area, surface, onOpen, onPickArea, onShelf, onPickRegion }: 
           </button>
         ))}
         <button type="button" className="xo-go" onClick={onPick} data-testid="overview-go">
-          看{name} ›
+          看{content.label} ›
         </button>
       </div>
     </article>
