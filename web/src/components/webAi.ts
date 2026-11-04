@@ -9,6 +9,7 @@ import type { ChatContext } from '../ai/types.ts';
 import { emptyDayFollowups, LODGING_FOLLOWUPS, lodgingDraft, nightLodgingStarter, WISH_EMPTY_DRAFT, type Starter } from '../ai/prompts.ts';
 import { dataStore } from '../dataStore.ts';
 import { areaNameOf } from '../lib/tripSkeleton.ts';
+import { listDraft } from '../lib/listConditions.ts';
 import type { GuideAsk } from '../lib/tripStart.ts';
 
 /** 切到行程分頁（關掉詳情） */
@@ -111,5 +112,13 @@ export const askEmptyDay = (date: string) => void draftWeb(ai.dayDraft(date) ?? 
 /** 想去頁空白時的「問 AI 推薦」（§17.4） */
 export const askWishEmpty = () => void draftWeb(WISH_EMPTY_DRAFT);
 
-/** 探索、想去的整份清單 */
-export const askList = (source: 'explore' | 'wish', filter: Filter, query: string, count: number) => void askWeb([{ kind: 'list', source, filter, query, count }]);
+/** 探索、想去的整份清單：帶清單的晶片；探索再把現在的地區、子地區、條件寫成一句放進輸入框（T64），不送出 */
+export async function askList(source: 'explore' | 'wish', filter: Filter, query: string, count: number) {
+  await ai.ask([{ kind: 'list', source, filter, query, count }]);
+  const text = source === 'explore' ? listDraft(filter, query, dataStore.getState().areas) : null;
+  if (text) ai.setDraftText(text);
+  requestAnimationFrame(() => focusInput?.());
+}
+
+/** 探索篩到 0 個時的「問 AI」（T64）：問題放進輸入框，不帶晶片 */
+export const askDraft = (text: string) => void draftWeb(text);

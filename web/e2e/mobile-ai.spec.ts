@@ -873,8 +873,8 @@ test('set_filter 接到探索的 feed：看探索就是那些條件；探索、�
   expect(feed.area).toBe('toba');
   await page.locator('[data-testid="chat-present"][data-tool="set_filter"]').getByTestId('m-see-map').click();
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
-  // 條件看篩選按鈕的數字，點開面板看（T33 取代晶片）；地區在地區列（T42）
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  // 條件看「現在看」那一列（T64），點開面板看；地區在地區列（T42）
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('m-feed-area-toba')).toHaveAttribute('aria-pressed', 'true');
   await expectFilterOpt(page, 'type-restaurant', true);
   await expect(page.getByTestId('ai-back')).toBeVisible();

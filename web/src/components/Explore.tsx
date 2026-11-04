@@ -20,16 +20,16 @@ import type { ExploreSort } from '../lib/explore.ts';
 import type { Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
-import { AreaHome, ExploreOverview, RegionChips } from '../shared/ui/ExploreHome.tsx';
+import { AreaHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/ExploreHome.tsx';
 import { areaOnly, backLabel, currentArea, exploreStage } from '../lib/shelves.ts';
+import { emptyHelp, placeLabel } from '../lib/listConditions.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
 import { focusOverview, pickArea, pickAreaChip } from '../exploreArea.ts';
 import { overviewStore } from '../shared/overviewStore.ts';
-import { displayName } from '../data/normalize.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
-import { askList, askPlace, askWishEmpty } from './webAi.ts';
+import { askDraft, askList, askPlace, askWishEmpty } from './webAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
 import { useAiPicked, usePlaceList, useWishUserChip } from '../shared/placeLists.ts';
 import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
@@ -123,9 +123,14 @@ function overviewRegion(area: string, region: string) {
   pickRegion(region);
 }
 
-/** 書架的「全部 ›」：套那組條件 */
-function applyShelf(filter: Filter) {
-  appStore.getState().setFilter(filter);
+/** 書架的「全部 ›」、0 個時的下一步：套那組條件（和搜尋）；子地區換了，地圖跟著框 */
+function applyShelf(filter: Filter, query?: string) {
+  const s = appStore.getState();
+  const regionChanged = s.filter.regions.join() !== filter.regions.join();
+  s.setFilter(filter);
+  if (query !== undefined) s.setQuery(query);
+  const area = currentArea(filter);
+  if (regionChanged && area) commands.focus(filter.regions.length === 1 ? { region: filter.regions[0] } : { area });
 }
 
 /** 面板裡點一個選項：地區一次一個（選了地圖跳過去，小區域也是），其他是開關 */
@@ -225,22 +230,22 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
       setInView(false);
     },
     ...(wish ? {} : { onAdd: () => addPlaceStore.getState().openEntry() }),
-    onAsk: () => askList(source, filter, query, list.length),
+    onAsk: () => void askList(source, filter, query, list.length),
     ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
   };
 
   // 探索這時畫哪一種：概覽、選了一區（書架）、照片牆或清單（想去一律是清單）
   const stage = wish ? 'list' : exploreStage(filter, listQuery, !!aiResult);
   const area = currentArea(filter);
-  const areaName = useData((s) => {
-    const a = area ? s.areas.find((x) => x.id === area) : undefined;
-    return a ? displayName(a.name, a.id) : null;
-  });
-  // 選了一區、但套了其他條件或搜尋：地點數前面「‹ 一定要去」（還是那排書架的條件）或「‹ 回到鳥羽」，點了回到書架（T50）
+  const areas = useData((s) => s.areas);
+  const places = useData((s) => s.places);
+  const where = placeLabel(filter, areas);
+  // 選了一區、但套了其他條件或搜尋：地點數前面「‹ 可坐 15 人 · 志摩・賢島」（還是那排書架）或「‹ 自己篩選 · 志摩」，點了回到書架（T50、T64）
   const back =
-    !wish && !aiResult && stage === 'list' && areaName
+    !wish && !aiResult && stage === 'list' && where
       ? {
-          label: backLabel(filter, query, areaName),
+          label: backLabel(filter),
+          where,
           onClick: () => {
             appStore.getState().setFilter(areaOnly(appStore.getState().filter));
             appStore.getState().setQuery('');
@@ -278,7 +283,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         {stage === 'overview' ? (
           <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onPickRegion={overviewRegion} onFocus={focusOverview} />
         ) : stage === 'area' && area ? (
-          <AreaHome areaId={area} regionId={regionId} surface="desktop" onOpen={(id) => open(id)} onShelfAll={applyShelf} />
+          <AreaHome areaId={area} regionId={regionId} surface="desktop" onOpen={(id) => open(id)} onShelfAll={applyShelf} onAsk={askDraft} />
         ) : wish ? (
           <WishList
             surface="desktop"
@@ -317,7 +322,17 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
           </div>
         )}
         {stage === 'list' && list.length === 0 && !aiResult && wish && pool.length === 0 && <WishEmpty onExplore={() => appStore.getState().setMode('explore')} onAsk={askWishEmpty} />}
-        {stage === 'list' && list.length === 0 && !aiResult && (wish || !ownsEmpty) && !(wish && pool.length === 0) && <p className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</p>}
+        {stage === 'list' && list.length === 0 && !aiResult && wish && pool.length > 0 && <p className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</p>}
+        {stage === 'list' && list.length === 0 && !aiResult && !wish && !ownsEmpty && (
+          <NextSteps
+            help={emptyHelp(places, filter, query, areas)}
+            onApply={(f, q) => {
+              setInView(false);
+              applyShelf(f, q);
+            }}
+            onAsk={askDraft}
+          />
+        )}
       </div>
     </div>
   );

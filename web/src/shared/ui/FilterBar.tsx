@@ -1,7 +1,7 @@
-// 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（有條件時顯示數字，類型不算）、排序（晶片選單）；
+// 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（T64 拿掉上面的數字）、排序（晶片選單）；
 // 第二列地區晶片（typeRow 由呼叫的畫面給，T42 從類型換成地區），選了一區時下面接子地區列（subRow，T50）；
-// 再下一列是返回鈕（「‹ 一定要去」，T50）、幾個地點、「＋ 加地點」（只有探索）、問 AI，最右邊照片牆／清單切換（只在照片牆、清單那層，T50）。
-// 套用了什麼條件不列出來（T33）：要看就點「篩選」，打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
+// 再下一列是返回鈕和現在看的地方（「‹ 可坐 15 人 · 志摩・賢島」，T50、T64）、幾個地點、「＋ 加地點」（只有探索）、問 AI，最右邊照片牆／清單切換（只在照片牆、清單那層，T50）。
+// 有條件時再下一列是「現在看」的條件列（T64，lib/listConditions.ts）：每個條件一顆、都有 ✕，藍底是書架帶來的、白底是自己加的，最後「＋ 條件」打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
 // 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤，探索、想去是整頁，高度夠）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
 
@@ -10,7 +10,8 @@ import { useData } from '../../hooks.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, type ExploreSort } from '../../lib/explore.ts';
 import type { Filter, FilterKey } from '../../lib/filter.ts';
-import { appliedChips, type FilterSource } from '../filterOptions.ts';
+import { type FilterSource } from '../filterOptions.ts';
+import { conditionChips, type CondChip } from '../../lib/listConditions.ts';
 import { Chip } from './Chip.tsx';
 import { FilterSheet, type FilterSurface } from './FilterSheet.tsx';
 
@@ -132,10 +133,40 @@ function ViewToggle({ model }: { model: FilterModel }) {
   );
 }
 
-/** 清單層的返回鈕：「‹ 一定要去 · 5 個地點」（lib/shelves.ts 的 backLabel），點了回到書架 */
+/** 清單層的返回鈕：「‹ 一定要去 · 志摩・賢島 · 5 個地點」（lib/shelves.ts 的 backLabel），點了回到書架 */
 export interface FilterBack {
   label: string;
+  /** 現在看的地方（「志摩・賢島」，T64）；想去不寫 */
+  where?: string | null;
   onClick(): void;
+}
+
+/** 「現在看」的條件列（T64）：每個條件一顆（點了拿掉），最後「＋ 條件」打開篩選面板 */
+function CondRow({ chips, onRemove, onAdd }: { chips: CondChip[]; onRemove(chip: CondChip): void; onAdd(): void }) {
+  return (
+    <div className="fb-conds" data-testid="cond-row">
+      {chips.map((c) => (
+        <button
+          key={`${c.key}:${c.value}`}
+          type="button"
+          className={`fb-cond${c.preset ? ' preset' : ''}`}
+          aria-label={`拿掉「${c.label}」`}
+          title={`拿掉「${c.label}」`}
+          onClick={() => onRemove(c)}
+          data-testid="cond-chip"
+          data-key={c.key}
+          data-value={c.value}
+          data-preset={c.preset || undefined}
+        >
+          {c.label}
+          <Icon name="close" size={16} />
+        </button>
+      ))}
+      <button type="button" className="fb-cond fb-cond-add" onClick={onAdd} data-testid="cond-add">
+        ＋ 條件
+      </button>
+    </div>
+  );
 }
 
 export function FilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean }) {
@@ -143,8 +174,14 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const desktop = surface === 'desktop';
-  // 地區、子地區在外面，不算進「篩選」的數字；「只看地圖畫面裡的」不是 Filter 的欄位，另外算一個
-  const n = appliedChips(model.filter, areas).length + (model.inView ? 1 : 0);
+  // 「現在看」的條件（地區、子地區在外面，不算）；探索才有書架帶來的（藍底）
+  const chips = conditionChips(model.filter, model.query, areas, { inView: model.inView, shelves: source === 'explore' });
+  const removeChip = (c: CondChip) => {
+    if (c.key === 'query') model.setQuery('');
+    else if (c.key === 'inView') model.setInView(false);
+    else model.pick(c.key, c.value);
+  };
+  const conds = chips.length > 0 && <CondRow chips={chips} onRemove={removeChip} onAdd={() => setOpen(true)} />;
   const searchTestId = desktop ? 'search' : source === 'wish' ? 'm-wish-search' : 'm-feed-search';
 
   const backButton = model.onBack && (
@@ -163,6 +200,14 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
             ‹ {back.label}
           </button>
           <span aria-hidden>·</span>
+          {back.where && (
+            <>
+              <span className="fb-where" data-testid="list-where">
+                {back.where}
+              </span>
+              <span aria-hidden>·</span>
+            </>
+          )}
         </span>
       )}
       <span data-testid="list-count">{count} 個地點</span>
@@ -193,14 +238,9 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
             </button>
           )}
         </label>
-        <Chip on={n > 0} onClick={() => setOpen(true)} testId="filter-open" title="篩選">
+        <Chip on={chips.some((c) => c.key !== 'query')} onClick={() => setOpen(true)} testId="filter-open" title="篩選">
           <Icon name="sliders" size={20} />
           <span className="fb-label">篩選</span>
-          {n > 0 && (
-            <span className="fb-n" data-testid="filter-count">
-              {n}
-            </span>
-          )}
         </Chip>
         <SortMenu model={model} />
       </div>
@@ -222,6 +262,7 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
       )}
       {desktop && sub}
       {desktop && listHead}
+      {desktop && conds}
     </div>
   );
   const sheet = open && <FilterSheet source={source} surface={surface} model={model} count={count} host={desktop ? (rootRef.current?.closest('.side-panel') as HTMLElement | null) : null} onClose={() => setOpen(false)} />;
@@ -261,6 +302,7 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
           </div>
           {sub}
           {listHead}
+          {conds}
         </div>
       </div>
       {sheet}

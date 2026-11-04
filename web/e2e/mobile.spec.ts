@@ -239,7 +239,7 @@ test('探索：類型篩選（T42 收進面板）', async ({ page }) => {
   await page.getByTestId('filter-open').click();
   await page.getByTestId('filter-opt-type-restaurant').click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   const types = await page.getByTestId('m-feed-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['restaurant']));
@@ -248,7 +248,7 @@ test('探索：類型篩選（T42 收進面板）', async ({ page }) => {
   await page.getByTestId('filter-open').click();
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   const n = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
   expect(n).toBeGreaterThan(0);
   expect(n).toBeLessThan(all);
@@ -257,7 +257,7 @@ test('探索：類型篩選（T42 收進面板）', async ({ page }) => {
   await expect(page.getByTestId('filter-opt-group-yes')).toHaveAttribute('aria-pressed', 'true');
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   expect(Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'))).toBe(all);
 });
 
@@ -294,7 +294,7 @@ test('想去：分段切換、加到某天', async ({ page }) => {
   await page.getByTestId('filter-open').click();
   await page.getByTestId('filter-opt-type-spot').click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   const types = await page.getByTestId('m-wish-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-type')));
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['spot']));

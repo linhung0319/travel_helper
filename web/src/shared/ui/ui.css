@@ -611,23 +611,65 @@
   cursor: pointer;
 }
 
-/* 篩選按鈕上的數字 */
-.fb-n {
-  display: inline-grid;
-  place-items: center;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 5px;
-  border-radius: 999px;
-  background: var(--indigo);
-  color: var(--paper);
-  font-family: var(--font-num);
-  font-size: 0.8125rem;
+/* 「現在看」的條件列（T64）：每個條件一顆、都有 ✕；藍底是書架帶來的，白底是自己加的；最後虛線的「＋ 條件」打開面板 */
+.fb-conds {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0 4px;
 }
 
-.ui-chip.on .fb-n {
+.fb-cond {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-height: 28px;
+  padding: 0 7px 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   background: var(--paper);
   color: var(--ink);
+  font: inherit;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.fb-cond .ui-icon,
+.fb-cond svg {
+  color: var(--ink-3);
+}
+
+.fb-cond.preset {
+  border-color: var(--indigo-line);
+  background: var(--indigo-wash);
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+.fb-cond:hover {
+  border-color: var(--indigo);
+}
+
+.fb-cond-add {
+  padding: 0 10px;
+  border-style: dashed;
+  border-color: var(--indigo-line);
+  color: var(--indigo);
+  font-weight: 700;
+}
+
+.fb-desktop .fb-conds {
+  padding: 8px 0 0;
+}
+
+/* 返回鈕後面現在看的地方（「· 志摩・賢島 ·」，T64） */
+.fb-where {
+  color: var(--ink-2);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 /* 排序選單 */
@@ -5243,4 +5285,54 @@ button.ui-sk-stay:disabled {
   font-size: 0.8125rem;
   font-weight: 700;
   cursor: pointer;
+}
+
+/* 0 個的時候（T64）：虛線框、一句「賢島沒有 S、A 級的景點」、下面一個一列的下一步；問 AI 是淡芥子黃 */
+.xe {
+  margin: 4px 0 8px;
+  padding: 12px;
+  border: 1px dashed var(--ink-4);
+  border-radius: 14px;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+.ex-list > .xe,
+.m-feed > .xe {
+  margin: 16px 12px;
+}
+
+.xe-msg {
+  margin: 0;
+}
+
+.xe-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.xe-step {
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--indigo);
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.xe-step:hover {
+  border-color: var(--indigo-line);
+}
+
+.xe-step.ask {
+  border-color: var(--mustard-line);
+  background: var(--mustard-wash);
+  color: var(--mustard-ink);
 }

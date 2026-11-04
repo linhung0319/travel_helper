@@ -212,13 +212,13 @@ test('加地點：搜尋列不動，按鈕在清單標題列；彈窗走完才�
   expect(await count()).toBe(before + 1);
 });
 
-test('類型列：沒有套用的晶片；篩選按鈕上有數字', async ({ page }) => {
+test('類型列：沒有套用的晶片；「現在看」那一列有一顆（T64 取代篩選按鈕的數字）', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
   await page.getByTestId('filter-open').click();
   await page.locator('[data-testid^="filter-opt-tier-"]').first().click();
   await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('filter-applied')).toHaveCount(0);
 });
 

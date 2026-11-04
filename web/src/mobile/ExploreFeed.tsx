@@ -12,7 +12,9 @@ import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { feedFilter, filterToFeed } from '../lib/explore.ts';
 import { backLabel, exploreStage } from '../lib/shelves.ts';
-import { AreaHome, ExploreOverview, RegionChips } from '../shared/ui/ExploreHome.tsx';
+import { emptyHelp, placeLabel } from '../lib/listConditions.ts';
+import type { Filter } from '../lib/filter.ts';
+import { AreaHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/ExploreHome.tsx';
 import { useData } from '../hooks.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { addPlaceStore } from '../addPlaceStore.ts';
@@ -25,7 +27,7 @@ import type { VoteValue } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
 import { commands } from '../appCommands.ts';
 import { FeedFilters, onlyRegions, pickFeedArea, pickFeedRegion } from './FeedFilters.tsx';
-import { askList } from './mobileAi.ts';
+import { askDraft, askList } from './mobileAi.ts';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { useBatch } from '../shared/useBatch.ts';
 
@@ -62,6 +64,9 @@ export function FeedVotes({ placeId }: { placeId: string }) {
   );
 }
 
+/** 書架的「全部 ›」、0 個時的下一步：換成那組條件（和搜尋） */
+const applyFeed = (f: Filter, query?: string) => mobileStore.getState().setFeed({ ...filterToFeed(f), ...(query !== undefined ? { query } : {}) });
+
 /** 一次多畫幾張（往下滑到底再畫下一批） */
 const BATCH = 60;
 
@@ -90,23 +95,22 @@ export function ExploreFeed() {
   const shownList = useMemo(() => list.slice(0, shown), [list, shown]);
   const stage = exploreStage(filter, listQuery, !!aiResult);
   const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
-  const areaName = useData((s) => {
-    const a = feed.area ? s.areas.find((x) => x.id === feed.area) : undefined;
-    return a ? displayName(a.name, a.id) : null;
-  });
+  const areas = useData((s) => s.areas);
+  const places = useData((s) => s.places);
+  const where = placeLabel(filter, areas);
 
   return (
     <div className="m-feed" data-testid="m-feed">
       <FeedFilters
         count={list.length}
         extra={{
-          onAsk: () => askList('explore', filter, feed.query, list.length),
+          onAsk: () => void askList('explore', filter, feed.query, list.length),
           onAdd: () => addPlaceStore.getState().openEntry(),
           ...(fromChat || aiResult ? { onBack: back } : {}),
           ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
         }}
         subRow={stage === 'area' && feed.area ? <RegionChips areaId={feed.area} regionId={regionId} onPick={pickFeedRegion} /> : undefined}
-        back={stage === 'list' && !aiResult && areaName ? { label: backLabel(filter, feed.query, areaName), onClick: () => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' }) } : null}
+        back={stage === 'list' && !aiResult && where ? { label: backLabel(filter), where, onClick: () => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' }) } : null}
         showView={stage === 'list'}
       />
       <AddPlaceSuggest query={feed.query} surface="mobile" />
@@ -121,7 +125,7 @@ export function ExploreFeed() {
           }}
         />
       ) : stage === 'area' && feed.area ? (
-        <AreaHome areaId={feed.area} regionId={regionId} surface="mobile" onOpen={open} onShelfAll={(f) => mobileStore.getState().setFeed(filterToFeed(f))} />
+        <AreaHome areaId={feed.area} regionId={regionId} surface="mobile" onOpen={open} onShelfAll={applyFeed} onAsk={askDraft} />
       ) : feed.view === 'list' ? (
         <div className="m-feed-list" data-count={list.length} data-testid="m-feed-wall">
           {shownList.map((place, i) => (
@@ -154,7 +158,7 @@ export function ExploreFeed() {
           </button>
         </div>
       )}
-      {stage === 'list' && list.length === 0 && !aiResult && !ownsEmpty && <p className="muted m-empty">沒有符合的地點，取消一些篩選看看。</p>}
+      {stage === 'list' && list.length === 0 && !aiResult && !ownsEmpty && <NextSteps help={emptyHelp(places, filter, feed.query, areas)} onApply={applyFeed} onAsk={askDraft} />}
     </div>
   );
 }
