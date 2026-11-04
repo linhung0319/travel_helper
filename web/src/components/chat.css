@@ -114,6 +114,15 @@
   padding-left: 18px;
 }
 
+/* 窄欄：條列之間留一點空，時間軸的時間等寬好對齊 */
+.ac-text li + li {
+  margin-top: 2px;
+}
+
+.ac-text strong {
+  font-variant-numeric: tabular-nums;
+}
+
 .ac-text a {
   color: var(--indigo);
 }

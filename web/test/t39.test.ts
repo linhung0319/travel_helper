@@ -50,6 +50,20 @@ test('文字：標題、編號、分隔線、其他圓點', () => {
   assert.equal(blocks[2].kind === 'list' && !blocks[2].ordered, true);
 });
 
+test('文字：程式碼區塊的 ``` 不畫，裡面照一般文字', () => {
+  const blocks = parseRich('訂位說明：\n```\n15名で予約したいです\n```\n- **人數**：15 人');
+  assert.equal(JSON.stringify(blocks).includes('```'), false);
+  assert.deepEqual(blocks[1], { kind: 'p', parts: [{ text: '15名で予約したいです' }] });
+  assert.ok(blocks[2].kind === 'list');
+  assert.deepEqual(blocks[2].items[0][0], { text: '人數', bold: true });
+});
+
+test('文字：編號的時間軸，時間粗體', () => {
+  const [b] = parseRich('1. **09:40** [[place:a]]\n2. **12:00** 午餐');
+  assert.ok(b.kind === 'list' && b.ordered);
+  assert.deepEqual(b.items[0].slice(0, 2), [{ text: '09:40', bold: true }, { text: ' ' }]);
+});
+
 test('不畫標籤的地方：標記換成名字', () => {
   assert.equal(untagged('2/4：＋[[place:a]] 午餐', () => '大阪屋'), '2/4：＋大阪屋 午餐');
 });

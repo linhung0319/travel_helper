@@ -172,7 +172,7 @@ function tableCells(line: string): string[] | null {
 
 /**
  * 回覆的文字（規格 §5）：地點標籤、粗體、條列、編號、連結；只認 http(s) 的連結。
- * 系統提示叫 AI 不要用，但模型偶爾還是會寫的 Markdown（T39）：標題當粗體一行、分隔線不畫、引用拿掉記號；
+ * 系統提示叫 AI 不要用，但模型偶爾還是會寫的 Markdown（T39）：標題當粗體一行、分隔線和 ``` 不畫、引用拿掉記號、第二層條列攤平；
  * 表格在窄窄的聊天欄放不下，一列變成一行條列（第一格粗體，其他用 · 接），表頭不畫。
  */
 export function parseRich(text: string): RichBlock[] {
@@ -185,7 +185,8 @@ export function parseRich(text: string): RichBlock[] {
   const lines = text.split('\n').map((l) => l.trim());
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    if (!line || /^([-*_])\1{2,}$/.test(line)) continue;
+    // 程式碼區塊的 ``` 那行不畫（裡面的字照一般文字畫，窄欄不會左右捲動）
+    if (!line || /^([-*_])\1{2,}$/.test(line) || /^```/.test(line)) continue;
     if (line.startsWith('|') && line.includes('|', 1)) {
       const cells = tableCells(line);
       // 下一列是分隔列：這列是表頭
