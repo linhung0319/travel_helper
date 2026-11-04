@@ -158,8 +158,17 @@ export function startersFor(i: StarterInput): Starter[] {
   return [first, ...others.filter((s) => s.q !== first.q)].slice(0, MAX_STARTERS);
 }
 
-/** 想去頁空白時「問 AI 推薦」帶的那一句（§17.4） */
-export const WISH_EMPTY_LEAD: Starter = { q: '推薦幾個適合全家去的地方', why: '還沒有人按想去，先看看' };
+/** 想去頁空白時「問 AI 推薦」放進輸入框的那一句（§17.4） */
+export const WISH_EMPTY_DRAFT = '推薦幾個適合全家去的地方';
+
+/** 「未選住宿」「引導彈窗 ③」放進輸入框的那一句：住宿那一句加人數（T61） */
+export const lodgingDraft = (s: Starter) => `${s.q}，要 15 人住得下`;
+
+/** 空的一天「問 AI」放進輸入框的那一句（T61）：寫日期和住哪，不帶晶片也看得懂 */
+export function emptyDayDraft(d: StarterDay): string {
+  const md = monthDay(d.date);
+  return d.areaName ? `${md} 住${d.areaName}，這天還沒排，幫我排一天` : `${md} 這天還沒排，幫我排一天`;
+}
 
 /** 引導彈窗第 ③ 步（選住宿）：藍卡下面接著問住宿的事 */
 export const LODGING_FOLLOWUPS = ['我已經訂好幾晚了', '15 人能包棟的住宿有哪些？'];

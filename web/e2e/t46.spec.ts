@@ -49,10 +49,11 @@ test('只有航班：0/4，第 ① 步是實心按鈕；去探索、去整趟帶
   await expect(page.getByTestId('sk-row')).toHaveCount(12);
 });
 
-test('第 ④ 步問 AI：不帶晶片，第一張是第一個還沒排的天', async ({ page }) => {
+test('第 ④ 步問 AI：不帶晶片，第一個還沒排的天放進輸入框', async ({ page }) => {
   await ready(page);
   await page.getByTestId('guide-button').click();
   await page.getByTestId('guide-ask-day').click();
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
-  await expect(page.locator('[data-testid="chat-starter"][data-first="true"]')).toContainText('2/7 去哪？');
+  await expect(page.getByTestId('chat-input')).toHaveValue(/^2\/7 .*這天還沒排，幫我排一天$/);
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
 });

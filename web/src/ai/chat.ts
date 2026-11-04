@@ -8,7 +8,7 @@ import type { Filter } from '../lib/filter.ts';
 import type { ReservationStatus } from '../backend/types.ts';
 import { createProposals, type ProposalDeps, type Proposals } from './proposals.ts';
 import { buildTurnContext } from './context.ts';
-import { buildStarterInput, dayStarter, firstEmptyDate, lodgingStarter, promptsForAll, startersFor, tripPrompts, type Starter } from './prompts.ts';
+import { buildStarterInput, dayStarter, emptyDayDraft, firstEmptyDate, lodgingStarter, promptsForAll, startersFor, tripPrompts, type Starter } from './prompts.ts';
 import { shouldStartFresh } from '../lib/tripStart.ts';
 import { SYSTEM_PROMPT } from './systemPrompt.ts';
 import { createReadTools } from './readTools.ts';
@@ -73,6 +73,8 @@ export interface Chat {
   stop(): Promise<void>;
   /** 問 AI：帶入晶片和建議問題，不送出；對話滿了自動開新對話。lead：放在第一張的問題；followups：換掉晶片預設的建議問題 */
   ask(contexts: ChatContext[], lead?: Starter | null, followups?: string[]): Promise<void>;
+  /** 問 AI（算得出問題的入口）：把問題放進輸入框，不送出、不帶晶片、不畫 lead 卡；followups 照舊當建議問題（T61） */
+  draft(text: string, followups?: string[]): Promise<void>;
   removeContext(index: number): void;
   setScreenOff(off: boolean): void;
   setDraftText(text: string): void;
@@ -90,6 +92,8 @@ export interface Chat {
   firstEmptyDate(): string | null;
   /** 這天還沒排時的那一句（空的一天的「問 AI」帶這一句） */
   dayStarter(date: string): Starter | null;
+  /** 空的一天「問 AI」放進輸入框的那一句 */
+  dayDraft(date: string): string | null;
   /** 從別的分頁、裝置回來：重新抓對話清單和這段對話（回覆中不動） */
   refresh(): Promise<void>;
   /** 這段對話還能不能問 */
@@ -579,6 +583,10 @@ export function createChat(d: CreateChatDeps): Chat {
       const merged = [...s.contexts, ...fresh];
       store.setState({ contexts: merged, screenOff: false, suggestions: followups ?? (merged.length === 1 && last?.kind === 'trip' ? tripPrompts(starterInput()) : promptsForAll(merged, last, place)), lead });
     },
+    async draft(text, followups) {
+      if (isFull()) await open(null);
+      store.setState({ draftText: text, screenOff: false, suggestions: followups ?? [], lead: null });
+    },
     removeContext: (index) =>
       store.setState((s) => {
         // 開始卡帶來的那一句不靠晶片，拿掉晶片還在（§17.1）
@@ -599,6 +607,10 @@ export function createChat(d: CreateChatDeps): Chat {
     dayStarter(date) {
       const day = starterInput().days.find((x) => x.date === date);
       return day ? dayStarter(day) : null;
+    },
+    dayDraft(date) {
+      const day = starterInput().days.find((x) => x.date === date);
+      return day ? emptyDayDraft(day) : null;
     },
     async refresh() {
       if (store.getState().status !== 'idle') return;
