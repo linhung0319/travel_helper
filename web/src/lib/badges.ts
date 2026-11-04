@@ -3,7 +3,7 @@
 
 import { closedDaysLabel } from './hours.ts';
 import type { Place } from '../data/types.ts';
-import { SLEEPS_GROUP, WEATHER_LABELS, placeFit15, placeStay, placeWeather } from './filter.ts';
+import { SLEEPS_GROUP, WEATHER_LABELS, fitsWholeGroup, placeFit15, placeStayKind, placeWeather } from './filter.ts';
 import { LODGING_KIND_LABELS } from './labels.ts';
 
 export interface Badge {
@@ -34,14 +34,14 @@ const COUNT_ZH = ['', '一', '兩', '三', '四', '五', '六', '七', '八', '�
  * 不是住宿是 null
  */
 export function stayCaption(p: Place): Badge | null {
-  const stay = placeStay(p);
+  const stay = placeStayKind(p);
   if (!stay) return null;
   const g = (p.raw.group as Record<string, unknown> | undefined) ?? {};
   const kind = typeof p.raw.kind === 'string' ? p.raw.kind : null;
   const kindLabel = !kind || kind === 'other' ? '住宿' : (LODGING_KIND_LABELS[kind] ?? '住宿');
   const max = typeof g.maxGuests === 'number' && g.maxGuests > 0 ? g.maxGuests : null;
   if (stay === 'whole') return { label: `包棟 · ${max} 人`, tone: 'good' };
-  if (stay === 'hotel') return { label: `${kindLabel} · 全團住得下`, tone: 'good' };
+  if (fitsWholeGroup(p)) return { label: `${kindLabel} · 全團住得下`, tone: 'good' };
   if (g.wholeRental === true) {
     if (!max) return { label: '包棟 · 人數不明', tone: 'info' };
     const n = Math.ceil(SLEEPS_GROUP / max);

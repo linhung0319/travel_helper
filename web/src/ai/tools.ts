@@ -15,6 +15,7 @@ import { untagged } from './transcript.ts';
 import type { AddPlaceInit, ScreenTarget, ShowPlaces, ShowRoute } from './stage.ts';
 import type { CardState, ToolSchema } from './types.ts';
 import { fullPlace } from '../dataStore.ts';
+import { toFilterPatch } from '../lib/filter.ts';
 
 /** 一輪回覆結束時要呈現的東西：「再看一次」用相同的參數再跑一次 */
 export type Presentation =
@@ -79,7 +80,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       kind: 'read',
       description:
         '找地點。名稱可以有錯字、中日文混雜（text 只比名稱，「室內」「包棟」這類條件用對應的參數）。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數：結果是空的或很少時才告訴使用者，不要報數字。' +
-        'elderly、kids 只拿掉分數低於 3 的（access 低於 4），沒有評分的照樣列、排在後面，fitUnknown 是其中沒有評分的筆數（那幾個點也標 fitUnknown）：推薦這些點時說「適不適合長輩（小孩）我們的資料沒有查到」。' +
+        'elderly、kids 只拿掉分數低於 3 的（access、winter 低於 4），沒有評分的照樣列、排在後面，fitUnknown 是其中沒有評分的筆數（那幾個點也標 fitUnknown）：推薦這些點時說「適不適合長輩（小孩）我們的資料沒有查到」。who、stay、dinner 和探索篩選的同名欄位一樣。' +
         '結果的 tier 是推薦等級（S 最高，「一定要去」用 tiers S、A），needsCar 是子地區要不要搭車，stayMinutes 是建議停留分鐘。要細節再用 get_place。',
       input_schema: obj({
         text: str('名稱（中文、日文、別名）'),
@@ -92,12 +93,16 @@ export function createTools(d: AiDeps): ToolDef[] {
         inView: bool('只找目前地圖畫面裡的'),
         openAt: obj({ date: str(DATE), time: str('HH:MM') }, ['date', 'time']),
         fit15: strs('yes（能坐 15 人）、split（要分桌）、no、unknown'),
+        who: strs('餐廳：all（全員 15 人能一起吃：fit15 是 yes 或 split 而且收小孩）、sub（分組 4～6 人坐得下）、apart（15 人坐不下或還沒查）'),
         fitSubgroup: bool('4～6 人分組坐得下'),
         elderly: bool('適合長輩'),
         kids: bool('適合小孩'),
         access: bool('不用搭車（交通評分 accessEase 4 分以上：車站走路就到）'),
         reservable: bool('可以預約'),
         weather: strs('景點的天氣：rain（下雨也行＝室內、有遮蔽都算）、indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）。餐廳、住宿不受影響'),
+        stay: strs('住宿的住法：whole（包棟一棟住得下全團）、multi（包棟要兩棟）、hotel（旅館飯店）、fits（一間住得下全團：包棟一棟或旅館飯店 5 間房以上）、apart（要分開住）'),
+        dinner: strs('住宿的晚餐：included（一泊二食）、walk（不含，走路有店）、car（不含，要開車找）'),
+        winter: bool('適合 2 月（景點的 winterFit 4 分以上）'),
         wholeRental: bool('能包棟（只留住宿）'),
         maxGuestsAtLeast: num('最多住幾人至少這麼多（只留住宿；整團 15）'),
         votes: strs('any（有人按想去的，問「想去的」用這個）、popular（2 人以上想去）、mine（我按想去的）'),
@@ -243,13 +248,18 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'set_filter',
       kind: 'stage',
-      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、weather（rain 下雨也行＝室內、有遮蔽都算，indoor 室內、covered 有遮蔽；只篩景點，餐廳、住宿不受影響）、who（all 全員 15 人能一起吃＝fit15 是 yes 或 split 而且收小孩、sub 分組 4～6 人；只留餐廳）、stay（whole 包棟一棟住得下全團、hotel 旅館飯店 5 間房以上、split 要分開住；只留住宿）、lodging（wholeRental 能包棟、sleeps15 可住 15 人；只留住宿，兩個都給要都符合）、suits（elderly 適合長輩、kids 適合小孩、access 不用搭車，評分 4 分以上；只留景點，給幾個都要符合）。fit15 的 unknown 是還沒查。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
-      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), weather: strs(), lodging: strs(), suits: strs(), who: strs(), stay: strs(), clear: bool() }),
+      description:
+        '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、tiers、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。' +
+        '餐廳（給了只留餐廳）：who（all 全員 15 人能一起吃＝fit15 是 yes 或 split 而且收小孩、sub 分組 4～6 人、apart 15 人坐不下或還沒查）、contexts（lunch 午餐、dinner 晚餐、light 小吃咖啡；transit 車站旁）、kids（ok 可以帶小孩）。' +
+        '住宿（給了只留住宿）：stay（whole 包棟一棟住得下全團、multi 包棟要兩棟、hotel 旅館飯店、fits 一間住得下全團＝包棟一棟或旅館飯店 5 間房以上、apart 要分開住）、dinner（included 一泊二食、walk 不含但走路有店、car 不含要開車找）、amenity（onsen 溫泉、stationWalk 車站走路到；給幾個都要符合）。' +
+        '景點、住宿：suits（elderly 適合長輩、kids 適合小孩、winter 適合 2 月（只有景點有），評分 4 分以上；給幾個都要符合）。景點：weather（rain 下雨也行＝室內、有遮蔽都算，indoor 室內、covered 有遮蔽；餐廳、住宿不受影響）。' +
+        'reach（station 車站旁、easy 不用搭車＝交通評分 4 分以上，餐廳是車站走路 10 分內）。舊的 fit15、lodging 還收，會轉成 who、stay。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
+      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), votes: strs(), weather: strs(), who: strs(), kids: strs(), reach: strs(), stay: strs(), dinner: strs(), suits: strs(), amenity: strs(), fit15: strs(), lodging: strs(), clear: bool() }),
       run(input) {
         const { clear, ...patch } = input as Record<string, string[]> & { clear?: boolean };
         const err = d.commands.checkFilter(patch as never);
         if (err) return fail(err);
-        return { output: { ok: true }, present: { kind: 'filter', patch, clear: !!clear }, card: {} };
+        return { output: { ok: true }, present: { kind: 'filter', patch: toFilterPatch(patch), clear: !!clear }, card: {} };
       },
     },
     { name: 'clear_view', kind: 'stage', description: '清掉畫面上 AI 的結果集、路線。', input_schema: obj({}), run: () => ({ output: { ok: true }, present: { kind: 'clear' }, card: {} }) },

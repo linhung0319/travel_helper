@@ -5,7 +5,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfCounts, shelfFilter, shelfOf, shelfRows, shelfTierOf } from '../src/lib/shelves.ts';
-import { EMPTY_FILTER, matchesFilter, placeStay, type Filter } from '../src/lib/filter.ts';
+import { EMPTY_FILTER, fitsWholeGroup, matchesFilter, placeStayKind, type Filter } from '../src/lib/filter.ts';
 import { placeBadges, stayCaption } from '../src/lib/badges.ts';
 import type { Area } from '../src/data/types.ts';
 import { placeWith } from './helpers.ts';
@@ -50,9 +50,9 @@ test('shelfFilter：書架那一級的條件疊在目前地區、子地區上；
   assert.deepEqual(shelfFilter(must, base()), { ...EMPTY_FILTER, areas: ['toba'], types: ['spot'], tiers: ['S', 'A'] });
   assert.deepEqual(shelfFilter(must, base(), 2).tiers, ['B']);
   assert.deepEqual(shelfFilter(fit15, base()).who, ['all']);
-  assert.deepEqual(shelfFilter(fit15, base(), 2).fit15, ['unknown', 'no']);
-  assert.deepEqual(shelfFilter(stay, base()).stay, ['whole', 'hotel']);
-  assert.deepEqual(shelfFilter(stay, base(), 2).stay, ['split']);
+  assert.deepEqual(shelfFilter(fit15, base(), 2).who, ['apart']);
+  assert.deepEqual(shelfFilter(stay, base()).stay, ['fits']);
+  assert.deepEqual(shelfFilter(stay, base(), 2).stay, ['apart']);
   assert.deepEqual(shelfFilter(rain, base(['osatsu'])).regions, ['osatsu']);
   assert.deepEqual(shelfFilter(rain, base(['osatsu']), 2).regions, []);
   assert.deepEqual(shelfFilter(rain, base(['osatsu'])).weather, ['rain']);
@@ -125,13 +125,9 @@ test('住在這裡（T66）：包棟住得下、旅館飯店 5 間房以上是�
   const tinyHotel = at('tiny-hotel', { type: 'lodging' }, { kind: 'hotel', group: { totalRooms: 3 } });
   const unknownHotel = at('hotel-unknown', { type: 'lodging' }, { kind: 'hotel' });
 
-  assert.equal(placeStay(whole16), 'whole');
-  assert.equal(placeStay(ryokan), 'hotel');
-  assert.equal(placeStay(whole8), 'split');
+  assert.deepEqual([whole16, ryokan, whole8, minshuku, tinyHotel, unknownHotel].map(placeStayKind), ['whole', 'hotel', 'multi', 'other', 'hotel', 'hotel']);
   // 民宿房間再多也不算旅館飯店；旅館 5 間以下、房數不明都要分開住
-  assert.equal(placeStay(minshuku), 'split');
-  assert.equal(placeStay(tinyHotel), 'split');
-  assert.equal(placeStay(unknownHotel), 'split');
+  assert.deepEqual([whole16, ryokan, whole8, minshuku, tinyHotel, unknownHotel].map(fitsWholeGroup), [true, true, false, false, false, false]);
 
   const all = [whole16, ryokan, whole8, minshuku, tinyHotel, unknownHotel];
   const first = row(all, 'stay');
@@ -209,7 +205,7 @@ test('backLabel（T50、T64、T66）：條件裡還有一整排書架（哪一�
   assert.equal(backLabel(shelfFilter(fit15, b, 2)), '全員吃飯');
   assert.equal(backLabel(shelfFilter(stay, base(['osatsu']))), '住在這裡');
   // 順序不同也算同一組（手機的條件從 quick 轉回來）
-  assert.equal(backLabel({ ...shelfFilter(stay, b), stay: ['hotel', 'whole'] }), '住在這裡');
+  assert.equal(backLabel({ ...shelfFilter(must, b), tiers: ['A', 'S'] }), '一定要去');
   assert.equal(backLabel(shelfFilter(rain, base(['osatsu']), 2)), '下雨也行');
   // 自己多加條件：還是那排書架
   assert.equal(backLabel({ ...shelfFilter(fit15, b), contexts: ['lunch'] }), '全員吃飯');

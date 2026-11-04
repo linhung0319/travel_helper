@@ -7,8 +7,8 @@ import { displayName } from '../data/normalize.ts';
 import type { Area, Place } from '../data/types.ts';
 import { appliedChips } from '../shared/filterOptions.ts';
 import { explorePlaces } from './explore.ts';
-import { TYPE_LABELS, type Filter, type FilterKey } from './filter.ts';
-import { shelfFilter, shelfKeys, shelfOf, shelfTierOf, type Shelf } from './shelves.ts';
+import { TYPE_LABELS, placeFit15, placeStayKind, type Filter, type FilterKey } from './filter.ts';
+import { dist, shelfFilter, shelfKeys, shelfOf, shelfTierOf, type Shelf } from './shelves.ts';
 
 /** 條件列的一顆。key 是 Filter 的欄位，另外兩種：query（搜尋）、inView（只看地圖畫面裡的，只有網頁） */
 export interface CondChip {
@@ -17,6 +17,35 @@ export interface CondChip {
   label: string;
   /** 書架帶來的（藍底） */
   preset: boolean;
+  /** 右邊的分布小字（T67，只有誰吃、住法兩題）：「能坐一起 6 · 要分桌 2」 */
+  note?: string;
+}
+
+/** 分布小字的兩題 */
+const NOTE_KEYS = ['who', 'stay'] as const;
+
+/**
+ * 誰吃、住法兩題的分布（T67，interaction-design §32「現在看」）：現在符合的點裡，
+ * 餐廳照 15 人分（能坐一起、要分桌、還沒查、坐不下），住宿照住法分（包棟、包棟要兩棟、旅館飯店、其他）；0 的那段不寫，全是 0 是空字串
+ */
+export function distNote(key: (typeof NOTE_KEYS)[number], items: Place[]): string {
+  if (key === 'who') {
+    const rs = items.filter((p) => p.type === 'restaurant');
+    const fit = (v: string | null) => rs.filter((p) => (placeFit15(p) ?? 'unknown') === v).length;
+    return dist([
+      ['能坐一起', fit('yes')],
+      ['要分桌', fit('split')],
+      ['還沒查', fit('unknown')],
+      ['坐不下', fit('no')],
+    ]);
+  }
+  const kind = (v: string) => items.filter((p) => placeStayKind(p) === v).length;
+  return dist([
+    ['包棟', kind('whole')],
+    ['包棟要兩棟', kind('multi')],
+    ['旅館飯店', kind('hotel')],
+    ['其他', kind('other')],
+  ]);
 }
 
 /** 現在看的地方：「志摩・賢島」、「志摩」；沒選地區（或 AI 給了好幾區）是 null */
@@ -39,10 +68,19 @@ function placeShort(filter: Pick<Filter, 'areas' | 'regions'>, areas: Area[]): s
  * 條件列（T64）：書架帶來的在前面（藍底），自己加的在後面；最後是搜尋、只看地圖畫面裡的。
  * shelves：探索才有書架（想去沒有，條件都是白底）
  */
-export function conditionChips(filter: Filter, query: string, areas: Area[], opts: { inView?: boolean; shelves?: boolean } = {}): CondChip[] {
+export function conditionChips(filter: Filter, query: string, areas: Area[], opts: { inView?: boolean; shelves?: boolean; places?: Place[] } = {}): CondChip[] {
   const hit = opts.shelves === false ? null : shelfTierOf(filter);
   const presetKeys = hit ? shelfKeys(hit.shelf, hit.tier) : [];
-  const chips = appliedChips(filter, areas).map((c) => ({ ...c, preset: presetKeys.includes(c.key) }));
+  const chips: CondChip[] = appliedChips(filter, areas).map((c) => ({ ...c, preset: presetKeys.includes(c.key) }));
+  // 分布小字（T67）：給了 places（探索的條件列）才算，放在那一題的最後一顆
+  if (opts.places) {
+    const items = NOTE_KEYS.some((k) => filter[k].length) ? explorePlaces(opts.places, filter, null, 'recommend', () => 0, query) : [];
+    for (const k of NOTE_KEYS) {
+      const last = chips.filter((c) => c.key === k).at(-1);
+      const note = last && distNote(k, items);
+      if (last && note) last.note = note;
+    }
+  }
   const q = query.trim();
   return [
     ...chips.filter((c) => c.preset),
@@ -126,7 +164,11 @@ export function emptyHelp(places: Place[], filter: Filter, query: string, areas:
     if (count > 0) steps.push({ kind: 'widen', label: pureShelf ? `看${areaName}全區的${pureShelf.title}` : `看${areaName}全區`, count, filter: wide, query: q });
   }
 
-  if (!pureShelf) {
+  // 放寬條件照第一題定（T67）：全員 15 人 →「看賢島坐不下、還沒查的」；一間住得下全團 →「看賢島要分開住的」
+  const swap = pureShelf ? null : firstQuestionSwap(filter, where ?? '這裡');
+  const swapCount = swap ? countOf(places, swap.filter, q) : 0;
+  if (swap && swapCount > 0) steps.push({ kind: 'relax', label: swap.label, count: swapCount, filter: swap.filter, query: q });
+  else if (!pureShelf) {
     const chips = conditionChips(filter, q, areas, { shelves: false }).filter((c) => c.key !== 'inView');
     for (const chip of [...chips].reverse()) {
       const next = withoutChip(filter, q, chip);
@@ -146,6 +188,13 @@ export function emptyHelp(places: Place[], filter: Filter, query: string, areas:
       ? `${where ?? ''}找不到「${q}」`
       : `${where ?? ''}沒有符合這些條件的地點`;
   return { message, steps };
+}
+
+/** 第一題（誰吃、住法）放寬成「容納不下、要分開」的那一邊；不是第一級的條件就 null */
+function firstQuestionSwap(filter: Filter, where: string): { filter: Filter; label: string } | null {
+  if (filter.who.includes('all') && !filter.who.includes('apart')) return { filter: { ...filter, who: ['apart'] }, label: `看${where}坐不下、還沒查的` };
+  if (filter.stay.length && !filter.stay.includes('apart') && filter.stay.every((v) => v === 'whole' || v === 'hotel' || v === 'fits')) return { filter: { ...filter, stay: ['apart'] }, label: `看${where}要分開住的` };
+  return null;
 }
 
 /** 書架的一排兩級都是 0 個時（AreaHome）：同 emptyHelp，條件是那排第一級套在目前地區、子地區上 */

@@ -48,7 +48,7 @@ export function typeCounts(places: Place[], filter: Filter, bounds: Bbox | null,
 
 /**
  * 手機探索的篩選（mobileStore 的 feed，第六輪 §3.2）：手機自己一份，不看地圖範圍、不動 store 的 filter。
- * quick 是篩選面板（FilterSheet）選的條件，只由面板寫入，寫成 "欄位:值"（例如 "fit15:yes"），欄位是 Filter 的欄位。
+ * quick 是篩選面板（FilterSheet）選的條件，只由面板寫入，寫成 "欄位:值"（例如 "who:all"），欄位是 Filter 的欄位（T67 拿掉的 fit15、lodging 認不得，略過）。
  */
 export interface Feed {
   type: 'all' | PlaceType;

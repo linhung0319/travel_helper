@@ -11,15 +11,15 @@ test('一個類型、一個地區：放在手機的晶片', () => {
 });
 
 test('其他條件放進 quick', () => {
-  assert.deepEqual(filterToFeed(f({ fit15: ['yes'] })), { type: 'all', area: null, quick: ['fit15:yes'] });
+  assert.deepEqual(filterToFeed(f({ who: ['all'], dinner: ['walk'] })), { type: 'all', area: null, quick: ['who:all', 'dinner:walk'] });
 });
 
 test('一次多個類型、多個地區：手機的晶片表達不了，也不會弄丟', () => {
-  const filter = f({ types: ['spot', 'restaurant'], areas: ['toba', 'ise'], fit15: ['yes'] });
+  const filter = f({ types: ['spot', 'restaurant'], areas: ['toba', 'ise'], who: ['all'] });
   const back = feedFilter(filterToFeed(filter));
   assert.deepEqual(back.types, ['spot', 'restaurant']);
   assert.deepEqual(back.areas, ['toba', 'ise']);
-  assert.deepEqual(back.fit15, ['yes']);
+  assert.deepEqual(back.who, ['all']);
 });
 
 test('空的篩選', () => {

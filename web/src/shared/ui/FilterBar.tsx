@@ -2,10 +2,11 @@
 // 第二列地區晶片（typeRow 由呼叫的畫面給，T42 從類型換成地區），選了一區時下面接子地區列（subRow，T50）；
 // 再下一列是返回鈕和現在看的地方（「‹ 可坐 15 人 · 志摩・賢島」，T50、T64）、幾個地點、「＋ 加地點」（只有探索）、問 AI，最右邊照片牆／清單切換（只在照片牆、清單那層，T50）。
 // 有條件時再下一列是「現在看」的條件列（T64，lib/listConditions.ts）：每個條件一顆、都有 ✕，藍底是書架帶來的、白底是自己加的，最後「＋ 條件」打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
+// 誰吃、住法兩題的晶片右邊多一段分布小字（T67：「能坐一起 6 · 要分桌 2」）。
 // 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤，探索、想去是整頁，高度夠）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
 import { useData } from '../../hooks.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, type ExploreSort } from '../../lib/explore.ts';
@@ -146,8 +147,8 @@ function CondRow({ chips, onRemove, onAdd }: { chips: CondChip[]; onRemove(chip:
   return (
     <div className="fb-conds" data-testid="cond-row">
       {chips.map((c) => (
+        <Fragment key={`${c.key}:${c.value}`}>
         <button
-          key={`${c.key}:${c.value}`}
           type="button"
           className={`fb-cond${c.preset ? ' preset' : ''}`}
           aria-label={`拿掉「${c.label}」`}
@@ -161,6 +162,12 @@ function CondRow({ chips, onRemove, onAdd }: { chips: CondChip[]; onRemove(chip:
           {c.label}
           <Icon name="close" size={16} />
         </button>
+        {c.note && (
+          <span className="fb-cond-note" data-testid="cond-note" data-key={c.key}>
+            {c.note}
+          </span>
+        )}
+        </Fragment>
       ))}
       <button type="button" className="fb-cond fb-cond-add" onClick={onAdd} data-testid="cond-add">
         ＋ 條件
@@ -171,11 +178,13 @@ function CondRow({ chips, onRemove, onAdd }: { chips: CondChip[]; onRemove(chip:
 
 export function FilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean }) {
   const areas = useData((s) => s.areas);
+  const places = useData((s) => s.places);
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const desktop = surface === 'desktop';
   // 「現在看」的條件（地區、子地區在外面，不算）；探索才有書架帶來的（藍底）
-  const chips = conditionChips(model.filter, model.query, areas, { inView: model.inView, shelves: source === 'explore' });
+  // 誰吃、住法的分布小字（T67）只在探索、不是 AI 挑的時候算（想去、AI 結果集的範圍不是整區）
+  const chips = conditionChips(model.filter, model.query, areas, { inView: model.inView, shelves: source === 'explore', places: source === 'explore' && !model.ai ? places : undefined });
   const removeChip = (c: CondChip) => {
     if (c.key === 'query') model.setQuery('');
     else if (c.key === 'inView') model.setInView(false);

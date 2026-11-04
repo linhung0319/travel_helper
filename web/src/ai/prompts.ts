@@ -171,7 +171,7 @@ export function emptyDayDraft(d: StarterDay): string {
 }
 
 /** 引導彈窗第 ③ 步（選住宿）：藍卡下面接著問住宿的事 */
-export const LODGING_FOLLOWUPS = ['我已經訂好幾晚了', '15 人能包棟的住宿有哪些？'];
+export const LODGING_FOLLOWUPS = ['我已經訂好幾晚了', '一間住得下 15 人的住宿有哪些？'];
 /** 空的一天：沒有東西可以檢查，問怎麼排。不帶晶片（§17.1），所以直接寫日期 */
 export const emptyDayFollowups = (date: string) => [`想去的點哪些適合 ${monthDay(date)}？`, `${monthDay(date)} 長輩走起來輕鬆的安排`];
 

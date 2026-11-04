@@ -1874,7 +1874,10 @@ test('篩選：套用的條件看按鈕的數字，打開面板看條件、點�
   await pickFilter(page, 'type-restaurant');
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expectFilterOpt(page, 'type-restaurant', false);
-  await expectFilterOpt(page, 'group-all', true);
+  // T67：沒選類型時餐廳收成一列，標套了幾個條件
+  await page.getByTestId('filter-open').click();
+  await expect(page.getByTestId('filter-fold-restaurant').locator('.fs-fold-n')).toHaveText('1');
+  await page.getByTestId('filter-done').click();
 });
 
 test('清單列：長名稱不推動 ❤ 的位置', async ({ page }) => {

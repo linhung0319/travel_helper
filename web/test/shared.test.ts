@@ -6,7 +6,7 @@ import { askAiPrompts } from '../src/shared/askAiPrompts.ts';
 import { dayLabel, isRedDay, tripDates } from '../src/lib/trip.ts';
 import { dayGridCells } from '../src/shared/dayGrid.ts';
 import { placePopover } from '../src/lib/popover.ts';
-import { FILTER_GROUPS, appliedChips, groupDimmed } from '../src/shared/filterOptions.ts';
+import { COMMON_GROUPS, FILTER_GROUPS, FILTER_SECTIONS, SECTION_ORDER, appliedChips, panelLayout, sectionApplied, sectionSummary, sheetTitle, type SectionType } from '../src/shared/filterOptions.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
 import type { Area } from '../src/data/types.ts';
 
@@ -80,37 +80,56 @@ const AREAS = [
   { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, tripOrder: 2, center: [136.8, 34.4], bbox: [136.7, 34.3, 136.9, 34.5] },
 ] as unknown as Area[];
 
-test('FILTER_GROUPS：順序、想去只有想去分頁有；地區不在面板裡（T42、T57、T66）', () => {
-  assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'group', 'lodging', 'weather', 'suits', 'context', 'wish', 'tier', 'map']);
-  const opts = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.options(AREAS, 'explore');
-  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'group')!.title, '誰吃（餐廳）');
-  assert.deepEqual(opts('group').map((o) => o.label), ['全員 15 人', '分組 4～6 人']);
-  assert.deepEqual(opts('lodging').map((o) => o.label), ['包棟・一棟全團', '旅館飯店・全團住得下', '要分開住']);
-  assert.deepEqual(opts('suits').map((o) => o.label), ['長輩', '小孩', '不用搭車']);
-  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'context')!.title, '用餐');
-  assert.deepEqual(opts('context').find((o) => o.value === 'transit'), { value: 'transit', label: '車站旁', note: '主要車站走路 5 分內' });
-  const wish = FILTER_GROUPS.find((g) => g.id === 'wish')!;
+test('篩選面板照類型分段（T67）：每類的組、第一題在最上面；共用的放最下面；想去只有想去分頁有；地區不在面板裡', () => {
+  const ids = (t: SectionType) => FILTER_SECTIONS[t].map((g) => g.id);
+  assert.deepEqual(ids('restaurant'), ['group', 'context', 'kids', 'reach']);
+  assert.deepEqual(ids('lodging'), ['lodging', 'dinner', 'lodging-suits', 'amenity']);
+  assert.deepEqual(ids('spot'), ['suits', 'weather', 'spot-reach']);
+  assert.deepEqual(COMMON_GROUPS.map((g) => g.id), ['tier', 'map', 'wish']);
+  // ID 不重複（data-group、testid 用）
+  assert.equal(new Set(FILTER_GROUPS.map((g) => g.id)).size, FILTER_GROUPS.length);
+  assert.ok(!FILTER_GROUPS.some((g) => g.key === 'areas' || g.key === 'regions'));
+  const opts = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.options(AREAS, 'explore').map((o) => o.label);
+  const title = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.title;
+  assert.deepEqual([title('group'), title('context'), title('kids'), title('reach')], ['誰吃', '哪一餐', '帶小孩', '怎麼去']);
+  assert.deepEqual(opts('group'), ['全員 15 人', '分組 4～6 人']);
+  assert.deepEqual(opts('context'), ['午餐', '晚餐', '小吃咖啡']);
+  assert.deepEqual(opts('reach'), ['車站旁', '不用搭車']);
+  assert.deepEqual([title('lodging'), title('dinner'), title('lodging-suits'), title('amenity')], ['住法', '晚餐', '適合', '其他']);
+  assert.deepEqual(opts('lodging'), ['包棟・一棟全團', '包棟・要兩棟', '旅館、飯店']);
+  assert.deepEqual(opts('dinner'), ['一泊二食', '不含，走路有店', '不含，要開車找']);
+  assert.deepEqual(opts('lodging-suits'), ['長輩', '小孩']);
+  assert.deepEqual(opts('amenity'), ['溫泉', '車站走路到']);
+  assert.deepEqual(opts('suits'), ['長輩', '小孩', '2 月']);
+  assert.deepEqual(opts('weather'), ['下雨也行']);
+  assert.deepEqual(opts('spot-reach'), ['不用搭車']);
+  const wish = COMMON_GROUPS.find((g) => g.id === 'wish')!;
   assert.deepEqual(wish.options([], 'explore'), []);
-  assert.deepEqual(wish.options([], 'wish').map((o) => o.label), ['只看我按的']);
   assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
-  assert.equal(FILTER_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
-  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'weather')!.options(AREAS, 'explore'), [
-    { value: 'rain', label: '下雨也行' },
-  ]);
+  assert.equal(COMMON_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
 });
-test('groupDimmed：選了景點時餐廳、住宿的組變淡（反過來也是）；沒選類型都不淡', () => {
-  const dimmed = (types: ('spot' | 'restaurant' | 'lodging')[]) => FILTER_GROUPS.filter((g) => groupDimmed(g, types)).map((g) => g.id);
-  assert.deepEqual(dimmed([]), []);
-  assert.deepEqual(dimmed(['spot']), ['group', 'lodging', 'context']);
-  assert.deepEqual(dimmed(['restaurant']), ['lodging', 'weather', 'suits']);
-  assert.deepEqual(dimmed(['lodging']), ['group', 'weather', 'suits', 'context']);
-  assert.deepEqual(dimmed(['spot', 'restaurant']), ['lodging']);
+
+test('panelLayout（T67）：選了類型只展開那幾類；沒選類型三類都收著', () => {
+  assert.deepEqual(panelLayout([]), { open: [], collapsed: ['spot', 'restaurant', 'lodging'] });
+  assert.deepEqual(panelLayout(['restaurant']), { open: ['restaurant'], collapsed: [] });
+  assert.deepEqual(panelLayout(['lodging', 'spot']), { open: ['spot', 'lodging'], collapsed: [] });
+  assert.equal(sectionSummary('restaurant'), '誰吃 · 哪一餐 · 帶小孩 · 怎麼去');
+  // 收著時標套了幾個條件；適合是景點、住宿共用的欄位，兩邊都算
+  const f = { ...EMPTY_FILTER, who: ['all' as const], contexts: ['lunch' as const], suits: ['elderly' as const] };
+  assert.deepEqual(SECTION_ORDER.map((t) => sectionApplied(t, f)), [1, 2, 1]);
+  // 帶小孩在選了全員 15 人時變淡
+  const kids = FILTER_SECTIONS.restaurant.find((g) => g.id === 'kids')!;
+  assert.equal(kids.dimmed!(f), true);
+  assert.equal(kids.dimmed!(EMPTY_FILTER), false);
+  assert.equal(sheetTitle('志摩・賢島'), '篩選 · 志摩・賢島');
+  assert.equal(sheetTitle(null), '篩選 · 全部');
 });
+
 test('appliedChips：含類型，不含地區、子地區（在外面一列）', () => {
-  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], weather: ['covered' as const], who: ['all' as const], stay: ['whole' as const] };
+  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], weather: ['covered' as const], who: ['all' as const], stay: ['whole' as const], dinner: ['included' as const] };
   const chips = appliedChips(f, AREAS);
-  assert.deepEqual(chips.map((c) => c.key), ['types', 'who', 'fit15', 'stay', 'weather']);
-  assert.deepEqual(chips.map((c) => c.label).slice(1), ['全員 15 人', '可容納 15 人', '包棟・一棟全團', '有遮蔽']);
+  assert.deepEqual(chips.map((c) => c.key), ['types', 'who', 'stay', 'dinner', 'weather']);
+  assert.deepEqual(chips.map((c) => c.label).slice(1), ['全員 15 人', '包棟・一棟全團', '一泊二食', '有遮蔽']);
 });
 
 // rowHighlights 的測試在 placeSummary.test.ts（T44b 改成這團的標章）

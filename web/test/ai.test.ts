@@ -1332,10 +1332,33 @@ test('T57 access：不用搭車只留 accessEase ≥ 4 的（沒有評分的排�
 
 test('T41 tiers：「一定要去」只留 S、A；沒有評分的點標 fitUnknown', async () => {
   const h = await harness();
-  const r = await runTool(h, 'search_places', { areas: ['shima'], types: ['spot'], tiers: ['S', 'A'], elderly: true, kids: true, limit: 30 });
+  const r = await runTool(h, 'search_places', { areas: ['ise'], types: ['spot'], tiers: ['S', 'A'], elderly: true, kids: true, limit: 30 });
   assert.ok(r.places.length > 0 && r.places.every((p: { tier: string }) => p.tier === 'S' || p.tier === 'A'));
-  const iza = r.places.find((p: { id: string }) => p.id === 'shima-izawanomiya');
-  assert.equal(iza?.fitUnknown, true);
+  // 外宮沒有 kidsFit（T68 補完以後志摩的 S、A 都有分數了）
+  const geku = r.places.find((p: { id: string }) => p.id === 'ise-geku');
+  assert.equal(geku?.fitUnknown, true);
   assert.equal(r.places.filter((p: { fitUnknown?: true }) => p.fitUnknown).length, r.fitUnknown);
+  h.close();
+});
+
+test('T67 search_places：who、stay、dinner、winter 和探索篩選同一個條件；set_filter 的舊欄位轉成新的', async () => {
+  const h = await harness();
+  const byId = h.data.getState().byId;
+  const all = await runTool(h, 'search_places', { types: ['restaurant'], who: ['all'], limit: 30 });
+  assert.ok(all.total > 0);
+  for (const p of all.places) assert.ok(['yes', 'split'].includes(placeFit15(byId.get(p.id)!)!), p.id);
+  const fits = await runTool(h, 'search_places', { types: ['lodging'], stay: ['fits'], dinner: ['included'], limit: 30 });
+  assert.ok(fits.total > 0);
+  for (const p of fits.places) {
+    const raw = byId.get(p.id)!.raw as { meals?: string };
+    assert.ok(raw.meals === 'dinner+breakfast' || raw.meals === 'varies', p.id);
+  }
+  const winter = await runTool(h, 'search_places', { types: ['spot'], winter: true, limit: 30 });
+  assert.ok(winter.total > 0);
+  for (const p of winter.places) assert.ok((byId.get(p.id)!.assessment?.scores?.winterFit ?? 0) >= 4, p.id);
+  // set_filter 收到舊的 fit15、lodging：畫面上的是新欄位
+  const tool = h.chat.tools.find((t) => t.name === 'set_filter')!;
+  const run = await tool.run({ types: ['restaurant'], fit15: ['yes'] });
+  assert.deepEqual((run as { present?: { patch?: unknown } }).present?.patch, { types: ['restaurant'], who: ['all'] });
   h.close();
 });

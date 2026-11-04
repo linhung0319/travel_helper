@@ -205,14 +205,14 @@ test('selectDay：切換、地圖移到那天；all 不動地圖；不在旅程�
 
 test('setFilter／clearFilter：給的項目取代、其他不動；值從 areas.json 和常數檢查；回傳標籤和筆數', () => {
   const { app, cmd } = setup();
-  const r = cmd.setFilter({ types: ['restaurant'], fit15: ['yes'] });
+  const r = cmd.setFilter({ types: ['restaurant'], who: ['all'] });
   assert.ok(r.ok);
   if (r.ok) {
-    assert.deepEqual(r.labels, ['餐廳', '可容納 15 人']);
+    assert.deepEqual(r.labels, ['餐廳', '全員 15 人']);
     assert.equal(r.count, 1);
   }
   cmd.setFilter({ areas: ['north'] });
-  assert.deepEqual(app.getState().filter, { ...EMPTY_FILTER, types: ['restaurant'], fit15: ['yes'], areas: ['north'] });
+  assert.deepEqual(app.getState().filter, { ...EMPTY_FILTER, types: ['restaurant'], who: ['all'], areas: ['north'] });
   cmd.setFilter({ types: [] });
   assert.deepEqual(app.getState().filter.types, []);
 
@@ -223,9 +223,15 @@ test('setFilter／clearFilter：給的項目取代、其他不動；值從 areas
   assert.equal(cmd.setFilter({ types: 'restaurant' } as never).ok, false);
   assert.equal(app.getState().filter, before);
 
-  // T57：住宿的人數、適合
-  assert.ok(cmd.setFilter({ lodging: ['wholeRental', 'sleeps15'], suits: ['elderly', 'access'] }).ok);
-  assert.deepEqual(app.getState().filter.suits, ['elderly', 'access']);
+  // T67：舊的 fit15、lodging、suits 的 access 還收，轉成新的欄位
+  assert.ok(cmd.setFilter({ fit15: ['yes'], lodging: ['wholeRental', 'sleeps15'], suits: ['elderly', 'access'] } as never).ok);
+  assert.deepEqual(app.getState().filter.who, ['all']);
+  assert.deepEqual(app.getState().filter.stay, ['whole']);
+  assert.deepEqual(app.getState().filter.suits, ['elderly']);
+  assert.deepEqual(app.getState().filter.reach, ['easy']);
+  assert.ok(!('fit15' in app.getState().filter));
+  assert.equal(cmd.setFilter({ fit15: ['maybe'] } as never).ok, false);
+  assert.ok(cmd.setFilter({ stay: ['multi', 'hotel'], dinner: ['car'], amenity: ['onsen'], kids: ['ok'], contexts: ['light'] }).ok);
   assert.equal(cmd.setFilter({ suits: ['young'] } as never).ok, false);
 
   const c = cmd.clearFilter();

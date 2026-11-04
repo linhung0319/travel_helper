@@ -117,3 +117,37 @@ test('清單篩到 0 個：拿掉最後加的、有東西的那個條件；搜�
   const extra = emptyHelp(PLACES, { ...shelfFilter(fit15, north), contexts: ['dinner'] }, '', AREAS);
   assert.deepEqual(extra.steps.map((s) => s.label), ['拿掉「晚餐」', '問 AI：在北找全員 15 人能一起吃、晚餐的餐廳']);
 });
+
+test('現在看的分布小字（T67）：誰吃、住法兩題才有，算現在符合的點，0 的那段不寫', () => {
+  const ps = [
+    ...PLACES,
+    at('stall', { type: 'restaurant', tier: 'B' }, { group: { fit15: 'no' } }),
+    at('cafe', { type: 'restaurant', tier: 'B' }, {}),
+    at('house', { type: 'lodging', tier: 'B' }, { kind: 'rental-house', group: { wholeRental: true, maxGuests: 16 } }),
+    at('inn', { type: 'lodging', tier: 'B' }, { kind: 'ryokan', group: { totalRooms: 10 } }),
+    at('cottage', { type: 'lodging', tier: 'B' }, { kind: 'rental-house', group: { wholeRental: true, maxGuests: 6 } }),
+  ];
+  const notes = (filter: Filter) => conditionChips(filter, '', AREAS, { places: ps }).flatMap((c) => (c.note ? [`${c.key}:${c.note}`] : []));
+  assert.deepEqual(notes(f({ ...north, types: ['restaurant'], who: ['all'] })), ['who:能坐一起 1 · 要分桌 1']);
+  assert.deepEqual(notes(f({ ...north, types: ['restaurant'], who: ['apart'] })), ['who:還沒查 1 · 坐不下 1']);
+  assert.deepEqual(notes(f({ ...north, types: ['lodging'], stay: ['fits'] })), ['stay:包棟 1 · 旅館飯店 1']);
+  assert.deepEqual(notes(f({ ...port, types: ['lodging'], stay: ['whole', 'multi'] })), ['stay:包棟 1 · 包棟要兩棟 1']);
+  // 其他條件沒有；沒給 places（想去、AI）也沒有
+  assert.deepEqual(notes(f({ ...north, types: ['spot'], tiers: ['S'] })), []);
+  assert.ok(conditionChips(f({ ...north, who: ['all'] }), '', AREAS).every((c) => !c.note));
+});
+
+test('0 個時放寬條件照第一題（T67）：全員 15 人 →「看港邊坐不下、還沒查的」；住得下全團 →「看港邊要分開住的」', () => {
+  const ps = [
+    ...PLACES,
+    at('stall', { type: 'restaurant', tier: 'B' }, { group: { fit15: 'no' } }),
+    at('cottage', { type: 'lodging', tier: 'B' }, { kind: 'rental-house', group: { wholeRental: true, maxGuests: 6 } }),
+  ];
+  // 自己加了 B 級（不是整排書架）：放寬那顆換成第一題的另一邊
+  const who = emptyHelp(ps, f({ ...port, types: ['restaurant'], who: ['all'], tiers: ['B'] }), '', AREAS);
+  const relax = who.steps.find((s) => s.kind === 'relax');
+  assert.equal(relax?.label, '看港邊坐不下、還沒查的');
+  assert.ok(relax && relax.kind === 'relax' && relax.filter.who.join() === 'apart');
+  const stayHelp = emptyHelp(ps, f({ ...port, types: ['lodging'], stay: ['whole'] }), '', AREAS);
+  assert.equal(stayHelp.steps.find((s) => s.kind === 'relax')?.label, '看港邊要分開住的');
+});

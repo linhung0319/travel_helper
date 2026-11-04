@@ -8,8 +8,24 @@ import type { Itinerary, TravelMode } from '@travel-helper/engine/types';
 import { TRAVEL_MODES } from '@travel-helper/engine/types';
 import { HIGHLIGHT_STYLES, type AppStore, type DaySelection, type HighlightStyle, type RouteEnd } from './store.ts';
 import type { DataState } from './dataStore.ts';
-import { CONTEXTS, PLACE_TYPES, TIERS, type Bbox, type LonLat, type Place } from './data/types.ts';
-import { FIT15_VALUES, LODGING_FILTER_VALUES, STAY_VALUES, SUIT_VALUES, VOTE_FILTER_VALUES, WEATHER_VALUES, WHO_VALUES, filterChips, matchesFilter, type Filter } from './lib/filter.ts';
+import { PLACE_TYPES, TIERS, type Bbox, type LonLat, type Place } from './data/types.ts';
+import {
+  AMENITY_VALUES,
+  CONTEXT_FILTER_VALUES,
+  DINNER_VALUES,
+  FIT15_VALUES,
+  KIDS_VALUES,
+  REACH_VALUES,
+  STAY_VALUES,
+  SUIT_VALUES,
+  VOTE_FILTER_VALUES,
+  WEATHER_VALUES,
+  WHO_VALUES,
+  filterChips,
+  matchesFilter,
+  toFilterPatch,
+  type Filter,
+} from './lib/filter.ts';
 import { areasExtent, extentOf, inBbox } from './lib/areas.ts';
 import { stopsOn } from './lib/itinerary.ts';
 import { hullAround } from './lib/mapLayers.ts';
@@ -292,28 +308,36 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     return f.ok ? { ok: true, day, stops } : f;
   }
 
-  /** 檢查篩選的值；選項從 areas.json 和常數來，不寫死區域 */
-  function checkFilter(patch: Partial<Filter>): string | null {
+  /**
+   * 檢查篩選的值；選項從 areas.json 和常數來，不寫死區域。
+   * 舊的欄位（fit15、lodging、suits 的 access）也收，setFilter 會轉成新的（T67，toFilterPatch）
+   */
+  function checkFilter(patch: Record<string, unknown>): string | null {
     const { areas } = data.getState();
-    const allowed: Record<keyof Filter, readonly string[]> = {
+    const allowed: Record<keyof Filter | 'fit15' | 'lodging', readonly string[]> = {
       areas: areas.map((a) => a.id),
       regions: areas.flatMap((a) => (a.regions ?? []).map((r) => r.id)),
       types: PLACE_TYPES,
-      contexts: CONTEXTS,
+      contexts: CONTEXT_FILTER_VALUES,
       tiers: TIERS,
-      fit15: FIT15_VALUES,
       votes: VOTE_FILTER_VALUES,
       weather: WEATHER_VALUES,
-      lodging: LODGING_FILTER_VALUES,
-      suits: SUIT_VALUES,
       who: WHO_VALUES,
+      kids: KIDS_VALUES,
+      reach: REACH_VALUES,
       stay: STAY_VALUES,
+      dinner: DINNER_VALUES,
+      suits: [...SUIT_VALUES, 'access'],
+      amenity: AMENITY_VALUES,
+      fit15: FIT15_VALUES,
+      lodging: ['wholeRental', 'sleeps15'],
     };
     for (const [k, v] of Object.entries(patch)) {
       if (!(k in allowed)) return `不認得的篩選 ${k}（可用：${Object.keys(allowed).join('、')}）`;
       if (!Array.isArray(v)) return `${k} 要是陣列`;
-      const bad = v.filter((x) => !allowed[k as keyof Filter].includes(x as string));
-      if (bad.length) return `${k} 沒有 ${bad.join('、')}（可用：${allowed[k as keyof Filter].join('、')}）`;
+      const ok = allowed[k as keyof typeof allowed];
+      const bad = v.filter((x) => !ok.includes(x as string));
+      if (bad.length) return `${k} 沒有 ${bad.join('、')}（可用：${ok.join('、')}）`;
     }
     return null;
   }
@@ -325,14 +349,14 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
   }
 
   /**
-   * 套用篩選：給的那幾項整個取代（例如 { types: ['restaurant'], fit15: ['yes'] }），沒給的不動；
+   * 套用篩選：給的那幾項整個取代（例如 { types: ['restaurant'], who: ['all'] }），沒給的不動；
    * 地圖上方會出現可以取消的篩選標籤（interaction-design §5）。
    */
-  function setFilter(patch: Partial<Filter>): CommandResult<{ filter: Filter; labels: string[]; count: number }> {
+  function setFilter(patch: Partial<Filter> | Record<string, unknown>): CommandResult<{ filter: Filter; labels: string[]; count: number }> {
     if (!patch || typeof patch !== 'object') return { ok: false, error: 'setFilter：要是物件' };
     const err = checkFilter(patch);
     if (err) return { ok: false, error: `setFilter：${err}` };
-    const clean = Object.fromEntries(Object.entries(patch).map(([k, v]) => [k, [...new Set(v as string[])]])) as Partial<Filter>;
+    const clean = Object.fromEntries(Object.entries(toFilterPatch(patch)).map(([k, v]) => [k, [...new Set(v as string[])]])) as Partial<Filter>;
     app.getState().setFilter(clean);
     return { ok: true, ...filterResult() };
   }
