@@ -155,7 +155,7 @@
 | T64 | 探索的篩選：「現在看」那一列（地區・子地區、攤開條件）、拿掉「篩選 N」的數字、0 個的書架和清單給下一步、問 AI 帶現在的條件 | M | T61、T63 | 4 | | ✅ |
 | T65 | 網頁地圖：中間的縮放畫所有子地區的範圍和名字 | S | T63 | 4 | | ✅ |
 | T66 | 書架兩級退（第一級 0 個才退第二級）、小卡第二行寫這排在意的事、天氣合併成「下雨也行」、重匯 D1 | S | — | 4 | | ✅ |
-| T67 | 篩選面板照類型分段：誰吃、哪一餐、帶小孩、住法、晚餐、溫泉、2 月；標題寫地區；「現在看」的分布小字；AI 工具跟著改 | M | T66 | 4 | | ⬜ |
+| T67 | 篩選面板照類型分段：誰吃、哪一餐、帶小孩、住法、晚餐、溫泉、2 月；標題寫地區；「現在看」的分布小字；AI 工具跟著改 | M | T66 | 4 | | ✅ |
 | T68 | 資料補：包棟、民宿的人數 11 間；景點長輩、小孩、2 月的評分 | S | — | 4 | 🌐 少量 | ✅ |
 
 ---
@@ -1621,7 +1621,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - AI：`set_filter`、`commands.setFilter` 還收 `fit15`、`lodging`、`suits: access`，`toFilterPatch` 轉成 who、stay、reach（fit15 yes／split → who all，no／unknown → apart；lodging sleeps15 → stay whole，wholeRental → whole、multi）。`search_places` 加 `who`、`stay`、`dinner`、`winter`；工具說明、systemPrompt、詳情的住宿建議問題（「一間住得下全團嗎？」「晚餐怎麼辦？」）跟著改。`ai:eval` 加 T67a（住法晚餐）、T67b（2 月），跑 S1、S28、T67a、T67b 都 PASS（sonnet-5-5，$0.21）。
   - 面板（`shared/filterOptions.ts`、`FilterSheet.tsx`）：`FILTER_SECTIONS`、`COMMON_GROUPS`、`panelLayout`；標題「篩選 · 志摩・賢島」（概覽、好幾區「篩選 · 全部」）；收著的那一列標套了幾個條件。帶小孩在選了全員 15 人時變淡（`dimmed`）。
   - 「現在看」：誰吃、住法的最後一顆晶片右邊有分布小字（`conditionChips` 的 `places`，只有探索、不是 AI 結果集時算）。0 個時放寬照第一題：全員 15 人 →「看相差坐不下、還沒查的（N）›」，住得下全團 →「看…要分開住的」。
-  - 清單層：`dinnerAccess` 進 `LIST_WHOLE`，`LAYER_VERSION` 改 5。**D1 還沒重匯**：worktree 沒有本機 D1，merge 後在主目錄 `npm run db:import -- --all`；正式環境同 T66，deploy 時一起。
+  - 清單層：`dinnerAccess` 進 `LIST_WHOLE`，`LAYER_VERSION` 改 5。merge 後主目錄本機 D1 已重匯（匯入 #5，660 個點都是 layer_version 5）；**正式環境（`--remote`）還沒匯**，同 T66，deploy 新程式時一起。
   - 驗證：`npm test` 1104 通過、`typecheck` 通過（順便修了 master 本來就不過的 T41 tiers 測試：T68 補了伊雜宮的分數，換成外宮）。e2e：新增 `t67.spec.ts`（3 支）、`mobile-t67.spec.ts`（2 支，390、360）；改 t42（面板那段）、t15m（取消類型後看收著那列的數字）。跑過網頁 t42、t33、commands、t67、t15m／t49／ai-web 的篩選和 AI，手機 mobile-t42、mobile、mobile-t33、mobile-t49、mobile-ai 的篩選、書架、AI（390），mobile-t42、mobile 的篩選（360），都通過。
 
 #### T68 資料補：包棟人數、景點評分 〔S〕
