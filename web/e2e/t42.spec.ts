@@ -144,15 +144,18 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   const filter = await page.evaluate(() => (window as any).__th.appStore.getState().filter);
   expect(filter).toMatchObject({ areas: ['toba'], types: ['spot'], tiers: ['S', 'A'] });
   await expect(page.getByTestId('explore-item').first()).toBeVisible();
-  // 返回鈕和地點數同一列，寫書架名；切換鈕在這一列的右邊（T50）
+  // 返回鈕和地點數同一列，寫書架名和現在看的地方（T64）；切換鈕在這一列的右邊（T50）
   await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
+  await expect(page.getByTestId('list-where')).toHaveText('鳥羽');
   const head = page.locator('.fb-listhead');
   await expect(head.getByTestId('back-to-area')).toBeVisible();
   await expect(head.getByTestId('view-photo')).toBeVisible();
   await expect(page.locator('.fb-typerow').getByTestId('view-photo')).toHaveCount(0);
   await shot(page, 'web-shelf-all');
-  // 篩選上的數字：類型一個、等級兩個（地區不算）
-  await expect(page.getByTestId('filter-count')).toHaveText('3');
+  // 「現在看」的條件列（T64）：書架帶來的三顆是藍底（類型一個、等級兩個；地區不算），篩選上沒有數字
+  await expect(page.getByTestId('cond-chip')).toHaveText(['景點', 'S 級', 'A 級']);
+  await expect(page.locator('[data-testid="cond-chip"][data-preset]')).toHaveCount(3);
+  await expect(page.getByTestId('filter-open').locator('.fb-n')).toHaveCount(0);
   await page.getByTestId('filter-open').click();
   await expect(page.getByTestId('filter-opt-type-spot')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('[data-group="area"]')).toHaveCount(0);
@@ -164,21 +167,24 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   await expect(page.getByTestId('filter-opt-context-transit')).toContainText('車站旁主要車站走路 5 分內');
   await expect(page.locator('[data-group="group"] .ui-chip')).toHaveCount(4);
   await shot(page, 'web-filter-sheet');
-  // 在面板又改了條件：返回鈕改寫「‹ 回到鳥羽」
+  // 在面板拿掉書架帶來的條件：返回鈕改寫「‹ 自己篩選」，剩下的條件變白底
   await page.getByTestId('filter-opt-type-spot').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 回到鳥羽');
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  await expect(page.locator('[data-testid="cond-chip"][data-preset]')).toHaveCount(0);
   // 全部清除：地區留著，回到書架
   await page.getByTestId('filter-clear').click();
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('area-home')).toBeVisible();
 
-  // 子地區當篩選；搜尋時變清單，「‹ 鳥羽」回到書架（子地區留著）
+  // 子地區當篩選；搜尋時變清單，「‹ 自己篩選 · 鳥羽・○○」回到書架（子地區留著）；搜尋也是一顆條件
   const region = page.getByTestId('region-chips').locator('button').nth(1);
   await region.click();
   await expect(region).toHaveAttribute('aria-pressed', 'true');
   await page.getByTestId('search').fill('水族');
   await expect(page.getByTestId('area-home')).toHaveCount(0);
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 回到鳥羽');
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  await expect(page.getByTestId('list-where')).toHaveText(/^鳥羽・/);
+  await expect(page.getByTestId('cond-chip')).toHaveText(['搜尋「水族」']);
   await page.getByTestId('back-to-area').click();
   await expect(page.getByTestId('area-home')).toBeVisible();
   await expect(page.getByTestId('search')).toHaveValue('');
@@ -196,4 +202,64 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
   await page.getByTestId('ex-area-all').click();
   await expect(page.getByTestId('explore-overview')).toBeVisible();
+});
+
+test('T64：0 個的書架寫「賢島沒有」和下一步；拿掉一顆條件改寫「自己篩選」；問 AI 帶現在的條件', async ({ page }) => {
+  await ready(page, { tab: 'default' });
+  await page.getByTestId('ex-area-shima').click();
+  await page.getByTestId('region-shima-kashikojima').click();
+  // 賢島沒有 S、A 級的景點：那排不藏，虛線框、看志摩全區、問 AI
+  const must = page.locator('[data-shelf="must"]');
+  await expect(must.getByTestId('shelf-all')).toHaveCount(0);
+  await expect(must.getByTestId('empty-message')).toHaveText('賢島沒有 S、A 級的景點');
+  const steps = must.getByTestId('empty-step');
+  await expect(steps.first()).toHaveText(/^看志摩全區的一定要去（\d+）›$/);
+  await expect(steps.last()).toHaveText('✦ 問 AI：賢島有什麼值得去的景點？');
+  await shot(page, 'web-shelf-empty');
+  // 問 AI：放進輸入框，不送出、不帶晶片
+  await steps.last().click();
+  const input = page.getByTestId('chat-input');
+  await expect(input).toHaveValue('賢島有什麼值得去的景點？');
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
+  await expect(page.locator('.ac-chips [data-testid="chat-context"]')).toHaveCount(0);
+  // 放大範圍：志摩全區的一定要去
+  await steps.first().click();
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
+  await expect(page.getByTestId('list-where')).toHaveText('志摩');
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.regions)).toEqual([]);
+  await page.getByTestId('back-to-area').click();
+
+  // 可坐 15 人：返回那一列寫完整，條件攤開（藍底兩顆）；面板加的是白底，書架名不變
+  await page.getByTestId('region-shima-kashikojima').click();
+  await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 可坐 15 人');
+  await expect(page.getByTestId('list-where')).toHaveText('志摩・賢島');
+  await expect(page.getByTestId('cond-chip')).toHaveText(['餐廳', '可容納 15 人']);
+  await page.getByTestId('cond-add').click();
+  await page.getByTestId('filter-opt-context-lunch').click();
+  await page.getByTestId('filter-done').click();
+  await expect(page.getByTestId('cond-chip')).toHaveText(['餐廳', '可容納 15 人', '午餐']);
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-preset])')).toHaveText(['午餐']);
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 可坐 15 人');
+  await shot(page, 'web-cond-row');
+  // 問 AI：晶片照舊，現在的地區、子地區、條件寫成一句放進輸入框
+  await page.getByTestId('list-ask-ai').click();
+  await expect(input).toHaveValue('在志摩・賢島找可容納 15 人、午餐的餐廳');
+  await expect(page.locator('.ac-chips [data-testid="chat-context"]').last()).toHaveAttribute('data-kind', 'list');
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
+  // 拿掉書架帶來的一顆：自己篩選，剩下的都是白底
+  await page.locator('[data-testid="cond-chip"][data-key="fit15"]').click();
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  await expect(page.locator('[data-testid="cond-chip"][data-preset]')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.fit15)).toEqual([]);
+
+  // 清單篩到 0 個：同一個框，清掉搜尋
+  // 別區才有的名字（完全找不到時是「自己加」的提示，T31）
+  await page.getByTestId('search').fill('水族');
+  const empty = page.locator('.ex-list').getByTestId('empty-help');
+  await expect(empty.getByTestId('empty-message')).toHaveText('賢島沒有符合這些條件的地點');
+  await expect(empty.locator('[data-kind="relax"]')).toHaveText(/^清掉搜尋（\d+）›$/);
+  await empty.locator('[data-kind="relax"]').click();
+  await expect(page.getByTestId('search')).toHaveValue('');
+  await expect(page.getByTestId('explore-item').first()).toBeVisible();
 });

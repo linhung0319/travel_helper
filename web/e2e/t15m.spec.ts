@@ -1870,9 +1870,9 @@ test('篩選：套用的條件看按鈕的數字，打開面板看條件、點�
   await page.getByTestId('filter-opt-group-yes').click();
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
-  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   await pickFilter(page, 'type-restaurant');
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expectFilterOpt(page, 'type-restaurant', false);
   await expectFilterOpt(page, 'group-yes', true);
 });
@@ -2694,9 +2694,9 @@ test('探索、想去各自一份篩選和搜尋：想去的「只看我按的�
   await page.getByTestId('side-tab-wish').click();
   await pickFilter(page, 'wish-mine');
   await page.getByTestId('search').fill('海');
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await page.getByTestId('side-tab-explore').click();
-  await expect(page.getByTestId('filter-count')).toHaveCount(0);
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(0);
   await expect(page.getByTestId('search')).toHaveValue('');
   expect(await th(page, '__th.appStore.getState().filter.votes')).toEqual([]);
   expect(await th(page, '__th.appStore.getState().query')).toBe('');
@@ -2704,7 +2704,7 @@ test('探索、想去各自一份篩選和搜尋：想去的「只看我按的�
   await pickType(page, 'restaurant');
   await page.getByTestId('side-tab-wish').click();
   await expect(page.getByTestId('search')).toHaveValue('海');
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expectFilterOpt(page, 'wish-mine', true);
   await expectFilterOpt(page, 'type-restaurant', false);
   await page.getByTestId('side-tab-explore').click();

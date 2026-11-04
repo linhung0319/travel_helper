@@ -29,7 +29,7 @@ export function WishlistPage() {
   const sections = useWishSections(list);
   const { section, back } = useWishBack();
   const count = section ? (sections.find((x) => x.id === section)?.count ?? 0) : list.length;
-  const model = { ...base, onAsk: () => askList('wish', base.filter, wish.query, list.length), ...(fromChat ? { onBack: () => mobileStore.getState().returnToChat() } : {}) };
+  const model = { ...base, onAsk: () => void askList('wish', base.filter, wish.query, list.length), ...(fromChat ? { onBack: () => mobileStore.getState().returnToChat() } : {}) };
 
   return (
     <div className="m-wish" data-testid="m-wish">

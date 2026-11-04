@@ -3,6 +3,7 @@
 // 點子地區在卡片裡換成那個子地區的簡介、二月注意、代表點（overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）；
 // 代表的點是文字加類型圓章，點了開詳情；「看志摩 ›」「看賢島 ›」進那一區（選了子地區時再選好那個子地區）。
 // 選了一區（T50）：「2 月注意（N）」收合；下面幾排書架（lib/shelves.ts），每排 3 張小卡（右上角類型圓章）、「全部 ›」套那組條件。
+// 0 個的那排不藏（T64）：標題照樣在，下面虛線框寫「賢島沒有 S、A 級的景點」和下一步（NextSteps，lib/listConditions.ts 的 emptyHelp；照片牆、清單篩到 0 個也用）。
 // 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
 // 樣式在 ui.css（.xo-*、.xa-*、.xs-*）。
 
@@ -12,6 +13,7 @@ import { useData } from '../../hooks.ts';
 import { dataStore, ensureDetails, fullPlace } from '../../dataStore.ts';
 import { displayName } from '../../data/normalize.ts';
 import { shelfFilter, shelfRows } from '../../lib/shelves.ts';
+import { shelfEmptyHelp, type EmptyHelp } from '../../lib/listConditions.ts';
 import { allRegionsLabel, areaSubName, overviewContent } from '../../lib/overview.ts';
 import { overviewStore, useOverview } from '../overviewStore.ts';
 import { areaStayLine } from '../../lib/tripSkeleton.ts';
@@ -191,8 +193,37 @@ export function RegionChips({ areaId, regionId, onPick }: { areaId: string; regi
   );
 }
 
-/** 選了一區：「2 月注意（N）」收合、書架（地區的一句特色只在概覽，T50；子地區列在篩選列裡） */
-export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll }: { areaId: string; regionId: string | null; surface: HomeSurface; onOpen: (id: string) => void; onShelfAll: (filter: Filter) => void }) {
+/**
+ * 0 個的時候（T64）：虛線框裡一句「賢島沒有 S、A 級的景點」，下面 2～3 個下一步（放大範圍、放寬條件、問 AI）。
+ * 書架的一排、照片牆、清單篩到 0 個都用這個；onApply 換成那組條件和搜尋，onAsk 把問題放進輸入框（不送出）。
+ */
+export function NextSteps({ help, onApply, onAsk, testId = 'empty-help' }: { help: EmptyHelp; onApply: (filter: Filter, query: string) => void; onAsk: (text: string) => void; testId?: string }) {
+  return (
+    <div className="xe" data-testid={testId}>
+      <p className="xe-msg" data-testid="empty-message">
+        {help.message}
+      </p>
+      {help.steps.length > 0 && (
+        <div className="xe-steps">
+          {help.steps.map((s) =>
+            s.kind === 'ask' ? (
+              <button key="ask" type="button" className="xe-step ask" onClick={() => onAsk(s.draft)} data-testid="empty-step" data-kind="ask">
+                ✦ {s.label}
+              </button>
+            ) : (
+              <button key={s.kind} type="button" className="xe-step" onClick={() => onApply(s.filter, s.query)} data-testid="empty-step" data-kind={s.kind}>
+                {s.label}（{s.count}）›
+              </button>
+            ),
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** 選了一區：「2 月注意（N）」收合、書架（地區的一句特色只在概覽，T50；子地區列在篩選列裡）。onAsk：0 個那排的「問 AI」 */
+export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll, onAsk }: { areaId: string; regionId: string | null; surface: HomeSurface; onOpen: (id: string) => void; onShelfAll: (filter: Filter) => void; onAsk: (text: string) => void }) {
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
   // 「住在這裡」可住 15 人在詳情層：讀這區的住宿（一區幾十間），讀到了重排
@@ -239,18 +270,23 @@ export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll }: { ar
                 {shelf.note}
               </span>
             </h3>
-            <button type="button" className="xs-all" onClick={() => onShelfAll(shelfFilter(shelf, base))} data-testid="shelf-all">
-              全部 {total} ›
-            </button>
+            {total > 0 && (
+              <button type="button" className="xs-all" onClick={() => onShelfAll(shelfFilter(shelf, base))} data-testid="shelf-all">
+                全部 {total} ›
+              </button>
+            )}
           </header>
-          <div className="xs-row">
-            {items.map((p) => (
-              <ShelfCard key={p.id} place={p} surface={surface} onOpen={onOpen} />
-            ))}
-          </div>
+          {total > 0 ? (
+            <div className="xs-row">
+              {items.map((p) => (
+                <ShelfCard key={p.id} place={p} surface={surface} onOpen={onOpen} />
+              ))}
+            </div>
+          ) : (
+            <NextSteps help={shelfEmptyHelp(places, shelf, base, areas)} onApply={(f) => onShelfAll(f)} onAsk={onAsk} testId="shelf-empty" />
+          )}
         </section>
       ))}
-      {rows.length === 0 && <p className="muted ex-empty">這裡還沒有資料。</p>}
     </div>
   );
 }

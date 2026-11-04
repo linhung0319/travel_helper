@@ -71,3 +71,36 @@ test('手機：概覽 → 選鳥羽 → 書架「全部 ›」→ 回到書架�
   await page.locator('[data-shelf="must"]').getByTestId('shelf-card').first().click();
   await expect.poll(() => page.evaluate(() => !!(window as any).__thMobile.getState().detail)).toBe(true);
 });
+
+test('手機 T64：0 個的書架給下一步；條件列拿掉一顆；問 AI 帶現在的條件', async ({ page }) => {
+  await ready(page, { tab: 'default' });
+  await page.getByTestId('explore-overview').locator('[data-area="shima"]').getByTestId('overview-go').click();
+  await page.getByTestId('fb-stick').getByTestId('region-shima-kashikojima').click();
+  const must = page.locator('[data-shelf="must"]');
+  await expect(must.getByTestId('empty-message')).toHaveText('賢島沒有 S、A 級的景點');
+  await expect(must.getByTestId('empty-step').first()).toHaveText(/^看志摩全區的一定要去（\d+）›$/);
+  await shot(page, 'mobile-shelf-empty');
+  // 問 AI：到 AI 分頁，問題放進輸入框，不送出、不叫鍵盤
+  await must.locator('[data-kind="ask"]').click();
+  const input = page.getByTestId('chat-input');
+  await expect(input).toHaveValue('賢島有什麼值得去的景點？');
+  await expect(input).not.toBeFocused();
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
+
+  await page.getByTestId('m-tab-explore').click();
+  await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 可坐 15 人');
+  await expect(page.getByTestId('list-where')).toHaveText('志摩・賢島');
+  await expect(page.getByTestId('cond-chip')).toHaveText(['餐廳', '可容納 15 人']);
+  await expect(page.getByTestId('fb-stick').getByTestId('cond-row')).toBeVisible();
+  await shot(page, 'mobile-cond-row');
+  // 拿掉「餐廳」：自己篩選
+  await page.locator('[data-testid="cond-chip"][data-key="types"]').click();
+  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  expect((await page.evaluate(() => (window as any).__thMobile.getState().feed)).type).toBe('all');
+  // 問 AI：晶片照舊、句子放進輸入框
+  await page.getByTestId('list-ask-ai').click();
+  await expect(input).toHaveValue('在志摩・賢島找可容納 15 人的地點');
+  await expect(page.getByTestId('chat-context')).toHaveAttribute('data-kind', 'list');
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
+});

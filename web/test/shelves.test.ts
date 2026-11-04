@@ -3,7 +3,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfCounts, shelfFilter, shelfRows, stayScore } from '../src/lib/shelves.ts';
+import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfCounts, shelfFilter, shelfOf, shelfRows, stayScore } from '../src/lib/shelves.ts';
 import { EMPTY_FILTER, matchesFilter, type Filter } from '../src/lib/filter.ts';
 import { placeWith } from './helpers.ts';
 
@@ -38,7 +38,7 @@ test('shelfFilter：書架的條件疊在目前地區、子地區上', () => {
   assert.deepEqual(shelfFilter(rain, { areas: ['toba'], regions: ['osatsu'] }).weather, ['indoor', 'covered']);
 });
 
-test('shelfRows：每排推薦順序、只看這區；沒東西的那排不列', () => {
+test('shelfRows：每排推薦順序、只看這區；0 個的那排也列（T64）', () => {
   const rows = shelfRows(PLACES, { areas: ['toba'], regions: [] });
   const byId = Object.fromEntries(rows.map((r) => [r.shelf.id, r.items.map((p) => p.id)]));
   assert.deepEqual(rows.map((r) => r.shelf.id), ['must', 'fit15', 'stay', 'rain']);
@@ -47,10 +47,9 @@ test('shelfRows：每排推薦順序、只看這區；沒東西的那排不列',
   assert.deepEqual(byId.rain, ['aquarium', 'pearl']);
   assert.deepEqual(byId.fit15, ['big-table']);
   assert.deepEqual(byId.stay, ['hotel']);
-  // 選了子地區（相差）：只剩一定要去的展望台
+  // 選了子地區（相差）：只有一定要去的展望台，其他三排是 0 個（照樣列）
   const osatsu = shelfRows(PLACES, { areas: ['toba'], regions: ['osatsu'] });
-  assert.deepEqual(osatsu.map((r) => r.shelf.id), ['must']);
-  assert.equal(osatsu[0].total, 1);
+  assert.deepEqual(osatsu.map((r) => `${r.shelf.id}:${r.total}`), ['must:1', 'fit15:0', 'stay:0', 'rain:0']);
 });
 
 test('shelfRows：一排最多 3 個，total 是全部', () => {
@@ -124,16 +123,20 @@ test('住在這裡（T50）：能包棟、可住 15 人以上的排前面；可�
   assert.deepEqual(stay(), ['both', 'whole', 'plain', 'big']);
 });
 
-test('backLabel（T50）：還是那排書架的條件寫書架名，改了條件或有搜尋寫「回到鳥羽」', () => {
+test('backLabel（T50、T64）：條件裡還有一整排書架寫書架名（自己多加的、搜尋不影響），拿掉書架的條件寫「自己篩選」', () => {
   const base = { areas: ['toba'], regions: [] };
   const [must, fit15, stay, rain] = SHELVES;
-  assert.equal(backLabel(shelfFilter(must, base), '', '鳥羽'), '一定要去');
-  assert.equal(backLabel(shelfFilter(fit15, base), '', '鳥羽'), '可坐 15 人');
-  assert.equal(backLabel(shelfFilter(stay, { areas: ['toba'], regions: ['osatsu'] }), '', '鳥羽'), '住在這裡');
+  assert.equal(backLabel(shelfFilter(must, base)), '一定要去');
+  assert.equal(backLabel(shelfFilter(fit15, base)), '可坐 15 人');
+  assert.equal(backLabel(shelfFilter(stay, { areas: ['toba'], regions: ['osatsu'] })), '住在這裡');
   // 順序不同也算同一組（手機的條件從 quick 轉回來）
-  assert.equal(backLabel({ ...shelfFilter(rain, base), weather: ['covered', 'indoor'] }, '', '鳥羽'), '下雨也行');
-  assert.equal(matchShelf({ ...shelfFilter(must, base), tiers: ['S'] }), null);
-  assert.equal(backLabel({ ...shelfFilter(must, base), tiers: ['S'] }, '', '鳥羽'), '回到鳥羽');
-  assert.equal(backLabel({ ...EMPTY_FILTER, ...base, types: ['restaurant'] }, '', '鳥羽'), '回到鳥羽');
-  assert.equal(backLabel(shelfFilter(must, base), '水族', '鳥羽'), '回到鳥羽');
+  assert.equal(backLabel({ ...shelfFilter(rain, base), weather: ['covered', 'indoor'] }), '下雨也行');
+  // 自己多加條件：還是那排書架
+  assert.equal(backLabel({ ...shelfFilter(fit15, base), contexts: ['lunch'] }), '可坐 15 人');
+  assert.equal(shelfOf({ ...shelfFilter(must, base), suits: ['elderly'] }), must);
+  assert.equal(matchShelf({ ...shelfFilter(must, base), suits: ['elderly'] }), null);
+  // 拿掉書架帶來的條件（少了 S 級）、同一欄多選（放寬）：自己篩選
+  assert.equal(backLabel({ ...shelfFilter(must, base), tiers: ['A'] }), '自己篩選');
+  assert.equal(backLabel({ ...shelfFilter(stay, base), types: ['lodging', 'spot'] }), '自己篩選');
+  assert.equal(backLabel({ ...EMPTY_FILTER, ...base, types: ['restaurant'] }), '自己篩選');
 });

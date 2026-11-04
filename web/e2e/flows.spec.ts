@@ -54,13 +54,13 @@ test('套用、取消篩選', async ({ page }) => {
   await pickType(page, 'restaurant');
   await pickFilter(page, 'tier-S');
   // 類型在面板裡，算進篩選的數字（T42）
-  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   expect((await filter()).tiers).toEqual(['S']);
   expect(await dimSpotNow()).toBe(true);
   // 打開面板再點一次取消
   await pickFilter(page, 'tier-S');
   expect((await filter()).tiers).toEqual([]);
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await page.getByTestId('side-tab-day').click();
   // 回到行程：篩選留著（行程分頁的地圖不套、也沒有篩選列）
   expect((await filter()).types).toEqual(['restaurant']);

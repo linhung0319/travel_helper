@@ -13,15 +13,46 @@ export interface Shelf {
   note: string;
   /** 套在目前地區（子地區）上面的條件 */
   filter: Partial<Filter>;
+  /** 0 個時的那句（T64）：「賢島沒有 S、A 級的景點」的「S、A 級的景點」 */
+  empty: string;
+  /** 0 個時放寬條件的下一步（T64）：換成這組條件（同樣套在目前地區上）；沒有就不放 */
+  relax?: { filter: Partial<Filter>; label: (where: string) => string };
+  /** 0 個時問 AI 的那句（T64，放進輸入框） */
+  ask: (where: string) => string;
 }
 
 /** 順序（T50）：一定要去、可坐 15 人、住在這裡、下雨也行；之後加的排在後面 */
 export const SHELVES: readonly Shelf[] = [
-  { id: 'must', title: '一定要去', note: 'S、A 級景點', filter: { types: ['spot'], tiers: ['S', 'A'] } },
-  { id: 'fit15', title: '可坐 15 人', note: '全員能坐一起的餐廳', filter: { types: ['restaurant'], fit15: ['yes'] } },
-  { id: 'stay', title: '住在這裡', note: '包棟、可住 15 人排前面', filter: { types: ['lodging'] } },
+  {
+    id: 'must',
+    title: '一定要去',
+    note: 'S、A 級景點',
+    filter: { types: ['spot'], tiers: ['S', 'A'] },
+    empty: 'S、A 級的景點',
+    relax: { filter: { types: ['spot'], tiers: ['B'] }, label: (w) => `看${w}的 B 級景點` },
+    ask: (w) => `${w}有什麼值得去的景點？`,
+  },
+  {
+    id: 'fit15',
+    title: '可坐 15 人',
+    note: '全員能坐一起的餐廳',
+    filter: { types: ['restaurant'], fit15: ['yes'] },
+    empty: '確定能坐 15 人的餐廳',
+    // 分組（4～6 人）的 fitSubgroup 不在 Filter 裡；「要分桌」的店（席數夠、可訂位）最接近（T64 自己定的）
+    relax: { filter: { types: ['restaurant'], fit15: ['split'] }, label: (w) => `看${w} 15 人要分桌的餐廳` },
+    ask: (w) => `${w}有哪裡可以 15 人一起吃飯？`,
+  },
+  { id: 'stay', title: '住在這裡', note: '包棟、可住 15 人排前面', filter: { types: ['lodging'] }, empty: '住宿的資料', ask: (w) => `${w}附近有哪裡適合 15 人住？` },
   // 只放景點：餐廳、住宿本來就在室內（weather 不篩它們），另外兩排就是。室內、有遮蔽都算（T58）
-  { id: 'rain', title: '下雨也行', note: '室內或有遮蔽的景點', filter: { types: ['spot'], weather: RAIN_OK } },
+  {
+    id: 'rain',
+    title: '下雨也行',
+    note: '室內或有遮蔽的景點',
+    filter: { types: ['spot'], weather: RAIN_OK },
+    empty: '室內或有遮蔽的景點',
+    relax: { filter: { types: ['restaurant'] }, label: (w) => `看${w}的餐廳（都在室內）` },
+    ask: (w) => `${w}下雨天可以去哪裡？`,
+  },
 ];
 
 /** 書架上先放幾個 */
@@ -55,14 +86,14 @@ export function stayScore(p: Place, full?: (id: string) => Place | null): number
   return whole + (typeof max === 'number' && max >= 15 ? 1 : 0);
 }
 
-/** 每排書架的內容；沒有東西的那排不列。full：完整的資料點（住宿的可住人數在詳情層） */
+/** 每排書架的內容；0 個的那排也列（T64：畫面寫「這裡沒有」和下一步，不藏）。full：完整的資料點（住宿的可住人數在詳情層） */
 export function shelfRows(places: Place[], base: Pick<Filter, 'areas' | 'regions'>, size = SHELF_SIZE, full?: (id: string) => Place | null): ShelfRow[] {
   return SHELVES.map((shelf) => {
     let all = explorePlaces(places, shelfFilter(shelf, base), null, 'recommend', () => 0);
     // 同分照推薦順序（sort 是穩定的）
     if (shelf.id === 'stay') all = all.map((p) => [p, stayScore(p, full)] as const).sort((a, b) => b[1] - a[1]).map(([p]) => p);
     return { shelf, items: all.slice(0, size), total: all.length };
-  }).filter((r) => r.total > 0);
+  });
 }
 
 /** 概覽的四格數字（T52）：每排書架在這區一共幾個；0 的也列（畫面灰掉、不能點），順序同 SHELVES */
@@ -70,24 +101,33 @@ export function shelfCounts(places: Place[], base: Pick<Filter, 'areas' | 'regio
   return SHELVES.map((shelf) => ({ shelf, total: explorePlaces(places, shelfFilter(shelf, base), null, 'recommend', () => 0).length }));
 }
 
+const sameSet = (a: readonly string[], b: readonly string[]) => a.length === b.length && a.every((v) => b.includes(v));
+
+/** 書架自己的條件是哪幾個欄位（地區、子地區之外） */
+export const shelfKeys = (shelf: Shelf) => Object.keys(shelf.filter) as FilterKey[];
+
+/**
+ * 現在的條件裡有沒有一整排書架（T64）：書架的那幾個欄位剛好是書架的值（順序不管），其他欄位隨便（自己在面板加的、搜尋）。
+ * 拿掉書架帶來的任何一個條件、或在同一個欄位多選（例如多選一個類型，變成放寬）就不是了。不是就 null
+ */
+export function shelfOf(filter: Filter): Shelf | null {
+  return SHELVES.find((shelf) => shelfKeys(shelf).every((k) => sameSet(filter[k], shelf.filter[k] ?? []))) ?? null;
+}
+
 /** 條件剛好是哪一排書架（地區、子地區之外的條件一樣；順序不管）；不是就 null */
 export function matchShelf(filter: Filter): Shelf | null {
-  const same = (a: readonly string[], b: readonly string[]) => a.length === b.length && a.every((v) => b.includes(v));
-  return (
-    SHELVES.find((shelf) => {
-      const want = shelfFilter(shelf, filter);
-      return (Object.keys(EMPTY_FILTER) as FilterKey[]).every((k) => same(filter[k], want[k]));
-    }) ?? null
-  );
+  const shelf = shelfOf(filter);
+  if (!shelf) return null;
+  const want = shelfFilter(shelf, filter);
+  return (Object.keys(EMPTY_FILTER) as FilterKey[]).every((k) => sameSet(filter[k], want[k])) ? shelf : null;
 }
 
 /**
- * 清單層的返回鈕（T50）：條件還是那排書架寫書架名（「一定要去」），之後又改了條件或有搜尋寫「回到志摩」。
- * 畫面在前面加「‹ 」、後面接「· N 個地點」。
+ * 清單層的返回鈕（T50、T64）：條件裡還有一整排書架寫書架名（「可坐 15 人」，自己多加的條件、搜尋不影響），
+ * 拿掉了書架帶來的條件、或本來就是自己在面板篩的寫「自己篩選」。畫面在前面加「‹ 」、後面接「· 志摩・賢島 · N 個地點」。
  */
-export function backLabel(filter: Filter, query: string, areaName: string): string {
-  const shelf = query.trim() ? null : matchShelf(filter);
-  return shelf ? shelf.title : `回到${areaName}`;
+export function backLabel(filter: Filter): string {
+  return shelfOf(filter)?.title ?? '自己篩選';
 }
 
 /**

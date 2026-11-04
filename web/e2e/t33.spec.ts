@@ -366,14 +366,14 @@ test('地區列取代類型列（T42）：類型在面板裡、算進篩選的�
   const area = await count();
   await pickType(page, 'restaurant');
   await expect.poll(count).toBeLessThan(area);
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('filter-applied')).toHaveCount(0);
 
   // 面板沒有地區；全部清除不清地區
   await page.getByTestId('filter-open').click();
   await expect(page.locator('[data-testid^="filter-opt-area-"]')).toHaveCount(0);
   await page.getByTestId('filter-clear').click();
-  await expect(page.getByTestId('filter-count')).toHaveCount(0);
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(0);
   await page.getByTestId('filter-close').click();
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
   // 照片牆切換只在照片牆、清單那層（T50）：回到書架就沒有

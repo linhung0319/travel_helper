@@ -22,10 +22,11 @@ async function snapshot(page: Page) {
       dims: ['toba-aquarium', 'ise-naiku', 'toba-sazanami'].map((id) => th.visual(id)),
     };
   });
-  // 套用的條件不再列成晶片（T33）：畫面上看得到的是類型列選到哪些、篩選按鈕的數字
-  const count = page.getByTestId('filter-count');
+  // 套用的條件：「現在看」那一列有幾顆（T64 取代篩選按鈕的數字；搜尋不算）、類型列選到哪些
+  const chips = page.locator('[data-testid="cond-chip"]:not([data-key="query"])');
+  const n = await chips.count();
   const applied = {
-    count: (await count.count()) ? await count.innerText() : '',
+    count: n ? String(n) : '',
     types: await page.locator('[data-testid^="ex-type-"][aria-pressed="true"]').allTextContents(),
   };
   return { ...state, applied };
@@ -112,17 +113,17 @@ test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不�
   await waitIdle(page);
   expect(await page.evaluate(() => (window as any).__th.map.getCenter().toArray())).toEqual(c1);
 
-  // AI 套的條件：想去分頁看篩選按鈕的數字（T42 起類型也算、地區不算）、打開面板看條件，地區列標亮（T33 取代晶片）
+  // AI 套的條件：想去分頁看「現在看」那一列幾顆（T64；類型也算、地區不算）、打開面板看條件，地區列標亮（T33 取代晶片）
   await page.getByTestId('side-tab-wish').click();
   await run(page, 'setFilter', { areas: ['toba'], types: ['restaurant'], fit15: ['yes'] });
-  await expect(page.getByTestId('filter-count')).toHaveText('2');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
   await expectFilterOpt(page, 'group-yes', true);
   await expectFilterOpt(page, 'type-restaurant', true);
   // 從面板取消：類型、地區還在
   await pickFilter(page, 'group-yes');
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.fit15)).toEqual([]);
-  await expect(page.getByTestId('filter-count')).toHaveText('1');
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
 });
 
