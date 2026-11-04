@@ -244,9 +244,9 @@ test('探索：類型篩選（T42 收進面板）', async ({ page }) => {
   expect(types.length).toBeGreaterThan(0);
   expect(new Set(types)).toEqual(new Set(['restaurant']));
   const all = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
-  // 篩選面板選「可容納 15 人」：只剩可容納 15 人的
+  // 篩選面板選「全員 15 人」：只剩全員能一起吃的（T66）
   await page.getByTestId('filter-open').click();
-  await page.getByTestId('filter-opt-group-yes').click();
+  await page.getByTestId('filter-opt-group-all').click();
   await page.getByTestId('filter-done').click();
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   const n = Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'));
@@ -254,8 +254,8 @@ test('探索：類型篩選（T42 收進面板）', async ({ page }) => {
   expect(n).toBeLessThan(all);
   // 打開面板再點一次取消
   await page.getByTestId('filter-open').click();
-  await expect(page.getByTestId('filter-opt-group-yes')).toHaveAttribute('aria-pressed', 'true');
-  await page.getByTestId('filter-opt-group-yes').click();
+  await expect(page.getByTestId('filter-opt-group-all')).toHaveAttribute('aria-pressed', 'true');
+  await page.getByTestId('filter-opt-group-all').click();
   await page.getByTestId('filter-done').click();
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   expect(Number(await page.getByTestId('m-feed-wall').getAttribute('data-count'))).toBe(all);

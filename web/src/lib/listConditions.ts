@@ -8,7 +8,7 @@ import type { Area, Place } from '../data/types.ts';
 import { appliedChips } from '../shared/filterOptions.ts';
 import { explorePlaces } from './explore.ts';
 import { TYPE_LABELS, type Filter, type FilterKey } from './filter.ts';
-import { shelfFilter, shelfKeys, shelfOf, type Shelf } from './shelves.ts';
+import { shelfFilter, shelfKeys, shelfOf, shelfTierOf, type Shelf } from './shelves.ts';
 
 /** 條件列的一顆。key 是 Filter 的欄位，另外兩種：query（搜尋）、inView（只看地圖畫面裡的，只有網頁） */
 export interface CondChip {
@@ -40,8 +40,8 @@ function placeShort(filter: Pick<Filter, 'areas' | 'regions'>, areas: Area[]): s
  * shelves：探索才有書架（想去沒有，條件都是白底）
  */
 export function conditionChips(filter: Filter, query: string, areas: Area[], opts: { inView?: boolean; shelves?: boolean } = {}): CondChip[] {
-  const shelf = opts.shelves === false ? null : shelfOf(filter);
-  const presetKeys = shelf ? shelfKeys(shelf) : [];
+  const hit = opts.shelves === false ? null : shelfTierOf(filter);
+  const presetKeys = hit ? shelfKeys(hit.shelf, hit.tier) : [];
   const chips = appliedChips(filter, areas).map((c) => ({ ...c, preset: presetKeys.includes(c.key) }));
   const q = query.trim();
   return [
@@ -64,11 +64,14 @@ function nounOf(filter: Filter): string {
   return filter.types.length === 1 ? TYPE_LABELS[filter.types[0]] : '地點';
 }
 
+/** 晶片的字當形容詞不順的（「找全員 15 人的餐廳」）改寫 */
+const ADJECTIVE_LABELS: Partial<Record<FilterKey, Record<string, string>>> = { who: { all: '全員 15 人能一起吃' } };
+
 /** 條件寫成形容詞：「S、A 級」「可容納 15 人」「適合長輩」，類型另外當名詞 */
 function adjectives(filter: Filter, areas: Area[]): string {
   const chips = appliedChips(filter, areas).filter((c) => c.key !== 'types');
   const tiers = chips.filter((c) => c.key === 'tiers').map((c) => c.value);
-  const rest = chips.filter((c) => c.key !== 'tiers').map((c) => c.label);
+  const rest = chips.filter((c) => c.key !== 'tiers').map((c) => ADJECTIVE_LABELS[c.key]?.[c.value] ?? c.label);
   return [...(tiers.length ? [`${tiers.join('、')} 級`] : []), ...rest].join('、');
 }
 
@@ -104,7 +107,7 @@ const countOf = (places: Place[], filter: Filter, query: string) => explorePlace
 /**
  * 0 個的時候寫什麼、給哪幾個下一步（T64）：書架的一排（AreaHome）和照片牆、清單（篩到 0 個）都用這個。
  * 1. 放大範圍：選了子地區時看整區（同樣的條件），數字是 0 不放。
- * 2. 放寬條件：還是一整排書架（沒有自己加的條件）時用那排的 relax（B 級、要分桌、餐廳）；其他時候拿掉搜尋，或從最後加的條件往前找第一個拿掉後有東西的。數字是 0 不放。
+ * 2. 放寬條件：還是一整排書架（沒有自己加的條件）時不放（書架自己會退到第二級，兩級都 0 才到這裡，T66）；其他時候拿掉搜尋，或從最後加的條件往前找第一個拿掉後有東西的。數字是 0 不放。
  * 3. 問 AI：書架的那句（「賢島有什麼值得去的景點？」），其他用 listDraft。
  */
 export function emptyHelp(places: Place[], filter: Filter, query: string, areas: Area[]): EmptyHelp {
@@ -123,11 +126,7 @@ export function emptyHelp(places: Place[], filter: Filter, query: string, areas:
     if (count > 0) steps.push({ kind: 'widen', label: pureShelf ? `看${areaName}全區的${pureShelf.title}` : `看${areaName}全區`, count, filter: wide, query: q });
   }
 
-  if (pureShelf?.relax && where) {
-    const relaxed = shelfFilter({ ...pureShelf, filter: pureShelf.relax.filter }, filter);
-    const count = countOf(places, relaxed, '');
-    if (count > 0) steps.push({ kind: 'relax', label: pureShelf.relax.label(where), count, filter: relaxed, query: '' });
-  } else if (!pureShelf) {
+  if (!pureShelf) {
     const chips = conditionChips(filter, q, areas, { shelves: false }).filter((c) => c.key !== 'inView');
     for (const chip of [...chips].reverse()) {
       const next = withoutChip(filter, q, chip);
@@ -149,7 +148,7 @@ export function emptyHelp(places: Place[], filter: Filter, query: string, areas:
   return { message, steps };
 }
 
-/** 書架的一排是 0 個時（AreaHome）：同 emptyHelp，條件是那排套在目前地區、子地區上 */
+/** 書架的一排兩級都是 0 個時（AreaHome）：同 emptyHelp，條件是那排第一級套在目前地區、子地區上 */
 export function shelfEmptyHelp(places: Place[], shelf: Shelf, base: Pick<Filter, 'areas' | 'regions'>, areas: Area[]): EmptyHelp {
   return emptyHelp(places, shelfFilter(shelf, base), '', areas);
 }

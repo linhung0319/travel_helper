@@ -6,8 +6,8 @@
 // 要讓清單畫面、引擎多讀一個欄位時加在這裡，LAYER_VERSION 加一；重新匯入時內容沒變的點也會重算。
 // web/test/placeLayers.test.ts 檢查引擎、篩選、標章、AI 搜尋用清單層和完整資料算出來一樣。
 
-/** 分層規則的版本：改了規則就加一 */
-export const LAYER_VERSION = 3;
+/** 分層規則的版本：改了規則就加一（v4：住宿的 kind、group.totalRooms 進清單層，T66） */
+export const LAYER_VERSION = 4;
 
 /** 整個欄位都放清單層 */
 const LIST_WHOLE = [
@@ -18,6 +18,8 @@ const LIST_WHOLE = [
   'region',
   'coords',
   'tier',
+  // 住宿的種類：書架「住在這裡」的旅館、飯店（T66）
+  'kind',
   'contexts',
   'tags',
   'cuisine',
@@ -44,8 +46,8 @@ const LIST_WHOLE = [
 
 /** 只放幾個子欄位到清單層；完整的值在詳情層 */
 const LIST_PICK: Record<string, readonly string[]> = {
-  // maxGuests：篩選的「可住 15 人」（T57）
-  group: ['fit15', 'fitSubgroup', 'confirmed15', 'wholeRental', 'maxGuests'],
+  // maxGuests：篩選的「可住 15 人」（T57）；totalRooms：旅館、飯店 5 間房以上算住得下全團（T66）
+  group: ['fit15', 'fitSubgroup', 'confirmed15', 'wholeRental', 'maxGuests', 'totalRooms'],
   kids: ['allowed', 'friendly', 'minAge'],
   accessibility: ['stairs', 'walkInsideMinutes'],
   assessment: ['scores'],

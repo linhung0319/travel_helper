@@ -8,16 +8,16 @@ import { CONTEXTS, TIERS, type Area } from '../data/types.ts';
 import type { PlaceType } from '../data/types.ts';
 import {
   CONTEXT_LABELS,
-  FIT15_LABELS,
-  FIT15_VALUES,
-  LODGING_FILTER_LABELS,
-  LODGING_FILTER_VALUES,
+  RAIN_OK,
+  STAY_LABELS,
+  STAY_VALUES,
   SUIT_LABELS,
   SUIT_VALUES,
   TYPE_LABELS,
   VOTE_FILTER_LABELS,
-  WEATHER_LABELS,
-  WEATHER_VALUES,
+  WEATHER_FILTER_LABELS,
+  WHO_LABELS,
+  WHO_VALUES,
   filterChips,
   type Filter,
   type FilterChip,
@@ -46,12 +46,16 @@ export interface FilterGroup {
   desktopOnly?: boolean;
 }
 
-/** 面板的順序：類型、人數（餐廳）、人數（住宿）、天氣、適合、用餐、想去、等級、地圖 */
+/**
+ * 面板的順序：類型、誰吃（餐廳）、住法（住宿）、天氣、適合、用餐、想去、等級、地圖。
+ * T66：誰吃、住法取代原本的「人數（餐廳）」fit15 四選一、「人數（住宿）」能包棟／可住 15 人（Filter 的 fit15、lodging 留給 AI 的 set_filter，面板不畫）；
+ * 天氣只剩一顆「下雨也行」。T67 再照類型分段
+ */
 export const FILTER_GROUPS: FilterGroup[] = [
   { id: 'type', title: '類型', key: 'types', options: () => (['spot', 'restaurant', 'lodging'] as const).map((t) => ({ value: t, label: TYPE_LABELS[t] })) },
-  { id: 'group', title: '人數（餐廳）', key: 'fit15', forTypes: ['restaurant'], options: () => FIT15_VALUES.map((v) => ({ value: v, label: FIT15_LABELS[v] })) },
-  { id: 'lodging', title: '人數（住宿）', key: 'lodging', forTypes: ['lodging'], options: () => LODGING_FILTER_VALUES.map((v) => ({ value: v, label: LODGING_FILTER_LABELS[v] })) },
-  { id: 'weather', title: '天氣', key: 'weather', forTypes: ['spot'], options: () => WEATHER_VALUES.map((v) => ({ value: v, label: WEATHER_LABELS[v] })) },
+  { id: 'group', title: '誰吃（餐廳）', key: 'who', forTypes: ['restaurant'], options: () => WHO_VALUES.map((v) => ({ value: v, label: WHO_LABELS[v] })) },
+  { id: 'lodging', title: '住法（住宿）', key: 'stay', forTypes: ['lodging'], options: () => STAY_VALUES.map((v) => ({ value: v, label: STAY_LABELS[v] })) },
+  { id: 'weather', title: '天氣', key: 'weather', forTypes: ['spot'], options: () => RAIN_OK.map((v) => ({ value: v, label: WEATHER_FILTER_LABELS[v] })) },
   { id: 'suits', title: '適合', key: 'suits', forTypes: ['spot'], options: () => SUIT_VALUES.map((v) => ({ value: v, label: SUIT_LABELS[v] })) },
   {
     id: 'context',
@@ -74,7 +78,7 @@ export function groupDimmed(g: Pick<FilterGroup, 'forTypes'>, types: readonly Pl
 export const OUTSIDE_KEYS: readonly FilterKey[] = ['areas', 'regions'];
 
 /** 套用的條件 → 晶片的順序（和面板一樣） */
-const CHIP_ORDER: FilterKey[] = ['types', 'fit15', 'lodging', 'weather', 'suits', 'contexts', 'votes', 'tiers'];
+const CHIP_ORDER: FilterKey[] = ['types', 'who', 'fit15', 'stay', 'lodging', 'weather', 'suits', 'contexts', 'votes', 'tiers'];
 
 /** 面板裡套用的條件（地區、子地區在外面，不算）；「篩選」上的數字、AI 的說明用 */
 export function appliedChips(f: Filter, areas: Area[]): FilterChip[] {

@@ -80,12 +80,12 @@ const AREAS = [
   { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, tripOrder: 2, center: [136.8, 34.4], bbox: [136.7, 34.3, 136.9, 34.5] },
 ] as unknown as Area[];
 
-test('FILTER_GROUPS：順序、想去只有想去分頁有；地區不在面板裡（T42、T57）', () => {
+test('FILTER_GROUPS：順序、想去只有想去分頁有；地區不在面板裡（T42、T57、T66）', () => {
   assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'group', 'lodging', 'weather', 'suits', 'context', 'wish', 'tier', 'map']);
   const opts = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.options(AREAS, 'explore');
-  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'group')!.title, '人數（餐廳）');
-  assert.deepEqual(opts('group').map((o) => o.label), ['可容納 15 人', '15 人要分桌', '坐不下 15 人', '還沒查']);
-  assert.deepEqual(opts('lodging').map((o) => o.label), ['能包棟', '可住 15 人']);
+  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'group')!.title, '誰吃（餐廳）');
+  assert.deepEqual(opts('group').map((o) => o.label), ['全員 15 人', '分組 4～6 人']);
+  assert.deepEqual(opts('lodging').map((o) => o.label), ['包棟・一棟全團', '旅館飯店・全團住得下', '要分開住']);
   assert.deepEqual(opts('suits').map((o) => o.label), ['長輩', '小孩', '不用搭車']);
   assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'context')!.title, '用餐');
   assert.deepEqual(opts('context').find((o) => o.value === 'transit'), { value: 'transit', label: '車站旁', note: '主要車站走路 5 分內' });
@@ -95,8 +95,7 @@ test('FILTER_GROUPS：順序、想去只有想去分頁有；地區不在面板�
   assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
   assert.equal(FILTER_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
   assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'weather')!.options(AREAS, 'explore'), [
-    { value: 'indoor', label: '室內' },
-    { value: 'covered', label: '有遮蔽' },
+    { value: 'rain', label: '下雨也行' },
   ]);
 });
 test('groupDimmed：選了景點時餐廳、住宿的組變淡（反過來也是）；沒選類型都不淡', () => {
@@ -108,10 +107,10 @@ test('groupDimmed：選了景點時餐廳、住宿的組變淡（反過來也是
   assert.deepEqual(dimmed(['spot', 'restaurant']), ['lodging']);
 });
 test('appliedChips：含類型，不含地區、子地區（在外面一列）', () => {
-  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], weather: ['covered' as const] };
+  const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], weather: ['covered' as const], who: ['all' as const], stay: ['whole' as const] };
   const chips = appliedChips(f, AREAS);
-  assert.deepEqual(chips.map((c) => c.key), ['types', 'fit15', 'weather']);
-  assert.equal(chips[2].label, '有遮蔽');
+  assert.deepEqual(chips.map((c) => c.key), ['types', 'who', 'fit15', 'stay', 'weather']);
+  assert.deepEqual(chips.map((c) => c.label).slice(1), ['全員 15 人', '可容納 15 人', '包棟・一棟全團', '有遮蔽']);
 });
 
 // rowHighlights 的測試在 placeSummary.test.ts（T44b 改成這團的標章）

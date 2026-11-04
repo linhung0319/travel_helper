@@ -115,14 +115,14 @@ test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不�
 
   // AI 套的條件：想去分頁看「現在看」那一列幾顆（T64；類型也算、地區不算）、打開面板看條件，地區列標亮（T33 取代晶片）
   await page.getByTestId('side-tab-wish').click();
-  await run(page, 'setFilter', { areas: ['toba'], types: ['restaurant'], fit15: ['yes'] });
+  await run(page, 'setFilter', { areas: ['toba'], types: ['restaurant'], who: ['all'] });
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
-  await expectFilterOpt(page, 'group-yes', true);
+  await expectFilterOpt(page, 'group-all', true);
   await expectFilterOpt(page, 'type-restaurant', true);
   // 從面板取消：類型、地區還在
-  await pickFilter(page, 'group-yes');
-  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.fit15)).toEqual([]);
+  await pickFilter(page, 'group-all');
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.who)).toEqual([]);
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
 });

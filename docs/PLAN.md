@@ -1591,6 +1591,15 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - **天氣**：面板只剩一顆「下雨也行」（`weather` 的值改成一個 `rain`，比對時 indoor、covered 都算；AI 的 `set_filter`、`search_places` 的 `weather` 照舊收三個值）。
 - **驗證**：單元測試（兩級的退、每級的條件、小字；住得下的規則用三種住宿各一個例子）；e2e 改 t42、t50、t64 有關空書架的測試，加「第一級 0 個退到第二級」網頁、手機各一支。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；本機 D1 重匯；👤 看過截圖。
+- **結果**（2026-11-04，分支 `t66`）：
+  - **重匯 D1**：寫程式前主目錄本機 D1 重匯（更新 518、重算 142），660 個點都是 layer_version 3，「下雨也行」36 個、`maxGuests` ≥ 15 的 19 個。`LAYER_VERSION` 改 4（清單層多 `kind`、`group.totalRooms`），merge 後主目錄要再 `db:import -- --all` 一次。**正式環境（`--remote`）還沒匯**：要等 deploy 新程式，👤 決定時一起做。
+  - `lib/filter.ts`：`Filter` 加 `who`（all、sub）、`stay`（whole、hotel、split）；`eatsTogether`、`matchesWho`、`placeStay`（旅館飯店＝kind 是 hotel、ryokan、other 且 `totalRooms` ≥ 5，`HOTEL_ROOMS_GROUP`）。`weather` 多一個值 `rain`（室內、有遮蔽都算，`weatherMatches`），`RAIN_OK` 改成 `['rain']`；indoor、covered 照舊給 AI。`fit15`、`lodging` 留著給 AI，面板不畫。
+  - **`stay` 的三個值和 §32 的 T67「住法」不完全一樣**：T66 的 hotel 是「旅館飯店 5 間房以上」（書架第一級要用），split 是第一級以外的全部住宿（第二級要用，「要分開住」）。T67 定住法時再看要不要拆成 §32 那三顆。
+  - `lib/shelves.ts`：`Shelf.tiers`（第一、第二級）、`rule`、`note`（分布）、`fallback`（退到第二級的那句）、`caption`（小卡第二行）；`shelfRow(s)` 回傳 `tier`、`filter`、`note`、`fallback`；`shelfTierOf` 認得哪一級；`stayScore`、`relax` 拿掉。「可坐 15 人」改名「全員吃飯」（id 照舊 `fit15`）。全員吃飯的第二級用 `fit15: ['unknown', 'no']`（照 §32 的表；`fit15` 是 yes、split 但不收小孩的店兩級都不在）。兩級都 0 的那句：「賢島沒有 S、A、B 級的景點」「…沒有餐廳」「…沒有住宿」。
+  - `lib/badges.ts`：`fit15Caption`、`stayCaption`、`mealsCaption`；餐廳的標章每家都有 15 人那句（含「15 人還沒查」），住宿的「包棟」換成住法那句。
+  - 畫面：`AreaHome` 用 `row.filter`、`row.note`，退到第二級時 `.xs-note.fallback`（芥子黃）、`data-tier`；不再為了排序讀住宿的詳情層。面板的「人數（餐廳）」「人數（住宿）」換成「誰吃（餐廳）」「住法（住宿）」（同樣的組 ID），天氣只剩「下雨也行」。AI 的 `set_filter` 收 `who`、`stay`，`weather` 收 rain、indoor、covered。
+  - 真資料：志摩的賢島、鵜方等 8 個子地區「一定要去」退到 B 級；間崎島、橫山等「下雨也行」退到志摩全區；相差、菅島、神島等「全員吃飯」退到第二級。
+  - 驗證：`npm test` 1098 通過、`typecheck` 通過。e2e 只跑受影響的：網頁 `t42`（全部，新增「第一級 0 個退到第二級」）、`commands`、`t44b`、`detail-popup`、`t15m` 的篩選那支；手機 `mobile-t42`（新增「第一級 0 個退到第二級」）、`mobile-t49` 書架那支、`mobile` 的篩選三支，390、360 兩種尺寸，都通過。0 個的例子從賢島換成坂手島（賢島現在退到 B 級，不是 0）。
 
 #### T67 篩選面板照類型分段 〔M〕
 - **前置**：T66（第一級的條件、`who`、`stay` 欄位）。

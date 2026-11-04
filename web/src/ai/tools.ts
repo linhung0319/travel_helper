@@ -97,7 +97,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         kids: bool('適合小孩'),
         access: bool('不用搭車（交通評分 accessEase 4 分以上：車站走路就到）'),
         reservable: bool('可以預約'),
-        weather: strs('景點的天氣：indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）；「下雨也行」兩個都給。餐廳、住宿不受影響'),
+        weather: strs('景點的天氣：rain（下雨也行＝室內、有遮蔽都算）、indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）。餐廳、住宿不受影響'),
         wholeRental: bool('能包棟（只留住宿）'),
         maxGuestsAtLeast: num('最多住幾人至少這麼多（只留住宿；整團 15）'),
         votes: strs('any（有人按想去的，問「想去的」用這個）、popular（2 人以上想去）、mine（我按想去的）'),
@@ -243,8 +243,8 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'set_filter',
       kind: 'stage',
-      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、weather（indoor 室內、covered 有遮蔽；「下雨也行」兩個都給；只篩景點，餐廳、住宿不受影響）、lodging（wholeRental 能包棟、sleeps15 可住 15 人；只留住宿，兩個都給要都符合）、suits（elderly 適合長輩、kids 適合小孩、access 不用搭車，評分 4 分以上；只留景點，給幾個都要符合）。fit15 的 unknown 是還沒查。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
-      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), weather: strs(), lodging: strs(), suits: strs(), clear: bool() }),
+      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、weather（rain 下雨也行＝室內、有遮蔽都算，indoor 室內、covered 有遮蔽；只篩景點，餐廳、住宿不受影響）、who（all 全員 15 人能一起吃＝fit15 是 yes 或 split 而且收小孩、sub 分組 4～6 人；只留餐廳）、stay（whole 包棟一棟住得下全團、hotel 旅館飯店 5 間房以上、split 要分開住；只留住宿）、lodging（wholeRental 能包棟、sleeps15 可住 15 人；只留住宿，兩個都給要都符合）、suits（elderly 適合長輩、kids 適合小孩、access 不用搭車，評分 4 分以上；只留景點，給幾個都要符合）。fit15 的 unknown 是還沒查。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
+      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), weather: strs(), lodging: strs(), suits: strs(), who: strs(), stay: strs(), clear: bool() }),
       run(input) {
         const { clear, ...patch } = input as Record<string, string[]> & { clear?: boolean };
         const err = d.commands.checkFilter(patch as never);

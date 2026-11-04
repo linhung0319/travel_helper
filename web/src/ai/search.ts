@@ -2,7 +2,7 @@
 
 import { displayMinutes, estimateWalk } from '../lib/geo/index.ts';
 import { openingOn, type EngineConfig, type PlaceRecord } from '@travel-helper/engine';
-import { SUIT_MIN, placeScore, matchesFilter, placeFit15, placeWeather, type Filter, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
+import { SUIT_MIN, placeScore, matchesFilter, placeFit15, placeWeather, weatherMatches, type Filter, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { inBbox } from '../lib/areas.ts';
 import { ratingOf } from '../lib/explore.ts';
@@ -224,7 +224,7 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
     }
     if (input.weather?.length && p.type === 'spot') {
       const w = placeWeather(p);
-      if (!pass(w === null ? null : (input.weather as readonly string[]).includes(w))) continue;
+      if (!pass(w === null ? null : weatherMatches(w, input.weather))) continue;
     }
     if (input.wholeRental && (p.type !== 'lodging' || !pass(known(lodgingGroup(p, 'wholeRental'))))) continue;
     if (input.maxGuestsAtLeast != null) {
