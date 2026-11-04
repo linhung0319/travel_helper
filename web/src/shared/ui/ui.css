@@ -41,7 +41,7 @@
   color: var(--indigo);
 }
 
-/* 地區列的「概覽」（想去的「全部」）：淡芥子黃，選到時實心芥子黃、深色字；看得出不是一個地區（T63 §27） */
+/* 地區列的「概覽」（想去的「全部」）：淡芥子黃，選到時實心芥子黃、深色字；看得出不是一個地區（T63 §28） */
 .ui-chip.ui-chip-overview {
   border-color: var(--mustard-line);
   background: var(--mustard-wash);
@@ -4990,7 +4990,7 @@ button.ui-sk-stay:disabled {
   padding: 8px 10px 8px;
 }
 
-/* 子地區一行（T63 §27）：照片下面第一行，「志摩全區」加全部的子地區，一排橫滑（網頁有 ‹ › 箭頭）；選到的是淡靛藍底 */
+/* 子地區一行（T63 §28）：照片下面第一行，「志摩全區」加全部的子地區，一排橫滑（網頁有 ‹ › 箭頭）；選到的是淡靛藍底 */
 .xo-regions.m-chips {
   gap: 5px;
   padding: 8px 10px 2px;

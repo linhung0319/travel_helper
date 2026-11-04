@@ -1,5 +1,5 @@
 // T42：探索的概覽、地區列、選區後的書架（網頁版，interaction-design §18.1）。
-// T63：概覽沒有四格書架，子地區在卡片裡換內容、網頁地圖跟著框（§27）。
+// T63：概覽沒有四格書架，子地區在卡片裡換內容、網頁地圖跟著框（§28）。
 // T50：選了一區不放特色、子地區列在篩選列裡、書架的順序和名字、小卡的類型圓章、返回鈕「‹ 一定要去」、切換鈕只在清單層。
 // SHOT_DIR 有設時把畫面存下來（給 👤 看的截圖）。
 
@@ -78,7 +78,7 @@ test('概覽（T52、T63）：地區照片、住幾晚；沒有四格書架；�
   const n = await page.evaluate(() => (window as any).__th.dataStore.getState().areas.find((a: any) => a.id === 'shima').regions.length);
   await expect(shima.getByTestId('overview-region-all')).toHaveText('志摩全區');
   await expect(shima.getByTestId('overview-region-all')).toHaveAttribute('aria-pressed', 'true');
-  await expect(shima.locator('[data-testid^="overview-region-shima-"]')).toHaveCount(n);
+  await expect(shima.locator('[data-testid^="overview-region-"]:not([data-testid="overview-region-all"])')).toHaveCount(n);
   await expect(shima.getByTestId('overview-region-more')).toHaveCount(0);
   await expect(shima.getByTestId('overview-reps-title')).toHaveText('志摩的代表地點');
   await expect(shima.getByTestId('overview-go')).toHaveText('看志摩 ›');

@@ -1,4 +1,4 @@
-// T63：探索的概覽卡（interaction-design §27）—— 子地區切換的狀態、卡片內容跟著子地區換
+// T63：探索的概覽卡（interaction-design §28）—— 子地區切換的狀態、卡片內容跟著子地區換
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { allRegionsLabel, areaSubName, overviewContent } from '../src/lib/overview.ts';

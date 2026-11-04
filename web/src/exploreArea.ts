@@ -24,19 +24,19 @@ export function pickArea(area: string | null) {
 /** 地區列的鈕（含「概覽」「全部」、目前這顆，T49）：地區、子地區以外的條件和搜尋都清掉，回到那一層的第一頁（概覽或那區的書架）。想去一樣 */
 export function pickAreaChip(area: string | null) {
   const s = appStore.getState();
-  // 「概覽」鈕：概覽的卡全部換回全區、地圖的框拿掉（T63 §27）
+  // 「概覽」鈕：概覽的卡全部換回全區、地圖的框拿掉（T63 §28）
   if (!area) overviewStore.getState().reset();
   s.setFilter(EMPTY_FILTER);
   s.setQuery('');
   pickArea(area);
 }
 
-/** 概覽的卡點了子地區一行（T63 §27，網頁）：地圖框到那個子地區，region 是 null 時框到整區；人還在概覽 */
+/** 概覽的卡點了子地區一行（T63 §28，網頁）：地圖框到那個子地區，region 是 null 時框到整區；人還在概覽 */
 export function focusOverview(area: string, region: string | null) {
   commands.focus(region ? { region } : { area });
 }
 
-/** 地圖的「⤢ 看全部地區」（T63 §27）：概覽的卡全部換回全區，地圖回到一進概覽時的範圍 */
+/** 地圖的「⤢ 看全部地區」（T63 §28）：概覽的卡全部換回全區，地圖回到一進概覽時的範圍 */
 export function showAllAreas() {
   overviewStore.getState().reset();
   const { areas, places } = dataStore.getState();

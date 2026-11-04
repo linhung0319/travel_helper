@@ -1,4 +1,4 @@
-// 探索的概覽卡（T63，interaction-design §27）：選了子地區時卡片換成那個子地區的簡介、二月注意、代表點。純邏輯，ExploreHome 讀。
+// 探索的概覽卡（T63，interaction-design §28）：選了子地區時卡片換成那個子地區的簡介、二月注意、代表點。純邏輯，ExploreHome 讀。
 // 區域一律從 areas.json 來，不寫死區域 ID。
 
 import { displayName } from '../data/normalize.ts';

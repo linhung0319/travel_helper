@@ -249,7 +249,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         }
       : null;
   const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
-  // 離開概覽（選了一區、搜尋、篩選）：概覽在地圖上的框拿掉，卡片選的子地區留著（T63 §27）
+  // 離開概覽（選了一區、搜尋、篩選）：概覽在地圖上的框拿掉，卡片選的子地區留著（T63 §28）
   useEffect(() => {
     if (!wish && stage !== 'overview') overviewStore.getState().clearFocus();
   }, [wish, stage]);

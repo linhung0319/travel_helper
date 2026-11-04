@@ -19,7 +19,7 @@ export const onlyRegions = (quick: string[]) => quick.filter((t) => t.startsWith
 
 /** 地區列（含「概覽」、目前這顆）：換地區，子地區和其他條件、搜尋都清掉，回到概覽或那區的書架（T49） */
 export function pickFeedArea(area: string | null) {
-  // 「概覽」鈕：概覽的卡全部換回全區（T63 §27）
+  // 「概覽」鈕：概覽的卡全部換回全區（T63 §28）
   if (!area) overviewStore.getState().reset();
   mobileStore.getState().setFeed({ area, type: 'all', quick: [], query: '' });
 }

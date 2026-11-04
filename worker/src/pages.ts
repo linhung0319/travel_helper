@@ -32,28 +32,40 @@ code{font-size:13px;overflow-wrap:anywhere}
 const LOGIN_STYLE = `
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;min-height:100dvh;background:linear-gradient(180deg,#fbd893 0%,#f9b26a 30%,#f27f5c 52%,#d9506f 68%,#c9456e 100%);background-attachment:fixed;color:#102a55;font:17px/1.6 system-ui,-apple-system,"Noto Sans TC",sans-serif;overflow-x:hidden}
-.lg-sun{position:fixed;top:32px;right:-34px;width:190px;height:190px;border-radius:50%;background:linear-gradient(180deg,#fff2a6,#ffd777)}
+body{margin:0;min-height:100dvh;background:linear-gradient(180deg,#f9bf8c 0%,#f7a56e 24%,#f28751 44%,#ea6a5c 58%,#d6506c 68%,#b8456f 84%,#9c3d6c 100%);background-attachment:fixed;color:#102a55;font:17px/1.6 system-ui,-apple-system,"Noto Sans TC",sans-serif;overflow-x:hidden}
+.lg-sun{position:fixed;top:32px;right:-34px;width:190px;height:190px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#fffbe0 0%,#fff1a8 55%,#ffd977 100%);box-shadow:0 0 60px 18px rgb(255 238 170/.5)}
 .lg-art{position:fixed;inset:0;width:100%;height:100%;display:block}
 .lg{position:relative;min-height:100dvh;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:calc(24px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom))}
+.lg p{margin:0}
+.lg-serif,.lg-title h1{font-family:"Noto Serif TC","Hiragino Mincho ProN","Yu Mincho","Songti TC",serif}
 .lg-title{display:flex;align-items:flex-start;gap:12px}
-.lg-title h1{margin:0;writing-mode:vertical-rl;font:900 44px/1.1 "Noto Serif TC","Hiragino Mincho ProN","Yu Mincho","Songti TC",serif;letter-spacing:.14em;color:#0f2f5e}
-.lg-seal{display:grid;place-items:center;width:32px;height:32px;margin-top:4px;border-radius:6px;background:#c8321f;color:#fff3dc;font:900 19px/1 "Noto Serif TC","Hiragino Mincho ProN","Yu Mincho","Songti TC",serif}
-.lg-date{margin:4px 0 0;writing-mode:vertical-rl;font-size:15px;font-weight:700;letter-spacing:.16em;color:#0f2f5e}
+.lg-title h1{margin:0;writing-mode:vertical-rl;font-weight:900;font-size:44px;line-height:1.1;letter-spacing:.14em;color:#0f2f5e}
+.lg-sub{order:-1}
+.lg-seal{display:grid;place-items:center;width:32px;height:32px;margin-top:4px;border-radius:6px;background:#c8321f;color:#fff3dc;font-weight:900;font-size:19px;line-height:1}
+.lg .lg-date{margin-top:4px;writing-mode:vertical-rl;font-size:15px;font-weight:700;letter-spacing:.16em;color:#0f2f5e}
+.lg-family,.lg-route{display:none}
 .lg-card{width:100%;max-width:400px;margin-inline:auto;padding:18px 20px;border-radius:18px;background:#fff8ea;box-shadow:0 10px 30px rgb(15 47 94/.32)}
-.lg-card p{margin:0}
 .lg-lead{font-weight:700}
 .lg-btn{display:flex;align-items:center;justify-content:center;min-height:54px;margin:12px 0 10px;border-radius:12px;background:#c8321f;color:#fff8ea;font-size:19px;font-weight:700;letter-spacing:.3em;text-indent:.3em;text-decoration:none}
 .lg-btn:hover{background:#a92818}
 .lg-btn:focus-visible{outline:3px solid #0f2f5e;outline-offset:2px}
 .lg-note{font-size:14px;line-height:1.5;color:#51607a}
+/* 網頁版（§27）：右邊一張從頂到底的米色短冊，字都在短冊上；太陽右邊約 70px 藏在短冊後面 */
 @media (min-width:900px){
-  .lg-sun{top:6vh;right:clamp(90px,14vw,240px);width:280px;height:280px}
-  .lg{justify-content:center;align-items:flex-end;gap:32px;padding:40px clamp(40px,7vw,120px)}
-  .lg-title{width:360px;justify-content:flex-end}
-  .lg-title h1{font-size:64px}
-  .lg-date{font-size:17px}
-  .lg-card{width:360px;margin:0}
+  .lg-sun{--side:clamp(40px,5vw,96px);--d:clamp(210px,19vw,330px);top:5vh;right:calc(var(--side) + 290px);width:var(--d);height:var(--d);box-shadow:0 0 90px 34px rgb(255 238 170/.55)}
+  .lg{width:360px;margin:0 clamp(40px,5vw,96px) 0 auto;padding:9vh 40px 6vh;background:#fff8ea;box-shadow:0 0 0 1px rgb(15 47 94/.06),-18px 0 50px rgb(15 47 94/.28)}
+  .lg-title{flex-direction:row-reverse;justify-content:center;align-items:stretch;gap:22px}
+  .lg-title h1{font-size:clamp(56px,8.6vh,78px);line-height:1.05;letter-spacing:.16em}
+  .lg .lg-date{margin:0;padding-top:.5em;letter-spacing:.2em;font-family:"Noto Serif TC","Hiragino Mincho ProN","Yu Mincho","Songti TC",serif}
+  .lg-sub{order:0;display:flex;flex-direction:column;align-items:center}
+  .lg-family{display:block;writing-mode:vertical-rl;padding-top:3.2em;font-size:17px;line-height:1.9;letter-spacing:.2em}
+  .lg-seal{width:30px;height:30px;margin-top:14px;font-size:18px}
+  .lg-card{display:flex;flex-direction:column;gap:12px;max-width:none;margin:0;padding:0;border-radius:0;background:none;box-shadow:none}
+  .lg-lead{display:none}
+  .lg-route{display:flex;flex-direction:column;gap:2px;font-size:13px;color:#7a6a4f;letter-spacing:.08em}
+  .lg-route b{font-size:15px;color:#0f2f5e;letter-spacing:.12em}
+  .lg-btn{min-height:56px;margin:0}
+  .lg-note{font-size:13.5px;line-height:1.65}
 }
 `;
 
@@ -77,12 +89,13 @@ export function loginPage(returnTo: string): Response {
   return htmlResponse(
     `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fbd893">
+<meta name="theme-color" content="#f9bf8c">
 <meta name="robots" content="noindex"><title>伊勢志摩旅行</title><style>${LOGIN_STYLE}</style></head>
 <body><div class="lg-sun"></div>${LOGIN_ART}<main class="lg">
-<div class="lg-title"><span class="lg-seal" aria-hidden="true">旅</span><h1>伊勢志摩</h1><p class="lg-date">二〇二七年二月</p></div>
+<div class="lg-title"><h1>伊勢志摩</h1><p class="lg-date">二〇二七年二月</p><div class="lg-sub"><p class="lg-family lg-serif">一家人的行程</p><span class="lg-seal lg-serif" aria-hidden="true">旅</span></div></div>
 <div class="lg-card">
-<p class="lg-lead">一家 15 人的行程，大家一起排。</p>
+<p class="lg-route"><span>2/2（二）– 2/13（六）· 11 晚</span><b>志摩 › 鳥羽 › 伊勢 › 大阪</b></p>
+<p class="lg-lead">一家人的行程</p>
 <a class="lg-btn" href="${esc(href)}">登入</a>
 <p class="lg-note">只有家人能進來。按了會跳到 LINE 確認身分，第一次按「許可」就好。</p>
 </div>

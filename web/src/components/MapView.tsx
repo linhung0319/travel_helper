@@ -227,7 +227,7 @@ export function MapView() {
   const tripFocusDay = useApp((s) => s.tripFocusDay);
   // 想去分頁不寫行程的編號（三種樣子取代）
   const marks = useMemo(() => (mode === 'wish' ? new Map<string, string>() : itineraryMarks(plan, day, legOpen, tripFocusDay)), [plan, day, legOpen, tripFocusDay, mode]);
-  // 探索的概覽（T63 §27，只有網頁）：點了卡片的子地區一行，地圖框著那一區或子地區，畫它的範圍；離開概覽就不算
+  // 探索的概覽（T63 §28，只有網頁）：點了卡片的子地區一行，地圖框著那一區或子地區，畫它的範圍；離開概覽就不算
   const overviewPick = useOverview((s) => s.focus);
   const overviewFocus = desktop && mode === 'explore' && exploreStage(filter, query, !!aiResult) === 'overview' ? overviewPick : null;
 
@@ -697,7 +697,7 @@ export function MapView() {
   }, [loaded, selectedId, anchorId, dropIdsKey, hoveredId]);
 
   // 選了一區（T43 §21）：那區所有點外圍的形狀；只在探索。選了子地區（T56）只畫子地區的範圍，上緣放子地區名（點了沒有作用）
-  // 概覽框著的卡（T63 §27）一樣畫
+  // 概覽框著的卡（T63 §28）一樣畫
   const selectedArea = mode === 'explore' ? currentArea(filter) : null;
   const focusArea = selectedArea ?? overviewFocus?.area ?? null;
   const focusRegion = selectedArea ? (filter.regions.length === 1 ? filter.regions[0] : null) : (overviewFocus?.region ?? null);

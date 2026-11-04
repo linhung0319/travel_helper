@@ -1,5 +1,5 @@
 // T42：手機的探索概覽、地區列、書架（interaction-design §18.1）。SHOT_DIR 有設時存截圖。
-// T63：概覽沒有四格書架，子地區在卡片裡換內容（§27）。
+// T63：概覽沒有四格書架，子地區在卡片裡換內容（§28）。
 // T50：子地區列在篩選列裡、書架的順序、返回鈕「‹ 可坐 15 人」、切換鈕只在清單層。
 
 import { test, expect, type Page } from '@playwright/test';
