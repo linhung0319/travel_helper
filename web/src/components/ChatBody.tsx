@@ -275,7 +275,8 @@ export function ChatBody({ card, empty, screenLabel, listOpen, closeList, onNewC
   const blank = turns.length === 0 && !busy;
   // eslint-disable-next-line react-hooks/exhaustive-deps -- 只有這些變了才重算
   const starters = useMemo(() => (blank && loaded ? ai.starters() : []), [blank, loaded, screenLabel, plan, itinerary, votes]);
-  const cards = blank && !quota && loaded ? blankCards(lead, suggestions, starters, contexts.length > 0) : [];
+  // 問題放進輸入框的入口（T61）不帶晶片：它帶的建議問題照樣用
+  const cards = blank && !quota && loaded ? blankCards(lead, suggestions, starters, contexts.length > 0 || text.trim() !== '') : [];
   // 對話進行中按問 AI：建議問題放在輸入框上面
   const inlineSuggestions = blank ? [] : [...new Set([...(lead ? [lead.q] : []), ...suggestions])];
 

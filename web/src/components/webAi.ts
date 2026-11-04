@@ -6,7 +6,7 @@ import { openDialog, openDiscussion, openMapPanel, uiStore } from '../uiStore.ts
 import type { Filter } from '../lib/filter.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
-import { emptyDayFollowups, LODGING_FOLLOWUPS, nightLodgingStarter, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import { emptyDayFollowups, LODGING_FOLLOWUPS, lodgingDraft, nightLodgingStarter, WISH_EMPTY_DRAFT, type Starter } from '../ai/prompts.ts';
 import { dataStore } from '../dataStore.ts';
 import { areaNameOf } from '../lib/tripSkeleton.ts';
 import type { GuideAsk } from '../lib/tripStart.ts';
@@ -88,21 +88,28 @@ export const askDay = (date: string) => void askWeb([{ kind: 'day', date }]);
 
 export const askTrip = () => void askWeb([{ kind: 'trip' }]);
 
+/** 算得出問題的入口：問題放進輸入框，游標在最後，不送出（T61） */
+export async function draftWeb(text: string, followups?: string[]) {
+  await ai.draft(text, followups);
+  requestAnimationFrame(() => focusInput?.());
+}
+
 /** 引導彈窗的「問 AI」：問那一步的事，不帶晶片（§17.1）。③ 選住宿；④ 第一個還沒排的天 */
 export function askStart(step: GuideAsk) {
   const date = step === 'day' ? ai.firstEmptyDate() : null;
-  if (date) askEmptyDay(date);
-  else void askWeb([], ai.lodgingStarter(), LODGING_FOLLOWUPS);
+  if (date) return askEmptyDay(date);
+  const lodging = ai.lodgingStarter();
+  void draftWeb(lodging ? lodgingDraft(lodging) : '', LODGING_FOLLOWUPS);
 }
 
 /** 整趟「未選住宿」的「✦ 問 AI 推薦」（T54）：同第 ③ 步的問法，帶這幾晚的日期和區 */
-export const askNightLodging = (dates: string[], area: string) => void askWeb([], nightLodgingStarter(dates, areaNameOf(dataStore.getState().areas)(area)), LODGING_FOLLOWUPS);
+export const askNightLodging = (dates: string[], area: string) => void draftWeb(lodgingDraft(nightLodgingStarter(dates, areaNameOf(dataStore.getState().areas)(area))), LODGING_FOLLOWUPS);
 
 /** 空的一天的「問 AI」（§17.4） */
-export const askEmptyDay = (date: string) => void askWeb([], ai.dayStarter(date), emptyDayFollowups(date));
+export const askEmptyDay = (date: string) => void draftWeb(ai.dayDraft(date) ?? '', emptyDayFollowups(date));
 
 /** 想去頁空白時的「問 AI 推薦」（§17.4） */
-export const askWishEmpty = () => void askWeb([], WISH_EMPTY_LEAD);
+export const askWishEmpty = () => void draftWeb(WISH_EMPTY_DRAFT);
 
 /** 探索、想去的整份清單 */
 export const askList = (source: 'explore' | 'wish', filter: Filter, query: string, count: number) => void askWeb([{ kind: 'list', source, filter, query, count }]);

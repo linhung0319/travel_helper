@@ -34,7 +34,13 @@ export function ChatPanel() {
   const screenLabel = useScreenLabel();
 
   useEffect(() => {
-    registerChatInput(() => input.current?.focus());
+    // 預填的問題（T61）：游標放在最後
+    registerChatInput(() => {
+      const el = input.current;
+      if (!el) return;
+      el.focus();
+      el.setSelectionRange(el.value.length, el.value.length);
+    });
     return () => registerChatInput(null);
   }, []);
 

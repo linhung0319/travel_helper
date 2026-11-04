@@ -148,7 +148,8 @@ test('未選住宿：展開說明加兩個捷徑（看那區的住宿、問 AI �
   await shot(page, 'web-trip-stay');
   // 問 AI 推薦：帶這晚起同一區還沒選住宿的晚上
   await r7.getByTestId('sk-stay-ask').click();
-  await expect(page.locator('[data-testid="chat-starter"][data-first="true"]')).toContainText('幫我決定 2/7～2/8 在二見住哪');
+  await expect(page.getByTestId('chat-input')).toHaveValue('幫我決定 2/7～2/8 在二見住哪，要 15 人住得下');
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   // 看二見的住宿：右欄到探索、選二見、捲到住宿那排
   await r7.getByTestId('sk-stay-shelf').click();
   await expect.poll(() => page.evaluate(() => (window as any).__th.appStore.getState().mode)).toBe('explore');

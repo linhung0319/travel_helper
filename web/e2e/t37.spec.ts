@@ -14,7 +14,7 @@ const showOverview = async (page: Page) => {
   await page.evaluate(() => (window as any).__th.commands.selectDay('all'));
 };
 
-test('只有航班的行程：引導 0/4、整趟骨架一天一列、第一列最後一列是航班；第 ③ 步問 AI 不帶晶片，第一張是住宿，按了才送出', async ({ page }) => {
+test('只有航班的行程：引導 0/4、整趟骨架一天一列、第一列最後一列是航班；第 ③ 步問 AI 不帶晶片，問題放進輸入框，按了才送出', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
   await expect(page.getByTestId('guide-button')).toHaveText('排行程 0/4');
@@ -29,11 +29,14 @@ test('只有航班的行程：引導 0/4、整趟骨架一天一列、第一列�
   await page.getByTestId('guide-ask-lodging').click();
   await expect(page.getByTestId('guide-dialog')).toHaveCount(0);
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
-  const first = page.locator('[data-testid="chat-starter"][data-first="true"]');
-  await expect(first).toContainText('幫我決定前幾晚住哪');
-  await expect(first).toContainText('15 人的住宿最難訂');
+  // T61：問題放進輸入框，游標在最後，不送出；下面是住宿的建議問題
+  const input = page.getByTestId('chat-input');
+  await expect(input).toHaveValue('幫我決定前幾晚住哪，要 15 人住得下');
+  await expect(input).toBeFocused();
+  expect(await input.evaluate((el: HTMLTextAreaElement) => el.selectionStart === el.value.length)).toBe(true);
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
-  await first.click();
+  await expect(page.locator('[data-testid="chat-suggestion"][data-first="true"]')).toContainText('我已經訂好幾晚了');
+  await input.press('Enter');
   await expect(page.getByTestId('chat-msg-me')).toContainText('幫我決定前幾晚住哪');
   await expect(page.getByTestId('chat-cards')).toHaveCount(0);
 });
@@ -58,19 +61,22 @@ test('想去頁空白：三格小圖、沒有書架；去探索、問 AI 推薦'
   await expect(page.getByTestId('wish-empty')).toContainText('還沒有人按');
   await expect(page.getByTestId('wish-shelf')).toHaveCount(0);
   await page.getByTestId('wish-empty-ask').click();
-  await expect(page.locator('[data-testid="chat-starter"][data-first="true"]')).toContainText('推薦幾個適合全家去的地方');
+  await expect(page.getByTestId('chat-input')).toHaveValue('推薦幾個適合全家去的地方');
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await page.getByTestId('wish-empty-explore').click();
   await expect(page.getByTestId('side-tab-explore')).toHaveAttribute('aria-selected', 'true');
 });
 
-test('空的一天：虛線框；問 AI 不帶晶片，第一張是這天去哪；從想去挑', async ({ page }) => {
+test('空的一天：虛線框；問 AI 不帶晶片，問題放進輸入框；從想去挑', async ({ page }) => {
   await flightsOnly(page);
   await page.getByTestId('side-tab-day').click();
   await page.evaluate(() => (window as any).__th.commands.selectDay('2027-02-03'));
   await expect(page.getByTestId('day-empty')).toContainText('這天還沒排');
   await page.getByTestId('day-empty-ask').click();
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
-  await expect(page.locator('[data-testid="chat-starter"][data-first="true"]')).toContainText('2/3 去哪？');
+  await expect(page.getByTestId('chat-input')).toHaveValue(/^2\/3 .*這天還沒排，幫我排一天$/);
+  await expect(page.locator('[data-testid="chat-suggestion"][data-first="true"]')).toContainText('想去的點哪些適合 2/3？');
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await page.getByTestId('day-go-wish').click();
   await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');
 });

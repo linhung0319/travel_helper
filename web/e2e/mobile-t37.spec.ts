@@ -48,16 +48,31 @@ test('AI 分頁：一句話加三張卡片，第一張橫跨兩欄，都至少 4
   await expect(page.getByTestId('chat-cards')).toHaveCount(0);
 });
 
-test('半屏聊天放不下三張：第一張留著，其他縮成一行膠囊', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 560 });
+test('引導第 ③ 步問 AI（T61）：問題放進輸入框，不送出、不叫鍵盤；卡片是住宿的建議問題', async ({ page }) => {
   await flightsOnly(page);
   await showOverview(page);
   await page.getByTestId('m-guide-button').click();
   await page.getByTestId('guide-ask-lodging').click();
+  await expect(page.getByTestId('m-chat-sheet')).toBeVisible();
+  await expect(page.getByTestId('chat-context')).toHaveCount(0);
+  const input = page.getByTestId('chat-input');
+  await expect(input).toHaveValue('幫我決定前幾晚住哪，要 15 人住得下');
+  await expect(input).not.toBeFocused();
+  await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
+  const cards = page.locator('[data-testid="chat-cards"] button');
+  await expect(cards.first()).toContainText('我已經訂好幾晚了');
+  await expect(cards).toHaveCount(2);
+});
+
+test('半屏聊天放不下三張：第一張留著，其他縮成一行膠囊', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 560 });
+  await flightsOnly(page);
+  await showOverview(page);
+  // 空白的新對話直接開半屏：三張推薦問題
+  await page.evaluate(() => (window as any).__thMobile.getState().openChatSheet());
   await expect(page.getByTestId('chat-context')).toHaveCount(0);
   await expect(page.getByTestId('chat-cards')).toHaveAttribute('data-compact', 'true');
   const cards = page.locator('[data-testid="chat-cards"] button');
-  await expect(cards.first()).toContainText('幫我決定前幾晚住哪');
   await expect(cards).toHaveCount(3);
   await expect(page.getByTestId('chat-empty')).toBeHidden();
   const a = (await cards.nth(1).boundingBox())!;

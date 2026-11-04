@@ -14,7 +14,7 @@ import { displayName } from '../data/normalize.ts';
 import { resizeMap } from '../components/mapRuntime.ts';
 import type { ScreenSurface } from '../ai/stage.ts';
 import type { ChatContext } from '../ai/types.ts';
-import { emptyDayFollowups, LODGING_FOLLOWUPS, nightLodgingStarter, WISH_EMPTY_LEAD, type Starter } from '../ai/prompts.ts';
+import { emptyDayFollowups, LODGING_FOLLOWUPS, lodgingDraft, nightLodgingStarter, WISH_EMPTY_DRAFT } from '../ai/prompts.ts';
 import { dataStore } from '../dataStore.ts';
 import { areaNameOf } from '../lib/tripSkeleton.ts';
 import type { GuideAsk } from '../lib/tripStart.ts';
@@ -108,8 +108,18 @@ export function connectMobileAi(): () => void {
 }
 
 /** 問 AI：只帶晶片和建議問題，不叫鍵盤、不送出（§16.2）。從行程問的開半屏，其他的到 AI 分頁 */
-async function ask(contexts: ChatContext[], from: 'trip' | 'other', lead?: Starter | null, followups?: string[]) {
-  await ai.ask(contexts, lead, followups);
+async function ask(contexts: ChatContext[], from: 'trip' | 'other') {
+  await ai.ask(contexts);
+  show(from);
+}
+
+/** 算得出問題的入口：問題放進輸入框，不送出、不叫鍵盤（T61） */
+async function draft(text: string, from: 'trip' | 'other', followups?: string[]) {
+  await ai.draft(text, followups);
+  show(from);
+}
+
+function show(from: 'trip' | 'other') {
   const m = mobileStore.getState();
   m.closePlace();
   if (from === 'trip') m.openChatSheet();
@@ -137,14 +147,17 @@ export const askTrip = () => void ask([{ kind: 'trip' }], 'trip');
 export function askStart(step: GuideAsk) {
   const date = step === 'day' ? ai.firstEmptyDate() : null;
   if (date) askEmptyDay(date);
-  else void ask([], 'trip', ai.lodgingStarter(), LODGING_FOLLOWUPS);
+  else {
+    const lodging = ai.lodgingStarter();
+    void draft(lodging ? lodgingDraft(lodging) : '', 'trip', LODGING_FOLLOWUPS);
+  }
 }
 /** 整趟「未選住宿」的「✦ 問 AI 推薦」（T54）：同第 ③ 步的問法，帶這幾晚的日期和區；開半屏聊天 */
-export const askNightLodging = (dates: string[], area: string) => void ask([], 'trip', nightLodgingStarter(dates, areaNameOf(dataStore.getState().areas)(area)), LODGING_FOLLOWUPS);
+export const askNightLodging = (dates: string[], area: string) => void draft(lodgingDraft(nightLodgingStarter(dates, areaNameOf(dataStore.getState().areas)(area))), 'trip', LODGING_FOLLOWUPS);
 /** 空的一天的「問 AI」（§17.4） */
-export const askEmptyDay = (date: string) => void ask([], 'trip', ai.dayStarter(date), emptyDayFollowups(date));
+export const askEmptyDay = (date: string) => void draft(ai.dayDraft(date) ?? '', 'trip', emptyDayFollowups(date));
 /** 想去頁空白時的「問 AI 推薦」（§17.4） */
-export const askWishEmpty = () => void ask([], 'other', WISH_EMPTY_LEAD);
+export const askWishEmpty = () => void draft(WISH_EMPTY_DRAFT, 'other');
 export const askList = (source: 'explore' | 'wish', filter: Filter, query: string, count: number) => void ask([{ kind: 'list', source, filter, query, count }], 'other');
 
 // ---------- 從聊天跳走再回來 ----------
