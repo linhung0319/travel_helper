@@ -1704,7 +1704,8 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - **測試過時**：`add-place` 3 支（存完清掉搜尋找自己加的卡，T42 起沒有條件時是概覽、書架，不是清單 → helper 改成先篩那區那類再找）；`t49`「點地區鈕回到那一層的第一頁」（T69 改成換地區篩選留著、「‹ 書架」才回書架；T69 只改了 `mobile-t49`，網頁版漏了 → 照 T69 重寫）。
   - **程式的問題**：`mobile-add-place` 長按（手指在地圖上緣附近時泡泡放在手指上方，被右上「排行程」蓋住點不到 → 靠上緣改放手指下面）；`t49`「地區列」（T69 的地區分頁在 1280 寬剛好全部放得下，但尾端留白讓 `scrollWidth` 多 24px，多一顆「›」卻捲不出東西 → `ChipScroller` 改看第一顆、最後一顆有沒有整顆在畫面裡；測試改成 1140 寬才有東西可捲）；`t15m`「選整趟：地圖框住整趟」（從 T47 起 master 就不過：`maxBounds` 南北只留 0.4 度，網頁的地圖是直的 560×800，框關西機場到志摩時 MapLibre 照 maxBounds 拉近，量出來兩頭都在框外、看到的多半是海 → `mapMaxBounds` 南北的邊改 1.2 度，東西不變，minZoom 還是 7）。
   - 修完重跑受影響的：t49、add-place、mobile-add-place、t69、mobile-t69、t42、mobile-t42、mobile-t49、flows、t43、t56、t65、t46、t48、mobile-t48、mobile-t45b、mobile-t46、commands，和 t15m 名稱有「整趟」「地圖」「地區列」「篩選」的，全部通過。手機的「整趟」地圖（390 寬、面板蓋一半）沒有驗能不能框住兩頭。
-  - Worker 版 `npm run e2e:worker`（t15、t16）：結果見下一點。
+  - Worker 版 `npm run e2e:worker`（build 過的網站、本機 Worker、本機 D1；t15、t16 手機＋電腦 18 支）：16 過、2 失敗，失敗的是 t15「詳情層骨架、重試」在找「其他資訊」——T44b 把它收進「更多」，測試沒先展開（測試過時），改成先按「更多」後 2 支都過。
+- **結果**：分支 `ai-context-audit`，兩個 commit（工具和脈絡的修正、e2e 的修正）。`npm test` 1117、`typecheck`、`validate` 通過；dev 版 e2e 578 支全部查過（570 過、8 修好重跑過），Worker 版 18 支全過。**沒做**：Sonnet subagent 模擬（👤 說只比對就好）；正式網站上真 AI 的回答沒試（`ai:eval` 照 T36 不跑）；手機「整趟」地圖兩頭框不框得住。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。

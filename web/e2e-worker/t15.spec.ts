@@ -328,6 +328,8 @@ test('T15：詳情層還沒到顯示骨架，到了顯示內容（含其他資�
   fail = false;
   await d.getByTestId('detail-retry').click();
   await expect(d.getByTestId('detail-skeleton')).toHaveCount(0);
+  // T44b 起「其他資訊」收在「更多」裡，先展開
+  await d.getByTestId('detail-more-toggle').click();
   const extra = d.getByTestId('detail-extra');
   await expect(extra).toContainText('溫泉');
   await expect(extra).toContainText(lodging.extra.onsen.slice(0, 8));
