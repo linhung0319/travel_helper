@@ -223,6 +223,11 @@ test('setFilter／clearFilter：給的項目取代、其他不動；值從 areas
   assert.equal(cmd.setFilter({ types: 'restaurant' } as never).ok, false);
   assert.equal(app.getState().filter, before);
 
+  // T57：住宿的人數、適合
+  assert.ok(cmd.setFilter({ lodging: ['wholeRental', 'sleeps15'], suits: ['elderly', 'access'] }).ok);
+  assert.deepEqual(app.getState().filter.suits, ['elderly', 'access']);
+  assert.equal(cmd.setFilter({ suits: ['young'] } as never).ok, false);
+
   const c = cmd.clearFilter();
   assert.ok(c.ok);
   assert.deepEqual(app.getState().filter, EMPTY_FILTER);

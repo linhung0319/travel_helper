@@ -212,6 +212,35 @@ test('篩選：空的不篩；各項是「且」，同一項是「或」；標�
   );
 });
 
+test('T57 篩選：人數（餐廳）四個值、還沒查含沒寫的；住宿的包棟、15 人要都符合；適合只看景點的評分 ≥ 4', () => {
+  const r = (fit15: unknown) => place(`r-${String(fit15)}`, { type: 'restaurant', group: fit15 === undefined ? undefined : { fit15 } });
+  const [yes, split, no, unk, none] = [r('yes'), r('split'), r('no'), r('unknown'), r(undefined)];
+  const ids = (f: Partial<typeof EMPTY_FILTER>) => [yes, split, no, unk, none].filter((p) => matchesFilter(p, { ...EMPTY_FILTER, ...f })).map((p) => p.id);
+  assert.deepEqual(ids({ fit15: ['no'] }), ['r-no']);
+  assert.deepEqual(ids({ fit15: ['unknown'] }), ['r-unknown', 'r-undefined']);
+  assert.deepEqual(ids({ fit15: ['yes', 'split'] }), ['r-yes', 'r-split']);
+
+  const lodge = (id: string, group: Record<string, unknown>) => place(id, { type: 'lodging', group });
+  const ls = [lodge('whole', { wholeRental: true, maxGuests: 10 }), lodge('big', { wholeRental: false, maxGuests: 15 }), lodge('both', { wholeRental: true, maxGuests: 20 }), lodge('none', {})];
+  const lids = (lodging: typeof EMPTY_FILTER.lodging) => [...ls, yes].filter((p) => matchesFilter(p, { ...EMPTY_FILTER, lodging })).map((p) => p.id);
+  assert.deepEqual(lids(['wholeRental']), ['whole', 'both']);
+  assert.deepEqual(lids(['sleeps15']), ['big', 'both']);
+  assert.deepEqual(lids(['wholeRental', 'sleeps15']), ['both']);
+
+  const spot = (id: string, scores: Record<string, number | null>) => place(id, { assessment: { scores } });
+  const ss = [spot('elder', { elderFit: 4, kidsFit: 3, accessEase: 5 }), spot('kid', { elderFit: 3, kidsFit: 5, accessEase: 2 }), spot('both', { elderFit: 5, kidsFit: 4, accessEase: 4 }), spot('null', { elderFit: null }), place('rest', { type: 'restaurant', assessment: { scores: { elderFit: 5, kidsFit: 5 } } })];
+  const sids = (suits: typeof EMPTY_FILTER.suits) => ss.filter((p) => matchesFilter(p, { ...EMPTY_FILTER, suits })).map((p) => p.id);
+  assert.deepEqual(sids(['elderly']), ['elder', 'both']);
+  assert.deepEqual(sids(['kids']), ['kid', 'both']);
+  assert.deepEqual(sids(['access']), ['elder', 'both']);
+  assert.deepEqual(sids(['elderly', 'kids']), ['both']);
+
+  assert.deepEqual(
+    filterChips({ ...EMPTY_FILTER, fit15: ['unknown'], lodging: ['sleeps15'], suits: ['elderly', 'access'], contexts: ['transit'] }, []).map((c) => c.label),
+    ['車站旁', '15 人還沒查', '可住 15 人', '適合長輩', '不用搭車'],
+  );
+});
+
 test('選定的天：不在那天的點變淡，在那天的有順序', () => {
   const days = placeDays(itin({ '2027-02-05': ['a', 'b'] }));
   const a = place('a');

@@ -1,4 +1,5 @@
-// 篩選：區域、子地區、類型、情境、分級、團體（15 人）、投票（T15m）、天氣（T42、T58）。每一項都是「空陣列＝不篩」，有值時符合其中一個就算。
+// 篩選：區域、子地區、類型、用餐、分級、人數（餐廳的 15 人、住宿的包棟和 15 人）、投票（T15m）、天氣（T42、T58）、適合（T57）。
+// 每一項都是「空陣列＝不篩」；有值時符合其中一個就算，只有 lodging、suits 是每個都要符合（是條件，不是互斥的值）。
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Context, Place, PlaceType, Tier } from '../data/types.ts';
@@ -15,6 +16,42 @@ export interface Filter {
   votes: VoteFilter[];
   /** 天氣（T58，CONVENTIONS 景點的 weather）：景點的 weather 是其中一個；和 AI 的 search_places 同一個意思。餐廳、住宿本來就在室內，不受影響 */
   weather: WeatherFilter[];
+  /** 住宿的人數（T57）：能包棟（group.wholeRental）、可住 15 人（group.maxGuests ≥ 15）；有值時只剩住宿，選兩個要都符合。和 AI 的 search_places 的 wholeRental、maxGuestsAtLeast 同一個條件 */
+  lodging: LodgingFilter[];
+  /** 適合（T57）：景點的評分 elderFit、kidsFit、accessEase ≥ 4；有值時只剩景點，選兩個以上要都符合。和 AI 的 search_places 的 elderly、kids、access 同一個門檻 */
+  suits: SuitFilter[];
+}
+
+export const LODGING_FILTER_VALUES = ['wholeRental', 'sleeps15'] as const;
+export type LodgingFilter = (typeof LODGING_FILTER_VALUES)[number];
+export const LODGING_FILTER_LABELS: Record<LodgingFilter, string> = { wholeRental: '能包棟', sleeps15: '可住 15 人' };
+/** 「可住 15 人」：group.maxGuests 至少這麼多（整團 15 人） */
+export const SLEEPS_GROUP = 15;
+
+export const SUIT_VALUES = ['elderly', 'kids', 'access'] as const;
+export type SuitFilter = (typeof SUIT_VALUES)[number];
+export const SUIT_LABELS: Record<SuitFilter, string> = { elderly: '長輩', kids: '小孩', access: '不用搭車' };
+/** 晶片、AI 說明用（面板上的組名是「適合」，晶片單獨出現要看得懂） */
+const SUIT_CHIP_LABELS: Record<SuitFilter, string> = { elderly: '適合長輩', kids: '適合小孩', access: '不用搭車' };
+/** 每個「適合」看哪個評分 */
+export const SUIT_SCORES: Record<SuitFilter, 'elderFit' | 'kidsFit' | 'accessEase'> = { elderly: 'elderFit', kids: 'kidsFit', access: 'accessEase' };
+/** 「適合」的門檻：評分至少幾分（4 分是 CONVENTIONS 評分表的「平地、步行少」「小孩會喜歡」「車站步行 10 分內」這一端） */
+export const SUIT_MIN = 4;
+
+/** 評分（1～5）；沒有評過是 null */
+export function placeScore(p: Pick<Place, 'assessment'>, key: string): number | null {
+  const v = p.assessment?.scores?.[key];
+  return typeof v === 'number' ? v : null;
+}
+
+/** 住宿的 group 欄位（wholeRental、maxGuests） */
+const lodgingGroup = (p: Place, key: 'wholeRental' | 'maxGuests'): unknown => (p.raw.group as Record<string, unknown> | undefined)?.[key];
+
+export function matchesLodging(p: Place, v: LodgingFilter): boolean {
+  if (p.type !== 'lodging') return false;
+  if (v === 'wholeRental') return lodgingGroup(p, 'wholeRental') === true;
+  const n = lodgingGroup(p, 'maxGuests');
+  return typeof n === 'number' && n >= SLEEPS_GROUP;
 }
 
 /** 景點的 weather（T58）：室內、有遮蔽、戶外；null 是沒判 */
@@ -61,7 +98,7 @@ export type Fit15 = (typeof FIT15_VALUES)[number];
 
 export type FilterKey = keyof Filter;
 
-export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [], votes: [], weather: [] };
+export const EMPTY_FILTER: Filter = { areas: [], regions: [], types: [], contexts: [], tiers: [], fit15: [], votes: [], weather: [], lodging: [], suits: [] };
 
 export const TYPE_LABELS: Record<PlaceType, string> = {
   station: '車站',
@@ -73,7 +110,7 @@ export const TYPE_LABELS: Record<PlaceType, string> = {
 export const CONTEXT_LABELS: Record<Context, string> = {
   lunch: '午餐',
   dinner: '晚餐',
-  transit: '轉車空檔',
+  transit: '車站旁',
   snack: '小吃',
   cafe: '咖啡',
 };
@@ -82,13 +119,18 @@ export const FIT15_LABELS: Record<Fit15, string> = {
   yes: '可容納 15 人',
   split: '15 人要分桌',
   no: '坐不下 15 人',
-  unknown: '15 人：未查',
+  unknown: '還沒查',
 };
 
 export function placeFit15(p: Place): Fit15 | null {
   const g = p.raw.group as Record<string, unknown> | undefined;
   const v = g?.fit15;
   return typeof v === 'string' && (FIT15_VALUES as readonly string[]).includes(v) ? (v as Fit15) : null;
+}
+
+/** 篩選的「還沒查」：fit15 是 unknown 或沒寫的餐廳都算 */
+function fit15ForFilter(p: Place): Fit15 | null {
+  return placeFit15(p) ?? (p.type === 'restaurant' ? 'unknown' : null);
 }
 
 export function isFilterEmpty(f: Filter): boolean {
@@ -103,9 +145,11 @@ export function matchesFilter(p: Place, f: Filter): boolean {
   // 車站沒有分級：只篩分級時車站照樣顯示，方便看交通
   if (f.tiers.length && p.type !== 'station' && !(p.tier && f.tiers.includes(p.tier))) return false;
   if (f.fit15.length) {
-    const v = placeFit15(p);
+    const v = fit15ForFilter(p);
     if (!(v && f.fit15.includes(v))) return false;
   }
+  if (f.lodging.length && !f.lodging.every((v) => matchesLodging(p, v))) return false;
+  if (f.suits.length && !(p.type === 'spot' && f.suits.every((v) => (placeScore(p, SUIT_SCORES[v]) ?? 0) >= SUIT_MIN))) return false;
   if (f.weather.length && p.type === 'spot') {
     const w = placeWeather(p);
     if (!(w && (f.weather as readonly string[]).includes(w))) return false;
@@ -148,9 +192,11 @@ export function filterChips(f: Filter, areas: Area[]): FilterChip[] {
     ...f.types.map((v) => ({ key: 'types' as const, value: v, label: TYPE_LABELS[v] })),
     ...f.contexts.map((v) => ({ key: 'contexts' as const, value: v, label: CONTEXT_LABELS[v] })),
     ...f.tiers.map((v) => ({ key: 'tiers' as const, value: v, label: `${v} 級` })),
-    ...f.fit15.map((v) => ({ key: 'fit15' as const, value: v, label: FIT15_LABELS[v] })),
+    ...f.fit15.map((v) => ({ key: 'fit15' as const, value: v, label: v === 'unknown' ? '15 人還沒查' : FIT15_LABELS[v] })),
     ...f.votes.map((v) => ({ key: 'votes' as const, value: v, label: VOTE_FILTER_LABELS[v] })),
     ...f.weather.map((v) => ({ key: 'weather' as const, value: v, label: WEATHER_LABELS[v] })),
+    ...f.lodging.map((v) => ({ key: 'lodging' as const, value: v, label: LODGING_FILTER_LABELS[v] })),
+    ...f.suits.map((v) => ({ key: 'suits' as const, value: v, label: SUIT_CHIP_LABELS[v] })),
   ];
 }
 

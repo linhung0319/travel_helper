@@ -1309,6 +1309,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 「長輩小孩都 OK」兩個都 ≥ 4 只有 5 個，不做成書架。
 - **驗證**：單元測試（新的條件、四個 `fit15` 值）；AI 的 `set_filter` 收得下新的欄位；e2e 改篩選面板的測試。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過。
+- **做了什麼**（2026-11-04，分支 `t57`）：
+  - Filter 多兩個欄位：`lodging: ('wholeRental' | 'sleeps15')[]`（只留住宿）、`suits: ('elderly' | 'kids' | 'access')[]`（只留景點，評分 ≥ 4，`SUIT_MIN`）；這兩組選兩個以上是「且」，其他組照舊是「或」。`fit15` 的「還沒查」也算 `fit15` 沒寫的餐廳。
+  - 面板：組名「人數（餐廳）」「人數（住宿）」「適合」「用餐」；「轉車空檔」改「車站旁」（`CONTEXT_LABELS`，卡片、詳情跟著改），晶片裡小字「主要車站走路 5 分內」；探索沒有「想去」那一組（AI 的 `set_filter` 還認得 `popular`）。各組寫 `forTypes`，`groupDimmed` 決定變淡（`data-dim`）。
+  - `maxGuests` 改放進清單層（`LIST_PICK.group`，`LAYER_VERSION` 3），沒有照 T47 的做法先讀住宿的詳情：篩選是同步的，168 個住宿各多一個數字最簡單；AI 的 `maxGuestsAtLeast` 也不用再先讀所有住宿的詳情。**部署時要重新匯入 D1**。
+  - AI：`set_filter` 收 `lodging`、`suits`；`search_places` 多 `access`（accessEase ≥ 4）。**門檻對過：`elderly`、`kids` 留在 T41 的 3 分**，沒有改成 4：改了志摩的景點長輩小孩一起幾乎全被拿掉，A 級的伊雜宮（小孩 3）也不見；AI 是「拿掉分數低的」，面板是「只看好的」。
+  - 驗證：`npm run typecheck`、`npm test`（1064）、validate 通過；e2e 只跑受影響的 t42、mobile-t42、mobile（篩選、類型）、t15m（篩選、大家想去的）通過。
 
 #### T58 「下雨也行」改成三級（資料） 〔M〕（Chrome 少量）
 - **現況**：景點的 `indoor` 是是非欄位，schema 只寫「下雨天的替代選擇」，CONVENTIONS 沒有寫判斷標準。2026-11-03：96 個景點裡 true 31、false 47、沒填 18。值得重看的：鳥羽一番街（商店街）、鳥羽海洋碼頭（港）、海女小屋（半開放）都是 true；遊覽船沒填，但下雨可能停航。

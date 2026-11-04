@@ -77,6 +77,13 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   await page.getByTestId('filter-open').click();
   await expect(page.getByTestId('filter-opt-type-spot')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('[data-group="area"]')).toHaveCount(0);
+  // T57：選了景點，餐廳、住宿的組變淡（點了照樣能選）；探索沒有「想去」；車站旁有小字
+  await expect(page.locator('[data-group="group"]')).toHaveAttribute('data-dim', 'true');
+  await expect(page.locator('[data-group="lodging"]')).toHaveAttribute('data-dim', 'true');
+  await expect(page.locator('[data-group="suits"]')).not.toHaveAttribute('data-dim', /.*/);
+  await expect(page.locator('[data-group="wish"]')).toHaveCount(0);
+  await expect(page.getByTestId('filter-opt-context-transit')).toContainText('車站旁主要車站走路 5 分內');
+  await expect(page.locator('[data-group="group"] .ui-chip')).toHaveCount(4);
   await shot(page, 'web-filter-sheet');
   // 在面板又改了條件：返回鈕改寫「‹ 回到鳥羽」
   await page.getByTestId('filter-opt-type-spot').click();

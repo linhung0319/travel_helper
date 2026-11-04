@@ -81,7 +81,7 @@ test('時刻表：行程是空的不讀；排了東西才讀（延後）；打�
   off();
 });
 
-test('AI 搜尋：只讀回傳那幾個點的詳情；maxGuestsAtLeast 先讀所有住宿（maxGuests 在詳情層）', async () => {
+test('AI 搜尋：只讀回傳那幾個點的詳情；maxGuestsAtLeast 也是（T57 起 maxGuests 在清單層）', async () => {
   const h = await harness();
   const asked: string[][] = [];
   const read = createReadTools({ app: h.app, data: h.data, plan: h.plan, shared: h.shared, commands: h.commands, engine: currentEngineData, config: resolveConfig(), source: { loadTimetable: async () => null, loadTripInfo: async () => null }, details: async (ids) => void asked.push([...ids]) });
@@ -89,8 +89,6 @@ test('AI 搜尋：只讀回傳那幾個點的詳情；maxGuestsAtLeast 先讀所
   assert.deepEqual(asked, [r.places.map((p) => p.id)]);
   asked.length = 0;
   const big = (await read.search_places({ areas: ['ise'], wholeRental: true, maxGuestsAtLeast: 15, limit: 30 })) as unknown as { places: { id: string }[] };
-  const lodgings = h.data.getState().places.filter((p) => p.type === 'lodging').map((p) => p.id);
-  assert.deepEqual(asked[0], lodgings);
-  assert.deepEqual(asked[1], big.places.map((p) => p.id));
+  assert.deepEqual(asked, [big.places.map((p) => p.id)]);
   h.close();
 });
