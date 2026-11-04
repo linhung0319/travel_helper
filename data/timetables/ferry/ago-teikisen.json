@@ -8,7 +8,7 @@
   },
   "validFrom": "2026-10-01",
   "validTo": "2027-09-30",
-  "retrieved": "2026-10-19",
+  "retrieved": "2026-11-04",
   "feed": {
     "id": "shimacity/agowanteikisen",
     "version": "2026/10/01改正-見える化ver2.6h",
@@ -32,7 +32,7 @@
   ],
   "stops": [
     {"id":"10_01","name":"和具港","coords":[136.81191265583,34.2632240162361]},
-    {"id":"20_01","name":"間崎島","coords":[136.809788346291,34.2871835398716],"near":[{"id":"shima-mazakijima","meters":690}]},
+    {"id":"20_01","name":"間崎島","coords":[136.809788346291,34.2871835398716],"island":"mazakijima","near":[{"id":"shima-mazakijima","meters":690}]},
     {"id":"30_01","name":"賢島港","coords":[136.818875670433,34.3073919995513],"near":[{"id":"shima-kashikojima-yuransen","meters":14},{"id":"shima-espana-cruise","meters":23},{"id":"shima-entrada","meters":28},{"id":"kashikojima","meters":135},{"id":"shima-samiere","meters":140},{"id":"shima-kaiyuen","meters":867},{"id":"shima-chichukaimura","meters":1408}]}
   ],
   "trips": {
@@ -102,13 +102,13 @@
     {
       "type": "official",
       "url": "https://api.gtfs-data.jp/v2/organizations/shimacity/feeds/agowanteikisen",
-      "retrieved": "2026-10-19",
+      "retrieved": "2026-11-04",
       "note": "GTFS-JP「あご湾定期船」（CC BY 4.0），feed 期間 2026-10-01～2027-09-30"
     },
     {
       "type": "official",
       "url": "https://shima-marineleisure.com/ago",
-      "retrieved": "2026-10-19",
+      "retrieved": "2026-11-04",
       "note": "志摩マリンレジャー（あご湾定期船） 官網"
     }
   ],

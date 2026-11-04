@@ -37,8 +37,10 @@ export interface EngineConfig {
     minTransfer: number;
     /** 能不能搭特急（要另買特急券） */
     allowExpress: boolean;
-    /** 離島的子地區：上島、下島只能搭船 */
+    /** 離島的子地區：上島、下島只能搭船；島上沒有計程車、巴士（data/raw/toba/transport.md「島上移動」），島內一律走路。和 scripts/gtfs-timetable.mjs 的 ISLAND_STOPS 一致 */
     islandRegions: string[];
+    /** 轉乘（例如巴士到碼頭等船）的空檔超過這個分鐘要提醒 */
+    transferLongWait: number;
     /** 一段公共交通最多搭幾程（RAPTOR 的輪數） */
     maxRides: number;
     /** 最多給幾條走法 */
@@ -145,7 +147,8 @@ export const DEFAULT_CONFIG: EngineConfig = {
     trainMaxWait: 30,
     minTransfer: 3,
     allowExpress: true,
-    islandRegions: ['toshijima', 'sugashima', 'kamishima'],
+    islandRegions: ['toshijima', 'sugashima', 'kamishima', 'sakatejima', 'mazakijima'],
+    transferLongWait: 30,
     maxRides: 4,
     maxAlternatives: 3,
     urbanTransferDefault: 5,

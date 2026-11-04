@@ -682,3 +682,80 @@ test('ticket-tight（近鐵特急）：寫站名（placeName）和「買特急�
   // 早 1 分出發：空檔 10 分＝ticketMargin，不警告
   assert.ok(!run(10 * 60 + 22).warnings.some((x) => x.code === 'ticket-tight'));
 });
+
+// --- T60 離島和碼頭 ------------------------------------------------------------
+
+test('T60 下船後走太遠：鳥羽駅 → 菅島燈塔照樣搭船，提醒下船後要走幾分', () => {
+  const { leg, warnings } = planLeg(P('toba'), P('toba-sugashima-lighthouse'), ctx(real));
+  assert.equal(leg.mode, 'ferry');
+  assert.equal(leg.rides.at(-1)?.to, '菅島');
+  assert.ok((leg.walkAfter ?? 0) > cfg.walk.legMaxWhole);
+  assert.ok(warnings.some((w) => w.code === 'long-walk' && w.message === `下船後要走 ${leg.walkAfter} 分`));
+  assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
+});
+
+test('T60 下船後走太遠只在上限內沒有碼頭時：鳥羽駅 → 答志港在答志下船，不在和具下船走 20 幾分', () => {
+  const { leg, warnings } = planLeg(P('toba'), P('toba-port-toshi'), ctx(real));
+  assert.equal(leg.rides.at(-1)?.to, '答志');
+  assert.ok(!warnings.some((w) => w.code === 'long-walk'));
+});
+
+test('T60 間崎島是離島：賢島 → 間崎島、鮨裕禅 要搭あご湾定期船，不是計程車', () => {
+  for (const to of ['shima-mazakijima', 'shima-sushi-yuzen']) {
+    const { leg } = planLeg(P('kashikojima'), P(to), ctx(real));
+    assert.equal(leg.mode, 'ferry', to);
+    assert.deepEqual(leg.rides.map((r) => [r.from, r.to]), [['賢島港', '間崎島']], to);
+  }
+});
+
+test('T60 坂手島是離島：水族館 → 菅島港 不會走去坂手港搭船', () => {
+  const { leg } = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real));
+  assert.equal(leg.mode, 'ferry');
+  assert.ok(leg.rides.every((r) => r.from !== '坂手'), leg.rides.map((r) => r.from).join(','));
+  assert.equal(leg.rides.find((r) => r.mode === 'ferry')?.from, '佐田浜（鳥羽マリンターミナル）');
+});
+
+test('T60 車站走得到碼頭：鳥羽駅 → 答志島 走路到佐田浜，不先坐巴士', () => {
+  const { leg } = planLeg(P('toba'), P('toba-port-toshi'), ctx(real));
+  assert.equal(leg.mode, 'ferry');
+  assert.deepEqual(leg.rides.map((r) => r.mode), ['ferry']);
+  assert.ok((leg.walkBefore ?? 0) > 0 && (leg.walkBefore ?? 0) <= cfg.walk.legMaxWhole);
+});
+
+test('T60 車站只多收碼頭：伊勢市 → 朝熊 照舊不走去宇治山田搭車', () => {
+  const { leg } = planLeg(P('iseshi'), P('asama'), ctx(real, { depart: 10 * 60 }));
+  assert.notEqual(leg.rides[0]?.from, 'ujiyamada');
+});
+
+test('T60 島上不坐計程車：答志島 和具 → 答志 走路加提醒；住宿的提醒問接送', () => {
+  const { leg, warnings } = planLeg(P('toba-port-wagu'), P('toba-port-toshi'), ctx(real));
+  assert.equal(leg.mode, 'walk');
+  assert.equal(leg.taxi, null);
+  assert.ok(leg.walkMinutes > cfg.walk.legMaxWhole);
+  const w = warnings.find((x) => x.code === 'island-walk');
+  assert.equal(w?.message, `島上沒有計程車，要走 ${leg.walkMinutes} 分`);
+  assert.ok(!warnings.some((x) => x.code === 'taxi'));
+  // 答志港 → 中村屋 走 20 幾分；住宿的提醒問有沒有接送
+  const r = planLeg(P('toba-port-toshi'), P('toba-toshijima-nakamuraya'), ctx(real));
+  assert.equal(r.leg.mode, 'walk');
+  assert.match(r.warnings.find((x) => x.code === 'island-walk')?.message ?? '', /^島上沒有計程車，要走 \d+ 分；.*中村屋有沒有碼頭接送$/);
+});
+
+test('T60 碼頭等太久：巴士到佐田浜，船一個多小時後才開 → 提醒在碼頭要等幾分', () => {
+  const { leg, warnings } = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real));
+  assert.deepEqual(leg.rides.map((r) => r.mode), ['bus', 'ferry']);
+  const gap = toMinutes(leg.rides[1].depart) - toMinutes(leg.ready?.[1] ?? '00:00');
+  assert.ok(gap > cfg.transit.transferLongWait);
+  assert.ok(warnings.some((w) => w.code === 'transfer-wait' && w.message === `在佐田浜（鳥羽マリンターミナル）要等船 ${gap} 分`));
+  // 等不到 transferLongWait 分不提醒
+  const strict = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real, { cfg: resolveConfig({ transit: { transferLongWait: gap } }) }));
+  assert.ok(!strict.warnings.some((w) => w.code === 'transfer-wait'));
+});
+
+test('T60 過海也檢查巴士擠不擠：15 人巴士接船有 bus-crowd，5 人沒有', () => {
+  const big = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real));
+  assert.ok(big.leg.rides.some((r) => r.mode === 'bus'));
+  assert.ok(big.warnings.some((w) => w.code === 'bus-crowd'));
+  const small = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real, { party: { size: 5, elders: 0, kids: 0 }, whole: false }));
+  assert.ok(!small.warnings.some((w) => w.code === 'bus-crowd'));
+});
