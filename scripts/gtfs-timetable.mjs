@@ -22,6 +22,13 @@ const TRIP = { from: '2027-02-02', to: '2027-02-13', holidays: ['2027-02-11'] };
 // 景點常常「下車走 10～15 分」（安乗埼灯台、パールミキ），巴士用 1 km；離島的景點多半離港口 1 km 左右，船用 1.5 km
 const STATION_METERS = 500;
 const NEAR = { bus: { meters: 1000, spots: 3 }, ferry: { meters: 1500, spots: 6 } };
+// 離島的停留所（T60）：feed → 停留所名稱 → areas.json 的子地區。near 只收同一個島的點（本島的停留所不收離島的點），
+// 停留所也寫 island，引擎找上下車點時只用同一個島的。島的清單要和 packages/engine/src/config.ts 的 islandRegions 一致
+const ISLAND_STOPS = {
+  'tobacity/teikisen': { 坂手: 'sakatejima', 和具: 'toshijima', 答志: 'toshijima', 桃取: 'toshijima', 菅島: 'sugashima', 神島: 'kamishima' },
+  'shimacity/agowanteikisen': { 間崎島: 'mazakijima' },
+};
+const ISLANDS = new Set(Object.values(ISLAND_STOPS).flatMap((m) => Object.values(m)));
 
 // 官網查到的事實（2026-10-19，T10 讀文；筆記在 data/timetables/README.md）：兒童票、5day plus、注意事項、來源。
 // 這些寫在這裡（不手改 JSON），重跑時才不會被蓋掉。
@@ -173,9 +180,11 @@ for (const area of ['ise', 'futami', 'toba', 'shima']) {
   const f = path.join(ROOT, `data/areas/${area}/spots.json`);
   if (fs.existsSync(f)) points.push(...JSON.parse(fs.readFileSync(f, 'utf8')));
 }
-const nearOf = (coords, mode) => {
+const islandOf = (p) => (ISLANDS.has(p.region) ? p.region : null);
+const nearOf = (coords, mode, island = null) => {
   const { meters, spots } = NEAR[mode];
   const all = points
+    .filter((p) => islandOf(p) === island)
     .map((p) => ({ id: p.id, station: p.type === 'station', meters: Math.round(hav(coords, p.coords)) }))
     .filter((x) => x.meters <= (x.station ? STATION_METERS : meters))
     .sort((a, b) => a.meters - b.meters);
@@ -213,7 +222,9 @@ function convert(spec, { feed, meta }) {
     const coords = [Number(s.stop_lon), Number(s.stop_lat)];
     const stop = { id, name: s.stop_name, coords };
     if (s.platform_code) stop.platform = s.platform_code;
-    const near = nearOf(coords, spec.mode);
+    const island = ISLAND_STOPS[spec.feed]?.[s.stop_name] ?? null;
+    if (island) stop.island = island;
+    const near = nearOf(coords, spec.mode, island);
     if (near.length) stop.near = near;
     stops.push(stop);
   }

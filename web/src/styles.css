@@ -2516,6 +2516,32 @@ button.edited {
 }
 
 /* 想去分頁的地圖圖例（左下角，比例尺上面）：還沒排、已是候選、已排（§5.3） */
+/* 探索的概覽框著一區或子地區時（T63 §28）：地圖左上「⤢ 看全部地區」 */
+.map-all-areas {
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  box-shadow: 0 1px 4px var(--shade-2);
+  color: var(--indigo);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.map-all-areas:hover {
+  background: var(--indigo-wash);
+}
+
 .map-legend {
   position: absolute;
   z-index: 2;

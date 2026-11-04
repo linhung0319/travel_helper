@@ -154,7 +154,7 @@
           34.3086
         ],
         "needsCar": false,
-        "note": "近鐵終點賢島站和島上（エスパーニャクルーズ、遊覧船、あご湾定期船（間崎島）、サミエール），加上賢島大橋本土側的海遊苑。第一天（2/2）16:10 難波發的直達特急 18:40 到賢島，住宿、晚餐的候選先看這裡和鵜方",
+        "note": "近鐵終點賢島站和島上（エスパーニャクルーズ、遊覧船、あご湾定期船的賢島港、サミエール），加上賢島大橋本土側的海遊苑。第一天（2/2）16:10 難波發的直達特急 18:40 到賢島，住宿、晚餐的候選先看這裡和鵜方",
         "intro": {
           "summary": "近鐵的終點，志摩觀光飯店等大飯店集中，也是英虞灣遊覽船的碼頭。",
           "highlights": [
@@ -167,6 +167,31 @@
             "shima-kanko-bay-suites",
             "shima-espana-cruise",
             "shima-la-mer-classic"
+          ]
+        }
+      },
+      {
+        "id": "mazakijima",
+        "name": {
+          "ja": "間崎島",
+          "zh": "間崎島"
+        },
+        "center": [
+          136.8145,
+          34.2905
+        ],
+        "needsCar": false,
+        "note": "離島（T60 從 shima-kashikojima 分出來）：英虞湾中央、地址是志摩町和具（間崎）。只能從賢島港搭あご湾定期船（約 10 分，經間崎島到和具港）；島上沒有車、商店很少",
+        "intro": {
+          "summary": "英虞灣中央的小離島，從賢島搭定期船 10 分，在漁村巷弄散步、看珍珠筏。",
+          "highlights": [
+            "shima-mazakijima",
+            "shima-sushi-yuzen"
+          ],
+          "febNote": "週末和 2/11 末班船是間崎發 16:20；島上沒有商店，飲料、食物先在賢島買。",
+          "basedOn": [
+            "shima-mazakijima",
+            "shima-sushi-yuzen"
           ]
         }
       },
@@ -872,6 +897,32 @@
             "toba-toshijima-yamashichi",
             "toba-toshijima-toshi",
             "toba-port-toshi"
+          ]
+        }
+      },
+      {
+        "id": "sakatejima",
+        "name": {
+          "ja": "坂手島",
+          "zh": "坂手島"
+        },
+        "center": [
+          136.8605,
+          34.4855
+        ],
+        "needsCar": false,
+        "note": "離島（T60 新增）：鳥羽港東邊約 600 m、周圍約 3.8 km。佐田浜搭市營定期船坂手航線約 10 分（菅島航線也有經坂手的班）。還沒有收錄的資料點；子地區是為了讓坂手港不被當成本島的碼頭",
+        "intro": {
+          "summary": "鳥羽港對面的小離島，定期船約 10 分，漁村、神社、海水浴場散步約 2 小時；島上沒有餐廳。",
+          "highlights": [],
+          "febNote": null,
+          "sources": [
+            {
+              "type": "tourism",
+              "url": "https://www.kankomie.or.jp/report/1423",
+              "retrieved": "2026-11-04",
+              "note": "観光三重 取材レポート「坂手島の観光ガイド」：鳥羽港から東へ約600m、周囲約3.8km、定期船約10分、約2時間で島内の名所を回れる、観光客用の飲食店はない、公衆トイレは定期船待合所だけ"
+            }
           ]
         }
       },

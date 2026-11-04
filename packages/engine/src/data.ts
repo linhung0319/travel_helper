@@ -82,7 +82,8 @@ export interface RouteTimetable {
   name: { ja: string; zh?: string | null };
   validFrom: DateString;
   validTo?: DateString | null;
-  stops: { id: string; name: string; coords?: LonLat; near?: { id: string; meters: number }[] }[];
+  /** island：停留所在離島上時是那個子地區的 ID（T60） */
+  stops: { id: string; name: string; coords?: LonLat; island?: string; near?: { id: string; meters: number }[] }[];
   trips: Partial<Record<'weekday' | 'saturday' | 'holiday', RouteTrip[]>>;
   fares?: { adult?: Record<string, Record<string, number>> } | null;
 }

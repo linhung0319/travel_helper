@@ -58,6 +58,8 @@ T10（2026-10-19）整理。近鐵（`kintetsu/`）是 T1 做的，這份說明�
 
 詳見景點資料的 `access`。
 
+**離島的停留所**（T60）：船的停留所在離島上的寫 `island`（`areas.json` 的子地區 ID：`toshijima`、`sugashima`、`kamishima`、`sakatejima`、`mazakijima`），對照寫在 `scripts/gtfs-timetable.mjs` 的 `ISLAND_STOPS`。`near` 只收同一個島的點（本島的停留所也不收離島的點），引擎找上下車點時也只用同一個島的停留所。坂手島還沒有資料點，所以坂手停留所沒有 `near`。
+
 **沒有巴士或船可以到的景點**（要搭計程車、店家接送或包車）：
 - 海ほおずき：資料寫「浜島」下車步行 20 分，但 GTFS 的停留所都在 1 km 以外。
 - 天の岩戸：天の岩戸口站超過 1 km，下車後步行約 20 分。

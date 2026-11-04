@@ -23,7 +23,8 @@ import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { AreaHome, ExploreOverview, RegionChips } from '../shared/ui/ExploreHome.tsx';
 import { areaOnly, backLabel, currentArea, exploreStage } from '../lib/shelves.ts';
 import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
-import { pickArea, pickAreaChip } from '../exploreArea.ts';
+import { focusOverview, pickArea, pickAreaChip } from '../exploreArea.ts';
+import { overviewStore } from '../shared/overviewStore.ts';
 import { displayName } from '../data/normalize.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
@@ -116,13 +117,7 @@ function pickRegion(region: string | null) {
   else if (area) commands.focus({ area });
 }
 
-/** 概覽的書架數字（T52）：進那一區、套那排的條件（返回鈕是「‹ 一定要去」） */
-function overviewShelf(area: string, filter: Filter) {
-  pickArea(area);
-  applyShelf(filter);
-}
-
-/** 概覽的子地區（T52）：進那一區再選那個子地區 */
+/** 概覽的「看賢島 ›」（T63）：進那一區再選那個子地區 */
 function overviewRegion(area: string, region: string) {
   pickArea(area);
   pickRegion(region);
@@ -254,6 +249,10 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         }
       : null;
   const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
+  // 離開概覽（選了一區、搜尋、篩選）：概覽在地圖上的框拿掉，卡片選的子地區留著（T63 §28）
+  useEffect(() => {
+    if (!wish && stage !== 'overview') overviewStore.getState().clearFocus();
+  }, [wish, stage]);
   // 想去（T53）：三排書架，「全部 ›」進某一排的清單層，返回鈕「‹ 還沒排 · 6 個地點」；地點數寫那排的數字
   const wishSections = useWishSections(wish ? list : EMPTY_LIST);
   const wishBack = useWishBack();
@@ -277,7 +276,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>
         {stage === 'overview' ? (
-          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onShelf={overviewShelf} onPickRegion={overviewRegion} />
+          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onPickRegion={overviewRegion} onFocus={focusOverview} />
         ) : stage === 'area' && area ? (
           <AreaHome areaId={area} regionId={regionId} surface="desktop" onOpen={(id) => open(id)} onShelfAll={applyShelf} />
         ) : wish ? (

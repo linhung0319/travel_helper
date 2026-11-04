@@ -71,6 +71,15 @@ function isIsland(e: Endpoint, cfg: EngineConfig): boolean {
   return !!r && cfg.transit.islandRegions.includes(r);
 }
 
+/** 端點在哪個離島（不是離島是 null） */
+const islandOf = (e: Endpoint, cfg: EngineConfig): string | null => (isIsland(e, cfg) ? regionOf(e) : null);
+
+/** 兩點在同一個離島上（島上沒有計程車、巴士） */
+function sameIsland(a: Endpoint, b: Endpoint, cfg: EngineConfig): boolean {
+  const i = islandOf(a, cfg);
+  return i != null && i === islandOf(b, cfg);
+}
+
 // --- 候選 -------------------------------------------------------------------
 
 interface Candidate {
@@ -137,15 +146,30 @@ const accessMemo = new WeakMap<Network, AccessMemo>();
 const netStopId = (net: Network, doc: RouteTimetable, stop: string) => (doc.mode === 'jr' && net.stops.get(stop)?.stationId ? stop : `${doc.id}/${stop}`);
 
 /**
- * 端點的上下車點（kintetsuAccess、stopMatcher 推廣到所有路線）：端點本身是停靠點 → 步行 0；
- * 否則 nearestStation（步行）、停留所的 near（有 near 的路線檔不再用座標找），
+ * 端點的上下車點（kintetsuAccess、stopMatcher 推廣到所有路線）：端點本身是停靠點 → 步行 0，再加 near 寫了這站的碼頭（船的停留所）
+ *（T60：鳥羽駅走到佐田浜的碼頭）；否則 nearestStation（步行）、停留所的 near（有 near 的路線檔不再用座標找），
  * 再加 accessMaxMeters 內每種 group（近鐵、路線檔、班距型路線）最近的 2 個，步行照 walkMinutes()。
- * 超過單段步行上限的不要；步行已套係數、向上取整
+ * 只用同一個島的停靠點（本島的端點不用離島的碼頭，反過來也是）。
+ * 超過單段步行上限的不要；pierSide（過海那段、離島那端）上限內沒有碼頭時才不設上限，走太遠由 fromCandidate 提醒。
+ * 步行已套係數、向上取整
  */
-function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network): Access[] {
+function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network, pierSide = false): Access[] {
+  const within = accessWithin(e, ctx, factor, net, legWalkMax(ctx.whole, ctx.cfg));
+  return pierSide && !within.length ? accessWithin(e, ctx, factor, net, Infinity) : within;
+}
+
+function accessWithin(e: Endpoint, ctx: LegContext, factor: number, net: Network, max: number): Access[] {
   const { cfg } = ctx;
-  const max = legWalkMax(ctx.whole, cfg);
-  const key = [e.id ?? '', e.coords?.join(',') ?? '', factor, max, cfg.walk.accessMaxMeters, cfg.walk.metersPerMinute, cfg.walk.detourFactor].join('|');
+  const key = [
+    e.id ?? '',
+    e.coords?.join(',') ?? '',
+    factor,
+    max,
+    cfg.walk.accessMaxMeters,
+    cfg.walk.metersPerMinute,
+    cfg.walk.detourFactor,
+    cfg.transit.islandRegions.join(','),
+  ].join('|');
   let m = accessMemo.get(net);
   if (!m || m.getPlace !== ctx.data.getPlace || m.walkMeters !== ctx.data.walkMeters) {
     accessMemo.set(net, (m = { getPlace: ctx.data.getPlace, walkMeters: ctx.data.walkMeters, byKey: new Map() }));
@@ -159,18 +183,24 @@ function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network)
 
 function findAccess(e: Endpoint, ctx: LegContext, factor: number, net: Network, max: number): Access[] {
   const { cfg, data } = ctx;
-  if (e.id && net.routesAt.has(e.id)) return [{ stop: e.id, walk: 0 }];
+  const station = !!e.id && net.routesAt.has(e.id);
+  const island = islandOf(e, cfg);
+  const islands = stopIslands(data);
   const walks = new Map<string, number>();
   const seen = new Set<string>();
   const put = (stop: string, w: number) => {
     seen.add(stop);
+    if ((islands.get(stop) ?? null) !== island) return;
     if (w <= max && w < (walks.get(stop) ?? Infinity)) walks.set(stop, w);
   };
+  if (station) put(e.id as string, 0);
   const ns = e.record?.nearestStation;
-  if (ns?.id && net.routesAt.has(ns.id) && (ns.mode ?? 'walk') === 'walk' && ns.minutes != null) put(ns.id, ns.minutes * factor);
+  if (!station && ns?.id && net.routesAt.has(ns.id) && (ns.mode ?? 'walk') === 'walk' && ns.minutes != null) put(ns.id, ns.minutes * factor);
   const nearDocs = new Set<string>();
   if (e.id) {
     for (const doc of data.routes ?? []) {
+      // 車站只多收碼頭：巴士停留所照舊靠轉乘步行（transferMaxMeters），不然車站會走去別站搭車（伊勢市 → 宇治山田）
+      if (station && doc.mode !== 'ferry') continue;
       for (const s of doc.stops) {
         const n = s.near?.find((x) => x.id === e.id);
         if (!n) continue;
@@ -181,7 +211,7 @@ function findAccess(e: Endpoint, ctx: LegContext, factor: number, net: Network, 
       }
     }
   }
-  if (isLonLat(e.coords)) {
+  if (!station && isLonLat(e.coords)) {
     // 每種 group 最近的 2 個（直線距離）
     const near = new Map<string, { stop: string; m: number }[]>();
     for (const s of net.stops.values()) {
@@ -214,12 +244,21 @@ function findAccess(e: Endpoint, ctx: LegContext, factor: number, net: Network, 
   return [...walks].map(([stop, w]) => ({ stop, walk: round(w) }));
 }
 
+/** a → b 的上車點、下車點：過海時離島那端走到碼頭不設上限（T60：菅島港 → 燈塔 21 分） */
+function legAccess(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network): { origins: Access[]; targets: Access[]; sea: boolean } {
+  const sea = crossesSea(a, b, ctx.cfg);
+  return {
+    origins: accessStops(a, ctx, factor, net, sea && isIsland(a, ctx.cfg)),
+    targets: accessStops(b, ctx, factor, net, sea && isIsland(b, ctx.cfg)),
+    sea,
+  };
+}
+
 /** a → b 的搜尋條件；上車點或下車點找不到回傳 null */
 function raptorQuery(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network, departMinutes: number): SearchQuery | null {
-  const origins = accessStops(a, ctx, factor, net);
-  const targets = accessStops(b, ctx, factor, net);
+  const { origins, targets, sea } = legAccess(a, b, ctx, factor, net);
   if (!origins.length || !targets.length) return null;
-  return { origins, targets, depart: departMinutes, whole: ctx.whole, factor, requireFerry: crossesSea(a, b, ctx.cfg) };
+  return { origins, targets, depart: departMinutes, whole: ctx.whole, factor, requireFerry: sea };
 }
 
 /** 依 pickDefault 的值排序（到達＋每多一程 transferPenalty；同值程數少的在前），第一個就是 pickDefault 挑的。複製一份再排（searchJourneys 的結果是共用的） */
@@ -330,6 +369,21 @@ function routeDoc(data: EngineData, id: string | null): RouteTimetable | null {
   let m = docsMemo.get(data.routes);
   if (!m) docsMemo.set(data.routes, (m = new Map(data.routes.map((d) => [d.id, d]))));
   return m.get(id) ?? null;
+}
+
+// 路線檔的停留所（網路裡的 ID）→ 在哪個離島（停留所的 island，T60）
+const islandsMemo = new WeakMap<readonly RouteTimetable[], Map<string, string>>();
+const NO_ROUTES: readonly RouteTimetable[] = [];
+
+function stopIslands(data: EngineData): Map<string, string> {
+  const routes = data.routes ?? NO_ROUTES;
+  let m = islandsMemo.get(routes);
+  if (!m) {
+    islandsMemo.set(routes, (m = new Map()));
+    // 離島只有船的停留所（不是 JR），網路裡的 ID 是「路線 ID/停留所 ID」（netStopId）
+    for (const doc of routes) for (const s of doc.stops) if (s.island) m.set(`${doc.id}/${s.id}`, s.island);
+  }
+  return m;
 }
 
 /** RAPTOR 的一程 → TransitRide。近鐵、班距型的 from／to 是車站 ID；巴士、船、JR 照舊是停留所名稱 */
@@ -576,6 +630,23 @@ function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, 
   const max = legWalkMax(ctx.whole, ctx.cfg);
   // 轉乘步行不受單段步行上限管（站內轉乘躲不掉），超過時提醒
   for (const t of transfers) if (t.walkMinutes > max) warnings.push({ code: 'transfer-walk', level: 'info', message: `轉乘要走 ${t.walkMinutes} 分` });
+  // 過海那段離島那端不設步行上限（legAccess）：超過時提醒（T60）
+  const ferryAt = (r: TransitRide | undefined) => r?.mode === 'ferry';
+  if (c.access > max) {
+    warnings.push({ code: 'long-walk', level: 'info', message: `走到${ferryAt(c.rides[0]) ? '碼頭' : '上車的地方'}要 ${c.access} 分${pickupNote(a)}` });
+  }
+  if (c.egress > max) {
+    warnings.push({ code: 'long-walk', level: 'info', message: `${ferryAt(c.rides.at(-1)) ? '下船' : '下車'}後要走 ${c.egress} 分${pickupNote(b)}` });
+  }
+  // 轉乘的空檔太久（例如巴士到碼頭，船一個多小時後才開）
+  c.rides.forEach((r, i) => {
+    if (i === 0) return;
+    const gap = toMinutes(r.depart) - c.ready[i];
+    if (gap <= ctx.cfg.transit.transferLongWait) return;
+    const at = r.operator === 'kintetsu' || r.kind === 'headway' ? placeName(r.from, c.net, ctx.data) : r.from;
+    const what = r.mode === 'ferry' ? '船' : r.mode === 'bus' ? '巴士' : '電車';
+    warnings.push({ code: 'transfer-wait', level: 'info', message: `在${at}要等${what} ${gap} 分` });
+  });
   const rides = withMissed(c, ctx, factor);
   // 買票站：到站到發車的空檔不到 ticketMargin 分，買票可能來不及（每個買票站一則，第一程也算）
   rides.forEach((r, i) => {
@@ -665,8 +736,8 @@ function pathLeg(a: Endpoint, b: Endpoint, ctx: LegContext, path: PathRef, facto
   const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
   const q = { whole: ctx.whole, factor };
   let j: Journey | null = null;
-  const targets = accessStops(b, ctx, factor, net);
-  for (const o of accessStops(a, ctx, factor, net)) {
+  const { origins, targets } = legAccess(a, b, ctx, factor, net);
+  for (const o of origins) {
     for (const t of targets) {
       const x = evaluatePath(net, path.rides, o, t, ctx.depart, q, ctx.cfg);
       if (x && (!j || x.arr < j.arr)) j = x;
@@ -692,6 +763,12 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
   if (walk.minutes <= max && !sea) {
     return leg({ mode: 'walk', minutes: walk.minutes, walkMinutes: round(walk.minutes), basis: `步行 ${walk.basis}` }, a, b, ctx.depart);
   }
+  // 同一個離島：島上沒有計程車、巴士，走路（T60）；住宿有接送的寫進提醒
+  if (sameIsland(a, b, cfg)) {
+    const minutes = round(walk.minutes);
+    warnings.push({ code: 'island-walk', level: 'info', message: `島上沒有計程車，要走 ${minutes} 分${pickupNote(a) || pickupNote(b)}` });
+    return leg({ mode: 'walk', minutes, walkMinutes: minutes, basis: `步行 ${walk.basis}（島上沒有計程車）` }, a, b, ctx.depart);
+  }
 
   // RAPTOR 的走法，依 pickDefault 的值排序（第一個是預設那條）
   const found = raptorCandidates(a, b, ctx, factor, ctx.depart);
@@ -699,6 +776,7 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
   if (sea) {
     const ferry = found.cands[0] ?? null;
     if (ferry) {
+      busCrowd(ferry, ctx, warnings);
       if (ferry.wait > cfg.transit.busMaxWait) warnings.push({ code: 'long-wait', level: 'info', message: `等船 ${ferry.wait} 分` });
       return fromCandidate(ferry, a, b, ctx, factor, warnings, found.cands);
     }
@@ -865,6 +943,15 @@ function railTaxiLeg(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, 
     ...(needLast ? { taxiAfter: { station: l.id as string, minutes: after } } : {}),
     basis: '大眾運輸接計程車',
   };
+}
+
+/**
+ * 走到住宿太遠時接在提醒後面的一句；不是住宿是 ''。
+ * 不讀 pickup：它在詳情層（worker/src/lib/placeLayers.ts），引擎只用清單層的欄位，接送的細節看住宿的詳情
+ */
+function pickupNote(e: Endpoint): string {
+  const r = e.record;
+  return r?.type === 'lodging' ? `；可以問${r.name.zh ?? r.name.ja}有沒有碼頭接送` : '';
 }
 
 /** 路線巴士不能預約：人多時提醒可能擠不上同一班 */
