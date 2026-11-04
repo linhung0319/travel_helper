@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { setDayArea, setLodging, setNightArea } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { areaStayLine, dayRegions,isUndecided, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, openLodgingRun, skeletonCounts, skeletonDiff, skeletonRows, undecidedRun, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
+import { areaStayLine, dayRegions,isUndecided, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, openLodgingRun, skeletonCounts, skeletonDiff, skeletonRows, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
 import type { Area, Place } from '../src/data/types.ts';
 import { itin, placeWith } from './helpers.ts';
 import { areaColor, areaTint } from '../src/lib/areas.ts';
@@ -174,24 +174,11 @@ test('每晚的狀態（T54）：未選區、未選住宿、待訂、已訂；�
   assert.deepEqual(rows.filter(isUndecided).map((r) => r.date), [D(2), D(3), D(7), D(8), D(9), D(10), D(11)]);
 });
 
-test('連著好幾晚沒決定區（T54 的「都套用」）：整段；有區、只有一晚、最後一天是 null', () => {
-  const rows = skeletonRows({ itinerary: sample(), areas: AREAS, byId });
-  const run = [D(7), D(8), D(9), D(10), D(11)];
-  assert.deepEqual(undecidedRun(rows, D(7)), run);
-  assert.deepEqual(undecidedRun(rows, D(9)), run);
-  assert.equal(undecidedRun(rows, D(2)), null);
-  assert.equal(undecidedRun(rows, D(13)), null);
-  const one = skeletonRows({ itinerary: setNightArea(setNightArea(sample(), D(8), 'ise'), D(10), 'ise'), areas: AREAS, byId });
-  assert.equal(undecidedRun(one, D(9)), null);
-  assert.equal(undecidedRun(one, D(11)), null);
-});
-
-test('一次套好幾晚（T54）：setNightArea 依序套那一段，每晚都住那區', () => {
-  let it = sample();
-  for (const d of [7, 8, 9]) it = setNightArea(it, D(d), 'ise');
-  const rows = skeletonRows({ itinerary: it, areas: AREAS, byId });
-  assert.deepEqual(rows.slice(5, 9).map((r) => r.nightArea), ['ise', 'ise', 'ise', null]);
-  assert.deepEqual(undecidedRun(rows, D(10)), [D(10), D(11)]);
+test('選一晚只改那一晚（T59 拿掉「都套用」）：整趟都空時選 2/7，其他晚上還是沒決定', () => {
+  const rows = skeletonRows({ itinerary: setNightArea(empty(), D(7), 'ise'), areas: AREAS, byId });
+  assert.deepEqual(rows.filter((r) => r.nightArea).map((r) => [r.date, r.nightArea]), [[D(7), 'ise']]);
+  const mid = skeletonRows({ itinerary: setNightArea(sample(), D(9), 'toba'), areas: AREAS, byId });
+  assert.deepEqual(mid.slice(5, 10).map((r) => r.nightArea), [null, null, 'toba', null, null]);
 });
 
 test('問 AI 推薦帶的晚上（T54）：從這晚起同一區還沒選住宿的連續晚上', () => {

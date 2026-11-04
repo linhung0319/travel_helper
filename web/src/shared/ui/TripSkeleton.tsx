@@ -1,7 +1,7 @@
 // 整趟的直的骨架（T45b 起，T54 改版；interaction-design §19.1、§24）：網頁右欄、手機、iPad 共用同一份直的清單。
 // 第一列、最後一列是航班；中間一天一列：左邊細的地區色帶（換區時空一點，還沒決定是灰色虛線）、日期、這天在哪一區（第二行小字是子地區），
 // 右邊固定兩格「住哪區」「住宿」，寫的是狀態：住哪區＝區名（選了住宿加 鎖）或「未選區」；住宿＝名字加「待訂／✓ 已訂」、「未選住宿」或「—」。
-// 列本身不能點（進某一天用日期列）。點「未選區」或區名：下面展開地區鈕（連著好幾晚沒決定時可以一次套用）；點有 鎖 的區名：說明加「拿掉住宿」；
+// 列本身不能點（進某一天用日期列）。點「未選區」或區名：下面展開地區鈕（只改這一晚，T59 拿掉「都套用」）；點有 鎖 的區名：說明加「拿掉住宿」；
 // 點「未選住宿」：說明加兩個捷徑（看那區的住宿、問 AI 推薦，捷徑由網頁、手機各自給 actions）。
 // 最上面一行數字「11 晚 · 區 8／11 · 住宿 6／11 · 已訂 3」和「只看還沒決定的」。
 // 有提議時那天變色、列出變動；看提議（proposalView 是 diff）時整份用提議之後的行程畫，有變的格子芥子黃框、旁邊劃掉舊值（T48）；這時格子不能點。
@@ -22,7 +22,6 @@ import {
   skeletonCounts,
   skeletonDiff,
   skeletonRows,
-  undecidedRun,
   type SkeletonRow,
   type SkeletonRowDiff,
   type StayBooking,
@@ -51,15 +50,12 @@ export function scrollToShelf(id: string) {
   requestAnimationFrame(tick);
 }
 
-const rangeLabel =(dates: string[]) => (dates.length > 1 ? `${shortDayLabel(dates[0])}–${shortDayLabel(dates.at(-1)!)}` : shortDayLabel(dates[0]));
-
-/** 選這幾晚住哪一區：存進 nights（換區會清掉這晚的住宿，engine 的 setNightArea），跳「復原」 */
-export async function chooseNightArea(date: string | string[], area: string | null, areas: Area[]) {
-  const dates = Array.isArray(date) ? date : [date];
+/** 選這晚住哪一區：存進 nights（換區會清掉這晚的住宿，engine 的 setNightArea），跳「復原」 */
+export async function chooseNightArea(date: string, area: string | null, areas: Area[]) {
   const byId = dataStore.getState().byId;
   const name = area ? areaNameOf(areas)(area) : null;
-  const text = `${rangeLabel(dates)} 晚上${name ? `住${name}` : '的區清掉'}`;
-  return shared.changeItinerary((it) => dates.reduce((x, d) => setNightArea(x, d, area, nightAreaOf(x, d, placeAreaOf(byId))), it), text, { undo: { text: `已改・${text}` } });
+  const text = `${shortDayLabel(date)} 晚上${name ? `住${name}` : '的區清掉'}`;
+  return shared.changeItinerary((it) => setNightArea(it, date, area, nightAreaOf(it, date, placeAreaOf(byId))), text, { undo: { text: `已改・${text}` } });
 }
 
 /** 拿掉這晚的住宿，區留著（換區前先拿掉，T54） */
@@ -69,13 +65,13 @@ export async function removeNightLodging(date: string) {
   return shared.changeItinerary((it) => setLodging(it, date, null, null, nightAreaOf(it, date, placeAreaOf(byId))), text, { undo: { text: `已改・${text}` } });
 }
 
-/** 地區按鈕一列（整趟展開、單天頂端共用）：照 areas 的順序；current 是現在的區（加「清掉」）；dates 給了就一次套用那幾晚 */
-export function AreaPicker({ date, dates, current, onDone, testId = 'area-picker' }: { date: string; dates?: string[]; current: string | null; onDone?: () => void; testId?: string }) {
+/** 地區按鈕一列（整趟展開、單天頂端共用）：照 areas 的順序；current 是現在的區（加「清掉」）；只改這一晚 */
+export function AreaPicker({ date, current, onDone, testId = 'area-picker' }: { date: string; current: string | null; onDone?: () => void; testId?: string }) {
   const areas = useData((s) => s.areas);
   const [busy, setBusy] = useState(false);
   const pick = async (a: string | null) => {
     setBusy(true);
-    const r = await chooseNightArea(a && dates?.length ? dates : date, a, areas);
+    const r = await chooseNightArea(date, a, areas);
     setBusy(false);
     if (r.ok) onDone?.();
   };
@@ -210,22 +206,6 @@ function StayCell({ row, readOnly, open, onToggle }: { row: SkeletonRow; readOnl
   );
 }
 
-/** 點「未選區」或區名：地區鈕；連著好幾晚沒決定時多一個「2/9–2/11 都套用」（預設勾著） */
-function AreaPanel({ rows, row, onDone }: { rows: SkeletonRow[]; row: SkeletonRow; onDone: () => void }) {
-  const run = undecidedRun(rows, row.date);
-  const [all, setAll] = useState(true);
-  return (
-    <>
-      {run && (
-        <label className="ui-sk-apply" data-testid="sk-apply-all">
-          <input type="checkbox" checked={all} onChange={(e) => setAll(e.target.checked)} /> {rangeLabel(run)} 都套用
-        </label>
-      )}
-      <AreaPicker date={row.date} dates={run && all ? run : undefined} current={row.nightArea} onDone={onDone} />
-    </>
-  );
-}
-
 /** 點有 鎖 的區名：為什麼不能換、「拿掉住宿」（拿掉後接著展開地區鈕） */
 function LockPanel({ row, onRemoved }: { row: SkeletonRow; onRemoved: () => void }) {
   const [busy, setBusy] = useState(false);
@@ -355,7 +335,7 @@ export function TripSkeleton({ head = true, actions }: { head?: boolean; actions
               </Changed>
               {open && (
                 <div className="ui-sk-pick" data-testid="sk-panel" data-kind={open}>
-                  {open === 'area' && <AreaPanel rows={rows} row={r} onDone={() => setPanel(null)} />}
+                  {open === 'area' && <AreaPicker date={r.date} current={r.nightArea} onDone={() => setPanel(null)} />}
                   {open === 'lock' && <LockPanel row={r} onRemoved={() => setPanel({ date: r.date, kind: 'area' })} />}
                   {open === 'stay' && <StayPanel rows={rows} row={r} areas={areas} actions={actions} />}
                 </div>
