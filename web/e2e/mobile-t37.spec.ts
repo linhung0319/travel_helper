@@ -70,7 +70,7 @@ test('想去頁空白：三格小圖；去探索', async ({ page }) => {
   await flightsOnly(page);
   await goTab(page, 'wish');
   await expect(page.getByTestId('wish-empty')).toContainText('數字代表幾個人想去');
-  await expect(page.getByTestId('wish-section-unscheduled')).toHaveCount(0);
+  await expect(page.getByTestId('wish-shelf')).toHaveCount(0);
   expect(await scrollsSideways(page)).toBe(false);
   await page.getByTestId('wish-empty-explore').click();
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');

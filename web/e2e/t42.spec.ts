@@ -3,7 +3,7 @@
 // SHOT_DIR 有設時把畫面存下來（給 👤 看的截圖）。
 
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { ready, openWishSection } from './helpers.ts';
 
 const shot = async (page: Page, name: string) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}.png` });
@@ -102,7 +102,9 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   await page.evaluate(() => (window as any).__th.appStore.getState().setMode('wish'));
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByTestId('ex-area-all')).toHaveText('全部');
-  // 想去：切換鈕在地點數那列
+  // 想去（T53）：書架那層沒有切換鈕；「全部 ›」之後切換鈕在地點數那列
+  await expect(page.getByTestId('view-photo')).toHaveCount(0);
+  await openWishSection(page, 'scheduled');
   await expect(page.locator('.fb-listhead').getByTestId('view-photo')).toBeVisible();
   // 回到概覽
   await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));

@@ -4,7 +4,7 @@
 // 一句特色只在概覽；子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
 // 樣式在 ui.css（.xo-*、.xa-*、.xs-*）。
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
 import { dataStore, ensureDetails, fullPlace } from '../../dataStore.ts';
@@ -165,8 +165,8 @@ export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll }: { ar
   );
 }
 
-/** 書架的小卡：照片、名稱、等級；右上角類型圓章（T50 拿掉愛心，愛心留在照片牆、清單、詳情） */
-function ShelfCard({ place, surface, onOpen }: { place: Place; surface: HomeSurface; onOpen: (id: string) => void }) {
+/** 書架的小卡：照片、名稱、等級；右上角類型圓章（T50 拿掉愛心，愛心留在照片牆、清單、詳情）。想去的書架（T53）在名稱下面多一行 caption（「2/7 候選」） */
+export function ShelfCard({ place, surface, onOpen, caption }: { place: Place; surface: HomeSurface; onOpen: (id: string) => void; caption?: ReactNode }) {
   return (
     <div
       className={`xs-card type-${place.type}`}
@@ -193,6 +193,11 @@ function ShelfCard({ place, surface, onOpen }: { place: Place; surface: HomeSurf
         <span className="xs-name-text">{placeName(place)}</span>
         <TierMark tier={place.tier} />
       </div>
+      {caption && (
+        <div className="xs-caption" data-testid="shelf-caption">
+          {caption}
+        </div>
+      )}
     </div>
   );
 }

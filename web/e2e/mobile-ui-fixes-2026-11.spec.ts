@@ -1,6 +1,6 @@
 // 2026-11-01 👤 試用回饋（手機）：詳情的問 AI 不貼 tag、留言打字時輸入框看得到、編輯中和提議時不畫日期那排、提議捲到卡。
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { ready, openWishSection } from './helpers.ts';
 
 const fake = (page: Page, s: Record<string, unknown>) => page.evaluate((x) => Object.assign((window as any).__th.aiFake, x), s);
 const idle = (page: Page) => expect.poll(() => page.evaluate(() => (window as any).__th.ai.store.getState().status)).toBe('idle');
@@ -125,11 +125,10 @@ test('探索、想去：往下捲時三列都黏在上面，想去的段落標�
 
   await page.getByTestId('m-tab-wish').click();
   const wish = page.getByTestId('m-wish');
+  // T53：想去是三排書架，段落標題拿掉了；進某一排的全部捲下去，篩選列（含地點數）照樣黏住
+  await openWishSection(page, 'scheduled');
   await scroll(600);
   await expect(wish.getByTestId('list-count')).toBeInViewport();
-  const bar = (await wish.getByTestId('fb-stick').boundingBox())!;
-  const headTop = await wish.locator('.wl-head').first().evaluate((el) => getComputedStyle(el).top);
-  expect(parseFloat(headTop)).toBeCloseTo(bar.height, 0);
 
   const size = page.viewportSize()!;
   await page.setViewportSize({ width: 800, height: 360 });

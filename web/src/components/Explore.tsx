@@ -35,7 +35,7 @@ import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
-import { WishList } from '../shared/ui/WishList.tsx';
+import { WishList, useWishBack, useWishSections } from '../shared/ui/WishList.tsx';
 import { useBatch } from '../shared/useBatch.ts';
 import { PlaceOpenBody, useRevealOpen } from '../shared/ui/PlaceOpen.tsx';
 
@@ -82,6 +82,8 @@ function toggleOpen(id: string, openId: string | null, setOpenId: (id: string | 
 
 /** 網頁探索一批畫幾張（T32）：捲到底再畫下一批 */
 const BATCH = 60;
+/** 探索時給 useWishSections 的空清單（同一個陣列，不重算） */
+const EMPTY_LIST: Place[] = [];
 
 /**
  * 探索的一張卡片（照片牆）或一列（清單）；想去分頁的列在 shared/ui/WishList。
@@ -240,6 +242,10 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         }
       : null;
   const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
+  // 想去（T53）：三排書架，「全部 ›」進某一排的清單層，返回鈕「‹ 還沒排 · 6 個地點」；地點數寫那排的數字
+  const wishSections = useWishSections(wish ? list : EMPTY_LIST);
+  const wishBack = useWishBack();
+  const wishCount = wishBack.section ? (wishSections.find((x) => x.id === wishBack.section)?.count ?? 0) : list.length;
 
   return (
     <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
@@ -247,14 +253,14 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
         source={source}
         surface="desktop"
         model={model}
-        count={list.length}
+        count={wish ? wishCount : list.length}
         typeRow={<AreaChips value={filter.areas.length === 1 ? filter.areas[0] : null} onPick={(a) => {
             setInView(false);
             pickAreaChip(a);
           }} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" extra={wish ? userChip.chip : undefined} />}
         subRow={stage === 'area' && area ? <RegionChips areaId={area} regionId={regionId} onPick={pickRegion} /> : undefined}
-        back={back}
-        showView={stage === 'list'}
+        back={wish ? wishBack.back : back}
+        showView={wish ? !!wishBack.section : stage === 'list'}
       />
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>

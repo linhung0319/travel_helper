@@ -6,7 +6,7 @@
 // 第五輪：「規劃模式」改成「編輯」（藍條、完成）；交通卡平常收起，大眾運輸點了展開步驟、班次表；
 // 等待合成交通卡下面的一條（沒有「空檔」）；資料卡右上角的編號從 0 起；地圖彈窗在日期列上面。
 import { test, type Locator, type Page } from '@playwright/test';
-import { centerOn, expect, expectFilterOpt, openAccountItem, openDiscussion, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter, pickType, exploreAll } from './helpers.ts';
+import { centerOn, expect, expectFilterOpt, openAccountItem, openDiscussion, switchUser, findPlaceId, ready, waitIdle, likeMany, pickFilter, pickType, exploreAll, openWishSection, backToWishShelves, revealWishRow } from './helpers.ts';
 
 const DAY = '2027-02-07';
 const PLACE = 'toba-seahorse';
@@ -25,16 +25,17 @@ async function openDetail(page: Page, id: string) {
 
 const closeDetail = (page: Page) => th(page, '__th.appStore.getState().closeDetail()');
 
-/** 想去：電腦版右欄的「想去」分頁。切到那個點的類型，才看得到它的卡片 */
+/** 想去：電腦版右欄的「想去」分頁。切到那個點的類型，進它那排書架的全部（T53），才看得到它的列 */
 async function openWish(page: Page, id = PLACE): Promise<Locator> {
   await closeDetail(page);
   await page.getByTestId('side-tab-wish').click();
   await page.evaluate((x) => {
     const s = (window as any).__th;
     s.appStore.getState().setFilter({ types: [s.dataStore.getState().byId.get(x).type] });
-    // 已排的段落預設收合、每段先 8 個：把這個點露出來
+    // 不在書架的前 3 張：進它那排、顯示到它
     s.appStore.getState().revealInExplore(x);
   }, id);
+  await revealWishRow(page, id);
   return page.getByTestId('wish-panel');
 }
 
@@ -136,6 +137,10 @@ test('T15m：想去 → 留言 → 加到某天 → 編輯中按 ↑ 排進 → 
   await wish(list).getByTestId('wish-add').click();
   await page.getByTestId(`day-picker-${DAY}`).click();
   await page.getByTestId('day-picker-done').click();
+  // 變成候選：離開「還沒排」那排，到「已是候選」（T53）
+  await expect(wish(list)).toHaveCount(0);
+  await backToWishShelves(page);
+  await openWishSection(page, 'candidate');
   await expect(wish(list).getByTestId('place-caps')).toContainText('候選 2/7');
 
   // 4. 行程分頁：候選有它；一般模式沒有 ↑
@@ -231,9 +236,10 @@ test('T15m：拿掉別人加的候選要寫理由，理由變成那個點的留�
 
   // 類型是篩選的一個條件（打開想去時帶著那個點的類型）：類型列點「全部」，搜尋才找得到別類的店
   await pickType(page, 'all');
+  await backToWishShelves(page);
   await list.getByTestId('search').fill('いろは');
-  await expect(list.getByTestId('wish-item')).toHaveCount(1);
-  await expect(wish(list, 'toba-yakigai-iroha')).toBeVisible();
+  await expect(list.getByTestId('shelf-card')).toHaveCount(1);
+  await expect(list.locator('[data-testid="shelf-card"][data-id="toba-yakigai-iroha"]')).toBeVisible();
 });
 
 test('T15m：自己加的候選可以撤回；這天的討論', async ({ page }) => {
@@ -1899,44 +1905,72 @@ test('網頁探索是兩欄', async ({ page }) => {
   expect(Math.round(a.x)).not.toBe(Math.round(b.x));
 });
 
-// ---------- 第七輪 Task 6：想去分三段 ----------
-test('想去：三段、已排預設收合；沒有跳轉晶片，數字在段落標題、跟著搜尋變（§13.7）', async ({ page }) => {
+// ---------- 第七輪 Task 6：想去分三段；T53 改成三排書架 ----------
+test('想去（T53）：三排書架（還沒排、已是候選、已排進行程），每排 3 張小卡、「全部 N ›」；數字跟著搜尋變；切換鈕只在清單層', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await page.getByTestId('side-tab-wish').click();
   const panel = page.getByTestId('wish-panel');
-  await expect(panel.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
-  await expect(panel.getByTestId('wish-section-candidate')).toHaveAttribute('aria-expanded', 'true');
-  await expect(panel.getByTestId('wish-section-unscheduled')).toHaveAttribute('aria-expanded', 'true');
-  // 收合的段落不畫列；點標題展開
-  await expect(panel.locator('[data-section="scheduled"] [data-testid="wish-item"]')).toHaveCount(0);
-  await panel.getByTestId('wish-section-scheduled').click();
-  await expect(panel.locator('[data-section="scheduled"] [data-testid="wish-item"]').first()).toBeVisible();
-  await panel.getByTestId('wish-section-scheduled').click();
-  await expect(panel.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
-  // 第八輪 §13.7：沒有跳轉晶片，數字在段落標題上；搜尋之後數字跟著變
-  await expect(panel.locator('[data-testid^="wish-jump-"]')).toHaveCount(0);
-  const unscheduled = panel.getByTestId('wish-section-count-unscheduled');
-  await expect(unscheduled).toHaveText(/^· [0-9]+$/);
-  const before = await unscheduled.textContent();
+  await expect(panel.getByTestId('wish-list')).toHaveAttribute('data-stage', 'shelves');
+  expect(await panel.getByTestId('wish-shelf').evaluateAll((els) => els.map((e) => e.getAttribute('data-section')))).toEqual(['unscheduled', 'candidate', 'scheduled']);
+  await expect(panel.locator('.xs-title').first()).toContainText('還沒排');
+  for (const sec of ['unscheduled', 'candidate', 'scheduled']) {
+    const n = await panel.locator(`[data-testid="wish-shelf"][data-section="${sec}"] [data-testid="shelf-card"]`).count();
+    expect(n).toBeGreaterThan(0);
+    expect(n).toBeLessThanOrEqual(3);
+  }
+  // 候選、已排的小卡下面寫哪天；還沒排的沒有
+  await expect(panel.locator('[data-section="candidate"] [data-testid="shelf-caption"]').first()).toHaveText(/^2\/\d+ 候選$/);
+  await expect(panel.locator('[data-section="scheduled"] [data-testid="shelf-caption"]').first()).toHaveText(/^2\/\d+ 排了$/);
+  await expect(panel.locator('[data-section="unscheduled"] [data-testid="shelf-caption"]')).toHaveCount(0);
+  // 書架那層沒有照片牆／清單切換、沒有返回鈕
+  await expect(panel.getByTestId('view-photo')).toHaveCount(0);
+  await expect(panel.getByTestId('back-to-area')).toHaveCount(0);
+  // 數字在「全部 N ›」，搜尋之後跟著變
+  const all = panel.getByTestId('wish-shelf-all-unscheduled');
+  await expect(all).toHaveText(/^全部 \d+ ›$/);
+  const before = (await all.textContent())!;
   await panel.getByTestId('search').fill('伊勢');
-  await expect(unscheduled).not.toHaveText(before!);
+  await expect(all).not.toHaveText(before);
   await panel.getByTestId('search').fill('');
-  // 收合的狀態記住
-  await page.reload();
-  await page.waitForFunction(() => (window as any).__th?.dataStore.getState().status === 'ready');
-  await page.getByTestId('side-tab-wish').click();
-  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  await expect(all).toHaveText(before);
+  // 「全部 ›」：清單層，返回鈕「‹ 還沒排 · N 個地點」，切換鈕在右邊；點返回回到書架
+  const total = Number(before.replace(/\D/g, ''));
+  await openWishSection(page, 'unscheduled');
+  await expect(panel.getByTestId('back-to-area')).toHaveText('‹ 還沒排');
+  await expect(panel.getByTestId('list-count')).toHaveText(`${total} 個地點`);
+  await expect(panel.locator('.fb-listhead').getByTestId('view-photo')).toBeVisible();
+  await expect(panel.locator('[data-section="candidate"]')).toHaveCount(0);
+  await backToWishShelves(page);
+  // 換地區回到書架
+  await openWishSection(page, 'scheduled');
+  await panel.getByTestId('ex-area-toba').click();
+  await expect(panel.getByTestId('wish-list')).toHaveAttribute('data-stage', 'shelves');
 });
 
-test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
+test('想去（T53）：空的那排寫一行灰字；點小卡開詳情', async ({ page }) => {
+  await ready(page);
+  await page.getByTestId('side-tab-wish').click();
+  const panel = page.getByTestId('wish-panel');
+  // 搜尋到只剩已排的點：還沒排、已是候選那兩排是灰字，沒有「全部 ›」
+  await panel.getByTestId('search').fill('鳥羽水族館');
+  await expect(panel.locator('[data-section="scheduled"] [data-testid="shelf-card"]')).toHaveCount(1);
+  await expect(panel.locator('[data-section="unscheduled"] [data-testid="wish-shelf-empty"]')).toHaveText('全部都排了');
+  await expect(panel.locator('[data-section="candidate"] [data-testid="wish-shelf-empty"]')).toHaveText('還沒有候選');
+  await expect(panel.getByTestId('wish-shelf-all-unscheduled')).toHaveCount(0);
+  await panel.locator('[data-section="scheduled"] [data-testid="shelf-card"]').click();
+  await expect(page.getByTestId('detail-panel')).toBeVisible();
+});
+
+test('想去：某一排的全部先 8 個，再顯示 15 個', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await page.getByTestId('side-tab-wish').click();
   const panel = page.getByTestId('wish-panel');
-  const rows = panel.locator('[data-section="unscheduled"] [data-testid="wish-item"]');
-  const total = Number(((await panel.getByTestId('wish-section-count-unscheduled').textContent()) ?? '').replace('·', '').trim());
+  const total = Number(((await panel.getByTestId('wish-shelf-all-unscheduled').textContent()) ?? '').replace(/\D/g, ''));
   expect(total).toBeGreaterThanOrEqual(12);
+  await openWishSection(page, 'unscheduled');
+  const rows = panel.locator('[data-section="unscheduled"] [data-testid="wish-item"]');
   await expect(rows).toHaveCount(8);
   await panel.getByTestId('wish-more-unscheduled').click();
   await expect(rows).toHaveCount(Math.min(total, 23));
@@ -1947,6 +1981,7 @@ test('想去：點最新留言開詳情', async ({ page }) => {
   const [id] = await likeMany(page, 1);
   await page.evaluate((id) => (window as any).__th.shared.comment(id, '這裡晚上很漂亮。要早點去', 'normal'), id);
   await page.getByTestId('side-tab-wish').click();
+  await revealWishRow(page, id);
   const row = page.locator(`[data-testid="wish-item"][data-id="${id}"]`);
   await row.scrollIntoViewIfNeeded();
   await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
@@ -1960,6 +1995,7 @@ test('網頁想去：日曆鈕加到某天', async ({ page }) => {
   await ready(page);
   const [id] = await likeMany(page, 1);
   await page.getByTestId('side-tab-wish').click();
+  expect(await revealWishRow(page, id)).toBe('unscheduled');
   const row = page.locator(`[data-section="unscheduled"] [data-testid="wish-item"][data-id="${id}"]`);
   await row.scrollIntoViewIfNeeded();
   await row.getByTestId('wish-add').click();
@@ -1967,34 +2003,40 @@ test('網頁想去：日曆鈕加到某天', async ({ page }) => {
   await page.getByTestId('day-picker-2027-02-06').click();
   await page.getByTestId('day-picker-done').click();
   await expect(page.getByTestId('wish-add-pop')).toHaveCount(0);
+  await expect(page.locator(`[data-section="unscheduled"] [data-id="${id}"]`)).toHaveCount(0);
+  await backToWishShelves(page);
+  await openWishSection(page, 'candidate');
   const moved = page.locator(`[data-section="candidate"] [data-testid="wish-item"][data-id="${id}"]`);
   await expect(moved).toHaveCount(1);
   await expect(moved.getByTestId('place-caps')).toContainText('候選 2/6');
-  await expect(page.locator(`[data-section="unscheduled"] [data-id="${id}"]`)).toHaveCount(0);
 });
 
 test('網頁想去：照片牆的卡片有誰想去，沒有留言', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-wish').click();
+  await openWishSection(page, 'scheduled');
   await page.getByTestId('view-photo').click();
   const card = page.getByTestId('wish-item').first();
   await expect(card.getByTestId('wish-who')).toBeVisible();
   await expect(card.getByTestId('wish-last-comment')).toHaveCount(0);
 });
 
-test('網頁想去：收合的段落不會因為地圖點擊或投票被改掉記住的狀態', async ({ page }) => {
+test('網頁想去（T53）：地圖點到的點在書架上就留在書架；不在前 3 張就進它那排的全部', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-wish').click();
-  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
-  // 地圖點到已排的點：這次畫面展開，但不改記住的收合狀態
-  await page.evaluate(() => (window as any).__th.appStore.getState().revealInExplore('toba-aquarium'));
-  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'true');
-  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('th.wishCollapsed') ?? '{"scheduled":true}').scheduled)).toBe(true);
-  // 之後有人按想去（清單重算）不會再把使用者收起來的段落展開
-  await page.getByTestId('wish-section-scheduled').click();
-  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
-  await page.evaluate(() => (window as any).__th.shared.comment('toba-aquarium', '新留言', 'normal'));
-  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
+  const list = page.getByTestId('wish-list');
+  const top = await page.locator('[data-testid="wish-shelf"][data-section="scheduled"] [data-testid="shelf-card"]').first().getAttribute('data-id');
+  await page.evaluate((x) => (window as any).__th.appStore.getState().revealInExplore(x), top);
+  await page.waitForTimeout(300);
+  await expect(list).toHaveAttribute('data-stage', 'shelves');
+  // 第 4 個以後
+  await openWishSection(page, 'scheduled');
+  const ids = await page.getByTestId('wish-item').evaluateAll((els) => els.map((e) => e.getAttribute('data-id')));
+  expect(ids.length).toBeGreaterThan(3);
+  await backToWishShelves(page);
+  await page.evaluate((x) => (window as any).__th.appStore.getState().revealInExplore(x), ids[3]);
+  await expect(list).toHaveAttribute('data-stage', 'list');
+  await expect(page.locator(`[data-section="scheduled"] [data-testid="wish-item"][data-id="${ids[3]}"]`)).toBeVisible();
 });
 
 // ---------- 第七輪 Task 7：詳情的分頁、動作列、浮在地圖上、放大照片 ----------
@@ -2495,8 +2537,9 @@ test('第九輪：展開的卡只放介紹、多一顆「加到某天」；展�
   await expect(page.getByTestId('day-picker')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByTestId('day-picker')).toHaveCount(0);
-  // 想去照片牆：卡貼在黏住的段落標題下面（日期小標整個露出來）
+  // 想去照片牆：卡貼在黏住的篩選列下面（T53 起先進某一排的全部）
   await page.getByTestId('side-tab-wish').click();
+  await openWishSection(page, 'scheduled');
   await page.getByTestId('view-photo').click();
   const wid = (await page.getByTestId('wish-item').nth(2).getAttribute('data-id'))!;
   const tile = page.locator(`[data-testid="wish-item"][data-id="${wid}"]`);

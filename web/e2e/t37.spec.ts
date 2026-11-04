@@ -52,11 +52,11 @@ test('排了一半的行程：引導的區、住宿完成，第 ④ 步還沒；
   await expect(page.getByTestId('chat-starter').first()).toContainText('2/7 去哪？');
 });
 
-test('想去頁空白：三格小圖、沒有段落標題；去探索、問 AI 推薦', async ({ page }) => {
+test('想去頁空白：三格小圖、沒有書架；去探索、問 AI 推薦', async ({ page }) => {
   await flightsOnly(page);
   await page.getByTestId('side-tab-wish').click();
   await expect(page.getByTestId('wish-empty')).toContainText('還沒有人按');
-  await expect(page.getByTestId('wish-section-unscheduled')).toHaveCount(0);
+  await expect(page.getByTestId('wish-shelf')).toHaveCount(0);
   await page.getByTestId('wish-empty-ask').click();
   await expect(page.locator('[data-testid="chat-starter"][data-first="true"]')).toContainText('推薦幾個適合全家去的地方');
   await page.getByTestId('wish-empty-explore').click();

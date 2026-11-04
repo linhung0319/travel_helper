@@ -1,4 +1,4 @@
-// 想去的顯示設定（清單／照片牆、三段收合）在兩邊共用的 shared/wishPrefs.ts，不放在手機的 mobileStore（第七輪最終 review #14）。
+// 想去的顯示設定（清單／照片牆、現在看哪一排）在兩邊共用的 shared/wishPrefs.ts，不放在手機的 mobileStore（第七輪最終 review #14）。
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
@@ -12,16 +12,25 @@ const mem = new Map<string, string>();
 
 const { wishPrefs } = await import('../src/shared/wishPrefs.ts');
 
-test('預設：清單、只有「已排」收起來', () => {
+test('預設：清單、三排書架（沒進任何一排）', () => {
   assert.equal(wishPrefs.getState().view, 'list');
-  assert.deepEqual(wishPrefs.getState().collapsed, { unscheduled: false, candidate: false, scheduled: true });
+  assert.equal(wishPrefs.getState().section, null);
 });
 
-test('setView、setCollapsed：改了記到 localStorage', () => {
+test('setView：改了記到 localStorage', () => {
   wishPrefs.getState().setView('photo');
   assert.equal(wishPrefs.getState().view, 'photo');
   assert.equal(mem.get('travel-helper:wishView'), 'photo');
-  wishPrefs.getState().setCollapsed('scheduled', false);
-  assert.equal(wishPrefs.getState().collapsed.scheduled, false);
-  assert.deepEqual(JSON.parse(mem.get('th.wishCollapsed')!), { unscheduled: false, candidate: false, scheduled: false });
+});
+
+test('setSection 不記住；換地區、按「自己加」（setUserOnly）回到三排書架（T53）', () => {
+  const before = new Map(mem);
+  wishPrefs.getState().setSection('candidate');
+  assert.equal(wishPrefs.getState().section, 'candidate');
+  assert.deepEqual(mem, before);
+  wishPrefs.getState().setUserOnly(true);
+  assert.equal(wishPrefs.getState().section, null);
+  wishPrefs.getState().setSection('scheduled');
+  wishPrefs.getState().setUserOnly(false);
+  assert.equal(wishPrefs.getState().section, null);
 });

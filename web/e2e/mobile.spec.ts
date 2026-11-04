@@ -1,7 +1,7 @@
 // 手機版（第六輪 §3）：底部 5 個分頁、我、地圖一直掛著、探索、想去、詳情、行程。mobile（390×844）、mobile-small（360×800）兩個 project 都跑。
 import { test } from '@playwright/test';
 import { expect, goTab, mobileState, ready, scrollsSideways, TABS } from './mobileHelpers.ts';
-import { centerOn, likeMany, exploreAll } from './helpers.ts';
+import { centerOn, likeMany, exploreAll, openWishSection, backToWishShelves, revealWishRow } from './helpers.ts';
 
 test('底部 5 個分頁，切換', async ({ page }) => {
   await ready(page);
@@ -289,6 +289,7 @@ test('探索：篩選的底部面板蓋過底部分頁，最下面的晶片點�
 test('想去：分段切換、加到某天', async ({ page }) => {
   await ready(page);
   await goTab(page, 'wish');
+  await openWishSection(page, 'scheduled');
   await expect(page.getByTestId('m-wish-item').first()).toBeVisible();
   await page.getByTestId('filter-open').click();
   await page.getByTestId('filter-opt-type-spot').click();
@@ -415,6 +416,7 @@ test('詳情：點小地圖跳到行程', async ({ page }) => {
 test('詳情：從想去打開多一個「加到某天」，可以投票、留言', async ({ page }) => {
   await ready(page);
   await goTab(page, 'wish');
+  await openWishSection(page, 'scheduled');
   const first = page.getByTestId('m-wish-item').first();
   const id = await first.getAttribute('data-id');
   await first.getByTestId('m-wish-open').click();
@@ -1219,27 +1221,41 @@ test('手機探索有清單：切過去出現 88px 的列，❤ 位置固定，�
   await expect(page.getByTestId('m-feed-item').first()).toBeVisible();
 });
 
-// ---------- 第七輪 Task 6：想去分三段 ----------
+// ---------- 第七輪 Task 6：想去分三段；T53 改成三排書架 ----------
 
-test('想去：三段、已排預設收合；沒有跳轉晶片，數字在段落標題（§13.7）', async ({ page }) => {
+test('想去（T53）：三排書架、每排 3 張小卡；「全部 ›」進清單層，返回鈕「‹ 還沒排」，切換鈕只在這層', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await goTab(page, 'wish');
-  await expect(page.getByTestId('wish-section-scheduled')).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.getByTestId('wish-section-candidate')).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('[data-testid^="wish-jump-"]')).toHaveCount(0);
-  await expect(page.getByTestId('wish-section-count-candidate')).toHaveText(/^· [0-9]+$/);
+  const wish = page.getByTestId('m-wish');
+  await expect(wish.getByTestId('wish-list')).toHaveAttribute('data-stage', 'shelves');
+  expect(await wish.getByTestId('wish-shelf').evaluateAll((els) => els.map((e) => e.getAttribute('data-section')))).toEqual(['unscheduled', 'candidate', 'scheduled']);
+  expect(await wish.locator('[data-section="unscheduled"] [data-testid="shelf-card"]').count()).toBe(3);
+  await expect(wish.locator('[data-section="candidate"] [data-testid="shelf-caption"]').first()).toHaveText(/^2\/\d+ 候選$/);
+  await expect(wish.getByTestId('view-photo')).toHaveCount(0);
   expect(await scrollsSideways(page)).toBe(false);
+  const total = Number(((await wish.getByTestId('wish-shelf-all-unscheduled').textContent()) ?? '').replace(/\D/g, ''));
+  await openWishSection(page, 'unscheduled');
+  await expect(wish.getByTestId('back-to-area')).toHaveText('‹ 還沒排');
+  await expect(wish.getByTestId('list-count')).toHaveText(`${total} 個地點`);
+  await expect(wish.getByTestId('view-photo')).toBeVisible();
+  expect(await scrollsSideways(page)).toBe(false);
+  await backToWishShelves(page);
+  // 點小卡開整頁詳情
+  const card = wish.locator('[data-section="scheduled"] [data-testid="shelf-card"]').first();
+  const id = await card.getAttribute('data-id');
+  await card.click();
+  await expect(page.getByTestId('m-detail')).toHaveAttribute('data-id', id!);
 });
 
-test('想去：每段先 8 個，再顯示 15 個', async ({ page }) => {
+test('想去：某一排的全部先 8 個，再顯示 15 個', async ({ page }) => {
   await ready(page);
   await likeMany(page, 12);
   await goTab(page, 'wish');
-  // 類型是一次一類：用景點
-  const rows = page.locator('[data-section="unscheduled"] [data-testid="m-wish-item"]');
-  const total = Number(((await page.getByTestId('wish-section-count-unscheduled').textContent()) ?? '').replace('·', '').trim());
+  const total = Number(((await page.getByTestId('wish-shelf-all-unscheduled').textContent()) ?? '').replace(/\D/g, ''));
   expect(total).toBeGreaterThanOrEqual(12);
+  await openWishSection(page, 'unscheduled');
+  const rows = page.locator('[data-section="unscheduled"] [data-testid="m-wish-item"]');
   await expect(rows).toHaveCount(8);
   await page.getByTestId('wish-more-unscheduled').click();
   await expect(rows).toHaveCount(Math.min(total, 23));
@@ -1250,6 +1266,7 @@ test('想去：點最新留言開詳情的留言分頁', async ({ page }) => {
   const [id] = await likeMany(page, 1);
   await page.evaluate((id) => (window as any).__th.shared.comment(id, '這裡晚上很漂亮。要早點去', 'normal'), id);
   await goTab(page, 'wish');
+  await revealWishRow(page, id);
   const row = page.locator(`[data-testid="m-wish-item"][data-id="${id}"]`);
   await row.scrollIntoViewIfNeeded();
   await expect(row.getByTestId('wish-last-comment')).toHaveText('這裡晚上很漂亮。');
@@ -1262,6 +1279,7 @@ test('想去：左滑加到某天', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('th.wishSwipeHint', '1'));
   await ready(page);
   await goTab(page, 'wish');
+  await openWishSection(page, 'scheduled');
   const row = page.getByTestId('m-wish-item').first();
   await row.scrollIntoViewIfNeeded();
   const box = (await row.boundingBox())!;
@@ -1281,9 +1299,10 @@ test('想去：左滑加到某天', async ({ page }) => {
   expect(await scrollsSideways(page)).toBe(false);
 });
 
-test('想去：第一次打開，第一列自己滑一下提示，只提示一次', async ({ page }) => {
+test('想去：第一次打開某一排的清單，第一列自己滑一下提示，只提示一次', async ({ page }) => {
   await ready(page);
   await goTab(page, 'wish');
+  await openWishSection(page, 'scheduled');
   await expect.poll(() => page.evaluate(() => localStorage.getItem('th.wishSwipeHint'))).toBe('1');
 });
 
@@ -1308,6 +1327,7 @@ test('想去：打開時是「全部」；上面沒有「想去」標題，地�
 test('想去：照片牆的卡片有誰想去，沒有留言也沒有加到某天', async ({ page }) => {
   await ready(page);
   await goTab(page, 'wish');
+  await openWishSection(page, 'scheduled');
   await page.getByTestId('view-photo').click();
   const card = page.getByTestId('m-wish-item').first();
   await card.scrollIntoViewIfNeeded();
@@ -1619,6 +1639,7 @@ test('很長的名稱：想去的列省略，❤ 在畫面裡，不橫向捲動'
   const [id] = await likeMany(page, 3);
   await makeLong(page, id);
   await goTab(page, 'wish');
+  await revealWishRow(page, id);
   await page.getByTestId('view-list').click();
   const row = page.locator(`[data-testid="m-wish-item"][data-id="${id}"]`);
   await expect(row).toBeVisible();
