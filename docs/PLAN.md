@@ -1611,6 +1611,14 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **要做**：照 CONVENTIONS 的規則補：人數看官網、楽天、じゃらん的定員，附 `sources`，查不到填 null 並列進 `questions.md`；評分照 CONVENTIONS 的評分表，理由寫進 `assessment.rationale`。改完 `npm run validate`，重匯 D1。
 - **驗證**：`npm run validate` 通過；補完後用 `node` 數一次還有幾個 null。
 - **完成條件**：validate 通過；重匯 D1；PLAN 的這張卡寫上補了幾個、還剩幾個查不到。
+- **結果**（2026-11-04）：
+  - 實際缺人數的是 **10 間**（不是 11）。補了 1 間：shima-umilabo 8 人（楽天房型「一戸建て 1～8 人」、1 日 1 組包場）。**還剩 9 間**查不到整館定員（只有每間定員或房數，各房型幾間不明、來源互相對不起來），都列進 futami、shima、toba 的 `questions.md`「資料補（T68）」，要打電話問或用 Chrome 看じゃらん房型頁。
+  - 5 個港口（toba-port-*）是交通節點、照 summary「不評分」，`elderFit`、`kidsFit`、`winterFit` 維持 null，不算缺。
+  - `elderFit`：非港口 26 個補了 10 個（ise-tsukiyomi-no-miya-geku 4、ise-jingu-museum 4、osaka-shitennoji 4、shima-espana-cruise 3、shima-kaiyuen 3、shima-entrada 3、shima-izawanomiya 4、shima-katsuo-tenpaku 3、shima-satoumian 4、shima-umihozuki 5），**還剩 16 個**。主要來源是伊勢志摩バリアフリーツアーセンター（barifuri.com）和志摩バリ（miebarifuri.com），調查是 2022～2024 年的。
+  - `kidsFit`：非港口 15 個（多是神社、街道）**一個都沒補到**：照 T8g 的規則，沒有小孩反應的描述就維持 null；いこーよ、VELTRA 回 403，沒有繞過。
+  - `winterFit`：只有港口缺，不用補。
+  - 順便查到、列進 `questions.md` 的矛盾：shima-sushi-benkei 的體驗會場（鵜方還是間崎島）、shima-iwaho-bbq-cruise 的電話、toba-yoroizaki-lighthouse 有沒有停車場。
+  - 重匯 D1：分支上的 worktree 沒有本機 D1，merge 後在主目錄跑 `npm run db:import -- --all` → `--apply`。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。

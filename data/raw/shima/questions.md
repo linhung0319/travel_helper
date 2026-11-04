@@ -129,3 +129,14 @@
 - [ ] 步行 20 分內沒有晚餐店（`dinnerAccess: car`）而且不含晚餐的住宿：晚餐怎麼安排（能不能加一泊二食、送迎到餐廳、外送或 BBQ 食材）——包棟 shima-umibe、shima-umibe-terrace、shima-yadokari、shima-ocean-villa-wa，和 shima-hanataku（朝食付）、shima-villa-daio（無早餐，BBQ 晚餐）。另外 car 但有一泊二食方案的（選一泊二食就沒問題）：shima-hiougiso（賢島西側半島，到賢島站周邊的店 Google 步行 5.7 km）、渡鹿野島的 shima-watakanoso、shima-haifu，shima-ichiyo、shima-morigen、shima-neboya、shima-kabuku-resort、shima-risoujin-club、shima-ikadaso-sanjo
 - [ ] shima-matoya-bbq-cruise：T9e 把座標改成集合地「渡鹿野島対岸渡船のりば」（Google，阿児町国府3584）；じゃらん寫的地址是国府3628-420，兩者是不是同一個乘船處（第 18 行的問題的一部分）
 - [ ] shima-sushi-yuzen（間崎島）、shima-fukujuso-dining（渡鹿野島）：anchors 只算同島的點（T9e），從本土過去的船班（賢島港送迎船、渡鹿野渡船 16:45 以後）要問
+
+## 資料補（T68）
+
+- [ ] shima-morigen（森源）：全館最多住幾人；總房數官網 5 室、楽天 4 室（和室 6 畳 2～4 人），哪個對（T68）
+- [ ] shima-hikobe（ひこべ）：全館最多住幾人（和室 13 室，楽天房型「和室 8～10 畳」2～6 人，每間定員不明）（T68）
+- [ ] shima-oonami（おおなみ）：全館最多住幾人（官網洋室 2・和室 3，照片說明又寫和室 4 間；1 日 3 組限定），15 人能不能包下（T68）
+- [ ] shima-nocturne-no-mori（ノクターンの森）：每種房型各幾棟（ヴィラ 6 名、コテージ 4 名；介紹文「16 棟」、楽天 API 32 室、可帶寵物「4 棟 8 室」對不起來），全部加起來最多幾人、15 人要幾棟（T68）
+- [ ] shima-hanataku（花多來）：每間定員（ツイン 3、和室 2），全館最多住幾人、能不能包下（T68）
+- [ ] shima-sushi-benkei：體驗會場在哪裡——觀光三重體驗頁會場寫「すし べんけい」（鵜方），本文卻寫間崎島的「鮨裕 禅」；官網預約頁 404（T68）
+- [ ] shima-iwaho-bbq-cruise：電話是哪支——觀光三重寫 0599-53-2512，資料檔是 0599-53-0210（T68）
+- [ ] shima-daio-gallery、shima-kashikojima-yuransen、shima-matoya-bbq-cruise、shima-sushi-benkei、shima-iwaho-bbq-cruise：長輩評分（`elderFit`）沒有來源（電梯、上下船的階梯、座位），T68 查過仍是 null

@@ -899,6 +899,18 @@
         "url": "https://4travel.jp/travelogue/11664146",
         "retrieved": "2026-10-18",
         "note": "2020-12 旅行記（接近 5 年，舊）；先拜高河原神社，走到外宮約 5 分"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/10003978",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：月夜見宮口コミ：境內小、站步行 5～10 分、雨天腳下差"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/10003976",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：月讀宮口コミ（niagara 2021-08）拿月夜見宮比較，說月夜見宮比較好走"
       }
     ],
     "verified": false,
@@ -932,14 +944,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 4,
         "kidsFit": null,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.5（2,022 則），但是小別宮、觀光協會不主打，伊勢的門檻下是順路的好選擇",
         "winterFit": "戶外，2 月 5:00～18:00；冬天晴天有陽光照進境內（Google 1 則）",
-        "elderFit": "階梯、坡道、廁所都沒有來源",
+        "elderFit": "境內小、伊勢市站步行 5～10 分（4travel 口コミ），階梯有沒有沒來源",
         "kidsFit": "沒有來源提到小孩",
         "accessEase": "伊勢市站步行約 5～10 分"
       },
@@ -2194,6 +2206,12 @@
         "url": "https://rurubu.jp/andmore/spot/80024575",
         "retrieved": "2026-10-18",
         "note": "宇治山田站搭巴士 10 分，下車步行 3 分"
+      },
+      {
+        "type": "other",
+        "url": "https://www.barifuri.com/barrierfree/facility/jingu-art-museum/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：停車場坡道、輪椅出借、輪椅廁所、休息室、巴士站位置"
       }
     ],
     "verified": false,
@@ -2226,14 +2244,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 4,
-        "elderFit": null,
+        "elderFit": 4,
         "kidsFit": 2,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "Google 4.3（397 則），觀光協會有專頁但不主打；低分說展示少、建築比展示好",
         "winterFit": "全室內，但週四休館（2/4、2/12）",
-        "elderFit": "無障礙資訊官網、觀光協會、觀光三重都沒寫",
+        "elderFit": "從身障車位到美術館入口幾乎平坦、有輪椅出借和休息室（伊勢志摩バリアフリーツアーセンター），但主停車場和丘下巴士站上來是陡坡",
         "kidsFit": "沒有親子展示，評論說對小孩偏難、國中生以上比較適合（Google 1 則）",
         "accessEase": "巴士 51 系統等「徴古館前」下車 3～4 分，伊勢市站約 10 分"
       },
