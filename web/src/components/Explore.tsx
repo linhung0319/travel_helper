@@ -116,6 +116,18 @@ function pickRegion(region: string | null) {
   else if (area) commands.focus({ area });
 }
 
+/** 概覽的書架數字（T52）：進那一區、套那排的條件（返回鈕是「‹ 一定要去」） */
+function overviewShelf(area: string, filter: Filter) {
+  pickArea(area);
+  applyShelf(filter);
+}
+
+/** 概覽的子地區（T52）：進那一區再選那個子地區 */
+function overviewRegion(area: string, region: string) {
+  pickArea(area);
+  pickRegion(region);
+}
+
 /** 書架的「全部 ›」：套那組條件 */
 function applyShelf(filter: Filter) {
   appStore.getState().setFilter(filter);
@@ -265,7 +277,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>
         {stage === 'overview' ? (
-          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} />
+          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onShelf={overviewShelf} onPickRegion={overviewRegion} />
         ) : stage === 'area' && area ? (
           <AreaHome areaId={area} regionId={regionId} surface="desktop" onOpen={(id) => open(id)} onShelfAll={applyShelf} />
         ) : wish ? (

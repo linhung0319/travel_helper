@@ -3,7 +3,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfFilter, shelfRows, stayScore } from '../src/lib/shelves.ts';
+import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfCounts, shelfFilter, shelfRows, stayScore } from '../src/lib/shelves.ts';
 import { EMPTY_FILTER, matchesFilter, type Filter } from '../src/lib/filter.ts';
 import { placeWith } from './helpers.ts';
 
@@ -58,6 +58,12 @@ test('shelfRows：一排最多 3 個，total 是全部', () => {
   const [must] = shelfRows(many, { areas: ['toba'], regions: [] });
   assert.equal(must.items.length, 3);
   assert.equal(must.total, 5);
+});
+
+test('shelfCounts（T52）：概覽的四格數字，0 的也列、順序同 SHELVES', () => {
+  const counts = (areas: string[]) => shelfCounts(PLACES, { areas, regions: [] }).map((c) => `${c.shelf.id}:${c.total}`);
+  assert.deepEqual(counts(['toba']), ['must:3', 'fit15:1', 'stay:1', 'rain:2']);
+  assert.deepEqual(counts(['ise']), ['must:1', 'fit15:0', 'stay:0', 'rain:1']);
 });
 
 test('weather 篩選（T58）：景點的 weather 要是選的其中一個，沒判的不算；餐廳、住宿不受影響（同 search_places）', () => {

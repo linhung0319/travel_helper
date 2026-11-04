@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { setDayArea, setLodging, setNightArea } from '@travel-helper/engine';
 import type { Itinerary } from '@travel-helper/engine/types';
-import { dayRegions, isUndecided, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, openLodgingRun, skeletonCounts, skeletonDiff, skeletonRows, undecidedRun, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
+import { areaStayLine, dayRegions,isUndecided, nightLine, nightsDecided, nightsPerArea, nightsPerAreaDiff, openLodgingRun, skeletonCounts, skeletonDiff, skeletonRows, undecidedRun, whereLabel, placeAreaOf } from '../src/lib/tripSkeleton.ts';
 import type { Area, Place } from '../src/data/types.ts';
 import { itin, placeWith } from './helpers.ts';
 import { areaColor, areaTint } from '../src/lib/areas.ts';
@@ -99,6 +99,16 @@ test('地圖的晚數、決定了幾晚', () => {
   const it = sample();
   assert.deepEqual(nightsPerArea(it, AREAS, byId), [{ area: 'shima', nights: 2 }, { area: 'toba', nights: 3 }, { area: 'kix', nights: 1 }]);
   assert.deepEqual(nightsDecided(it, byId), { total: 11, decided: 6 });
+});
+
+test('概覽的住幾晚（T52）：入住到退房；斷開兩段用「、」；沒住是 null', () => {
+  const it = sample();
+  assert.equal(areaStayLine(it, 'shima', byId), '住 2 晚 · 2/2–2/4');
+  assert.equal(areaStayLine(it, 'toba', byId), '住 3 晚 · 2/4–2/7');
+  assert.equal(areaStayLine(it, 'kix', byId), '住 1 晚 · 2/12–2/13');
+  assert.equal(areaStayLine(it, 'ise', byId), null);
+  const split = setNightArea(setNightArea(it, D(9), 'shima'), D(10), 'shima');
+  assert.equal(areaStayLine(split, 'shima', byId), '住 4 晚 · 2/2–2/4、2/9–2/11');
 });
 
 test('單天頂端：這晚的區、連住第幾晚、住宿；還沒決定、最後一天是 null', () => {

@@ -1236,6 +1236,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 概覽的照片會讓首屏多 6 張圖：用 `width=960` 的縮圖，捲到才載入（T32 的做法）。
 - **驗證**：e2e 改 `t42.spec.ts`、`mobile-t42.spec.ts`（書架數字點進去、子地區點進去）；網頁、手機截圖給 👤 看。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；👤 看過截圖。
+- **結果**（2026-11-04，branch `t52`，等 👤 看截圖）：畫面寫在 interaction-design §26（§20 的概覽那條指過去）。`npm test`（1067，`shelves.test.ts`、`tripSkeleton.test.ts` 各多 1 項）、`npm run typecheck` 通過。
+  - **純函式**：`lib/shelves.ts` 的 `shelfCounts`（四排都列、0 也列）；`lib/tripSkeleton.ts` 的 `areaStayLine`（「住 3 晚 · 2/2–2/5」，斷開兩段用「、」）。`Area` 型別多 `photos`。
+  - **畫面**：`ExploreOverview` 多兩個動作 `onShelf`、`onPickRegion`；網頁 `Explore.tsx` 是 `pickArea` 再套書架條件／`pickRegion`，手機 `ExploreFeed.tsx` 是 `pickFeedArea` 再 `filterToFeed`／`pickFeedRegion`。照片用新的 `AreaPhoto`（`whenNearViewport`，不經 `Photo` 元件，因為它吃的是資料點）。作者去掉資料裡的「Wikimedia: 」，連到 Commons 頁面。
+  - **自己定的**：子地區名字不省略、窄時折兩行（擠成一行時「賢島」變「賢…」）；子地區之間不加「·」（名字裡本來就有「・」，會分不清）；住幾晚照確定的行程，看提議時不跟著變。
+  - e2e（只跑受影響的，用暫時的設定換 port 5211）：`t42.spec.ts` 加「概覽（T52）」（作者授權、住幾晚、四格的順序和灰掉、點「一定要去」進清單層且地點數等於數字、返回鈕、子地區點進去、「+N」）；`mobile-t42.spec.ts` 加一項（點「可坐 15 人」、子地區）。跑過 t42、mobile-t42（390、360）共 7 項，全部通過。其他 e2e 沒有用到概覽卡的 testid，沒跑；完整 e2e 沒跑。
+  - 截圖：網頁概覽、手機（390、360）概覽。
 
 #### T53 想去改成書架 〔S〕（#3）
 - **前置**：T50（共用書架的元件和返回鈕）。

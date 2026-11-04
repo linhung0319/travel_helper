@@ -65,6 +65,11 @@ export function shelfRows(places: Place[], base: Pick<Filter, 'areas' | 'regions
   }).filter((r) => r.total > 0);
 }
 
+/** 概覽的四格數字（T52）：每排書架在這區一共幾個；0 的也列（畫面灰掉、不能點），順序同 SHELVES */
+export function shelfCounts(places: Place[], base: Pick<Filter, 'areas' | 'regions'>): { shelf: Shelf; total: number }[] {
+  return SHELVES.map((shelf) => ({ shelf, total: explorePlaces(places, shelfFilter(shelf, base), null, 'recommend', () => 0).length }));
+}
+
 /** 條件剛好是哪一排書架（地區、子地區之外的條件一樣；順序不管）；不是就 null */
 export function matchShelf(filter: Filter): Shelf | null {
   const same = (a: readonly string[], b: readonly string[]) => a.length === b.length && a.every((v) => b.includes(v));
