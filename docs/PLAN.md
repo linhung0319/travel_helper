@@ -140,7 +140,7 @@
 | T49 | 小修：手機日期列滑不動、排行程固定在地圖右上、手機整趟的標題列、網頁地區列橫捲、點地區鈕回到第一頁 | S | — | 4 | | ✅ |
 | T50 | 探索選了一區的頁面：不放描述、子地區列上移、書架照景餐宿排（可坐 15 人、住在這裡）、小卡放類型圓章、返回鈕「‹ 一定要去」、切換鈕只在清單層 | M | T49 | 4 | | ✅ |
 | T51 | 地區的代表照片（areas.json，Wikimedia Commons 6 張） | S | — | 4 | | ✅ |
-| T52 | 探索的概覽改版：地區照片、住幾晚、四格書架數字、一行子地區 | S | T50、T51 | 4 | | ⬜ |
+| T52 | 探索的概覽改版：地區照片、住幾晚、四格書架數字、一行子地區 | S | T50、T51 | 4 | | ✅ |
 | T53 | 想去改成三排書架（還沒排、已是候選、已排進行程） | S | T50 | 4 | | ✅ |
 | T54 | 整趟改版：每晚「住哪區」「住宿」兩格、未選區／未選住宿、鎖定說明、列不再點了跳天 | M | T48、T49 | 4 | | ✅ |
 | T55 | 預約筆記改版：一筆一張卡、日期可以收合、計數鈕 | S | — | 4 | | ✅ |
@@ -1236,7 +1236,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 概覽的照片會讓首屏多 6 張圖：用 `width=960` 的縮圖，捲到才載入（T32 的做法）。
 - **驗證**：e2e 改 `t42.spec.ts`、`mobile-t42.spec.ts`（書架數字點進去、子地區點進去）；網頁、手機截圖給 👤 看。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；👤 看過截圖。
-- **結果**（2026-11-04，branch `t52`，等 👤 看截圖）：畫面寫在 interaction-design §26（§20 的概覽那條指過去）。`npm test`（1067，`shelves.test.ts`、`tripSkeleton.test.ts` 各多 1 項）、`npm run typecheck` 通過。
+- **結果**（2026-11-04，已 merge 回 master）：畫面寫在 interaction-design §26（§20 的概覽那條指過去）。`npm test`（1067，`shelves.test.ts`、`tripSkeleton.test.ts` 各多 1 項）、`npm run typecheck` 通過。
   - **純函式**：`lib/shelves.ts` 的 `shelfCounts`（四排都列、0 也列）；`lib/tripSkeleton.ts` 的 `areaStayLine`（「住 3 晚 · 2/2–2/5」，斷開兩段用「、」）。`Area` 型別多 `photos`。
   - **畫面**：`ExploreOverview` 多兩個動作 `onShelf`、`onPickRegion`；網頁 `Explore.tsx` 是 `pickArea` 再套書架條件／`pickRegion`，手機 `ExploreFeed.tsx` 是 `pickFeedArea` 再 `filterToFeed`／`pickFeedRegion`。照片用新的 `AreaPhoto`（`whenNearViewport`，不經 `Photo` 元件，因為它吃的是資料點）。作者去掉資料裡的「Wikimedia: 」，連到 Commons 頁面。
   - **自己定的**：子地區名字不省略、窄時折兩行（擠成一行時「賢島」變「賢…」）；子地區之間不加「·」（名字裡本來就有「・」，會分不清）；住幾晚照確定的行程，看提議時不跟著變。
