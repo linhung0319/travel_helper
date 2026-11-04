@@ -43,7 +43,8 @@ test('進網站是探索的概覽：一區一張卡，代表的點開詳情，�
   await expect(bar.getByTestId('region-all')).toHaveAttribute('aria-pressed', 'true');
   const y = async (id: string) => (await bar.getByTestId(id).boundingBox())!.y;
   expect(await y('region-chips')).toBeGreaterThan(await y('ex-area-chips'));
-  expect(await y('region-chips')).toBeLessThan(await y('list-count'));
+  // 書架那層沒有地點數、沒有「看什麼」帶子（T69）
+  await expect(bar.getByTestId('lens')).toHaveCount(0);
   await expect(page.getByTestId('view-photo')).toHaveCount(0);
   await expect(home.getByTestId('shelf')).toHaveCount(4);
   expect(await home.getByTestId('shelf').evaluateAll((els) => els.map((e) => e.getAttribute('data-shelf')))).toEqual(['must', 'fit15', 'stay', 'rain']);
@@ -53,7 +54,7 @@ test('進網站是探索的概覽：一區一張卡，代表的點開詳情，�
   await expect(home.locator('[data-shelf="fit15"] [data-testid="shelf-note"]')).toHaveText(/^能坐一起 \d+ · 要分桌 \d+$/);
   await expect(home.locator('[data-shelf="stay"] [data-testid="shelf-note"]')).toHaveText(/^包棟 \d+ · 旅館飯店 \d+$/);
   await expect(home.locator('[data-shelf="fit15"] [data-testid="shelf-caption"]').first()).toHaveText(/^15 人(能坐一起|要分桌)$/);
-  await expect(home.locator('[data-shelf="stay"] [data-testid="shelf-caption"]').first()).toHaveText(/^(包棟 · \d+ 人|(旅館|飯店|住宿) · 全團住得下)( · .+)?$/);
+  await expect(home.locator('[data-shelf="stay"] [data-testid="shelf-caption"]').first()).toHaveText(/^(包棟 · \d+ 人 · 全團一棟|(旅館|飯店|住宿) · \d+ 間房)( · .+)?$/);
   await expect(home.locator('[data-shelf="must"] [data-testid="shelf-caption"]')).toHaveCount(0);
   await expect(home.locator('[data-testid="shelf"][data-tier="2"]')).toHaveCount(0);
   await expect(home.locator('[data-shelf="must"] [data-testid="shelf-card"]')).toHaveCount(3);
@@ -142,7 +143,7 @@ test('概覽（T52、T63）：地區照片、住幾晚；沒有四格書架；�
   await expect(page.getByTestId('map-all-areas')).toHaveCount(0);
 });
 
-test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一定要去」回到書架；類型在篩選面板裡', async ({ page }) => {
+test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 書架」回到書架；類型在篩選面板裡', async ({ page }) => {
   await ready(page, { tab: 'default' });
   await page.getByTestId('ex-area-toba').click();
   const must = page.locator('[data-shelf="must"]');
@@ -151,10 +152,10 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   const filter = await page.evaluate(() => (window as any).__th.appStore.getState().filter);
   expect(filter).toMatchObject({ areas: ['toba'], types: ['spot'], tiers: ['S', 'A'] });
   await expect(page.getByTestId('explore-item').first()).toBeVisible();
-  // 返回鈕和地點數同一列，寫書架名和現在看的地方（T64）；切換鈕在這一列的右邊（T50）
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
-  await expect(page.getByTestId('list-where')).toHaveText('鳥羽');
-  const head = page.locator('.fb-listhead');
+  // T69：「看什麼」帶子寫書架名和地點數，現在看的地方看子地區列哪一顆被選中；切換鈕在帶子右邊
+  await expect(page.getByTestId('lens-title')).toHaveText('一定要去');
+  await expect(page.getByTestId('region-all')).toHaveAttribute('aria-pressed', 'true');
+  const head = page.getByTestId('lens');
   await expect(head.getByTestId('back-to-area')).toBeVisible();
   await expect(head.getByTestId('view-photo')).toBeVisible();
   await expect(page.locator('.fb-typerow').getByTestId('view-photo')).toHaveCount(0);
@@ -175,7 +176,7 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   await shot(page, 'web-filter-sheet');
   // 在面板拿掉書架帶來的條件：返回鈕改寫「‹ 自己篩選」，剩下的條件變白底
   await page.getByTestId('filter-opt-type-spot').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  await expect(page.getByTestId('lens-title')).toHaveText('自己篩選');
   await expect(page.locator('[data-testid="cond-chip"][data-preset]')).toHaveCount(0);
   // 全部清除：地區留著，回到書架
   await page.getByTestId('filter-clear').click();
@@ -188,8 +189,8 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   await expect(region).toHaveAttribute('aria-pressed', 'true');
   await page.getByTestId('search').fill('水族');
   await expect(page.getByTestId('area-home')).toHaveCount(0);
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
-  await expect(page.getByTestId('list-where')).toHaveText(/^鳥羽・/);
+  await expect(page.getByTestId('lens-title')).toHaveText('自己篩選');
+  await expect(page.getByTestId('region-all')).toHaveAttribute('aria-pressed', 'false');
   await expect(page.getByTestId('cond-chip')).toHaveText(['搜尋「水族」']);
   await page.getByTestId('back-to-area').click();
   await expect(page.getByTestId('area-home')).toBeVisible();
@@ -203,7 +204,7 @@ test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一
   // 想去（T53）：書架那層沒有切換鈕；「全部 ›」之後切換鈕在地點數那列
   await expect(page.getByTestId('view-photo')).toHaveCount(0);
   await openWishSection(page, 'scheduled');
-  await expect(page.locator('.fb-listhead').getByTestId('view-photo')).toBeVisible();
+  await expect(page.getByTestId('lens').getByTestId('view-photo')).toBeVisible();
   // 回到概覽
   await page.evaluate(() => (window as any).__th.appStore.getState().setMode('explore'));
   await page.getByTestId('ex-area-all').click();
@@ -226,9 +227,9 @@ test('T66：第一級 0 個退到第二級——賢島沒有 S、A 級，書架�
   expect(await color(note)).not.toBe(await color(page.locator('[data-shelf="fit15"] [data-testid="shelf-note"]')));
   await shot(page, 'web-shelf-fallback');
   await must.getByTestId('shelf-all').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
+  await expect(page.getByTestId('lens-title')).toHaveText('一定要去');
   await expect(page.getByTestId('cond-chip')).toHaveText(['景點', 'B 級']);
-  await expect(page.getByTestId('list-where')).toHaveText('志摩・賢島');
+  await expect(page.getByTestId('region-shima-kashikojima')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('T64、T66：兩級都 0 個的書架寫「沒有」和下一步（看全區、問 AI）；拿掉一顆條件改寫「自己篩選」；問 AI 帶現在的條件', async ({ page }) => {
@@ -255,8 +256,8 @@ test('T64、T66：兩級都 0 個的書架寫「沒有」和下一步（看全�
   await expect(page.locator('.ac-chips [data-testid="chat-context"]')).toHaveCount(0);
   // 放大範圍：鳥羽全區的一定要去
   await steps.first().click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
-  await expect(page.getByTestId('list-where')).toHaveText('鳥羽');
+  await expect(page.getByTestId('lens-title')).toHaveText('一定要去');
+  await expect(page.getByTestId('region-all')).toHaveAttribute('aria-pressed', 'true');
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.regions)).toEqual([]);
   await page.getByTestId('back-to-area').click();
 
@@ -264,15 +265,16 @@ test('T64、T66：兩級都 0 個的書架寫「沒有」和下一步（看全�
   await page.getByTestId('ex-area-shima').click();
   await page.getByTestId('region-shima-kashikojima').click();
   await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 全員吃飯');
-  await expect(page.getByTestId('list-where')).toHaveText('志摩・賢島');
+  await expect(page.getByTestId('lens-title')).toHaveText('全員吃飯');
+  await expect(page.getByTestId('region-shima-kashikojima')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByTestId('cond-chip')).toHaveText(['餐廳', '全員 15 人']);
   await page.getByTestId('cond-add').click();
   await page.getByTestId('filter-opt-context-lunch').click();
   await page.getByTestId('filter-done').click();
   await expect(page.getByTestId('cond-chip')).toHaveText(['餐廳', '全員 15 人', '午餐']);
   await expect(page.locator('[data-testid="cond-chip"]:not([data-preset])')).toHaveText(['午餐']);
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 全員吃飯');
+  // T69：自己多加了條件，標題寫「＋1」
+  await expect(page.getByTestId('lens-title')).toHaveText('全員吃飯＋1');
   await shot(page, 'web-cond-row');
   // 問 AI：晶片照舊，現在的地區、子地區、條件寫成一句放進輸入框
   await page.getByTestId('list-ask-ai').click();
@@ -281,7 +283,7 @@ test('T64、T66：兩級都 0 個的書架寫「沒有」和下一步（看全�
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   // 拿掉書架帶來的一顆：自己篩選，剩下的都是白底
   await page.locator('[data-testid="cond-chip"][data-key="who"]').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  await expect(page.getByTestId('lens-title')).toHaveText('自己篩選');
   await expect(page.locator('[data-testid="cond-chip"][data-preset]')).toHaveCount(0);
   expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.who)).toEqual([]);
 

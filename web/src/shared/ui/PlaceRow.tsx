@@ -1,6 +1,6 @@
-// 清單列（探索的清單、想去的列共用，兩邊一樣）：固定 88px。
-// 左邊 64px 方形縮圖，中間三行（名稱＋等級；類型色點・類型・地區；最多兩個重點膠囊），右邊固定一顆 ❤＋數字（right 可換掉）。
-// extra 有給就換掉第二、三行（想去用）；這時這團的標章（T44b）只放一個，接在名稱後面。評分（★）在詳情（T44b）。名稱太長就省略，不會推動右邊的 ❤。
+// 清單列（探索的清單、想去的列共用，兩邊一樣）：至少 88px，永遠三行（T69：以前寫死 88px，多一行標籤就壓到上下列）。
+// 左邊 64px 方形縮圖，中間三行（名稱＋等級＋自己加／已訂／待訂的小方標；類型・地區（自己加的接「誰加的」）；最多兩個重點膠囊），右邊固定一顆 ❤＋數字（right 可換掉）。
+// extra 有給就換掉第二、三行（想去用，這團的標章也在 extra 的第二行，T69 從名稱那行搬下去）。評分（★）在詳情（T44b）。名稱太長就省略，標章、❤ 不會被推走。
 // 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）。樣式在 ui.css。
 
 import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
@@ -14,8 +14,8 @@ import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/vie
 import { PlaceTags } from './PlaceTags.tsx';
 import type { Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
-import { fitBadges } from '../../lib/placeSummary.ts';
 import { TierMark } from './TierMark.tsx';
+import { stayCaption } from '../../lib/badges.ts';
 import { TypeLabel } from './TypeLabel.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
 
@@ -88,7 +88,8 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
   const user = isUserPlace(place);
-  const meta = placeMetaText(place, areas);
+  // 住宿第二行接住法那句（T69：「旅館 · 32 間房」「包棟 · 8 人 · 要分住」），清單不用點開就看得到
+  const meta = [placeMetaText(place, areas), stayCaption(place)?.label].filter(Boolean).join(' · ');
   const row = (
     <div
       {...rootProps}
@@ -116,16 +117,15 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
           {letter && <b data-testid="ai-letter">{letter}.</b>}
           <span className="pr-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
-          {extra !== undefined && <Highlights list={fitBadges(place, 1)} testId="place-fit" />}
+          <PlaceTags place={place} />
         </span>
-        <PlaceTags place={place} />
         {extra ?? (
           <>
             <span className="pr-meta">
               <TypeLabel type={place.type} />
               {meta && <span className="pr-meta-text">・{meta}</span>}
+              {user && <span className="pr-meta-text pr-user-by">・{userSubtitle(place, members)}</span>}
             </span>
-            {user && <span className="pr-user-by">{userSubtitle(place, members)}</span>}
             {aiNote ? (
               <span className="ai-note" data-testid="ai-note">
                 ✦ {aiNote}

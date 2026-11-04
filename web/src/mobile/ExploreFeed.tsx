@@ -11,15 +11,17 @@ import { useShared } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { feedFilter, filterToFeed } from '../lib/explore.ts';
-import { backLabel, exploreStage } from '../lib/shelves.ts';
-import { emptyHelp, placeLabel } from '../lib/listConditions.ts';
+import { backLabel, exploreStage, fallbackNote } from '../lib/shelves.ts';
+import { emptyHelp } from '../lib/listConditions.ts';
+import { lensUndo, undoLeave, useLensUndo } from '../exploreArea.ts';
+import { UndoToast } from '../shared/ui/UndoToast.tsx';
 import type { Filter } from '../lib/filter.ts';
 import { AreaHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/ExploreHome.tsx';
 import { useData } from '../hooks.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
-import { useAiPicked, useExploreList } from '../shared/placeLists.ts';
+import { useAiPicked, useExploreList, useScopeCounts } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus } from '../shared/ui/PlaceRow.tsx';
 import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
 import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
@@ -83,7 +85,7 @@ export function ExploreFeed() {
   const filter = useMemo(() => feedFilter(feed), [feed.type, feed.area, feed.quick]); // eslint-disable-line react-hooks/exhaustive-deps
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(feed.query);
-  const { list: all } = useExploreList(filter, listQuery, feed.sort);
+  const { pool, list: all } = useExploreList(filter, listQuery, feed.sort);
   // AI 挑的（規格 §3.1）：取交集、照 AI 的順序、卡片多一行理由
   const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, true);
   const fromChat = useMobile((s) => s.fromChat);
@@ -97,7 +99,9 @@ export function ExploreFeed() {
   const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
-  const where = placeLabel(filter, areas);
+  // 地區分頁、子地區晶片的小數字（T69）：照片牆／清單那層（不是 AI 挑的）
+  const counts = useScopeCounts(pool, filter, listQuery, stage === 'list' && !aiResult);
+  const undo = useLensUndo((s) => s.undo);
 
   return (
     <div className="m-feed" data-testid="m-feed">
@@ -109,10 +113,12 @@ export function ExploreFeed() {
           ...(fromChat || aiResult ? { onBack: back } : {}),
           ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
         }}
-        subRow={stage === 'area' && feed.area ? <RegionChips areaId={feed.area} regionId={regionId} onPick={pickFeedRegion} /> : undefined}
-        back={stage === 'list' && !aiResult && where ? { label: backLabel(filter), where, onClick: () => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' }) } : null}
+        subRow={feed.area && stage !== 'overview' ? <RegionChips areaId={feed.area} regionId={regionId} onPick={pickFeedRegion} counts={counts} /> : undefined}
+        back={stage === 'list' && !aiResult && feed.area ? { label: backLabel(filter), note: fallbackNote(filter, areas), onClick: () => mobileStore.getState().setFeed({ type: 'all', quick: onlyRegions(feed.quick), query: '' }) } : null}
         showView={stage === 'list'}
+        counts={counts}
       />
+      {stage === 'overview' && undo && <UndoToast label={undo.label} onUndo={undoLeave} onClose={() => lensUndo.getState().set(null)} />}
       <AddPlaceSuggest query={feed.query} surface="mobile" />
       {stage === 'overview' ? (
         <ExploreOverview

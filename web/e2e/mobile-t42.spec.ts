@@ -58,8 +58,8 @@ test('手機：概覽 → 選鳥羽 → 書架「全部 ›」→ 回到書架�
   const feed = await page.evaluate(() => (window as any).__thMobile.getState().feed);
   expect(feed).toMatchObject({ area: 'toba', type: 'restaurant' });
   expect(feed.quick).toContain('who:all');
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 全員吃飯');
-  await expect(page.locator('.fb-listhead').getByTestId('view-photo')).toBeVisible();
+  await expect(page.getByTestId('lens-title')).toHaveText('全員吃飯');
+  await expect(page.getByTestId('lens').getByTestId('view-photo')).toBeVisible();
   await shot(page, 'mobile-shelf-all');
   await page.getByTestId('filter-open').click();
   await expect(page.getByTestId('filter-opt-type-restaurant')).toHaveAttribute('aria-pressed', 'true');
@@ -82,10 +82,10 @@ test('手機 T66：第一級 0 個退到第二級——賢島沒有 S、A 級，
   await expect(must.getByTestId('shelf-note')).toHaveText('賢島沒有 S、A 級，這是 B 級');
   await expect(must.getByTestId('shelf-note')).toHaveClass(/fallback/);
   await expect(must.getByTestId('empty-help')).toHaveCount(0);
-  await expect(page.locator('[data-shelf="stay"] [data-testid="shelf-caption"]').first()).toHaveText(/全團住得下|包棟 · \d+ 人/);
+  await expect(page.locator('[data-shelf="stay"] [data-testid="shelf-caption"]').first()).toHaveText(/間房|包棟 · \d+ 人/);
   await shot(page, 'mobile-shelf-fallback');
   await must.getByTestId('shelf-all').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
+  await expect(page.getByTestId('lens-title')).toHaveText('一定要去');
   await expect(page.getByTestId('cond-chip')).toHaveText(['景點', 'B 級']);
 });
 
@@ -109,14 +109,14 @@ test('手機 T64、T66：兩級都 0 個的書架給下一步；條件列拿掉�
   await page.getByTestId('m-feed-area-shima').click();
   await page.getByTestId('fb-stick').getByTestId('region-shima-kashikojima').click();
   await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 全員吃飯');
-  await expect(page.getByTestId('list-where')).toHaveText('志摩・賢島');
+  await expect(page.getByTestId('lens-title')).toHaveText('全員吃飯');
+  await expect(page.getByTestId('region-shima-kashikojima')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByTestId('cond-chip')).toHaveText(['餐廳', '全員 15 人']);
   await expect(page.getByTestId('fb-stick').getByTestId('cond-row')).toBeVisible();
   await shot(page, 'mobile-cond-row');
   // 拿掉「餐廳」：自己篩選
   await page.locator('[data-testid="cond-chip"][data-key="types"]').click();
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 自己篩選');
+  await expect(page.getByTestId('lens-title')).toHaveText('自己篩選');
   expect((await page.evaluate(() => (window as any).__thMobile.getState().feed)).type).toBe('all');
   // 問 AI：晶片照舊、句子放進輸入框
   await page.getByTestId('list-ask-ai').click();

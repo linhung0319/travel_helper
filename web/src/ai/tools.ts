@@ -100,7 +100,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         access: bool('不用搭車（交通評分 accessEase 4 分以上：車站走路就到）'),
         reservable: bool('可以預約'),
         weather: strs('景點的天氣：rain（下雨也行＝室內、有遮蔽都算）、indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）。餐廳、住宿不受影響'),
-        stay: strs('住宿的住法：whole（包棟一棟住得下全團）、multi（包棟要兩棟）、hotel（旅館飯店）、fits（一間住得下全團：包棟一棟或旅館飯店 5 間房以上）、apart（要分開住）'),
+        stay: strs('住宿的住法：whole（包棟一棟住得下全團）、multi（包棟但一棟住不下，要和別處分住）、hotel（旅館飯店）、other（民宿等不能包棟的）、fits（一間住得下全團：包棟一棟或旅館飯店 5 間房以上）、apart（要分開住）'),
         dinner: strs('住宿的晚餐：included（一泊二食）、walk（不含，走路有店）、car（不含，要開車找）'),
         winter: bool('適合 2 月（景點的 winterFit 4 分以上）'),
         wholeRental: bool('能包棟（只留住宿）'),
@@ -251,7 +251,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       description:
         '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、tiers、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。' +
         '餐廳（給了只留餐廳）：who（all 全員 15 人能一起吃＝fit15 是 yes 或 split 而且收小孩、sub 分組 4～6 人、apart 15 人坐不下或還沒查）、contexts（lunch 午餐、dinner 晚餐、light 小吃咖啡；transit 車站旁）、kids（ok 可以帶小孩）。' +
-        '住宿（給了只留住宿）：stay（whole 包棟一棟住得下全團、multi 包棟要兩棟、hotel 旅館飯店、fits 一間住得下全團＝包棟一棟或旅館飯店 5 間房以上、apart 要分開住）、dinner（included 一泊二食、walk 不含但走路有店、car 不含要開車找）、amenity（onsen 溫泉、stationWalk 車站走路到；給幾個都要符合）。' +
+        '住宿（給了只留住宿）：stay（whole 包棟一棟住得下全團、multi 包棟但要和別處分住、hotel 旅館飯店、other 民宿、fits 一間住得下全團＝包棟一棟或旅館飯店 5 間房以上、apart 要分開住）、dinner（included 一泊二食、walk 不含但走路有店、car 不含要開車找）、amenity（onsen 溫泉、stationWalk 車站走路到；給幾個都要符合）。' +
         '景點、住宿：suits（elderly 適合長輩、kids 適合小孩、winter 適合 2 月（只有景點有），評分 4 分以上；給幾個都要符合）。景點：weather（rain 下雨也行＝室內、有遮蔽都算，indoor 室內、covered 有遮蔽；餐廳、住宿不受影響）。' +
         'reach（station 車站旁、easy 不用搭車＝交通評分 4 分以上，餐廳是車站走路 10 分內）。舊的 fit15、lodging 還收，會轉成 who、stay。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
       input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), votes: strs(), weather: strs(), who: strs(), kids: strs(), reach: strs(), stay: strs(), dinner: strs(), suits: strs(), amenity: strs(), fit15: strs(), lodging: strs(), clear: bool() }),

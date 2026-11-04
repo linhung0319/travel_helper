@@ -23,6 +23,7 @@ import type { Area, Photo as PhotoData, Place } from '../../data/types.ts';
 import { Photo } from '../../components/Photo.tsx';
 import { Chip } from './Chip.tsx';
 import { ChipScroller } from './ChipScroller.tsx';
+import { ScopeCount } from './AreaChips.tsx';
 import { TierMark } from './TierMark.tsx';
 import { TypeSeal } from './TypeLabel.tsx';
 
@@ -176,19 +177,28 @@ function AreaPhoto({ photo, alt }: { photo: PhotoData | undefined; alt: string }
  * 選了一區的子地區列（T50 起放在篩選列裡、緊接在地區列下面，比地區列小一號；選到的是淡靛藍底）：「全部」加各子地區，一次選一個。
  * 只有一個子地區（或沒有）時不畫。
  */
-export function RegionChips({ areaId, regionId, onPick }: { areaId: string; regionId: string | null; onPick: (region: string | null) => void }) {
+/**
+ * 子地區列（T50）：書架和照片牆／清單都有（T69：換子地區只換範圍，篩選留著）。counts：有「看什麼」時每個子地區有幾個，「全部」寫整區的；0 個的變虛線、字變淡
+ */
+export function RegionChips({ areaId, regionId, onPick, counts }: { areaId: string; regionId: string | null; onPick: (region: string | null) => void; counts?: Map<string, number> | null }) {
   const area = useData((s) => s.areas.find((a) => a.id === areaId));
   if (!area || (area.regions?.length ?? 0) <= 1) return null;
+  const all = counts?.get(area.id);
   return (
     <ChipScroller className="m-chips fb-chips xa-regions" testId="region-chips" activeKey={regionId}>
       <Chip on={!regionId} onClick={() => onPick(null)} testId="region-all">
         全部
+        <ScopeCount n={all} />
       </Chip>
-      {area.regions!.map((r) => (
-        <Chip key={r.id} on={regionId === r.id} onClick={() => onPick(r.id)} testId={`region-${r.id}`}>
-          {displayName(r.name, r.id)}
-        </Chip>
-      ))}
+      {area.regions!.map((r) => {
+        const n = counts?.get(r.id);
+        return (
+          <Chip key={r.id} on={regionId === r.id} onClick={() => onPick(r.id)} testId={`region-${r.id}`} className={n === 0 ? 'zero' : undefined}>
+            {displayName(r.name, r.id)}
+            <ScopeCount n={n} />
+          </Chip>
+        );
+      })}
     </ChipScroller>
   );
 }

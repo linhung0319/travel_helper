@@ -116,7 +116,7 @@ test('探索、想去：往下捲時三列都黏在上面，想去的段落標�
   await page.getByTestId('m-tab-explore').click();
   const feed = page.getByTestId('m-feed');
   await scroll(1500);
-  await expect(feed.getByTestId('list-count')).toBeInViewport();
+  await expect(feed.getByTestId('m-feed-filters')).toBeInViewport();
   // 概覽沒有照片牆／清單切換（T50）
   const stick = (await feed.getByTestId('fb-stick').boundingBox())!;
   const top = (await page.locator('.m-page').boundingBox())!.y;
@@ -135,6 +135,6 @@ test('探索、想去：往下捲時三列都黏在上面，想去的段落標�
   await page.getByTestId('m-tab-explore').click();
   await scroll(1500);
   await expect(page.getByTestId('m-feed-search')).toBeInViewport();
-  await expect(feed.getByTestId('list-count')).not.toBeInViewport();
+  await expect(feed.getByTestId('m-feed-filters')).not.toBeInViewport();
   await page.setViewportSize(size);
 });

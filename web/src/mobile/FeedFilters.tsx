@@ -3,7 +3,10 @@
 // 這裡把 feed／wish 接成 FilterModel；篩選面板（FilterSheet）和網頁是同一份，條件寫進 feed.quick／wish.quick（"欄位:值"，只由面板寫入）。
 
 import { useMemo } from 'react';
-import { feedFilter, feedToken, wishFilter, type ExploreType, type Feed } from '../lib/explore.ts';
+import { feedFilter, feedToken, filterToFeed, wishFilter, type ExploreType, type Feed } from '../lib/explore.ts';
+import { rescopeFilter } from '../lib/shelves.ts';
+import { dataStore } from '../dataStore.ts';
+import { hasLens, lensLabel, lensUndo } from '../exploreArea.ts';
 import type { FilterKey } from '../lib/filter.ts';
 import { FilterBar, type FilterBack, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import type { ReactNode } from 'react';
@@ -17,23 +20,49 @@ export const withoutRegions = (quick: string[]) => quick.filter((t) => !t.starts
 /** 只留子地區（「全部清除」、回到書架：地區、子地區在外面，不跟著清） */
 export const onlyRegions = (quick: string[]) => quick.filter((t) => t.startsWith('regions:'));
 
-/** 地區列（含「概覽」、目前這顆）：換地區，子地區和其他條件、搜尋都清掉，回到概覽或那區的書架（T49） */
-export function pickFeedArea(area: string | null) {
-  // 「概覽」鈕：概覽的卡全部換回全區（T63 §28）
-  if (!area) overviewStore.getState().reset();
-  mobileStore.getState().setFeed({ area, type: 'all', quick: [], query: '' });
-}
-
-/** 想去的地區列（含「全部」）：同探索，條件和搜尋清掉；「自己加 N」一起取消 */
-export function pickWishArea(area: string | null) {
-  wishPrefs.getState().setUserOnly(false);
-  mobileStore.getState().setWish({ area, type: 'all', quick: [], query: '' });
-}
-
-/** 選區後的子地區列：一次一個；null 是整區 */
-export function pickFeedRegion(region: string | null) {
+/** 換範圍（T69）：篩選照網頁的規則跟著走（書架帶來的照新範圍重挑級數，lib/shelves.ts 的 rescopeFilter） */
+function setFeedScope(areas: string[], regions: string[]) {
   const { feed, setFeed } = mobileStore.getState();
-  setFeed({ quick: [...withoutRegions(feed.quick), ...(region ? [feedToken('regions', region)] : [])] });
+  const next = rescopeFilter(feedFilter(feed), { areas, regions }, dataStore.getState().places);
+  setFeed({ ...filterToFeed(next), area: areas[0] ?? null });
+}
+
+/**
+ * 地區列（含「概覽」）。T69（interaction-design §33）：換地區只換範圍，篩選、搜尋留著；
+ * 「概覽」只有一層：有篩選時離開篩選，留一份復原（exploreArea.ts 的 lensUndo），概覽的卡全部換回全區（T63 §28）
+ */
+export function pickFeedArea(area: string | null) {
+  lensUndo.getState().set(null);
+  if (area) {
+    setFeedScope([area], []);
+    return;
+  }
+  const before = mobileStore.getState().feed;
+  const filter = feedFilter(before);
+  if (hasLens(filter, before.query)) {
+    const snap = { type: before.type, area: before.area, quick: before.quick, query: before.query };
+    lensUndo.getState().set({ label: lensLabel(filter, before.query, dataStore.getState().areas), restore: () => mobileStore.getState().setFeed(snap) });
+  }
+  overviewStore.getState().reset();
+  mobileStore.getState().setFeed({ area: null, type: 'all', quick: [], query: '' });
+}
+
+/** 想去的地區列（含「全部」）：換範圍，條件、搜尋、自己加、現在看的那一排都留著（T69） */
+export function pickWishArea(area: string | null) {
+  const { wish, setWish } = mobileStore.getState();
+  setWish({ area, quick: withoutRegions(wish.quick) });
+}
+
+/** 想去的子地區列（T69 補上，同探索）：一次一個；null 是整區 */
+export function pickWishRegion(region: string | null) {
+  const { wish, setWish } = mobileStore.getState();
+  setWish({ quick: [...withoutRegions(wish.quick), ...(region ? [feedToken('regions', region)] : [])] });
+}
+
+/** 選區後的子地區列：一次一個；null 是整區。篩選留著（T69） */
+export function pickFeedRegion(region: string | null) {
+  const { feed } = mobileStore.getState();
+  setFeedScope(feed.area ? [feed.area] : [], region ? [region] : []);
 }
 
 /** 探索的篩選列資料：feed 接成 FilterModel */
@@ -88,10 +117,10 @@ export function useWishModel(type: ExploreType | 'all'): FilterModel {
   };
 }
 
-/** 探索上方的篩選列：搜尋、篩選、排序（黏在上面），下面一列地區（概覽、志摩、鳥羽…）；選了一區接子地區列（subRow），清單層有返回鈕和照片牆／清單切換（T50） */
-export function FeedFilters({ count, extra, subRow, back, showView }: { count: number; extra?: Partial<FilterModel>; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean }) {
+/** 探索上方的篩選列：搜尋和工具（黏在上面），下面一列地區（概覽、志摩、鳥羽…）；選了一區接子地區列（subRow），照片牆／清單那層有「看什麼」帶子（T50、T69） */
+export function FeedFilters({ count, extra, subRow, back, showView, counts }: { count: number; extra?: Partial<FilterModel>; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean; counts?: Map<string, number> | null }) {
   const feed = useMobile((s) => s.feed);
   const model = { ...useFeedModel(), ...extra };
-  const typeRow = <AreaChips value={feed.area} onPick={pickFeedArea} firstLabel="概覽" prefix="m-feed" testId="m-feed-filters" />;
+  const typeRow = <AreaChips value={feed.area} onPick={pickFeedArea} firstLabel="概覽" prefix="m-feed" testId="m-feed-filters" counts={counts} />;
   return <FilterBar source="explore" surface="mobile" model={model} count={count} typeRow={typeRow} subRow={subRow} back={back} showView={showView} />;
 }

@@ -3,7 +3,7 @@
 
 import { closedDaysLabel } from './hours.ts';
 import type { Place } from '../data/types.ts';
-import { SLEEPS_GROUP, WEATHER_LABELS, fitsWholeGroup, placeFit15, placeStayKind, placeWeather } from './filter.ts';
+import { WEATHER_LABELS, fitsWholeGroup, placeFit15, placeStayKind, placeWeather } from './filter.ts';
 import { LODGING_KIND_LABELS } from './labels.ts';
 
 export interface Badge {
@@ -27,10 +27,8 @@ export function fit15Caption(p: Place): Badge | null {
   return { label: '15 人還沒查', tone: 'info' };
 }
 
-const COUNT_ZH = ['', '一', '兩', '三', '四', '五', '六', '七', '八', '九', '十'];
-
 /**
- * 住宿的住法那句（T66）：「旅館 · 全團住得下」「包棟 · 16 人」「包棟 · 8 人 · 要兩棟」「民宿 · 4 間房」「飯店 · 房數不明」。
+ * 住宿的住法那句（T66、T69）：「包棟 · 16 人 · 全團一棟」「包棟 · 8 人 · 要分住」「旅館 · 12 間房」「民宿 · 4 間房」「飯店 · 房數不明」。
  * 不是住宿是 null
  */
 export function stayCaption(p: Place): Badge | null {
@@ -40,15 +38,12 @@ export function stayCaption(p: Place): Badge | null {
   const kind = typeof p.raw.kind === 'string' ? p.raw.kind : null;
   const kindLabel = !kind || kind === 'other' ? '住宿' : (LODGING_KIND_LABELS[kind] ?? '住宿');
   const max = typeof g.maxGuests === 'number' && g.maxGuests > 0 ? g.maxGuests : null;
-  if (stay === 'whole') return { label: `包棟 · ${max} 人`, tone: 'good' };
-  if (fitsWholeGroup(p)) return { label: `${kindLabel} · 全團住得下`, tone: 'good' };
-  if (g.wholeRental === true) {
-    if (!max) return { label: '包棟 · 人數不明', tone: 'info' };
-    const n = Math.ceil(SLEEPS_GROUP / max);
-    return { label: `包棟 · ${max} 人 · 要${COUNT_ZH[n] ?? n}棟`, tone: 'info' };
-  }
+  if (stay === 'whole') return { label: `包棟 · ${max} 人 · 全團一棟`, tone: 'good' };
+  // 能包棟但一棟住不下：多半那裡只有一棟，要和別處分住（T69：不再寫「要兩棟」，會被讀成「這裡有兩棟可以一起包」）
+  if (g.wholeRental === true) return { label: max ? `包棟 · ${max} 人 · 要分住` : '包棟 · 人數不明', tone: 'info' };
+  // 旅館、飯店、民宿：直接寫房數（T69：不寫「全團住得下」，免得以為已確認那天有空房）；5 間房以上（住得下全團）是 good
   const rooms = typeof g.totalRooms === 'number' ? g.totalRooms : null;
-  return { label: `${kindLabel} · ${rooms === null ? '房數不明' : `${rooms} 間房`}`, tone: 'info' };
+  return { label: `${kindLabel} · ${rooms === null ? '房數不明' : `${rooms} 間房`}`, tone: fitsWholeGroup(p) ? 'good' : 'info' };
 }
 
 /** 住宿的餐食那段（書架小卡接在住法後面）：一泊二食、可選、含早餐、不含餐；沒寫是 null */

@@ -1,9 +1,11 @@
-// 篩選列（手機、網頁同一個元件，探索和想去共用）：第一列搜尋框、「篩選」（T64 拿掉上面的數字）、排序（晶片選單）；
-// 第二列地區晶片（typeRow 由呼叫的畫面給，T42 從類型換成地區），選了一區時下面接子地區列（subRow，T50）；
-// 再下一列是返回鈕和現在看的地方（「‹ 可坐 15 人 · 志摩・賢島」，T50、T64）、幾個地點、「＋ 加地點」（只有探索）、問 AI，最右邊照片牆／清單切換（只在照片牆、清單那層，T50）。
-// 有條件時再下一列是「現在看」的條件列（T64，lib/listConditions.ts）：每個條件一顆、都有 ✕，藍底是書架帶來的、白底是自己加的，最後「＋ 條件」打開 FilterSheet（手機底部面板、網頁右欄抽屜）。
-// 誰吃、住法兩題的晶片右邊多一段分布小字（T67：「能坐一起 6 · 要分桌 2」）。
-// 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤，探索、想去是整頁，高度夠）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
+// 篩選列（手機、網頁同一個元件，探索和想去共用）。T69（interaction-design §33）照「每一層一種長相」重排：
+// 第一列是工具：搜尋框，後面一排同樣大小的圓鈕（篩選、排序、問 AI、加地點（只有探索））；有條件時篩選鈕右上一個小藍點，不再整顆變黑。
+// 第二列是地區（typeRow：分頁，由呼叫的畫面給），選了一區時下面接子地區小晶片（subRow）；書架和照片牆／清單都有（換地區、子地區篩選留著）。
+// 照片牆／清單那層（showView）最下面是一條淡藍帶＝「看什麼」：「‹ 書架 › 一定要去 · 9 個地點」、照片牆／清單切換，書架退到第二級時一行芥子黃小字，
+// 下面是條件晶片（T64，lib/listConditions.ts：每個條件一顆、都有 ✕，藍底是書架帶來的、白底是自己加的，最後「＋ 條件」打開 FilterSheet）。
+// 想去的「‹ 三排」回三排書架；想去的「只看自己加的 N」（extraCond）是條件列最前面的一顆開關。
+// 書架、概覽那層沒有帶子；有條件時（想去在三排那層也能篩）條件列單獨一列。誰吃、住法兩題的晶片右邊多一段分布小字（T67）。
+// 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
 
 import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
@@ -38,11 +40,11 @@ export interface FilterModel {
   clear(): void;
   /** AI 挑的（網頁的探索，規格 §3.1）：只有一組；total 是 AI 挑了幾家，sortByAi 是目前照 AI 的順序 */
   ai?: { title: string; total: number; sortByAi: boolean; setSortByAi(on: boolean): void; onClear(): void };
-  /** 清單的問 AI（§16.1、§16.2） */
+  /** 工具列的問 AI（§16.1、§16.2） */
   onAsk?(): void;
   /** 「‹ 回 AI」（手機從聊天跳過來或有結果集，§16.2）；點 AI 晶片也做這件事 */
   onBack?(): void;
-  /** 清單標題列的「＋ 加地點」（只有探索，T33） */
+  /** 工具列的加地點（只有探索，T33） */
   onAdd?(): void;
 }
 
@@ -134,39 +136,53 @@ function ViewToggle({ model }: { model: FilterModel }) {
   );
 }
 
-/** 清單層的返回鈕：「‹ 一定要去 · 志摩・賢島 · 5 個地點」（lib/shelves.ts 的 backLabel），點了回到書架 */
+/** 「看什麼」帶子的第一行（T69）：「‹ 書架 › 一定要去」（lib/shelves.ts 的 backLabel），點「‹ 書架」回到目前地區＋子地區的書架；想去是「‹ 三排 › 已是候選」 */
 export interface FilterBack {
   label: string;
-  /** 現在看的地方（「志摩・賢島」，T64）；想去不寫 */
-  where?: string | null;
+  /** 書架退到第二級時的那句（「賢島沒有 S、A 級，這是 B 級」） */
+  note?: string | null;
+  onClick(): void;
+}
+
+/** 條件列最前面的一顆開關（想去的「只看自己加的 N」，T69） */
+export interface ExtraCond {
+  label: string;
+  on: boolean;
+  testId: string;
   onClick(): void;
 }
 
 /** 「現在看」的條件列（T64）：每個條件一顆（點了拿掉），最後「＋ 條件」打開篩選面板 */
-function CondRow({ chips, onRemove, onAdd }: { chips: CondChip[]; onRemove(chip: CondChip): void; onAdd(): void }) {
+function CondRow({ chips, onRemove, onAdd, extra }: { chips: CondChip[]; onRemove(chip: CondChip): void; onAdd(): void; extra?: ExtraCond }) {
   return (
     <div className="fb-conds" data-testid="cond-row">
+      {extra && (
+        <button type="button" className={`fb-cond fb-cond-toggle${extra.on ? ' on' : ''}`} aria-pressed={extra.on} onClick={extra.onClick} data-testid={extra.testId}>
+          {extra.label}
+          {extra.on && <Icon name="close" size={16} />}
+        </button>
+      )}
       {chips.map((c) => (
         <Fragment key={`${c.key}:${c.value}`}>
-        <button
-          type="button"
-          className={`fb-cond${c.preset ? ' preset' : ''}`}
-          aria-label={`拿掉「${c.label}」`}
-          title={`拿掉「${c.label}」`}
-          onClick={() => onRemove(c)}
-          data-testid="cond-chip"
-          data-key={c.key}
-          data-value={c.value}
-          data-preset={c.preset || undefined}
-        >
-          {c.label}
-          <Icon name="close" size={16} />
-        </button>
-        {c.note && (
-          <span className="fb-cond-note" data-testid="cond-note" data-key={c.key}>
-            {c.note}
-          </span>
-        )}
+          <button
+            type="button"
+            className={`fb-cond${c.preset ? ' preset' : ''}`}
+            aria-label={`拿掉「${c.label}」`}
+            title={`拿掉「${c.label}」`}
+            onClick={() => onRemove(c)}
+            data-testid="cond-chip"
+            data-key={c.key}
+            data-value={c.value}
+            data-preset={c.preset || undefined}
+          >
+            {c.label}
+            <Icon name="close" size={16} />
+          </button>
+          {c.note && (
+            <span className="fb-cond-note" data-testid="cond-note" data-key={c.key}>
+              {c.note}
+            </span>
+          )}
         </Fragment>
       ))}
       <button type="button" className="fb-cond fb-cond-add" onClick={onAdd} data-testid="cond-add">
@@ -176,7 +192,16 @@ function CondRow({ chips, onRemove, onAdd }: { chips: CondChip[]; onRemove(chip:
   );
 }
 
-export function FilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean }) {
+/** 工具列的圓鈕（問 AI、加地點） */
+function Tool({ icon, label, onClick, testId, className }: { icon: 'spark' | 'plus'; label: string; onClick(): void; testId: string; className: string }) {
+  return (
+    <button type="button" className={`fb-tool ${className}`} onClick={onClick} aria-label={label} title={label} data-testid={testId}>
+      <Icon name={icon} size={20} />
+    </button>
+  );
+}
+
+export function FilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true, extraCond }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean; extraCond?: ExtraCond }) {
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
   const [open, setOpen] = useState(false);
@@ -190,8 +215,9 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
     else if (c.key === 'inView') model.setInView(false);
     else model.pick(c.key, c.value);
   };
-  const conds = chips.length > 0 && <CondRow chips={chips} onRemove={removeChip} onAdd={() => setOpen(true)} />;
+  const conds = (chips.length > 0 || !!extraCond) && <CondRow chips={chips} onRemove={removeChip} onAdd={() => setOpen(true)} extra={extraCond} />;
   const searchTestId = desktop ? 'search' : source === 'wish' ? 'm-wish-search' : 'm-feed-search';
+  const filtered = chips.some((c) => c.key !== 'query') || !!extraCond?.on;
 
   const backButton = model.onBack && (
     <button type="button" className="ai-back flat" onClick={model.onBack} data-testid="ai-back">
@@ -200,40 +226,40 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
   );
   const aiLabel = model.ai && (count === model.ai.total ? `AI 挑的 · ${model.ai.total} 家` : `AI 挑的 ${model.ai.total} 家中的 ${count} 家`);
 
-  const listHead = model.onAsk && (
-    <div className="fb-listhead">
-      {!desktop && !model.ai && backButton}
-      {back && (
-        <span className="fb-back">
-          <button type="button" className="ex-back-area flat" onClick={back.onClick} data-testid="back-to-area">
-            ‹ {back.label}
-          </button>
-          <span aria-hidden>·</span>
-          {back.where && (
-            <>
-              <span className="fb-where" data-testid="list-where">
-                {back.where}
-              </span>
-              <span aria-hidden>·</span>
-            </>
-          )}
-        </span>
-      )}
-      <span data-testid="list-count">{count} 個地點</span>
-      <span className="fb-listhead-end">
-        {model.onAdd && (
-          <button type="button" className="fb-add" onClick={model.onAdd} data-testid="add-place-open">
-            <Icon name="plus" size={16} /> 加地點
-          </button>
+  // 「看什麼」帶子（只在照片牆／清單那層）
+  const lens = showView && (
+    <div className="fb-lens" data-testid="lens">
+      <div className="fb-lens-top">
+        {!desktop && !model.ai && backButton}
+        {back && (
+          <>
+            <button type="button" className="fb-crumb" onClick={back.onClick} data-testid="back-to-area" title={source === 'wish' ? '回到三排' : '回到這裡的書架'}>
+              ‹ {source === 'wish' ? '三排' : '書架'}
+            </button>
+            <span className="fb-crumb-sep" aria-hidden>
+              ›
+            </span>
+            <span className="fb-lens-title" data-testid="lens-title">
+              {back.label}
+            </span>
+          </>
         )}
-        <button type="button" className="fb-ask" onClick={model.onAsk} data-testid="list-ask-ai">
-          <Icon name="spark" size={16} /> 問 AI
-        </button>
-        {showView && <ViewToggle model={model} />}
-      </span>
+        <span className="fb-lens-n" data-testid="list-count">
+          {count} 個地點
+        </span>
+        <span className="fb-lens-end">
+          <ViewToggle model={model} />
+        </span>
+      </div>
+      {back?.note && (
+        <p className="fb-lens-note" data-testid="lens-note">
+          {back.note}
+        </p>
+      )}
+      {conds}
     </div>
   );
-  const sub = subRow && <div className="fb-subrow">{subRow}</div>;
+  const what = lens || conds;
 
   const bar = (
     <div className={`fb fb-${surface}`} ref={rootRef} data-testid="filter-bar">
@@ -247,11 +273,13 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
             </button>
           )}
         </label>
-        <Chip on={chips.some((c) => c.key !== 'query')} onClick={() => setOpen(true)} testId="filter-open" title="篩選">
+        <Chip on={filtered} onClick={() => setOpen(true)} testId="filter-open" title="篩選" className="fb-filter">
           <Icon name="sliders" size={20} />
           <span className="fb-label">篩選</span>
         </Chip>
         <SortMenu model={model} />
+        {model.onAsk && <Tool icon="spark" label="問 AI" onClick={model.onAsk} testId="list-ask-ai" className="fb-tool-ai" />}
+        {model.onAdd && <Tool icon="plus" label="加地點" onClick={model.onAdd} testId="add-place-open" className="fb-tool-add" />}
       </div>
       {desktop && model.ai && (
         <div className="fb-ai">
@@ -269,9 +297,8 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
           <div className="fb-types">{typeRow}</div>
         </div>
       )}
-      {desktop && sub}
-      {desktop && listHead}
-      {desktop && conds}
+      {desktop && subRow && <div className="fb-subrow">{subRow}</div>}
+      {desktop && what}
     </div>
   );
   const sheet = open && <FilterSheet source={source} surface={surface} model={model} count={count} host={desktop ? (rootRef.current?.closest('.side-panel') as HTMLElement | null) : null} onClose={() => setOpen(false)} />;
@@ -306,12 +333,12 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, back
               </span>
             </div>
           )}
+          {!model.ai && !showView && backButton && <div className="fb-backrow">{backButton}</div>}
           <div className="fb-typerow">
             <div className="fb-types">{typeRow}</div>
           </div>
-          {sub}
-          {listHead}
-          {conds}
+          {subRow && <div className="fb-subrow">{subRow}</div>}
+          {what}
         </div>
       </div>
       {sheet}

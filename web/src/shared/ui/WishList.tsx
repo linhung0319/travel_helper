@@ -19,6 +19,7 @@ import { useWishPrefs, wishPrefs } from '../wishPrefs.ts';
 import { useLikeCount, useLiked } from '../placeLists.ts';
 import { SHELF_SIZE } from '../../lib/shelves.ts';
 import { statusHighlights } from '../rowHighlights.ts';
+import { fitBadges } from '../../lib/placeSummary.ts';
 import { PAGE_FIRST, PAGE_MORE, wishSections, type SectionId, type WishGroup, type WishSection } from '../wishSections.ts';
 import type { Place } from '../../data/types.ts';
 import { Highlights, PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
@@ -80,13 +81,26 @@ function Who({ ids }: { ids: string[] }) {
   );
 }
 
-/** 第二行：還沒排＝誰想去；候選、已排＝膠囊＋頭像 */
-function SecondLine({ status, section, likes }: { status: DayStatus; section: SectionId; likes: string[] }) {
-  if (section === 'unscheduled') return <Who ids={likes} />;
+/**
+ * 第二行：還沒排＝這團的標章＋誰想去；候選、已排＝膠囊＋標章＋頭像。
+ * 這團的標章（長輩 ✕ 之類，T44b）T69 從名稱那行搬下來：名稱那行只留名字、等級和小方標，名字不再常被省略
+ */
+function SecondLine({ place, status, section, likes }: { place: Place; status: DayStatus; section: SectionId; likes: string[] }) {
+  const fit = <Highlights list={fitBadges(place, 1)} testId="place-fit" />;
+  if (section === 'unscheduled') {
+    return (
+      <span className="wl-status">
+        {fit}
+        <Who ids={likes} />
+      </span>
+    );
+  }
+  // 已排、候選都留（同一個點可能已排 2/5 又是 2/8 的候選）；標章接在後面，太長時被藏掉的是標章
   const caps = statusHighlights(status).slice(0, 2);
   return (
     <span className="wl-status">
       <Highlights list={caps} />
+      {fit}
       <span className="wl-avatars">
         {likes.slice(0, 3).map((id) => (
           <Avatar key={id} id={id} />
@@ -235,7 +249,7 @@ function WishItem({ place, status, section, surface, view, hot, hint, likes, las
   if (view === 'photo') return li(<PlaceTile {...common} extra={<Who ids={likes} />} />);
   const extra = (
     <>
-      <SecondLine status={status} section={section} likes={likes} />
+      <SecondLine place={place} status={status} section={section} likes={likes} />
       <button
         type="button"
         className={`wl-comment ${lastComment ? '' : 'none'}`}

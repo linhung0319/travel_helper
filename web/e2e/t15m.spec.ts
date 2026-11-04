@@ -1876,7 +1876,7 @@ test('篩選：套用的條件看按鈕的數字，打開面板看條件、點�
   await expectFilterOpt(page, 'type-restaurant', false);
   // T67：沒選類型時餐廳收成一列，標套了幾個條件
   await page.getByTestId('filter-open').click();
-  await expect(page.getByTestId('filter-fold-restaurant').locator('.fs-fold-n')).toHaveText('1');
+  await expect(page.getByTestId('filter-opt-type-restaurant').locator('.fs-fold-n')).toHaveText('1');
   await page.getByTestId('filter-done').click();
 });
 
@@ -1940,15 +1940,16 @@ test('想去（T53）：三排書架（還沒排、已是候選、已排進行�
   // 「全部 ›」：清單層，返回鈕「‹ 還沒排 · N 個地點」，切換鈕在右邊；點返回回到書架
   const total = Number(before.replace(/\D/g, ''));
   await openWishSection(page, 'unscheduled');
-  await expect(panel.getByTestId('back-to-area')).toHaveText('‹ 還沒排');
+  await expect(panel.getByTestId('lens-title')).toHaveText('還沒排');
   await expect(panel.getByTestId('list-count')).toHaveText(`${total} 個地點`);
-  await expect(panel.locator('.fb-listhead').getByTestId('view-photo')).toBeVisible();
+  await expect(panel.getByTestId('lens').getByTestId('view-photo')).toBeVisible();
   await expect(panel.locator('[data-section="candidate"]')).toHaveCount(0);
   await backToWishShelves(page);
-  // 換地區回到書架
+  // T69：換地區還是那一排（以前會回到書架）
   await openWishSection(page, 'scheduled');
   await panel.getByTestId('ex-area-toba').click();
-  await expect(panel.getByTestId('wish-list')).toHaveAttribute('data-stage', 'shelves');
+  await expect(panel.getByTestId('wish-list')).toHaveAttribute('data-stage', 'list');
+  await expect(panel.getByTestId('lens-title')).toHaveText('已排進行程');
 });
 
 test('想去（T53）：空的那排寫一行灰字；點小卡開詳情', async ({ page }) => {

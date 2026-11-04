@@ -4,8 +4,8 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, listScreenLabel, matchShelf, shelfCounts, shelfFilter, shelfOf, shelfRows, shelfTierOf } from '../src/lib/shelves.ts';
-import { EMPTY_FILTER, fitsWholeGroup, matchesFilter, placeStayKind, type Filter } from '../src/lib/filter.ts';
+import { SHELVES, areaOnly, backLabel, currentArea, exploreStage, fallbackNote, listScreenLabel, matchShelf, rescopeFilter, scopeCounts, shelfCounts, shelfFilter, shelfOf, shelfRows, shelfTierOf } from '../src/lib/shelves.ts';
+import { EMPTY_FILTER, fitsWholeGroup, matchesFilter, matchesStay, placeStayKind, type Filter } from '../src/lib/filter.ts';
 import { placeBadges, stayCaption } from '../src/lib/badges.ts';
 import type { Area } from '../src/data/types.ts';
 import { placeWith } from './helpers.ts';
@@ -117,7 +117,7 @@ test('全員吃飯（T66）：第一級 fit15 yes、split 而且收小孩；第�
   assert.deepEqual(second.items.map((p) => second.shelf.caption!(p)).sort(), ['15 人還沒查', '15 人還沒查', '坐不下 15 人']);
 });
 
-test('住在這裡（T66）：包棟住得下、旅館飯店 5 間房以上是第一級，其他退到第二級（三種住宿各一例）', () => {
+test('住在這裡（T66、T69）：包棟住得下、旅館飯店 5 間房以上是第一級，其他退到第二級（三種住宿各一例）', () => {
   const whole16 = at('whole16', { type: 'lodging' }, { kind: 'rental-house', meals: 'none', group: { wholeRental: true, maxGuests: 16 } });
   const ryokan = at('ryokan', { type: 'lodging' }, { kind: 'ryokan', meals: 'dinner+breakfast', group: { totalRooms: 12 } });
   const whole8 = at('whole8', { type: 'lodging' }, { kind: 'rental-house', meals: 'varies', group: { wholeRental: true, maxGuests: 8 } });
@@ -130,14 +130,17 @@ test('住在這裡（T66）：包棟住得下、旅館飯店 5 間房以上是�
   assert.deepEqual([whole16, ryokan, whole8, minshuku, tinyHotel, unknownHotel].map(fitsWholeGroup), [true, true, false, false, false, false]);
 
   const all = [whole16, ryokan, whole8, minshuku, tinyHotel, unknownHotel];
+  // 面板的「民宿」（T69）：不能包棟的民宿；以前住法三顆都篩不到
+  assert.deepEqual(all.filter((p) => matchesStay(p, 'other')).map((p) => p.id), ['minshuku']);
   const first = row(all, 'stay');
   assert.equal(first.tier, 1);
   assert.deepEqual(first.items.map((p) => p.id).sort(), ['ryokan', 'whole16']);
   assert.equal(first.note, '包棟 1 · 旅館飯店 1');
   const cap = (id: string) => first.shelf.caption!(all.find((p) => p.id === id)!);
-  assert.equal(cap('whole16'), '包棟 · 16 人 · 不含餐');
-  assert.equal(cap('ryokan'), '旅館 · 全團住得下 · 一泊二食');
-  assert.equal(cap('whole8'), '包棟 · 8 人 · 要兩棟 · 可選');
+  assert.equal(cap('whole16'), '包棟 · 16 人 · 全團一棟 · 不含餐');
+  // T69：旅館、飯店直接寫房數（不寫「全團住得下」）；包棟住不下寫「要分住」（不寫棟數）
+  assert.equal(cap('ryokan'), '旅館 · 12 間房 · 一泊二食');
+  assert.equal(cap('whole8'), '包棟 · 8 人 · 要分住 · 可選');
   assert.equal(cap('minshuku'), '民宿 · 6 間房');
   assert.equal(cap('hotel-unknown'), '飯店 · 房數不明');
 
@@ -147,8 +150,8 @@ test('住在這裡（T66）：包棟住得下、旅館飯店 5 間房以上是�
   assert.equal(second.total, 4);
 
   // 照片牆、清單的標章同樣寫法
-  assert.deepEqual(placeBadges(ryokan).map((b) => b.label), ['旅館 · 全團住得下', '一泊二食']);
-  assert.equal(stayCaption(at('whole5', { type: 'lodging' }, { kind: 'rental-house', group: { wholeRental: true, maxGuests: 5 } }))!.label, '包棟 · 5 人 · 要三棟');
+  assert.deepEqual(placeBadges(ryokan).map((b) => b.label), ['旅館 · 12 間房', '一泊二食']);
+  assert.equal(stayCaption(at('whole5', { type: 'lodging' }, { kind: 'rental-house', group: { wholeRental: true, maxGuests: 5 } }))!.label, '包棟 · 5 人 · 要分住');
 });
 
 test('shelfCounts（T52、T66）：概覽的四格數字（第一級 0 個時是第二級的），0 的也列、順序同 SHELVES', () => {
@@ -207,8 +210,9 @@ test('backLabel（T50、T64、T66）：條件裡還有一整排書架（哪一�
   // 順序不同也算同一組（手機的條件從 quick 轉回來）
   assert.equal(backLabel({ ...shelfFilter(must, b), tiers: ['A', 'S'] }), '一定要去');
   assert.equal(backLabel(shelfFilter(rain, base(['osatsu']), 2)), '下雨也行');
-  // 自己多加條件：還是那排書架
-  assert.equal(backLabel({ ...shelfFilter(fit15, b), contexts: ['lunch'] }), '全員吃飯');
+  // 自己多加條件：還是那排書架，後面寫多了幾個（T69）
+  assert.equal(backLabel({ ...shelfFilter(fit15, b), contexts: ['lunch'] }), '全員吃飯＋1');
+  assert.equal(backLabel({ ...shelfFilter(fit15, b), contexts: ['lunch', 'dinner'], suits: ['elderly'] }), '全員吃飯＋3');
   assert.equal(shelfOf({ ...shelfFilter(must, b), suits: ['elderly'] }), must);
   assert.equal(matchShelf({ ...shelfFilter(must, b), suits: ['elderly'] }), null);
   assert.equal(matchShelf(shelfFilter(stay, b, 2)), stay);
@@ -216,4 +220,38 @@ test('backLabel（T50、T64、T66）：條件裡還有一整排書架（哪一�
   assert.equal(backLabel({ ...shelfFilter(must, b), tiers: ['A'] }), '自己篩選');
   assert.equal(backLabel({ ...shelfFilter(stay, b), types: ['lodging', 'spot'] }), '自己篩選');
   assert.equal(backLabel({ ...EMPTY_FILTER, ...b, types: ['restaurant'] }), '自己篩選');
+});
+
+test('rescopeFilter（T69）：換地區、子地區篩選留著；書架照新範圍重挑級數；自己加了條件照字面；下雨也行選子地區不退全區', () => {
+  const [must, , , rain] = SHELVES;
+  const f = shelfFilter(must, base());
+  // 鳥羽站有 S、A → 第一級
+  assert.deepEqual(rescopeFilter(f, base(['toba-station']), PLACES), shelfFilter(must, base(['toba-station'])));
+  // 只有 B 級的地方 → 第二級，畫面有那句
+  const onlyB = PLACES.filter((p) => !['aquarium', 'pearl', 'lookout'].includes(p.id));
+  const fallen = rescopeFilter(f, base(['toba-station']), onlyB);
+  assert.deepEqual(fallen.tiers, ['B']);
+  assert.equal(fallbackNote(fallen, AREAS), '鳥羽站沒有 S、A 級，這是 B 級');
+  assert.equal(fallbackNote(f, AREAS), null);
+  // 從第二級換回有 S、A 的地方 → 回第一級
+  assert.deepEqual(rescopeFilter(shelfFilter(must, base(), 2), base(['osatsu']), PLACES).tiers, ['S', 'A']);
+  // 自己多加條件：照字面
+  const own = { ...f, suits: ['elderly'] } as Filter;
+  assert.deepEqual(rescopeFilter(own, base(['osatsu']), onlyB), { ...own, regions: ['osatsu'] });
+  // 不是書架的條件、類型都留著；換到別的地區
+  assert.deepEqual(rescopeFilter({ ...EMPTY_FILTER, areas: ['toba'], types: ['restaurant'] }, { areas: ['ise'], regions: [] }, PLACES), { ...EMPTY_FILTER, areas: ['ise'], types: ['restaurant'] });
+  // 下雨也行：相差沒有，第二級是全區；選了子地區就留第一級（不把子地區清掉）
+  assert.deepEqual(rescopeFilter(shelfFilter(rain, base()), base(['osatsu']), PLACES).regions, ['osatsu']);
+});
+
+test('scopeCounts（T69）：同一個篩選在每個地區、目前地區的每個子地區有幾個；書架照各自的級數', () => {
+  const areas = [...AREAS, { id: 'ise', name: { zh: '伊勢' }, regions: [] }] as unknown as Area[];
+  const c = scopeCounts(PLACES, shelfFilter(SHELVES[0], base()), '', areas, PLACES);
+  assert.equal(c.get('toba'), 3);
+  assert.equal(c.get('ise'), 1);
+  assert.equal(c.get('toba-station'), 2);
+  assert.equal(c.get('osatsu'), 1);
+  // 只有 B 級時那裡退到第二級，數字是 B 級的
+  const onlyB = PLACES.filter((p) => !['aquarium', 'pearl', 'lookout'].includes(p.id));
+  assert.equal(scopeCounts(onlyB, shelfFilter(SHELVES[0], base()), '', areas, onlyB).get('toba-station'), 1);
 });

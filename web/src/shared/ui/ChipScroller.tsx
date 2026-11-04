@@ -16,9 +16,10 @@ export function ChipScroller({ className, testId, activeKey, children }: { class
   const measure = useCallback(() => {
     const el = ref.current;
     if (!el) return;
+    // 寬度有小數、scrollWidth 是整數：捲到底時 scrollLeft 可能差不到 1px，用無條件進位比（T69）
     const max = el.scrollWidth - el.clientWidth;
     const start = el.scrollLeft > 1;
-    const end = el.scrollLeft < max - 1;
+    const end = Math.ceil(el.scrollLeft) < max - 1;
     setEdge((e) => (e.start === start && e.end === end ? e : { start, end }));
   }, []);
 
@@ -28,11 +29,14 @@ export function ChipScroller({ className, testId, activeKey, children }: { class
     if (!el) return;
     measure();
     el.addEventListener('scroll', measure, { passive: true });
+    // 平滑捲動（‹ › 箭頭）停下來再量一次，箭頭才不會卡著
+    el.addEventListener('scrollend', measure);
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     for (const c of Array.from(el.children)) ro.observe(c);
     return () => {
       el.removeEventListener('scroll', measure);
+      el.removeEventListener('scrollend', measure);
       ro.disconnect();
     };
   }, [measure, children]);
