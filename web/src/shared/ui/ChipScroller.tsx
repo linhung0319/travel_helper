@@ -16,10 +16,12 @@ export function ChipScroller({ className, testId, activeKey, children }: { class
   const measure = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    // 寬度有小數、scrollWidth 是整數：捲到底時 scrollLeft 可能差不到 1px，用無條件進位比（T69）
-    const max = el.scrollWidth - el.clientWidth;
-    const start = el.scrollLeft > 1;
-    const end = Math.ceil(el.scrollLeft) < max - 1;
+    // 看第一顆、最後一顆有沒有整顆在畫面裡，不看 scrollWidth：尾端的留白（T69）會讓 scrollWidth 比鈕的總寬多一點，
+    // 鈕剛好全部放得下時（1280 寬的網頁）才不會多一顆「›」卻捲不出東西。寬度有小數，留 1px 的餘地
+    const first = el.firstElementChild as HTMLElement | null;
+    const last = el.lastElementChild as HTMLElement | null;
+    const start = !!first && first.offsetLeft < el.scrollLeft - 1;
+    const end = !!last && last.offsetLeft + last.offsetWidth > el.scrollLeft + el.clientWidth + 1;
     setEdge((e) => (e.start === start && e.end === end ? e : { start, end }));
   }, []);
 

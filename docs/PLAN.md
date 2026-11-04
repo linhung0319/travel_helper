@@ -1213,7 +1213,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   | 時刻表（engine.json） | 190 KB | 0（行程只有預設航班時不讀，打開行程才讀） |
   | 照片／圖磚／程式／清單層 | 2335／266／546／229 KB | 不變（照片不在這個任務） |
   | **合計** | **7342 KB** | **3949 KB** |
-  - 地圖：`maxBounds` 用各區 bbox 外加 0.4 度（`lib/areas.ts` 的 `mapMaxBounds`），`minZoom` 7。滾輪縮到最小、亂拖十次，最小停在 z8（範圍比畫面小時 MapLibre 會自己放大），共 16 塊圖磚。
+  - 地圖：`maxBounds` 用各區 bbox 外加 0.4 度（`lib/areas.ts` 的 `mapMaxBounds`；T70 起南北外加 1.2 度，不然直的地圖框不住整趟），`minZoom` 7。滾輪縮到最小、亂拖十次，最小停在 z8（範圍比畫面小時 MapLibre 會自己放大），共 16 塊圖磚。
   - 「行程有東西」不算航班：新的行程本來就帶去回程航班（第一次量的時候時刻表還是被讀了才發現）。
   - Worker 的 API 是 `?ids=`（一次最多 50 個），不是單一點的路徑：AI 一次問好幾個、行程卡同時展開時併成一個請求；單一點就是 `?ids=<id>`。
   - `npm run build` 的大小幾乎不變（App 464 KB；字型不在 build 裡）。
@@ -1700,7 +1700,11 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **前後**（字元）：`get_day` 2/4 1,917 → 1,531、2/5 3,575 → 2,989；`get_place` 住宿 3 間（summary、group、price、reservation）5,637 → 4,538、鳥羽國際飯店 price 分區 4,271 → 2,688；`get_reservations` 3,525 → 2,737；沒晶片的脈絡 669 → 462；車站時刻表 1,368 → 879。搜尋結果因為多了欄位變大：志摩午餐 10 筆 3,328 → 4,235、志摩住宿 10 筆 2,723 → 4,139（換來少叫幾次 `get_place`，一次 6 家就 10k）。
 - **沒動**：工具定義和系統提示的長度（`set_filter` 和 `search_places` 的條件說明重複，但各自講清楚對模型比較穩）；`search_places` 舊的 `fit15`、`wholeRental`、`maxGuestsAtLeast` 參數（`who`、`stay` 表達不出「能坐一起不分桌」）；`get_areas` 全部的區帶 45 個子地區的名字（`regions`、`move_map` 要用）。
 - **驗證**：`web/test/ai-context-audit.test.ts` 9 支（分數、餐廳和住宿的欄位、`closedOnTripDays`、價格列、`get_day` 沒有 null 和 basis、引擎警告沒有內部用語、`check_changes` 去重、`alternatives`、站名和路線名、預約筆記、畫面脈絡）；`npm test` 1117、`typecheck`、`validate` 通過。
-- **e2e**：先檢查有沒有過時的，再全跑（結果見下）。
+- **e2e**（2026-11-05，👤 要求先檢查過時的再全跑）：`npm run e2e` 全部三組（網頁、手機 390、手機 360）578 支，1.1 小時，570 過、8 失敗。失敗的全部查過，4 支是測試過時、4 支是程式真的有問題，都修了：
+  - **測試過時**：`add-place` 3 支（存完清掉搜尋找自己加的卡，T42 起沒有條件時是概覽、書架，不是清單 → helper 改成先篩那區那類再找）；`t49`「點地區鈕回到那一層的第一頁」（T69 改成換地區篩選留著、「‹ 書架」才回書架；T69 只改了 `mobile-t49`，網頁版漏了 → 照 T69 重寫）。
+  - **程式的問題**：`mobile-add-place` 長按（手指在地圖上緣附近時泡泡放在手指上方，被右上「排行程」蓋住點不到 → 靠上緣改放手指下面）；`t49`「地區列」（T69 的地區分頁在 1280 寬剛好全部放得下，但尾端留白讓 `scrollWidth` 多 24px，多一顆「›」卻捲不出東西 → `ChipScroller` 改看第一顆、最後一顆有沒有整顆在畫面裡；測試改成 1140 寬才有東西可捲）；`t15m`「選整趟：地圖框住整趟」（從 T47 起 master 就不過：`maxBounds` 南北只留 0.4 度，網頁的地圖是直的 560×800，框關西機場到志摩時 MapLibre 照 maxBounds 拉近，量出來兩頭都在框外、看到的多半是海 → `mapMaxBounds` 南北的邊改 1.2 度，東西不變，minZoom 還是 7）。
+  - 修完重跑受影響的：t49、add-place、mobile-add-place、t69、mobile-t69、t42、mobile-t42、mobile-t49、flows、t43、t56、t65、t46、t48、mobile-t48、mobile-t45b、mobile-t46、commands，和 t15m 名稱有「整趟」「地圖」「地區列」「篩選」的，全部通過。手機的「整趟」地圖（390 寬、面板蓋一半）沒有驗能不能框住兩頭。
+  - Worker 版 `npm run e2e:worker`（t15、t16）：結果見下一點。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。

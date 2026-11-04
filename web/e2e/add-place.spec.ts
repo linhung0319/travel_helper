@@ -10,7 +10,7 @@ async function search(page: Page, text: string) {
   await page.getByTestId('search').fill(text);
 }
 
-/** 存完之後清掉搜尋，清單裡找自己加的卡 */
+/** 存完之後到探索那區、那類的清單裡找自己加的卡（T42 起沒有條件時是概覽、書架，不是清單） */
 async function expectUserCard(page: Page) {
   await expect(page.getByTestId('add-form')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
@@ -19,6 +19,7 @@ async function expectUserCard(page: Page) {
   await page.evaluate(() => {
     const th = (window as any).__th;
     const mine = th.dataStore.getState().places.find((p: any) => p.origin === 'user');
+    th.appStore.getState().setFilter({ areas: mine.area ? [mine.area] : [], regions: [], types: [mine.type] });
     th.appStore.getState().revealInExplore(mine.id);
   });
   await expect(page.locator('.is-user').first()).toBeVisible();
