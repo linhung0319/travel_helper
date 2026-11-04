@@ -1391,6 +1391,11 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **選區框**（網頁、手機）：展開的地區鈕和上一列空 10px，有淡底（`--indigo-soft` 一類）、圓角，看得出是這一列展開的東西。
 - **驗證**：單元測試（選一晚只改那一晚）；e2e 改 t45b／t54 有關「都套用」的測試，加手機整趟地圖同一區只有一個標籤；截圖看網頁整趟。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過。
+- **結果**（2026-11-04，已 merge 回 master，abdfb8f）：畫面寫在 interaction-design §29（§24「都套用」那句改掉）。
+  - **整趟選區**：拿掉「都套用」勾選，`lib/tripSkeleton.ts` 的 `undecidedRun` 刪掉；`AreaPicker`、`chooseNightArea` 只收一晚。`tripSkeleton.test.ts` 改成選一晚只改那一晚。
+  - **手機地圖**：不畫探索用的區名（`MapView.tsx` 的 `.area-name-label` 加 `!desktop`），只留「x 晚」。
+  - **網頁整趟**：每列 58px、日期分兩行、區名和住宿字大一號；手機不變。**選區框**：和上一列空 10px、淡靛藍底、14px 圓角。
+  - e2e 改 `t45b.spec.ts`、`mobile-t45b.spec.ts`（拿掉「都套用」、手機同一區只有一個標籤）。`mobile-t45b` 第 71 行那項偶爾不穩。👤 看過截圖。
 
 #### T60 交通：離島和碼頭 〔M〕（5）
 - **現況**（2026-11-04 實際跑 `planLeg`，2/5 10:00、15 人）：
