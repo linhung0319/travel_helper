@@ -154,6 +154,9 @@
 | T63 | 探索的概覽：概覽鈕淡芥子黃、區名放大、拿掉四格書架數字、子地區點了在卡片裡換簡介（「志摩全區」換回來）、代表點加標題、網頁地圖跟著框和「看全部地區」 | M | — | 4 | | ✅ |
 | T64 | 探索的篩選：「現在看」那一列（地區・子地區、攤開條件）、拿掉「篩選 N」的數字、0 個的書架和清單給下一步、問 AI 帶現在的條件 | M | T61、T63 | 4 | | ✅ |
 | T65 | 網頁地圖：中間的縮放畫所有子地區的範圍和名字 | S | T63 | 4 | | ✅ |
+| T66 | 書架兩級退（第一級 0 個才退第二級）、小卡第二行寫這排在意的事、天氣合併成「下雨也行」、重匯 D1 | S | — | 4 | | ⬜ |
+| T67 | 篩選面板照類型分段：誰吃、哪一餐、帶小孩、住法、晚餐、溫泉、2 月；標題寫地區；「現在看」的分布小字；AI 工具跟著改 | M | T66 | 4 | | ⬜ |
+| T68 | 資料補：包棟、民宿的人數 11 間；景點長輩、小孩、2 月的評分 | S | — | 4 | 🌐 少量 | ⬜ |
 
 ---
 
@@ -374,6 +377,23 @@ T63 概覽 ──┬─────────────┴──► T64 篩�
 - **可以同時開**：T59、T60、T61、T62、T63 互不相干。T60 只動 engine 和 `areas.json`。T62 只動 Worker。T59 和 T63 都會碰 `MapView.tsx`，但改的地方不同，後 merge 的負責合併。
 - **T64 等 T61、T63**：T64 的「問 AI」要用 T61 的預填；T64 和 T63 都改探索的元件。
 - **T65 等 T63**：兩個都改探索地圖的範圍（`lib/mapLayers.ts`、`MapView.tsx`）。
+
+2026-11-04 **第十三輪**（T66～T68，👤 決定）：
+
+- **為什麼**：👤 盤點探索的書架和篩選：「可住 15 人」「下雨也行」每區都是 0；「能包棟」「可住 15 人」是什麼條件；「室內」「有遮蔽」看起來一樣；「一定要去」在子地區常常是 0，應該退到 B 級而不是叫人看全區；篩選應該從宿、餐、景各自在意什麼出發，再看資料切不切得動。Claude 查了程式和資料、畫了草圖：[書架與篩選診斷](https://claude.ai/artifact/LPRze5GsG58i5APKDjnScH)（**以第二版為準**）。畫法在 interaction-design §32。
+- **查到的**：兩個篩選全空是本機 D1 的分層版本過舊（layer_version 1，程式是 3），不是資料沒有。住宿只有 36 間有 `maxGuests`，能包棟的 24 間裡 15 間住不下 15 人；餐廳 `fit15` 還沒查 139 家。餐廳的小孩、預約，住宿的晚餐、溫泉，景點的 2 月都有資料但沒進篩選。
+- **定案的方向**：
+  - 書架分兩級，第一級一個都沒有才退到第二級：餐「能一起＋要分桌」→「還沒查＋坐不下」；景「S＋A」→「B」；宿「包棟住得下＋旅館 5 房以上」→「不明＋要分開」；下雨也行的第二級是全區。
+  - 篩選面板照景、食、宿分段，選了類型只出那一類的問題，第一題最大；標題寫現在的地區。
+  - 旅館、飯店 5 間房以上算住得下全團，不補人數；包棟、民宿才補。
+
+```
+T66 書架兩級、合併天氣、重匯 D1 ──► T67 篩選面板照類型分段
+T68 資料補（隨時）
+```
+
+- **T67 等 T66**：T67 的「誰吃」「住法」用 T66 定的第一級條件（`lib/shelves.ts`），兩個都改 `lib/filter.ts`。
+- **T68 隨時**：只改 data/，改完重匯 D1。
 
 ### 同時可以開幾個 session
 
@@ -1550,6 +1570,47 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - `lib/mapLayers.ts`：`REGION_ZOOM_MAX = 13`、`mapTierAt`（縮遠／子地區／點）、`regionShapes`（每個有點的子地區一個形狀和上緣的名字，跳過已選的子地區）。縮放 12 時一個畫面大約 4～5 個子地區，13 不用調。
   - `MapView.tsx`：`region-fill`、`region-line`（在點下面）和 `region-label`（symbol，白底那區顏色的圓角框，`mapIcons.ts` 的 `addRegionPill`），都用圖層的 minzoom 11、maxzoom 13；只在網頁探索有資料。點名字走 `exploreArea.ts` 的 `pickMapRegion`（不在那區時先進那區）；`pickRegion`、`overviewRegion` 從 `Explore.tsx` 搬到 `exploreArea.ts`。
   - e2e `t65.spec.ts`（縮放 10、14 不畫、12 至少 3 個、點了選那個子地區、選了的不再畫一次）；t43、t56 照樣過。master 本來就不過的：add-place 3 項、mobile-add-place 長按、t15m「選整趟：地圖框住整趟」；t15m 第九輪展開卡偶爾不穩。
+
+### T66～T68 第十三輪：書架兩級退、篩選面板照類型分段、資料補（2026-11-04 👤 決定）
+
+為什麼、順序見 §3「2026-11-04 第十三輪」。畫面以 [書架與篩選診斷](https://claude.ai/artifact/LPRze5GsG58i5APKDjnScH)（第二版）為準，已經寫進 [interaction-design.md](interaction-design.md) §32；草圖在別的帳號可能讀不到，所以任務卡把要做的寫完整。
+
+#### T66 書架兩級退、合併天氣、重匯 D1 〔S〕
+- **現況**（2026-11-04 查的）：
+  - 本機 D1 的 660 個點 `layer_version` 都是 1，`worker/src/lib/placeLayers.ts` 的 `LAYER_VERSION` 是 3（v2 把 `weather` 放進清單層、v3 放 `group.maxGuests`），所以透過 Worker 看網站時「下雨也行」「可住 15 人」每區都是 0。正式環境多半也一樣。
+  - 書架（`web/src/lib/shelves.ts`）是一組硬條件，子地區一細分常常是 0；0 個時 T64 的框叫人看全區或放寬。「住在這裡」的 `stayScore` 只給包棟和 maxGuests ≥ 15 各一分，8 人的包棟排在住得下全團的旅館前面。
+  - 篩選的「天氣」是「室內」「有遮蔽」兩顆，全部資料只有 8 個點是有遮蔽。
+- **要做**：
+  - **重匯 D1**：`npm run db:import -- --all`，正式環境 `--remote`（照 `scripts/db-import.mjs` 開頭的用法，先出報告再 `--apply`）。做任何程式之前先做，做完確認「下雨也行」「可住 15 人」有東西。
+  - **書架兩級**（interaction-design §32 的表）：每排 `Shelf` 改成 `tiers: [第一級的條件, 第二級的條件]`；`shelfRows` 第一級 0 個才用第二級，回傳現在用的是第幾級；小字照 §32 的兩種寫法，退到第二級時換色；「全部 ›」套那一級的條件。兩級都 0 才是 T64 的虛線框，下一步只剩「看全區」「問 AI」（`relax` 拿掉）。
+    - 全員吃飯的第一級：`fit15` 是 yes 或 split，而且 `kids.allowed` 不是 no、age-limit。第二級：其他餐廳。
+    - 住在這裡的第一級：能包棟而且 `maxGuests` ≥ 15，或 `kind` 是 hotel、ryokan（或 other）而且 `totalRooms` ≥ 5。`totalRooms` 要進清單層（`LIST_PICK` 的 group 加 `totalRooms`，`LAYER_VERSION` 加一，再重匯一次）。`stayScore` 拿掉。
+    - 下雨也行的第二級：`regions` 清掉（全區）。
+    - 這些條件要能寫成 `Filter`（「全部 ›」和「現在看」的晶片要用）：`Filter` 加 `who: (all | sub)[]`（全員 15 人、分組）、`stay: (whole | split | hotel)[]`（住法），舊的 `fit15`、`lodging` 欄位留著給 AI 的 `set_filter` 和舊測試，但面板不再畫（T67 再決定要不要拿掉）。
+  - **小卡第二行**（`ShelfCard`）：全員吃飯寫「15 人能坐一起」「15 人要分桌」「15 人還沒查」「坐不下 15 人」；住在這裡寫「旅館 · 全團住得下」「包棟 · 16 人」「包棟 · 8 人 · 要兩棟」，後面接餐食；一定要去、下雨也行照舊。照片牆、清單的標章（`lib/badges.ts`）同樣寫法。
+  - **天氣**：面板只剩一顆「下雨也行」（`weather` 的值改成一個 `rain`，比對時 indoor、covered 都算；AI 的 `set_filter`、`search_places` 的 `weather` 照舊收三個值）。
+- **驗證**：單元測試（兩級的退、每級的條件、小字；住得下的規則用三種住宿各一個例子）；e2e 改 t42、t50、t64 有關空書架的測試，加「第一級 0 個退到第二級」網頁、手機各一支。
+- **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；本機 D1 重匯；👤 看過截圖。
+
+#### T67 篩選面板照類型分段 〔M〕
+- **前置**：T66（第一級的條件、`who`、`stay` 欄位）。
+- **現況**：面板（`shared/filterOptions.ts`、`shared/ui/FilterSheet.tsx`）九組攤平，標題只有「篩選」，看不出現在在哪一區；餐廳的小孩、預約，住宿的晚餐、溫泉，景點的 2 月都有資料但沒進篩選；「適合」只對景點有用。
+- **要做**（interaction-design §32「篩選面板照類型分段」）：
+  - 標題「篩選 · 志摩・賢島」（沒選子地區「志摩」，概覽「全部」）。
+  - 類型那列照舊；選了一個類型只畫那一類的組，順序照 §32；沒選類型時三類各收成一列，點了展開＝選了那個類型；等級、地圖、想去的「只看我按的」放最下面。
+  - 新的組和 `Filter` 欄位：餐廳「誰吃」（`who`）、「哪一餐」（`contexts`，小吃咖啡合成一顆）、「帶小孩」（`kids`）、「怎麼去」（transit 搬過來、不用搭車）；住宿「住法」（`stay`）、「晚餐」（`dinner: (included | walk | car)[]`）、「適合」（`suits` 也對住宿有用）、「其他」（溫泉、車站走路到）；景點「適合」多「2 月」（`winterFit` ≥ 4）。舊的 `fit15`、`lodging` 從面板和 `Filter` 拿掉（AI 的 `set_filter` 收到時轉成新欄位）。
+  - 「現在看」那一列：晶片用新名字；誰吃、住法兩題右邊多一段分布小字（「能坐一起 6 · 要分桌 2」）。
+  - 0 個的放寬條件照新的第一題：全員 15 人 →「看賢島坐不下、還沒查的（4）›」。
+  - AI：`search_places` 加 `who`、`stay`、`dinner`、`winter`，`prompts.ts`、`askAiPrompts.ts` 的說明跟著改；`npm run ai:eval` 跑幾個代表題。
+  - `LIST_PICK` 要多讀的欄位（`kind`、`dinnerAccess`、`nearestStation.mode` 已在清單層的不用）加進去，`LAYER_VERSION` 加一、重匯 D1。
+- **驗證**：單元測試（每個新條件各一個符合、一個不符合的例子；面板照類型出哪幾組）；e2e 改 t57、t64 的面板測試，加「選餐廳只看到餐廳的組」「沒選類型三類收著」網頁、手機各一支。
+- **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；👤 看過截圖。
+
+#### T68 資料補：包棟人數、景點評分 〔S〕
+- **現況**（2026-11-04）：能包棟、民宿（`kind` 是 rental-house、minshuku）34 間裡 11 間沒有 `group.maxGuests`；景點 `assessment.scores` 的 `elderFit` 沒評 31 個、`kidsFit` 20 個、`winterFit` 5 個。旅館、飯店不補人數（T66 用房間數判）。
+- **要做**：照 CONVENTIONS 的規則補：人數看官網、楽天、じゃらん的定員，附 `sources`，查不到填 null 並列進 `questions.md`；評分照 CONVENTIONS 的評分表，理由寫進 `assessment.rationale`。改完 `npm run validate`，重匯 D1。
+- **驗證**：`npm run validate` 通過；補完後用 `node` 數一次還有幾個 null。
+- **完成條件**：validate 通過；重匯 D1；PLAN 的這張卡寫上補了幾個、還剩幾個查不到。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
