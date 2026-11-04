@@ -1,4 +1,5 @@
 // T42：探索的概覽、地區列、選區後的書架（網頁版，interaction-design §18.1）。
+// T63：概覽沒有四格書架，子地區在卡片裡換內容、網頁地圖跟著框（§28）。
 // T50：選了一區不放特色、子地區列在篩選列裡、書架的順序和名字、小卡的類型圓章、返回鈕「‹ 一定要去」、切換鈕只在清單層。
 // SHOT_DIR 有設時把畫面存下來（給 👤 看的截圖）。
 
@@ -56,7 +57,7 @@ test('進網站是探索的概覽：一區一張卡，代表的點開詳情，�
   await shot(page, 'web-area-toba');
 });
 
-test('概覽（T52）：地區照片、住幾晚、四格書架的數字點進那排、子地區點進那區', async ({ page }) => {
+test('概覽（T52、T63）：地區照片、住幾晚；沒有四格書架；子地區在卡片裡換內容、地圖框過去、看全部地區回來', async ({ page }) => {
   await ready(page, { tab: 'default' });
   const overview = page.getByTestId('explore-overview');
   const toba = overview.locator('[data-area="toba"]');
@@ -65,39 +66,73 @@ test('概覽（T52）：地區照片、住幾晚、四格書架的數字點進�
   await expect(toba.getByTestId('overview-credit')).toHaveAttribute('href', /commons\.wikimedia\.org/);
   // 住幾晚：有住的區才寫
   await expect(overview.getByTestId('overview-nights').first()).toHaveText(/^住 \d+ 晚 · \d+\/\d+–\d+\/\d+/);
-  await shot(page, 'web-overview-t52');
+  // 「概覽」鈕是芥子黃，和地區鈕分開（T63）
+  await expect(page.getByTestId('ex-area-all')).toHaveClass(/ui-chip-overview/);
+  await expect(page.getByTestId('ex-area-toba')).not.toHaveClass(/ui-chip-overview/);
+  // 四格書架的數字拿掉（T63）；區名旁邊日文名
+  await expect(overview.getByTestId('overview-shelf')).toHaveCount(0);
+  await expect(overview.locator('[data-area="kix"] .xo-name-ja')).toHaveText('関西空港周辺');
 
-  // 四格書架：順序同書架；0 的灰掉
-  const shelves = toba.getByTestId('overview-shelf');
-  expect(await shelves.evaluateAll((els) => els.map((e) => e.getAttribute('data-shelf')))).toEqual(['must', 'fit15', 'stay', 'rain']);
-  for (const el of await overview.getByTestId('overview-shelf').all()) {
-    if ((await el.locator('.xo-shelf-n').textContent()) === '0') await expect(el).toBeDisabled();
-  }
-  const n = Number(await toba.locator('[data-shelf="must"] .xo-shelf-n').textContent());
-  expect(n).toBeGreaterThan(0);
-  await toba.locator('[data-shelf="must"]').click();
-  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter)).toMatchObject({ areas: ['toba'], regions: [], types: ['spot'], tiers: ['S', 'A'] });
-  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByTestId('back-to-area')).toHaveText('‹ 一定要去');
-  await expect(page.getByTestId('list-count')).toHaveText(`${n} 個地點`);
-  await page.getByTestId('back-to-area').click();
-  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
-
-  // 子地區：前 5 個加「+N」；點了進那區再選那個子地區
-  await page.getByTestId('ex-area-all').click();
+  // 子地區一行：「志摩全區」預設選著，後面全部的子地區，沒有「+N」
   const shima = overview.locator('[data-area="shima"]');
-  await expect(shima.getByTestId('overview-region')).toHaveCount(5);
-  await expect(shima.getByTestId('overview-region-more')).toHaveText(/^\+\d+$/);
-  const region = toba.getByTestId('overview-region').nth(1);
-  const rid = await region.getAttribute('data-region');
-  await region.click();
-  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'toba');
-  await expect(page.getByTestId(`region-${rid}`)).toHaveAttribute('aria-pressed', 'true');
-  // 「+N」進那區（子地區是全部）
+  const n = await page.evaluate(() => (window as any).__th.dataStore.getState().areas.find((a: any) => a.id === 'shima').regions.length);
+  await expect(shima.getByTestId('overview-region-all')).toHaveText('志摩全區');
+  await expect(shima.getByTestId('overview-region-all')).toHaveAttribute('aria-pressed', 'true');
+  await expect(shima.locator('[data-testid^="overview-region-"]:not([data-testid="overview-region-all"])')).toHaveCount(n);
+  await expect(shima.getByTestId('overview-region-more')).toHaveCount(0);
+  await expect(shima.getByTestId('overview-reps-title')).toHaveText('志摩的代表地點');
+  await expect(shima.getByTestId('overview-go')).toHaveText('看志摩 ›');
+  await expect(page.getByTestId('map-all-areas')).toHaveCount(0);
+  await shot(page, 'web-overview-t63');
+
+  // 點賢島：卡片換成賢島的簡介、代表點；人還在概覽，地圖框到賢島、畫它的框和名字
+  const intro = await page.evaluate(() => (window as any).__th.dataStore.getState().areas.find((a: any) => a.id === 'shima').regions.find((r: any) => r.id === 'shima-kashikojima').intro);
+  await shima.getByTestId('overview-region-shima-kashikojima').click();
+  await expect(shima).toHaveAttribute('data-region', 'shima-kashikojima');
+  await expect(shima.getByTestId('overview-summary')).toHaveText(intro.summary);
+  await expect(shima.getByTestId('overview-reps-title')).toHaveText('賢島的代表地點');
+  expect(await shima.getByTestId('overview-rep').evaluateAll((els) => els.map((e) => e.getAttribute('data-id')))).toEqual(intro.highlights);
+  await expect(shima.getByTestId('overview-go')).toHaveText('看賢島 ›');
+  await expect(overview).toBeVisible();
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.areas)).toEqual([]);
+  await expect(page.locator('[data-testid="region-name-label"][data-region="shima-kashikojima"]')).toBeVisible();
+  await expect(page.getByTestId('map-all-areas')).toBeVisible();
+  const focus = () => page.evaluate(() => (window as any).__th.map.getSource('area-focus').serialize().data.features.map((f: any) => f.properties));
+  await expect.poll(focus).toMatchObject([{ area: 'shima', region: 'shima-kashikojima' }]);
+  await expect.poll(() => page.evaluate(() => (window as any).__th.map.getZoom())).toBeGreaterThan(11);
+  await shot(page, 'web-overview-t63-region');
+
+  // 別張卡不動；往下捲再回來還在
+  await expect(toba).toHaveAttribute('data-region', '');
+  await overview.locator('[data-area="osaka"]').scrollIntoViewIfNeeded();
+  await shima.scrollIntoViewIfNeeded();
+  await expect(shima).toHaveAttribute('data-region', 'shima-kashikojima');
+
+  // 志摩全區：換回整區，地圖框整個志摩（沒有子地區名）
+  await shima.getByTestId('overview-region-all').click();
+  await expect(shima.getByTestId('overview-reps-title')).toHaveText('志摩的代表地點');
+  await expect.poll(focus).toMatchObject([{ area: 'shima', region: null }]);
+  await expect(page.getByTestId('region-name-label')).toHaveCount(0);
+
+  // 看全部地區：全部換回全區、框拿掉、這顆不見
+  await shima.getByTestId('overview-region-shima-kashikojima').click();
+  await page.getByTestId('map-all-areas').click();
+  await expect(shima).toHaveAttribute('data-region', '');
+  await expect(page.getByTestId('map-all-areas')).toHaveCount(0);
+  await expect.poll(focus).toEqual([]);
+
+  // 「概覽」鈕也是
+  await shima.getByTestId('overview-region-shima-kashikojima').click();
   await page.getByTestId('ex-area-all').click();
-  await shima.getByTestId('overview-region-more').click();
+  await expect(shima).toHaveAttribute('data-region', '');
+  await expect(page.getByTestId('map-all-areas')).toHaveCount(0);
+
+  // 看賢島 ›：進志摩、選好賢島
+  await shima.getByTestId('overview-region-shima-kashikojima').click();
+  await shima.getByTestId('overview-go').click();
   await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'shima');
-  await expect(page.getByTestId('region-all')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('region-shima-kashikojima')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('map-all-areas')).toHaveCount(0);
 });
 
 test('選了一區：書架的「全部 ›」套條件變照片牆，「‹ 一定要去」回到書架；類型在篩選面板裡', async ({ page }) => {

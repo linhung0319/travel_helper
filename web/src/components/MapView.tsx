@@ -19,7 +19,8 @@ import { nightsPerArea, nightsPerAreaDiff } from '../lib/tripSkeleton.ts';
 import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap, shapeLabelAt } from '../lib/mapLayers.ts';
 import { displayName } from '../data/normalize.ts';
 import { currentArea, exploreStage } from '../lib/shelves.ts';
-import { pickArea } from '../exploreArea.ts';
+import { pickArea, showAllAreas } from '../exploreArea.ts';
+import { useOverview } from '../shared/overviewStore.ts';
 import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
 import { addMapIcons } from './mapIcons.ts';
 import { markMapLoaded } from '../lib/idle.ts';
@@ -75,7 +76,7 @@ const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [
 type WishKind = 'unscheduled' | 'candidate' | 'scheduled';
 
 /** marks：行程的編號（0、1、2…，overlays.itineraryMarks：某一天、點開的那段、整趟）；有編號的點畫成類型色的編號圓 */
-function featureCollection(places: Place[], marks: Map<string, string>, detailed: boolean): FeatureCollection {
+function featureCollection(places: Place[], marks: Map<string, string>, detailed: boolean, overviewArea: string | null = null): FeatureCollection {
   const { filter, query, day, mode, aiResult } = appStore.getState();
   const { days, itinerary } = dataStore.getState();
   const trip = mode === 'map';
@@ -86,8 +87,8 @@ function featureCollection(places: Place[], marks: Map<string, string>, detailed
   const candidates = shared.store.getState().candidates;
   // 想去分頁只畫想去的點
   const shown = liked ? places.filter((p) => liked.has(p.id)) : places;
-  // 探索的分層（T43 §21）：縮遠只畫 S、A 級景點（選的那一區、清單裡符合的照樣畫）
-  const layer = { explore: mode === 'explore', detailed, area: currentArea(filter), listing: exploreStage(filter, query, !!aiResult) === 'list' };
+  // 探索的分層（T43 §21）：縮遠只畫 S、A 級景點（選的那一區、概覽框著的那一區、清單裡符合的照樣畫）
+  const layer = { explore: mode === 'explore', detailed, area: currentArea(filter) ?? overviewArea, listing: exploreStage(filter, query, !!aiResult) === 'list' };
   return {
     type: 'FeatureCollection',
     features: shown.map((p) => {
@@ -226,6 +227,9 @@ export function MapView() {
   const tripFocusDay = useApp((s) => s.tripFocusDay);
   // 想去分頁不寫行程的編號（三種樣子取代）
   const marks = useMemo(() => (mode === 'wish' ? new Map<string, string>() : itineraryMarks(plan, day, legOpen, tripFocusDay)), [plan, day, legOpen, tripFocusDay, mode]);
+  // 探索的概覽（T63 §28，只有網頁）：點了卡片的子地區一行，地圖框著那一區或子地區，畫它的範圍；離開概覽就不算
+  const overviewPick = useOverview((s) => s.focus);
+  const overviewFocus = desktop && mode === 'explore' && exploreStage(filter, query, !!aiResult) === 'overview' ? overviewPick : null;
 
   const cancelHide = () => {
     if (hideTimer.current) window.clearTimeout(hideTimer.current);
@@ -663,8 +667,8 @@ export function MapView() {
   // 資料點、篩選、選定的天、行程 → 重畫
   useEffect(() => {
     if (!loaded) return;
-    (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks, detailed));
-  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks, detailed, aiResult]);
+    (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks, detailed, overviewFocus?.area ?? null));
+  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks, detailed, aiResult, overviewFocus?.area]);
 
   const anchorId = desktop && detailId && detailId !== selectedId ? detailId : null;
 
@@ -693,8 +697,10 @@ export function MapView() {
   }, [loaded, selectedId, anchorId, dropIdsKey, hoveredId]);
 
   // 選了一區（T43 §21）：那區所有點外圍的形狀；只在探索。選了子地區（T56）只畫子地區的範圍，上緣放子地區名（點了沒有作用）
-  const focusArea = mode === 'explore' ? currentArea(filter) : null;
-  const focusRegion = focusArea && filter.regions.length === 1 ? filter.regions[0] : null;
+  // 概覽框著的卡（T63 §28）一樣畫
+  const selectedArea = mode === 'explore' ? currentArea(filter) : null;
+  const focusArea = selectedArea ?? overviewFocus?.area ?? null;
+  const focusRegion = selectedArea ? (filter.regions.length === 1 ? filter.regions[0] : null) : (overviewFocus?.region ?? null);
   const areasForFocus = useData((s) => s.areas);
   useEffect(() => {
     if (!loaded) return;
@@ -1057,6 +1063,11 @@ export function MapView() {
     <div className="map-wrap">
       <div ref={containerRef} className="map" data-testid="map" />
       <MapCommandBars />
+      {overviewFocus && (
+        <button type="button" className="map-all-areas" onClick={showAllAreas} data-testid="map-all-areas">
+          <span aria-hidden>⤢</span> 看全部地區
+        </button>
+      )}
       {mode === 'wish' && (
         <div className="map-legend" data-testid="map-wish-legend" aria-label="圖例">
           <span>

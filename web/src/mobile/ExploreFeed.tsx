@@ -115,10 +115,6 @@ export function ExploreFeed() {
           surface="mobile"
           onOpen={open}
           onPickArea={pickFeedArea}
-          onShelf={(area, f) => {
-            pickFeedArea(area);
-            mobileStore.getState().setFeed(filterToFeed(f));
-          }}
           onPickRegion={(area, region) => {
             pickFeedArea(area);
             pickFeedRegion(region);
