@@ -1546,6 +1546,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 範圍畫在點的下面，不擋點擊。標籤撞在一起時，後畫的藏起來（MapLibre 的 collision）。
 - **驗證**：`lib/mapLayers.ts` 的單元測試（哪個縮放畫哪一層）；e2e 加「縮放 12 時看得到子地區標籤、點了選那個子地區」；截圖縮放 10、12、14。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過。
+- **結果**（2026-11-04，branch t65）：畫面寫在 interaction-design §31（T64 先用了 §30）。
+  - `lib/mapLayers.ts`：`REGION_ZOOM_MAX = 13`、`mapTierAt`（縮遠／子地區／點）、`regionShapes`（每個有點的子地區一個形狀和上緣的名字，跳過已選的子地區）。縮放 12 時一個畫面大約 4～5 個子地區，13 不用調。
+  - `MapView.tsx`：`region-fill`、`region-line`（在點下面）和 `region-label`（symbol，白底那區顏色的圓角框，`mapIcons.ts` 的 `addRegionPill`），都用圖層的 minzoom 11、maxzoom 13；只在網頁探索有資料。點名字走 `exploreArea.ts` 的 `pickMapRegion`（不在那區時先進那區）；`pickRegion`、`overviewRegion` 從 `Explore.tsx` 搬到 `exploreArea.ts`。
+  - e2e `t65.spec.ts`（縮放 10、14 不畫、12 至少 3 個、點了選那個子地區、選了的不再畫一次）；t43、t56 照樣過。master 本來就不過的：add-place 3 項、mobile-add-place 長按、t15m「選整趟：地圖框住整趟」；t15m 第九輪展開卡偶爾不穩。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
