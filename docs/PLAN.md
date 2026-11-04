@@ -153,7 +153,7 @@
 | T62 | 登入頁：網頁版改成右邊從上到下的米色短冊（上半直書標題、日期、「一家人的行程」，下半旅程和登入）、太陽從短冊後面露出來；插畫照 wave.png 的配色重調；手機版版面不動 | S | — | 4 | | ✅ |
 | T63 | 探索的概覽：概覽鈕淡芥子黃、區名放大、拿掉四格書架數字、子地區點了在卡片裡換簡介（「志摩全區」換回來）、代表點加標題、網頁地圖跟著框和「看全部地區」 | M | — | 4 | | ✅ |
 | T64 | 探索的篩選：「現在看」那一列（地區・子地區、攤開條件）、拿掉「篩選 N」的數字、0 個的書架和清單給下一步、問 AI 帶現在的條件 | M | T61、T63 | 4 | | ✅ |
-| T65 | 網頁地圖：中間的縮放畫所有子地區的範圍和名字 | S | T63 | 4 | | ⬜ |
+| T65 | 網頁地圖：中間的縮放畫所有子地區的範圍和名字 | S | T63 | 4 | | ✅ |
 
 ---
 
@@ -1546,7 +1546,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 範圍畫在點的下面，不擋點擊。標籤撞在一起時，後畫的藏起來（MapLibre 的 collision）。
 - **驗證**：`lib/mapLayers.ts` 的單元測試（哪個縮放畫哪一層）；e2e 加「縮放 12 時看得到子地區標籤、點了選那個子地區」；截圖縮放 10、12、14。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過。
-- **結果**（2026-11-04，branch t65）：畫面寫在 interaction-design §31（T64 先用了 §30）。
+- **結果**（2026-11-04，已 merge 回 master）：畫面寫在 interaction-design §31（T64 先用了 §30）。
   - `lib/mapLayers.ts`：`REGION_ZOOM_MAX = 13`、`mapTierAt`（縮遠／子地區／點）、`regionShapes`（每個有點的子地區一個形狀和上緣的名字，跳過已選的子地區）。縮放 12 時一個畫面大約 4～5 個子地區，13 不用調。
   - `MapView.tsx`：`region-fill`、`region-line`（在點下面）和 `region-label`（symbol，白底那區顏色的圓角框，`mapIcons.ts` 的 `addRegionPill`），都用圖層的 minzoom 11、maxzoom 13；只在網頁探索有資料。點名字走 `exploreArea.ts` 的 `pickMapRegion`（不在那區時先進那區）；`pickRegion`、`overviewRegion` 從 `Explore.tsx` 搬到 `exploreArea.ts`。
   - e2e `t65.spec.ts`（縮放 10、14 不畫、12 至少 3 個、點了選那個子地區、選了的不再畫一次）；t43、t56 照樣過。master 本來就不過的：add-place 3 項、mobile-add-place 長按、t15m「選整趟：地圖框住整趟」；t15m 第九輪展開卡偶爾不穩。
