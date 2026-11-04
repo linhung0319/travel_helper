@@ -134,6 +134,57 @@ export interface Digest {
   needsCar?: boolean;
   /** 要了 elderly、kids、access，這個點沒有評分 */
   fitUnknown?: true;
+  /** 我們打的分（1～5）：elderly 長輩、kids 小孩、winter 2 月、access 不用搭車；沒評的不帶，整個沒有就不帶 */
+  scores?: Record<string, number>;
+  /** 餐廳：料理類型、座位形式、收不收小孩（yes、no、age-limit、unknown；null 是資料沒寫） */
+  cuisine?: string[];
+  seating?: string[] | null;
+  kids?: string | null;
+  /** 住宿：房數、最多住幾人、能不能包棟、餐、價格帶（null 是資料沒寫） */
+  rooms?: number | null;
+  maxGuests?: number | null;
+  wholeRental?: boolean | null;
+  meals?: string | null;
+  priceRange?: string | null;
+}
+
+/** 評分的鍵 → 給 AI 看的名字（同 search_places 的參數） */
+const SCORE_KEYS: Record<string, string> = { elderFit: 'elderly', kidsFit: 'kids', winterFit: 'winter', accessEase: 'access' };
+
+/** 這個點有打的分：{ elderly: 4, kids: 3 }；都沒有是 null */
+export function scoresOf(p: Pick<Place, 'assessment'>): Record<string, number> | null {
+  const out: Record<string, number> = {};
+  for (const [k, name] of Object.entries(SCORE_KEYS)) {
+    const v = placeScore(p, k);
+    if (v !== null) out[name] = v;
+  }
+  return Object.keys(out).length ? out : null;
+}
+
+const nullable = <T>(v: unknown, ok: (x: unknown) => x is T): T | null => (ok(v) ? v : null);
+const isNum = (x: unknown): x is number => typeof x === 'number';
+const isBool = (x: unknown): x is boolean => typeof x === 'boolean';
+const isStr = (x: unknown): x is string => typeof x === 'string';
+const isStrs = (x: unknown): x is string[] => Array.isArray(x) && x.every((s) => typeof s === 'string');
+
+/** 這團最在意的欄位，照類型帶：長輩小孩的分數；餐廳的料理、座位、小孩；住宿的房數、人數、包棟、餐、價格（盤點 2026-11-05） */
+function keyFacts(p: Place): Partial<Digest> {
+  const scores = scoresOf(p);
+  const out: Partial<Digest> = scores ? { scores } : {};
+  if (p.type === 'restaurant') {
+    out.fit15 = placeFit15(p);
+    if (p.cuisine.length) out.cuisine = p.cuisine;
+    out.seating = nullable(get(p, 'seating'), isStrs);
+    out.kids = nullable(get(p, 'kids', 'allowed'), isStr);
+  }
+  if (p.type === 'lodging') {
+    out.rooms = nullable(get(p, 'group', 'totalRooms'), isNum);
+    out.maxGuests = nullable(get(p, 'group', 'maxGuests'), isNum);
+    out.wholeRental = nullable(get(p, 'group', 'wholeRental'), isBool);
+    out.meals = nullable(get(p, 'meals'), isStr);
+    out.priceRange = nullable(get(p, 'priceRange'), isStr);
+  }
+  return out;
 }
 
 const firstSentence = (text: string | undefined) => {
@@ -158,7 +209,7 @@ export function digestOf(p: Place, likes: number): Digest {
     badges: placeBadges(p, 4).map((b) => b.label),
     summary: firstSentence(p.summary?.text),
     likes,
-    ...(p.type === 'restaurant' ? { fit15: placeFit15(p) } : {}),
+    ...keyFacts(p),
   };
 }
 

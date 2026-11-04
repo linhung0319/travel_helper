@@ -158,6 +158,7 @@
 | T67 | 篩選面板照類型分段：誰吃、哪一餐、帶小孩、住法、晚餐、溫泉、2 月；標題寫地區；「現在看」的分布小字；AI 工具跟著改 | M | T66 | 4 | | ✅ |
 | T68 | 資料補：包棟、民宿的人數 11 間；景點長輩、小孩、2 月的評分 | S | — | 4 | 🌐 少量 | ✅ |
 | T69 | 探索、想去：換地區、子地區篩選留著（書架照新範圍重挑級數）、「‹ 書架」回書架、概覽離開篩選可復原；篩選列重排（工具圓鈕、地區分頁、子地區晶片、「看什麼」淡藍帶、數字）；面板類型改三塊大鈕；住法改名加「民宿」；清單列永遠三行、照片牆標籤上照片；地區列最右一顆被切掉 | M | T67 | 4 | | ✅ |
+| T70 | AI 脈絡盤點（第二次）：搜尋結果帶分數、餐廳的料理座位小孩、住宿的房數餐價格；`get_place` 附旅程中公休的天；時刻表收站名、路線同名全查；拿掉 basis、verified、訂房網址、null 噪音和警告裡的內部用語；e2e 全跑 | S | T36、T69 | 4 | | ✅ |
 
 ---
 
@@ -407,6 +408,11 @@ T69 探索、想去的篩選列改版（等 T67）
 ```
 
 - **T69 等 T67**：改 T67 的住法、面板和「現在看」那一列。
+
+2026-11-05 **第十五輪**（T70，👤 決定）：
+
+- **為什麼**：T36 之後畫面、資料、工具都改了很多（T41 地區、T45 每晚住哪區、T57～T69 篩選），👤 要再盤一次 AI 工具回傳的脈絡：太多的拿掉、不夠的補上。做法同 T36：用使用者的情境（排骨架、排一天、檢查一天、找住宿、找餐廳、問單點、比較、交通、票券、預約、想去）比對「使用者期待的回答」和「工具回傳的內容」，不打 AI API。
+- **T70 隨時**：只改 AI 的工具、脈絡、引擎的警告字串和兩筆資料的文字。
 
 ### 同時可以開幾個 session
 
@@ -1674,6 +1680,27 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - **t15m「選整趟：地圖框住整趟」失敗，master 上一樣失敗**（暫存改動後在 master 跑過），跟 T69 無關，沒修。
   - 沒有 e2e 的：想去「只看自己加的 N」（種子資料沒有自己加的點）、AI 挑的結果那層的帶子（沒有「‹ 書架」，只有地點數）。
 - **沒做**：卡片上帶出 `nearbyCombos` 的搭配住宿名字（要把 `nearbyCombos` 放進清單層、`LAYER_VERSION` 加一、重匯 D1；目前畫面上沒有顯示）；往下捲時子地區列、條件晶片跟著捲走（草圖說之後再決定）。
+
+### T70 AI 脈絡盤點（第二次） 〔S〕（第十五輪，2026-11-05 👤 決定）
+
+為什麼見 §3「2026-11-05 第十五輪」。做法同 T36：用 `web/test/aiHarness.ts` 的真資料、範例行程跑每個查資料工具和每種晶片的脈絡，存成檔案逐個看；不打 AI API、沒開 subagent 模擬（只比對期待的回答和工具回傳就看得出來）。
+
+- **盤點結果**（2026-11-05，字元數是 JSON，token 粗估）：
+  - **固定的部分**：系統提示約 4.1k 字元、工具定義約 16.6k 字元（`search_places` 2.9k、`set_filter` 1.8k、`propose_changes` 1.2k），每次都一樣、有快取，沒動。
+  - **剛好的**：`get_trip_overview`（3.2k）、`get_areas`（全部 6.3k、一區 6.4k）、`get_opinions`、`get_trip_info`（T36 分項後 day1 2.8k、票券 1.8k）、`check_changes`、`suggest_position`、脈絡晶片（某天 4.3k、地點 1.2k、整趟 3.9k、想去清單 2.6k，只帶一次）。
+  - **不夠的**：搜尋結果沒有長輩、小孩的分數（「志摩適合長輩小孩的 S、A 級」只剩 3 個，AI 看不出其他的為什麼不在、也看不出留下的分數多少），餐廳沒有料理、座位形式（椅子還是榻榻米）、收不收小孩，住宿沒有房數、餐、價格帶：AI 每次都要再 `get_place` 好幾家。`get_place` 的 `hours` 是一週七天的陣列，AI 要自己對 2027-02-05 是星期幾，容易錯。`get_timetable` 的車站只收資料點 ID，AI 會猜成 `kintetsu-toba`、`ise-shi`，錯誤訊息又說「沒有車站時刻表」誤導；路線名「かもめバス」對到 4 條只取第一條（鳥羽站到水族館只回 4 班，其實 4 條合起來 8 班）。
+  - **太多或會誤導的**：`get_day` 每一程的 `basis`（「近鐵時刻表＋kamome-5-kuzaki 時刻表」是內部檔名）、`fareEstimateYen: null`、`waitMinutes: 0`、每個 entry 的 `meal: null`、`note: null`；`get_place` 的 `verified: false`（660 筆全是 false）、住宿 `prices` 每列的楽天網址（約 250 字元 × 5 列，一間住宿的 price 分區 4.3k 有近半是網址）；`get_route` 的 `alternatives[0]` 就是選的那條；`check_changes` 的 `newWarnings` 計程車台數出現兩次；`get_reservations` 每列的 `nightsChanged: false`、`time: null`；畫面脈絡沒篩選也帶 `filterCount: 660`、`mapBounds: null`；車站時刻表的 `trainNo` 和終點代號（`kashikojima`）。引擎的警告還有「（§5.6）」「（fit15: unknown）」「（nights 的 meals）」這種內部用語（T39 說拿掉但漏了），資料裡 `passes.json`、`kix.json` 的文字有「data/timetables/…」的路徑。
+- **改了**：
+  - `search_places`（`digestOf`，晶片同一份）：每筆帶 `scores`（elderly、kids、winter、access，1～5；沒評的不帶）；餐廳帶 `cuisine`、`seating`、`kids`；住宿帶 `rooms`、`maxGuests`、`wholeRental`、`meals`、`priceRange`（沒查的是 null）。工具說明寫「這些夠挑就不用 get_place」。
+  - `get_place`：拿掉 `verified`，`scores` 不分區都帶；`hours` 分區附 `closedOnTripDays`（用引擎的 `openingOn` 對旅程 12 天，例如大阪屋 `["2/4（四）","2/11（四）"]`）；`prices` 每列拿掉 `url`、`source`、`currency`。
+  - `get_day`、`get_trip_overview`：加 `label`（「2/4（四）」）；拿掉 `basis`、等車 0 分、沒查的車資、null 的 `meal`、`note`、`itemId`、`travel`。
+  - `get_timetable`：車站收 ID 或站名（`nameScore` 比對，JR 站沒有近鐵時刻表就跳下一個），終點寫站名、拿掉 `trainNo`、`direction`，加 `date`；路線名對到幾條就全查（給了 from、to 合在一起照出發時間排、每班標路線；沒給就列出路線讓 AI 選）。
+  - `get_route` 的 `alternatives` 不再列選的那條；`check_changes` 的警告去重；`get_reservations`、畫面脈絡拿掉 null 和 false 的欄位、沒篩選不帶 `filterCount`。
+  - 引擎警告字串：「全員 15 人：要分桌或分批，要先打電話確認」「這家不接受預約」「還沒選要不要含晚餐」「建議包車」「建議至少留一個半天」；`passes.json`、`kix.json` 拿掉內部路徑。
+- **前後**（字元）：`get_day` 2/4 1,917 → 1,531、2/5 3,575 → 2,989；`get_place` 住宿 3 間（summary、group、price、reservation）5,637 → 4,538、鳥羽國際飯店 price 分區 4,271 → 2,688；`get_reservations` 3,525 → 2,737；沒晶片的脈絡 669 → 462；車站時刻表 1,368 → 879。搜尋結果因為多了欄位變大：志摩午餐 10 筆 3,328 → 4,235、志摩住宿 10 筆 2,723 → 4,139（換來少叫幾次 `get_place`，一次 6 家就 10k）。
+- **沒動**：工具定義和系統提示的長度（`set_filter` 和 `search_places` 的條件說明重複，但各自講清楚對模型比較穩）；`search_places` 舊的 `fit15`、`wholeRental`、`maxGuestsAtLeast` 參數（`who`、`stay` 表達不出「能坐一起不分桌」）；`get_areas` 全部的區帶 45 個子地區的名字（`regions`、`move_map` 要用）。
+- **驗證**：`web/test/ai-context-audit.test.ts` 9 支（分數、餐廳和住宿的欄位、`closedOnTripDays`、價格列、`get_day` 沒有 null 和 basis、引擎警告沒有內部用語、`check_changes` 去重、`alternatives`、站名和路線名、預約筆記、畫面脈絡）；`npm test` 1117、`typecheck`、`validate` 通過。
+- **e2e**：先檢查有沒有過時的，再全跑（結果見下）。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。

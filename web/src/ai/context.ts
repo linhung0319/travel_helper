@@ -19,15 +19,17 @@ export function screenContext(d: AiDeps, stage: Stage): Record<string, unknown> 
   const looking = stage.screenName();
   // 探索、想去的目前地區（T42）：概覽（沒選）時是 null
   const area = looking === 'explore' || looking === 'wish' ? currentArea(own ?? d.app.getState().filter) : undefined;
-  return {
+  const filterLabels = own ? filterChips(own, areas).map((c) => c.label) : v.filterLabels;
+  // 沒有的東西不帶（沒點開詳情、沒有結果集、沒有篩選就不寫 null）：每一輪都帶，省一點是一點
+  return tidy({
     looking,
     ...(area !== undefined ? { area } : {}),
     day: v.day,
     dayLabel: v.dayLabel,
-    dayStops: v.dayStops,
+    // 這天排了什麼（只有名字；時間用 get_day 查）
+    dayStops: v.dayStops.map((x) => ({ place: x.place, name: x.name, ...(x.time ? { time: x.time } : {}) })),
     planning: v.planning,
-    filterLabels: own ? filterChips(own, areas).map((c) => c.label) : v.filterLabels,
-    filterCount: own ? places.filter((p) => matchesFilter(p, own)).length : v.filterCount,
+    ...(filterLabels.length ? { filterLabels, filterCount: own ? places.filter((p) => matchesFilter(p, own)).length : v.filterCount } : {}),
     mapBounds: view?.bounds ?? null,
     placesInView: view ? places.filter((p) => inBbox(p.coords, view.bounds)).length : null,
     detail: v.detail,
@@ -35,8 +37,10 @@ export function screenContext(d: AiDeps, stage: Stage): Record<string, unknown> 
     selected: v.selected,
     aiResult: v.aiResult,
     proposal: v.proposal && { dates: v.proposal.dates, summary: v.proposal.summary },
-  };
+  });
 }
+
+const tidy = (o: Record<string, unknown>) => Object.fromEntries(Object.entries(o).filter(([, v]) => v != null));
 
 function chipContent(c: ChatContext, d: AiDeps, read: ReadTools): Record<string, unknown> {
   switch (c.kind) {

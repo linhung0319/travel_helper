@@ -1,19 +1,19 @@
 // 查資料的工具（規格 §4.1）：畫面不動。能算的交給引擎，資料沒寫就原樣回傳 null，不說成沒有。
 
-import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, nightAreaOf, nightRunOf, planItinerary, planLeg, type EngineData, type NewItem } from '@travel-helper/engine';
+import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, nightAreaOf, nightRunOf, openingOn, planItinerary, planLeg, type EngineData, type NewItem, type PlaceRecord } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
 import type { ReservationStatus } from '../backend/types.ts';
 import { bookedConflicts, noteRows, reservationFor } from '../lib/reservations.ts';
 import { isUserPlace } from '../lib/addPlace/view.ts';
-import { departuresAround, toMinutes } from '../lib/timetable.ts';
+import { departuresAround, terminusName, toMinutes } from '../lib/timetable.ts';
 import { dayCandidates, likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { memberName } from '../sharedStore.ts';
 import { fullPlace } from '../dataStore.ts';
 import { dayPlanOf } from '../planStore.ts';
-import { tripDates } from '../lib/trip.ts';
+import { dayLabel, tripDates } from '../lib/trip.ts';
 import type { Place } from '../data/types.ts';
-import { digestOf, searchPlaces, type SearchInput } from './search.ts';
+import { digestOf, NAME_MATCH, nameScore, scoresOf, searchPlaces, type SearchInput } from './search.ts';
 import { applyOps, type Op } from './ops.ts';
 import { opsContext, placeName, type AiDeps } from './deps.ts';
 
@@ -39,6 +39,16 @@ const SECTIONS: Record<string, string[]> = {
 };
 export const PLACE_SECTIONS = Object.keys(SECTIONS);
 const MAX_GET_PLACE = 6;
+
+/** 值是 null、undefined 的鍵拿掉（行程、預約這類結構裡的 null 不是「資料沒寫」，只是沒有） */
+const tidy = <T extends Record<string, unknown>>(o: T): Partial<T> => Object.fromEntries(Object.entries(o).filter(([, v]) => v != null)) as Partial<T>;
+
+/** 價格一列給 AI 看的欄位：訂房網的網址、來源、幣別（都是日圓）拿掉，一間住宿 5 列就省一半 */
+const PRICE_KEYS = ['plan', 'unit', 'adult', 'child', 'season', 'note'];
+function compactPrices(v: unknown): unknown {
+  if (!Array.isArray(v)) return v;
+  return v.map((row) => (row && typeof row === 'object' ? Object.fromEntries(Object.entries(row).filter(([k]) => PRICE_KEYS.includes(k))) : row));
+}
 
 /** AI 用不到的欄位：來源網址、取得日期、產生日期（T36：模擬時都沒用到，只佔 token） */
 const NO_AI_KEYS = new Set(['sources', 'basedOn', 'retrieved', 'generated', 'assessed', 'otherExpressSources']);
@@ -131,10 +141,15 @@ export function createReadTools(d: AiDeps) {
       ok: true,
       places: found.map((p) => {
         const raw = p.raw as Record<string, unknown>;
-        const out: Record<string, unknown> = { id: p.id, name: placeName(p), ja: p.name.ja, type: p.type, area: p.area, region: p.region, tier: p.tier, verified: raw.verified ?? null };
+        // scores 不分區都帶：長輩、小孩的分數是這團最常問的，很小（verified 全部是 false，拿掉）
+        const out: Record<string, unknown> = { id: p.id, name: placeName(p), ja: p.name.ja, type: p.type, area: p.area, region: p.region, tier: p.tier, scores: scoresOf(p) };
         if (p.origin === 'user') out.origin = '使用者自己加的，我們沒查過：營業時間、能不能坐 15 人都不知道';
         // 沒有這個欄位＝資料沒寫，回 null，不說成沒有。欄位直接放在點上（不再包一層分區），來源拿掉（T36）
-        for (const s of sections) for (const k of SECTIONS[s]) out[k] = withoutSources(raw[k] ?? null);
+        for (const s of sections) for (const k of SECTIONS[s]) out[k] = k === 'prices' ? compactPrices(withoutSources(raw[k] ?? null)) : withoutSources(raw[k] ?? null);
+        // 旅程中哪幾天公休：AI 不用自己對星期（容易對錯）；營業時間沒查就不帶
+        if (sections.includes('hours') && raw.hours != null) {
+          out.closedOnTripDays = tripDates().filter((date) => openingOn(raw as unknown as PlaceRecord, date, d.config.holidays).kind === 'closed').map(dayLabel);
+        }
         const edited = Object.keys(p.edited ?? {});
         if (edited.length) out.edited = edited;
         return out;
@@ -143,31 +158,33 @@ export function createReadTools(d: AiDeps) {
     };
   }
 
+  // basis（「近鐵時刻表＋kamome-5-kuzaki 時刻表」）是內部的檔名，AI 會照抄，不帶；等車 0 分、計程車費沒查的也不帶
   const compactLeg = (l: Leg | null) =>
-    l && {
+    l &&
+    tidy({
       mode: l.mode,
       minutes: l.minutes,
       walkMinutes: l.walkMinutes,
-      waitMinutes: l.waitMinutes,
-      rides: l.rides.map((r) => ({ line: r.line, from: nameOf(r.from) || r.from, to: nameOf(r.to) || r.to, depart: r.depart, arrive: r.arrive, ifMissed: r.ifMissed ?? null })),
-      ...(l.taxi ? { taxi: { cars: l.taxi.cars, fareEstimateYen: l.taxi.fareEstimateYen } } : {}),
+      waitMinutes: l.waitMinutes || null,
+      rides: l.rides.map((r) => tidy({ line: r.line, from: nameOf(r.from) || r.from, to: nameOf(r.to) || r.to, depart: r.depart, arrive: r.arrive, ifMissed: r.ifMissed ?? null })),
+      ...(l.taxi ? { taxi: tidy({ cars: l.taxi.cars, fareEstimateYen: l.taxi.fareEstimateYen }) } : {}),
       ...(l.taxiBefore ? { taxiBefore: { station: nameOf(l.taxiBefore.station), minutes: l.taxiBefore.minutes } } : {}),
       ...(l.taxiAfter ? { taxiAfter: { station: nameOf(l.taxiAfter.station), minutes: l.taxiAfter.minutes } } : {}),
-      basis: l.basis,
-    };
+    });
 
-  const compactEntry = (e: TimelineEntry) => ({
-    kind: e.kind,
-    itemId: e.itemId,
-    placeId: e.placeId,
-    name: nameOf(e.placeId),
-    arrive: e.arrive,
-    start: e.start,
-    end: e.end,
-    waitMinutes: e.waitMinutes,
-    meal: e.mealTags?.length ? e.mealTags : null,
-    travel: compactLeg(e.travel),
-  });
+  const compactEntry = (e: TimelineEntry) =>
+    tidy({
+      kind: e.kind,
+      itemId: e.itemId,
+      placeId: e.placeId,
+      name: nameOf(e.placeId),
+      arrive: e.arrive,
+      start: e.start,
+      end: e.end,
+      waitMinutes: e.waitMinutes || null,
+      meal: e.mealTags?.length ? e.mealTags : null,
+      travel: compactLeg(e.travel),
+    });
 
   /** 自己加的、已訂的（§17.7）：只在是的時候才帶，不讓回傳變長 */
   const marksOf = (date: string, placeId: string | null | undefined) => {
@@ -187,6 +204,8 @@ export function createReadTools(d: AiDeps) {
     const confirmed = places().itinerary;
     return {
       date,
+      // 星期一起給：公休、時刻表的平日假日都看它，AI 自己對會錯
+      label: dayLabel(date),
       area: it ? dayAreaLabel(dayAreaOf(it, date, areaOf), areaName) : null,
       ...(date === tripDates().at(-1) ? {} : { stayArea: stayAreaOf(it, date) }),
       lodging: lodging ? { id: lodging, name: nameOf(lodging), meals: lodgingMealsOn(it!, date), ...marksOf(date, lodging) } : null,
@@ -195,7 +214,7 @@ export function createReadTools(d: AiDeps) {
         return {
           ...compactEntry(e),
           ...marksOf(date, e.placeId),
-          note: item?.note ?? null,
+          ...(item?.note ? { note: item.note } : {}),
           // 提議裡新加的卡：ID 只是暫時的，不能用在 ops（要改就重寫那個 add）
           ...(it !== confirmed && e.itemId && confirmed && !findItem(confirmed, e.itemId) ? { draftOnly: true } : {}),
         };
@@ -247,6 +266,7 @@ export function createReadTools(d: AiDeps) {
         const run = it && p.date !== last ? nightRunOf(it, p.date, 'area', areaOf) : null;
         return {
           date: p.date,
+          label: dayLabel(p.date),
           // 這天在哪一區：「鳥羽」、移動日「志摩 → 鳥羽」、一日遊「鳥羽（去伊勢一日）」；還沒決定是 null
           area: it ? dayAreaLabel(dayAreaOf(it, p.date, areaOf), areaName) : null,
           // 這晚住哪一區、連住第幾晚（最後一天沒有晚上，不帶）
@@ -277,8 +297,9 @@ export function createReadTools(d: AiDeps) {
         changes: r.changes,
         // 區要寫名字（checkProposal 的摘要只有地點名）
         summary: describeChanges(r.changes, { nameOf: (id) => nameOf(id), areaName, plan: r.after }),
-        newWarnings: r.newWarnings.map((w) => w.message),
-        resolvedWarnings: r.resolvedWarnings.map((w) => w.message),
+        // 一樣的警告（計程車台數每一程一則）只留一則
+        newWarnings: [...new Set(r.newWarnings.map((w) => w.message))],
+        resolvedWarnings: [...new Set(r.resolvedWarnings.map((w) => w.message))],
       };
     } catch (e) {
       if (e instanceof ItineraryError) return fail(e.message);
@@ -370,7 +391,11 @@ export function createReadTools(d: AiDeps) {
       depart: leg.depart,
       arrive: leg.arrive,
       ...compactLeg(leg),
-      alternatives: leg.alternatives?.map((x) => ({ summary: x.summary, arrive: x.arrive, minutes: x.minutes, walkMinutes: x.walkMinutes })) ?? [],
+      // 引擎的 alternatives 第一個就是選的那條：只回其他走法
+      alternatives:
+        leg.alternatives
+          ?.filter((x) => !(x.arrive === leg.arrive && x.minutes === leg.minutes && x.walkMinutes === leg.walkMinutes))
+          .map((x) => ({ summary: x.summary, arrive: x.arrive, minutes: x.minutes, walkMinutes: x.walkMinutes })) ?? [],
       warnings: warnings.map((w) => w.message),
       ...(a.coords && b.coords ? { mapsUrl: mapsUrl(a.coords, b.coords, leg.mode) } : {}),
       note: '分鐘已照全員（長輩、小孩）的步行速度算；實際班次請在 Google Maps 確認',
@@ -382,15 +407,37 @@ export function createReadTools(d: AiDeps) {
     if (!date) return fail(`date 要是 ${tripDates()[0]}～${tripDates().at(-1)} 的日期`);
     if (input.station) {
       const after = input.after ?? '09:00';
-      const tt = await d.source.loadTimetable(input.station);
-      if (!tt) return fail(`${input.station} 沒有車站時刻表（巴士、船用 route 查）`);
+      // ID 或站名都收（AI 常猜成 kintetsu-toba、ise-shi 這種不存在的 ID）：名字比到幾個就照相似度試，JR 站沒有近鐵時刻表會跳過
+      const s = places();
+      const wanted = String(input.station);
+      const exact = s.byId.get(wanted);
+      const candidates = exact && exact.type === 'station' ? [exact] : s.places.filter((p) => p.type === 'station').map((p) => ({ p, score: nameScore(p, wanted) })).filter((x) => x.score >= NAME_MATCH).sort((a, b) => b.score - a.score).map((x) => x.p);
+      if (!candidates.length) return fail(`找不到車站「${wanted}」：給資料點 ID（search_places 的 types 給 station 查得到）或站名`);
+      let station = candidates[0];
+      let tt = null;
+      for (const c of candidates) {
+        tt = await d.source.loadTimetable(c.id);
+        if (tt) {
+          station = c;
+          break;
+        }
+      }
+      if (!tt) return fail(`${nameOf(station.id)} 沒有車站時刻表（只有近鐵車站有；巴士、船、JR 用 route 查）`);
       const dayType = kintetsuDayType(date, d.config.holidays);
-      return { ok: true, station: nameOf(input.station), dayType, directions: departuresAround(tt, dayType, after, 1, 6) };
+      // 終點寫站名（不是代號）；車次編號 AI 用不到
+      const term = (id: string) => (s.byId.has(id) ? nameOf(id) : terminusName(id, s.stationNames));
+      const directions = departuresAround(tt, dayType, after, 1, 6).map((x) => ({
+        label: x.label,
+        before: x.before.map((y) => tidy({ dep: y.dep, type: y.type, to: term(y.to), note: y.note })),
+        after: x.after.map((y) => tidy({ dep: y.dep, type: y.type, to: term(y.to), note: y.note })),
+      }));
+      return { ok: true, station: nameOf(station.id), date: dayLabel(date), dayType, directions };
     }
     if (input.route) {
       const q = input.route;
-      const route = d.engine()?.routes?.find((r) => r.id === q || r.name.ja.includes(q) || r.name.zh?.includes(q));
-      if (!route) return fail(`找不到路線 ${q}`);
+      // 名字可能對到好幾條（「かもめバス」有 4 條、「外宮内宮」有 2 條）：給了上下車站就把每一條都查、合在一起；沒給就列出來讓 AI 選
+      const matches = (d.engine()?.routes ?? []).filter((r) => r.id === q || r.name.ja.includes(q) || r.name.zh?.includes(q));
+      if (!matches.length) return fail(`找不到路線 ${q}`);
       // 路線沒給 after 從頭列：以前預設 09:00 又用第一站的時間濾，會漏掉中途站 9 點前的班（T36 模擬抓到）
       let t: number;
       try {
@@ -399,40 +446,50 @@ export function createReadTools(d: AiDeps) {
         return fail('after 要是 HH:MM');
       }
       const dayType = busDayType(date, d.config.holidays);
-      const stopName = new Map(route.stops.map((s) => [s.id, String(s.name)]));
-      const head = { ok: true as const, route: route.name.zh ?? route.name.ja, mode: route.mode, dayType, validFrom: route.validFrom };
-      const runs = (route.trips[dayType] ?? [])
-        .filter((x) => !x.dates || x.dates.includes(date))
-        .map((x) => ({ headsign: x.headsign, stops: x.stops.flatMap(([s, a2, d2]) => (d2 || a2 ? [{ name: stopName.get(s) ?? s, time: (d2 ?? a2) as string }] : [])) }));
+      const routeName = (r: (typeof matches)[number]) => r.name.zh ?? r.name.ja;
+      const runsOf = (route: (typeof matches)[number]) => {
+        const stopName = new Map(route.stops.map((s) => [s.id, String(s.name)]));
+        const runs = (route.trips[dayType] ?? [])
+          .filter((x) => !x.dates || x.dates.includes(date))
+          .map((x) => ({ headsign: x.headsign, stops: x.stops.flatMap(([s, a2, d2]) => (d2 || a2 ? [{ name: stopName.get(s) ?? s, time: (d2 ?? a2) as string }] : [])) }));
+        return { runs, stops: [...new Set(stopName.values())] };
+      };
       // 站名比對：拿掉空白，部分符合就算（「鳥羽駅」「鳥羽」都行）
       const fold = (s: string) => s.normalize('NFKC').replace(/\s/g, '');
       const hits = (name: string, want: string) => fold(name).includes(fold(want)) || fold(want).includes(fold(name));
       if (input.from || input.to) {
+        const many = matches.length > 1;
         // 給了上車、下車站：每班只回這兩站的時間，站名直接寫出來（不用對照代號）
-        const trips = runs
-          .flatMap((x) => {
-            const first = input.from ? x.stops.findIndex((s) => hits(s.name, input.from!)) : 0;
-            if (first < 0) return [];
-            const j = input.to ? x.stops.findIndex((s, k) => k > first && hits(s.name, input.to!)) : x.stops.length - 1;
-            if (j < 0) return [];
-            // 同一班經過上車站兩次（鷗巴士 2 號：鳥羽駅 → 繞マリンターミナル → 再回鳥羽駅）：取離下車站最近的那次，同引擎（T36 模擬抓到）
-            let i = first;
-            if (input.from) for (let k = first + 1; k < j; k++) if (hits(x.stops[k].name, input.from)) i = k;
-            return [{ headsign: x.headsign, from: x.stops[i].name, depart: x.stops[i].time, to: x.stops[j].name, arrive: x.stops[j].time }];
-          })
+        const trips = matches
+          .flatMap((route) =>
+            runsOf(route).runs.flatMap((x) => {
+              const first = input.from ? x.stops.findIndex((s) => hits(s.name, input.from!)) : 0;
+              if (first < 0) return [];
+              const j = input.to ? x.stops.findIndex((s, k) => k > first && hits(s.name, input.to!)) : x.stops.length - 1;
+              if (j < 0) return [];
+              // 同一班經過上車站兩次（鷗巴士 2 號：鳥羽駅 → 繞マリンターミナル → 再回鳥羽駅）：取離下車站最近的那次，同引擎（T36 模擬抓到）
+              let i = first;
+              if (input.from) for (let k = first + 1; k < j; k++) if (hits(x.stops[k].name, input.from)) i = k;
+              return [{ ...(many ? { route: routeName(route) } : {}), headsign: x.headsign, from: x.stops[i].name, depart: x.stops[i].time, to: x.stops[j].name, arrive: x.stops[j].time }];
+            }),
+          )
           .filter((x) => toMinutes(x.depart) >= t)
           .sort((x, y) => toMinutes(x.depart) - toMinutes(y.depart))
           .slice(0, 10);
-        if (!trips.length) return { ...head, trips, note: '這天沒有從上車站往下車站的班次（站名對不到也會這樣）；站名見 stops', stops: [...new Set(stopName.values())] };
+        const head = { ok: true as const, route: matches.map(routeName).join('、'), mode: matches[0].mode, date: dayLabel(date), dayType };
+        if (!trips.length) return { ...head, trips, note: '這天沒有從上車站往下車站的班次（站名對不到也會這樣）；站名見 stops', stops: [...new Set(matches.flatMap((r) => runsOf(r).stops))] };
         return { ...head, trips };
       }
+      if (matches.length > 1) return { ok: true, routes: matches.map((r) => ({ id: r.id, name: routeName(r), mode: r.mode })), note: '對到好幾條路線：route 給 id 再查一次，或直接給 from、to 查班次' };
+      const route = matches[0];
+      const { runs, stops } = runsOf(route);
       // 沒給站：站名清單（去重）和每班的起訖，要細節請 AI 再給 from、to
       const trips = runs
         .filter((x) => x.stops[0] && toMinutes(x.stops[0].time) >= t)
         .sort((x, y) => toMinutes(x.stops[0].time) - toMinutes(y.stops[0].time))
         .slice(0, 12)
         .map((x) => ({ headsign: x.headsign, first: x.stops[0], last: x.stops.at(-1) }));
-      return { ...head, stops: [...new Set(stopName.values())], trips, note: '要某一站的時間，給 from（上車站）、to（下車站）再查一次' };
+      return { ok: true, route: routeName(route), mode: route.mode, date: dayLabel(date), dayType, validFrom: route.validFrom, stops, trips, note: '要某一站的時間，給 from（上車站）、to（下車站）再查一次' };
     }
     return fail('要給 station 或 route');
   }
@@ -540,7 +597,8 @@ export function createReadTools(d: AiDeps) {
     const rows = reservationRows().filter((r) => (!input?.date || r.date === input.date) && (!input?.status || r.status === input.status));
     return {
       ok: true,
-      rows: rows.map((r) => ({ date: r.date, endDate: r.endDate, placeId: r.placeId, name: nameOf(r.placeId), role: r.role, time: r.time, people: r.people, status: r.status, note: r.note, updatedBy: r.updatedBy ? who(r.updatedBy) : null, accepted: r.accepted, methods: r.methods, phone: r.phone, url: r.url, nightsChanged: r.nightsChanged })),
+      // 沒有的欄位不帶（住宿沒有 time、餐廳沒有 endDate…），只有晚數改過才標 nightsChanged
+      rows: rows.map((r) => tidy({ date: r.date, endDate: r.endDate, placeId: r.placeId, name: nameOf(r.placeId), role: r.role, time: r.time, people: r.people, status: r.status, note: r.note, updatedBy: r.updatedBy ? who(r.updatedBy) : null, accepted: r.accepted, methods: r.methods, phone: r.phone, url: r.url, nightsChanged: r.nightsChanged || null })),
     };
   }
 
