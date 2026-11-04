@@ -13338,7 +13338,7 @@
       "roomTypes": [
         "楽天：総部屋数 1 室（4）；官網：300㎡ 場地內有住宿・廚房・工作棟 KOYA、木甲板 ENGAWA、展望甲板・桑拿 MIHARASHI、廁所・淋浴棟 ARAIBA、人工草皮 SHIBA、浮筏 IKADA（2）；臥室數與每間人數未寫"
       ],
-      "maxGuests": null,
+      "maxGuests": 8,
       "wholeRental": true,
       "pickupCapacity": null,
       "nearbyCombos": [
@@ -13415,6 +13415,12 @@
         "url": "https://travel.rakuten.co.jp/HOTEL/191038/191038_std.html",
         "retrieved": "2026-10-18",
         "note": "楽天施設情報：総部屋数1室、IN12:00/OUT10:00、賢島駅徒歩約6分、駐車場有、キッチン・サウナ・BBQ"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/191038",
+        "retrieved": "2026-11-04",
+        "note": "T68：房型一戸建て 1～8 人；方案名有「1日1組限定」「貸切で満喫」"
       }
     ],
     "verified": false,

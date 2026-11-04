@@ -221,6 +221,18 @@
         "url": "https://maps.google.com/?cid=12801859001342305515",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：エスパーニャクルーズ賢島のりば）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.barifuri.com/barrierfree/facility/espana-cruise/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：伊勢志摩バリアフリーツアーセンター的大船無障礙調查：棧橋、船內段差、樓梯、廁所位置"
+      },
+      {
+        "type": "other",
+        "url": "https://www.miebarifuri.com/shimabari/espana-cruise/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：志摩バリ：代替小型船有階梯、輪椅不能上船；2 月約 2 週運休"
       }
     ],
     "verified": false,
@@ -262,14 +274,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 2,
-        "elderFit": null,
+        "elderFit": 3,
         "kidsFit": 3,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.2（217 則），觀光三重、觀光協會都有收錄；志摩依區調整後 4 要 800 則以上；低分評論說景色單調",
         "winterFit": "2/1～3/5 大船休業、改小型代替船（定員、設備不明），冬天甲板冷",
-        "elderFit": "大船有陡樓梯、沒有電梯，但 2 月代替船的設備沒有來源",
+        "elderFit": "乘船處要沿岸壁走約 100 m、棧橋隨潮位變陡；2 月的小型代替船上船有階梯（輪椅不能上），大船廁所在地下只能走樓梯。",
         "kidsFit": "2 歲起的家族搭乘、小孩滿意（Google，約 2023）",
         "accessEase": "賢島站步行約 2 分"
       },
@@ -1160,6 +1172,12 @@
         "url": "https://www.kanko-shima.com/purpose/1589/",
         "retrieved": "2026-10-18",
         "note": "海遊苑 筏上 BBQ 方案（料金、時段）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.miebarifuri.com/shimabari/kaiyu-en/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：志摩バリ的海遊苑無障礙調查：坡道、渡橋、浮棧橋、BBQ 段差、廁所"
       }
     ],
     "verified": false,
@@ -1202,14 +1220,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 2,
-        "elderFit": null,
+        "elderFit": 3,
         "kidsFit": 5,
         "accessEase": 4
       },
       "rationale": {
         "recommend": "Google 4.3 但只有 70 則；體驗內容具體，照鳥羽「評論少最多 3」",
         "winterFit": "觀光協會說冬天改陶板燒，但 2 月釣り堀營業沒明寫",
-        "elderFit": "筏的欄杆、屋頂、上下筏都沒有來源",
+        "elderFit": "停車場到釣り堀有約 30 m 的陡下坡（可事先商量開車下去），要走隨潮位變斜的渡橋上浮棧橋；釣り堀周圍是平的木板。",
         "kidsFit": "小學生沒經驗也釣到鯛（Google，約 2024）",
         "accessEase": "志摩神明站步行約 15 分（路線估算；來源只寫開車）"
       },
@@ -1414,6 +1432,12 @@
         "url": "https://maps.google.com/?cid=9795020751607286852",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：英虞湾 海上タクシー＆クルーズ Entrada賢島）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.kankomie.or.jp/report/340",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：觀光三重海上計程車採訪記事：上船地點、12 人小船、地中海村側碼頭要走階梯下去"
       }
     ],
     "verified": false,
@@ -1455,14 +1479,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 3,
         "kidsFit": 3,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.4 但只有 58 則 → 最多 3",
         "winterFit": "2 月照常（サンセット 2 月也有），小船在戶外、冬天冷，荒天停航",
-        "elderFit": "マリーナ桟橋上下船，階梯、船內座位沒有來源",
+        "elderFit": "12 人乘小船，賢島側從咖啡廳對面的棧橋上船，地中海村側的碼頭要走一段階梯下去；船上沒有廁所的記載。",
         "kidsFit": "筆記：帶小孩參加サンセットクルーズ、解說有趣（1 則，約 2024），未就學免費",
         "accessEase": "賢島站步行約 1 分"
       },
@@ -2141,6 +2165,18 @@
         "url": "https://maps.google.com/?cid=8710943366694770121",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：志摩国一宮・皇大神宮別宮 伊雜宮）"
+      },
+      {
+        "type": "other",
+        "url": "https://4travel.jp/dm_shisetsu/11288976",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：4travel 口コミ：站到神社的步行時間、參道是砂利道、無障礙評價 3.13"
+      },
+      {
+        "type": "other",
+        "url": "https://www.kankomie.or.jp/report/394",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：觀光三重採訪記事：有停車場、從停車場步行到入口"
       }
     ],
     "verified": false,
@@ -2182,14 +2218,14 @@
       "scores": {
         "recommend": 4,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 4,
         "kidsFit": 3,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.6（1,676 則），內宮別宮、志摩一の宮 → 依區調整的 4（4.0 以上、800 則以上、觀光網站介紹）；5 要 5,000 則以上",
         "winterFit": "戶外神社，2 月 5:00～18:00；2/11 有建国記念祭，冬天沒有其他加分",
-        "elderFit": "境內圖顯示建物集中、停車場和廁所在旁，但階梯、坡道沒有文字來源",
+        "elderFit": "上之郷站步行 3～5 分、建物集中，參道是砂利道；沒有任何來源提到階梯。",
         "kidsFit": "筆記：沒有小孩用的設施（旁邊有御料田）（可以去但選擇少；同伊勢 猿田彥神社）",
         "accessEase": "近鐵上之郷站步行約 3 分"
       },
@@ -3454,6 +3490,18 @@
         "url": "https://maps.google.com/?cid=17035916991571063086",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：かつおの天ぱく（鰹いぶし小屋））"
+      },
+      {
+        "type": "other",
+        "url": "https://www.asoview.com/item/activity/pln3000038216/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：asoview 方案說明：對象 6～90 歲、無健康限制、沒有冷暖房、停車場稍遠"
+      },
+      {
+        "type": "other",
+        "url": "https://www.kankomie.or.jp/report/324",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：觀光三重採訪記事：停車場在小丘上、有休憩舎"
       }
     ],
     "verified": false,
@@ -3495,14 +3543,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 4,
-        "elderFit": null,
+        "elderFit": 3,
         "kidsFit": 2,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "Google 4.4 但只有 38 則 → 體驗型評論少最多 3",
         "winterFit": "2 月照常（10～5 月每天 2 梯），室內但沒有暖氣，週三、週日休",
-        "elderFit": "停車場沿海岸步行 1 分；座位、階梯沒有來源",
+        "elderFit": "停車場到小屋很近、對象到 90 歲且不限健康狀態，但座位、段差沒有來源，小屋沒有冷暖氣（冬天非常冷）。",
         "kidsFit": "官網建議 10 歲以上",
         "accessEase": "鵜方站巴士約 20 分「大王崎灯台」下車步行約 10 分，或計程車約 20 分"
       },
@@ -4475,6 +4523,12 @@
         "url": "https://maps.google.com/?cid=12226859927298305404",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：海女小屋体験施設さとうみ庵）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.barifuri.com/barrierfree/facility/satoumian/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：伊勢志摩バリアフリーツアーセンター的さとうみ庵調查：小屋各型的段差、座位、資料館斜坡、廁所"
       }
     ],
     "verified": false,
@@ -4517,14 +4571,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 4,
         "kidsFit": 5,
         "accessEase": 3
       },
       "rationale": {
         "recommend": "Google 4.4（392 則），體驗內容具體；依區調整的 4 要 800 則以上",
         "winterFit": "2 月營業沒明寫（觀光三重是 2022～23 年的資料），沒有冬季休業的跡象；海女小屋沒有暖氣",
-        "elderFit": "座位、階梯、廁所沒有來源",
+        "elderFit": "椅子テーブル型的海女小屋無段差、坐木長椅，資料館有斜坡；但施設內沒有無障礙廁所。",
         "kidsFit": "0 歲起、海女對小孩親切",
         "accessEase": "鵜方站巴士約 60 分「あづり浜」下車即到，或計程車約 30 分"
       },
@@ -5247,6 +5301,12 @@
         "url": "https://maps.google.com/?cid=13364273742378020185",
         "retrieved": "2026-10-18",
         "note": "星數、評論數、座標、照片（Google 名稱：海ほおずき）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.barifuri.com/barrierfree/facility/umihozuki/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：伊勢志摩バリアフリーツアーセンター的海ほおずき調查：入口、館內、廁所、作業台、足湯"
       }
     ],
     "verified": false,
@@ -5290,14 +5350,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 5,
         "kidsFit": 5,
         "accessEase": 2
       },
       "rationale": {
         "recommend": "Google 4.1 只有 85 則 → 最多 3",
         "winterFit": "アジ釣り 通年、2026-02 有人玩到伊勢えび，但官網標休止中、戶外部分冬天冷",
-        "elderFit": "階梯、坡道沒有來源（停車場有身障者用）",
+        "elderFit": "入口無段差、館內與磯是「バリアフリー設計」，有無障礙廁所、低作業台、桌椅和有扶手的足湯。",
         "kidsFit": "アジ釣り、てこね寿司",
         "accessEase": "鵜方站巴士「浜島」下車還要走 20 分"
       },

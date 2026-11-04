@@ -1678,6 +1678,18 @@
         "url": "https://maps.google.com/?cid=13162475560152948781",
         "retrieved": "2026-10-26",
         "note": "星數、評論數、座標、照片（Google 名稱：四天王寺）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.osakatourism.org/shitennoji-temple/",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：外圍境內輪椅可通行、五重塔只有樓梯、境內有廁所"
+      },
+      {
+        "type": "other",
+        "url": "https://www.nomadotravel.app/en/attractions/shitennoji-temple",
+        "retrieved": "2026-11-04",
+        "note": "T68 elderFit：境內大致平坦、鋪裝路，部分堂宇要階梯（搜尋摘要）"
       }
     ],
     "verified": false,
@@ -1714,14 +1726,14 @@
       "scores": {
         "recommend": 3,
         "winterFit": 3,
-        "elderFit": null,
+        "elderFit": 4,
         "kidsFit": 2,
         "accessEase": 5
       },
       "rationale": {
         "recommend": "Google 4.4 但 13,343 則 → 大阪門檻的 3（4 要 2 萬則以上）",
         "winterFit": "戶外寺院，2 月照常（16:00 關）；節分、大師会是活動不是冬季景色",
-        "elderFit": "階梯、坡道完全沒有來源 → null",
+        "elderFit": "外圍境內輪椅可通行、境內有廁所，五重塔內部只有樓梯（Osaka Tourism）",
         "kidsFit": "沒有兒童設施",
         "accessEase": "官網：四天王寺前夕陽ヶ丘駅 往南 5 分（路線估算 9 分）"
       },
