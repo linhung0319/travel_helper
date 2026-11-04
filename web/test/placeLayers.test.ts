@@ -14,7 +14,8 @@ import { fullPlace } from '../src/dataStore.ts';
 import { placeBadges, stayCaption } from '../src/lib/badges.ts';
 import { closedDaysLabel } from '../src/lib/hours.ts';
 import { ratingOf } from '../src/lib/explore.ts';
-import { WHO_VALUES, matchesWho, placeFit15, placeStay } from '../src/lib/filter.ts';
+import { EMPTY_FILTER, STAY_VALUES, WHO_VALUES, matchesFilter, matchesWho, placeFit15, placeStayKind, type Filter } from '../src/lib/filter.ts';
+import { FILTER_GROUPS } from '../src/shared/filterOptions.ts';
 import { rowHighlights } from '../src/shared/rowHighlights.ts';
 import { noteRows } from '../src/lib/reservations.ts';
 import { searchPlaces, type SearchInput } from '../src/ai/search.ts';
@@ -82,7 +83,16 @@ test('清單畫面的標章、重點、評分、篩選用清單層算出來一�
     assert.equal(ratingOf(l), ratingOf(f), f.id);
     assert.equal(placeFit15(l), placeFit15(f), f.id);
     // 書架兩級的條件（T66）：誰吃、住法、小卡第二行
-    assert.equal(placeStay(l), placeStay(f), f.id);
+    assert.equal(placeStayKind(l), placeStayKind(f), f.id);
+    assert.deepEqual(STAY_VALUES.map((v) => matchesFilter(l, { ...EMPTY_FILTER, stay: [v] })), STAY_VALUES.map((v) => matchesFilter(f, { ...EMPTY_FILTER, stay: [v] })), f.id);
+    // 面板上每一顆條件（T67：晚餐、溫泉、車站走路到、2 月…）
+    for (const g of FILTER_GROUPS) {
+      if (g.key === 'bounds') continue;
+      for (const o of g.options([], 'explore')) {
+        const filter: Filter = { ...EMPTY_FILTER, [g.key]: [o.value] };
+        assert.equal(matchesFilter(l, filter), matchesFilter(f, filter), `${f.id} ${g.key}:${o.value}`);
+      }
+    }
     assert.deepEqual(WHO_VALUES.map((v) => matchesWho(l, v)), WHO_VALUES.map((v) => matchesWho(f, v)), f.id);
     assert.deepEqual(stayCaption(l), stayCaption(f), f.id);
     assert.equal(closedDaysLabel(l.hours), closedDaysLabel(f.hours), f.id);
@@ -96,6 +106,9 @@ test('AI 搜尋用清單層篩，結果和完整資料一樣（摘要從 full �
   const fullById = new Map(FULL.map((p) => [p.id, p]));
   const inputs: SearchInput[] = [
     { types: ['restaurant'], limit: 30, fit15: ['yes'] },
+    { types: ['restaurant'], limit: 30, who: ['all'] },
+    { types: ['lodging'], limit: 30, stay: ['fits'], dinner: ['walk', 'car'] },
+    { types: ['spot'], limit: 30, winter: true },
     { types: ['restaurant'], limit: 30, reservable: true, fitSubgroup: true },
     { types: ['spot'], limit: 30, elderly: true, kids: true },
     { types: ['spot'], limit: 30, weather: ['indoor', 'covered'] },

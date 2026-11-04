@@ -2,7 +2,7 @@
 
 import { displayMinutes, estimateWalk } from '../lib/geo/index.ts';
 import { openingOn, type EngineConfig, type PlaceRecord } from '@travel-helper/engine';
-import { SUIT_MIN, placeScore, matchesFilter, placeFit15, placeWeather, weatherMatches, type Filter, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
+import { SUIT_MIN, placeScore, matchesFilter, placeFit15, placeWeather, weatherMatches, type Filter, type Fit15, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { inBbox } from '../lib/areas.ts';
 import { ratingOf } from '../lib/explore.ts';
@@ -61,7 +61,16 @@ export interface SearchInput {
   near?: { place?: string; coords?: LonLat; walkMinutes?: number };
   inView?: boolean;
   openAt?: { date: string; time: string };
-  fit15?: Filter['fit15'];
+  /** fit15 的四個值（AI 還是認得；同畫面的話用 who） */
+  fit15?: Fit15[];
+  /** 誰吃（T67，同探索篩選）：all 全員 15 人能一起吃、sub 分組、apart 坐不下或還沒查 */
+  who?: Filter['who'];
+  /** 住宿的住法（T67，同探索篩選） */
+  stay?: Filter['stay'];
+  /** 住宿的晚餐（T67，同探索篩選） */
+  dinner?: Filter['dinner'];
+  /** 適合 2 月：winterFit 4 分以上（同探索篩選「適合」的 2 月） */
+  winter?: boolean;
   fitSubgroup?: boolean;
   elderly?: boolean;
   kids?: boolean;
@@ -100,7 +109,7 @@ const get = (p: Place, ...path: string[]): unknown => path.reduce<unknown>((x, k
  */
 const GOOD_FIT = 3;
 /** 「不用搭車」是 accessEase 4 分以上（同探索篩選；3 分是「要搭巴士或計程車」） */
-const MIN_SCORE: Record<'elderFit' | 'kidsFit' | 'accessEase', number> = { elderFit: GOOD_FIT, kidsFit: GOOD_FIT, accessEase: SUIT_MIN };
+const MIN_SCORE: Record<'elderFit' | 'kidsFit' | 'accessEase' | 'winterFit', number> = { elderFit: GOOD_FIT, kidsFit: GOOD_FIT, accessEase: SUIT_MIN, winterFit: SUIT_MIN };
 
 export interface Digest {
   id: string;
@@ -182,13 +191,13 @@ export interface SearchResult {
 type Check = boolean | null;
 
 export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
-  const filter: Filter = { ...EMPTY_FILTER, areas: input.areas ?? [], regions: input.regions ?? [], types: input.types ?? [], votes: input.votes ?? [], tiers: input.tiers ?? [] };
+  const filter: Filter = { ...EMPTY_FILTER, areas: input.areas ?? [], regions: input.regions ?? [], types: input.types ?? [], votes: input.votes ?? [], tiers: input.tiers ?? [], who: input.who ?? [], stay: input.stay ?? [], dinner: input.dinner ?? [] };
   const center = input.near?.place ? env.byId.get(input.near.place)?.coords : input.near?.coords;
   // 全員的步行速度（同引擎的係數）
   const walk = (a: LonLat, b: LonLat) => displayMinutes(estimateWalk(a, b).minutes * env.config.walk.factorWhole);
   let unknownExcluded = 0;
   let fitUnknown = 0;
-  const fitWanted = !!(input.elderly || input.kids || input.access);
+  const fitWanted = !!(input.elderly || input.kids || input.access || input.winter);
   /** 沒寫的條件算進 unknownExcluded，不列出 */
   const pass = (c: Check) => {
     if (c === null) unknownExcluded += 1;
@@ -235,7 +244,7 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
     // 長輩、小孩分數低於 3、不用搭車低於 4 才拿掉；沒有分數的留著，排在有分數的後面（T41：志摩一半的景點沒有 elderFit）
     let skip = false;
     let fitKnown = true;
-    for (const [want, key] of [[input.elderly, 'elderFit'], [input.kids, 'kidsFit'], [input.access, 'accessEase']] as const) {
+    for (const [want, key] of [[input.elderly, 'elderFit'], [input.kids, 'kidsFit'], [input.access, 'accessEase'], [input.winter, 'winterFit']] as const) {
       if (!want) continue;
       const v = placeScore(p, key);
       if (v === null) fitKnown = false;

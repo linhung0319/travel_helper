@@ -8,6 +8,7 @@ import { mergePlaceEdits } from './data/merge.ts';
 import { normalizePlace } from './data/normalize.ts';
 import type { PlaceEdit } from './backend/types.ts';
 import type { Area, Place } from './data/types.ts';
+import { setStationIds } from './lib/filter.ts';
 import type { Itinerary } from '@travel-helper/engine/types';
 
 export interface DataState {
@@ -163,6 +164,8 @@ export async function loadData() {
       byId: new Map(places.map((p) => [p.id, p])),
       stationNames: new Map(places.filter((p) => p.type === 'station').map((p) => [p.id, p.name.zh || p.name.ja])),
     });
+    // 餐廳「不用搭車」看 anchors 裡的車站（T67）
+    setStationIds(places.filter((p) => p.type === 'station').map((p) => p.id));
     // 行程、修改紀錄從後端來；讀完才算好（地圖一開始就要畫行程）
     const applyShared = await pending;
     await applyShared();

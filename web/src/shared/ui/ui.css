@@ -653,6 +653,14 @@
   border-color: var(--indigo);
 }
 
+/* 誰吃、住法晶片右邊的分布小字（T67） */
+.fb-cond-note {
+  align-self: center;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
 .fb-cond-add {
   padding: 0 10px;
   border-style: dashed;
@@ -1048,8 +1056,78 @@
   padding: 8px 16px 16px;
 }
 
-.fs-group + .fs-group {
+.fs-body > * + *,
+.fs-section > * + * {
   margin-top: 14px;
+}
+
+/* 選了兩類以上時每段的標題（T67） */
+.fs-section-h {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* 沒選類型時三類各收成一列（T67）：圓章、名稱、組名小字，點了＝選那個類型 */
+.fs-collapsed {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.fs-fold {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.fs-fold + .fs-fold {
+  border-top: 1px solid var(--line);
+}
+
+.fs-fold-name {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.fs-fold-sub {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.fs-fold-n {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--paper);
+  font-size: 0.75rem;
+  line-height: 20px;
+  text-align: center;
+}
+
+.fs-fold-chev {
+  color: var(--ink-3);
+  font-size: 1.125rem;
 }
 
 .fs-h {

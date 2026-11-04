@@ -1614,6 +1614,15 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - `LIST_PICK` 要多讀的欄位（`kind`、`dinnerAccess`、`nearestStation.mode` 已在清單層的不用）加進去，`LAYER_VERSION` 加一、重匯 D1。
 - **驗證**：單元測試（每個新條件各一個符合、一個不符合的例子；面板照類型出哪幾組）；e2e 改 t57、t64 的面板測試，加「選餐廳只看到餐廳的組」「沒選類型三類收著」網頁、手機各一支。
 - **完成條件**：`npm test`、`npm run typecheck`、受影響的 e2e 通過；👤 看過截圖。
+- **結果**（2026-11-04，分支 `t67`）：
+  - `lib/filter.ts` 的 `Filter`：拿掉 `fit15`、`lodging`；加 `kids`（ok）、`reach`（station 車站旁＝transit、easy 不用搭車）、`dinner`（included、walk、car）、`amenity`（onsen、stationWalk）；`contexts` 多 `light`（小吃咖啡＝snack 或 cafe）；`suits` 的 access 搬到 `reach: easy`，多 `winter`（winterFit ≥ 4），景點、住宿都用（住宿沒有 kidsFit、winterFit，選了就沒有住宿）。
+  - **住法照 §32 拆成三顆**（`whole` 包棟一棟、`multi` 包棟要兩棟＝能包棟但 maxGuests < 15 或不明、`hotel` 旅館飯店＝kind 是 hotel、ryokan、other，不管房數）。書架「住在這裡」的兩級用面板沒有的兩個值：`fits`（一間住得下全團＝包棟一棟，或旅館飯店 5 間房以上）、`apart`（其他）。誰吃也一樣：面板 all、sub，書架第二級用 `apart`（fit15 不是 yes、split）。晶片寫「一間住得下全團」「要分開住」「15 人坐不下、還沒查」。
+  - **自己定的地方**：餐廳沒有 `accessEase`，「不用搭車」用車站旁，或 anchors 裡的車站走路 10 分內（車站 ID 在資料載入時 `setStationIds` 註冊）；住宿的「其他」（溫泉、車站走路到）和「適合」一樣是兩個都要符合（是條件，不是互斥的值）；「哪一餐」的晚餐和住宿的晚餐是不同欄位，晶片字照舊「晚餐」「一泊二食」。
+  - AI：`set_filter`、`commands.setFilter` 還收 `fit15`、`lodging`、`suits: access`，`toFilterPatch` 轉成 who、stay、reach（fit15 yes／split → who all，no／unknown → apart；lodging sleeps15 → stay whole，wholeRental → whole、multi）。`search_places` 加 `who`、`stay`、`dinner`、`winter`；工具說明、systemPrompt、詳情的住宿建議問題（「一間住得下全團嗎？」「晚餐怎麼辦？」）跟著改。`ai:eval` 加 T67a（住法晚餐）、T67b（2 月），跑 S1、S28、T67a、T67b 都 PASS（sonnet-5-5，$0.21）。
+  - 面板（`shared/filterOptions.ts`、`FilterSheet.tsx`）：`FILTER_SECTIONS`、`COMMON_GROUPS`、`panelLayout`；標題「篩選 · 志摩・賢島」（概覽、好幾區「篩選 · 全部」）；收著的那一列標套了幾個條件。帶小孩在選了全員 15 人時變淡（`dimmed`）。
+  - 「現在看」：誰吃、住法的最後一顆晶片右邊有分布小字（`conditionChips` 的 `places`，只有探索、不是 AI 結果集時算）。0 個時放寬照第一題：全員 15 人 →「看相差坐不下、還沒查的（N）›」，住得下全團 →「看…要分開住的」。
+  - 清單層：`dinnerAccess` 進 `LIST_WHOLE`，`LAYER_VERSION` 改 5。**D1 還沒重匯**：worktree 沒有本機 D1，merge 後在主目錄 `npm run db:import -- --all`；正式環境同 T66，deploy 時一起。
+  - 驗證：`npm test` 1104 通過、`typecheck` 通過（順便修了 master 本來就不過的 T41 tiers 測試：T68 補了伊雜宮的分數，換成外宮）。e2e：新增 `t67.spec.ts`（3 支）、`mobile-t67.spec.ts`（2 支，390、360）；改 t42（面板那段）、t15m（取消類型後看收著那列的數字）。跑過網頁 t42、t33、commands、t67、t15m／t49／ai-web 的篩選和 AI，手機 mobile-t42、mobile、mobile-t33、mobile-t49、mobile-ai 的篩選、書架、AI（390），mobile-t42、mobile 的篩選（360），都通過。
 
 #### T68 資料補：包棟人數、景點評分 〔S〕
 - **現況**（2026-11-04）：能包棟、民宿（`kind` 是 rental-house、minshuku）34 間裡 11 間沒有 `group.maxGuests`；景點 `assessment.scores` 的 `elderFit` 沒評 31 個、`kidsFit` 20 個、`winterFit` 5 個。旅館、飯店不補人數（T66 用房間數判）。

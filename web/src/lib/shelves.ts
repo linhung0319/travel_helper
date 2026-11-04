@@ -5,7 +5,7 @@
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Place } from '../data/types.ts';
-import { EMPTY_FILTER, RAIN_OK, isFilterEmpty, placeFit15, placeStay, type Filter, type FilterKey } from './filter.ts';
+import { EMPTY_FILTER, RAIN_OK, isFilterEmpty, placeFit15, placeStayKind, type Filter, type FilterKey } from './filter.ts';
 import { fit15Caption, mealsCaption, stayCaption } from './badges.ts';
 import { explorePlaces } from './explore.ts';
 
@@ -43,7 +43,7 @@ export interface Shelf {
 }
 
 /** 分布的小字：「能坐一起 6 · 要分桌 2」，0 的那段不寫 */
-const dist = (parts: [string, number][]) =>
+export const dist = (parts: [string, number][]) =>
   parts
     .filter(([, n]) => n > 0)
     .map(([label, n]) => `${label} ${n}`)
@@ -64,7 +64,7 @@ export const SHELVES: readonly Shelf[] = [
     id: 'fit15',
     title: '全員吃飯',
     // 第一級：一家容納得下 15 人（能坐一起、要分桌），排掉不收小孩、有年齡限制的店；第二級：還沒查、坐不下（要分組去不同家）
-    tiers: [{ filter: { types: ['restaurant'], who: ['all'] } }, { filter: { types: ['restaurant'], fit15: ['unknown', 'no'] } }],
+    tiers: [{ filter: { types: ['restaurant'], who: ['all'] } }, { filter: { types: ['restaurant'], who: ['apart'] } }],
     rule: '15 人能一起吃的店',
     note: (items) =>
       dist([
@@ -80,12 +80,12 @@ export const SHELVES: readonly Shelf[] = [
     id: 'stay',
     title: '住在這裡',
     // 第一級：一間住得下全團（包棟 maxGuests ≥ 15、旅館飯店 5 間房以上）；第二級：其他（要分開住）
-    tiers: [{ filter: { types: ['lodging'], stay: ['whole', 'hotel'] } }, { filter: { types: ['lodging'], stay: ['split'] } }],
+    tiers: [{ filter: { types: ['lodging'], stay: ['fits'] } }, { filter: { types: ['lodging'], stay: ['apart'] } }],
     rule: '一間住得下全團',
     note: (items) =>
       dist([
-        ['包棟', items.filter((p) => placeStay(p) === 'whole').length],
-        ['旅館飯店', items.filter((p) => placeStay(p) === 'hotel').length],
+        ['包棟', items.filter((p) => placeStayKind(p) === 'whole').length],
+        ['旅館飯店', items.filter((p) => placeStayKind(p) === 'hotel').length],
       ]),
     fallback: ({ where }) => `${where}沒有一間住得下全團的，這些要分開住`,
     caption: (p) => {

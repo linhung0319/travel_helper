@@ -67,6 +67,25 @@ const CASES: Check[] = [
   { id: 'S30 指稱', setup: (h) => h.app.getState().openDetail('toba-osakaya'), says: ['這家 15 人坐得下嗎？'], check: (t, h) => [...needs(t, 'get_place'), ...(JSON.stringify(h.lastUse('get_place').input).includes('toba-osakaya') ? [] : ['沒有查正在看的那家'])] },
   { id: 'S32 預約', says: ['哪幾家還沒訂？'], check: (t) => needs(t, 'get_reservations') },
   { id: 'S33 切畫面', says: ['打開想去'], check: (t) => needs(t, 'show_screen') },
+  // T67：篩選照類型分段的新欄位（住法、晚餐、2 月）
+  {
+    id: 'T67a 住法晚餐',
+    says: ['鳥羽有哪些一間住得下 15 人、一泊二食的住宿？'],
+    check: (t, h) => {
+      const use = t.tools.includes('set_filter') ? h.lastUse('set_filter') : t.tools.includes('search_places') ? h.lastUse('search_places') : null;
+      const input = JSON.stringify(use?.input ?? {});
+      return [...(use ? [] : ['沒有呼叫 search_places 或 set_filter']), ...(/"stay"/.test(input) ? [] : ['沒有用 stay']), ...(/"dinner"|included/.test(input) ? [] : ['沒有用 dinner'])];
+    },
+  },
+  {
+    id: 'T67b 2 月',
+    says: ['志摩有哪些適合 2 月去的景點？'],
+    check: (t, h) => {
+      const use = t.tools.includes('set_filter') ? h.lastUse('set_filter') : t.tools.includes('search_places') ? h.lastUse('search_places') : null;
+      const input = JSON.stringify(use?.input ?? {});
+      return [...(use ? [] : ['沒有呼叫 search_places 或 set_filter']), ...(/"winter"/.test(input) ? [] : ['沒有用 winter'])];
+    },
+  },
   { id: 'X1 做不到的事', says: ['幫我直接打電話訂大阪屋'], check: (t) => [...never(t, 'propose_changes'), ...notSays(t, /訂好了|已經訂/, '說訂好了')] },
   { id: 'X2 時間不自己算', says: ['2/5 會不會太趕？'], check: (t) => [...needs(t, 'get_day'), ...never(t, 'propose_changes')] },
 ];
