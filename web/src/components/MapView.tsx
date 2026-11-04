@@ -16,13 +16,13 @@ import { dataStore } from '../dataStore.ts';
 import { DESKTOP_QUERY, useApp, useCanHover, useData, useIsDesktop, usePlan, useShared, useUi } from '../hooks.ts';
 import { areaColor, initialExtent, MAP_MIN_ZOOM, mapMaxBounds } from '../lib/areas.ts';
 import { nightsPerArea, nightsPerAreaDiff } from '../lib/tripSkeleton.ts';
-import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap, shapeLabelAt } from '../lib/mapLayers.ts';
+import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap, REGION_ZOOM_MAX, regionShapes, shapeLabelAt } from '../lib/mapLayers.ts';
 import { displayName } from '../data/normalize.ts';
 import { currentArea, exploreStage } from '../lib/shelves.ts';
-import { pickArea, showAllAreas } from '../exploreArea.ts';
+import { pickArea, pickMapRegion, showAllAreas } from '../exploreArea.ts';
 import { useOverview } from '../shared/overviewStore.ts';
 import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
-import { addMapIcons } from './mapIcons.ts';
+import { addMapIcons, addRegionPill } from './mapIcons.ts';
 import { markMapLoaded } from '../lib/idle.ts';
 import { clearCurrentMap, hoverPaused, selectedDropHtml, setCurrentMap, STYLE_URL } from './mapRuntime.ts';
 import { dayColor, placeVisual } from '../lib/visual.ts';
@@ -132,6 +132,11 @@ const LAYERED = new Set(['places-circle', 'places-icon', 'places-label']);
 
 /** 選區範圍的淡底、虛線框（T43 §21）：那區的顏色、很淡的底 */
 const AREA_FOCUS_SOURCE = 'area-focus';
+
+/** 中間縮放的所有子地區（T65 §31）：範圍（淡虛線、很淡的底）和上緣的名字；只在網頁探索 */
+const REGION_SHAPES_SOURCE = 'region-shapes';
+const REGION_LABELS_SOURCE = 'region-labels';
+const REGION_LABEL_LAYER = 'region-label';
 
 /** 各圖層本來的 filter；畫成水滴的點另外排除 */
 const BASE_FILTERS: Record<string, unknown[]> = {
@@ -314,6 +319,19 @@ export function MapView() {
         layout: { 'line-join': 'round' },
         paint: { 'line-color': ['get', 'color'], 'line-width': 2, 'line-opacity': 0.85, 'line-dasharray': [3, 2] },
       });
+      // 中間的縮放（T65 §31）：所有子地區的範圍，比選了的範圍更淡；一樣畫在點的下面、不擋點擊
+      map.addSource(REGION_SHAPES_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addSource(REGION_LABELS_SOURCE, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      map.addLayer({ id: 'region-fill', type: 'fill', source: REGION_SHAPES_SOURCE, minzoom: DETAIL_ZOOM, maxzoom: REGION_ZOOM_MAX, paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.035 } });
+      map.addLayer({
+        id: 'region-line',
+        type: 'line',
+        source: REGION_SHAPES_SOURCE,
+        minzoom: DETAIL_ZOOM,
+        maxzoom: REGION_ZOOM_MAX,
+        layout: { 'line-join': 'round' },
+        paint: { 'line-color': ['get', 'color'], 'line-width': 1.3, 'line-opacity': 0.55, 'line-dasharray': [2, 2] },
+      });
       // 指到（只有網頁）：點下面一圈淡灰光圈；畫在所有點的下面
       map.addLayer({
         id: 'places-hover',
@@ -442,6 +460,26 @@ export function MapView() {
         paint: { 'text-color': INK, 'text-halo-color': '#fff', 'text-halo-width': 1.5 },
       });
 
+      // 子地區名（T65 §31）：範圍上緣的小標籤，點了等於選那個子地區；撞在一起時後畫的藏起來（MapLibre 的 collision）
+      map.addLayer({
+        id: REGION_LABEL_LAYER,
+        type: 'symbol',
+        source: REGION_LABELS_SOURCE,
+        minzoom: DETAIL_ZOOM,
+        maxzoom: REGION_ZOOM_MAX,
+        layout: {
+          'text-field': ['get', 'name'],
+          'text-font': ['Noto Sans Bold'],
+          'text-size': 12,
+          'text-anchor': 'bottom',
+          'text-offset': [0, -0.35],
+          'icon-image': ['concat', 'region-pill-', ['get', 'color']],
+          'icon-text-fit': 'both',
+          'icon-text-fit-padding': [2, 7, 2, 7],
+        },
+        paint: { 'text-color': ['get', 'color'] },
+      });
+
       addOverlayLayers(map);
 
       // 點了哪個點；手機上手指比較粗，點的周圍留一點空間。好幾個點重疊時，選最靠近手指的那個
@@ -484,6 +522,12 @@ export function MapView() {
         closeDiscussion();
         closeTimetable();
         const id = placeAt(e.point);
+        // 沒點到點、點到子地區名（T65）：選那個子地區
+        const region = id ? null : map.queryRenderedFeatures(e.point, { layers: [REGION_LABEL_LAYER] })[0];
+        if (region) {
+          pickMapRegion(String(region.properties.area), String(region.properties.region));
+          return;
+        }
         pickPlace(id);
         // 整趟：點某天的路線 → 那天亮、其他天淡；點空白處清掉（點到點不動）
         if (!id) appStore.getState().setTripFocusDay(tripLineAt(e.point));
@@ -568,6 +612,12 @@ export function MapView() {
         const s = appStore.getState();
         if (s.previewId !== id) s.openPreview(id);
         if (s.hoveredId !== id || !s.hoverFromMap) s.hover(id, 'map');
+      });
+      map.on('mouseenter', REGION_LABEL_LAYER, () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', REGION_LABEL_LAYER, () => {
+        map.getCanvas().style.cursor = '';
       });
       map.on('mouseleave', PICK_LAYERS, () => {
         map.getCanvas().style.cursor = '';
@@ -721,6 +771,17 @@ export function MapView() {
     el.textContent = displayName(region.name, region.id);
     regionNameRef.current = new Marker({ element: el, anchor: 'bottom', offset: [0, -2] }).setLngLat(shapeLabelAt(f.geometry)).addTo(map);
   }, [loaded, places, focusArea, focusRegion, areasForFocus]);
+
+  // 中間的縮放（T65 §31）：網頁探索畫所有子地區的範圍和名字（縮放範圍由圖層的 minzoom、maxzoom 管）；選了的子地區 T56 自己畫
+  const regionsOn = desktop && mode === 'explore';
+  useEffect(() => {
+    if (!loaded) return;
+    const map = mapRef.current!;
+    const r = regionsOn ? regionShapes(places, areasForFocus, (a) => areaColor(areasForFocus, a), focusRegion) : { shapes: [], labels: [] };
+    for (const c of new Set(r.labels.map((f) => String(f.properties?.color)))) addRegionPill(map, c);
+    (map.getSource(REGION_SHAPES_SOURCE) as GeoJSONSource).setData({ type: 'FeatureCollection', features: r.shapes });
+    (map.getSource(REGION_LABELS_SOURCE) as GeoJSONSource).setData({ type: 'FeatureCollection', features: r.labels });
+  }, [loaded, regionsOn, places, areasForFocus, focusRegion]);
 
   // 探索縮遠時（T43 §21）：每區的中心放區名（白底靛藍框），點了等於地區列選那一區；選中的那區靛藍底白字。
   // 手機的地圖只在行程分頁（mode 一直是 explore），不畫，不然和「伊勢 3 晚」疊成兩個框（T59）
