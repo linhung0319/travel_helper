@@ -1,5 +1,5 @@
-// 想去的顯示設定（手機、網頁共用一份，第七輪最終 review #14）：清單或照片牆、三段（還沒排、已是候選、已排）哪幾段收起來。
-// 都記在 localStorage（讀寫失敗就當沒存過）。篩選、搜尋、排序不在這裡：手機在 mobileStore.wish，網頁在 appStore（探索、想去各一份）。
+// 想去的顯示設定（手機、網頁共用一份，第七輪最終 review #14）：清單或照片牆（記在 localStorage，讀寫失敗就當沒存過）、
+// 現在看的是三排書架還是某一排的全部（T53，不記住）。篩選、搜尋、排序不在這裡：手機在 mobileStore.wish，網頁在 appStore（探索、想去各一份）。
 
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
@@ -9,36 +9,24 @@ export type WishViewMode = 'photo' | 'list';
 
 export interface WishPrefs {
   view: WishViewMode;
-  collapsed: Record<SectionId, boolean>;
+  /** 「全部 ›」進了哪一排（還沒排、已是候選、已排）；null＝三排書架。不記住 */
+  section: SectionId | null;
   /** 只看自己加的（§17.7）；不記住，下次打開回到全部 */
   userOnly: boolean;
   setUserOnly(on: boolean): void;
   setView(view: WishViewMode): void;
-  setCollapsed(id: SectionId, on: boolean): void;
+  setSection(section: SectionId | null): void;
 }
 
 const VIEW_KEY = 'travel-helper:wishView';
-const COLLAPSED_KEY = 'th.wishCollapsed';
 
-/** 上次的顯示方式；讀不到就是清單（三段的列有誰想去、最新留言，預設用清單） */
+/** 上次的顯示方式；讀不到就是清單（列有誰想去、最新留言，預設用清單） */
 function loadView(): WishViewMode {
   try {
     return localStorage.getItem(VIEW_KEY) === 'photo' ? 'photo' : 'list';
   } catch {
     return 'list';
   }
-}
-
-/** 三段的收合狀態；沒存過或讀不到：只有「已排」收起來 */
-function loadCollapsed(): Record<SectionId, boolean> {
-  const base: Record<SectionId, boolean> = { unscheduled: false, candidate: false, scheduled: true };
-  try {
-    const o = JSON.parse(localStorage.getItem(COLLAPSED_KEY) ?? 'null') as Partial<Record<SectionId, unknown>> | null;
-    if (o) for (const k of Object.keys(base) as SectionId[]) if (typeof o[k] === 'boolean') base[k] = o[k] as boolean;
-  } catch {
-    // 讀不到：用預設
-  }
-  return base;
 }
 
 /** 存一個設定；私密視窗等存不了：只是下次回到預設 */
@@ -50,20 +38,17 @@ function save(key: string, value: string) {
   }
 }
 
-export const wishPrefs = createStore<WishPrefs>()((set, get) => ({
+export const wishPrefs = createStore<WishPrefs>()((set) => ({
   view: loadView(),
-  collapsed: loadCollapsed(),
+  section: null,
   userOnly: false,
-  setUserOnly: (userOnly) => set({ userOnly }),
+  // 換地區、按「自己加」都回到三排書架（地區列的鈕回第一頁，T49）
+  setUserOnly: (userOnly) => set({ userOnly, section: null }),
   setView: (view) => {
     set({ view });
     save(VIEW_KEY, view);
   },
-  setCollapsed: (id, on) => {
-    const collapsed = { ...get().collapsed, [id]: on };
-    set({ collapsed });
-    save(COLLAPSED_KEY, JSON.stringify(collapsed));
-  },
+  setSection: (section) => set({ section }),
 }));
 
 /** React 裡讀想去的顯示設定 */

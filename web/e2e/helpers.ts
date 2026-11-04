@@ -145,3 +145,30 @@ export async function exploreAll(page: Page) {
     w.__thMobile?.getState().setFeed({ type: 'all', quick: ['types:spot', 'types:restaurant', 'types:lodging'] });
   });
 }
+
+export type WishSectionId = 'unscheduled' | 'candidate' | 'scheduled';
+
+/** T53：想去是三排書架。按那排的「全部 ›」進它的照片牆或清單（網頁、手機一樣） */
+export async function openWishSection(page: Page, section: WishSectionId) {
+  await page.getByTestId(`wish-shelf-all-${section}`).click();
+  await expect(page.locator(`[data-testid="wish-list"][data-stage="list"] [data-section="${section}"]`)).toBeVisible();
+}
+
+/** T53：回到三排書架（篩選列的「‹ 還沒排」） */
+export async function backToWishShelves(page: Page) {
+  await page.getByTestId('back-to-area').click();
+  await expect(page.locator('[data-testid="wish-list"][data-stage="shelves"]')).toBeVisible();
+}
+
+/** T53：等這個點出現在想去（書架的小卡或清單的列）；在書架上就按它那排的「全部 ›」，回傳那排 */
+export async function revealWishRow(page: Page, id: string): Promise<WishSectionId> {
+  await expect(page.locator(`[data-testid="wish-list"] [data-id="${id}"]`).first()).toBeVisible();
+  const shelf = page.locator(`[data-testid="wish-shelf"]:has([data-id="${id}"])`);
+  if (await shelf.count()) {
+    const sec = (await shelf.getAttribute('data-section')) as WishSectionId;
+    await openWishSection(page, sec);
+  }
+  const row = page.locator(`[data-testid="wish-list"][data-stage="list"] [data-section]:has([data-id="${id}"])`);
+  await expect(row).toBeVisible();
+  return (await row.getAttribute('data-section')) as WishSectionId;
+}

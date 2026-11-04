@@ -43,11 +43,10 @@ export function scrollerOf(el: HTMLElement): HTMLElement | null {
   return null;
 }
 
-/** 蓋在捲動範圍上緣的高度：黏住的篩選列，加上這張卡所在那段的段落標題（想去） */
-function stickyInset(scroller: HTMLElement, el: HTMLElement): number {
+/** 蓋在捲動範圍上緣的高度：黏住的篩選列（想去的段落標題 T53 拿掉了） */
+function stickyInset(scroller: HTMLElement): number {
   const bar = scroller.querySelector<HTMLElement>('.fb-desktop');
-  const head = el.closest('.wl-section')?.querySelector<HTMLElement>('.wl-head');
-  return (bar?.offsetHeight ?? 0) + (head?.offsetHeight ?? 0);
+  return bar?.offsetHeight ?? 0;
 }
 
 /** 展開了 openId 那張：捲到卡的頂端停在看得到的範圍最上面；整張本來就看得到就不捲。
@@ -84,7 +83,7 @@ export function useRevealOpen(listRef: RefObject<HTMLElement | null>, openId: st
     const bottom = Math.max(r.bottom, body?.bottom ?? 0);
     const sub = el.closest('.wl-group')?.querySelector<HTMLElement>('.wl-sub')?.getBoundingClientRect();
     const anchor = sub && r.top - sub.bottom < 16 ? sub.top : r.top;
-    const top = box.top + stickyInset(scroller, el) + GAP;
+    const top = box.top + stickyInset(scroller) + GAP;
     if (anchor >= top && bottom <= box.bottom) return;
     scroller.scrollBy({ top: anchor - top, behavior: 'smooth' });
   }, [listRef, openId]);

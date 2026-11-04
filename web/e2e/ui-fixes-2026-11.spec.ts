@@ -1,6 +1,6 @@
 // 2026-11-01 👤 試用回饋（網頁）：想去、探索展開不跳；地圖上 AI 的點是水滴、只畫最新的一組；提議時不畫日期那排、捲到提議的卡。
 import { test, expect, type Page } from '@playwright/test';
-import { ready, exploreAll } from './helpers.ts';
+import { ready, exploreAll, openWishSection } from './helpers.ts';
 
 const fake = (page: Page, s: Record<string, unknown>) => page.evaluate((x) => Object.assign((window as any).__th.aiFake, x), s);
 const idle = (page: Page) => expect.poll(() => page.evaluate(() => (window as any).__th.ai.store.getState().status)).toBe('idle');
@@ -49,6 +49,7 @@ async function topsWhileClicking(page: Page, opener: ReturnType<Page['getByTestI
 test('想去的照片牆：展開、收合時被點的卡留在原位，不會跳走又捲回來', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-wish').click();
+  await openWishSection(page, 'scheduled');
   await page.getByTestId('view-photo').click();
   await page.waitForTimeout(800);
   // 右欄（第二張）展開：卡要橫跨兩欄，以前會先跳到下面再捲回來
@@ -65,6 +66,7 @@ test('想去的照片牆：展開、收合時被點的卡留在原位，不會�
 test('想去的清單：展開、收合時列不重建（縮圖不閃）；上面的卡收起來時被點的列不跑掉', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-wish').click();
+  await openWishSection(page, 'scheduled');
   await page.getByTestId('view-list').click();
   const first = page.getByTestId('wish-open').first();
   await first.evaluate((el) => ((window as any).__row = el));
