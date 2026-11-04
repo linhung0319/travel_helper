@@ -146,9 +146,9 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
       const ok = g.fit15 === 'yes' || !!g.confirmed15;
       if (!ok) {
         const why = g.fit15 === 'split' ? '要分桌或分批' : g.fit15 === 'no' ? '坐不下' : '不確定坐不坐得下';
-        warn(ctx, { code: 'group-seats', level: g.fit15 === 'no' ? 'error' : 'warning', itemId, placeId, message: `全員 ${party.size} 人：${why}（fit15: ${g.fit15 ?? 'null'}），要先打電話確認` });
+        warn(ctx, { code: 'group-seats', level: g.fit15 === 'no' ? 'error' : 'warning', itemId, placeId, message: `全員 ${party.size} 人：${why}，要先打電話確認` });
       }
-      if (res === 'no') warn(ctx, { code: 'no-reservation', level: 'error', itemId, placeId, message: '全員用餐一定要預約，這家不接受預約（§5.6）' });
+      if (res === 'no') warn(ctx, { code: 'no-reservation', level: 'error', itemId, placeId, message: '全員用餐一定要預約，這家不接受預約' });
       else if (res === 'unknown') warn(ctx, { code: 'no-reservation', level: 'warning', itemId, placeId, message: '全員用餐要預約，這家能不能預約不確定' });
     } else if (g.fitSubgroup === 'no') {
       warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: ctx.whole ? '標了分組，但一組 4～6 人也坐不下' : `這組 ${party.size} 人坐不下` });
@@ -381,7 +381,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
       warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: lodging, message: `${returnTime} 才回到住宿；2 月天黑早，建議 ${cfg.day.returnBy}～${cfg.day.returnLatest} 回到住宿` });
     }
     if (meals === 'varies') {
-      warnings.push({ code: 'lodging-meals-unknown', level: 'info', date: day.date, placeId: lodging, message: '這間住宿有含晚餐和不含晚餐的方案，請選方案（nights 的 meals）' });
+      warnings.push({ code: 'lodging-meals-unknown', level: 'info', date: day.date, placeId: lodging, message: '這間住宿有含晚餐和不含晚餐的方案，還沒選要不要含晚餐' });
     }
     const rec = data.getPlace(lodging)?.record;
     if (rec?.checkIn && arrive < toMinutes(rec.checkIn)) {
@@ -413,7 +413,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   }
   const regions = visitRecs.map((x) => x.rec?.region as string | undefined);
   if (regions.length && data.regionNeedsCar && regions.every((r) => r && data.regionNeedsCar?.[r])) {
-    warnings.push({ code: 'charter-suggested', level: 'info', date: day.date, message: '這天都在巴士稀少的子地區，建議包車（§5.4 ③）' });
+    warnings.push({ code: 'charter-suggested', level: 'info', date: day.date, message: '這天都在巴士稀少的子地區，建議包車' });
   }
   if (it.party.elders > 0 || it.party.kids > 0) {
     let since: number | null = null;
@@ -514,7 +514,7 @@ export function planItinerary(it: Itinerary, data: EngineData, override: ConfigO
     (d) => d.stats.freeMinutes >= cfg.day.halfDayFreeMinutes || (d.stats.returnTime != null && toMinutes(d.stats.returnTime) <= 13 * 60) || !d.entries.some((e) => e.kind === 'visit'),
   );
   if (planned.length >= 3 && !halfFree) {
-    warnings.push({ code: 'no-free-time', level: 'warning', message: `中間的日子沒有半天以上的自由時間（§5.5：至少一個半天）` });
+    warnings.push({ code: 'no-free-time', level: 'warning', message: '中間的日子沒有半天以上的自由時間，建議至少留一個半天' });
   }
   return { days, warnings };
 }

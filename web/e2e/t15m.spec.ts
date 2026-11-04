@@ -2387,7 +2387,7 @@ test('選整趟：地圖框住整趟', async ({ page }) => {
   await waitIdle(page);
   const zoom = await page.evaluate(() => (window as any).__th.map.getZoom());
   expect(zoom).toBeLessThan(dayZoom);
-  // 2/2、2/12 的點都在範圍裡
+  // 2/2、2/12 的點都在範圍裡（T47 之後 maxBounds 南北太窄，直的地圖框整趟時兩頭都被切掉；T70 把南北的邊放大）
   const ends = await page.evaluate(() => {
     const days: Map<string, { date: string }[]> = (window as any).__th.dataStore.getState().days;
     const on = (d: string) => [...days].filter(([, ds]) => ds.some((x) => x.date === d)).map(([id]) => id);

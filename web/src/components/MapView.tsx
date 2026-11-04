@@ -573,8 +573,11 @@ export function MapView() {
               const x = t.clientX - r.left;
               const y = t.clientY - r.top;
               const ll = map.unproject([x, y]);
-              // 泡泡放在手指上方一點（不被手指蓋住），約 180×50，不超出地圖
-              setCtx({ x: Math.max(0, Math.min(x, el.clientWidth - 180)), y: Math.max(0, Math.min(y - 60, el.clientHeight - 50)), coords: [ll.lng, ll.lat] });
+              // 泡泡放在手指上方一點（不被手指蓋住），約 180×50，不超出地圖；手指靠近上緣時改放手指下面，
+              // 不然會被地圖右上的「排行程」、左上的「‹ 回 AI」蓋住（它們在地圖的上一層）
+              const above = y - 60;
+              const top = above < 56 ? y + 24 : above;
+              setCtx({ x: Math.max(0, Math.min(x, el.clientWidth - 180)), y: Math.max(0, Math.min(top, el.clientHeight - 50)), coords: [ll.lng, ll.lat] });
             }, LONG_PRESS_MS);
           },
           { passive: true },

@@ -767,7 +767,7 @@ test('提議卡的新警告：照操作清單算；算不出來是空的', async
   const h = await harness();
   assert.deepEqual(h.chat.newWarnings([{ op: 'remove', itemId: '不存在' }] as never), []);
   // 有警告的提議：坐不下、打烊；只有資訊類的（計程車台數這類）不算
-  assert.deepEqual(h.chat.newWarnings([{ op: 'replace', itemId: 'i-7', place: 'toba-osakaya' }] as never), ['全員 15 人：要分桌或分批（fit15: split），要先打電話確認', '17:54 已經打烊（營業到 17:00）']);
+  assert.deepEqual(h.chat.newWarnings([{ op: 'replace', itemId: 'i-7', place: 'toba-osakaya' }] as never), ['全員 15 人：要分桌或分批，要先打電話確認', '17:54 已經打烊（營業到 17:00）']);
   h.close();
 });
 

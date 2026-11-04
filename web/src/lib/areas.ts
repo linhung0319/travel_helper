@@ -76,10 +76,12 @@ export function initialExtent(areas: Area[], places: Place[]): Bbox | null {
 /**
  * 地圖能拖到的範圍（maxBounds，T47）：所有區域的 bbox（行政界）外加一圈邊，關西機場到志摩都在裡面。
  * 沒有範圍限制時縮到全世界要抓約 14 MB 的圖磚。沒有區域時回傳 null（不限制）。
+ * 南北的邊留得比東西大（T70）：網頁的地圖是直的（約 560×800），框「整趟」（關西機場到志摩，東西約 1.6 度）時南北要能放到約 2.9 度，
+ * 不然 MapLibre 會照 maxBounds 拉近，兩頭都被切掉。minZoom 還是 7，圖磚不會多到哪裡去。
  */
-export function mapMaxBounds(areas: Area[], margin = 0.4): Bbox | null {
+export function mapMaxBounds(areas: Area[], margin = 0.4, marginLat = 1.2): Bbox | null {
   const u = unionBbox(areas.map((a) => a.bbox));
-  return u && [u[0] - margin, u[1] - margin, u[2] + margin, u[3] + margin];
+  return u && [u[0] - margin, u[1] - marginLat, u[2] + margin, u[3] + marginLat];
 }
 
 /** 地圖最小的縮放（T47）：再小就是整個日本，用不到 */

@@ -81,7 +81,8 @@ export function createTools(d: AiDeps): ToolDef[] {
       description:
         '找地點。名稱可以有錯字、中日文混雜（text 只比名稱，「室內」「包棟」這類條件用對應的參數）。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數：結果是空的或很少時才告訴使用者，不要報數字。' +
         'elderly、kids 只拿掉分數低於 3 的（access、winter 低於 4），沒有評分的照樣列、排在後面，fitUnknown 是其中沒有評分的筆數（那幾個點也標 fitUnknown）：推薦這些點時說「適不適合長輩（小孩）我們的資料沒有查到」。who、stay、dinner 和探索篩選的同名欄位一樣。' +
-        '結果的 tier 是推薦等級（S 最高，「一定要去」用 tiers S、A），needsCar 是子地區要不要搭車，stayMinutes 是建議停留分鐘。要細節再用 get_place。',
+        '結果的 tier 是推薦等級（S 最高，「一定要去」用 tiers S、A），needsCar 是子地區要不要搭車，stayMinutes 是建議停留分鐘；scores 是我們打的 1～5 分（elderly 長輩、kids 小孩、winter 2 月、access 不用搭車；沒評的不會出現）。' +
+        '餐廳另有 fit15、cuisine、seating（座位形式）、kids（收不收小孩）；住宿另有 rooms、maxGuests、wholeRental、meals、priceRange。這些夠挑的話就不用 get_place；要營業時間、電話、評價、理由才用 get_place。',
       input_schema: obj({
         text: str('名稱（中文、日文、別名）'),
         types: strs('spot、restaurant、lodging、station'),
@@ -121,11 +122,11 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'get_place',
       kind: 'read',
-      description: `地點的細節。只回要的分區（${PLACE_SECTIONS.join('、')}）。值是 null 表示資料沒寫，要回答「不知道」，不可以說成沒有。一次最多 6 個點。`,
+      description: `地點的細節。只回要的分區（${PLACE_SECTIONS.join('、')}；不給是 summary、group、hours）。值是 null 表示資料沒寫，要回答「不知道」，不可以說成沒有。hours 分區附 closedOnTripDays（旅程中哪幾天公休，已經對好星期）；scores（長輩、小孩等的分數）一定帶，理由在 assessment。一次最多 6 個點。`,
       input_schema: obj({ ids: strs('資料點 ID'), sections: strs('要哪些分區') }, ['ids']),
       run: ro(read.get_place),
     },
-    { name: 'get_day', kind: 'read', description: '引擎算好的一天：每項時間、交通、空檔、警告、候選。回答時間問題一定要用這裡的數字，不要自己算。on=draft 看的是目前提議後的行程（接著改提議時用）。', input_schema: obj({ date: str(DATE), on: { enum: ['draft'] } }, ['date']), run: ro(read.get_day) },
+    { name: 'get_day', kind: 'read', description: '引擎算好的一天：日期和星期（label）、每項時間、交通、空檔、警告、候選。回答時間問題一定要用這裡的數字，不要自己算。on=draft 看的是目前提議後的行程（接著改提議時用）。', input_schema: obj({ date: str(DATE), on: { enum: ['draft'] } }, ['date']), run: ro(read.get_day) },
     { name: 'get_trip_overview', kind: 'read', description: '整趟的摘要：每天在哪一區（area，移動日「志摩 → 鳥羽」）、每晚住哪一區（stayArea、areaNight 連住第幾晚）和住宿、去哪、警告數、候選數；undecidedNights 是還沒決定住哪一區的晚上。', input_schema: obj({}), run: ro(read.get_trip_overview) },
     {
       name: 'check_changes',
@@ -145,8 +146,8 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'get_timetable',
       kind: 'read',
-      description: '時刻表。station：近鐵、JR 車站的資料點 ID；route：巴士、船的路線 ID 或名稱，再給 from（上車站名）、to（下車站名）只回這兩站的時間，不給就只回站名和每班的起訖。',
-      input_schema: obj({ station: str(), route: str(), from: str('路線的上車站名'), to: str('路線的下車站名'), date: str(DATE), after: str('從幾點開始 HH:MM（車站預設 09:00，路線預設從頭）') }, ['date']),
+      description: '時刻表。station：近鐵車站（資料點 ID 或站名，例如「鳥羽」「伊勢市」），回兩個方向的班次；route：巴士、船、JR 的路線 ID 或名稱（對到好幾條時全部一起查），再給 from（上車站名）、to（下車站名）只回這兩站的時間，不給就只回站名和每班的起訖。兩點之間怎麼走用 get_route，這裡只在使用者問班次、班距時用。',
+      input_schema: obj({ station: str('近鐵車站的資料點 ID 或站名'), route: str('路線 ID 或名稱'), from: str('路線的上車站名'), to: str('路線的下車站名'), date: str(DATE), after: str('從幾點開始 HH:MM（車站預設 09:00，路線預設從頭）') }, ['date']),
       run: ro(read.get_timetable),
     },
     {
