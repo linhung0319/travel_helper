@@ -2,7 +2,7 @@
 
 import { displayMinutes, estimateWalk } from '../lib/geo/index.ts';
 import { openingOn, type EngineConfig, type PlaceRecord } from '@travel-helper/engine';
-import { matchesFilter, placeFit15, placeWeather, type Filter, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
+import { SUIT_MIN, placeScore, matchesFilter, placeFit15, placeWeather, type Filter, type Weather, EMPTY_FILTER } from '../lib/filter.ts';
 import { placeBadges } from '../lib/badges.ts';
 import { inBbox } from '../lib/areas.ts';
 import { ratingOf } from '../lib/explore.ts';
@@ -65,6 +65,8 @@ export interface SearchInput {
   fitSubgroup?: boolean;
   elderly?: boolean;
   kids?: boolean;
+  /** 不用搭車：交通評分 accessEase 4 分以上（同探索篩選「適合」的不用搭車） */
+  access?: boolean;
   reservable?: boolean;
   /** 天氣：景點的 weather 是其中一個（下雨也行＝indoor、covered）；餐廳、住宿本來就在室內，不受影響 */
   weather?: Filter['weather'];
@@ -90,14 +92,15 @@ export function openAtTime(p: Place, date: string, time: string, holidays: reado
 
 const get = (p: Place, ...path: string[]): unknown => path.reduce<unknown>((x, k) => (x && typeof x === 'object' ? (x as Record<string, unknown>)[k] : undefined), p.raw);
 
-/** 評分（1～5）；沒有評過是 null */
-const score = (p: Place, key: string): number | null => {
-  const v = p.assessment?.scores?.[key];
-  return typeof v === 'number' ? v : null;
-};
 
-/** 「適合長輩、小孩」：評分 3 分以上 */
+
+/**
+ * 「適合長輩、小孩」：評分 3 分以上（T41：只拿掉分數低的）。
+ * 探索篩選的「適合」是 4 分以上（SUIT_MIN，T57：只看好的）；AI 用 3 是故意的：用 4 的話志摩的景點長輩小孩一起幾乎全被拿掉，A 級的伊雜宮（小孩 3）也會不見。
+ */
 const GOOD_FIT = 3;
+/** 「不用搭車」是 accessEase 4 分以上（同探索篩選；3 分是「要搭巴士或計程車」） */
+const MIN_SCORE: Record<'elderFit' | 'kidsFit' | 'accessEase', number> = { elderFit: GOOD_FIT, kidsFit: GOOD_FIT, accessEase: SUIT_MIN };
 
 export interface Digest {
   id: string;
@@ -120,7 +123,7 @@ export interface Digest {
   stayMinutes?: number | null;
   /** 子地區要不要搭車 */
   needsCar?: boolean;
-  /** 要了 elderly、kids，這個點沒有評分 */
+  /** 要了 elderly、kids、access，這個點沒有評分 */
   fitUnknown?: true;
 }
 
@@ -170,7 +173,7 @@ export interface SearchResult {
   total: number;
   /** 因為資料沒查到而沒有列出的筆數（fit15 未查等）：AI 要照實說 */
   unknownExcluded: number;
-  /** 要了 elderly、kids 時，列出來但沒有評分的筆數（排在有評分的後面）：AI 要照實說沒有資料 */
+  /** 要了 elderly、kids、access 時，列出來但沒有評分的筆數（排在有評分的後面）：AI 要照實說沒有資料 */
   fitUnknown?: number;
   places: Digest[];
 }
@@ -185,7 +188,7 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
   const walk = (a: LonLat, b: LonLat) => displayMinutes(estimateWalk(a, b).minutes * env.config.walk.factorWhole);
   let unknownExcluded = 0;
   let fitUnknown = 0;
-  const fitWanted = !!(input.elderly || input.kids);
+  const fitWanted = !!(input.elderly || input.kids || input.access);
   /** 沒寫的條件算進 unknownExcluded，不列出 */
   const pass = (c: Check) => {
     if (c === null) unknownExcluded += 1;
@@ -229,14 +232,14 @@ export function searchPlaces(input: SearchInput, env: SearchEnv): SearchResult {
       const n = lodgingGroup(env.full?.(p.id) ?? p, 'maxGuests');
       if (!pass(typeof n === 'number' ? n >= input.maxGuestsAtLeast : null)) continue;
     }
-    // 長輩、小孩：分數低於 3 才拿掉；沒有分數的留著，排在有分數的後面（T41：志摩一半的景點沒有 elderFit）
+    // 長輩、小孩分數低於 3、不用搭車低於 4 才拿掉；沒有分數的留著，排在有分數的後面（T41：志摩一半的景點沒有 elderFit）
     let skip = false;
     let fitKnown = true;
-    for (const [want, key] of [[input.elderly, 'elderFit'], [input.kids, 'kidsFit']] as const) {
+    for (const [want, key] of [[input.elderly, 'elderFit'], [input.kids, 'kidsFit'], [input.access, 'accessEase']] as const) {
       if (!want) continue;
-      const v = score(p, key);
+      const v = placeScore(p, key);
       if (v === null) fitKnown = false;
-      else if (v < GOOD_FIT) skip = true;
+      else if (v < MIN_SCORE[key]) skip = true;
     }
     if (skip) continue;
     const open = input.openAt ? openAtTime(p, input.openAt.date, input.openAt.time, env.config.holidays) : undefined;

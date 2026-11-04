@@ -6,7 +6,7 @@ import { askAiPrompts } from '../src/shared/askAiPrompts.ts';
 import { dayLabel, isRedDay, tripDates } from '../src/lib/trip.ts';
 import { dayGridCells } from '../src/shared/dayGrid.ts';
 import { placePopover } from '../src/lib/popover.ts';
-import { FILTER_GROUPS, appliedChips } from '../src/shared/filterOptions.ts';
+import { FILTER_GROUPS, appliedChips, groupDimmed } from '../src/shared/filterOptions.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
 import type { Area } from '../src/data/types.ts';
 
@@ -80,10 +80,17 @@ const AREAS = [
   { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, tripOrder: 2, center: [136.8, 34.4], bbox: [136.7, 34.3, 136.9, 34.5] },
 ] as unknown as Area[];
 
-test('FILTER_GROUPS：順序、想去組兩個分頁不一樣；地區不在面板裡（T42）', () => {
-  assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'group', 'weather', 'context', 'wish', 'tier', 'map']);
+test('FILTER_GROUPS：順序、想去只有想去分頁有；地區不在面板裡（T42、T57）', () => {
+  assert.deepEqual(FILTER_GROUPS.map((g) => g.id), ['type', 'group', 'lodging', 'weather', 'suits', 'context', 'wish', 'tier', 'map']);
+  const opts = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.options(AREAS, 'explore');
+  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'group')!.title, '人數（餐廳）');
+  assert.deepEqual(opts('group').map((o) => o.label), ['可容納 15 人', '15 人要分桌', '坐不下 15 人', '還沒查']);
+  assert.deepEqual(opts('lodging').map((o) => o.label), ['能包棟', '可住 15 人']);
+  assert.deepEqual(opts('suits').map((o) => o.label), ['長輩', '小孩', '不用搭車']);
+  assert.deepEqual(FILTER_GROUPS.find((g) => g.id === 'context')!.title, '用餐');
+  assert.deepEqual(opts('context').find((o) => o.value === 'transit'), { value: 'transit', label: '車站旁', note: '主要車站走路 5 分內' });
   const wish = FILTER_GROUPS.find((g) => g.id === 'wish')!;
-  assert.deepEqual(wish.options([], 'explore').map((o) => o.label), ['大家想去的']);
+  assert.deepEqual(wish.options([], 'explore'), []);
   assert.deepEqual(wish.options([], 'wish').map((o) => o.label), ['只看我按的']);
   assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
   assert.equal(FILTER_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
@@ -91,6 +98,14 @@ test('FILTER_GROUPS：順序、想去組兩個分頁不一樣；地區不在面�
     { value: 'indoor', label: '室內' },
     { value: 'covered', label: '有遮蔽' },
   ]);
+});
+test('groupDimmed：選了景點時餐廳、住宿的組變淡（反過來也是）；沒選類型都不淡', () => {
+  const dimmed = (types: ('spot' | 'restaurant' | 'lodging')[]) => FILTER_GROUPS.filter((g) => groupDimmed(g, types)).map((g) => g.id);
+  assert.deepEqual(dimmed([]), []);
+  assert.deepEqual(dimmed(['spot']), ['group', 'lodging', 'context']);
+  assert.deepEqual(dimmed(['restaurant']), ['lodging', 'weather', 'suits']);
+  assert.deepEqual(dimmed(['lodging']), ['group', 'weather', 'suits', 'context']);
+  assert.deepEqual(dimmed(['spot', 'restaurant']), ['lodging']);
 });
 test('appliedChips：含類型，不含地區、子地區（在外面一列）', () => {
   const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], fit15: ['yes' as const], weather: ['covered' as const] };

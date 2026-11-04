@@ -105,12 +105,7 @@ export function createReadTools(d: AiDeps) {
       return { places: s.places, byId: s.byId, areas: s.areas, bounds: d.app.getState().view?.bounds ?? null, likes, config: d.config, full: (id: string) => fullPlace(s, id) };
     };
     // 篩選只用清單層；回傳的摘要在詳情層：先找出是哪幾個，只讀那幾個再算一次（T47）。
-    // 例外：maxGuestsAtLeast 比的 group.maxGuests 在詳情層，要先讀所有住宿的（約 170 個）
-    if (input?.maxGuestsAtLeast != null) {
-      const lodgings = places().places.filter((p) => p.type === 'lodging').map((p) => p.id);
-      const problem = await detailsProblem(lodgings);
-      if (problem) return problem;
-    }
+    // group.maxGuests（maxGuestsAtLeast）T57 起在清單層，不用先讀住宿的詳情
     const problem = await detailsProblem(searchPlaces(input ?? {}, env()).places.map((p) => p.id));
     if (problem) return problem;
     const r = searchPlaces(input ?? {}, env());

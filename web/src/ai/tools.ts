@@ -79,7 +79,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       kind: 'read',
       description:
         '找地點。名稱可以有錯字、中日文混雜（text 只比名稱，「室內」「包棟」這類條件用對應的參數）。回傳精簡清單和總數；unknownExcluded 是因為資料沒查到而沒列出的筆數：結果是空的或很少時才告訴使用者，不要報數字。' +
-        'elderly、kids 只拿掉分數低的，沒有評分的照樣列、排在後面，fitUnknown 是其中沒有評分的筆數（那幾個點也標 fitUnknown）：推薦這些點時說「適不適合長輩（小孩）我們的資料沒有查到」。' +
+        'elderly、kids 只拿掉分數低於 3 的（access 低於 4），沒有評分的照樣列、排在後面，fitUnknown 是其中沒有評分的筆數（那幾個點也標 fitUnknown）：推薦這些點時說「適不適合長輩（小孩）我們的資料沒有查到」。' +
         '結果的 tier 是推薦等級（S 最高，「一定要去」用 tiers S、A），needsCar 是子地區要不要搭車，stayMinutes 是建議停留分鐘。要細節再用 get_place。',
       input_schema: obj({
         text: str('名稱（中文、日文、別名）'),
@@ -95,6 +95,7 @@ export function createTools(d: AiDeps): ToolDef[] {
         fitSubgroup: bool('4～6 人分組坐得下'),
         elderly: bool('適合長輩'),
         kids: bool('適合小孩'),
+        access: bool('不用搭車（交通評分 accessEase 4 分以上：車站走路就到）'),
         reservable: bool('可以預約'),
         weather: strs('景點的天氣：indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）；「下雨也行」兩個都給。餐廳、住宿不受影響'),
         wholeRental: bool('能包棟（只留住宿）'),
@@ -242,8 +243,8 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'set_filter',
       kind: 'stage',
-      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、weather（indoor 室內、covered 有遮蔽；「下雨也行」兩個都給；只篩景點，餐廳、住宿不受影響）。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
-      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), weather: strs(), clear: bool() }),
+      description: '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、contexts、tiers、fit15、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）、weather（indoor 室內、covered 有遮蔽；「下雨也行」兩個都給；只篩景點，餐廳、住宿不受影響）、lodging（wholeRental 能包棟、sleeps15 可住 15 人；只留住宿，兩個都給要都符合）、suits（elderly 適合長輩、kids 適合小孩、access 不用搭車，評分 4 分以上；只留景點，給幾個都要符合）。fit15 的 unknown 是還沒查。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
+      input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), fit15: strs(), votes: strs(), weather: strs(), lodging: strs(), suits: strs(), clear: bool() }),
       run(input) {
         const { clear, ...patch } = input as Record<string, string[]> & { clear?: boolean };
         const err = d.commands.checkFilter(patch as never);

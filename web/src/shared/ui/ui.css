@@ -1009,6 +1009,18 @@
   gap: 6px;
 }
 
+/* 只對別的類型有用的組（T57）：變淡，點了照樣能選 */
+.fs-group.dim {
+  opacity: 0.45;
+}
+
+/* 晶片裡的說明小字（「車站旁」的「主要車站走路 5 分內」） */
+.fs-note {
+  margin-left: 4px;
+  font-size: 0.75em;
+  opacity: 0.7;
+}
+
 .fs-foot {
   display: flex;
   gap: 8px;

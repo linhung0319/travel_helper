@@ -1316,6 +1316,20 @@ test('T41 wholeRental、maxGuestsAtLeast：只留住宿，資料沒寫的算 unk
   h.close();
 });
 
+test('T57 access：不用搭車只留 accessEase ≥ 4 的（沒有評分的排後面）', async () => {
+  const h = await harness();
+  const r = await runTool(h, 'search_places', { areas: ['shima'], types: ['spot'], access: true, limit: 30 });
+  const byId = h.data.getState().byId;
+  const ids: string[] = r.places.map((p: { id: string }) => p.id);
+  assert.ok(ids.includes('shima-izawanomiya'));
+  assert.ok(!ids.includes('shima-yokoyama-observatory'));
+  for (const id of ids) {
+    const v = byId.get(id)!.assessment?.scores?.accessEase;
+    assert.ok(v == null || (v as number) >= 4, id);
+  }
+  h.close();
+});
+
 test('T41 tiers：「一定要去」只留 S、A；沒有評分的點標 fitUnknown', async () => {
   const h = await harness();
   const r = await runTool(h, 'search_places', { areas: ['shima'], types: ['spot'], tiers: ['S', 'A'], elderly: true, kids: true, limit: 30 });
