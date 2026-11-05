@@ -18,6 +18,7 @@ import {
   cardTime,
   cardTypeLetter,
   dayBar,
+  actCount,
   daySummary,
   editorModeOf,
   showMinutesInput,
@@ -29,7 +30,6 @@ import {
   legMapsUrl,
   legTargetOf,
   legModeName,
-  taxiCarsText,
   legTitle,
   rideReadyAt,
   mapMark,
@@ -641,7 +641,7 @@ const leg = (depart: string, minutes: number): NonNullable<TimelineEntry['travel
   basis: '',
 });
 
-test('daySummary：出發、回住宿、交通總分鐘（不含緩衝）、警告數（不算 info）', () => {
+test('daySummary：出發、回住宿、交通總分鐘（不含緩衝）、要處理的提醒數（不算留意）', () => {
   const day = {
     entries: [
       entry('start', 'h', { start: '09:30' }),
@@ -649,7 +649,7 @@ test('daySummary：出發、回住宿、交通總分鐘（不含緩衝）、警�
       entry('visit', 'b', { travel: leg('11:00', 5) }),
       entry('lodging', 'h', { travel: leg('15:00', 20), arrive: '15:30' }),
     ],
-    warnings: [{ level: 'warning' }, { level: 'info' }, { level: 'error' }],
+    warnings: [{ level: 'act' }, { level: 'note' }, { level: 'act' }],
   } as unknown as DayPlan;
   assert.deepEqual(daySummary(day), { start: '09:30', back: '15:30', travelMinutes: 35, warnings: 2 });
 });
@@ -666,12 +666,6 @@ test('legTitle：方式＋分鐘，電車、巴士、船都叫大眾運輸', () 
   assert.equal(legTitle(legWith({ mode: 'none' })), '');
   assert.equal(legModeName('bus'), '大眾運輸');
   assert.equal(legModeName('transit'), '大眾運輸');
-});
-
-test('taxiCarsText：計程車的台數（收合時第二行）；不是計程車是 null', () => {
-  assert.equal(taxiCarsText(legWith({ mode: 'taxi', taxi: { cars: 4, jumboCars: 2, fareEstimateYen: 3200 } as never })), '大型 2 台或一般 4 台');
-  assert.equal(taxiCarsText(legWith({ mode: 'taxi', taxi: { cars: 2, jumboCars: null } as never })), '2 台');
-  assert.equal(taxiCarsText(legWith({ mode: 'walk' })), null);
 });
 
 test('showMinutesInput：算不出來（交通未定、指定的方式找不到班次、缺座標）或填過分鐘才有分鐘欄', () => {
@@ -773,9 +767,9 @@ test('copyText：日文名稱優先，沒有用中文', () => {
 
 test('shownWarnings：看主卡是全部；看備卡只留指名那張備卡的', () => {
   const list = [
-    { code: 'closed', level: 'warning' as const, message: '公休', itemId: 'i1', placeId: 'main' },
-    { code: 'late', level: 'info' as const, message: '晚了', itemId: 'i1' },
-    { code: 'closed', level: 'warning' as const, message: '公休', itemId: 'i1', placeId: 'b' },
+    { code: 'closed', level: 'act' as const, message: '公休', itemId: 'i1', placeId: 'main' },
+    { code: 'late', level: 'act' as const, message: '晚了', itemId: 'i1' },
+    { code: 'closed', level: 'act' as const, message: '公休', itemId: 'i1', placeId: 'b' },
   ];
   assert.equal(shownWarnings(list, 'main', true), list);
   assert.deepEqual(shownWarnings(list, 'b', false), [list[2]]);
@@ -783,22 +777,24 @@ test('shownWarnings：看主卡是全部；看備卡只留指名那張備卡的'
   assert.equal(shownWarnings(undefined, 'b', false), undefined);
 });
 
-test('warningsByItem：交通的警告（leg: true）不掛到資料卡、也不進整天的警告（交通卡自己顯示）；計程車台數照舊不列', () => {
+test('warningsByItem：交通的警告（leg: true）不掛到資料卡、也不進整天的警告（交通卡自己顯示）', () => {
   const day = {
     warnings: [
-      { code: 'closed', level: 'warning' as const, message: '公休', itemId: 'i1' },
-      { code: 'bus-crowd', level: 'warning' as const, message: '擠不上', itemId: 'i1', leg: true as const },
-      { code: 'ticket-tight', level: 'warning' as const, message: '買票', leg: true as const },
-      { code: 'taxi', level: 'info' as const, message: '台數', itemId: 'i2' },
-      { code: 'no-rest', level: 'warning' as const, message: '累' },
+      { code: 'closed', level: 'act' as const, message: '公休', itemId: 'i1' },
+      { code: 'missed-last', level: 'act' as const, message: '末班', itemId: 'i1', leg: true as const },
+      { code: 'ticket-tight', level: 'note' as const, message: '買票', leg: true as const },
+      { code: 'stairs', level: 'note' as const, message: '階梯', itemId: 'i2' },
+      { code: 'no-rest', level: 'note' as const, message: '累' },
     ],
   } as unknown as DayPlan;
   const { byItem, day: rest } = warningsByItem(day);
   assert.deepEqual(byItem.get('i1')?.map((w) => w.code), ['closed']);
-  assert.equal(byItem.has('i2'), false);
+  assert.deepEqual(byItem.get('i2')?.map((w) => w.code), ['stairs']);
   assert.deepEqual(rest.map((w) => w.code), ['no-rest']);
-  // 當天摘要的數字照舊全部算
-  assert.equal(daySummary({ ...day, entries: [] } as DayPlan).warnings, 4);
+  // 當天摘要的數字：卡片、交通、整天的要處理都算（T74a）
+  assert.equal(daySummary({ ...day, entries: [] } as DayPlan).warnings, 2);
+  assert.equal(actCount(day.warnings), 2);
+  assert.equal(actCount(undefined), 0);
 });
 
 test('hourTicks：整點刻度的位置（百分比）', () => {

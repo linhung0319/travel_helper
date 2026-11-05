@@ -162,7 +162,7 @@
 | T71 | 收尾小修：網頁整趟地圖的晚數標籤不互疊、`mobile-t45b` 不穩的測試、真 AI 跑一次 `ai:eval`（Sonnet 5.5、low，有問題就修）、關掉 §6「行程畫面精簡」、平板標成已做 | S | T70 | 4 | | ✅ |
 | T72 | 清掉分組（`split`）的舊程式：引擎的型別、操作、時間軸、比對，網站的時間軸、拖拉、卡片選單、手機、預約、下載、LINE 摘要和測試；餐廳的 `fit15: 'split'`（分桌）不動 | M | — | 4 | | ✅ |
 | T73 | 下載行程與 LINE 機器人改版：PDF／MD 修四個印錯的地方、總覽加「去哪裡」、印合併卡的備選；LINE 單天、整趟、預約改成適合聊天氣泡的寬度，Quick Reply 按鈕（postback）、說明照出發前／旅行中切換（**開始前 👤 先回 7 個決定**） | M | T72、T74a | 4 | | ⬜ |
-| T74a | 提醒精簡（引擎和字）：43 種提醒拿掉 11 種（計程車台數、巴士擠不上、入住前到、等開門、三個和步驟重複的交通補充…）、餐廳兩條合一、三級改兩級（要處理／留意）、全部改字、坐車 60 分算休息；`TaxiInfo`、`busCrowd` 拿掉；AI 工具和推薦問題跟著改 | M | T72 | 4 | | ⬜ |
+| T74a | 提醒精簡（引擎和字）：43 種提醒拿掉 11 種（計程車台數、巴士擠不上、入住前到、等開門、三個和步驟重複的交通補充…）、餐廳兩條合一、三級改兩級（要處理／留意）、全部改字、坐車 60 分算休息；`TaxiInfo`、`busCrowd` 拿掉；AI 工具和推薦問題跟著改 | M | T72 | 4 | | ✅ |
 | T74b | 提醒精簡（畫面）：資料卡紅框只給要處理、點開每條一行；日期列的數字兩邊一致、點開列整天的（手機也能看字）；整趟的紅字長句改成骨架的「累」標和「晚餐未選」；交通卡拿掉台數、灰框不重複步驟；順手：「待訂」改墨色、行程卡名稱拿掉括號、停留時間寫法、詳情名稱列加 Google Maps 連結 | M | T74a | 4 | | ⬜ |
 
 ---
@@ -1813,6 +1813,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **AI**：`readTools.ts` 的 `get_day`、`get_route`、`check_changes` 回傳的 `level` 用新的兩個值；`prompts.ts` 的「哪天最趕？」小字改成「N 天要處理」（數有 act 的天）；`ai/prompts.ts` 提示詞裡講到警告等級的地方跟著改；跑幾個代表題的 `ai:eval`（照「AI 測試不打 API」的做法，先用假 AI）。
 - **驗證**：`packages/engine/test` 的 `timeline`、`travel`、`diff`、`toba-day.ts` 改期待（假行程 2/5 從 13 條變 5 條左右，寫進測試）；`web/test` 的 `planView`、`legView`、`readTools`；`npm test`、`typecheck`、`validate`。畫面還沒改之前舊的三個 class（`warning-error`…）會對不到新的 level，T74a 先在 `WARNING_ICONS`、`planView` 做最小對應讓畫面不壞，T74b 再整理。
 - **文件**：interaction-design §34 標成已做的部分；architecture §engine 的警告等級；CONVENTIONS 如果有寫到「計程車台數」「巴士擠不上」的檢查項目（§「團體」）拿掉那兩項。
+- **完成（2026-11-05）**：照上面做完。`WarningLevel` 是 `act`／`note`；`group-dining` 的字在 `groupDiningMessage`（timeline.ts）；`formatDuration` 在引擎 `time.ts`（T73 用同一個）；晚餐未選是 `nights.ts` 的 `mealsUnchosen`／`nightMeals`（AI 的 `get_day`、`get_trip_overview` 住宿帶 `mealsUnchosen`）；區名用新的 `EngineData.areaNames`。**和卡片不一樣的地方**：① 沒改搭計程車、照樣等的 `long-wait`（「電車要等 23 分」「太遠不能改搭計程車」）也拿掉，和步驟重複（§34.3 灰框只說為什麼是計程車），`config.transit.transferLongWait` 跟著拿掉；② 一泊二食那條寫「18:30 回住宿，晚餐 17:00 前要到」，設定的 17:00 是要到的時間不是開飯（§34.2 已改）；③ `long-walk` 只在住宿那端走太久時發「…；可以問○○有沒有接送」。假行程 2/5 從 13 條變 6 條（要處理 3：兩家不接受預約、一個最後入場），寫進 `ai-context-audit.test.ts`。畫面的最小對應：`warning-act`／`warning-note`、`level-act` 沿用舊的紅和灰，交通卡第二行的台數和點開的起跳價拿掉（`taxiCarsText` 刪，下載的計程車那行也不印台數），手機卡片、地圖日期紅點只數 act。e2e 只跑受影響的：網頁 t15m 交通卡／提醒 11 個、手機 390 交通／行程 18 個都過（改了 3 個期待：計程車沒有第二行、巴士段沒有 ⚠ 數字、紅點只數 act）；360 沒跑。系統提示加一句 act／note 的意思，用 harness 看過工具回傳夠回答「哪天最趕？」，`ai:eval` 沒跑。
 
 ### T74b 提醒精簡：畫面 〔M〕（第十八輪，2026-11-05 👤 決定）
 

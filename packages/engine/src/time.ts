@@ -90,3 +90,11 @@ export function busDayType(date: DateString, holidays: readonly DateString[]): '
   const dow = dayOfWeek(date);
   return dow === 0 ? 'holiday' : dow === 6 ? 'saturday' : 'weekday';
 }
+
+/** 分鐘的寫法（提醒、下載行程共用）：60 分以下「45 分」，整點「2 小時」，其他「4 小時 7 分」 */
+export function formatDuration(min: number): string {
+  const m = Math.round(min);
+  if (m < 60) return `${m} 分`;
+  const h = Math.floor(m / 60);
+  return m % 60 ? `${h} 小時 ${m % 60} 分` : `${h} 小時`;
+}

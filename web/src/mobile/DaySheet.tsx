@@ -16,7 +16,7 @@ import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/eng
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
-import { cardTime, findItemRef, formatStay, needsStart, shownWarnings, stayNight, type TimelineRow } from '../lib/planView.ts';
+import { actCount, cardTime, findItemRef, formatStay, needsStart, shownWarnings, stayNight, type TimelineRow } from '../lib/planView.ts';
 import { isRedDay, shortDayLabel } from '../lib/trip.ts';
 import { dayAreaTitle, dayTitle } from '../lib/dayTitle.ts';
 import { NightLine } from '../shared/ui/NightLine.tsx';
@@ -137,7 +137,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const mark = tl.marks.byEntry.get(entry) ?? null;
   const item = entry.itemId ? (findItemRef(itinerary, entry.itemId)?.item ?? null) : null;
   const visit: VisitItem | null = item?.type === 'visit' ? item : null;
-  const warnCount = (list: EngineWarning[] | undefined) => list?.filter((w) => w.level !== 'info').length ?? 0;
+  const warnCount = (list: EngineWarning[] | undefined) => actCount(list);
   const leg = entry.kind !== 'start' && (
     <>
       <MobileLeg entry={entry} date={day.date} />

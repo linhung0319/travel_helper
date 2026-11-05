@@ -397,7 +397,7 @@ function EntryRow({ entry, day, warnings, marks }: { entry: TimelineEntry; day: 
 /** 卡片右上角的 ⚠ 數字：警告預設收起來，點了才展開 */
 function WarnToggle({ list, open, onToggle }: { list: EngineWarning[] | undefined; open: boolean; onToggle: () => void }) {
   if (!list?.length) return null;
-  const level = list.some((w) => w.level === 'error') ? 'error' : list.some((w) => w.level === 'warning') ? 'warning' : 'info';
+  const level = list.some((w) => w.level === 'act') ? 'act' : 'note';
   return (
     <button type="button" className={`warn-toggle level-${level}`} aria-expanded={open} onClick={onToggle} data-testid="warn-toggle" title={list.map((w) => w.message).join('\n')}>
       <Icon name={WARNING_ICONS[level]} size={16} /> {list.length}
@@ -667,7 +667,7 @@ export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan
       {[times, s.travelMinutes > 0 && `交通 ${formatTravelTotal(s.travelMinutes)}`].filter(Boolean).join(' · ')}
       {onWarn && reminders > 0 ? (
         <button type="button" className={`badge warn-button ${s.warnings > 0 ? 'badge-warn' : ''}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
-          <Icon name={s.warnings > 0 ? 'warn' : WARNING_ICONS.info} size={16} /> {reminders}{' '}
+          <Icon name={s.warnings > 0 ? 'warn' : WARNING_ICONS.note} size={16} /> {reminders}{' '}
           <span className={`chev ${warnOpen ? 'up' : ''}`}>
             <Icon name="chevron" size={16} />
           </span>

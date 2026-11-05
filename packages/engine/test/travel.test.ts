@@ -53,18 +53,13 @@ test('全員走超過 15 分 → 不走路', () => {
   assert.equal(planLeg(ep(a), ep(b), ctx(data)).leg.mode, 'taxi');
 });
 
-test('超過上限、沒有車 → 計程車：台數和起跳價；加算費率有設定才估費用', () => {
+test('超過上限、沒有車 → 計程車：不算台數、車資，也不發提醒（T74a）', () => {
   const a = spot('a', at(0));
   const b = spot('b', at(3000));
   const r = planLeg(ep(a), ep(b), ctx(fake([a, b])));
   assert.equal(r.leg.mode, 'taxi');
-  assert.equal(r.leg.taxi?.cars, 4);
-  assert.equal(r.leg.taxi?.jumboCars, 2);
-  assert.equal(r.leg.taxi?.fareEstimateYen, null);
-  assert.match(r.leg.taxi?.note ?? '', /加算費率未查/);
-  assert.ok(r.warnings.some((w) => w.code === 'taxi'));
-  const priced = planLeg(ep(a), ep(b), ctx(fake([a, b]), { cfg: resolveConfig({ taxi: { stepMeters: 300, stepYen: 100 } }) }));
-  assert.equal(priced.leg.taxi?.fareEstimateYen, 700 + Math.ceil((3000 * 1.3 - 1200) / 300) * 100);
+  assert.ok(!('taxi' in r.leg));
+  assert.deepEqual(r.warnings, []);
 });
 
 test('driveMeters（OSRM 開車路徑）優先於直線 × roadDetour', () => {
@@ -99,7 +94,7 @@ function busRoute(deps: string[], ride = 10): RouteTimetable {
   };
 }
 
-test('巴士：等 20 分內、班距不到 1 小時 → 搭巴士；15 人警告擠不上', () => {
+test('巴士：等 20 分內、班距不到 1 小時 → 搭巴士；不再提醒擠不上（T74a）', () => {
   const a = spot('a', at(0));
   const b = spot('b', at(4000));
   const data = fake([a, b], { routes: [busRoute(['10:05', '10:35', '11:05'])] });
@@ -107,9 +102,7 @@ test('巴士：等 20 分內、班距不到 1 小時 → 搭巴士；15 人警�
   assert.equal(r.leg.mode, 'bus');
   assert.equal(r.leg.rides[0].depart, '10:05');
   assert.equal(r.leg.arrive, '10:17'); // 10:15 到站 + 走 50 m（1.14 分進位成 2）
-  assert.ok(r.warnings.some((w) => w.code === 'bus-crowd'));
-  const small = planLeg(ep(a), ep(b), ctx(data, { party: { size: 5, elders: 0, kids: 0 } }));
-  assert.ok(!small.warnings.some((w) => w.code === 'bus-crowd'));
+  assert.deepEqual(r.warnings, []);
 });
 
 test('巴士：1 小時以上才一班 → 計程車', () => {
@@ -154,7 +147,7 @@ test('離島只能搭船：佐田浜 → 神島港；末班船之後是錯誤', 
   assert.equal(r.leg.rides[0].depart, '10:40');
   const late = planLeg(P('toba-sadahama-marine-terminal'), P('toba-port-kamishima'), ctx(real, { date: '2027-02-06', depart: 18 * 60 }));
   assert.equal(late.leg.mode, 'unknown');
-  assert.ok(late.warnings.some((w) => w.code === 'missed-last' && w.level === 'error'));
+  assert.ok(late.warnings.some((w) => w.code === 'missed-last' && w.level === 'act' && w.message === '末班船已過'));
 });
 
 test('太遠、時刻表裡沒有 → 交通方式未知，請用 travel 指定', () => {
@@ -172,9 +165,9 @@ test('關西機場 → 鳥羽（T29）：南海空港急行（班距）→ 步�
   assert.equal(r.leg.mode, 'train');
   assert.equal(r.leg.transitAvailable, true);
   assert.deepEqual(r.leg.rides.map((x) => [x.kind, x.from, x.to]), [['headway', 'kansai-airport', 'nankai-namba'], ['timetable', 'osaka-namba', 'toba']]);
-  // 南海なんば → 近鐵大阪難波：11 × 1.4 → 16 分，超過單段上限，照樣搭、加 info
+  // 南海なんば → 近鐵大阪難波：11 × 1.4 → 16 分，超過單段上限，照樣搭；步驟寫了，不另外提醒（T74a）
   assert.equal(r.leg.transfers?.[0].walkMinutes, 16);
-  assert.ok(r.warnings.some((w) => w.code === 'transfer-walk' && w.level === 'info' && w.message === '轉乘要走 16 分'));
+  assert.ok(!r.warnings.some((w) => w.code === 'transfer-walk'));
   assert.equal(r.leg.walkMinutes, (r.leg.walkBefore ?? 0) + (r.leg.walkAfter ?? 0) + 16);
   assert.deepEqual(r.leg.ready, ['14:00', fromMinutes(toMinutes(r.leg.rides[0].arrive) + 16)]);
 });
@@ -197,7 +190,7 @@ test('缺座標 → 算不出交通時間', () => {
   const a = spot('a', at(0));
   const r = planLeg(ep(a), { id: 'x', coords: null, record: null }, ctx(fake([a])));
   assert.equal(r.leg.mode, 'unknown');
-  assert.ok(r.warnings.some((w) => w.level === 'error'));
+  assert.ok(r.warnings.some((w) => w.code === 'travel-unknown' && w.level === 'act' && w.message === '這個點沒有位置，點這段填方式和分鐘'));
 });
 
 test('只填分鐘（方式自動）：不帶自動那段的班次、步行分鐘看最後的方式、不報算不出交通', () => {
@@ -227,13 +220,13 @@ test('只填分鐘（方式自動）：不帶自動那段的班次、步行分�
 // --- 第四輪：計程車用路線時間、大眾運輸、選定班次 --------------------------------
 
 test('計程車有路線時間就用它，不加叫車時間', () => {
-  const r = taxiEstimate(at(0), at(3000), WHOLE, DEFAULT_CONFIG, 4200, 9.6);
+  const r = taxiEstimate(at(0), at(3000), DEFAULT_CONFIG, 4200, 9.6);
   assert.equal(r.minutes, 9.6);
   assert.equal(r.meters, 4200);
 });
 
 test('計程車沒有路線時間時照距離估算', () => {
-  const r = taxiEstimate(at(0), at(3000), WHOLE, DEFAULT_CONFIG, 6000, null);
+  const r = taxiEstimate(at(0), at(3000), DEFAULT_CONFIG, 6000, null);
   assert.equal(r.minutes, 12); // 6 km ÷ 30 km/h，overheadMinutes 0
 });
 
@@ -539,12 +532,15 @@ test('path：照選的走法搭；出發晚 90 分同一條走法、arrive 變�
   assert.ok(toMinutes(l2.arrive) > toMinutes(l1.arrive));
 });
 
-test('path：那天不能搭的線 → path-unavailable，改自動', () => {
+test('path：那天不能搭的線 → 改自動，leg 標 pathReplaced（不發提醒，T74a）', () => {
   const dc = P(PA), tn = P(PB);
   const path = { rides: [{ line: 'no-such-line', from: 'x', to: 'y' }], from: dc.id, to: tn.id };
   const { leg, warnings } = planLeg(dc, tn, ctx(real, { date: '2027-02-11', depart: 10 * 60 }), { path });
-  assert.ok(warnings.some((w) => w.code === 'path-unavailable' && w.level === 'info' && w.message.startsWith('選的走法這時間沒有車，改用')));
+  assert.equal(leg.pathReplaced, true);
+  assert.ok(!warnings.some((w) => w.code === 'path-unavailable'));
   assert.notEqual(leg.mode, 'unknown');
+  // 沒選走法的不帶這個欄位
+  assert.ok(!('pathReplaced' in planLeg(dc, tn, ctx(real, { date: '2027-02-11', depart: 10 * 60 })).leg));
 });
 
 test('path：from 和 a.id 不同 → 照自動', () => {
@@ -570,7 +566,7 @@ test('鄉下轉乘比計程車晚超過 30 分 → 計程車：一葉（志摩�
   const { leg, warnings } = planLeg(P('shima-ichiyo'), P('toba-umino-shokudo-kyubei'), ctx(real, { date: '2027-02-04', depart: 11 * 60 + 16 }));
   assert.equal(leg.mode, 'taxi');
   assert.equal(leg.arrive, '12:03');
-  assert.ok(warnings.some((w) => w.code === 'transit-slow' && /比計程車晚 \d+ 分到/.test(w.message)), warnings.map((w) => w.message).join(' / '));
+  assert.ok(warnings.some((w) => w.code === 'transit-slow' && w.level === 'note' && /^巴士要轉 2 次、慢 \d+ 小時( \d+ 分)?，改搭計程車$/.test(w.message)), warnings.map((w) => w.message).join(' / '));
 });
 
 test('鄉下轉乘比計程車晚超過 30 分 → 計程車：かき秋 はなれ（伊勢）→ 志摩 ocean villa 9:37 分組', () => {
@@ -644,14 +640,14 @@ test('太遠不能搭計程車 → 照樣搭要等很久的電車（伊勢市 10
   const { leg, warnings } = planLeg(P('iseshi'), P('osaka-namba'), ctx(real, { depart: 10 * 60 }));
   assert.equal(leg.mode, 'train');
   assert.equal(leg.rides[0].depart, '10:49');
-  assert.ok(warnings.some((w) => w.code === 'long-wait' && w.message.includes('太遠，不能改搭計程車')));
+  assert.ok(!warnings.some((w) => w.code === 'long-wait'), warnings.map((w) => w.message).join(' / ')); // 等多久步驟寫了，不另外提醒（T74a）
   assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
 });
 
 test('近的、電車要等很久 → 照舊改計程車（伊勢市 10:00 → 朝熊，要等 39 分）', () => {
   const { leg, warnings } = planLeg(P('iseshi'), P('asama'), ctx(real, { depart: 10 * 60 }));
   assert.equal(leg.mode, 'taxi');
-  assert.ok(warnings.some((w) => w.code === 'long-wait' && w.message.includes('改搭計程車')));
+  assert.ok(warnings.some((w) => w.code === 'long-wait' && w.message === '電車要等 39 分，改搭計程車'), warnings.map((w) => w.message).join(' / '));
 });
 
 test('ticket-tight：到站 3 分就發船 → 警告「買票可能來不及」；空檔 ≥ 10 分沒有', () => {
@@ -661,7 +657,7 @@ test('ticket-tight：到站 3 分就發船 → 警告「買票可能來不及」
   assert.equal(tight.leg.mode, 'ferry');
   const w = tight.warnings.filter((x) => x.code === 'ticket-tight');
   assert.equal(w.length, 1);
-  assert.equal(w[0].level, 'warning');
+  assert.equal(w[0].level, 'note');
   assert.match(w[0].message, /到站 3 分就發車，買票可能來不及$/);
   const ok = planLeg(P(sada), P(kami), ctx(real, { date: d, depart: 10 * 60 + 20 }));
   assert.equal(ok.leg.rides[0].depart, '10:40');
@@ -682,12 +678,12 @@ test('ticket-tight（近鐵特急）：寫站名（placeName）和「買特急�
 
 // --- T60 離島和碼頭 ------------------------------------------------------------
 
-test('T60 下船後走太遠：鳥羽駅 → 菅島燈塔照樣搭船，提醒下船後要走幾分', () => {
+test('T60 下船後走太遠：鳥羽駅 → 菅島燈塔照樣搭船；步驟寫了，不另外提醒（T74a）', () => {
   const { leg, warnings } = planLeg(P('toba'), P('toba-sugashima-lighthouse'), ctx(real));
   assert.equal(leg.mode, 'ferry');
   assert.equal(leg.rides.at(-1)?.to, '菅島');
   assert.ok((leg.walkAfter ?? 0) > cfg.walk.legMaxWhole);
-  assert.ok(warnings.some((w) => w.code === 'long-walk' && w.message === `下船後要走 ${leg.walkAfter} 分`));
+  assert.ok(!warnings.some((w) => w.code === 'long-walk'));
   assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
 });
 
@@ -727,32 +723,20 @@ test('T60 車站只多收碼頭：伊勢市 → 朝熊 照舊不走去宇治山�
 test('T60 島上不坐計程車：答志島 和具 → 答志 走路加提醒；住宿的提醒問接送', () => {
   const { leg, warnings } = planLeg(P('toba-port-wagu'), P('toba-port-toshi'), ctx(real));
   assert.equal(leg.mode, 'walk');
-  assert.equal(leg.taxi, null);
   assert.ok(leg.walkMinutes > cfg.walk.legMaxWhole);
   const w = warnings.find((x) => x.code === 'island-walk');
-  assert.equal(w?.message, `島上沒有計程車，要走 ${leg.walkMinutes} 分`);
-  assert.ok(!warnings.some((x) => x.code === 'taxi'));
+  assert.equal(w?.level, 'note');
+  assert.equal(w?.message, `島上沒有計程車，走 ${leg.walkMinutes} 分`);
   // 答志港 → 中村屋 走 20 幾分；住宿的提醒問有沒有接送
   const r = planLeg(P('toba-port-toshi'), P('toba-toshijima-nakamuraya'), ctx(real));
   assert.equal(r.leg.mode, 'walk');
-  assert.match(r.warnings.find((x) => x.code === 'island-walk')?.message ?? '', /^島上沒有計程車，要走 \d+ 分；.*中村屋有沒有碼頭接送$/);
+  assert.match(r.warnings.find((x) => x.code === 'island-walk')?.message ?? '', /^島上沒有計程車，走 \d+ 分；可以問.*中村屋有沒有接送$/);
 });
 
-test('T60 碼頭等太久：巴士到佐田浜，船一個多小時後才開 → 提醒在碼頭要等幾分', () => {
+test('T60 碼頭等太久：巴士到佐田浜，船一個多小時後才開 → 步驟寫了等幾分，不另外提醒、也不提醒巴士擠不上（T74a）', () => {
   const { leg, warnings } = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real));
   assert.deepEqual(leg.rides.map((r) => r.mode), ['bus', 'ferry']);
   const gap = toMinutes(leg.rides[1].depart) - toMinutes(leg.ready?.[1] ?? '00:00');
-  assert.ok(gap > cfg.transit.transferLongWait);
-  assert.ok(warnings.some((w) => w.code === 'transfer-wait' && w.message === `在佐田浜（鳥羽マリンターミナル）要等船 ${gap} 分`));
-  // 等不到 transferLongWait 分不提醒
-  const strict = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real, { cfg: resolveConfig({ transit: { transferLongWait: gap } }) }));
-  assert.ok(!strict.warnings.some((w) => w.code === 'transfer-wait'));
-});
-
-test('T60 過海也檢查巴士擠不擠：15 人巴士接船有 bus-crowd，5 人沒有', () => {
-  const big = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real));
-  assert.ok(big.leg.rides.some((r) => r.mode === 'bus'));
-  assert.ok(big.warnings.some((w) => w.code === 'bus-crowd'));
-  const small = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real, { party: { size: 5, elders: 0, kids: 0 } }));
-  assert.ok(!small.warnings.some((w) => w.code === 'bus-crowd'));
+  assert.ok(gap > 30);
+  assert.ok(!warnings.some((w) => w.code === 'transfer-wait' || w.code === 'bus-crowd'));
 });

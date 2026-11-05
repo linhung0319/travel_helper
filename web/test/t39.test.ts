@@ -164,11 +164,13 @@ test('第一天機場到遠的住宿：搭到附近車站再接計程車，不�
   // 資料寫「賢島駅車程約 25 分」：不用會跨海灣的直線估算
   assert.deepEqual(leg.taxiAfter, { station: 'kashikojima', minutes: 25 });
   assert.ok(leg.rides.length > 0);
-  assert.equal(leg.taxi?.cars, 4);
+  assert.ok(!('taxi' in leg)); // 台數 T74a 拿掉
   const toMin = (t: string) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
   assert.equal(toMin(leg.arrive), toMin(leg.rides.at(-1)!.arrive) + (leg.walkAfter ?? 0) + leg.taxiAfter.minutes);
   assert.equal(leg.minutes, toMin(leg.arrive) - toMin(leg.depart));
-  assert.ok(day.warnings.some((x) => x.code === 'rail-taxi'));
+  const rt = day.warnings.find((x) => x.code === 'rail-taxi');
+  assert.equal(rt?.level, 'note');
+  assert.match(rt?.message ?? '', /^賢島(站|駅)?以後沒有車，要先預約計程車$/);
   const steps = compactSteps(leg, '關西機場', '一樂', (id) => id, 10);
   assert.equal(steps.at(-2)?.kind, 'taxi');
   assert.equal(legTitle(leg).startsWith('大眾運輸＋計程車'), true);

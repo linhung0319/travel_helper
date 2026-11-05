@@ -49,7 +49,7 @@ export interface RoadCache {
 // 引擎的網路、搜尋、上下車點、每天的結果都照 EngineData 和它的陣列、函式快取（T29b spec §7.2）：
 // 資料點沒變就沿用同一份 stations、getPlace；資料點、地區、時刻表、道路快取都沒變就沿用同一個 EngineData
 let placesMemo: { places: DataState['places']; byId: DataState['byId']; getPlace: EngineData['getPlace']; stations: PlaceRecord[] } | null = null;
-let areasMemo: { areas: DataState['areas']; needsCar: Record<string, boolean> } | null = null;
+let areasMemo: { areas: DataState['areas']; needsCar: Record<string, boolean>; areaNames: Record<string, string> } | null = null;
 let dataMemo: { places: DataState['places']; byId: DataState['byId']; areas: DataState['areas']; tt: EngineTimetables; roads: RoadCache | undefined; version: number; data: EngineData } | null = null;
 
 export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: RoadCache): EngineData {
@@ -80,10 +80,14 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
   }
   if (areasMemo?.areas !== d.areas) {
     const needsCar: Record<string, boolean> = {};
-    for (const a of d.areas) for (const r of a.regions ?? []) needsCar[r.id] = !!r.needsCar;
-    areasMemo = { areas: d.areas, needsCar };
+    const areaNames: Record<string, string> = {};
+    for (const a of d.areas) {
+      for (const r of a.regions ?? []) needsCar[r.id] = !!r.needsCar;
+      if (a.name?.zh) areaNames[a.id] = a.name.zh;
+    }
+    areasMemo = { areas: d.areas, needsCar, areaNames };
   }
-  const needsCar = areasMemo.needsCar;
+  const { needsCar, areaNames } = areasMemo;
   const data: EngineData = {
     getPlace: placesMemo.getPlace,
     stations: placesMemo.stations,
@@ -92,6 +96,7 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
     urban: tt.urban,
     urbanTransfers: tt.urbanTransfers,
     regionNeedsCar: needsCar,
+    areaNames,
     walkMeters: roads ? (a, b) => roads.cachedMeters('foot', a, b) : undefined,
     driveMeters: roads ? (a, b) => roads.cachedMeters('car', a, b) : undefined,
     driveMinutes: roads ? (a, b) => roads.cachedMinutes('car', a, b) : undefined,

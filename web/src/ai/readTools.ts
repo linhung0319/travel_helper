@@ -1,6 +1,6 @@
 // 查資料的工具（規格 §4.1）：畫面不動。能算的交給引擎，資料沒寫就原樣回傳 null，不說成沒有。
 
-import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, nightAreaOf, nightRunOf, openingOn, planItinerary, planLeg, type EngineData, type NewItem, type PlaceRecord } from '@travel-helper/engine';
+import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, mealsUnchosen, nightAreaOf, nightRunOf, openingOn, planItinerary, planLeg, type EngineData, type NewItem, type PlaceMeals, type PlaceRecord } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
 import type { ReservationStatus } from '../backend/types.ts';
 import { bookedConflicts, noteRows, reservationFor } from '../lib/reservations.ts';
@@ -60,7 +60,7 @@ export function withoutSources(v: unknown): unknown {
   return Object.fromEntries(Object.entries(v).filter(([k]) => !NO_AI_KEYS.has(k)).map(([k, x]) => [k, withoutSources(x)]));
 }
 
-/** 一樣的警告併成一則（計程車台數每一程都出現一次），itemIds 列出是哪幾項（T36） */
+/** 一樣的警告併成一則（同一句出現在好幾項），itemIds 列出是哪幾項（T36）。level：act 要處理、note 留意（T74a） */
 export function mergeWarnings(warnings: readonly { level: string; message: string; itemId?: string | null }[]) {
   const out = new Map<string, { level: string; message: string; itemIds: string[] }>();
   for (const w of warnings) {
@@ -85,6 +85,8 @@ export function createReadTools(d: AiDeps) {
   const nameOf = (id: string | null | undefined) => (id ? placeName(places().byId.get(id), id) : '');
   const who = (id: string) => memberName(d.shared.store.getState().members, id);
   const areaOf = (id: string) => places().byId.get(id)?.area;
+  /** 住宿資料的 meals（'varies'：有含不含晚餐兩種方案） */
+  const mealsOfPlace = (id: string) => places().byId.get(id)?.raw.meals as PlaceMeals;
   const areaName = (id: string) => {
     const a = places().areas.find((x) => x.id === id);
     return a ? a.name.zh || a.name.ja || id : id;
@@ -158,7 +160,7 @@ export function createReadTools(d: AiDeps) {
     };
   }
 
-  // basis（「近鐵時刻表＋kamome-5-kuzaki 時刻表」）是內部的檔名，AI 會照抄，不帶；等車 0 分、計程車費沒查的也不帶
+  // basis（「近鐵時刻表＋kamome-5-kuzaki 時刻表」）是內部的檔名，AI 會照抄，不帶；等車 0 分也不帶。計程車台數、車資引擎不算（T74a）
   const compactLeg = (l: Leg | null) =>
     l &&
     tidy({
@@ -167,7 +169,7 @@ export function createReadTools(d: AiDeps) {
       walkMinutes: l.walkMinutes,
       waitMinutes: l.waitMinutes || null,
       rides: l.rides.map((r) => tidy({ line: r.line, from: nameOf(r.from) || r.from, to: nameOf(r.to) || r.to, depart: r.depart, arrive: r.arrive, ifMissed: r.ifMissed ?? null })),
-      ...(l.taxi ? { taxi: tidy({ cars: l.taxi.cars, fareEstimateYen: l.taxi.fareEstimateYen }) } : {}),
+      ...(l.pathReplaced ? { pathReplaced: true } : {}),
       ...(l.taxiBefore ? { taxiBefore: { station: nameOf(l.taxiBefore.station), minutes: l.taxiBefore.minutes } } : {}),
       ...(l.taxiAfter ? { taxiAfter: { station: nameOf(l.taxiAfter.station), minutes: l.taxiAfter.minutes } } : {}),
     });
@@ -208,7 +210,7 @@ export function createReadTools(d: AiDeps) {
       label: dayLabel(date),
       area: it ? dayAreaLabel(dayAreaOf(it, date, areaOf), areaName) : null,
       ...(date === tripDates().at(-1) ? {} : { stayArea: stayAreaOf(it, date) }),
-      lodging: lodging ? { id: lodging, name: nameOf(lodging), meals: lodgingMealsOn(it!, date), ...marksOf(date, lodging) } : null,
+      lodging: lodging ? { id: lodging, name: nameOf(lodging), meals: lodgingMealsOn(it!, date), ...(mealsUnchosen(it, date, mealsOfPlace) ? { mealsUnchosen: true } : {}), ...marksOf(date, lodging) } : null,
       entries: p.entries.map((e) => {
         const item = e.itemId && it ? findItem(it, e.itemId)?.item : null;
         return {
@@ -273,8 +275,9 @@ export function createReadTools(d: AiDeps) {
           ...(p.date === last ? {} : { stayArea: stayAreaOf(it, p.date), ...(run ? { areaNight: `${run.index}/${run.total}` } : {}) }),
           regions: [...new Set(stops.map((e) => places().byId.get(e.placeId!)?.region).filter(Boolean))],
           stops: stops.map((e) => ({ name: nameOf(e.placeId), ...marksOf(p.date, e.placeId) })),
-          lodging: lodging ? { name: nameOf(lodging), ...marksOf(p.date, lodging) } : null,
-          warnings: p.warnings.length,
+          lodging: lodging ? { name: nameOf(lodging), ...marksOf(p.date, lodging), ...(mealsUnchosen(it, p.date, mealsOfPlace) ? { mealsUnchosen: true } : {}) } : null,
+          // 要處理的提醒數（act）；留意的不算
+          warnings: p.warnings.filter((w) => w.level === 'act').length,
           candidates: dayCandidates(s.candidates, p.date, it, places().byId).length,
           tiring: p.stats.tiring,
           returnTime: p.stats.returnTime,
@@ -297,8 +300,8 @@ export function createReadTools(d: AiDeps) {
         changes: r.changes,
         // 區要寫名字（checkProposal 的摘要只有地點名）
         summary: describeChanges(r.changes, { nameOf: (id) => nameOf(id), areaName, plan: r.after }),
-        // 一樣的警告（計程車台數每一程一則）只留一則
-        newWarnings: [...new Set(r.newWarnings.map((w) => w.message))],
+        // 一樣的警告只留一則；level：act 要處理、note 留意
+        newWarnings: mergeWarnings(r.newWarnings).map(({ level, message }) => ({ level, message })),
         resolvedWarnings: [...new Set(r.resolvedWarnings.map((w) => w.message))],
       };
     } catch (e) {
@@ -318,14 +321,14 @@ export function createReadTools(d: AiDeps) {
     }
   }
 
-  /** 這份操作新出現的警告（提議卡顯示，不是工具）；資訊類（計程車台數）不算，算不出來是空的 */
+  /** 這份操作新出現的警告（提議卡顯示，不是工具）；只算要處理的（act），算不出來是空的 */
   function proposalWarnings(ops: Op[]): string[] {
     const engine = d.engine();
     const before = places().itinerary;
     if (!engine || !before) return [];
     try {
       const after = applyOps(before, ops, opsContext(d));
-      return checkProposal(before, after, engine, d.config, (id) => nameOf(id)).newWarnings.filter((w) => w.level !== 'info').map((w) => w.message);
+      return checkProposal(before, after, engine, d.config, (id) => nameOf(id)).newWarnings.filter((w) => w.level === 'act').map((w) => w.message);
     } catch (e) {
       if (e instanceof ItineraryError) return [];
       throw e;
@@ -396,7 +399,7 @@ export function createReadTools(d: AiDeps) {
         leg.alternatives
           ?.filter((x) => !(x.arrive === leg.arrive && x.minutes === leg.minutes && x.walkMinutes === leg.walkMinutes))
           .map((x) => ({ summary: x.summary, arrive: x.arrive, minutes: x.minutes, walkMinutes: x.walkMinutes })) ?? [],
-      warnings: warnings.map((w) => w.message),
+      warnings: warnings.map(({ level, message }) => ({ level, message })),
       ...(a.coords && b.coords ? { mapsUrl: mapsUrl(a.coords, b.coords, leg.mode) } : {}),
       note: '分鐘已照全員（長輩、小孩）的步行速度算；實際班次請在 Google Maps 確認',
     };

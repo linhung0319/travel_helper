@@ -433,7 +433,10 @@ export const SCRIPTS: Script[] = [
         const disliked = (e.results.get_opinions.places as any[]).filter((p) => p.dislikes.length);
         return {
           text: [
-            day.warnings.length ? `有 ${day.warnings.length} 個提醒：${day.warnings.map((w: any) => w.message).join('；')}` : '引擎沒有發現衝突。',
+            (() => {
+              const act = day.warnings.filter((w: any) => w.level === 'act');
+              return act.length ? `有 ${act.length} 個要處理：${act.map((w: any) => w.message).join('；')}` : '引擎沒有發現要處理的問題。';
+            })(),
             day.candidates.length ? `候選：${day.candidates.map((c: any) => tag(c.id)).join('、')}。` : '',
             ...disliked.map((p) => `${p.dislikes.join('、')} 不喜歡 ${tag(p.id)}。`),
           ].filter(Boolean).join('\n'),

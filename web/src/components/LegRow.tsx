@@ -1,8 +1,8 @@
 // 兩張資料卡中間的交通（第五輪 §3，第八輪 §13.6 改成交通卡）：資料準備在 useLegView（網頁 LegRow、手機 MobileLeg 都用），畫出來的是 shared/ui/LegLine.tsx
-// （連線上的方式圓點；卡片第一行方式＋分鐘＋「⚠ 數字」，第二行搭車的膠囊或計程車台數，備註；右邊「map ↗」；T29c spec §8.2）。
+// （連線上的方式圓點；卡片第一行方式＋分鐘＋「⚠ 數字」，第二行搭車的膠囊，備註；右邊「map ↗」；T29c spec §8.2）。
 // 點那一行：地圖只畫這一段（appStore.legRoute，不是 AI 的 routes，所以不出現「清掉」；搭車的照班次的站畫），每一程上下車的站亮起來，
 // 地圖框住這段的兩端；再點一次或點別段就恢復，收起來時地圖回到打開前的範圍（中間被別的操作移過就不回去）（第七輪 §8.2）。
-// 點開後（T29c spec §8.3、§8.4）：最上面補充資訊框（這段的警告文字、計程車起跳價、前一站可以多待；淡灰底，沒有就不畫），
+// 點開後（T29c spec §8.3、§8.4）：最上面補充資訊框（這段的警告文字、前一站可以多待；淡灰底，沒有就不畫），
 // 下面搭車的步驟（legView 的 compactSteps）：一個節點一行（左邊時間、中間細線和圓圈、右邊站名，同一行右邊「等 N 分」或「走 N 分 ↓」），一程一行
 // （交通方式顏色外框的膠囊＋發車時間、右邊「錯過的話」的標籤；車程分鐘看前後節點的時間）。上車站（名稱後面「›」）、膠囊、標籤點了都在地圖那側開那一程的班次表
 // （uiStore.openTimetable，只能看）。買票太趕在上車站下面一行橘字；轉乘有說明、有電梯路線的另外一行，說明摺起來。
@@ -25,7 +25,7 @@ import { shared } from '../appShared.ts';
 import { useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { useEditing } from './timelineEdit.ts';
 import { dayPlanOf, engineConfig } from '../planStore.ts';
-import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, taxiCarsText, type EditorMode } from '../lib/planView.ts';
+import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, type EditorMode } from '../lib/planView.ts';
 import { compactSteps, infoLines, legChips, legHidden, legWarnings, pathRows, slackHint, specAfterPickPath, ticketTightText, warnCount, type CompactStep } from '../lib/legView.ts';
 import { rideStations } from '../lib/routing.ts';
 import { RIDE_COLOR } from '../lib/modeIcon.ts';
@@ -384,7 +384,7 @@ function unframeLeg() {
 }
 
 /**
- * 一段交通要畫的東西（網頁版的交通卡、手機版的一行都用）：方式、膠囊或台數、這段的警告、補充資訊、步驟、點開了沒有、編輯中的設定。
+ * 一段交通要畫的東西（網頁版的交通卡、手機版的一行都用）：方式、膠囊、這段的警告、補充資訊、步驟、點開了沒有、編輯中的設定。
  * 點開時地圖只畫這一段（效果在這裡）；不用顯示（不用移動、0 分）時回 null
  */
 export function useLegView(entry: TimelineEntry, date: string) {
@@ -470,12 +470,11 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const from = fromId ? byId.get(fromId) : undefined;
   const to = toId ? byId.get(toId) : undefined;
   const margin = engineConfig.transit.ticketMargin;
-  // 收合的第二行：搭車的膠囊、計程車的台數（步行沒有）
+  // 收合的第二行：搭車的膠囊（計程車、步行沒有；計程車台數 T74a 拿掉）
   const chips = leg.rides.length ? legChips(leg, nameOf) : null;
-  const taxi = taxiCarsText(leg);
-  const sub = taxi ? [taxi] : [];
+  const sub: string[] = [];
   const warns = warnCount(warnings);
-  const info = infoLines(leg, warnings, slackHint(leg, margin));
+  const info = infoLines(warnings, slackHint(leg, margin));
   const steps = compactSteps(leg, from ? nameOf(from.id) : '', to ? nameOf(to.id) : '', nameOf, margin);
   const transit = steps.length > 0;
   // 點開有東西看（步驟、補充資訊框、編輯器）或計程車（spec §8.3 也能點開）才畫小箭頭；不在編輯中的步行沒有就不畫

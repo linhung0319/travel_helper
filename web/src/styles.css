@@ -1479,7 +1479,8 @@ button.planning-done {
   font-size: 0.85rem;
 }
 
-.warning-error {
+.warning-error,
+.warning-act {
   color: var(--bad);
 }
 
@@ -1487,7 +1488,8 @@ button.planning-done {
   color: var(--warn);
 }
 
-.warning-info {
+.warning-info,
+.warning-note {
   color: var(--muted);
 }
 
@@ -3101,7 +3103,8 @@ body.dragging-plan [data-drop-ai].drop-over {
   cursor: pointer;
 }
 
-.warn-toggle.level-error {
+.warn-toggle.level-error,
+.warn-toggle.level-act {
   border-color: var(--bad);
   color: var(--bad);
 }

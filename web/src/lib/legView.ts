@@ -54,10 +54,10 @@ export function legChips(leg: Leg, nameOf: (id: string) => string): { rides: { m
   };
 }
 
-const LEVEL_ORDER: Record<EngineWarning['level'], number> = { error: 0, warning: 1, info: 2 };
+const LEVEL_ORDER: Record<EngineWarning['level'], number> = { act: 0, note: 1 };
 const byLevel = (ws: EngineWarning[]) => [...ws].sort((a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level]);
 
-/** 這段交通的警告（引擎標了 leg: true 的）：目的地是這張卡的；回住宿那段是沒有 itemId 的。依等級排（error、warning、info） */
+/** 這段交通的警告（引擎標了 leg: true 的）：目的地是這張卡的；回住宿那段是沒有 itemId 的。要處理的在前 */
 export function legWarnings(day: DayPlan, entry: TimelineEntry): EngineWarning[] {
   const lodging = entry.kind === 'lodging';
   if (!lodging && !entry.itemId) return [];
@@ -74,22 +74,17 @@ export function legHidden(leg: Leg | null, userSet: boolean, ws: EngineWarning[]
   return leg.mode === 'none' || (leg.minutes === 0 && !leg.rides.length);
 }
 
-/** 第一行「⚠ 數字」：只數 error、warning */
+/** 第一行「⚠ 數字」：只數要處理的（交通只剩查不到、末班） */
 export function warnCount(ws: EngineWarning[]): number {
-  return ws.filter((w) => w.level === 'error' || w.level === 'warning').length;
+  return ws.filter((w) => w.level === 'act').length;
 }
 
-/** 補充資訊框不放的警告：ticket-tight 放在步驟的節點下面，taxi 和台數、起跳價重複 */
-const INFO_HIDDEN = new Set(['ticket-tight', 'taxi']);
+/** 補充資訊框不放的警告：ticket-tight 放在步驟的節點下面 */
+const INFO_HIDDEN = new Set(['ticket-tight']);
 
-/** 點開後補充資訊框的行（spec §8.3）：警告文字（warning 以上在前）、計程車起跳價、前一站可以多待；沒有就是 [] */
-export function infoLines(leg: Leg, ws: EngineWarning[], slack: string | null): string[] {
+/** 點開後補充資訊框的行（spec §8.3）：警告文字（要處理的在前）、前一站可以多待；沒有就是 [] */
+export function infoLines(ws: EngineWarning[], slack: string | null): string[] {
   const out = byLevel(ws.filter((w) => !INFO_HIDDEN.has(w.code))).map((w) => w.message);
-  const taxi = leg.taxi;
-  if (taxi?.fareFromYen != null) {
-    const jumbo = /大型 ([\d,]+) 円/.exec(taxi.note)?.[1];
-    out.push(`每台起跳 ${taxi.fareFromYen.toLocaleString('en-US')} 円${jumbo ? `（大型 ${jumbo} 円）` : ''}`);
-  }
   if (slack) out.push(slack);
   return out;
 }

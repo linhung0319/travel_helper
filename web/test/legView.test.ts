@@ -195,7 +195,6 @@ const kashikoLeg: Leg = {
 };
 
 // 伊勢市 10:00 → 朝熊（計程車）
-const TAXI_NOTE = '15 人：一般計程車 4 台，或大型計程車（9 人座）2 台；每台起跳 700 円（大型 840 円），加算費率未查';
 const taxiLeg: Leg = {
   ...base,
   mode: 'taxi',
@@ -206,12 +205,8 @@ const taxiLeg: Leg = {
   minutes: 13,
   rides: [],
   specified: false,
-  taxi: { cars: 4, jumboCars: 2, fareFromYen: 700, fareEstimateYen: null, note: TAXI_NOTE },
 };
-const taxiWarnings: EngineWarning[] = [
-  { code: 'long-wait', level: 'info', message: '電車要等 39 分，改搭計程車', itemId: 'v-asama', leg: true },
-  { code: 'taxi', level: 'info', message: TAXI_NOTE, itemId: 'v-asama', leg: true },
-];
+const taxiWarnings: EngineWarning[] = [{ code: 'long-wait', level: 'note', message: '電車要等 39 分，改搭計程車', itemId: 'v-asama', leg: true }];
 
 // 只有 rides 的舊資料（沒有 ready、transfers、walkBefore、ifMissed）
 const bareLeg: Leg = {
@@ -290,18 +285,19 @@ const dayWith = (warnings: EngineWarning[]): DayPlan => ({
 
 test('legWarnings：只取這段交通的（leg: true），回住宿那段取沒有 itemId 的；照等級排', () => {
   const ws: EngineWarning[] = [
-    { code: 'long-wait', level: 'info', message: '等很久', itemId: 'v1', leg: true },
-    { code: 'closed', level: 'error', message: '公休', itemId: 'v1' },
-    { code: 'bus-crowd', level: 'warning', message: '巴士擠', itemId: 'v1', leg: true },
-    { code: 'missed-last', level: 'error', message: '沒車', itemId: 'v1', leg: true },
-    { code: 'bus-crowd', level: 'warning', message: '別段', itemId: 'v2', leg: true },
-    { code: 'ticket-tight', level: 'warning', message: '回住宿太趕', leg: true },
-    { code: 'walk-total', level: 'warning', message: '整天' },
+    { code: 'long-wait', level: 'note', message: '等很久', itemId: 'v1', leg: true },
+    { code: 'closed', level: 'act', message: '公休', itemId: 'v1' },
+    { code: 'rail-taxi', level: 'note', message: '要叫車', itemId: 'v1', leg: true },
+    { code: 'missed-last', level: 'act', message: '沒車', itemId: 'v1', leg: true },
+    { code: 'rail-taxi', level: 'note', message: '別段', itemId: 'v2', leg: true },
+    { code: 'ticket-tight', level: 'note', message: '回住宿太趕', leg: true },
+    { code: 'daily-walk', level: 'note', message: '整天' },
   ];
   const day = dayWith(ws);
+  // 要處理的在前，同級照原本的順序
   assert.deepEqual(
     legWarnings(day, entry('visit', 'v1')).map((w) => w.message),
-    ['沒車', '巴士擠', '等很久'],
+    ['沒車', '等很久', '要叫車'],
   );
   assert.deepEqual(
     legWarnings(day, entry('lodging', null)).map((w) => w.message),
@@ -318,35 +314,28 @@ test('legHidden：不用移動、0 分沒搭車的藏起來；交通未定（缺
   assert.equal(legHidden({ ...plain, mode: 'walk', minutes: 0 }, true, []), false);
   // 引擎 autoLeg 缺座標：mode unknown、0 分、沒有班次，travel-unknown 錯誤標了 leg: true（資料卡不顯示）→ 不能藏
   const unknown = { ...plain, mode: 'unknown', minutes: 0 } as Leg;
-  const err: EngineWarning = { code: 'travel-unknown', level: 'error', message: '缺座標，算不出交通時間', itemId: 'v1', leg: true };
+  const err: EngineWarning = { code: 'travel-unknown', level: 'act', message: '這個點沒有位置，點這段填方式和分鐘', itemId: 'v1', leg: true };
   assert.equal(legHidden(unknown, false, [err]), false);
   assert.equal(legHidden(unknown, false, []), false);
   assert.equal(legHidden({ ...plain, mode: 'walk', minutes: 0 }, false, [err]), false);
   assert.equal(legHidden(null, false, []), true);
 });
 
-test('warnCount：只數 error、warning', () => {
-  assert.equal(warnCount([{ code: 'bus-crowd', level: 'warning', message: '' }, { code: 'transfer-walk', level: 'info', message: '' }, { code: 'x', level: 'error', message: '' }]), 2);
-  assert.equal(warnCount([{ code: 'long-wait', level: 'info', message: '' }]), 0);
+test('warnCount：只數要處理的（act）', () => {
+  assert.equal(warnCount([{ code: 'missed-last', level: 'act', message: '' }, { code: 'rail-taxi', level: 'note', message: '' }, { code: 'travel-unknown', level: 'act', message: '' }]), 2);
+  assert.equal(warnCount([{ code: 'long-wait', level: 'note', message: '' }]), 0);
   assert.equal(warnCount([]), 0);
 });
 
-test('infoLines：警告文字（ticket-tight、taxi 不放）、計程車起跳價、可以多待', () => {
-  assert.deepEqual(infoLines(taxiLeg, taxiWarnings, null), ['電車要等 39 分，改搭計程車', '每台起跳 700 円（大型 840 円）']);
-  // note 裡沒有大型的價錢：只寫一般的；起跳價 null 不寫
-  assert.deepEqual(infoLines({ ...taxiLeg, taxi: { ...taxiLeg.taxi!, note: '15 人' } }, [], null), ['每台起跳 700 円']);
-  assert.deepEqual(infoLines({ ...taxiLeg, taxi: { ...taxiLeg.taxi!, fareFromYen: null } }, [], null), []);
+test('infoLines：警告文字（ticket-tight 不放，要處理的在前）、可以多待；計程車不再寫起跳價（T74a）', () => {
+  assert.deepEqual(infoLines(taxiWarnings, null), ['電車要等 39 分，改搭計程車']);
+  assert.deepEqual(infoLines([], null), []);
   const ws: EngineWarning[] = [
-    { code: 'transfer-walk', level: 'info', message: '轉乘要走 16 分', leg: true },
-    { code: 'ticket-tight', level: 'warning', message: '大阪難波到站 3 分就發車，買特急券可能來不及', leg: true },
-    { code: 'bus-crowd', level: 'warning', message: '路線巴士不能預約，15 人可能擠不上同一班', leg: true },
+    { code: 'rail-taxi', level: 'note', message: '鵜方以後沒有車，要先預約計程車', leg: true },
+    { code: 'ticket-tight', level: 'note', message: '大阪難波到站 3 分就發車，買特急券可能來不及', leg: true },
+    { code: 'missed-last', level: 'act', message: '末班車已過，改搭計程車', leg: true },
   ];
-  assert.deepEqual(infoLines(southLeg, ws, '前一站多待 5 分，一樣搭 16:10'), [
-    '路線巴士不能預約，15 人可能擠不上同一班',
-    '轉乘要走 16 分',
-    '前一站多待 5 分，一樣搭 16:10',
-  ]);
-  assert.deepEqual(infoLines(iseLeg, [], null), []);
+  assert.deepEqual(infoLines(ws, '前一站多待 5 分，一樣搭 16:10'), ['末班車已過，改搭計程車', '鵜方以後沒有車，要先預約計程車', '前一站多待 5 分，一樣搭 16:10']);
 });
 
 // --- 錯過的話 -------------------------------------------------------------------

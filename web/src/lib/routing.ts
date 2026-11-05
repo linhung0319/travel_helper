@@ -50,7 +50,7 @@ export function routeLabel(_mode: TravelMode, minutes: number | null, label: str
 export function minutesFromMeters(
   mode: TravelMode,
   meters: number,
-  party: PartyProfile,
+  _party: PartyProfile,
   cfg: EngineConfig = DEFAULT_CONFIG,
   roadMinutes?: number | null,
 ): number | null {
@@ -58,7 +58,7 @@ export function minutesFromMeters(
     // 實際路徑不用再乘繞路係數
     return minutesForMeters(meters, { metersPerMinute: cfg.walk.metersPerMinute, detourFactor: 1, groupFactor: walkFactor(cfg) });
   }
-  if (mode === 'taxi' || mode === 'charter' || mode === 'car') return taxiEstimate([0, 0], [0, 0], party, cfg, meters, roadMinutes).minutes;
+  if (mode === 'taxi' || mode === 'charter' || mode === 'car') return taxiEstimate([0, 0], [0, 0], cfg, meters, roadMinutes).minutes;
   return null;
 }
 

@@ -196,7 +196,10 @@ test('時間軸：住宿卡從 nights 畫；只定區是住宿未排；住宿不
   assert.ok(p.days.find((d) => d.date === D2)!.gaps.some((g) => g.kind === 'lodging'));
   assert.ok(!day3.warnings.some((w) => w.code === 'lodging-area-mismatch'));
   it = setLodging(it, D3, 'toba-inn', null, 'ise');
-  assert.ok(planItinerary(it, DATA).days.find((d) => d.date === D3)!.warnings.some((w) => w.code === 'lodging-area-mismatch'));
+  const mis = planItinerary(it, DATA).days.find((d) => d.date === D3)!.warnings.find((w) => w.code === 'lodging-area-mismatch');
+  assert.deepEqual([mis?.level, mis?.message], ['act', '不在這晚選的區']);
+  const named = planItinerary(it, { ...DATA, areaNames: { ise: '伊勢' } }).days.find((d) => d.date === D3)!.warnings.find((w) => w.code === 'lodging-area-mismatch');
+  assert.equal(named?.message, '不在這晚選的伊勢');
 });
 
 test('只重算有改的那天：改了這晚的住宿，這天和隔天重算，其他天沿用', () => {

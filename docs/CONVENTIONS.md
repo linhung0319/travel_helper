@@ -450,12 +450,12 @@ travel_helper/
 
 - **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
 - **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
-  - `entries`：start（出發）、visit、flight、free、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`（每一程的「錯過的話」`ifMissed`）、轉乘步行 `transfers`、候選走法 `alternatives`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `entries`：start（出發）、visit、flight、free、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`（每一程的「錯過的話」`ifMissed`）、轉乘步行 `transfers`、候選走法 `alternatives`、出發後還有沒有班次 `transitAvailable`、選的走法這時間沒車改用自動的 `pathReplaced`、怎麼算的 `basis`；計程車不算台數、車資）。
   - `gaps`：`lodging`「住宿（未排）」、`idle`「空檔 N 分」（不再產生午餐、晚餐的空檔），附建議插在哪兩個項目之間。
-  - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`placeId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
+  - `warnings`：`code`、`level`（`act` 要處理／`note` 留意，interaction-design §34）、`itemId`、`placeId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
   - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。
 - **改了什麼**：`diffItinerary(before, after)` 列出新增、刪除、移到別天、換順序、改欄位、改住宿；`checkProposal()` 套用前後都跑引擎，附文字摘要（「2/5：＋鳥羽水族館 09:38～11:38」）和新出現、消失的警告（T16 的提議、T15 的確認畫面用）。
-- **規則的數字**在 `packages/engine/src/config.ts`（`DEFAULT_CONFIG`），預設照 §5；§5 沒寫的：午餐 11:00～13:30、晚餐 17:30～19:30、一泊二食 17:00 前到、落地到出關 75 分、起飛前 120 分到機場、電車等車 30 分內、計程車用 OSRM 的開車時間（查不到時用距離 ÷ 30 km/h 估算，沒有路線距離時用直線 × 1.3；不加叫車時間）、加算費率未查（`null`，只顯示起跳價）。交通不加緩衝（2026-10-25 拿掉）。
+- **規則的數字**在 `packages/engine/src/config.ts`（`DEFAULT_CONFIG`），預設照 §5；§5 沒寫的：午餐 11:00～13:30、晚餐 17:30～19:30、一泊二食 17:00 前到、落地到出關 75 分、起飛前 120 分到機場、電車等車 30 分內、計程車用 OSRM 的開車時間（查不到時用距離 ÷ 30 km/h 估算，沒有路線距離時用直線 × 1.3；不加叫車時間）、坐車 60 分以上算一次休息。交通不加緩衝（2026-10-25 拿掉）。
 
 ---
 

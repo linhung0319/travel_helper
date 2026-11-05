@@ -127,7 +127,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       run: ro(read.get_place),
     },
     { name: 'get_day', kind: 'read', description: '引擎算好的一天：日期和星期（label）、每項時間、交通、空檔、警告、候選。回答時間問題一定要用這裡的數字，不要自己算。on=draft 看的是目前提議後的行程（接著改提議時用）。', input_schema: obj({ date: str(DATE), on: { enum: ['draft'] } }, ['date']), run: ro(read.get_day) },
-    { name: 'get_trip_overview', kind: 'read', description: '整趟的摘要：每天在哪一區（area，移動日「志摩 → 鳥羽」）、每晚住哪一區（stayArea、areaNight 連住第幾晚）和住宿、去哪、警告數、候選數；undecidedNights 是還沒決定住哪一區的晚上。', input_schema: obj({}), run: ro(read.get_trip_overview) },
+    { name: 'get_trip_overview', kind: 'read', description: '整趟的摘要：每天在哪一區（area，移動日「志摩 → 鳥羽」）、每晚住哪一區（stayArea、areaNight 連住第幾晚）和住宿（mealsUnchosen：有含不含晚餐兩種方案還沒選）、去哪、要處理的警告數、連兩天累看 tiring、候選數；undecidedNights 是還沒決定住哪一區的晚上。', input_schema: obj({}), run: ro(read.get_trip_overview) },
     {
       name: 'check_changes',
       kind: 'read',

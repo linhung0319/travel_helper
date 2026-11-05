@@ -69,6 +69,7 @@ test('startersFor：第一張照規則，另外兩張補滿；同一件事不問
   const lodging = startersFor(input(noLodging, { wishesUnplaced: 2, warnings: 1 }));
   assert.deepEqual(lodging.map((s) => s.q), ['幫我決定前幾晚住哪', '哪天最趕？', '把想去的排進行程']);
   assert.ok(lodging.every((s) => s.why));
+  assert.equal(lodging[1].why, '1 天要處理'); // 只數有要處理的天（T74a）
   const popular = startersFor(input({}, { popularUnplaced: 1, wishesUnplaced: 3 }));
   assert.deepEqual(popular.map((s) => s.q), ['大家想去的還沒排的，排哪天？', '鳥羽能坐 15 人的海鮮餐廳', '長輩走起來輕鬆的景點']);
   assert.equal(startersFor(input({}, { day: '2027-02-05' }))[1].q, '幫我檢查 2/5');
@@ -137,7 +138,7 @@ test('buildStarterInput：引擎算好的餐和錯誤', () => {
       gaps: [],
       stats: {},
       entries: date === '2027-02-03' ? [entry('lunch'), entry('dinner')] : [],
-      warnings: date === '2027-02-04' ? [{ code: 'info', level: 'info', message: '小事' }, { code: 'late', level: 'error', message: '趕不上' }] : [],
+      warnings: date === '2027-02-04' ? [{ code: 'stairs', level: 'note', message: '小事' }, { code: 'late', level: 'act', message: '趕不上' }] : [],
     })),
   } as never;
   const i = buildStarterInput({ itinerary: emptyItinerary(), plan, votes: [], byId: new Map(), areas: AREAS, day: null });
