@@ -377,28 +377,18 @@ test('stopMarks：起點「起」、回住宿「終」、中間 1、2、3', () =
   assert.deepEqual(byPlace.get('yokoyama'), ['1']);
 });
 
-test('stopMarks：航班、分組', () => {
+test('stopMarks：航班、同一點去兩次', () => {
   // 起點是航班抵達（機場）→ 0；出發的航班是最後一個號碼
   const flights = { entries: [entry('flight', 'kix'), entry('visit', 'y'), entry('flight', 'kix2')] } as unknown as DayPlan;
   assert.deepEqual([...stopMarks(flights, () => false).byPlace], [['kix', ['起']], ['y', ['1']], ['kix2', ['終']]]);
   // 起點不是住宿也是 0
   const other = { entries: [entry('start', 'somewhere'), entry('visit', 'y')] } as unknown as DayPlan;
   assert.deepEqual([...stopMarks(other, () => false).byPlace], [['somewhere', ['起']], ['y', ['1']]]);
-  // 分組：先各組的點、再會合點，連續編
-  const split = entry('meet', 'meet-pt', {
-    groups: [
-      { id: 'g1', name: 'A', entries: [entry('visit', 'ga'), entry('meet', 'meet-pt')] },
-      { id: 'g2', name: 'B', entries: [entry('visit', 'gb')] },
-    ],
-  });
-  const day = { entries: [entry('start', 'hotel-1'), entry('visit', 'x'), split, entry('visit', 'x'), entry('lodging', 'hotel-2')] } as unknown as DayPlan;
+  const day = { entries: [entry('start', 'hotel-1'), entry('visit', 'x'), entry('visit', 'y'), entry('visit', 'x'), entry('lodging', 'hotel-2')] } as unknown as DayPlan;
   const { byPlace, byEntry } = stopMarks(day, (id) => id.startsWith('hotel'));
   assert.deepEqual(byPlace.get('hotel-1'), ['起']);
-  assert.deepEqual(byPlace.get('ga'), ['2']);
-  assert.deepEqual(byPlace.get('gb'), ['3']);
-  assert.deepEqual(byPlace.get('meet-pt'), ['4']);
   // 同一個點去兩次
-  assert.deepEqual(byPlace.get('x'), ['1', '5']);
+  assert.deepEqual(byPlace.get('x'), ['1', '3']);
   assert.deepEqual(byPlace.get('hotel-2'), ['終']);
   assert.equal(byEntry.get(day.entries[0]), '起');
 });
@@ -430,12 +420,6 @@ test('itineraryMarks：某一天起終點同一點是「起」，點了最後一
   assert.equal(itineraryMarks(plan, '2027-02-03', '2027-02-03:visit:y').get('hotel'), '起');
   // 別天的交通卡不影響
   assert.equal(itineraryMarks(plan, '2027-02-03', '2027-02-04:lodging').get('hotel'), '起');
-  // 分組裡的一段：從分組前的點出發
-  const split = entry('meet', 'mp', { groups: [{ id: 'g1', name: 'A', entries: [entry('visit', 'ga'), entry('meet', 'mp', { itemId: 'm1' })] }] });
-  const g = { days: [d('2027-02-04', [entry('start', 'h'), entry('visit', 'x'), split, entry('lodging', 'x')])] };
-  assert.deepEqual([...itineraryMarks(g, '2027-02-04', '2027-02-04:visit:ga')].filter(([id]) => id === 'x'), [['x', '1']]);
-  assert.equal(itineraryMarks(g, '2027-02-04', '2027-02-04:lodging').get('x'), '終');
-
   // 同一點一天去兩次（1 和 4）：點開 4→5 那段，起點寫 4（不是最小的 1）；點開 0→1 那段，終點寫 1（不是最大的 4）
   const twice = { days: [d('2027-02-05', [entry('start', 'h'), entry('visit', 'x', { itemId: 'v1' }), entry('visit', 'a'), entry('visit', 'b'), entry('visit', 'x', { itemId: 'v4' }), entry('visit', 'c'), entry('lodging', 'h2')])] };
   assert.equal(itineraryMarks(twice, '2027-02-05', '2027-02-05:visit:c').get('x'), '4');
@@ -526,17 +510,16 @@ test('waitNote：指定開始時間、午餐、開門、其他', () => {
 
 test('timelineRows：等待的空檔（idle）不另外一列，「住宿（未排）」照舊放在最後', () => {
   const gap = (kind: 'idle' | 'lodging', afterItemId: string | null, beforeItemId: string | null) => ({ kind, date: '2027-02-03', label: kind === 'idle' ? '空檔 67 分' : '住宿（未排）', from: null, to: null, afterItemId, beforeItemId });
-  const split = entry('meet', 'meet-pt', { itemId: 'sp', groups: [{ id: 'g1', name: 'A', entries: [entry('visit', 'ga')] }] });
+  const last = entry('visit', 'b', { itemId: 'vb' });
   const day = {
-    entries: [entry('start', 'hotel'), entry('visit', 'a'), entry('visit', 'r', { waitMinutes: 67 }), split],
-    gaps: [gap('idle', 'a', 'r'), gap('idle', 'r', 'sp'), gap('lodging', 'sp', null)],
+    entries: [entry('start', 'hotel'), entry('visit', 'a'), entry('visit', 'r', { waitMinutes: 67 }), last],
+    gaps: [gap('idle', 'a', 'r'), gap('idle', 'r', 'vb'), gap('lodging', 'vb', null)],
   } as unknown as DayPlan;
   const rows = timelineRows(day);
   assert.deepEqual(
     rows.map((r) => (r.kind === 'gap' ? `gap:${r.gap.kind}` : `entry:${r.entry.placeId}`)),
-    ['entry:hotel', 'entry:a', 'entry:r', 'entry:meet-pt', 'gap:lodging'],
+    ['entry:hotel', 'entry:a', 'entry:r', 'entry:b', 'gap:lodging'],
   );
-  assert.ok(rows.every((r) => r.kind === 'gap' || !('gapsBeforeMeet' in r)));
 });
 
 test('dayBar：類型色段落、交通、等待', () => {
@@ -563,32 +546,24 @@ test('dayBar：類型色段落、交通、等待', () => {
   ]);
 });
 
-test('dayBar：交通卡裡的等車切成 wait 段；不是景點、餐廳的停留是 other；分組每組一條 lane', () => {
+test('dayBar：交通卡裡的等車切成 wait 段；不是景點、餐廳的停留是 other', () => {
   const transit = { ...busLeg, depart: '10:00', arrive: '11:00', ready: ['10:10'], rides: [{ ...busLeg.rides[0], depart: '10:30', arrive: '10:52' }] };
-  const split = entry('meet', 'm', {
-    itemId: 's',
-    arrive: '12:00',
-    start: '12:00',
-    end: '12:00',
-    groups: [
-      { id: 'g1', name: 'A', entries: [entry('visit', 'ga', { itemId: 'ga', travel: leg('11:30', 20), arrive: '11:50', start: '11:50', end: '11:55' })] },
-      { id: 'g2', name: 'B', entries: [entry('visit', 'gb', { itemId: 'gb', travel: leg('11:30', 10), arrive: '11:40', start: '11:45', end: '11:50' })] },
-    ],
-  });
   const day = {
-    entries: [entry('start', 'h', { start: '10:00', end: '10:00' }), entry('visit', 'st', { itemId: 'v1', travel: transit, arrive: '11:00', start: '11:00', end: '11:30' }), split],
+    entries: [
+      entry('start', 'h', { start: '10:00', end: '10:00' }),
+      entry('visit', 'st', { itemId: 'v1', travel: transit, arrive: '11:00', start: '11:00', end: '11:30' }),
+      entry('visit', 'gb', { itemId: 'gb', travel: leg('11:30', 10), arrive: '11:40', start: '11:45', end: '11:50' }),
+    ],
   } as unknown as DayPlan;
   const bar = dayBar(day, (id) => (id === 'st' ? 'station' : 'spot'));
-  assert.deepEqual(bar.filter((s) => s.lane === 0).map((s) => [s.kind, s.from, s.to, s.itemId]), [
-    ['travel', '10:00', '10:10', 'v1'],
-    ['wait', '10:10', '10:30', 'v1'],
-    ['travel', '10:30', '11:00', 'v1'],
-    ['other', '11:00', '11:30', 'v1'],
-  ]);
-  assert.deepEqual(bar.filter((s) => s.lane === 2).map((s) => [s.kind, s.from, s.to, s.mark]), [
-    ['travel', '11:30', '11:40', null],
-    ['wait', '11:40', '11:45', null],
-    ['spot', '11:45', '11:50', '3'],
+  assert.deepEqual(bar.map((s) => [s.kind, s.from, s.to, s.itemId, s.mark]), [
+    ['travel', '10:00', '10:10', 'v1', null],
+    ['wait', '10:10', '10:30', 'v1', null],
+    ['travel', '10:30', '11:00', 'v1', null],
+    ['other', '11:00', '11:30', 'v1', '1'],
+    ['travel', '11:30', '11:40', 'gb', null],
+    ['wait', '11:40', '11:45', 'gb', null],
+    ['spot', '11:45', '11:50', 'gb', '2'],
   ]);
 });
 
@@ -666,12 +641,12 @@ const leg = (depart: string, minutes: number): NonNullable<TimelineEntry['travel
   basis: '',
 });
 
-test('daySummary：出發、回住宿、交通總分鐘（含各組、不含緩衝）、警告數（不算 info）', () => {
+test('daySummary：出發、回住宿、交通總分鐘（不含緩衝）、警告數（不算 info）', () => {
   const day = {
     entries: [
       entry('start', 'h', { start: '09:30' }),
       entry('visit', 'a', { travel: leg('09:30', 10) }),
-      entry('meet', 'm', { groups: [{ id: 'g', name: 'g', entries: [entry('visit', 'b', { travel: leg('11:00', 5) })] }] }),
+      entry('visit', 'b', { travel: leg('11:00', 5) }),
       entry('lodging', 'h', { travel: leg('15:00', 20), arrive: '15:30' }),
     ],
     warnings: [{ level: 'warning' }, { level: 'info' }, { level: 'error' }],
@@ -752,12 +727,11 @@ test('多點卡片的清單：主要的排第一、走路分鐘是 null，其他
 
 // --- 交通細列：每一程、設定的對象、Google Maps 連結 ---
 
-test('legTargetOf：住宿用日期，造訪、自由時間、航班用項目 ID，起點和會合不能改', () => {
+test('legTargetOf：住宿用日期，造訪、自由時間、航班用項目 ID，起點不能改', () => {
   assert.deepEqual(legTargetOf(entry('lodging', 'hotel-a', { itemId: null }), '2027-02-05'), { lodging: '2027-02-05' });
   assert.deepEqual(legTargetOf(entry('visit', 'a', { itemId: 'v1' }), '2027-02-05'), { itemId: 'v1' });
   assert.deepEqual(legTargetOf(entry('free', null, { itemId: 'f1' }), '2027-02-05'), { itemId: 'f1' });
   assert.deepEqual(legTargetOf(entry('flight', 'kix', { itemId: 'fl1' }), '2027-02-05'), { itemId: 'fl1' });
-  assert.equal(legTargetOf(entry('meet', 'a', { itemId: 'm1' }), '2027-02-05'), null);
   assert.equal(legTargetOf(entry('start', 'a', { itemId: null }), '2027-02-05'), null);
 });
 
@@ -825,26 +799,6 @@ test('warningsByItem：交通的警告（leg: true）不掛到資料卡、也不
   assert.deepEqual(rest.map((w) => w.code), ['no-rest']);
   // 當天摘要的數字照舊全部算
   assert.equal(daySummary({ ...day, entries: [] } as DayPlan).warnings, 4);
-});
-
-test('warningsByItem：分組各組走到會合點那段的交通警告（itemId 是分組）沒有交通卡，留在分組卡', () => {
-  const day = {
-    entries: [
-      { kind: 'visit', itemId: 'i1' },
-      { kind: 'meet', itemId: 's1', groups: [{ id: 'g1', name: 'A', entries: [{ kind: 'visit', itemId: 'g1a' }] }] },
-    ],
-    warnings: [
-      { code: 'travel-unknown', level: 'error' as const, message: '缺座標', itemId: 's1', groupId: 'g1', leg: true as const },
-      { code: 'meet-late', level: 'error' as const, message: '來不及', itemId: 's1', groupId: 'g1' },
-      // 組裡資料卡那段有交通卡：照舊不掛到資料卡
-      { code: 'bus-crowd', level: 'warning' as const, message: '擠不上', itemId: 'g1a', groupId: 'g1', leg: true as const },
-      { code: 'bus-crowd', level: 'warning' as const, message: '擠不上', itemId: 'i1', leg: true as const },
-    ],
-  } as unknown as DayPlan;
-  const { byItem } = warningsByItem(day);
-  assert.deepEqual(byItem.get('s1')?.map((w) => w.code), ['travel-unknown', 'meet-late']);
-  assert.equal(byItem.has('g1a'), false);
-  assert.equal(byItem.has('i1'), false);
 });
 
 test('hourTicks：整點刻度的位置（百分比）', () => {

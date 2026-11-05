@@ -84,18 +84,12 @@ function mdRows(rows: ExportRow[], indent: string): string[] {
       }
       if (l.rides.length && l.walkAfter) out.push(`${sub}- 下車步行 ${l.walkAfter} 分`);
       if (l.note) out.push(`${sub}- 備註：${mdEsc(l.note)}`);
-    } else if (row.kind === 'stop') {
+    } else {
       const s = row.stop;
       const meta = stopMeta(s);
       const map = s.place?.mapsUrl && s.kind !== 'start' && s.kind !== 'lodging' ? `　${mdLink('地圖', s.place.mapsUrl)}` : '';
       out.push(`${indent}- **${mdEsc(stopHead(s))}**${meta.length ? `　${mdEsc(meta.join('・'))}` : ''}${map}`);
       if (s.note) out.push(`${sub}- 備註：${mdEsc(s.note)}`);
-    } else {
-      out.push(`${indent}- 分組行動`);
-      for (const g of row.groups) {
-        out.push(`${sub}- **${mdEsc(g.name)}**${g.size ? `（${g.size} 人）` : ''}`);
-        out.push(...mdRows(g.rows, `${sub}  `));
-      }
     }
   }
   return out;
@@ -175,8 +169,6 @@ ul.flights { padding-left: 20px; margin: 4px 0; }
 .leg li { margin: 2px 0; }
 .ticket { display: inline-block; background: #b42318; color: #fff; border-radius: 4px; padding: 0 6px; font-weight: 700; font-size: 13px; margin-left: 6px; }
 .missed { color: #57606a; font-size: 13px; }
-.split { border: 1px solid #d0d7de; border-radius: 8px; padding: 6px 10px; margin: 6px 0; break-inside: avoid; }
-.split .g { font-weight: 700; margin-top: 4px; }
 .lodging { margin-top: 14px; padding: 10px 12px; background: #f6f8fa; border-radius: 8px; break-inside: avoid; }
 .lodging .n { font-weight: 700; font-size: 17px; }
 .empty { color: #57606a; }
@@ -213,11 +205,7 @@ function htmlLeg(l: ExportLeg): string {
 
 function htmlRows(rows: ExportRow[]): string {
   return rows
-    .map((row) => {
-      if (row.kind === 'leg') return htmlLeg(row.leg);
-      if (row.kind === 'stop') return htmlStop(row.stop);
-      return `<div class="split">${row.groups.map((g) => `<div class="g">${esc(g.name)}${g.size ? `（${g.size} 人）` : ''}</div>${htmlRows(g.rows)}`).join('')}</div>`;
-    })
+    .map((row) => (row.kind === 'leg' ? htmlLeg(row.leg) : htmlStop(row.stop)))
     .join('\n');
 }
 

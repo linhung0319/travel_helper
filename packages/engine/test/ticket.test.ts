@@ -71,9 +71,9 @@ test('laterDeparture：第一程晚一班會讓買票站留不出空檔的，不
   const kin = route('k', KINTETSU, 'train', ['B', 'C'], [trip('k1', '特急（往賢島）', 630, 700)]);
   const n = net([bus, kin]);
   const j = journey(ride(bus, bus.trips[0]), ride(kin, kin.trips[0]));
-  assert.equal(laterDeparture(n, indexOf(n), j, rules(10), true).rides[0].trip?.tripId, 'b1');
+  assert.equal(laterDeparture(n, indexOf(n), j, rules(10)).rides[0].trip?.tripId, 'b1');
   // 不留空檔時照舊取晚出發的
-  assert.equal(laterDeparture(n, indexOf(n), j, rules(0), true).rides[0].trip?.tripId, 'b2');
+  assert.equal(laterDeparture(n, indexOf(n), j, rules(0)).rides[0].trip?.tripId, 'b2');
 });
 
 test('laterDeparture：同時到的晚一班是要買票的特急、留不出空檔的，不換', () => {
@@ -84,6 +84,6 @@ test('laterDeparture：同時到的晚一班是要買票的特急、留不出空
   const express = route('k3', KINTETSU, 'train', ['B', 'C'], [trip('x1', '特急（往鳥羽）', 620, 700)]);
   const n = net([local, kin, express]);
   const j = journey(ride(local, local.trips[0]), ride(kin, kin.trips[0]));
-  assert.equal(laterDeparture(n, indexOf(n), j, rules(10), true).rides[1].trip?.tripId, 'e1');
-  assert.equal(laterDeparture(n, indexOf(n), j, rules(0), true).rides[1].trip?.tripId, 'x1');
+  assert.equal(laterDeparture(n, indexOf(n), j, rules(10)).rides[1].trip?.tripId, 'e1');
+  assert.equal(laterDeparture(n, indexOf(n), j, rules(0)).rides[1].trip?.tripId, 'x1');
 });

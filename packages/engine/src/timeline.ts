@@ -11,7 +11,6 @@ import type {
   FlightItem,
   FreeItem,
   Gap,
-  GroupItem,
   Itinerary,
   ItineraryItem,
   ItineraryPlan,
@@ -19,7 +18,6 @@ import type {
   LodgingMeals,
   MealKind,
   PartyProfile,
-  SplitItem,
   TimelineEntry,
   VisitItem,
   TagId,
@@ -37,8 +35,6 @@ interface RunContext {
   data: EngineData;
   cfg: EngineConfig;
   party: PartyProfile;
-  whole: boolean;
-  groupId: string | null;
   warnings: EngineWarning[];
   /** 這段裡有沒有「累」的項目 */
   tiring: { value: boolean };
@@ -53,7 +49,7 @@ function endpointOf(id: string | null | undefined, data: EngineData): Endpoint {
 }
 
 function warn(ctx: RunContext, w: LegWarning): void {
-  ctx.warnings.push({ ...w, date: ctx.date, ...(ctx.groupId ? { groupId: ctx.groupId } : {}) });
+  ctx.warnings.push({ ...w, date: ctx.date });
 }
 
 /** 停留時間的預設：資料的 stayMinutes → 餐廳依料理種類（§5.5）→ 各類型的預設 */
@@ -80,7 +76,7 @@ const inWindow = (t: number, [a, b]: [string, string]) => t >= toMinutes(a) && t
 
 function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem['travel'], itemId: string | undefined): Leg | null {
   if (!st.loc || !st.started) return null;
-  const { leg, warnings } = planLeg(st.loc, target, { date: ctx.date, depart: st.time, party: ctx.party, whole: ctx.whole, data: ctx.data, cfg: ctx.cfg }, spec);
+  const { leg, warnings } = planLeg(st.loc, target, { date: ctx.date, depart: st.time, party: ctx.party, data: ctx.data, cfg: ctx.cfg }, spec);
   for (const w of warnings) warn(ctx, itemId ? { ...w, itemId, leg: true } : { ...w, leg: true });
   if (leg.mode === 'ferry') ctx.tiring.value = true;
   return leg;
@@ -88,14 +84,14 @@ function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem[
 
 // --- 各種項目 ---------------------------------------------------------------
 
-/** 資料卡、自由時間的地點、會合點的檢查；meet：分組的會合點可以約在車站，不發 station-card */
-function placeChecks(res: ResolvedPlace | null, placeId: string, itemId: string | undefined, ctx: RunContext, meet = false): void {
+/** 資料卡、自由時間的地點、住宿的檢查 */
+function placeChecks(res: ResolvedPlace | null, placeId: string, itemId: string | undefined, ctx: RunContext): void {
   if (!res) {
     warn(ctx, { code: 'place-missing', level: 'error', itemId, placeId, message: `找不到地點「${placeId}」` });
     return;
   }
   // 車站不能當資料卡（車站是交通的端點，不是去玩的點）
-  if (res.record.type === 'station' && !meet) warn(ctx, { code: 'station-card', level: 'error', itemId, placeId, message: `資料卡不能是車站（${placeId}）` });
+  if (res.record.type === 'station') warn(ctx, { code: 'station-card', level: 'error', itemId, placeId, message: `資料卡不能是車站（${placeId}）` });
   if (res.retired) warn(ctx, { code: 'place-retired', level: 'warning', itemId, placeId, message: '這個點已下架，資料可能過時' });
   if (res.origin === 'user') warn(ctx, { code: 'unchecked', level: 'info', itemId, placeId, message: '使用者加的點：營業時間、團體條件未查' });
 }
@@ -142,7 +138,7 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
     const g = rec.group ?? {};
     const res = rec.reservation?.accepted ?? 'unknown';
     // 標了「分組」（大家分開在附近吃）只免 15 人座位和全員預約；一組 4～6 人也坐不下照樣警告
-    if (ctx.whole && !tags.includes('groups')) {
+    if (!tags.includes('groups')) {
       const ok = g.fit15 === 'yes' || !!g.confirmed15;
       if (!ok) {
         const why = g.fit15 === 'split' ? '要分桌或分批' : g.fit15 === 'no' ? '坐不下' : '不確定坐不坐得下';
@@ -151,7 +147,7 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
       if (res === 'no') warn(ctx, { code: 'no-reservation', level: 'error', itemId, placeId, message: '全員用餐一定要預約，這家不接受預約' });
       else if (res === 'unknown') warn(ctx, { code: 'no-reservation', level: 'warning', itemId, placeId, message: '全員用餐要預約，這家能不能預約不確定' });
     } else if (g.fitSubgroup === 'no') {
-      warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: ctx.whole ? '標了分組，但一組 4～6 人也坐不下' : `這組 ${party.size} 人坐不下` });
+      warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: '標了分組，但一組 4～6 人也坐不下' });
     }
     const allowed = rec.kids?.allowed;
     if (party.kids > 0 && (allowed === 'no' || allowed === 'age-limit')) {
@@ -222,7 +218,6 @@ function runVisit(item: VisitItem, st: State, ctx: RunContext): TimelineEntry {
     meal,
     mealTags: MEAL_TAGS.filter((m) => item.tags?.includes(m)),
     ...(item.tags?.includes('rest') ? { rest: true } : {}),
-    groupId: ctx.groupId,
   };
 }
 
@@ -253,7 +248,6 @@ function runFree(item: FreeItem, st: State, ctx: RunContext): TimelineEntry {
     start: fromMinutes(start),
     end: fromMinutes(end),
     waitMinutes: start - arrive,
-    groupId: ctx.groupId,
   };
 }
 
@@ -279,55 +273,14 @@ function runFlight(item: FlightItem, st: State, ctx: RunContext): TimelineEntry 
   return { kind: 'flight', itemId: item.id, placeId: item.airport, travel: leg, arrive: fromMinutes(arrive), start: item.depart, end: item.depart, waitMinutes: 0 };
 }
 
-function runItems(items: readonly (ItineraryItem | GroupItem)[], st: State, ctx: RunContext): TimelineEntry[] {
+function runItems(items: readonly ItineraryItem[], st: State, ctx: RunContext): TimelineEntry[] {
   const out: TimelineEntry[] = [];
   for (const item of items) {
     if (item.type === 'visit') out.push(runVisit(item, st, ctx));
     else if (item.type === 'free') out.push(runFree(item, st, ctx));
-    else if (item.type === 'flight') out.push(runFlight(item, st, ctx));
-    else out.push(runSplit(item, st, ctx));
+    else out.push(runFlight(item, st, ctx));
   }
   return out;
-}
-
-function runSplit(item: SplitItem, st: State, ctx: RunContext): TimelineEntry {
-  const total = item.groups.reduce((s, g) => s + g.size, 0);
-  if (total !== ctx.party.size) {
-    warn(ctx, { code: 'split-size', level: 'warning', itemId: item.id, message: `各組加起來 ${total} 人，全員是 ${ctx.party.size} 人` });
-  }
-  const meet = endpointOf(item.meet.place, ctx.data);
-  placeChecks(ctx.data.getPlace(item.meet.place), item.meet.place, item.id, ctx, true);
-  const meetTime = toMinutes(item.meet.time);
-  let latest = st.time;
-  const groups = item.groups.map((g) => {
-    const gst: State = { ...st };
-    const gctx: RunContext = { ...ctx, party: g, whole: false, groupId: g.id };
-    const entries = runItems(g.items, gst, gctx);
-    const leg = travelTo(meet, gst, gctx, null, item.id);
-    const arrive = leg ? toMinutes(leg.arrive) : gst.time;
-    if (arrive > meetTime) {
-      warn(gctx, { code: 'meet-late', level: 'error', itemId: item.id, placeId: item.meet.place, message: `${g.name} ${fromMinutes(arrive)} 才到會合點，約的是 ${item.meet.time}` });
-    }
-    latest = Math.max(latest, arrive);
-    const t = fromMinutes(arrive);
-    entries.push({ kind: 'meet', itemId: item.id, placeId: item.meet.place, travel: leg, arrive: t, start: t, end: t, waitMinutes: 0, groupId: g.id });
-    return { id: g.id, name: g.name, entries };
-  });
-  const start = Math.max(meetTime, latest);
-  st.loc = meet;
-  st.time = start;
-  st.started = true;
-  return {
-    kind: 'meet',
-    itemId: item.id,
-    placeId: item.meet.place,
-    travel: null,
-    arrive: fromMinutes(latest),
-    start: fromMinutes(start),
-    end: fromMinutes(start),
-    waitMinutes: start - latest,
-    groups,
-  };
 }
 
 // --- 一天 -------------------------------------------------------------------
@@ -340,17 +293,13 @@ function lodgingMeals(it: Itinerary, date: string, data: EngineData): LodgingMea
   return (m as LodgingMeals | 'varies' | null | undefined) ?? null;
 }
 
-function allEntries(entries: TimelineEntry[]): TimelineEntry[] {
-  return entries.flatMap((e) => [e, ...(e.groups?.flatMap((g) => g.entries) ?? [])]);
-}
-
 export function planDay(it: Itinerary, index: number, data: EngineData, cfg: EngineConfig): DayPlan {
   const day = it.days[index];
   const isFirst = day.date === cfg.trip.from;
   const isLast = day.date === cfg.trip.to;
   const warnings: EngineWarning[] = [];
   const tiring = { value: false };
-  const ctx: RunContext = { date: day.date, data, cfg, party: it.party, whole: true, groupId: null, warnings, tiring };
+  const ctx: RunContext = { date: day.date, data, cfg, party: it.party, warnings, tiring };
   const startId = day.start ?? (index > 0 ? lodgingOn(it, it.days[index - 1].date) : null);
   const lodging = isLast ? null : lodgingOn(it, day.date);
   const st: State = { loc: startId ? endpointOf(startId, data) : null, time: toMinutes(cfg.day.start), started: !!startId };
@@ -390,17 +339,16 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   }
 
   // 統計
-  const whole = entries;
-  const walk = whole.reduce((s, e) => s + (e.travel?.walkMinutes ?? 0), 0);
-  const visitRecs = allEntries(entries)
+  const walk = entries.reduce((s, e) => s + (e.travel?.walkMinutes ?? 0), 0);
+  const visitRecs = entries
     .filter((e) => e.kind === 'visit' && e.placeId)
     .map((e) => ({ e, rec: data.getPlace(e.placeId as string)?.record ?? null }));
-  const mainSpots = whole.filter((e) => {
+  const mainSpots = entries.filter((e) => {
     if (e.kind !== 'visit' || !e.placeId) return false;
     const r = data.getPlace(e.placeId)?.record;
     return r?.type === 'spot' && toMinutes(e.end) - toMinutes(e.start) >= 60;
   }).length;
-  const freeMinutes = allEntries(entries).filter((e) => e.kind === 'free' && !e.groupId).reduce((s, e) => s + toMinutes(e.end) - toMinutes(e.start), 0);
+  const freeMinutes = entries.filter((e) => e.kind === 'free').reduce((s, e) => s + toMinutes(e.end) - toMinutes(e.start), 0);
 
   if (walk > cfg.walk.dailyMaxWhole) {
     warnings.push({ code: 'daily-walk', level: 'warning', date: day.date, message: `全員步行累計 ${walk} 分，超過 ${cfg.walk.dailyMaxWhole} 分` });
@@ -417,7 +365,7 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   }
   if (it.party.elders > 0 || it.party.kids > 0) {
     let since: number | null = null;
-    for (const e of whole) {
+    for (const e of entries) {
       const rest = e.kind === 'start' || e.kind === 'free' || e.kind === 'lodging' || e.kind === 'flight' || e.meal != null || e.rest === true;
       if (since == null) since = toMinutes(e.start);
       if (toMinutes(e.end) - since > cfg.day.maxMinutesWithoutRest && !rest) {

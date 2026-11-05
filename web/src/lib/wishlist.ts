@@ -18,14 +18,14 @@ export function likedPlaces(votes: Vote[]): Map<string, { likes: string[]; disli
   return new Map([...all].filter(([, c]) => c.likes.length > 0));
 }
 
-/** 某天行程裡的點：主選、備選、分組裡的項目、那晚的住宿 */
+/** 某天行程裡的點：主選、備選、自由時間的地點、那晚的住宿 */
 export function placesOnDay(it: Itinerary | null, date: string): Set<string> {
   const out = new Set<string>();
   const d = it?.days.find((x) => x.date === date);
   if (!d) return out;
   const lodging = lodgingOn(it, date);
   if (lodging) out.add(lodging);
-  for (const x of d.items.flatMap((x) => (x.type === 'split' ? x.groups.flatMap((g) => g.items) : [x]))) {
+  for (const x of d.items) {
     if (x.type === 'visit') x.options.forEach((o) => o.place && out.add(o.place));
     else if (x.type === 'free' && x.place) out.add(x.place);
   }

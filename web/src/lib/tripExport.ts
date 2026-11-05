@@ -2,7 +2,7 @@
 // 不用 T34 的行程摘要（TripSummary 不放交通）：直接從瀏覽器的時間軸整理，要車次、上下車站、要先買的特急券、錯過時的班次。
 // 預約只放狀態（已訂／待訂／不用訂）。純函式：時間、班次都是引擎算好的；班次表從外面傳進來（planStore 的 departuresOf）。
 
-import type { DayPlan, GroupItem, Itinerary, ItineraryItem, ItineraryPlan, Leg, PartyProfile, RideDeparture, TimelineEntry, TransitRide } from '@travel-helper/engine';
+import type { DayPlan, Itinerary, ItineraryItem, ItineraryPlan, Leg, PartyProfile, RideDeparture, TimelineEntry, TransitRide } from '@travel-helper/engine';
 import { isTicketRide, dayAreaLabel, dayAreaOf, lodgingMealsOn, lodgingOn, nightAreaOf } from '@travel-helper/engine';
 import type { Reservation, ReservationStatus } from '../backend/types.ts';
 import type { Area, Place } from '../data/types.ts';
@@ -82,8 +82,7 @@ export interface ExportStop {
 
 export type ExportRow =
   | { kind: 'leg'; leg: ExportLeg }
-  | { kind: 'stop'; stop: ExportStop }
-  | { kind: 'split'; groups: { name: string; size: number | null; rows: ExportRow[] }[] };
+  | { kind: 'stop'; stop: ExportStop };
 
 export interface ExportLodging {
   place: ExportPlace;
@@ -201,19 +200,10 @@ export function buildTripExport(input: ExportInput): ExportDoc {
   };
   const statusOf = (r: NoteRow | null) => (r ? STATUS_LABELS[r.status] : null);
 
-  const items = new Map<string, ItineraryItem | GroupItem>();
-  const groupSize = new Map<string, number>();
-  for (const d of itinerary.days)
-    for (const it of d.items) {
-      items.set(it.id, it);
-      if (it.type === 'split')
-        for (const g of it.groups) {
-          groupSize.set(g.id, g.size);
-          for (const gi of g.items) items.set(gi.id, gi);
-        }
-    }
+  const items = new Map<string, ItineraryItem>();
+  for (const d of itinerary.days) for (const it of d.items) items.set(it.id, it);
   const itemOf = (id: string | null) => (id ? (items.get(id) ?? null) : null);
-  const travelNoteOf = (it: ItineraryItem | GroupItem | null) => (it && it.type !== 'split' ? str(it.travel?.note) : null);
+  const travelNoteOf = (it: ItineraryItem | null) => (it ? str(it.travel?.note) : null);
 
   // 大眾運輸接計程車：哪一站、幾分、幾台
   const taxiLine = (leg: Leg): string | null => {
@@ -253,36 +243,27 @@ export function buildTripExport(input: ExportInput): ExportDoc {
       label = item.direction === 'arrive' ? '抵達' : '起飛';
       flightNo = item.flightNo ?? null;
     } else if (e.kind === 'free') label = '自由時間';
-    else if (e.kind === 'meet') label = '集合';
     const main = e.kind === 'visit' && e.placeId ? reservationFor(rows, date, e.placeId) : null;
     return {
       kind: e.kind,
-      time: e.kind === 'meet' ? e.start : cardTime(e).text,
+      time: cardTime(e).text,
       label,
       place: placeOf(e.placeId),
       flightNo,
       meals: (e.mealTags ?? []).map((m) => MEAL_LABELS[m] ?? m),
       reservation: main && main.role !== 'lodging' ? statusOf(main) : null,
-      note: e.kind === 'start' || e.kind === 'lodging' || e.kind === 'meet' ? null : str(item?.note),
+      note: e.kind === 'start' || e.kind === 'lodging' ? null : str(item?.note),
     };
   };
 
   const rowsOf = (date: string, entries: TimelineEntry[], returnNote: string | null): ExportRow[] => {
     const out: ExportRow[] = [];
     for (const e of entries) {
-      if (e.groups?.length) {
-        out.push({
-          kind: 'split',
-          groups: e.groups.map((g) => ({ name: g.name, size: groupSize.get(g.id) ?? null, rows: rowsOf(date, g.entries, null) })),
-        });
-      }
       if (e.travel) {
         const travelNote = e.kind === 'lodging' ? returnNote : travelNoteOf(itemOf(e.itemId));
-        const leg = legOf(date, e.travel, e.kind === 'meet' ? null : travelNote);
+        const leg = legOf(date, e.travel, travelNote);
         if (leg) out.push({ kind: 'leg', leg });
       }
-      // 各組最後一格是走到會合點：只列交通，「集合」由外面那一格寫一次
-      if (e.kind === 'meet' && e.groupId && !e.groups?.length) continue;
       out.push({ kind: 'stop', stop: stopOf(date, e) });
     }
     return out;

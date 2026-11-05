@@ -396,7 +396,7 @@ export function useLegView(entry: TimelineEntry, date: string) {
   // 這天引擎算的結果（交通的警告在 plan.warnings）
   const plan = usePlan((s) => dayPlanOf(s.plan, date));
   const target = legTargetOf(entry, date);
-  // 每一段交通有自己的 key（起點、會合這類不能改的也可以點，但不會開到別段）；班次表的 legKey 也是這個
+  // 每一段交通有自己的 key（起點這類不能改的也可以點，但不會開到別段）；班次表的 legKey 也是這個
   const key = legKeyOf(entry, date);
   const open = useUi((s) => s.legOpen) === key;
   const spec = readSpec(itinerary, target);

@@ -384,7 +384,7 @@ export function createReadTools(d: AiDeps) {
     }
     const party = places().itinerary?.party ?? { size: 15, elders: 5, kids: 4 };
     const spec: TravelSpec | null = input.mode ? { mode: input.mode } : null;
-    const { leg, warnings } = planLeg(a as never, b as never, { date, depart, party, whole: true, data: engine as EngineData, cfg: d.config }, spec);
+    const { leg, warnings } = planLeg(a as never, b as never, { date, depart, party, data: engine as EngineData, cfg: d.config }, spec);
     return {
       ok: true,
       date,

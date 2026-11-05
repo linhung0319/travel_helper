@@ -318,14 +318,9 @@ if (typeof window !== 'undefined') {
 /** 時間軸上一張卡的 key（focusItem 用）：項目 ID；出發、回住宿沒有項目 ID，是 start、lodging */
 export const focusKeyOf = (e: TimelineEntry): string => e.itemId ?? e.kind;
 
-/** 這天的時間軸裡每一張有地點的卡（分組裡的也算），照時間順序 */
+/** 這天的時間軸裡每一張有地點的卡，照時間順序 */
 function cardEntries(day: DayPlan | null): TimelineEntry[] {
-  const out: TimelineEntry[] = [];
-  for (const e of day?.entries ?? []) {
-    for (const g of e.groups ?? []) out.push(...g.entries.filter((x) => x.kind !== 'meet'));
-    out.push(e);
-  }
-  return out.filter((e) => e.placeId);
+  return (day?.entries ?? []).filter((e) => e.placeId);
 }
 
 /** 用 key 找那張卡；找不到是 null */

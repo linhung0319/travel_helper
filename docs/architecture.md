@@ -155,7 +155,7 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、「這一天」�
 - 查到的距離也給引擎用：`roadRouter.cachedMeters(profile, from, to)` 是同步的，T15 先查好路徑，再接到 `EngineData.walkMeters`、`driveMeters`（T12 加，計程車、包車用實際開車距離）；第四輪加 `driveMinutes`（OSRM 的開車時間，計程車用它）。`data/cache/routes/` 照 §3.1 不上網站。
 - 地圖上確定的行程線（第三輪）每一天都沿道路／鐵路畫：`itineraryRoutes.ts` 的 `startItineraryRoutes` 把每一天每一段步行、車依序向同一個 `roadRouter`（共用的佇列，1.1 秒一個，有快取）要路徑，選定的那天先、其他天照日期排在後面，選「全部」就照日期；選定的天變了、時間軸重算或別處（drawRoute）查到路徑時重新排（已在快取的不再查，舊的一輪停止往下排），查到就讓 store 的 `routesVersion` 加一，`MapView` 重畫。`createPathOf` 同步取路徑（步行、車看快取，電車用 `railPath`），給 `itineraryFeatures(…, pathOf)`。查不到就維持直線。
 
-**`web/src/dataStore.ts`：讀進來的資料**：`status`、`areas`（areas.json，依 `tripOrder`）、`basePlaces`（預設資料）、`places`（套上修改層的，畫面都用這一份）、`byId`、`itinerary`（確定的行程，engine 的 itinerary-v1，從後端讀）、`days`（資料點 → 排在哪幾天、第幾個；順序是 `lib/itinerary.ts` 的 `dayStops`：選定的選項、同一個機場連續的航班算一站、分組只放會合點、住宿放最後）、`stationNames`。`itinerary`、`places` 由下面的 `sharedStore` 換（存檔、同步、修改紀錄變了）。
+**`web/src/dataStore.ts`：讀進來的資料**：`status`、`areas`（areas.json，依 `tripOrder`）、`basePlaces`（預設資料）、`places`（套上修改層的，畫面都用這一份）、`byId`、`itinerary`（確定的行程，engine 的 itinerary-v1，從後端讀）、`days`（資料點 → 排在哪幾天、第幾個；順序是 `lib/itinerary.ts` 的 `dayStops`：選定的選項、同一個機場連續的航班算一站、住宿放最後）、`stationNames`。`itinerary`、`places` 由下面的 `sharedStore` 換（存檔、同步、修改紀錄變了）。
 
 ### 後端、共用資料、行程引擎（T15m，2026-10-23）
 
@@ -181,7 +181,7 @@ T15m 先用假後端把畫面做出來，T15 換成呼叫 Worker 的實作（`ba
 - **電腦版三欄**（T15m 版面調整，參考 puma.taipei/heart-island）：`App.tsx` 的 `DesktopLayout` 是聊天室｜地圖｜右欄。地圖上只有縮放鈕（第七輪拿掉浮動列）；日期列（`shared/ui/DayStrip`）和頭像選單（討論、預約、下載、切換使用者）在右欄頂端；右欄是 `SidePanel.tsx`，分頁用 `appStore.mode`，從探索、想去打開的詳情在右欄，從行程打開的浮在地圖上（`DetailFloat`）。探索是 `Explore.tsx`（清單邏輯在 `lib/explore.ts`），類型寫在 `filter.types`，從探索切回行程時拿掉（`showItinerary`）。點地圖上的點走 `showInExplore`：切到探索、換成那一類（目前的篩選看不到它就只留類型和地區）、捲到卡片；再點卡片才開詳情。詳情是兩邊共用的 `shared/ui/PlaceDetail`（簡介、位置、評論、留言四個分頁；第八輪前「位置」叫「交通」）。探索上方的類型分頁是 sticky；篩選捲出畫面時（看 `.side-body` 的捲動）收合成一列摘要，疊在清單上、不推動清單。
 - **問 AI**：按下去只帶入脈絡晶片和建議問題（`ai.ask`），由使用者選或自己打才送出（規格 §6）。電腦版的探索卡片、詳情標題還可以拖到聊天欄（`components/askAi.ts`，HTML 的拖放，資料型別 `application/x-travel-place`）。手機沒有拖曳，帶多個點用「＋ 加地點」面板（`mobile/PlacePicker.tsx`）；從行程問的開半屏，其他的到 AI 分頁（`mobile/mobileAi.ts`）。地圖上的點不做拖曳（和拖地圖衝突）。
 - **鍵盤**（`lib/keyboard.ts`，interaction-design §16.3）：`App` 掛 `watchKeyboard`，把鍵盤蓋住的高度寫進根元素的 `--kb`、開著時加 `data-keyboard`；`.layout`、`.m-app` 和貼底的東西（對話框、半屏、加地點面板）用 `--kb` 讓出來，輸入框所在的捲動區自己捲到看得到。觸控裝置的輸入框一律 16px。
-- **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…；分組先編各組再編會合點），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`，分組時每組各一條）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
+- **地圖的點**（`MapView.tsx`、`mapIcons.ts`）：照片標記拿掉，改成 Google Maps 那種類別圖標（canvas 畫的 `icon-<type>`），`ICON_ZOOM`（12）以下是小點。選了某一天，那天的點換成編號圓（`places-mark`），編號由 `lib/planView.ts` 的 `stopMarks` 照時間軸算（住宿「宿」、機場「機」、其他 1、2、3…），時間軸用同一份；那天的路線加方向箭頭（`itinerary-arrow`）。選中的點（`detailId`，或探索分頁的 `exploreTarget`）畫成水滴圖釘（`pin-<type>`、`places-pin` 圖層），原本的圖標藏起來；只有小卡片時才用圓框（`places-focus`）。點的時候查 `places-circle`、`places-icon`、`places-mark`、`places-pin` 四層。探索分頁時不因為「不在那天」變淡。
 - **`data-day` 只給天數分頁用**（e2e 靠它找分頁）；其他選日子的按鈕用 `data-pick-day`、`data-overview-day`。
 
 ### 載入順序（T39，2026-11-02 👤：AI → 探索 → 地圖）
@@ -602,7 +602,7 @@ LINE 群組：@機器人 2/5 ──webhook──► Worker：先回 200，waitUn
 
 - **只回結果**：幾點到幾點做什麼、住哪、要預約的狀態。不放交通、警告。只回應核准、機器人還在的群組，而且訊息要 @ 到機器人（`mention.mentionees[].isSelf`）；私訊、別的群組都不回。只能查，不能改。
 - **摘要由瀏覽器存**：時間只有瀏覽器的引擎算得出來。`web/src/lib/tripSummary.ts` 在「手上的行程版本 ≠ sync 的 `summary`」而且時間軸是照這一版算的時候存一份（存檔中、衝突中不存，同一版只試一次）。自己存完行程後一定會存；別人改的，同步進來時他通常已經存了。存完行程就關掉頁面的話，摘要會落後，下一個打開網站的人補存；這段期間機器人的回覆會註明「網站上剛改過行程，這份可能還不是最新的」。各人瀏覽器的道路快取不同，算出的時間可能差幾分鐘，以最後存的為準。
-- **格式**（engine `summary.ts`；T35 的下載檔不用它，直接從時間軸整理）：日期一行（`2/5（五）`），每個行程一行（`10:00-11:30 伊勢神宮 內宮`），分組的前面加 `【組名】`，集合、抵達、起飛只有一個時間，最後 `住：…`；什麼都沒排寫「還沒排」。行程的回覆最後一行是 `（1/20 21:05 王小明 更新）`。
+- **格式**（engine `summary.ts`；T35 的下載檔不用它，直接從時間軸整理）：日期一行（`2/5（五）`），每個行程一行（`10:00-11:30 伊勢神宮 內宮`），抵達、起飛只有一個時間，最後 `住：…`；什麼都沒排寫「還沒排」。行程的回覆最後一行是 `（1/20 21:05 王小明 更新）`。
 - **指令和 AI 的分工**：先把全形轉半形、拿掉空白和標點，**完全符合**的指令（`整趟`、`2/5`、`2月5日`、`今天`、`明天`、`現在`、`下一個`、`預約`、`2/5 預約`、`今天的預約`、`網址`）直接回，不呼叫 AI。其他問法交給 Haiku 5.5（`AI_BOT_MODEL`，effort low，structured output）分成 `trip`／`day`／`now`／`reservations`／`answer`／`url`／`help`；**回覆的內容一律由程式照摘要排**，AI 只有 `answer`（例如「哪天去伊勢神宮」）才自己寫一兩句，而且只能根據摘要。AI 出錯、額度用完、看不懂都回一行可用指令和網站連結。
 - **網址**：回 `PUBLIC_BASE_URL` 加上 `?openExternalBrowser=1`，從 LINE 點開會用手機的預設瀏覽器，不是 LINE 內建的（§5「要注意的地方」）。還沒有摘要時也回得出來。
 - **現在**：Worker 收到訊息時用 `jstNow` 換成日本時間；「現在」每一組各自列進行中和下一個。

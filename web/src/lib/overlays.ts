@@ -180,7 +180,7 @@ export function describeChanges(changes: Change[], nameOf: (id: string) => strin
 
 /**
  * 確定的行程（T15m，interaction-design §3）：
- * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 會合點 → 住宿）連起來；選了某一天時只畫那天
+ * - 線：每天一種顏色，依時間軸的順序（出發的住宿 → 各點 → 住宿）連起來；選了某一天時只畫那天
  * - 備選：時段備案的非主選點，寫一個「備」字（那天的顏色）
  * - 交通標籤：只有選定的那天，在每段的中間標交通圖示和「12 分」
  * - 整趟時點了某一天的路線（focusDay）：其他天的線 dim（變淡），同色的兩天才不會搞混（第五輪 §9.1）
@@ -209,23 +209,9 @@ export function itineraryFeatures(
     const dp = plan?.days.find((x) => x.date === d.date);
     type Stop = { place: string; leg: DayPlan['entries'][number]['travel'] };
     const toStop = (e: DayPlan['entries'][number]): Stop => ({ place: e.placeId!, leg: e.travel });
-    // 有時間軸時照時間軸（含出發的住宿）；還沒算好時照行程的順序。
-    // 分組的那天，線在分組前斷開：每組從上一站經過組裡的點到會合點各一條，會合後再接著走
-    const paths: Stop[][] = [[]];
-    if (dp) {
-      for (const e of dp.entries) {
-        if (!e.placeId) continue;
-        if (e.groups) {
-          const before = paths[paths.length - 1].at(-1);
-          for (const g of e.groups) {
-            const inGroup = g.entries.filter((x) => x.placeId && x.kind !== 'meet').map(toStop);
-            paths.push([...(before ? [before] : []), ...inGroup, { place: e.placeId, leg: g.entries.find((x) => x.kind === 'meet')?.travel ?? e.travel }]);
-          }
-          paths.push([{ place: e.placeId, leg: null }]);
-        } else paths[paths.length - 1].push(toStop(e));
-      }
-    } else paths[0] = stopsOn(it, d.date).map((s) => ({ place: s.place, leg: null }));
-    for (const path of paths) {
+    // 有時間軸時照時間軸（含出發的住宿）；還沒算好時照行程的順序
+    const path: Stop[] = dp ? dp.entries.filter((e) => e.placeId).map(toStop) : stopsOn(it, d.date).map((s) => ({ place: s.place, leg: null }));
+    {
       const coords: LonLat[] = [];
       let prev: LonLat | null = null;
       let prevPlace: Place | null = null;
@@ -252,14 +238,12 @@ export function itineraryFeatures(
       }
       if (coords.length >= 2) lines.push(line(coords, { date: d.date, color, active, selected, dim }));
     }
-    for (const item of d.items) {
-      const visits = item.type === 'visit' ? [item] : item.type === 'split' ? item.groups.flatMap((g) => g.items.filter((x) => x.type === 'visit')) : [];
-      for (const v of visits) {
-        v.options.forEach((o, i) => {
-          const p = byId.get(o.place);
-          if (p && i !== v.selected) alts.push(point(p.coords, { id: p.id, date: d.date, color, active }));
-        });
-      }
+    for (const v of d.items) {
+      if (v.type !== 'visit') continue;
+      v.options.forEach((o, i) => {
+        const p = byId.get(o.place);
+        if (p && i !== v.selected) alts.push(point(p.coords, { id: p.id, date: d.date, color, active }));
+      });
     }
   }
   return { lines: collection(lines), alts: collection(alts), legs };
@@ -267,21 +251,14 @@ export function itineraryFeatures(
 
 type Entry = DayPlan['entries'][number];
 
-/** 這段交通（legKeyOf）的兩端卡片：to 是那張卡，from 是時間軸上前一個有點的卡（分組裡第一個點從分組前的點出發）；找不到是 null */
+/** 這段交通（legKeyOf）的兩端卡片：to 是那張卡，from 是時間軸上前一個有點的卡；找不到是 null */
 function legEnds(day: DayPlan, legKey: string): { from: Entry; to: Entry } | null {
-  const walk = (entries: DayPlan['entries'], before: Entry | null): { from: Entry; to: Entry } | null => {
-    let prev = before;
-    for (const e of entries) {
-      for (const g of e.groups ?? []) {
-        const hit = walk(g.entries, prev);
-        if (hit) return hit;
-      }
-      if (e.placeId && prev && legKeyOf(e, day.date) === legKey) return { from: prev, to: e };
-      if (e.placeId) prev = e;
-    }
-    return null;
-  };
-  return walk(day.entries, null);
+  let prev: Entry | null = null;
+  for (const e of day.entries) {
+    if (e.placeId && prev && legKeyOf(e, day.date) === legKey) return { from: prev, to: e };
+    if (e.placeId) prev = e;
+  }
+  return null;
 }
 
 /**

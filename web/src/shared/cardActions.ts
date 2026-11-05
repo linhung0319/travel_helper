@@ -3,10 +3,10 @@
 
 import type { IconName } from '../lib/icons.ts';
 
-export type CardKind = 'visit' | 'lodging-start' | 'lodging-end' | 'free' | 'flight' | 'split' | 'candidate';
+export type CardKind = 'visit' | 'lodging-start' | 'lodging-end' | 'free' | 'flight' | 'candidate';
 
 export type ActionId =
-  | 'main' | 'detach' | 'tags' | 'stay' | 'pin' | 'unpin' | 'reorder' | 'move' | 'group-in' | 'group-out'
+  | 'main' | 'detach' | 'tags' | 'stay' | 'pin' | 'unpin' | 'reorder' | 'move'
   | 'withdraw' | 'lodging-plan' | 'lodging-clear' | 'free-length' | 'delete' | 'schedule';
 
 export interface CardActionContext {
@@ -14,14 +14,12 @@ export interface CardActionContext {
   /** 重疊卡（同一時段有備選） */
   overlap?: boolean;
   pinned?: boolean;
-  groupTargets?: { splitId: string; groupId: string; name: string }[];
-  inGroup?: boolean;
   /** 候選是不是自己加的 */
   mine?: boolean;
   surface: 'desktop' | 'mobile';
 }
 
-/** 這張卡的動作，分好組；每個 group-in 對應一個 groupTargets */
+/** 這張卡的動作，分好組 */
 export function cardActions(ctx: CardActionContext): ActionId[][] {
   switch (ctx.kind) {
     case 'visit': {
@@ -30,8 +28,6 @@ export function cardActions(ctx: CardActionContext): ActionId[][] {
       const mid: ActionId[] = ['tags'];
       if (ctx.surface === 'mobile') mid.push('stay'); // 網頁版卡片上本來就有 −／＋
       mid.push(ctx.pinned ? 'unpin' : 'pin', 'reorder', 'move'); // 調整順序：不拖也能上移、下移、合併（第七輪 §6.4）
-      for (const _ of ctx.groupTargets ?? []) mid.push('group-in');
-      if (ctx.inGroup) mid.push('group-out');
       groups.push(mid, ['withdraw']);
       return groups;
     }
@@ -40,9 +36,6 @@ export function cardActions(ctx: CardActionContext): ActionId[][] {
     case 'free':
       // 自由時間也能調整順序（上移、下移；不能合併）
       return [['free-length', 'reorder', 'move'], ['delete']];
-    case 'split':
-      // 分組：調整順序（整個分組上移、下移）、移到第幾天、刪除
-      return [['reorder', 'move'], ['delete']];
     case 'candidate':
       return [ctx.mine ? ['schedule', 'move'] : ['schedule'], ['delete']];
     case 'lodging-start':
@@ -61,8 +54,6 @@ export const ACTION_LABELS: Record<ActionId, string> = {
   unpin: '解除釘選',
   reorder: '調整順序',
   move: '移到第幾天…',
-  'group-in': '移到組',
-  'group-out': '移出分組',
   withdraw: '撤下（回候選）',
   'lodging-plan': '這晚的方案',
   'lodging-clear': '清掉這晚的住宿',
@@ -81,8 +72,6 @@ export const ACTION_ICONS: Record<ActionId, IconName> = {
   unpin: 'pin',
   reorder: 'sort',
   move: 'calendar-move',
-  'group-in': 'users',
-  'group-out': 'users',
   withdraw: 'undo',
   'lodging-plan': 'bed',
   'lodging-clear': 'trash',

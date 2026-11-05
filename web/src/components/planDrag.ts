@@ -45,7 +45,7 @@ export async function dropItem(itemId: string, at: DropAt) {
   // 放回原來的位置（自己前後的邊緣、通往自己的交通卡）：不存檔、不跳提示
   if (!t || samePosition(it, itemId, t)) return;
   const label = `${placeName(optionPlace(it, itemId))} 換位置`;
-  await shared.changeItinerary((x) => moveItemTo(x, itemId, t.date, t.index, t.split), label, { undo: { text: label } });
+  await shared.changeItinerary((x) => moveItemTo(x, itemId, t.date, t.index), label, { undo: { text: label } });
 }
 
 /** 整張卡片合併到另一張；被丟掉的固定時間寫在復原提示裡 */
@@ -117,7 +117,7 @@ async function dropCandidateIn(it: Itinerary, src: Extract<DragSource, { kind: '
   } else {
     const t = dropTarget(it, r.at, null);
     if (!t) return;
-    await addPlaceToDay(src.placeId, t.date, { index: t.index, split: t.split }, { text: `已排進 ${name}`, after }, settle);
+    await addPlaceToDay(src.placeId, t.date, { index: t.index }, { text: `已排進 ${name}`, after }, settle);
   }
 }
 
@@ -133,7 +133,7 @@ async function dropOption(it: Itinerary, src: Extract<DragSource, { kind: 'optio
   const t = dropTarget(it, r.at, null);
   if (!t) return;
   const text = `${label} 拆出來了`;
-  await shared.changeItinerary((x) => detachOption(x, src.itemId, src.index, t.date, t.index, t.split).itinerary, text, { undo: { text } });
+  await shared.changeItinerary((x) => detachOption(x, src.itemId, src.index, t.date, t.index).itinerary, text, { undo: { text } });
 }
 
 /** 照來源和放開的結果改行程（設計 §4 的表） */

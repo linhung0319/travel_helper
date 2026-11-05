@@ -28,7 +28,6 @@ import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
 import { DayStartMissing } from '../shared/ui/DayStartMissing.tsx';
 import { MemberName } from '../components/common.tsx';
 import { ConflictBar, PlanningBar } from '../components/Planning.tsx';
-import { groupTargetsOf } from '../components/cardActionRun.ts';
 import { dropOnCandidatesProps, dropOnEndProps } from '../components/planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { focusKeyOf, mobileStore, useMobile, type ActionSheetSpec, type ActionView, type TripSnap } from './mobileStore.ts';
@@ -109,7 +108,7 @@ function useSheetDrag(sheetRef: React.RefObject<HTMLElement | null>) {
   return { onPointerDown, onPointerMove, onPointerUp: end, onPointerCancel: end };
 }
 
-/** 一列時間軸（項目或空檔）：交通、等待、卡片；分組的那天各組一欄接著會合 */
+/** 一列時間軸（項目或空檔）：交通、等待、卡片 */
 function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const { tl, focused } = ctx;
   const { itDay: day } = tl;
@@ -184,58 +183,11 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
     );
   }
 
-  if (entry.kind === 'meet' && entry.groups) {
-    const split = item?.type === 'split' ? item : null;
-    return (
-      <>
-        <li className="m-split" data-testid="m-split">
-          <div className="m-split-head">
-            <span className="ic-text">
-              <Icon name="users" size={16} /> 分組行動
-            </span>
-            {planning && split && (
-              <button
-                type="button"
-                className="m-card-menu"
-                aria-label="分組的動作"
-                aria-haspopup="menu"
-                onClick={() => mobileStore.getState().openActions({ ctx: { kind: 'split', surface: 'mobile' }, target: { date: day.date, itemId: split.id }, name: '分組行動', placeId: null })}
-                data-testid="m-split-menu"
-              >
-                ⋯
-              </button>
-            )}
-          </div>
-          {entry.groups.map((g) => {
-            const sg = split?.groups.find((x) => x.id === g.id);
-            return (
-              <div key={g.id} className="m-group">
-                <div className="m-group-name">
-                  {g.name}
-                  {sg && <span className="muted small"> {sg.size} 人</span>}
-                </div>
-                <ol className={`m-tl tl-axis ${planning ? 'in-planning' : ''}`}>
-                  {g.entries
-                    .filter((e) => e.kind !== 'meet')
-                    .map((e, i) => (
-                      <EntryRows key={e.itemId ?? `${e.kind}${i}`} entry={e} ctx={ctx} />
-                    ))}
-                </ol>
-              </div>
-            );
-          })}
-        </li>
-        <MobileCard itemKey={key} place={p} mark={mark} time={{ text: entry.start }} name={`會合：${p ? nameOf(p) : '（未定）'}`} focused={focused === key} />
-      </>
-    );
-  }
-
   const flight = item?.type === 'flight' ? item : null;
   const time = cardTime(entry);
   const shownTime = flight ? (flight.direction === 'arrive' ? flight.arrive : flight.depart) : time.text;
   const free = item?.type === 'free' ? item : null;
   const name = flight ? `${flight.direction === 'arrive' ? '抵達' : '起飛'} ${nameOf(p)}` : entry.kind === 'free' ? `自由時間${p ? `：${nameOf(p)}` : ''}` : nameOf(p);
-  const ref = item ? findItemRef(itinerary, item.id) : null;
   const n = visit?.options.length ?? 0;
   const overlap = n > 1;
   // 看的是哪個選項（重疊卡用 ‹ n/m › 換著看，同網頁版）；看備卡時縮圖、名稱、時間、停留、警告換成那張，⋯ 的主要、拿出作用在那張
@@ -263,7 +215,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const menu: ActionSheetSpec | null =
     item && (visit || free)
       ? {
-          ctx: { kind: visit ? 'visit' : 'free', overlap, pinned: !!visit?.start, groupTargets: groupTargetsOf(itinerary, item.id), inGroup: !!ref?.split, surface: 'mobile' },
+          ctx: { kind: visit ? 'visit' : 'free', overlap, pinned: !!visit?.start, surface: 'mobile' },
           target: { date: day.date, itemId: item.id, optionIndex: index, placeId: shownPlace ?? undefined, start: entry.start },
           name: shownName,
           placeId: shownPlace,

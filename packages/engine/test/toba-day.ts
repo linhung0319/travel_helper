@@ -20,24 +20,8 @@ export function tobaDay(): Itinerary {
     options: [{ place: 'toba-amiyaki-tenbinya' }, { place: 'toba-sazanami', note: '備案' }],
     start: '12:00',
   });
-  add({
-    type: 'split',
-    groups: [
-      { id: 'g1', name: '長輩組', size: 6, elders: 5, kids: 0, items: [{ id: '', type: 'visit', options: [{ place: 'toba-mikimoto-pearl-island' }], selected: 0 }] },
-      {
-        id: 'g2',
-        name: '爬坡組',
-        size: 9,
-        elders: 0,
-        kids: 4,
-        items: [
-          { id: '', type: 'visit', options: [{ place: 'toba-castle-ruins' }], selected: 0 },
-          { id: '', type: 'visit', options: [{ place: 'toba-hiyoriyama-observatory' }], selected: 0 },
-        ],
-      },
-    ],
-    meet: { place: 'toba-ichibangai', time: '15:45' },
-  });
+  // 下午兩個選一個（合併卡）：主選珍珠島；能爬坡的人可以改去城山公園（T72 前是分組）
+  add({ type: 'visit', options: [{ place: 'toba-mikimoto-pearl-island' }, { place: 'toba-castle-ruins', note: '能爬坡的人' }] });
   add({ type: 'visit', options: [{ place: 'toba-mizunuma-sazae', stayMinutes: 30 }], tags: ['snack'] });
   return it;
 }

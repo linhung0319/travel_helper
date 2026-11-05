@@ -8,12 +8,10 @@ import { realData } from './fixtures.ts';
 const cfg = resolveConfig();
 const WHOLE = { size: 15, elders: 5, kids: 4 };
 const ep = (p: PlaceRecord): Endpoint => ({ id: p.id, coords: p.coords, record: p });
-const ctx = (data: EngineData, over: Partial<LegContext> = {}): LegContext => ({ date: '2027-02-05', depart: 600, party: WHOLE, whole: true, data, cfg, ...over });
+const ctx = (data: EngineData, over: Partial<LegContext> = {}): LegContext => ({ date: '2027-02-05', depart: 600, party: WHOLE, data, cfg, ...over });
 
-test('團體步行係數：全員 1.4、分組有長輩小孩 1.2、只有大人 1.0', () => {
-  assert.equal(walkFactor(WHOLE, true, cfg), 1.4);
-  assert.equal(walkFactor({ size: 5, elders: 1, kids: 0 }, false, cfg), 1.2);
-  assert.equal(walkFactor({ size: 5, elders: 0, kids: 0 }, false, cfg), 1.0);
+test('團體步行係數：全員 1.4', () => {
+  assert.equal(walkFactor(cfg), 1.4);
 });
 
 test('步行在單段上限內 → 走路（直線 × 1.3 ÷ 80 × 1.4）', () => {
@@ -48,12 +46,11 @@ test('同一個點 → 不用移動', () => {
   assert.equal(planLeg(ep(a), ep(a), ctx(fake([a]))).leg.mode, 'none');
 });
 
-test('全員超過 15 分、分組 25 分內 → 分組照樣走路', () => {
+test('全員走超過 15 分 → 不走路', () => {
   const a = spot('a', at(0));
-  const b = spot('b', at(1000)); // 全員 23 分、只有大人的分組 17 分
+  const b = spot('b', at(1000)); // 全員 23 分
   const data = fake([a, b]);
   assert.equal(planLeg(ep(a), ep(b), ctx(data)).leg.mode, 'taxi');
-  assert.equal(planLeg(ep(a), ep(b), ctx(data, { party: { size: 5, elders: 0, kids: 0 }, whole: false })).leg.mode, 'walk');
 });
 
 test('超過上限、沒有車 → 計程車：台數和起跳價；加算費率有設定才估費用', () => {
@@ -111,7 +108,7 @@ test('巴士：等 20 分內、班距不到 1 小時 → 搭巴士；15 人警�
   assert.equal(r.leg.rides[0].depart, '10:05');
   assert.equal(r.leg.arrive, '10:17'); // 10:15 到站 + 走 50 m（1.14 分進位成 2）
   assert.ok(r.warnings.some((w) => w.code === 'bus-crowd'));
-  const small = planLeg(ep(a), ep(b), ctx(data, { party: { size: 5, elders: 0, kids: 0 }, whole: false }));
+  const small = planLeg(ep(a), ep(b), ctx(data, { party: { size: 5, elders: 0, kids: 0 } }));
   assert.ok(!small.warnings.some((w) => w.code === 'bus-crowd'));
 });
 
@@ -578,7 +575,7 @@ test('鄉下轉乘比計程車晚超過 30 分 → 計程車：一葉（志摩�
 
 test('鄉下轉乘比計程車晚超過 30 分 → 計程車：かき秋 はなれ（伊勢）→ 志摩 ocean villa 9:37 分組', () => {
   // 巴士 3 程要 12:06 才到；計程車 10:24
-  const { leg } = planLeg(P('ise-kakiaki-hanare'), P('shima-ocean-villa-wa'), ctx(real, { date: '2027-02-04', depart: 9 * 60 + 37, party: SUB, whole: false }));
+  const { leg } = planLeg(P('ise-kakiaki-hanare'), P('shima-ocean-villa-wa'), ctx(real, { date: '2027-02-04', depart: 9 * 60 + 37, party: SUB }));
   assert.equal(leg.mode, 'taxi');
   assert.equal(leg.arrive, '10:24');
 });
@@ -595,7 +592,7 @@ test('指定 transit 不和計程車比：一葉 → 久兵衛 照樣搭大眾�
 });
 
 test('巴士班距照舊：同一條路線、同一個上車停留所、到得了任一個下車點的下一班（宿屋 五十鈴 → 月讀宮 8:00 分組搭巴士）', () => {
-  const { leg } = planLeg(P('ise-yadoya-isuzu'), P('ise-tsukiyomi-no-miya-geku'), ctx(real, { date: '2027-02-03', depart: 8 * 60, party: SUB, whole: false }));
+  const { leg } = planLeg(P('ise-yadoya-isuzu'), P('ise-tsukiyomi-no-miya-geku'), ctx(real, { date: '2027-02-03', depart: 8 * 60, party: SUB }));
   assert.equal(leg.mode, 'bus');
   assert.equal(leg.rides[0].from, '浦田町');
   assert.equal(leg.rides[0].depart, '08:10');
@@ -756,6 +753,6 @@ test('T60 過海也檢查巴士擠不擠：15 人巴士接船有 bus-crowd，5 �
   const big = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real));
   assert.ok(big.leg.rides.some((r) => r.mode === 'bus'));
   assert.ok(big.warnings.some((w) => w.code === 'bus-crowd'));
-  const small = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real, { party: { size: 5, elders: 0, kids: 0 }, whole: false }));
+  const small = planLeg(P('toba-aquarium'), P('toba-port-sugashima'), ctx(real, { party: { size: 5, elders: 0, kids: 0 } }));
   assert.ok(!small.warnings.some((w) => w.code === 'bus-crowd'));
 });

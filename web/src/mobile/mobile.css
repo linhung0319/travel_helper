@@ -873,27 +873,6 @@
   font-size: 0.85rem;
 }
 
-/* 分組 */
-.m-split {
-  margin: 8px 0;
-  padding: 8px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-}
-
-.m-split-head {
-  font-weight: 700;
-}
-
-.m-group + .m-group {
-  margin-top: 8px;
-}
-
-.m-group-name {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
 .m-trip-empty {
   padding: 12px 4px;
 }
@@ -990,12 +969,6 @@
   font-size: 1.3rem;
   line-height: 1;
   cursor: pointer;
-}
-
-.m-split-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 /* 拖曳：讓位、合併亮框、不能合併的變淡、浮起來的卡見 ui.css 的 tc-li／drag-float；放置區 */

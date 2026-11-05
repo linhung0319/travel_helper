@@ -222,7 +222,7 @@ export function buildStarterInput({ itinerary, plan, votes, byId, areas, day }: 
     const meals = (itinerary ? lodgingMealsOn(itinerary, date) : null) ?? (lodging?.raw as { meals?: string | null } | undefined)?.meals ?? null;
     // 住哪一區（T45a）：只定了區、還沒選住宿也算
     const stayArea = itinerary ? nightAreaOf(itinerary, date, (id) => byId.get(id)?.area) : null;
-    const entries = dp?.entries.flatMap((e) => [e, ...(e.groups?.flatMap((g) => g.entries) ?? [])]) ?? [];
+    const entries = dp?.entries ?? [];
     const ate = (meal: 'lunch' | 'dinner') => !dp || entries.some((e) => e.meal === meal || e.mealTags?.includes(meal));
     const isStop = (id: string) => id !== lodgingId && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '');
     return {

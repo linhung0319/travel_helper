@@ -412,8 +412,7 @@ export function MoveDialog({ itemId }: { itemId: string }) {
     <Dialog title="移到第幾天" onClose={closeDialog} testId="move-dialog">
       {place && (
         <p>
-          <PlaceChip id={place} />（現在在 {shortDayLabel(ref.date)}
-          {ref.split ? `・${ref.split.groupName}，移過去會變成全員一起` : ''}）
+          <PlaceChip id={place} />（現在在 {shortDayLabel(ref.date)}）
         </p>
       )}
       <DayGrid12 mode="single" picked={[]} current={ref.date} disabled={busy} onChange={([d]) => void move(d)} />

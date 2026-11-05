@@ -45,10 +45,10 @@ for (const size of SIZES) {
   await th(() => window.__th.commands.selectDay('2027-02-05'));
   await openDay();
   await shot('02-day-0205');
-  // 3. 分組的那天
+  // 3. 合併卡的那天（分組用合併卡表示）
   await th(() => window.__th.commands.selectDay('2027-02-10'));
   await openDay();
-  await shot('03-day-0210-split');
+  await shot('03-day-0210-merged');
   if (mobile) {
     await th(() => window.__th.appStore.getState().setSheet({ tab: 'day', snap: 'half' }));
     await shot('03b-day-0210-half');

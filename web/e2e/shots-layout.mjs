@@ -39,7 +39,7 @@ for (const size of SIZES) {
   await page.locator('.side-column [data-day="2027-02-05"]').click();
   await shot('02-day-0205');
   await page.locator('.side-column [data-day="2027-02-10"]').click();
-  await shot('03-day-0210-split');
+  await shot('03-day-0210-merged');
   // 放大看類別圖標
   await page.locator('.side-column [role="tab"]').first().click();
   await th(() => window.__th.commands.focus({ center: [136.8436, 34.4862], zoom: 15 }));

@@ -56,7 +56,7 @@ export function minutesFromMeters(
 ): number | null {
   if (mode === 'walk') {
     // 實際路徑不用再乘繞路係數
-    return minutesForMeters(meters, { metersPerMinute: cfg.walk.metersPerMinute, detourFactor: 1, groupFactor: walkFactor(party, true, cfg) });
+    return minutesForMeters(meters, { metersPerMinute: cfg.walk.metersPerMinute, detourFactor: 1, groupFactor: walkFactor(cfg) });
   }
   if (mode === 'taxi' || mode === 'charter' || mode === 'car') return taxiEstimate([0, 0], [0, 0], party, cfg, meters, roadMinutes).minutes;
   return null;

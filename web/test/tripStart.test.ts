@@ -128,7 +128,7 @@ test('buildStarterInput：附近想去的算同區、沒排的景點和餐廳；
   assert.equal(d.hasDinner, true);
 });
 
-test('buildStarterInput：引擎算好的餐和錯誤（分組裡的也算）', () => {
+test('buildStarterInput：引擎算好的餐和錯誤', () => {
   const entry = (meal: string) => ({ kind: 'visit', meal, mealTags: [] });
   const plan = {
     warnings: [],
@@ -136,7 +136,7 @@ test('buildStarterInput：引擎算好的餐和錯誤（分組裡的也算）', 
       date,
       gaps: [],
       stats: {},
-      entries: date === '2027-02-03' ? [entry('lunch'), { kind: 'split', groups: [{ id: 'g', name: 'g', entries: [entry('dinner')] }] }] : [],
+      entries: date === '2027-02-03' ? [entry('lunch'), entry('dinner')] : [],
       warnings: date === '2027-02-04' ? [{ code: 'info', level: 'info', message: '小事' }, { code: 'late', level: 'error', message: '趕不上' }] : [],
     })),
   } as never;

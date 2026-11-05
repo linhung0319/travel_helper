@@ -29,17 +29,9 @@ test('空的一天回傳 0', () => {
   assert.equal(bestInsertIndex(day([]), D, visit('b'), data), 0);
 });
 
-test('不插進分組、不插在抵達航班之前、出發航班之後', () => {
+test('不插在抵達航班之前、出發航班之後', () => {
   const first = '2027-02-02';
-  let it = day([], first);
-  it = addItem(it, first, {
-    type: 'split',
-    groups: [
-      { id: 'g1', name: '一組', size: 8, elders: 5, kids: 0, items: [{ id: '', type: 'visit', options: [{ place: 'a' }], selected: 0 }] },
-      { id: 'g2', name: '二組', size: 7, elders: 0, kids: 4, items: [{ id: '', type: 'visit', options: [{ place: 'c' }], selected: 0 }] },
-    ],
-    meet: { place: 'a', time: '16:00' },
-  } as NewItem).itinerary;
+  const it = day(['a', 'c'], first);
   const items = it.days[0].items;
   const lastArrive = items.map((x) => x.type === 'flight' && x.direction === 'arrive').lastIndexOf(true);
   const idx = bestInsertIndex(it, first, visit('b'), data);

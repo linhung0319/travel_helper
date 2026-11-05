@@ -79,19 +79,15 @@ const it2 = (): Itinerary => ({
   ],
 });
 
-test('航班、分組、集合：分組時各組都列，前面標組名', () => {
+test('航班、自由時間；最後一天不寫住', () => {
   const plan: ItineraryPlan = {
     warnings: [],
     days: [
       dayPlan('2027-02-02', [entry('flight', 'kix', '11:55', '12:55', { itemId: 'f1' }), entry('visit', 'a', '15:00', '16:00'), entry('lodging', 'h', '18:00')]),
       dayPlan('2027-02-03', [
         entry('start', 'h', '09:30'),
-        entry('meet', 'st', '15:00', '15:00', {
-          groups: [
-            { id: 'g1', name: '長輩組', entries: [entry('visit', 'a', '10:00', '12:00'), entry('meet', 'st', '14:40')] },
-            { id: 'g2', name: '小孩組', entries: [entry('free', null, '10:00', '13:00'), entry('meet', 'st', '14:50')] },
-          ],
-        }),
+        entry('visit', 'a', '10:00', '12:00'),
+        entry('free', null, '12:30', '14:00'),
         entry('visit', 'b', '15:30', '17:00'),
       ]),
     ],
@@ -99,7 +95,7 @@ test('航班、分組、集合：分組時各組都列，前面標組名', () =>
   const s = buildTripSummary({ itinerary: it2(), plan, nameOf });
   assert.equal(formatDay(s.days[0]), '2/2（二）\n11:55 抵達 關西機場（CI152）\n15:00-16:00 伊勢神宮\n住：海邊旅館');
   // 最後一天沒有晚上，不寫「住：」
-  assert.equal(formatDay(s.days[1]), '2/3（三）\n【長輩組】10:00-12:00 伊勢神宮\n【小孩組】10:00-13:00 自由時間\n15:00 集合：鳥羽站\n15:30-17:00 托福橫丁');
+  assert.equal(formatDay(s.days[1]), '2/3（三）\n10:00-12:00 伊勢神宮\n12:30-14:00 自由時間\n15:30-17:00 托福橫丁');
   assert.equal(formatTrip(s), `${formatDay(s.days[0])}\n\n${formatDay(s.days[1])}`);
 });
 
@@ -109,9 +105,8 @@ const SUMMARY: TripSummary = {
       date: '2027-02-03',
       lodging: '海邊旅館',
       lines: [
-        { start: '10:00', end: '12:00', text: '伊勢神宮', group: '長輩組' },
-        { start: '10:00', end: '13:00', text: '自由時間', group: '小孩組' },
-        { start: '15:00', end: null, text: '集合：鳥羽站' },
+        { start: '10:00', end: '12:00', text: '伊勢神宮' },
+        { start: '12:00', end: '13:00', text: '海女小屋' },
         { start: '15:30', end: '17:00', text: '托福橫丁' },
       ],
     },
@@ -122,10 +117,10 @@ const SUMMARY: TripSummary = {
   ],
 };
 
-test('現在、下一個：每一組各自找', () => {
+test('現在、下一個', () => {
   assert.equal(
     formatNow(SUMMARY, { date: '2027-02-03', time: '11:00' }),
-    '現在 11:00（2/3（三））\n進行中：【長輩組】10:00-12:00 伊勢神宮\n進行中：【小孩組】10:00-13:00 自由時間\n下一個：15:00 集合：鳥羽站\n住：海邊旅館',
+    '現在 11:00（2/3（三））\n進行中：10:00-12:00 伊勢神宮\n下一個：12:00-13:00 海女小屋\n住：海邊旅館',
   );
   assert.equal(formatNow(SUMMARY, { date: '2027-02-03', time: '16:00' }), '現在 16:00（2/3（三））\n進行中：15:30-17:00 托福橫丁\n住：海邊旅館');
   assert.equal(formatNow(SUMMARY, { date: '2027-02-03', time: '18:00' }), '現在 18:00（2/3（三））\n今天的行程都結束了\n住：海邊旅館');

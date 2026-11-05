@@ -11,7 +11,7 @@ const P = (id: string): Endpoint => {
   const r = real.getPlace(id)?.record ?? null;
   return { id, coords: r?.coords ?? null, record: r };
 };
-const ctx = (over: Partial<LegContext>): LegContext => ({ date: '2027-02-02', depart: 600, party: WHOLE, whole: true, data: real, cfg, ...over });
+const ctx = (over: Partial<LegContext>): LegContext => ({ date: '2027-02-02', depart: 600, party: WHOLE, data: real, cfg, ...over });
 
 test('第一天南下：關西機場 14:35 → 鵜方，搭近鐵 1-382 16:10 → 18:35', () => {
   const { leg } = planLeg(P('kansai-airport'), P('ugata'), ctx({ date: '2027-02-02', depart: 14 * 60 + 35 }), { mode: 'transit' });
