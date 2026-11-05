@@ -25,9 +25,8 @@ test('鳥羽一天：時間軸從戶田家出發、下午的合併卡只算主�
       ['lodging', 'toba-todaya'],
     ],
   );
-  // 戶田家 → 水族館：全員走超過 15 分，沒有更快的車 → 計程車 4 台／大型 2 台
+  // 戶田家 → 水族館：全員走超過 15 分，沒有更快的車 → 計程車（台數 T74a 拿掉）
   assert.equal(day.entries[1].travel?.mode, 'taxi');
-  assert.equal(day.entries[1].travel?.taxi?.cars, 4);
   // 午餐指定 12:00，提早到就等
   assert.equal(day.entries[2].start, '12:00');
   assert.equal(day.entries[2].meal, 'lunch');
@@ -38,9 +37,10 @@ test('鳥羽一天：沒有空檔（不再產生晚餐未排）', () => {
   assert.deepEqual(day.gaps.map((g) => [g.kind, g.label]), []);
 });
 
-test('鳥羽一天：警告（全員點心坐不下、計程車台數）', () => {
+test('鳥羽一天：提醒只剩點心坐不下一條（T74a：計程車台數、巴士擠不上、等開門拿掉）', () => {
   assert.ok(day);
-  const codes = day.warnings.map((w) => w.code);
-  assert.ok(codes.includes('group-seats'));
-  assert.ok(codes.includes('taxi'));
+  assert.deepEqual(
+    day.warnings.map((w) => [w.code, w.level, w.message]),
+    [['group-dining', 'act', '15 人坐不下']],
+  );
 });

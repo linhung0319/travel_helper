@@ -51,7 +51,7 @@ export interface StarterDay {
   areaName: string | null;
   /** 住宿同一區、大家想去、還沒排的景點和餐廳 */
   nearbyWishes: number;
-  /** 引擎錯誤級的警告（第一則） */
+  /** 要處理的提醒（act）的第一則 */
   errorWarning: string | null;
 }
 
@@ -60,7 +60,7 @@ export interface StarterInput {
   days: StarterDay[];
   /** 正在看的那天；null＝整趟 */
   day: string | null;
-  /** 行程裡的提醒數（不算 info） */
+  /** 有要處理的提醒（act）的天數 */
   warnings: number;
   /** 有人想去、還沒排進行程的點 */
   wishesUnplaced: number;
@@ -150,7 +150,7 @@ export function startersFor(i: StarterInput): Starter[] {
     ...(viewing?.hasStops ? [{ q: `幫我檢查 ${monthDay(viewing.date)}`, why: '正在看這天' }] : []),
     // 第一張已經在問住宿（或住哪一區）、問想去時，不用再問一次
     ...(missing > 0 && !/住哪/.test(first.q) ? [{ q: '哪幾晚還沒定住宿？', why: `還有 ${missing} 晚` }] : []),
-    ...(i.warnings > 0 ? [{ q: '哪天最趕？', why: `有 ${i.warnings} 個提醒` }] : []),
+    ...(i.warnings > 0 ? [{ q: '哪天最趕？', why: `${i.warnings} 天要處理` }] : []),
     ...(i.wishesUnplaced > 0 && !first.q.startsWith('大家想去') ? [{ q: '把想去的排進行程', why: `${i.wishesUnplaced} 個還沒排` }] : []),
     { q: '鳥羽能坐 15 人的海鮮餐廳', why: '示範：找餐廳' },
     { q: '長輩走起來輕鬆的景點', why: '示範：找景點' },
@@ -236,13 +236,13 @@ export function buildStarterInput({ itinerary, plan, votes, byId, areas, day }: 
       hasDinner: ate('dinner'),
       areaName: stayArea ? (areas.find((a) => a.id === stayArea)?.name.zh ?? null) : null,
       nearbyWishes: stayArea ? unplaced.filter(([id]) => byId.get(id)?.area === stayArea && ['spot', 'restaurant'].includes(byId.get(id)?.type ?? '')).length : 0,
-      errorWarning: dp?.warnings.find((w) => w.level === 'error')?.message ?? null,
+      errorWarning: dp?.warnings.find((w) => w.level === 'act')?.message ?? null,
     };
   });
   return {
     days,
     day,
-    warnings: plan?.days.reduce((n, p) => n + p.warnings.filter((w) => w.level !== 'info').length, 0) ?? 0,
+    warnings: plan?.days.filter((p) => p.warnings.some((w) => w.level === 'act')).length ?? 0,
     wishesUnplaced: unplaced.length,
     popularUnplaced: unplaced.filter(([, c]) => c.likes.length >= 2).length,
     anyLiked: liked.size > 0,

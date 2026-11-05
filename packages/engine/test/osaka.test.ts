@@ -51,7 +51,7 @@ test('伊勢 → 大阪難波 → 住宿', () => {
   assert.ok(first.tripId);
   assert.ok(leg.rides.some((r) => r.kind === 'headway') || (leg.walkAfter ?? 0) > 0);
   assert.ok(leg.minutes < 210, `${leg.minutes} 分`);
-  assert.ok(warnings.some((w) => w.code === 'long-wait'));
+  assert.ok(!warnings.some((w) => w.code === 'long-wait')); // 太遠照樣搭，等多久步驟寫了（T74a）
 });
 
 test('大阪一天：難波 → 大阪城 → 天王寺 → 難波', () => {

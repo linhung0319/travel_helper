@@ -107,7 +107,7 @@ const DAY1: DayPlan = {
       end: '15:30',
       mealTags: ['lunch'],
     }),
-    entry({ itemId: 'v2', placeId: 'aq', travel: leg({ mode: 'taxi', depart: '15:30', arrive: '15:45', minutes: 15, taxi: { cars: 2, jumboCars: 1, fareFromYen: null, fareEstimateYen: null, note: '' } }), arrive: '15:45', start: '15:45', end: '16:30' }),
+    entry({ itemId: 'v2', placeId: 'aq', travel: leg({ mode: 'taxi', depart: '15:30', arrive: '15:45', minutes: 15 }), arrive: '15:45', start: '15:45', end: '16:30' }),
     entry({ kind: 'lodging', placeId: 'inn', travel: leg({ mode: 'taxi', depart: '16:30', arrive: '16:50', minutes: 20 }), arrive: '16:50', start: '16:50', end: '16:50' }),
   ],
 };
@@ -146,7 +146,7 @@ test('整份：航班、總覽、交通的車次和特急券、預約狀態、�
   assert.ok(ama.kind === 'stop');
   assert.deepEqual([ama.stop.time, ama.stop.reservation, ama.stop.meals, ama.stop.note, ama.stop.place?.ja], ['14:30–15:30', '已訂', ['午餐'], '要脫鞋', '海女小屋']);
   const taxiLeg = d1.rows[3];
-  assert.equal(taxiLeg.kind === 'leg' && taxiLeg.leg.taxi, '大型 1 台或一般 2 台');
+  assert.equal(taxiLeg.kind === 'leg' && taxiLeg.leg.taxi, null); // 台數不印（T74a）
   const aq = d1.rows[4];
   assert.deepEqual(aq.kind === 'stop' && [aq.stop.time, aq.stop.place?.name], ['15:45–16:30', '鳥羽水族館']);
   assert.deepEqual(d1.lodging, {

@@ -3,8 +3,8 @@
 import { resolveConfig, type ConfigOverride, type EngineConfig } from './config.ts';
 import { openingOn, type EngineData, type PlaceRecord, type ResolvedPlace } from './data.ts';
 import { planLeg, type Endpoint, type LegWarning } from './travel.ts';
-import { fromMinutes, toMinutes } from './time.ts';
-import { lodgingMealsOn, lodgingOn, nightOf } from './nights.ts';
+import { dayOfWeek, formatDuration as dur, fromMinutes, toMinutes } from './time.ts';
+import { lodgingOn, nightMeals, nightOf, type PlaceMeals } from './nights.ts';
 import type {
   DayPlan,
   EngineWarning,
@@ -15,7 +15,6 @@ import type {
   ItineraryItem,
   ItineraryPlan,
   Leg,
-  LodgingMeals,
   MealKind,
   PartyProfile,
   TimelineEntry,
@@ -87,45 +86,47 @@ function travelTo(target: Endpoint, st: State, ctx: RunContext, spec: VisitItem[
 /** 資料卡、自由時間的地點、住宿的檢查 */
 function placeChecks(res: ResolvedPlace | null, placeId: string, itemId: string | undefined, ctx: RunContext): void {
   if (!res) {
-    warn(ctx, { code: 'place-missing', level: 'error', itemId, placeId, message: `找不到地點「${placeId}」` });
+    warn(ctx, { code: 'place-missing', level: 'act', itemId, placeId, message: `找不到這個地點（${placeId}）` });
     return;
   }
   // 車站不能當資料卡（車站是交通的端點，不是去玩的點）
-  if (res.record.type === 'station') warn(ctx, { code: 'station-card', level: 'error', itemId, placeId, message: `資料卡不能是車站（${placeId}）` });
-  if (res.retired) warn(ctx, { code: 'place-retired', level: 'warning', itemId, placeId, message: '這個點已下架，資料可能過時' });
-  if (res.origin === 'user') warn(ctx, { code: 'unchecked', level: 'info', itemId, placeId, message: '使用者加的點：營業時間、團體條件未查' });
+  if (res.record.type === 'station') warn(ctx, { code: 'station-card', level: 'act', itemId, placeId, message: '車站不能當資料卡' });
+  if (res.retired) warn(ctx, { code: 'place-retired', level: 'note', itemId, placeId, message: '這個點已下架，資料可能過時' });
+  if (res.origin === 'user') warn(ctx, { code: 'unchecked', level: 'note', itemId, placeId, message: '自己加的點，營業時間未查' });
 }
 
-/** 依營業時間調整開始時間（沒指定時間時等開門），並檢查公休、打烊、最後入場 */
+const WEEKDAY_ZH = ['日', '一', '二', '三', '四', '五', '六'];
+
+/** 依營業時間調整開始時間（沒指定時間時等開門，交通卡下面的等待那行就是它，不另外提醒），並檢查公休、打烊、最後入場 */
 function hoursCheck(rec: PlaceRecord, start: number, stay: number, fixed: boolean, itemId: string, ctx: RunContext): number {
   if (rec.type !== 'spot' && rec.type !== 'restaurant') return start;
   const s = openingOn(rec, ctx.date, ctx.cfg.holidays);
   const placeId = rec.id;
   if (s.kind === 'unknown') {
-    warn(ctx, { code: 'hours-unknown', level: 'info', itemId, placeId, message: s.reason });
+    const month = Number(ctx.date.slice(5, 7));
+    const holiday = s.reason.startsWith('國定假日');
+    warn(ctx, { code: 'hours-unknown', level: 'note', itemId, placeId, message: `${holiday ? '國定假日' : `${month} 月`}營業時間未查` });
     return start;
   }
   if (s.kind === 'closed') {
-    warn(ctx, { code: 'closed', level: 'error', itemId, placeId, message: `這天休息（${s.reason}）` });
+    const weekly = s.reason === '公休';
+    warn(ctx, { code: 'closed', level: 'act', itemId, placeId, message: weekly ? `這天公休（週${WEEKDAY_ZH[dayOfWeek(ctx.date)]}）` : `這天休業（${s.reason}）` });
     return start;
   }
   const p = s.periods.find((x) => start < x.close);
   if (!p) {
-    warn(ctx, { code: 'after-hours', level: 'error', itemId, placeId, message: `${fromMinutes(start)} 已經打烊（營業到 ${fromMinutes(s.periods[s.periods.length - 1].close)}）` });
+    warn(ctx, { code: 'after-hours', level: 'act', itemId, placeId, message: `${fromMinutes(start)} 到，${fromMinutes(s.periods[s.periods.length - 1].close)} 打烊` });
     return start;
   }
   let t = start;
   if (t < p.open) {
-    if (fixed) warn(ctx, { code: 'before-open', level: 'error', itemId, placeId, message: `指定的 ${fromMinutes(t)} 還沒開門（${fromMinutes(p.open)} 開）` });
-    else {
-      warn(ctx, { code: 'wait-open', level: 'info', itemId, placeId, message: `等開門 ${p.open - t} 分（${fromMinutes(p.open)} 開）` });
-      t = p.open;
-    }
+    if (fixed) warn(ctx, { code: 'before-open', level: 'act', itemId, placeId, message: `${fromMinutes(p.open)} 開門，指定 ${fromMinutes(t)}` });
+    else t = p.open;
   }
   if (p.lastEntry != null && t > p.lastEntry) {
-    warn(ctx, { code: 'last-entry', level: 'error', itemId, placeId, message: `${fromMinutes(t)} 才到，超過最後入場／L.O. ${fromMinutes(p.lastEntry)}` });
+    warn(ctx, { code: 'last-entry', level: 'act', itemId, placeId, message: `${fromMinutes(t)} 到，${fromMinutes(p.lastEntry)} 最後入場` });
   } else if (t + stay > p.close) {
-    warn(ctx, { code: 'closes-during', level: 'warning', itemId, placeId, message: `停留到 ${fromMinutes(t + stay)}，但 ${fromMinutes(p.close)} 打烊` });
+    warn(ctx, { code: 'closes-during', level: 'note', itemId, placeId, message: `${fromMinutes(p.close)} 打烊，停留到 ${fromMinutes(t + stay)}` });
   }
   return t;
 }
@@ -137,26 +138,21 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
   if (rec.type === 'restaurant') {
     const g = rec.group ?? {};
     const res = rec.reservation?.accepted ?? 'unknown';
-    // 標了「分組」（大家分開在附近吃）只免 15 人座位和全員預約；一組 4～6 人也坐不下照樣警告
+    // 標了「分組」（大家分開在附近吃）只免全員的座位和預約；一組 4～6 人也坐不下照樣提醒
     if (!tags.includes('groups')) {
-      const ok = g.fit15 === 'yes' || !!g.confirmed15;
-      if (!ok) {
-        const why = g.fit15 === 'split' ? '要分桌或分批' : g.fit15 === 'no' ? '坐不下' : '不確定坐不坐得下';
-        warn(ctx, { code: 'group-seats', level: g.fit15 === 'no' ? 'error' : 'warning', itemId, placeId, message: `全員 ${party.size} 人：${why}，要先打電話確認` });
-      }
-      if (res === 'no') warn(ctx, { code: 'no-reservation', level: 'error', itemId, placeId, message: '全員用餐一定要預約，這家不接受預約' });
-      else if (res === 'unknown') warn(ctx, { code: 'no-reservation', level: 'warning', itemId, placeId, message: '全員用餐要預約，這家能不能預約不確定' });
+      const msg = groupDiningMessage(party.size, g.fit15 === 'yes' || !!g.confirmed15 ? 'yes' : (g.fit15 ?? 'unknown'), res);
+      if (msg) warn(ctx, { code: 'group-dining', level: msg.act ? 'act' : 'note', itemId, placeId, message: msg.text });
     } else if (g.fitSubgroup === 'no') {
-      warn(ctx, { code: 'group-seats', level: 'error', itemId, placeId, message: '標了分組，但一組 4～6 人也坐不下' });
+      warn(ctx, { code: 'group-dining', level: 'act', itemId, placeId, message: '一組 4～6 人也坐不下' });
     }
     const allowed = rec.kids?.allowed;
     if (party.kids > 0 && (allowed === 'no' || allowed === 'age-limit')) {
       warn(ctx, {
         code: 'kids-not-allowed',
-        level: 'error',
+        level: 'act',
         itemId,
         placeId,
-        message: allowed === 'no' ? '這家不接受小孩' : `這家有年齡限制${rec.kids?.minAge ? `（${rec.kids.minAge} 歲以上）` : ''}`,
+        message: allowed === 'no' ? '不收小孩' : rec.kids?.minAge ? `限 ${rec.kids.minAge} 歲以上` : '小孩有年齡限制',
       });
     }
     return;
@@ -164,10 +160,28 @@ function groupChecks(rec: PlaceRecord, itemId: string, ctx: RunContext, tags: re
   if (rec.type === 'spot') {
     const acc = rec.accessibility ?? {};
     if (acc.stairs === '多' && party.elders > 0) {
-      warn(ctx, { code: 'stairs', level: 'warning', itemId, placeId, message: '階梯多，長輩要考慮（可以分組，讓能走的人去）' });
+      warn(ctx, { code: 'stairs', level: 'note', itemId, placeId, message: '階梯多，長輩吃力' });
     }
     if (acc.stairs === '多' || (acc.walkInsideMinutes ?? 0) >= ctx.cfg.day.tiringWalkInside) ctx.tiring.value = true;
   }
+}
+
+/**
+ * 餐廳 15 人的一條（§34.1 合併）：坐不下壓過一切；其他把預約放前面（那是要行動的）、座位接後面。
+ * 可預約又坐得下回傳 null。坐不下、不接受預約是要處理（act）
+ */
+export function groupDiningMessage(size: number, fit: string, reservation: string): { text: string; act: boolean } | null {
+  if (fit === 'no') return { text: `${size} 人坐不下`, act: true };
+  const resv = reservation === 'no' ? '不接受預約' : reservation === 'yes' ? null : '能不能預約不確定';
+  const seat = fit === 'yes' ? null : fit === 'split' ? 'split' : 'unknown';
+  const act = reservation === 'no';
+  if (!resv && !seat) return null;
+  if (resv && seat) {
+    if (reservation !== 'no' && seat === 'unknown') return { text: `預約、${size} 人座位都不確定，先打電話`, act };
+    return { text: `${resv}，${size} 人${seat === 'split' ? '要分桌' : '坐不坐得下也不確定'}`, act };
+  }
+  if (resv) return { text: act ? resv : `${resv}，先打電話`, act };
+  return { text: `${size} 人${seat === 'split' ? '要分桌' : '坐不坐得下不確定'}，先打電話`, act };
 }
 
 const MEAL_TAGS = ['breakfast', 'lunch', 'dinner', 'snack'] as const satisfies readonly TagId[];
@@ -193,7 +207,7 @@ function runVisit(item: VisitItem, st: State, ctx: RunContext): TimelineEntry {
   if (item.start) {
     const fixed = toMinutes(item.start);
     if (arrive > fixed) {
-      warn(ctx, { code: 'late', level: 'error', itemId: item.id, placeId: opt.place, message: `趕不上指定的 ${item.start}（${fromMinutes(arrive)} 才到）` });
+      warn(ctx, { code: 'late', level: 'act', itemId: item.id, placeId: opt.place, message: `${fromMinutes(arrive)} 到，指定 ${item.start}` });
     }
     start = Math.max(arrive, fixed);
   }
@@ -233,7 +247,7 @@ function runFree(item: FreeItem, st: State, ctx: RunContext): TimelineEntry {
   let start = arrive;
   if (item.start) {
     const fixed = toMinutes(item.start);
-    if (arrive > fixed) warn(ctx, { code: 'late', level: 'error', itemId: item.id, message: `趕不上指定的 ${item.start}（${fromMinutes(arrive)} 才到）` });
+    if (arrive > fixed) warn(ctx, { code: 'late', level: 'act', itemId: item.id, message: `${fromMinutes(arrive)} 到，指定 ${item.start}` });
     start = Math.max(arrive, fixed);
   }
   const end = start + item.minutes;
@@ -265,7 +279,7 @@ function runFlight(item: FlightItem, st: State, ctx: RunContext): TimelineEntry 
   const arrive = leg ? toMinutes(leg.arrive) : st.time;
   const deadline = toMinutes(item.depart) - ctx.cfg.flight.departAtAirportBefore;
   if (arrive > deadline) {
-    warn(ctx, { code: 'flight-late', level: 'error', itemId: item.id, placeId: item.airport, message: `${fromMinutes(arrive)} 才到機場，起飛前 ${ctx.cfg.flight.departAtAirportBefore} 分（${fromMinutes(deadline)}）要到` });
+    warn(ctx, { code: 'flight-late', level: 'act', itemId: item.id, placeId: item.airport, message: `${fromMinutes(arrive)} 到機場，${fromMinutes(deadline)} 前要到` });
   }
   st.loc = target;
   st.started = true;
@@ -285,14 +299,6 @@ function runItems(items: readonly ItineraryItem[], st: State, ctx: RunContext): 
 
 // --- 一天 -------------------------------------------------------------------
 
-function lodgingMeals(it: Itinerary, date: string, data: EngineData): LodgingMeals | 'varies' | null {
-  const own = lodgingMealsOn(it, date);
-  if (own) return own;
-  const lodging = lodgingOn(it, date);
-  const m = lodging ? data.getPlace(lodging)?.record.meals : null;
-  return (m as LodgingMeals | 'varies' | null | undefined) ?? null;
-}
-
 export function planDay(it: Itinerary, index: number, data: EngineData, cfg: EngineConfig): DayPlan {
   const day = it.days[index];
   const isFirst = day.date === cfg.trip.from;
@@ -311,13 +317,13 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   entries.push(...runItems(day.items, st, ctx));
 
   let returnTime: string | null = null;
-  const meals = lodgingMeals(it, day.date, data);
+  const meals = nightMeals(it, day.date, (id) => data.getPlace(id)?.record.meals as PlaceMeals);
   if (lodging) {
     placeChecks(data.getPlace(lodging), lodging, undefined, ctx);
     const area = nightOf(it, day.date)?.area;
     const lodgingArea = data.getPlace(lodging)?.record.area;
     if (area && lodgingArea && area !== lodgingArea) {
-      warnings.push({ code: 'lodging-area-mismatch', level: 'warning', date: day.date, placeId: lodging, message: '這間住宿不在這晚定的區（住宿要在這區）' });
+      warnings.push({ code: 'lodging-area-mismatch', level: 'act', date: day.date, placeId: lodging, message: `不在這晚選的${data.areaNames?.[area] ?? '區'}` });
     }
     const target = endpointOf(lodging, data);
     const leg = travelTo(target, st, ctx, day.returnTravel, undefined);
@@ -325,16 +331,9 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
     returnTime = fromMinutes(arrive);
     entries.push({ kind: 'lodging', itemId: null, placeId: lodging, travel: leg, arrive: returnTime, start: returnTime, end: returnTime, waitMinutes: 0 });
     if (meals === 'dinner+breakfast' && arrive > toMinutes(cfg.day.dinnerLodgingArriveBy)) {
-      warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: lodging, message: `一泊二食 ${cfg.day.dinnerLodgingArriveBy} 前要到住宿，現在 ${returnTime} 才到` });
+      warnings.push({ code: 'late-return', level: 'note', date: day.date, placeId: lodging, message: `${returnTime} 回住宿，晚餐 ${cfg.day.dinnerLodgingArriveBy} 前要到` });
     } else if (arrive > toMinutes(cfg.day.returnLatest) && !isFirst) {
-      warnings.push({ code: 'late-return', level: 'warning', date: day.date, placeId: lodging, message: `${returnTime} 才回到住宿；2 月天黑早，建議 ${cfg.day.returnBy}～${cfg.day.returnLatest} 回到住宿` });
-    }
-    if (meals === 'varies') {
-      warnings.push({ code: 'lodging-meals-unknown', level: 'info', date: day.date, placeId: lodging, message: '這間住宿有含晚餐和不含晚餐的方案，還沒選要不要含晚餐' });
-    }
-    const rec = data.getPlace(lodging)?.record;
-    if (rec?.checkIn && arrive < toMinutes(rec.checkIn)) {
-      warnings.push({ code: 'before-checkin', level: 'info', date: day.date, placeId: lodging, message: `${returnTime} 到，還不能入住（${rec.checkIn} 起），可以先寄放行李` });
+      warnings.push({ code: 'late-return', level: 'note', date: day.date, placeId: lodging, message: `${returnTime} 回住宿，2 月 ${cfg.day.returnLatest} 天黑` });
     }
   }
 
@@ -351,25 +350,27 @@ export function planDay(it: Itinerary, index: number, data: EngineData, cfg: Eng
   const freeMinutes = entries.filter((e) => e.kind === 'free').reduce((s, e) => s + toMinutes(e.end) - toMinutes(e.start), 0);
 
   if (walk > cfg.walk.dailyMaxWhole) {
-    warnings.push({ code: 'daily-walk', level: 'warning', date: day.date, message: `全員步行累計 ${walk} 分，超過 ${cfg.walk.dailyMaxWhole} 分` });
+    warnings.push({ code: 'daily-walk', level: 'note', date: day.date, message: `這天步行 ${dur(walk)}，長輩會累` });
   }
   if (mainSpots > cfg.day.maxMainSpots) {
-    warnings.push({ code: 'too-full', level: 'warning', date: day.date, message: `主要景點 ${mainSpots} 個，全員日建議 ${cfg.day.maxMainSpots} 個＋午餐` });
+    warnings.push({ code: 'too-full', level: 'note', date: day.date, message: `景點 ${mainSpots} 個，一起走 ${cfg.day.maxMainSpots} 個就夠` });
   }
   if ((isFirst || isLast) && visitRecs.some((x) => x.rec?.type === 'spot')) {
-    warnings.push({ code: 'travel-day-spot', level: 'warning', date: day.date, message: `${isFirst ? '抵達那天' : '最後一天'}時間不多，不建議排景點` });
+    warnings.push({ code: 'travel-day-spot', level: 'note', date: day.date, message: isFirst ? '這天下午才到，景點來不及' : '這天要趕飛機，景點來不及' });
   }
   const regions = visitRecs.map((x) => x.rec?.region as string | undefined);
   if (regions.length && data.regionNeedsCar && regions.every((r) => r && data.regionNeedsCar?.[r])) {
-    warnings.push({ code: 'charter-suggested', level: 'info', date: day.date, message: '這天都在巴士稀少的子地區，建議包車' });
+    warnings.push({ code: 'charter-suggested', level: 'note', date: day.date, message: '這一帶巴士少，適合包車' });
   }
   if (it.party.elders > 0 || it.party.kids > 0) {
     let since: number | null = null;
     for (const e of entries) {
       const rest = e.kind === 'start' || e.kind === 'free' || e.kind === 'lodging' || e.kind === 'flight' || e.meal != null || e.rest === true;
+      // 坐車 restRideMinutes 分以上也算休息（坐 4 小時特急不算「沒休息」）：從下車那一刻重算
+      if (e.travel && e.travel.minutes >= cfg.day.restRideMinutes) since = toMinutes(e.arrive);
       if (since == null) since = toMinutes(e.start);
       if (toMinutes(e.end) - since > cfg.day.maxMinutesWithoutRest && !rest) {
-        warnings.push({ code: 'no-rest', level: 'warning', date: day.date, itemId: e.itemId ?? undefined, message: `連續 ${toMinutes(e.end) - since} 分沒有休息（用餐、喝咖啡、自由時間），長輩、小孩會累` });
+        warnings.push({ code: 'no-rest', level: 'note', date: day.date, itemId: e.itemId ?? undefined, message: `${dur(toMinutes(e.end) - since)}沒有用餐休息，長輩小孩會累` });
         break;
       }
       if (rest) since = toMinutes(e.end);
@@ -450,19 +451,15 @@ export function planItinerary(it: Itinerary, data: EngineData, override: ConfigO
   } else {
     days = it.days.map((_, i) => planDay(it, i, data, cfg));
   }
+  // 連兩天累不發訊息：整趟骨架直接看每天的 stats.tiring（§34.1 搬家）
   const warnings: EngineWarning[] = [];
-  for (let i = 1; i < days.length; i++) {
-    if (days[i].stats.tiring && days[i - 1].stats.tiring) {
-      warnings.push({ code: 'tiring-streak', level: 'warning', date: days[i].date, message: `${days[i - 1].date}、${days[i].date} 連續兩天都是累的行程（長階梯、景點內步行久、或船程）` });
-    }
-  }
   const middle = days.filter((d) => d.date !== cfg.trip.from && d.date !== cfg.trip.to);
   const planned = middle.filter((d) => d.entries.some((e) => e.kind === 'visit'));
   const halfFree = middle.some(
     (d) => d.stats.freeMinutes >= cfg.day.halfDayFreeMinutes || (d.stats.returnTime != null && toMinutes(d.stats.returnTime) <= 13 * 60) || !d.entries.some((e) => e.kind === 'visit'),
   );
   if (planned.length >= 3 && !halfFree) {
-    warnings.push({ code: 'no-free-time', level: 'warning', message: '中間的日子沒有半天以上的自由時間，建議至少留一個半天' });
+    warnings.push({ code: 'no-free-time', level: 'note', message: `${planned.length} 天都排滿，建議留半天休息` });
   }
   return { days, warnings };
 }

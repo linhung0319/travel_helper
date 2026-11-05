@@ -1605,7 +1605,7 @@ test('交通卡右邊是「map ↗」文字（§13.6）', async ({ page }) => {
   await expect(page.getByTestId('leg-maps').first()).toHaveText('map ↗');
 });
 
-test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上（小照片的中線）；計程車第二行是台數；展開後等車淡黃底、搭車外框是交通方式的顏色', async ({ page }) => {
+test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上（小照片的中線）；計程車沒有第二行（台數 T74a 拿掉）；展開後等車淡黃底、搭車外框是交通方式的顏色', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-10');
   const tl = page.getByTestId('timeline');
@@ -1613,7 +1613,7 @@ test('第八輪：交通卡有框、比資料卡窄，方式圓點在連線上�
   const card = leg.locator('.ll-card');
   await expect(card).toHaveCSS('border-top-width', '1px');
   await expect(leg.locator('.ll-title')).toHaveText(/^計程車 \d+ 分$/);
-  await expect(leg.locator('.ll-sub')).toHaveText(/\d+ 台$/);
+  await expect(leg.locator('.ll-sub')).toHaveCount(0);
   // 圓點、連線、資料卡的小照片在同一條直線上；交通卡比資料卡窄（左邊縮進去）
   const cx = async (sel: string) => tl.locator(sel).first().evaluate((el) => { const r = el.getBoundingClientRect(); return r.left + r.width / 2; });
   const thumb = await cx('.tc-thumb');
@@ -1790,10 +1790,10 @@ test('地圖窄時日期晶片兩排（整趟佔兩排高，2/8 起第二排）�
   expect(Math.round(d2.height)).toBe(44);
   // 不用橫捲
   expect(await side.getByTestId('m-day-strip').evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
-  // 紅點：只畫在有警告（不算 info）的天
+  // 紅點：只畫在有要處理（act）提醒的天（T74a）
   const warned = (await page.evaluate(() => {
     const plan = (window as any).__th.planStore.getState().plan;
-    return plan.days.filter((d: any) => d.warnings.some((w: any) => w.level !== 'info')).map((d: any) => d.date);
+    return plan.days.filter((d: any) => d.warnings.some((w: any) => w.level === 'act')).map((d: any) => d.date);
   })) as string[];
   expect(warned.length).toBeGreaterThan(0);
   await expect(side.getByTestId('day-warn-dot')).toHaveCount(warned.length);
@@ -2218,7 +2218,7 @@ test('第八輪：合併卡兩張斜斜地一前一後（前面往左斜、後�
   await expect(page.getByTestId('timeline').getByTestId('trip-card-back')).toHaveCount(await page.getByTestId('timeline').locator('.tc-li.stacked').count());
 });
 
-test('網頁時間軸有縮圖；交通卡第一行方式＋分鐘、第二行膠囊或台數，不換行（§13.6）', async ({ page }) => {
+test('網頁時間軸有縮圖；交通卡第一行方式＋分鐘、第二行膠囊，不換行（§13.6）', async ({ page }) => {
   await ready(page);
   await showDay(page, '2027-02-03');
   const row = tlRow(page, 'i-2');

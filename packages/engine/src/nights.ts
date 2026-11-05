@@ -17,6 +17,20 @@ export const lodgingOn = (it: Itinerary | null | undefined, date: DateString): s
 /** 這晚自己填的方案；沒填是 null（照住宿資料的 meals） */
 export const lodgingMealsOn = (it: Itinerary | null | undefined, date: DateString): LodgingMeals | null => it?.nights?.[date]?.meals ?? null;
 
+/** 住宿資料的 meals：'varies' 是有含晚餐和不含晚餐兩種方案 */
+export type PlaceMeals = LodgingMeals | 'varies' | null | undefined;
+
+/** 這晚的方案：自己填的 → 住宿資料的 meals；沒有住宿是 null */
+export function nightMeals(it: Itinerary | null | undefined, date: DateString, mealsOf: (placeId: string) => PlaceMeals): LodgingMeals | 'varies' | null {
+  const own = lodgingMealsOn(it, date);
+  if (own) return own;
+  const lodging = lodgingOn(it, date);
+  return (lodging ? mealsOf(lodging) : null) ?? null;
+}
+
+/** 晚餐未選（T74a，§34.1 搬家）：住宿有兩種方案而這晚還沒選；整趟骨架住宿那格寫「晚餐未選」 */
+export const mealsUnchosen = (it: Itinerary | null | undefined, date: DateString, mealsOf: (placeId: string) => PlaceMeals): boolean => nightMeals(it, date, mealsOf) === 'varies';
+
 /** 這晚住哪一區：有寫 area 用它，沒寫但選了住宿就照住宿的區；都沒有是 null */
 export function nightAreaOf(it: Itinerary | null | undefined, date: DateString, areaOf?: AreaOfPlace): AreaId | null {
   const n = nightOf(it, date);

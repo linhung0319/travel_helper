@@ -202,7 +202,11 @@ export interface Itinerary {
 
 // --- 引擎的輸出 -------------------------------------------------------------
 
-export type WarningLevel = 'error' | 'warning' | 'info';
+/**
+ * 提醒的兩級（interaction-design §34.1）：act＝要處理（不改行程就會出事，紅 ⚠、計數）；
+ * note＝留意（知道就好，墨色小字、不計數）
+ */
+export type WarningLevel = 'act' | 'note';
 
 export interface EngineWarning {
   code: string;
@@ -266,18 +270,6 @@ export interface LegAlternative {
   transfers: LegTransfer[];
 }
 
-export interface TaxiInfo {
-  /** 一般計程車（4 人）的台數 */
-  cars: number;
-  /** 改用大型計程車（9 人座）的台數 */
-  jumboCars: number;
-  /** 每台的起跳價；加算費率沒設定時只有起跳價 */
-  fareFromYen: number | null;
-  /** 每台的估算費用；加算費率沒設定時是 null */
-  fareEstimateYen: number | null;
-  note: string;
-}
-
 export interface Leg {
   mode: TravelMode | 'none' | 'unknown';
   from: string | null;
@@ -303,13 +295,14 @@ export interface Leg {
   alternatives?: LegAlternative[];
   /** 出發後（加上走到上車點）時刻表裡還有沒有這兩點之間的班次（不管等多久）；false 時規劃模式的「大眾運輸」灰掉 */
   transitAvailable?: boolean;
-  taxi?: TaxiInfo | null;
-  /** 大眾運輸接計程車（T39）：先搭計程車到這個車站才上車；台數在 taxi */
+  /** 大眾運輸接計程車（T39）：先搭計程車到這個車站才上車 */
   taxiBefore?: { station: string; minutes: number };
-  /** 大眾運輸接計程車（T39）：在這個車站下車，再搭計程車到終點；台數在 taxi */
+  /** 大眾運輸接計程車（T39）：在這個車站下車，再搭計程車到終點 */
   taxiAfter?: { station: string; minutes: number };
   /** 使用者用 travel 指定的 */
   specified: boolean;
+  /** 選的走法（TravelSpec.path）這時間沒有車，改用自動算的（T74a；畫面寫成標籤「已換走法」） */
+  pathReplaced?: true;
   /** 怎麼算的，例如「步行 osrm」「估算」 */
   basis: string;
 }
@@ -369,6 +362,6 @@ export interface DayPlan {
 
 export interface ItineraryPlan {
   days: DayPlan[];
-  /** 整趟的警告（例如連續兩天都累、沒有半天自由時間） */
+  /** 整趟的警告（只剩沒有半天自由時間；連兩天累看每天的 stats.tiring） */
   warnings: EngineWarning[];
 }

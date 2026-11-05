@@ -26,8 +26,6 @@ export interface EngineConfig {
     busMaxWait: number;
     /** 巴士：班距這個分鐘以上算「1 小時以上才一班」（§5.4 ①） */
     busMinHeadwayInfrequent: number;
-    /** 這個人數以上搭巴士要警告擠不上（路線巴士不能預約） */
-    busCrowdSize: number;
     /** 電車、船：等車超過這個分鐘就不搭（改搭計程車）；離島的船不受限制 */
     trainMaxWait: number;
     /** 近鐵轉乘至少幾分（next-train.mjs） */
@@ -36,8 +34,6 @@ export interface EngineConfig {
     allowExpress: boolean;
     /** 離島的子地區：上島、下島只能搭船；島上沒有計程車、巴士（data/raw/toba/transport.md「島上移動」），島內一律走路。和 scripts/gtfs-timetable.mjs 的 ISLAND_STOPS 一致 */
     islandRegions: string[];
-    /** 轉乘（例如巴士到碼頭等船）的空檔超過這個分鐘要提醒 */
-    transferLongWait: number;
     /** 一段公共交通最多搭幾程（RAPTOR 的輪數） */
     maxRides: number;
     /** 最多給幾條走法 */
@@ -58,21 +54,11 @@ export interface EngineConfig {
   };
 
   taxi: {
-    /** 一般計程車、大型計程車能坐幾人（CONVENTIONS「團體」） */
-    carCapacity: number;
-    jumboCapacity: number;
     /** 行車速度（km/h）、道路繞路係數：沒有 OSRM 開車時間時估算用 */
     kmPerHour: number;
     roadDetour: number;
     /** 叫車、上下車的固定時間（預設 0：和 Google Maps 一樣只算車程） */
     overheadMinutes: number;
-    /** 起跳價（data/raw/toba/transport.md：普通車 700 円 1.2 km、ジャンボ 840 円） */
-    baseYen: number;
-    jumboBaseYen: number;
-    baseMeters: number;
-    /** 加算：每 stepMeters 加 stepYen。沒查到，null 時不估費用 */
-    stepMeters: number | null;
-    stepYen: number | null;
     /** 直線超過這個距離（公里）就不建議計程車，改成「交通方式未知」 */
     maxKm: number;
   };
@@ -89,6 +75,8 @@ export interface EngineConfig {
     maxMainSpots: number;
     /** 有長輩或小孩時，連續活動這麼久沒有休息（用餐、自由時間）要警告 */
     maxMinutesWithoutRest: number;
+    /** 坐車這麼久以上算一次休息（T74a：坐 4 小時特急不算「沒休息」） */
+    restRideMinutes: number;
     /** 景點內步行這麼久以上算「累」（§5.5） */
     tiringWalkInside: number;
     /** 半天自由時間至少幾分（§5.5） */
@@ -137,12 +125,10 @@ export const DEFAULT_CONFIG: EngineConfig = {
   transit: {
     busMaxWait: 20,
     busMinHeadwayInfrequent: 60,
-    busCrowdSize: 10,
     trainMaxWait: 30,
     minTransfer: 3,
     allowExpress: true,
     islandRegions: ['toshijima', 'sugashima', 'kamishima', 'sakatejima', 'mazakijima'],
-    transferLongWait: 30,
     maxRides: 4,
     maxAlternatives: 3,
     urbanTransferDefault: 5,
@@ -152,16 +138,9 @@ export const DEFAULT_CONFIG: EngineConfig = {
     ticketMargin: 10,
   },
   taxi: {
-    carCapacity: 4,
-    jumboCapacity: 9,
     kmPerHour: 30,
     roadDetour: 1.3,
     overheadMinutes: 0,
-    baseYen: 700,
-    jumboBaseYen: 840,
-    baseMeters: 1200,
-    stepMeters: null,
-    stepYen: null,
     maxKm: 40,
   },
   day: {
@@ -171,6 +150,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     dinnerLodgingArriveBy: '17:00',
     maxMainSpots: 2,
     maxMinutesWithoutRest: 180,
+    restRideMinutes: 60,
     tiringWalkInside: 60,
     halfDayFreeMinutes: 180,
     idleGapMinutes: 60,

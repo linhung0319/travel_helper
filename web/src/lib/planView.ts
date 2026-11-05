@@ -38,12 +38,6 @@ export function legTitle(leg: Leg): string {
   return `${legModeName(leg.mode)}${leg.taxiBefore || leg.taxiAfter ? '＋計程車' : ''} ${leg.minutes} 分`;
 }
 
-/** 計程車收合時的第二行（T29c spec §8.2，叫車要知道）：「大型 2 台或一般 4 台」；不是計程車回傳 null */
-export function taxiCarsText(leg: Leg): string | null {
-  if (!leg.taxi) return null;
-  return leg.taxi.jumboCars ? `大型 ${leg.taxi.jumboCars} 台或一般 ${leg.taxi.cars} 台` : `${leg.taxi.cars} 台`;
-}
-
 /** 編輯時的交通方式選單（auto：不寫 mode，由引擎挑） */
 export const EDITOR_MODES = ['auto', 'walk', 'taxi', 'transit'] as const;
 export type EditorMode = (typeof EDITOR_MODES)[number];
@@ -142,13 +136,11 @@ export function optionRows(item: VisitItem, byId: Map<string, Place>): OptionRow
   return rows.sort((a, b) => Number(b.main) - Number(a.main));
 }
 
-/** 畫面上不另外列的警告：計程車的台數已經寫在交通那一行 */
-const HIDDEN_WARNINGS = new Set(['taxi']);
+/** 要處理的提醒（act，§34.1）：只有這種計數、變紅 */
+export const isAct = (w: Pick<EngineWarning, 'level'>) => w.level === 'act';
 
-/** 引擎的訊息裡露出欄位名的，換成給人看的話 */
-const WARNING_TEXT: Record<string, string> = {
-  'lodging-meals-unknown': '這間住宿有含晚餐和不含晚餐的方案，還沒選哪一種',
-};
+/** 幾條要處理的 */
+export const actCount = (list: readonly Pick<EngineWarning, 'level'>[] | undefined) => list?.filter(isAct).length ?? 0;
 
 /**
  * 引擎的警告，依項目分好；沒有項目的（整天的）放在 day。
@@ -157,9 +149,8 @@ const WARNING_TEXT: Record<string, string> = {
 export function warningsByItem(day: DayPlan | null): { byItem: Map<string, EngineWarning[]>; day: EngineWarning[] } {
   const byItem = new Map<string, EngineWarning[]>();
   const rest: EngineWarning[] = [];
-  for (const raw of day?.warnings ?? []) {
-    if (raw.leg || HIDDEN_WARNINGS.has(raw.code)) continue;
-    const w = WARNING_TEXT[raw.code] ? { ...raw, message: WARNING_TEXT[raw.code] } : raw;
+  for (const w of day?.warnings ?? []) {
+    if (w.leg) continue;
     if (w.itemId) byItem.set(w.itemId, [...(byItem.get(w.itemId) ?? []), w]);
     else rest.push(w);
   }
@@ -173,8 +164,8 @@ export function shownWarnings(list: EngineWarning[] | undefined, placeId: string
   return out.length ? out : undefined;
 }
 
-/** 提醒前面的線條圖示 */
-export const WARNING_ICONS: Record<EngineWarning['level'], IconName> = { error: 'warn', warning: 'warn', info: 'info' };
+/** 提醒前面的線條圖示：要處理 ⚠，留意 ⓘ（T74b 改成「·」） */
+export const WARNING_ICONS: Record<EngineWarning['level'], IconName> = { act: 'warn', note: 'info' };
 
 /** 時間軸上的一列：項目（含交通）或空檔（「住宿（未排）」這類），依時間排好 */
 export type TimelineRow = { kind: 'entry'; entry: TimelineEntry } | { kind: 'gap'; gap: DayPlan['gaps'][number] };
@@ -246,13 +237,13 @@ export function dayBar(day: DayPlan, typeOf: (placeId: string | null) => PlaceTy
   return out;
 }
 
-/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含等車；沒有緩衝）、幾個要注意的警告 */
+/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含等車；沒有緩衝）、這天要處理的提醒數（卡片、交通、整天的都算） */
 export function daySummary(day: DayPlan): { start: string | null; back: string | null; travelMinutes: number; warnings: number } {
   return {
     start: day.entries.find((e) => e.kind === 'start')?.start ?? null,
     back: day.entries.find((e) => e.kind === 'lodging')?.arrive ?? null,
     travelMinutes: day.entries.reduce((n, e) => n + (e.travel ? e.travel.minutes : 0), 0),
-    warnings: day.warnings.filter((w) => w.level !== 'info').length,
+    warnings: actCount(day.warnings),
   };
 }
 

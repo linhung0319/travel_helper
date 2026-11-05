@@ -11,7 +11,7 @@ import { dayAreaName } from './dayTitle.ts';
 import { dayStops } from './itinerary.ts';
 import { MEALS_LABELS } from './labels.ts';
 import { isKintetsu, rideShortName } from './legView.ts';
-import { cardTime, legTitle, taxiCarsText } from './planView.ts';
+import { cardTime, legTitle } from './planView.ts';
 import { noteRows, reservationFor, type NoteRow } from './reservations.ts';
 import { headwayText } from './timetableView.ts';
 import { dayLabel } from './trip.ts';
@@ -205,10 +205,9 @@ export function buildTripExport(input: ExportInput): ExportDoc {
   const itemOf = (id: string | null) => (id ? (items.get(id) ?? null) : null);
   const travelNoteOf = (it: ItineraryItem | null) => (it ? str(it.travel?.note) : null);
 
-  // 大眾運輸接計程車：哪一站、幾分、幾台
+  // 大眾運輸接計程車：哪一站、幾分（台數不印，T74a）
   const taxiLine = (leg: Leg): string | null => {
-    const cars = taxiCarsText(leg);
-    const parts = [leg.taxiBefore && `先搭計程車 ${leg.taxiBefore.minutes} 分到${nameOf(leg.taxiBefore.station)}`, leg.taxiAfter && `到${nameOf(leg.taxiAfter.station)}再搭計程車 ${leg.taxiAfter.minutes} 分`, cars].filter(Boolean);
+    const parts = [leg.taxiBefore && `先搭計程車 ${leg.taxiBefore.minutes} 分到${nameOf(leg.taxiBefore.station)}`, leg.taxiAfter && `到${nameOf(leg.taxiAfter.station)}再搭計程車 ${leg.taxiAfter.minutes} 分`].filter(Boolean);
     return parts.length ? parts.join('・') : null;
   };
 

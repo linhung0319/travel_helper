@@ -144,6 +144,8 @@ export interface EngineData {
   urbanTransfers?: UrbanTransfer[];
   /** 子地區 ID → 是否大部分地點要搭車（areas.json 的 regions[].needsCar） */
   regionNeedsCar?: Record<string, boolean>;
+  /** 區 ID → 中文名（areas.json 的 name.zh），提醒「不在這晚選的鳥羽」用；沒有時寫「這晚選的區」 */
+  areaNames?: Record<string, string>;
   /**
    * 實際步行距離（公尺，係數 1），例如讀 data/cache/routes/ 的 OSRM 快取；
    * 沒有就回傳 null，引擎改用 anchors 或直線估算。

@@ -84,8 +84,36 @@ test('引擎的警告沒有內部用語（§、fit15:、nights 的 meals）', as
   const plan = h.plan.getState().plan!;
   const all = [...plan.warnings, ...plan.days.flatMap((d) => d.warnings)].map((w) => w.message);
   assert.ok(all.length > 0);
-  for (const m of all) assert.doesNotMatch(m, /§|fit15|nights 的|meals/, m);
-  assert.ok(all.some((m) => m.includes('還沒選要不要含晚餐')));
+  for (const m of all) assert.doesNotMatch(m, /§|fit15|nights 的|meals|全員|L\.O\.|子地區|主要景點/, m);
+  // 晚餐未選不再是每天的提醒（T74a：搬到整趟骨架的住宿那格）
+  assert.ok(!all.some((m) => m.includes('晚餐') && m.includes('選')));
+  h.close();
+});
+
+test('T74a 假行程的提醒：2/5 從 13 條剩 6 條（3 條要處理）；字一行內；計程車台數、巴士擠不上、入住前都沒有', async () => {
+  const h = await harness();
+  const plan = h.plan.getState().plan!;
+  const all = [...plan.warnings, ...plan.days.flatMap((d) => d.warnings)];
+  assert.ok(all.every((w) => w.level === 'act' || w.level === 'note'));
+  for (const code of ['taxi', 'bus-crowd', 'before-checkin', 'wait-open', 'transfer-wait', 'transfer-walk', 'path-unavailable', 'lodging-meals-unknown', 'tiring-streak', 'group-seats', 'no-reservation']) {
+    assert.ok(!all.some((w) => w.code === code), code);
+  }
+  // 一行：手機卡片一行約 18 個字，留一點餘裕
+  for (const w of all) assert.ok([...w.message].length <= 24, w.message);
+  const d5 = plan.days.find((d) => d.date === '2027-02-05')!;
+  assert.deepEqual(
+    d5.warnings.map((w) => [w.level, w.message]),
+    [
+      ['act', '不接受預約，15 人坐不坐得下也不確定'],
+      ['act', '14:48 到，14:30 最後入場'],
+      ['act', '不接受預約，15 人坐不坐得下也不確定'],
+      ['note', '17:00 打烊，停留到 17:42'],
+      ['note', '17:45 回住宿，2 月 17:00 天黑'],
+      ['note', '4 小時 4 分沒有用餐休息，長輩小孩會累'],
+    ],
+  );
+  // 2/2 一抵達就坐 2 小時多的車：坐車算休息，不報沒休息
+  assert.ok(!plan.days[0].warnings.some((w) => w.code === 'no-rest'));
   h.close();
 });
 
@@ -93,7 +121,7 @@ test('check_changes：一樣的警告只留一則；get_route：alternatives 不
   const h = await harness();
   const t = run(h);
   const c = await t('check_changes', { ops: [{ op: 'add', date: '2027-02-04', place: 'shima-yokoyama-observatory', index: 0 }, { op: 'add', date: '2027-02-04', place: 'shima-la-mer', index: 2, tags: ['lunch'] }] });
-  const warns = c.newWarnings as string[];
+  const warns = (c.newWarnings as { level: string; message: string }[]).map((w) => `${w.level}${w.message}`);
   assert.equal(new Set(warns).size, warns.length, JSON.stringify(warns));
   const r = await t('get_route', { from: 'ise-naiku', to: 'toba-aquarium', date: '2027-02-05', time: '14:00' });
   assert.equal(r.ok, true);

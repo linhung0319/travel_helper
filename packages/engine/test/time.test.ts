@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { addDays, busDayType, dateRange, dayOfWeek, DEFAULT_CONFIG, fromMinutes, isDate, isTime, kintetsuDayType, resolveConfig, toMinutes } from '../src/index.ts';
+import { addDays, busDayType, dateRange, dayOfWeek, DEFAULT_CONFIG, formatDuration, fromMinutes, isDate, isTime, kintetsuDayType, resolveConfig, toMinutes } from '../src/index.ts';
 
 test('時間字串和分鐘互換，過了午夜寫 25:00', () => {
   assert.equal(toMinutes('09:30'), 570);
@@ -42,4 +42,11 @@ test('設定可以部分覆蓋，其他維持預設', () => {
   assert.equal(c.walk.factorWhole, 1.4);
   assert.deepEqual(c.holidays, []);
   assert.equal(DEFAULT_CONFIG.walk.legMaxWhole, 15);
+});
+
+test('formatDuration：60 分以下「45 分」、整點「2 小時」、其他「4 小時 7 分」', () => {
+  assert.equal(formatDuration(45), '45 分');
+  assert.equal(formatDuration(59.6), '1 小時');
+  assert.equal(formatDuration(120), '2 小時');
+  assert.equal(formatDuration(247), '4 小時 7 分');
 });

@@ -766,8 +766,8 @@ test('多個地點晶片：建議問題換成比較、怎麼排；輸入框的�
 test('提議卡的新警告：照操作清單算；算不出來是空的', async () => {
   const h = await harness();
   assert.deepEqual(h.chat.newWarnings([{ op: 'remove', itemId: '不存在' }] as never), []);
-  // 有警告的提議：坐不下、打烊；只有資訊類的（計程車台數這類）不算
-  assert.deepEqual(h.chat.newWarnings([{ op: 'replace', itemId: 'i-7', place: 'toba-osakaya' }] as never), ['全員 15 人：要分桌或分批，要先打電話確認', '17:54 已經打烊（營業到 17:00）']);
+  // 只算要處理的（打烊）；留意的（15 人要分桌）不算（T74a）
+  assert.deepEqual(h.chat.newWarnings([{ op: 'replace', itemId: 'i-7', place: 'toba-osakaya' }] as never), ['17:54 到，17:00 打烊']);
   h.close();
 });
 
@@ -1136,10 +1136,12 @@ test('T36 get_place：分區的欄位直接放在點上，來源網址和產生�
 
 test('T36 get_day：一樣的警告併成一則，itemIds 列出是哪幾項', async () => {
   const h = await harness();
-  const r = (await h.chat.tools.find((t) => t.name === 'get_day')!.run({ date: '2027-02-04' })).output as unknown as { warnings: { level: string; message: string; itemIds: string[] }[] };
+  // 2/5 兩家餐廳都是「不接受預約，15 人坐不坐得下也不確定」
+  const r = (await h.chat.tools.find((t) => t.name === 'get_day')!.run({ date: '2027-02-05' })).output as unknown as { warnings: { level: string; message: string; itemIds: string[] }[] };
   const keys = r.warnings.map((w) => `${w.level}${w.message}`);
   assert.equal(new Set(keys).size, keys.length);
-  assert.ok(r.warnings.some((w) => w.itemIds.length > 1));
+  assert.ok(r.warnings.some((w) => w.itemIds.length > 1 && w.level === 'act'));
+  assert.ok(r.warnings.every((w) => w.level === 'act' || w.level === 'note'));
   h.close();
 });
 

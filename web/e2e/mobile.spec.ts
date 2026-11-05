@@ -671,8 +671,8 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await pickDay(page, '2027-02-10');
   const leg = page.getByTestId('m-leg').filter({ hasText: '大眾運輸' }).first();
   await expect(leg.getByTestId('leg-chips')).toBeVisible();
-  // 外宮 → 内宮的路線巴士：bus-crowd（warning）算進第一行的 ⚠ 數字
-  await expect(leg.getByTestId('leg-warn-count')).toHaveText('1');
+  // 外宮 → 内宮的路線巴士：巴士擠不上 T74a 拿掉，第一行沒有 ⚠ 數字
+  await expect(leg.getByTestId('leg-warn-count')).toHaveCount(0);
   await expect(leg.getByTestId('leg-steps')).toHaveCount(0);
   await leg.getByTestId('leg-line-text').click();
   const steps = leg.getByTestId('leg-steps');
