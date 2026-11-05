@@ -659,6 +659,9 @@ const legWith = (p: Partial<NonNullable<TimelineEntry['travel']>>) => ({ ...leg(
 
 test('legTitle：方式＋分鐘，電車、巴士、船都叫大眾運輸', () => {
   assert.equal(legTitle(legWith({ mode: 'train', minutes: 34, waitMinutes: 11 })), '大眾運輸 34 分');
+  // 60 分以上寫小時（T73）
+  assert.equal(legTitle(legWith({ mode: 'train', minutes: 247 })), '大眾運輸 4 小時 7 分');
+  assert.equal(legTitle(legWith({ mode: 'train', minutes: 120 })), '大眾運輸 2 小時');
   assert.equal(legTitle(legWith({ mode: 'taxi', minutes: 12 })), '計程車 12 分');
   assert.equal(legTitle(legWith({ mode: 'walk', minutes: 8 })), '步行 8 分');
   assert.equal(legTitle(legWith({ mode: 'charter', minutes: 30 })), '包車 30 分');

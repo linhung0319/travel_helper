@@ -105,13 +105,34 @@ export async function groupName(accessToken: string, groupId: string): Promise<s
 /** 一則文字訊息的字數上限（UTF-16）：先用 5000，還沒實測（PLAN T34）；一次回覆最多 5 則 */
 export const LINE_TEXT_MAX = 5000;
 export const LINE_REPLY_MAX = 5;
+/** Quick Reply 最多 13 顆；按鈕的字最多 20 字（LINE 文件） */
+export const QUICK_REPLY_MAX = 13;
+const QUICK_REPLY_LABEL_MAX = 20;
 
-/** 回覆（reply token 只能用一次、收到通知後 1 分鐘內）；回覆不計入每月的訊息額度 */
-export async function replyMessage(accessToken: string, replyToken: string, texts: string[]): Promise<void> {
+/** 回覆下面的按鈕（T73）：postback，按了聊天室顯示 label 像是那個人打的，機器人收到 data（不用 @） */
+export interface QuickReplyButton {
+  label: string;
+  data: string;
+}
+
+/**
+ * 回覆（reply token 只能用一次、收到通知後 1 分鐘內）；回覆不計入每月的訊息額度。
+ * 按鈕掛在最後一則（Quick Reply 只顯示在最後一則下面；群組裡任何人再發訊息就收掉）
+ */
+export async function replyMessage(accessToken: string, replyToken: string, texts: string[], buttons: QuickReplyButton[] = []): Promise<void> {
+  const messages: Record<string, unknown>[] = texts.slice(0, LINE_REPLY_MAX).map((text) => ({ type: 'text', text }));
+  if (buttons.length && messages.length) {
+    messages[messages.length - 1].quickReply = {
+      items: buttons.slice(0, QUICK_REPLY_MAX).map((b) => ({
+        type: 'action',
+        action: { type: 'postback', label: b.label.slice(0, QUICK_REPLY_LABEL_MAX), data: b.data, displayText: b.label },
+      })),
+    };
+  }
   const r = await fetch(`${API}/v2/bot/message/reply`, {
     method: 'POST',
     headers: { authorization: `Bearer ${accessToken}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ replyToken, messages: texts.slice(0, LINE_REPLY_MAX).map((text) => ({ type: 'text', text })) }),
+    body: JSON.stringify({ replyToken, messages }),
   });
   if (!r.ok) throw new LineError('回覆訊息失敗', r.status, await readJson(r));
 }

@@ -1,4 +1,4 @@
-// T34：LINE @ 機器人、行程摘要的存取。LINE 和 Claude API 都用假的 fetch，不花錢。
+// T34：LINE @ 機器人、行程摘要的存取。LINE 和 Claude API 都用假的 fetch，不花錢。T73：按鈕（Quick Reply、postback）、說明照時期切換。
 
 import { test, describe, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 import { createItinerary, type TripSummary } from '@travel-helper/engine';
 import { freshDb, type FakeD1 } from './helpers/d1.ts';
 import { handle } from '../src/index.ts';
-import { botReply, helpText, normalize, parseCommand, splitMessages, stripMentions } from '../src/bot.ts';
+import { botReply, dayButtons, defaultButtons, helpText, normalize, parseCommand, splitMessages, stripMentions, tripButtons, UNKNOWN_TEXT } from '../src/bot.ts';
 import type { Env } from '../src/env.ts';
 
 const MSG_SECRET = 'messaging-secret';
@@ -14,7 +14,7 @@ const AI = 'https://ai.test';
 const realFetch = globalThis.fetch;
 
 let d1: FakeD1;
-let replies: { replyToken: string; messages: { type: string; text: string }[] }[];
+let replies: { replyToken: string; messages: { type: string; text: string; quickReply?: { items: { type: string; action: Record<string, string> }[] } }[] }[];
 /** 假 AI 這次要回的 JSON；null：AI 出錯 */
 let aiOutput: Record<string, unknown> | null;
 let aiRequests: Record<string, any>[];
@@ -71,13 +71,14 @@ afterEach(() => {
 
 const SUMMARY: TripSummary = {
   days: [
-    { date: '2027-02-02', lodging: '海邊旅館', lines: [{ start: '11:55', end: null, text: '抵達 關西機場' }] },
+    { date: '2027-02-02', lodging: '海邊旅館', lines: [{ start: '11:55', end: null, text: '抵達 關西機場', kind: 'flight' }] },
     {
       date: '2027-02-03',
       lodging: '海邊旅館',
+      area: '伊勢',
       lines: [
-        { start: '10:00', end: '12:00', text: '伊勢神宮' },
-        { start: '12:30', end: '13:30', text: '海女小屋' },
+        { start: '10:00', end: '12:00', text: '伊勢神宮 內宮（皇大神宮）', kind: 'visit' },
+        { start: '12:30', end: '13:30', text: '海女小屋', kind: 'visit', alternatives: ['一榮'] },
       ],
     },
     { date: '2027-02-04', lodging: null, lines: [] },
@@ -94,12 +95,18 @@ function seed(o: { summaryVersion?: number; version?: number } = {}) {
   d1.db.exec(`INSERT INTO line_groups (group_id, group_name, status, joined_at) VALUES ('Cother', '別人', 'pending', '2026-10-26T00:00:00Z')`);
 }
 
-/** 2027-02-03 11:00 日本時間 */
+/** 2027-02-03 11:00 日本時間（旅行中） */
 const NOW = Date.UTC(2027, 1, 3, 2, 0);
-const ask = (q: string, e: Partial<Env> = {}) => botReply(env(e), d1 as unknown as D1Database, q, NOW);
+/** 2027-01-20 日本時間（出發前） */
+const BEFORE = Date.UTC(2027, 0, 20, 2, 0);
+const ask = (q: string, e: Partial<Env> = {}, nowMs = NOW) => botReply(env(e), d1 as unknown as D1Database, q, nowMs);
+const texts = async (q: string, e: Partial<Env> = {}, nowMs = NOW) => (await ask(q, e, nowMs)).texts;
+const labels = (r: { buttons: { label: string }[] }) => r.buttons.map((b) => b.label);
+
+const DAYS = SUMMARY.days.map((d) => d.date);
 
 describe('指令', () => {
-  const days = SUMMARY.days.map((d) => d.date);
+  const days = DAYS;
   test('完全符合的才算，全形、空白、標點都不影響', () => {
     assert.deepEqual(parseCommand('整趟', '2027-02-03', days), { type: 'trip' });
     assert.deepEqual(parseCommand('網址', '2027-02-03', days), { type: 'url' });
@@ -126,50 +133,85 @@ describe('指令', () => {
     assert.equal(stripMentions('@行程機器人 整趟', [{ index: 0, length: 6 }]), '整趟');
     assert.deepEqual(splitMessages('aaa\n\nbbb\n\nccc', 8), ['aaa\n\nbbb', 'ccc']);
   });
+
+  test('按鈕：出發前、旅行中、結束後不同；看完單天、整趟各有一組；按鈕的 data 都是指令', () => {
+    assert.deepEqual(labels({ buttons: defaultButtons(DAYS, '2027-01-20') }), ['整趟', '2/2', '預約', '網址']);
+    assert.deepEqual(labels({ buttons: defaultButtons(DAYS, '2027-02-03') }), ['今天', '明天', '現在', '整趟', '預約', '網址']);
+    assert.deepEqual(labels({ buttons: defaultButtons(DAYS, '2027-02-05') }), ['整趟', '預約', '網址']);
+    assert.deepEqual(labels({ buttons: defaultButtons([], '2027-02-03') }), ['整趟', '預約', '網址']);
+    // 看完單天：隔天（看的是今天時叫「明天」）、整趟、那天的預約、網址；最後一天沒有隔天
+    assert.deepEqual(labels({ buttons: dayButtons(DAYS, '2027-02-03', '2027-02-03') }), ['明天', '整趟', '2/3 預約', '網址']);
+    assert.deepEqual(labels({ buttons: dayButtons(DAYS, '2027-02-03', '2027-01-20') }), ['2/4', '整趟', '2/3 預約', '網址']);
+    assert.deepEqual(labels({ buttons: dayButtons(DAYS, '2027-02-04', '2027-02-03') }), ['整趟', '2/4 預約', '網址']);
+    // 看完整趟：旅行中先今天、明天，再每天；最多 13 顆
+    assert.deepEqual(labels({ buttons: tripButtons(DAYS, '2027-02-03') }), ['今天', '明天', '2/2', '2/3', '2/4']);
+    assert.deepEqual(labels({ buttons: tripButtons(DAYS, '2027-01-20') }), ['2/2', '2/3', '2/4']);
+    const twelve = Array.from({ length: 12 }, (_, i) => `2027-02-${String(2 + i).padStart(2, '0')}`);
+    assert.equal(tripButtons(twelve, '2027-02-05').length, 13);
+    for (const b of [...defaultButtons(DAYS, '2027-02-03'), ...dayButtons(DAYS, '2027-02-03', '2027-01-20'), ...tripButtons(DAYS, '2027-02-03')]) {
+      assert.ok(b.data === '網址' || parseCommand(b.data, '2027-02-03', DAYS), b.data);
+    }
+  });
 });
 
 describe('回覆', () => {
   test('還沒有摘要：請人打開網站', async () => {
-    assert.match((await ask('整趟'))[0], /行程還沒整理好/);
+    const r = await ask('整趟');
+    assert.match(r.texts[0], /行程還沒整理好/);
+    assert.deepEqual(labels(r), ['整趟', '預約', '網址']);
   });
 
-  test('網址：加上 openExternalBrowser，從 LINE 點開用手機的瀏覽器；還沒有摘要也回得出來', async () => {
-    assert.deepEqual(await ask('網址'), ['用瀏覽器打開網站：\nhttps://trip.example.dev/?openExternalBrowser=1']);
-    assert.match((await ask('網址', { PUBLIC_BASE_URL: undefined }))[0], /還沒設定/);
+  test('網址：加上 openExternalBrowser，從 LINE 點開用手機的瀏覽器，提醒第一次要用 LINE 登入；還沒有摘要也回得出來', async () => {
+    assert.deepEqual(await texts('網址'), ['用瀏覽器打開網站：\nhttps://trip.example.dev/?openExternalBrowser=1\n第一次打開要用 LINE 登入']);
+    assert.match((await texts('網址', { PUBLIC_BASE_URL: undefined }))[0], /還沒設定/);
     seed();
     aiOutput = { type: 'url', date: null, text: null };
-    assert.deepEqual(await ask('網站連結給我'), ['用瀏覽器打開網站：\nhttps://trip.example.dev/?openExternalBrowser=1']);
+    assert.deepEqual(await texts('網站連結給我'), ['用瀏覽器打開網站：\nhttps://trip.example.dev/?openExternalBrowser=1\n第一次打開要用 LINE 登入']);
   });
 
-  test('一天、整趟：最後寫誰什麼時候更新；摘要跟不上時註明', async () => {
+  test('一天、整趟：最後寫誰什麼時候更新；摘要跟不上時註明；按鈕', async () => {
     seed();
-    assert.equal((await ask('2/3'))[0], '2/3（三）\n10:00-12:00 伊勢神宮\n12:30-13:30 海女小屋\n住：海邊旅館\n（1/20 21:05 王小明 更新）');
-    assert.match((await ask('整趟'))[0], /^2\/2（二）\n11:55 抵達 關西機場\n住：海邊旅館\n\n2\/3（三）[\s\S]*2\/4（四）\n還沒排\n（1\/20 21:05 王小明 更新）$/);
-    assert.equal((await ask('2/20'))[0], '2/20（六）不在旅程裡（旅程是 2/2～2/4）');
+    const day = await ask('2/3');
+    assert.equal(day.texts[0], '2/3（三）伊勢\n10:00 伊勢神宮 內宮\n12:30 海女小屋\n　或 一榮\n住：海邊旅館\n（1/20 21:05 王小明 更新）');
+    assert.deepEqual(labels(day), ['明天', '整趟', '2/3 預約', '網址']);
+    const trip = await ask('整趟');
+    assert.equal(
+      trip.texts[0],
+      [
+        '2/2～2/4 整趟\n要看某天的時間，按下面的日期或打「@機器人 2/2」',
+        '2/2（二）\n還沒排\n住：海邊旅館',
+        '2/3（三）伊勢\n伊勢神宮 內宮、海女小屋\n住：海邊旅館',
+        '2/4（四）\n還沒排\n（1/20 21:05 王小明 更新）',
+      ].join('\n\n'),
+    );
+    assert.deepEqual(labels(trip), ['今天', '明天', '2/2', '2/3', '2/4']);
+    const out = await ask('2/20');
+    assert.equal(out.texts[0], '2/20（六）不在旅程裡（旅程是 2/2～2/4）');
+    assert.deepEqual(labels(out), ['今天', '明天', '現在', '整趟', '預約', '網址']);
     assert.equal(aiRequests.length, 0);
   });
 
   test('摘要比行程舊', async () => {
     seed({ version: 4, summaryVersion: 3 });
-    assert.match((await ask('今天'))[0], /這份可能還不是最新的/);
+    assert.match((await texts('今天'))[0], /這份可能還不是最新的/);
   });
 
   test('現在：用日本時間', async () => {
     seed();
-    assert.match((await ask('現在'))[0], /^現在 11:00（2\/3（三））\n進行中：10:00-12:00 伊勢神宮\n下一個：12:30-13:30 海女小屋/);
+    assert.match((await texts('現在'))[0], /^現在 11:00（2\/3（三））\n進行中：10:00-12:00 伊勢神宮 內宮\n下一個：12:30-13:30 海女小屋\n　或 一榮/);
   });
 
-  test('預約：讀最新的預約筆記', async () => {
+  test('預約：讀最新的預約筆記，照狀態分段', async () => {
     seed();
-    assert.equal((await ask('今天的預約'))[0], '2/3（三）的預約\n12:30 海女小屋：還沒訂\n※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。');
+    assert.equal((await texts('今天的預約'))[0], '2/3（三）的預約：待訂 1\n\n待訂\n・12:30 海女小屋\n\n※ 網站不會幫忙訂，待訂的要自己訂，訂好到網站改成「已訂」');
     d1.db.exec(`INSERT INTO reservations (date, place_id, status, note, updated_by, updated_at) VALUES ('2027-02-03', 'r', 'booked', '電話訂', 'U1', '2027-01-21T00:00:00Z')`);
-    assert.equal((await ask('今天的預約'))[0], '2/3（三）的預約\n12:30 海女小屋：已訂（電話訂）\n※ 這是大家的筆記，網站不會幫忙訂。還沒訂的要自己打電話或上網訂，訂好後到網站改成「已訂」。');
+    assert.equal((await texts('今天的預約'))[0], '2/3（三）的預約：已訂 1\n\n已訂\n・12:30 海女小屋\n　電話訂\n\n※ 網站不會幫忙訂，待訂的要自己訂，訂好到網站改成「已訂」');
   });
 
   test('不是指令：AI 分類，內容還是照摘要排；用量記在機器人', async () => {
     seed();
     aiOutput = { type: 'day', date: '2027-02-03', text: null };
-    assert.match((await ask('今天要去哪裡'))[0], /^2\/3（三）\n10:00-12:00 伊勢神宮/);
+    assert.match((await texts('今天要去哪裡'))[0], /^2\/3（三）伊勢\n10:00 伊勢神宮 內宮/);
     assert.equal(aiRequests[0].model, 'claude-haiku-5-5');
     assert.equal(aiRequests[0].output_config.format.type, 'json_schema');
     assert.match(aiRequests[0].messages[0].content, /<now>2027-02-03（三）11:00 日本時間<\/now>/);
@@ -177,28 +219,41 @@ describe('回覆', () => {
     assert.equal(usage.input_tokens, 2000);
 
     aiOutput = { type: 'answer', date: null, text: '2/3 去伊勢神宮。' };
-    assert.deepEqual(await ask('哪天去伊勢神宮'), ['2/3 去伊勢神宮。']);
+    assert.deepEqual(await texts('哪天去伊勢神宮'), ['2/3 去伊勢神宮。']);
   });
 
-  test('怎麼用：和說明、指令、help 同一個指令，還沒有摘要也回得出來；不舉今天、明天、現在', async () => {
+  test('怎麼用：和說明、指令、help 同一個指令，還沒有摘要也回得出來；出發前不舉今天、明天、現在，旅行中才舉', async () => {
     for (const q of ['怎麼用', '說明', '指令', 'help', 'HELP', '']) assert.deepEqual(parseCommand(q, '2027-02-03', ['2027-02-03']), { type: 'help' });
-    const [text] = await ask('怎麼用');
-    assert.match(text, /^我們正在一起排 2\/2～2\/13 的行程/);
-    assert.match(text, /網站不會幫忙訂/);
-    assert.match(text, /https:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
-    assert.doesNotMatch(text, /今天|明天|現在/);
+    // 還沒有摘要：當出發前
+    const [noSummary] = await texts('怎麼用');
+    assert.match(noSummary, /^我們正在一起排 2\/2～2\/13 的行程/);
+    seed();
+    const [before] = await texts('怎麼用', {}, BEFORE);
+    assert.match(before, /^我們正在一起排 2\/2～2\/13 的行程/);
+    assert.match(before, /網站不會幫忙訂/);
+    assert.match(before, /https:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
+    assert.doesNotMatch(before, /今天|明天|現在/);
     assert.equal(helpText(undefined).includes('http'), false);
+    const [during] = await texts('說明');
+    assert.match(during, /^@ 我就能查行程：\n「今天」「明天」/);
+    assert.match(during, /哪天去伊勢神宮/);
+    assert.match(during, /用瀏覽器打開網站：\nhttps:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
+    assert.equal(helpText(undefined, true).includes('http'), false);
   });
 
-  test('AI 出錯、額度用完：回可用的指令和網站', async () => {
+  test('看不懂、AI 出錯、額度用完：一行加按鈕，不回整段說明', async () => {
     seed();
     aiOutput = null;
-    assert.match((await ask('哈囉'))[0], /^我們正在一起排[\s\S]*https:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
+    const r = await ask('哈囉');
+    assert.deepEqual(r.texts, [UNKNOWN_TEXT]);
+    assert.deepEqual(labels(r), ['今天', '明天', '現在', '整趟', '預約', '網址']);
+    aiOutput = { type: 'help', date: null, text: null };
+    assert.deepEqual(await texts('天氣如何'), [UNKNOWN_TEXT]);
     aiOutput = { type: 'trip', date: null, text: null };
-    d1.db.exec(`INSERT INTO ai_usage (member_id, date, cost_micro_usd) VALUES ('line-bot', '2027-02-03', 5000000)`);
-    // 用 Date.now() 的 jstDate 算今天：額度記在今天
-    d1.db.exec(`UPDATE ai_usage SET date = '${new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10)}'`);
-    assert.match((await ask('全部行程'))[0], /^我們正在一起排/);
+    // 額度用 Date.now() 的 jstDate 算今天：把今天的用量記滿（上面那次 AI 呼叫已經記了一列）
+    const today = new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10);
+    d1.db.exec(`INSERT INTO ai_usage (member_id, date, cost_micro_usd) VALUES ('line-bot', '${today}', 5000000) ON CONFLICT (member_id, date) DO UPDATE SET cost_micro_usd = 5000000`);
+    assert.deepEqual(await texts('全部行程'), [UNKNOWN_TEXT]);
   });
 });
 
@@ -217,17 +272,40 @@ describe('webhook', () => {
     source: { type: 'group', groupId, userId: 'U1' },
     message: { type: 'text', text, mention: { mentionees: [{ index: 0, length: 4, type: 'user', isSelf: self }] } },
   });
+  const postback = (groupId: string, data: string) => ({ type: 'postback', replyToken: 'rt-2', source: { type: 'group', groupId, userId: 'U1' }, postback: { data } });
 
-  test('核准的群組裡 @ 機器人才回', async () => {
+  test('核准的群組裡 @ 機器人才回；回覆的最後一則帶 Quick Reply（postback）', async () => {
     seed();
     assert.equal((await hook({ events: [message('Cfamily', '@機器人 2/3')] })).status, 200);
     assert.equal(replies.length, 1);
     assert.equal(replies[0].replyToken, 'rt-1');
-    assert.match(replies[0].messages[0].text, /^2\/3（三）\n10:00-12:00 伊勢神宮/);
+    assert.match(replies[0].messages[0].text, /^2\/3（三）伊勢\n10:00 伊勢神宮 內宮/);
+    // webhook 用真的現在（出發前）：隔天的按鈕是日期
+    const items = replies[0].messages.at(-1)!.quickReply!.items;
+    assert.deepEqual(
+      items.map((i) => i.action),
+      [
+        { type: 'postback', label: '2/4', data: '2/4', displayText: '2/4' },
+        { type: 'postback', label: '整趟', data: '整趟', displayText: '整趟' },
+        { type: 'postback', label: '2/3 預約', data: '2/3 預約', displayText: '2/3 預約' },
+        { type: 'postback', label: '網址', data: '網址', displayText: '網址' },
+      ],
+    );
 
     await hook({ events: [message('Cother', '@機器人 2/3')] }); // 沒核准
     await hook({ events: [message('Cfamily', '@小美 2/3', false)] }); // @ 的不是機器人
     await hook({ events: [{ ...message('Cfamily', '2/3'), message: { type: 'text', text: '2/3' } }] }); // 沒有 @
+    assert.equal(replies.length, 1);
+  });
+
+  test('按鈕（postback）：data 當成問的話，不用 @；一樣只回核准的群組', async () => {
+    seed();
+    assert.equal((await hook({ events: [postback('Cfamily', '2/3 預約')] })).status, 200);
+    assert.equal(replies.length, 1);
+    assert.equal(replies[0].replyToken, 'rt-2');
+    assert.match(replies[0].messages[0].text, /^2\/3（三）的預約：待訂 1/);
+    await hook({ events: [postback('Cother', '整趟')] });
+    await hook({ events: [{ ...postback('Cfamily', '整趟'), replyToken: undefined }] });
     assert.equal(replies.length, 1);
   });
 });

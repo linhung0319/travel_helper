@@ -57,7 +57,7 @@ export function MePage() {
             <span className="m-row-icon" aria-hidden>
               <Icon name="download" size={20} />
             </span>
-            <span className="m-row-text">行程 PDF（列印）</span>
+            <span className="m-row-text">行程 PDF（列印，建議用電腦）</span>
           </button>
         </li>
         <li>
