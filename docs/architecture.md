@@ -357,7 +357,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 **新增區域**（例如之後加大阪）：照現在的方式蒐集到 `data/areas/osaka/`，驗證後匯入。大阪的 ID 都是新的，只會新增，不會碰到任何人的修改。
 
 ### 3.5 規則
-- **ID 不改名**：ID 是連接預設資料、修改、行程、投票的關鍵。第一次正式匯入之後，已經匯入的 ID 不改名。
+- **ID 不改名**：ID 是連接預設資料、修改、行程、投票的關鍵。第一次正式匯入之後，已經匯入的 ID 不改名。**正式環境 2026-11-05 第一次匯入（匯入 #1，660 筆），當天開放給家人，從這天起生效**（T30）。
 - **合併重複的點**：保留一個 ID，被合併的記成轉址（舊 ID → 新 ID）。轉址記在 `data/redirects.json`，匯入時寫進 `redirects`；行程、投票、修改都跟著轉過去。
   - 格式（T24 定，schema 見 `docs/requests.md`）：`[{ "from": "舊 ID", "to": "保留的 ID", "date": "YYYY-MM-DD", "reason": "為什麼合併", "task": "T13" }]`。validate 檢查：舊 ID 已經不在資料裡、目的地存在、不能連鎖、不能重複。
   - 匯入時：舊的點下架；修改的 `place_id` 換成新 ID；投票換過去（同一個人兩邊都投過就保留新 ID 那一票，舊的軟刪除）；地點的留言換過去；候選、預約筆記換過去（新 ID 那邊同一天已經有了就保留新的）；確定的行程裡**完全等於**舊 ID 的 JSON 字串換成新 ID（行程改之前先存快照、`version` 加一）；之前轉到舊 ID 的轉址直接改指新 ID。
@@ -451,13 +451,22 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | `NGROK_AUTHTOKEN`、`NGROK_DOMAIN` | ngrok 後台 | 只有本機的 `dev:tunnel` 用 |
 
   變數名稱 T25 定案（2026-10-26）。`DEV_MEMBER_ID`、`DEV_MEMBER_NAME` 在 `wrangler.jsonc` 的 `vars`（只是開發用身分的名字）。群組 ID 不放設定檔：機器人被邀進群組時從 `join` 通知記下來，存在資料庫（§5）。
-- **部署（T30）**：T25 把設定做好，實際部署等 👤 確定預設資料和 schema 之後、邀請家人之前（2026-10-26 👤 決定，PLAN T30）。
+- **部署（T30）**：T25 把設定做好，2026-11-05 實際部署（PLAN T30）。
+  - **正式環境一覽**（換電腦也查得到）：
+    - Cloudflare 帳號：👤 的 Google 帳號（`wrangler whoami` 看得到），**Workers 付費方案**（US$5／月，2026-11-05 升級，原因見下方「免費額度」的 CPU）。
+    - 正式網址：`https://travel-helper.linhung0319.workers.dev`（管理頁 `/admin`）。
+    - D1：`travel-helper`，APAC，ID `b55afb80-3dce-4564-ba39-3138573f83ef`（寫在 `wrangler.jsonc`）。
+    - secret（8 個，值只在 Cloudflare 和 👤 的 `worker/.env`）：LINE 的四個、`ADMIN_LINE_USER_IDS`、`ANTHROPIC_API_KEY`、`SESSION_SECRET`（正式環境另外產生，和本機不同）、`PUBLIC_BASE_URL`。`npx wrangler secret list` 看名稱。
+    - LINE Developers：Webhook URL ＝ `<正式網址>/line/webhook`；Login 的 Callback URL 只留 `<正式網址>/auth/line/callback`（👤 不打算再用本機測 LINE，ngrok 的拿掉了；要用 `dev:tunnel` 時兩個都要改回來）。
+  - **換一台電腦操作**：`git clone`、根目錄 `npm install`、`npx wrangler login`（同一個 Cloudflare 帳號），就能 `npm run deploy`、`db:import -- --remote`、`wrangler tail`。正式環境的 secret 不用重設；`worker/.env` 只有本機開發（`dev:worker`）才要，從 `worker/.env.example` 照名稱填。這台電腦的 repo 刪掉不影響正式環境，網站、資料、secret 都在 Cloudflare。
+  - **本機 D1 用 `preview_database_id`**：wrangler 用 D1 的 ID 算本機資料庫的檔名，`database_id` 換成正式的 ID 之後，本機會變成一個空的資料庫。所以 `wrangler.jsonc` 另外設 `preview_database_id` 為原本的假 ID（`00000000-…`），本機（`--local`、`wrangler dev`）用它，部署用 `database_id`。`wrangler deploy` 印出的綁定會顯示假 ID，實際綁的是正式的（`wrangler versions view` 確認過）。
   - 網站：`npm run build:site` 把 `web/dist/` 和 `build/static/`（放在 `/static/`）組成 `build/site/`，就是 `wrangler.jsonc` 的 `assets.directory`。`not_found_handling` 是 `none`（T15）。
   - `npm run deploy` ＝ `build:site` 加 `wrangler deploy`。正式網址是 `https://travel-helper.<帳號的子網域>.workers.dev`（`workers_dev: true`）。
   - D1：`npx wrangler d1 create travel-helper`，ID 填進 `wrangler.jsonc` 的 `database_id`（ID 不是秘密，可以進 git）；`npm run db:migrate:remote` 套用 migrations。
   - 匯入：`npm run db:import -- --all --remote` 出報告，`--apply <報告>.json --remote` 寫進去。報告記著是本機還是正式環境，`--apply` 時對不上就不匯入；正式環境不自動套用 migrations。
-  - **邀請家人之前，正式環境的 D1 可以清空重建**；ID 不改名（§3.5）從邀請家人那天開始算。
-  - LINE：Messaging API 的 Webhook URL 只能填一個，改成正式網址後本機的 `dev:tunnel` 就收不到通知（要測的時候暫時改回來）；LINE Login 的 Callback URL 可以填多個，正式和 ngrok 的都留著。
+  - ID 不改名（§3.5）從 2026-11-05 開放給家人開始算，正式環境的 D1 不再清空重建。
+  - LINE：Messaging API 的 Webhook URL 只能填一個，改成正式網址後本機的 `dev:tunnel` 就收不到通知（要測的時候暫時改回來）；LINE Login 的 Callback URL 可以填多個，現在只留正式的（見上方「正式環境一覽」）。
+  - 機器人換群組：移出測試群組、邀進家人群組，正式環境收到 `join` 記成「等待核准」，👤 在 `/admin` 核准**之後**才把網址貼到群組（否則家人登入會被擋成「等待核准」）。核准的群組裡的人登入時自動成為成員，不用一個一個加白名單。
 - **費用**：預期都在免費額度內。Workers 免費方案每次請求的 CPU 時間很短，所以 Worker 只做轉發、讀寫資料庫、簡單的合併與驗證；重的計算（行程引擎）放在瀏覽器（§6）。
 
 ### 免費額度（2026-10-22 查官網）
@@ -465,7 +474,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 | 項目 | Workers 免費方案 | 對這個網站的意思 |
 |---|---|---|
 | Worker 請求 | 每天 10 萬次（UTC 0 點重算） | 15 人每 30 秒輪詢一次，整天開著約 4.3 萬次：**輪詢只能打一支 API**（`/api/sync`） |
-| 每次請求的 CPU 時間 | 10 ms（付費方案預設 30 秒、最多 5 分鐘） | 不在 Worker 裡解開、重組資料點（`/api/places`、`/api/places/details` 直接接起 JSON 文字）；行程引擎在瀏覽器。**詳情層約 3.5 MB 要接 660 列字串，本機量不出 CPU：T30 部署後要看實際數字**，超過就改成匯入時組好整包、分幾列存 |
+| 每次請求的 CPU 時間 | 10 ms（付費方案預設 30 秒、最多 5 分鐘） | 不在 Worker 裡解開、重組資料點（`/api/places`、`/api/places/details` 直接接起 JSON 文字）；行程引擎在瀏覽器。**T30 實測（2026-11-05）**：`/api/places` 第一次 32 ms、304 時 3 ms；詳情（T47 起一次只讀用到的）4 ms；AI 代理每次 18～51 ms（每問一題就有好幾次）；webhook 5～10 ms；其他 3～8 ms。AI 每次都超過，所以**升級付費方案**，清單不用改成匯入時組好整包 |
 | 記憶體 | 每個 isolate 128 MB | |
 | 子請求 | 每次請求 50 個 | LINE、Claude API 的呼叫（T25、T16） |
 | Worker 大小 | 64 MiB（沒壓縮的；沒有壓縮後的上限） | 產生的驗證程式約 314 KB |
@@ -554,7 +563,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
   - LINE Login 拿到的 userId，和 webhook 通知裡的 userId 一樣（同一個 provider）。
   - webhook：機器人被邀進群組時收到 `join`（帶群組 ID）；有人加入群組時收到 `memberJoined`，`joined.members` 裡帶 userId。退出群組（`memberLeft`）沒有實測。
   - 只測了 iPhone（LINE 內建瀏覽器、Safari），Android 沒有測，T25 部署後再看。
-- **用手機的瀏覽器打開**：網址加上 `?openExternalBrowser=1`，從 LINE 點開會改用手機的預設瀏覽器（LINE 的功能，T23 沒有逐項確認）。好處是可以加到主畫面、登入狀態比較不會被清掉；登入狀態是各瀏覽器分開存的，換瀏覽器要再登入一次。要不要在群組裡貼這種網址，部署時（T30）和 👤 一起試過再決定。
+- **用手機的瀏覽器打開**：網址加上 `?openExternalBrowser=1`，從 LINE 點開會改用手機的預設瀏覽器（LINE 的功能，T23 沒有逐項確認）。好處是可以加到主畫面、登入狀態比較不會被清掉；登入狀態是各瀏覽器分開存的，換瀏覽器要再登入一次。要不要在群組裡貼這種網址，T30 沒有決定（👤 只用機器人給的網址試過 iPhone，機器人回的網址本來就帶這個參數），之後看家人用起來的情況再說。
 - **使用者要同意分享個人資料**：LINE 規定機器人要拿到使用者的資料，使用者得先同意。手機版 LINE 在一開始使用時就同意了；**只用電腦版 LINE 的人沒辦法同意**，查不到。
 - 群組裡會多一個機器人。
 
@@ -591,7 +600,7 @@ npm run db:import -- --apply data/cache/import/<時間>-all.json   # 2. 👤 看
 - **模型**（👤 2026-11-02）：預設 Sonnet 5.5，可以用 `AI_MODEL` 換。評估結果（22 個情境、effort medium）：Sonnet 22/22、每輪約 US$0.022、每個情境 8.6 秒；Opus 22/22、US$0.057、17.8 秒；Haiku 21/22、US$0.0016、9.4 秒。
 - **對話的長度**：送出的 token 到 6 萬算快滿、10 萬算滿（`NEAR_TOKENS`、`FULL_TOKENS`）；看的是費用，不是模型的上限（1M）。
 - **評估**：`npm run ai:eval -- --model <模型>`（`scripts/ai-eval.ts`）用真的 API 跑規格 §8 的腳本，會花錢（Opus 跑一次約 US$1.5）；改系統提示、工具說明後跑。
-- **CPU**：Worker 免費方案每次請求 10 ms。本機（Node）量代理一次約 8 ms、第一次 63 ms，只能當參考；**T30 部署後要看實際數字**，超過就升級付費方案（US$5／月）或改成不解析串流。
+- **CPU**：Worker 免費方案每次請求 10 ms。T30 正式環境實測代理一次 18～51 ms（51 是冷啟動），每問一題都超過，所以 2026-11-05 升級 Workers 付費方案（US$5／月，上限 30 秒）；旅行結束後可以降回免費。
 - **現在的時間**（T34）：每輪的脈絡多一個 `now`（日本時間，例如「2027-02-05（五）14:32」），系統提示說「今天」「明天」照它算。放在脈絡、不放系統提示，系統提示才能每次一樣。
 
 ### LINE 機器人（T34，`worker/src/bot.ts`）

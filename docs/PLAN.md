@@ -115,7 +115,7 @@
 | T29 | engine：大眾運輸改用 RAPTOR（近鐵、巴士、船、JR、大阪班距型路線、轉乘步行），候選走法、錯過的話 | M | T28 | 3 | — | ✅ |
 | T29b | 重算速度（修快取、只重算有改的那一天）、拿掉選班次（引擎的 `trip` 路徑、‹ › 和班次下拉）；列出交通卡拿得到的內容給 T29c | S | T29、T15m merge 後 | 4 | 🌐 少量 | ✅ |
 | T29c | web：交通卡（收合兩行、一程一行的步驟、錯過的話標籤）、班次表格子（手機也用彈窗）、編輯器（分段按鈕、選走法）、車站面板的班距；車站不當資料卡；engine：買票站留空檔、`ticket-tight` 警告 | M | T29b | 4 | 🌐 少量 | ✅ |
-| T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ⬜ |
+| T30 | 👤 部署到 Cloudflare：正式的 D1 和 secret、網站和 Worker、正式環境第一次匯入、LINE 改用正式網址、LINE 內建瀏覽器實測 | S | T25、👤 資料和 schema 定案（邀請家人之前） | 4 | 🌐 少量 | ✅ |
 | T31 | 自己加地點：探索的搜尋框貼 Google Maps 連結、輸入日本地址、或在地圖上指位置；確認畫面（手機整頁、網頁右欄＋主地圖的圖釘）；自己加的點出現在地圖、清單、詳情；不用 Google API | M | T15m、T24 | 4 | 🌐 少量 | ✅ |
 | T32 | 載入和效率：拆 bundle、骨架畫面、網頁探索分批、照片照畫面給尺寸、捲到才載入 | M | T16m-c | 4 | | ✅ |
 | T33 | 討論彈窗（按鈕跟著問 AI，以資料點和日期為單位）、加地點入口和彈窗、網頁的類型列、拿掉套用的篩選晶片、上一步、快照移出編輯條 | M | T15 | 4 | | ✅ |
@@ -1923,6 +1923,16 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **決定群組裡貼的網址**：要不要加 `?openExternalBrowser=1`（用手機的預設瀏覽器打開，architecture §5「要注意的地方」），和 👤 一起試過再決定。
 - **LINE 內建瀏覽器實測（接 T11）**（2026-10-22 👤 決定）：登入時一併看地圖網站在 iOS、Android 的 LINE 內建瀏覽器有沒有版面跑掉或點不到的地方（天數分頁左右滑、拉起面板的把手、小卡片→詳情、iPhone 下緣的安全區域、外站照片能不能顯示）；Android 的 LINE 登入也一起測（T23 只測了 iPhone）。結果寫進 T30 的回報；有問題的另開任務修。
 - 完成條件：正式網址用 LINE 登入成功（iOS、Android）；不在群組的人被擋下、出現在管理頁的「等待核准」；`wrangler tail` 看得到 webhook 的通知；正式環境的 D1 有匯入紀錄。
+- **結果**（2026-11-05，✅；正式環境的帳號、網址、D1 ID、secret、換電腦怎麼操作都記在 architecture §4「部署（T30）」）：
+  - 正式網址 `https://travel-helper.linhung0319.workers.dev`；D1 建在 APAC，四個 migration 都套用；secret 8 個（`ANTHROPIC_API_KEY` 步驟 4 原本漏列）用 `wrangler secret bulk` 從 `worker/.env` 讀，`SESSION_SECRET` 另外產生，暫存檔用完刪掉。
+  - `wrangler.jsonc` 加了 `preview_database_id`（原本的假 ID）：換成正式 ID 後本機 D1 會變成空的（檔名用 ID 算），見 architecture §4。
+  - 正式環境匯入 #1：新增 660 筆，ID 不改名從這天起算。
+  - LINE：Webhook URL 換成正式網址（Verify 成功）；Callback URL 只留正式的（👤 不打算再用本機測 LINE）。機器人移出測試群組再邀回來，正式環境收到 `join` 記成等待核准，👤 在 `/admin` 核准；@ 機器人有回。最早兩則 webhook 是 `Canceled`、沒記到群組，原因不明，之後的都正常，留意有沒有再發生。
+  - iPhone 用 LINE 登入（機器人給的網址，帶 `openExternalBrowser=1`）成功，版面 👤 看過正常。
+  - **CPU 實測**：`/api/places` 第一次 32 ms、304 時 3 ms（ETag `W/"imp-1"`，304 有生效）；詳情 4 ms；AI 代理 18～51 ms；webhook 5～10 ms。AI 每問一題都超過免費方案的 10 ms，👤 升級 Workers 付費方案（US$5／月）。
+  - **照片檢查**：約 1100 張打不開 30 張，多數是第 2、3 張（Wikimedia 429、網站擋程式）。代表照片 7 張，用 Chrome 重看：鳥羽水族館其實正常；`ise-shinsen`、`ise-sando-terrace` 官網系統維護中（暫時）；**`ise-maruyoshi-oharai`、`shima-yoshikatsutei`（http）、`shima-kashikojima-cc-restaurant`、`toba-motoura-sun-urashima-dining` 要換**，👤 決定部署後再換、重新匯入。
+  - **沒測的**（👤 決定不測）：Android 的 LINE 登入和版面、不在群組的帳號被擋下、群組裡貼的網址要不要加 `openExternalBrowser=1`。
+  - 正式環境留下的測試資料：👤 一段 AI 對話，沒有清。
 
 ### T26 👤 Places 照片備案 〔M〕（⏸ 2026-10-30 暫定不做）
 - **暫定不做**，原因見 §3「2026-10-30 T26 暫定不做」。下面是原本的任務內容，留著以後要做時參考。
