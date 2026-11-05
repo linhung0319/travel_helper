@@ -1,6 +1,6 @@
 // 手機版的資料卡（第六輪 §3.5，第七輪 Task 8 改成共用的 shared/ui/TripCard.tsx）：時間軸上的每一張卡（宿、景、餐、航班、自由時間）和這天的候選都用這個。
 // 這裡只準備手機要的東西：縮圖 56px（photos 第一張；沒有照片是類型色底加一個字，左上角是墨色編號圓）、時間（📌 放最前面、停留時間）、
-// 名稱、標籤那一排、⚠ 數；編輯中左邊把手欄（44px）有把手（按把手就拖、不用長按，planDrag.ts 的 usePlanDrag；拖的時候面板暫時拉滿、放開回到原本高度；
+// 名稱、標籤那一排、提醒的數字（「⚠ N」只數要處理、只有留意是「· N」；點了展開這張卡，提醒的字在展開內容最上面，T74b）；編輯中左邊把手欄（44px）有把手（按把手就拖、不用長按，planDrag.ts 的 usePlanDrag；拖的時候面板暫時拉滿、放開回到原本高度；
 // 卡片其他地方照常捲動；宿、航班沒有把手但欄位照留）、
 // 右邊 ⋯（只在編輯中、這張卡有動作時才有，點了打開底部動作面板 ActionSheet）。編輯中時間軸上的卡也是放置區（dropOnCardProps）。
 // 點卡片＝原地展開（mobileStore.expandItem，一次一張，點同一張收起）並選中它（focusItem → TripPage 的 appStore.select，地圖的數字水滴；不改面板高度）：
@@ -9,12 +9,14 @@
 // 候選卡：虛線框，寫「誰 加的」，沒有編號。
 
 import type { ReactNode } from 'react';
+import type { EngineWarning } from '@travel-helper/engine';
 import type { Place } from '../data/types.ts';
 import type { DragSource, DropTargetInfo } from '../lib/dropIntent.ts';
 import { dropOnCardProps, usePlanDrag } from '../components/planDrag.ts';
 import { cardActions } from '../shared/cardActions.ts';
 import { Icon } from '../components/Icon.tsx';
 import { DragHandle, TripCard } from '../shared/ui/TripCard.tsx';
+import { ReminderCount, ReminderList, reminderLevel } from '../shared/ui/Reminders.tsx';
 import { useEditing } from '../components/timelineEdit.ts';
 import { askCard } from './mobileAi.ts';
 import { mobileStore, useMobile, type ActionSheetSpec, type TripSnap } from './mobileStore.ts';
@@ -37,8 +39,8 @@ export interface MobileCardProps {
   name: string;
   /** 標籤那一排（ItemTags、LodgingTags） */
   tags?: ReactNode;
-  /** ⚠ 數（0 不顯示） */
-  warnings?: number;
+  /** 這張卡的提醒（沒有不顯示） */
+  warnings?: EngineWarning[] | null;
   /** 候選卡：誰加的（MemberName） */
   addedBy?: ReactNode;
   focused: boolean;
@@ -73,7 +75,7 @@ const dropSheet = () => {
 };
 
 /** 一張資料卡（時間軸、候選） */
-export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = 0, addedBy, focused, switcher = null, menu = null, drag = null, drop = null, pill = null, proposed = false }: MobileCardProps) {
+export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tags, warnings = null, addedBy, focused, switcher = null, menu = null, drag = null, drop = null, pill = null, proposed = false }: MobileCardProps) {
   const planning = useEditing();
   const expanded = useMobile((s) => s.expanded) === itemKey;
   const candidate = addedBy != null;
@@ -118,19 +120,20 @@ export function MobileCard({ itemKey, place, fallbackType, mark, time, name, tag
       name={name}
       label={name}
       meta={
-        (tags || switcher || warnings > 0 || candidate) && (
+        (tags || switcher || warnings?.length || candidate) && (
           <>
             {tags}
             {switcher}
-            {warnings > 0 && (
-              <span className="tc-warn" data-testid="m-card-warn">
-                <Icon name="warn" size={16} /> {warnings}
-              </span>
+            {warnings && warnings.length > 0 && (
+              <button type="button" className={`warn-toggle tc-warn level-${reminderLevel(warnings)}`} aria-expanded={expanded} onClick={toggle} data-testid="m-card-warn" data-level={reminderLevel(warnings)} title={warnings.map((w) => w.message).join('\n')}>
+                <ReminderCount list={warnings} />
+              </button>
             )}
             {candidate && <span className="m-card-by muted">{addedBy} 加的</span>}
           </>
         )
       }
+      expandTop={warnings && warnings.length > 0 ? <ReminderList list={warnings} testId="card-reminders" /> : null}
       selected={focused}
       expanded={expanded}
       onToggle={toggle}

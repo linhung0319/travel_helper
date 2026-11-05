@@ -5,7 +5,6 @@ import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, 
 import { formatDuration, nightRunOf, toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place, PlaceType } from '../data/types.ts';
-import type { IconName } from './icons.ts';
 
 /** 交通方式的中文名（交通卡標題、「自動（…）」）：電車、巴士、船都叫大眾運輸 */
 export function legModeName(mode: Leg['mode']): string {
@@ -164,8 +163,39 @@ export function shownWarnings(list: EngineWarning[] | undefined, placeId: string
   return out.length ? out : undefined;
 }
 
-/** 提醒前面的線條圖示：要處理 ⚠，留意 ⓘ（T74b 改成「·」） */
-export const WARNING_ICONS: Record<EngineWarning['level'], IconName> = { act: 'warn', note: 'info' };
+/** 提醒的計數（§34.3）：act 幾條、note 幾條；鈕上有 act 才紅、數 act，只有 note 時淡框、數 note */
+export function reminderCounts(list: readonly Pick<EngineWarning, 'level'>[] | undefined): { act: number; note: number } {
+  let act = 0;
+  let note = 0;
+  for (const w of list ?? []) if (w.level === 'act') act++; else note++;
+  return { act, note };
+}
+
+/** 日期列點開的一條：卡片的（含交通的，目的地那張卡）前面帶名字；整天的沒有名字 */
+export interface DayReminder {
+  level: EngineWarning['level'];
+  code: string;
+  /** 卡片名稱（stripParens 後）；整天的是 null */
+  name: string | null;
+  message: string;
+}
+
+const LEVEL_ORDER: Record<EngineWarning['level'], number> = { act: 0, note: 1 };
+
+/**
+ * 日期列點開列的這天所有提醒（§34.3）：卡片的（itemId 對得到資料卡，交通的用目的地那張卡；回住宿那段用住宿）前面帶名字，
+ * 整天的（天黑早、沒休息這種沒有 itemId 的）沒有名字；要處理的在前，同級照引擎的順序
+ */
+export function dayReminders(day: DayPlan | null, nameOf: (placeId: string) => string | null): DayReminder[] {
+  if (!day) return [];
+  const entryOf = (w: EngineWarning) => (w.itemId ? day.entries.find((e) => e.itemId === w.itemId) : w.leg ? day.entries.find((e) => e.kind === 'lodging') : undefined);
+  const out = day.warnings.map((w) => {
+    const e = entryOf(w);
+    const placeId = w.itemId || w.leg ? (e?.placeId ?? null) : null;
+    return { level: w.level, code: w.code, name: placeId ? nameOf(placeId) : null, message: w.message };
+  });
+  return out.sort((a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level]);
+}
 
 /** 時間軸上的一列：項目（含交通）或空檔（「住宿（未排）」這類），依時間排好 */
 export type TimelineRow = { kind: 'entry'; entry: TimelineEntry } | { kind: 'gap'; gap: DayPlan['gaps'][number] };
@@ -255,7 +285,7 @@ export function hourTicks(t0: number, t1: number): { label: string; pct: number 
   return out;
 }
 
-/** 時間條摘要的交通總時間：不到 60 分寫「39 分」，之後照停留的寫法「1小時05分」 */
+/** 時間條摘要的交通總時間：不到 60 分寫「39 分」，之後照停留的寫法「1小時5分」 */
 export function formatTravelTotal(minutes: number): string {
   return minutes < 60 ? `${minutes} 分` : formatStay(minutes);
 }
@@ -273,9 +303,12 @@ export function selectedBarKey(day: DayPlan | null, legOpen: string | null, deta
   return day.entries.find((e) => e.placeId === detailId && e.itemId && e.kind !== 'start')?.itemId ?? null;
 }
 
-/** 停留時間的標籤，分鐘補零：0小時45分、1小時00分、5小時15分（資料卡停留、時間條摘要的交通總時間） */
+/** 停留時間的標籤（T74b）：60 分以下「20分」、整點「2小時」、其他「2小時30分」（資料卡停留、時間條摘要的交通總時間） */
 export function formatStay(minutes: number): string {
-  return `${Math.floor(minutes / 60)}小時${String(minutes % 60).padStart(2, '0')}分`;
+  if (minutes < 60) return `${minutes}分`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m === 0 ? `${h}小時` : `${h}小時${m}分`;
 }
 
 // --- 順序編號 ---------------------------------------------------------------

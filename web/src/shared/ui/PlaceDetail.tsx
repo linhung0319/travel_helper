@@ -273,11 +273,6 @@ function UserPlaceIntro({ place }: { place: Place }) {
           {u.note}
         </p>
       )}
-      <p>
-        <a className="pd-user-gmaps" href={googleMapsUrl(place)} target="_blank" rel="noreferrer" data-testid="detail-open-gmaps">
-          在 Google Maps 開啟 ↗
-        </a>
-      </p>
       <div className="pd-user-actions">
         {canEditUserPlace(place) && (
           <Button kind="secondary" size="sm" icon="pen" data-testid="detail-user-edit" onClick={() => addPlaceStore.getState().startEdit(place.id)}>
@@ -379,6 +374,10 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
               {name}
             </h2>
             <CopyName place={place} />
+            {/* 一打開就看得到的 Google Maps 連結（T74b）：樣式同交通卡的「map ↗」，新分頁開；評論分頁最後的「連結」照舊 */}
+            <a className="pd-maps" href={googleMapsUrl(place)} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開啟" draggable={false} onMouseDown={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()} data-testid="detail-maps">
+              地圖 ↗
+            </a>
             {user && (
               <span className="pd-user-badge" data-testid="detail-user-badge">
                 自己加的

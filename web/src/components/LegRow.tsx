@@ -472,7 +472,8 @@ export function useLegView(entry: TimelineEntry, date: string) {
   const margin = engineConfig.transit.ticketMargin;
   // 收合的第二行：搭車的膠囊（計程車、步行沒有；計程車台數 T74a 拿掉）
   const chips = leg.rides.length ? legChips(leg, nameOf) : null;
-  const sub: string[] = [];
+  // 第一行的標籤「已換走法」（T74b）：選的走法這時間沒有車，引擎自動換了
+  const replaced = !!leg.pathReplaced;
   const warns = warnCount(warnings);
   const info = infoLines(warnings, slackHint(leg, margin));
   const steps = compactSteps(leg, from ? nameOf(from.id) : '', to ? nameOf(to.id) : '', nameOf, margin);
@@ -485,7 +486,7 @@ export function useLegView(entry: TimelineEntry, date: string) {
     blurField();
     uiStore.setState({ legOpen: open ? null : key });
   };
-  return { leg, key, open, editing, planning, saving, target, spec, from, to, mode, chips, sub, warns, info, steps, transit, expandable, note, toggleOpen };
+  return { leg, key, open, editing, planning, saving, target, spec, from, to, mode, chips, replaced, warns, info, steps, transit, expandable, note, toggleOpen };
 }
 
 /** 時間軸上的一段交通（一行 LegLine）；date 是這天的日期 */
@@ -501,7 +502,7 @@ export function LegRow({ entry, date }: { entry: TimelineEntry; date: string }) 
         title={legTitle(leg) || '交通 0 分'}
         warnCount={v.warns}
         chips={v.chips}
-        sub={v.sub}
+        replaced={v.replaced}
         note={v.note}
         mapsHref={from && to ? legMapsUrl(from, to, mode) : null}
         onToggle={v.toggleOpen}

@@ -1,7 +1,7 @@
 // 兩張卡中間的交通（第八輪 §13.6 交通卡，網頁、手機共用；T29c spec §8.2 改成收合兩行）：比資料卡窄、有框的小卡，縮在時間軸連線的右邊；
 // 交通方式的小圓點（線條圖示）放在連線上（連線在資料卡小照片的中線，ui.css 的 ll-li::before）。
-// 第一行「大眾運輸 45 分」，這段有 warning 以上的警告時後面「⚠ 數字」（不寫警告的字）；
-// 第二行搭車的是走法的膠囊（每一程一顆，中間小字寫換車站），計程車是台數（sub），步行沒有第二行；備註再一行。字和資料卡的時間、副標一樣大。
+// 第一行「大眾運輸 45 分」，選的走法沒車、引擎換了走法時加標籤「已換走法」（T74b），這段有要處理的提醒時後面「⚠ 數字」（只數要處理，不寫字）；
+// 第二行搭車的是走法的膠囊（每一程一顆，中間小字寫換車站），計程車、步行沒有第二行（台數 T74a 拿掉）；備註再一行。字和資料卡的時間、副標一樣大。
 // 右邊「map ↗」（Google Maps 路線，外部連結）；小箭頭、map ↗ 都只在第一行，
 // 第二行的膠囊用整張卡的寬度（ui.css 的 ll-head 是格線，ll-main、ll-text 用 subgrid 對齊同一格線）。
 // 點卡片展開（children 放在卡片裡、標題下面：補充資訊框、步驟；編輯中多了編輯器）；網頁、手機的資料準備在 components/LegRow.tsx 的 useLegView。
@@ -22,12 +22,12 @@ export interface LegLineProps {
   mode: Leg['mode'];
   /** 「計程車 34 分」 */
   title: string;
-  /** 第一行後面的「⚠ 數字」（這段 warning、error 等級的警告數）；0 不畫 */
+  /** 第一行後面的「⚠ 數字」（這段要處理的提醒數）；0 不畫 */
   warnCount?: number;
-  /** 第二行：搭車的膠囊（有就不畫 sub） */
+  /** 第一行的標籤「已換走法」：選的走法這時間沒有車，引擎自動換了（Leg.pathReplaced） */
+  replaced?: boolean;
+  /** 第二行：搭車的膠囊 */
   chips?: LegChips | null;
-  /** 第二行：計程車台數（用「・」接起來） */
-  sub?: string[];
   note?: string | null;
   /** Google Maps 路線的網址；沒有就不畫「map ↗」 */
   mapsHref?: string | null;
@@ -84,12 +84,17 @@ function ChipRow({ chips }: { chips: LegChips }) {
 }
 
 /** 一張交通卡；children（補充資訊框、步驟、編輯器）接在卡片裡、標題下面 */
-export function LegLine({ mode, title, warnCount = 0, chips, sub = [], note, mapsHref, onToggle, open = false, expandable = false, children }: LegLineProps & { children?: ReactNode }) {
+export function LegLine({ mode, title, warnCount = 0, replaced = false, chips, note, mapsHref, onToggle, open = false, expandable = false, children }: LegLineProps & { children?: ReactNode }) {
   const body = (
     <>
       <span className="ll-text" data-testid="leg-line-text">
         <span className="ll-line1">
           <span className="ll-title">{title}</span>
+          {replaced && (
+            <span className="ll-tag" data-testid="leg-replaced" title="選的走法這時間沒有車，改成自動算的">
+              已換走法
+            </span>
+          )}
           {warnCount > 0 && (
             <span className="ll-warn" data-testid="leg-warn-count" aria-label={`${warnCount} 個提醒`}>
               <Icon name="warn" size={16} />
@@ -102,7 +107,7 @@ export function LegLine({ mode, title, warnCount = 0, chips, sub = [], note, map
             </span>
           )}
         </span>
-        {chips && chips.rides.length > 0 ? <ChipRow chips={chips} /> : sub.length > 0 && <span className="ll-sub">{sub.join('・')}</span>}
+        {chips && chips.rides.length > 0 && <ChipRow chips={chips} />}
         {note && (
           <span className="ll-note ic-text" data-testid="leg-note-text">
             <Icon name="pen" size={16} /> {note}

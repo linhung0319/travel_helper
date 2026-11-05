@@ -1142,8 +1142,8 @@ test('T29c：大眾運輸的交通卡收合兩行（膠囊），點開一程一�
   await leg.getByTestId('leg-line-text').click();
   await page.getByTestId('planning-done').click();
 
-  // 收起：第一行「大眾運輸 N 分」，第二行膠囊（巴士圖示＋短名稱），右邊小箭頭；不寫距離、含等車；沒有步驟
-  await expect(leg.locator('.ll-title')).toHaveText(/^大眾運輸 \d+ 分/);
+  // 收起：第一行「大眾運輸 N 分」（60 分以上寫「N 小時 N 分」，T73），第二行膠囊（巴士圖示＋短名稱），右邊小箭頭；不寫距離、含等車；沒有步驟
+  await expect(leg.locator('.ll-title')).toHaveText(/^大眾運輸 (\d+ 小時( \d+ 分)?|\d+ 分)/);
   const chips = leg.getByTestId('leg-chips');
   await expect(chips).toContainText('御座線');
   await expect(chips.getByRole('img', { name: '巴士' })).toBeVisible();

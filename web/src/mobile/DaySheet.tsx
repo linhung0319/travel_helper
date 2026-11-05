@@ -1,7 +1,7 @@
 // 手機版行程的面板（第六輪 §3.5，第七輪 Task 8）：蓋在地圖下半部，可以拉，停在三個高度（mobileStore.tripSnap；高度在 mobile.css 的 CSS 變數）：
 // 低（只露出天數列）、中（預設，地圖約佔上面 1/3）、高（地圖剩一小條）。拖把手換高度：放開時停在最近的高度，快速往上／往下滑就往那邊切一格。
 // 面板裡由上到下：把手、日期列（DayStrip）固定在上面，往下捲也看得到；選「整趟」時是整趟（TripOverview），選某天時是這天的標題
-// （圓體的大日期加「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯；這一列也固定，position: sticky）、摘要、時間條（變矮）、
+// （圓體的大日期加「週五 · 第 4 天 · 鳥羽」、✦ 問 AI、編輯；這一列也固定，position: sticky）、摘要（提醒鈕點開列整天的，T74b）、時間條（變矮）、
 // 時間軸（MobileCard、MobileLeg，資料準備和網頁版共用 Timeline.tsx 的 useDayTimeline）、這天的候選（候選樣式的 MobileCard）。
 // 選了一張卡（focusItem）：清單捲到那張卡（不改面板高度）。點卡片原地展開（mobileStore.expanded）。
 // 編輯中：最上面是墨色的編輯條（PlanningBar：「編輯 2/3」、問 AI、討論、上一步、「完成」）和別人改過了的提示（ConflictBar）；按「編輯」不改面板高度；
@@ -12,16 +12,17 @@
 
 import { lodgingMealsOn } from '@travel-helper/engine';
 import { Fragment, useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import type { EngineWarning, TimelineEntry, VisitItem } from '@travel-helper/engine';
+import type { TimelineEntry, VisitItem } from '@travel-helper/engine';
 import { useApp, useData, useShared, useUi } from '../hooks.ts';
 import { Icon } from '../components/Icon.tsx';
 import { openDialog } from '../uiStore.ts';
-import { actCount, cardTime, findItemRef, formatStay, needsStart, shownWarnings, stayNight, type TimelineRow } from '../lib/planView.ts';
+import { cardTime, findItemRef, formatStay, needsStart, shownWarnings, stayNight, type TimelineRow } from '../lib/planView.ts';
+import { tripName } from '../lib/labels.ts';
 import { isRedDay, shortDayLabel } from '../lib/trip.ts';
 import { dayAreaTitle, dayTitle } from '../lib/dayTitle.ts';
 import { NightLine } from '../shared/ui/NightLine.tsx';
 import type { Place } from '../data/types.ts';
-import { DayBar, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, useRevealProposal, type DayTimeline } from '../components/Timeline.tsx';
+import { DayBar, DayReminders, DaySummaryLine, GhostRow, useDayTimeline, useProposalDay, useRevealProposal, type DayTimeline } from '../components/Timeline.tsx';
 import { TimelineDiffContext, useEditing, useTimelineDiff } from '../components/timelineEdit.ts';
 import { ProposalStrip } from '../components/ProposalStrip.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from '../components/ItemTags.tsx';
@@ -45,7 +46,8 @@ const SNAPS: TripSnap[] = ['low', 'mid', 'high'];
 /** 放開時手指的速度超過這個（px/ms）就算快速滑 */
 const FLING = 0.5;
 
-const nameOf = (p: Place | undefined) => (p ? p.name.zh || p.name.ja : '（不明）');
+/** 卡片上的名稱：去掉全形括號（T74b） */
+const nameOf = (p: Place | undefined) => tripName(p) ?? '（不明）';
 
 /** 三個高度（px），從 CSS 變數讀：低是固定的高度，中是可用高度的比例，高是可用高度減掉地圖露出的那條 */
 function snapHeights(sheet: HTMLElement): Record<TripSnap, number> {
@@ -137,7 +139,6 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
   const mark = tl.marks.byEntry.get(entry) ?? null;
   const item = entry.itemId ? (findItemRef(itinerary, entry.itemId)?.item ?? null) : null;
   const visit: VisitItem | null = item?.type === 'visit' ? item : null;
-  const warnCount = (list: EngineWarning[] | undefined) => actCount(list);
   const leg = entry.kind !== 'start' && (
     <>
       <MobileLeg entry={entry} date={day.date} />
@@ -247,7 +248,7 @@ function EntryRows({ entry, ctx }: { entry: TimelineEntry; ctx: RowCtx }) {
         time={{ text: backup ? entry.start : shownTime, pinned: !backup && !!visit?.start, stay: !flight && stayMin ? formatStay(stayMin) : null }}
         name={shownName}
         tags={visit ? <ItemTags visit={visit} kind={tagKindOf(p?.type)} date={day.date} placeId={shownPlace} open={false} onOpenChange={menu ? openSub(menu, 'tags') : () => {}} /> : null}
-        warnings={warnCount(shownWarnings(entry.itemId ? tl.byItem.get(entry.itemId) : undefined, shownPlace, !backup))}
+        warnings={shownWarnings(entry.itemId ? tl.byItem.get(entry.itemId) : undefined, shownPlace, !backup) ?? null}
         focused={focused === key}
       />
     </>
@@ -282,6 +283,8 @@ function DayView({ date }: { date: string }) {
   const byId = useData((s) => s.byId);
   const itinerary = useData((s) => s.itinerary);
   const areas = useData((s) => s.areas);
+  // 摘要列的提醒鈕點開列這天所有的（T74b，同網頁）
+  const [warnOpen, setWarnOpen] = useState(false);
   const title = dayTitle(date, dayAreaTitle(itinerary, date, byId, areas));
   const { itDay, plan } = tl;
   useRevealProposal(dayRef, date, !!shown, plan);
@@ -320,7 +323,8 @@ function DayView({ date }: { date: string }) {
       )}
       {plan && (
         <div className="m-daysum">
-          <DaySummaryLine plan={plan} />
+          <DaySummaryLine plan={plan} warnOpen={warnOpen} onWarn={() => setWarnOpen((o) => !o)} />
+          {warnOpen && <DayReminders plan={plan} />}
         </div>
       )}
       {plan && <DayBar plan={plan} selected={barSelected} compact />}

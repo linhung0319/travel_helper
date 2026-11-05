@@ -28,7 +28,9 @@ import type { Candidate } from '../backend/types.ts';
 import { dropOnCardProps, dropOnEndProps, usePlanDrag } from './planDrag.ts';
 import type { DragSource } from '../lib/dropIntent.ts';
 import { openDialog, toggleExpandedItem } from '../uiStore.ts';
-import { cardTime, cardTypeLetter, needsStart, stayNight, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
+import { cardTime, cardTypeLetter, needsStart, stayNight, dayBar, dayReminders, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, reminderCounts, shownWarnings, stopMarks, timelineRows, waitNote, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
+import { tripName } from '../lib/labels.ts';
+import { ReminderCount, ReminderList, reminderLevel } from '../shared/ui/Reminders.tsx';
 import { typeSwatch } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
 import { AvatarStack } from './common.tsx';
@@ -69,20 +71,8 @@ export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
   );
 }
 
-function Warnings({ list }: { list: EngineWarning[] | undefined }) {
-  if (!list?.length) return null;
-  return (
-    <ul className="tl-warnings">
-      {list.map((w, i) => (
-        <li key={i} className={`warning-${w.level}`}>
-          <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-const name = (p: Place | undefined) => (p ? p.name.zh || p.name.ja : '（不明）');
+/** 行程卡上的名稱：去掉全形括號（T74b，lib/labels 的 tripName） */
+const name = (p: Place | undefined) => tripName(p) ?? '（不明）';
 
 /** ⋯ 選單用不到的子畫面 */
 const NO_UI = { openTags: () => {}, openMove: () => {}, openLodgingPlan: () => {} };
@@ -333,7 +323,7 @@ function EntryRow({ entry, day, warnings, marks }: { entry: TimelineEntry; day: 
             {visit?.note && <span className="tl-note small ic-text">
                 <Icon name="pen" size={16} /> {visit.note}
               </span>}
-            {warnOpen && <Warnings list={shownWarns} />}
+            {warnOpen && <ReminderList list={shownWarns} testId="card-reminders" />}
           </>
         }
         thumb={THUMB}
@@ -394,13 +384,13 @@ function EntryRow({ entry, day, warnings, marks }: { entry: TimelineEntry; day: 
 }
 
 
-/** 卡片右上角的 ⚠ 數字：警告預設收起來，點了才展開 */
+/** 卡片右下的提醒鈕（§34.3）：有要處理的紅框「⚠ N」（N 只數要處理），只有留意的淡框「· N」；提醒預設收起來，點了才展開 */
 function WarnToggle({ list, open, onToggle }: { list: EngineWarning[] | undefined; open: boolean; onToggle: () => void }) {
   if (!list?.length) return null;
-  const level = list.some((w) => w.level === 'act') ? 'act' : 'note';
+  const level = reminderLevel(list);
   return (
-    <button type="button" className={`warn-toggle level-${level}`} aria-expanded={open} onClick={onToggle} data-testid="warn-toggle" title={list.map((w) => w.message).join('\n')}>
-      <Icon name={WARNING_ICONS[level]} size={16} /> {list.length}
+    <button type="button" className={`warn-toggle level-${level}`} aria-expanded={open} onClick={onToggle} data-testid="warn-toggle" data-level={level} title={list.map((w) => w.message).join('\n')}>
+      <ReminderCount list={list} />
     </button>
   );
 }
@@ -658,30 +648,43 @@ export function Timeline({ tl, diff = null, originalPlan = null }: { tl: DayTime
   );
 }
 
-/** 標題的一行：09:30 出發 → 13:46 回住宿・交通 1小時05分、警告數 */
-export function DaySummaryLine({ plan, warnOpen, onWarn, reminders = 0 }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void; reminders?: number }) {
+/**
+ * 標題的一行：09:30 出發 → 13:46 回住宿・交通 1小時5分、提醒的數字（§34.3：這天所有要處理的，卡片、交通的也算；只有留意時淡的「· N」）。
+ * onWarn 有給就是鈕（點開列整天的，DayReminders），網頁、手機一樣
+ */
+export function DaySummaryLine({ plan, warnOpen, onWarn }: { plan: DayPlan; warnOpen?: boolean; onWarn?: () => void }) {
   const s = daySummary(plan);
   const times = [s.start && `${s.start} 出發`, s.back && `${s.back} 回住宿`].filter(Boolean).join(' → ');
+  const c = reminderCounts(plan.warnings);
+  const level = reminderLevel(plan.warnings);
+  const any = c.act + c.note > 0;
   return (
     <span className="day-stats small" data-testid="day-summary">
       {[times, s.travelMinutes > 0 && `交通 ${formatTravelTotal(s.travelMinutes)}`].filter(Boolean).join(' · ')}
-      {onWarn && reminders > 0 ? (
-        <button type="button" className={`badge warn-button ${s.warnings > 0 ? 'badge-warn' : ''}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle">
-          <Icon name={s.warnings > 0 ? 'warn' : WARNING_ICONS.note} size={16} /> {reminders}{' '}
+      {onWarn && any ? (
+        <button type="button" className={`badge warn-button level-${level}`} aria-expanded={!!warnOpen} onClick={onWarn} data-testid="day-warn-toggle" data-level={level}>
+          <ReminderCount list={plan.warnings} />{' '}
           <span className={`chev ${warnOpen ? 'up' : ''}`}>
             <Icon name="chevron" size={16} />
           </span>
         </button>
       ) : (
-        s.warnings > 0 && (
-          <span className="badge badge-warn ic-text">
-            <Icon name="warn" size={16} /> {s.warnings}
+        any && (
+          <span className={`badge warn-button level-${level} ic-text`} data-testid="day-warn-count" data-level={level}>
+            <ReminderCount list={plan.warnings} />
           </span>
         )
       )}
       {plan.stats.tiring && <span className="badge badge-warn">累</span>}
     </span>
   );
+}
+
+/** 日期列點開的清單（§34.3）：這天所有的提醒，卡片的帶名字、整天的沒有，要處理的在前；網頁、手機共用 */
+export function DayReminders({ plan }: { plan: DayPlan }) {
+  const byId = useData((s) => s.byId);
+  const list = dayReminders(plan, (id) => tripName(byId.get(id)));
+  return <ReminderList list={list} className="day-warnings" testId="day-warnings" />;
 }
 
 const BAR_LABELS: Record<BarSegment['kind'], string> = { spot: '景點', restaurant: '用餐', other: '停留', travel: '交通', wait: '等待' };

@@ -61,7 +61,7 @@ export function MobileLeg({ entry, date }: { entry: TimelineEntry; date: string 
         title={legTitle(leg) || '交通 0 分'}
         warnCount={v.warns}
         chips={v.chips}
-        sub={v.sub}
+        replaced={v.replaced}
         note={v.note}
         mapsHref={from && to ? legMapsUrl(from, to, mode) : null}
         onToggle={() => {
