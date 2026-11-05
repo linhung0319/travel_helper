@@ -226,10 +226,10 @@ describe('回覆', () => {
     for (const q of ['怎麼用', '說明', '指令', 'help', 'HELP', '']) assert.deepEqual(parseCommand(q, '2027-02-03', ['2027-02-03']), { type: 'help' });
     // 還沒有摘要：當出發前
     const [noSummary] = await texts('怎麼用');
-    assert.match(noSummary, /^我們正在一起排 2\/2～2\/13 的行程/);
+    assert.match(noSummary, /^2\/2～2\/13 伊勢志摩和大阪的景點、民宿、餐廳/);
     seed();
     const [before] = await texts('怎麼用', {}, BEFORE);
-    assert.match(before, /^我們正在一起排 2\/2～2\/13 的行程/);
+    assert.match(before, /^2\/2～2\/13 伊勢志摩和大阪的景點、民宿、餐廳/);
     assert.match(before, /網站不會幫忙訂/);
     assert.match(before, /https:\/\/trip\.example\.dev\/\?openExternalBrowser=1$/);
     assert.doesNotMatch(before, /今天|明天|現在/);

@@ -108,5 +108,5 @@ test('怎麼用：頭像選單第一列，四點', async ({ page }) => {
   await page.getByTestId('account-howto').click();
   const dialog = page.getByTestId('howto-dialog');
   await expect(dialog.locator('.howto li')).toHaveCount(4);
-  await expect(dialog).toContainText('第一張藍色的卡');
+  await expect(dialog).toContainText('不知道從哪開始就問 AI');
 });

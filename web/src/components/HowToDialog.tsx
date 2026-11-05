@@ -14,7 +14,7 @@ const POINTS: { pic: ReactNode; text: ReactNode }[] = [
     ),
     text: (
       <>
-        喜歡就按 <Icon name="heart" size={16} />
+        在「探索」喜歡的按 <Icon name="heart" size={16} />
       </>
     ),
   },
@@ -26,7 +26,7 @@ const POINTS: { pic: ReactNode; text: ReactNode }[] = [
         <i>2/6</i>
       </span>
     ),
-    text: '點上面的日期看每天的行程',
+    text: '在「行程」看每天排什麼',
   },
   {
     pic: (
@@ -36,7 +36,7 @@ const POINTS: { pic: ReactNode; text: ReactNode }[] = [
     ),
     text: (
       <>
-        有意見按 <Icon name="chat" size={16} /> 留言
+        在 <Icon name="chat" size={16} /> 留言討論
       </>
     ),
   },
@@ -46,7 +46,7 @@ const POINTS: { pic: ReactNode; text: ReactNode }[] = [
         <Icon name="spark" size={24} />
       </span>
     ),
-    text: '不知道從哪開始就問 AI，AI 頁第一張藍色的卡就是現在最該決定的事',
+    text: '不知道從哪開始就問 AI',
   },
 ];
 
