@@ -425,7 +425,6 @@ function PlaceInTrip({ place, onDay }: { place: Place; onDay?(date: string): voi
             {i > 0 && '、'}
             {r.item.type === 'visit' && r.item.options[r.item.selected]?.place !== place.id ? '備選 ' : ''}
             {shortDayLabel(r.date)}
-            {r.split ? `（${r.split.groupName}）` : ''}
           </button>
         ))}
         {lodgingDays.length > 0 && `${refs.length ? '；' : ''}住 ${lodgingDays.map(shortDayLabel).join('、')}`}

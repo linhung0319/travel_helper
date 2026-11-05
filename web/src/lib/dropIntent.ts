@@ -58,16 +58,13 @@ export function dropIntent(src: DragSource, target: DropTargetInfo, rect: { top:
 /** 放在哪裡：某張卡片的前面或後面，或某天的最後 */
 export type DropAt = { kind: 'item'; itemId: string; after: boolean } | { kind: 'end'; date: string };
 
-/** 項目所在的那一串：這天的項目，或分組裡那一組的項目 */
+/** 項目所在的那一串：這天的項目 */
 function siblings(it: Itinerary, ref: ItemRef): Itinerary['days'][number]['items'] {
-  const day = it.days.find((d) => d.date === ref.date)!;
-  if (!ref.split) return day.items;
-  const split = day.items.find((x) => x.id === ref.split!.id) as Extract<Itinerary['days'][number]['items'][number], { type: 'split' }>;
-  return split.groups.find((g) => g.id === ref.split!.group)!.items;
+  return it.days.find((d) => d.date === ref.date)!.items;
 }
 
-/** 放開的位置換成 moveItemTo／addItem 的 date、index、split（source：被拖的項目，同一串裡要扣掉它自己） */
-export function dropTarget(it: Itinerary, at: DropAt, source: string | null): { date: string; index: number; split?: { id: string; group: string } } | null {
+/** 放開的位置換成 moveItemTo／addItem 的 date、index（source：被拖的項目，同一串裡要扣掉它自己） */
+export function dropTarget(it: Itinerary, at: DropAt, source: string | null): { date: string; index: number } | null {
   if (at.kind === 'end') {
     const day = it.days.find((d) => d.date === at.date);
     if (!day) return null;
@@ -83,19 +80,19 @@ export function dropTarget(it: Itinerary, at: DropAt, source: string | null): { 
   let index = list.findIndex((x) => x.id === at.itemId) + (at.after ? 1 : 0);
   const src = source ? list.findIndex((x) => x.id === source) : -1;
   if (src >= 0 && src < index) index -= 1;
-  return { date: ref.date, index, ...(ref.split ? { split: { id: ref.split.id, group: ref.split.group } } : {}) };
+  return { date: ref.date, index };
 }
 
-/** 項目移到 t 會不會還在原來的位置（同一天、同一組、同一個 index） */
-export function samePosition(it: Itinerary, itemId: string, t: { date: string; index: number; split?: { id: string; group: string } }): boolean {
+/** 項目移到 t 會不會還在原來的位置（同一天、同一個 index） */
+export function samePosition(it: Itinerary, itemId: string, t: { date: string; index: number }): boolean {
   const ref = findItemRef(it, itemId);
-  if (!ref || ref.date !== t.date || ref.split?.id !== t.split?.id || ref.split?.group !== t.split?.group) return false;
+  if (!ref || ref.date !== t.date) return false;
   const list = siblings(it, ref);
   return list.findIndex((x) => x.id === itemId) === t.index;
 }
 
 /**
- * 「⋯ → 調整順序」（不拖也能換順序、合併）：這張卡在它那一串（這天或那一組）的第幾張、共幾張；
+ * 「⋯ → 調整順序」（不拖也能換順序、合併）：這張卡在這天的第幾張、共幾張；
  * up／down 是上移、下移時給 moveItemTo 的 index（第一張、最後一張、旁邊是航班時是 null）；
  * merge 是同一串裡可以合併過去的卡（canMerge：同類型、不是住宿、自己沒有備卡）。typeOf：資料點的類型
  */

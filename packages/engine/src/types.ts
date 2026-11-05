@@ -46,7 +46,7 @@ export interface PlaceBase {
 
 export const ITINERARY_FORMAT = 'itinerary-v1';
 
-/** 一群人的組成：全員或分組的一組。檢查用（步行係數、坐不坐得下、不接小孩的店） */
+/** 一群人的組成（全員）。檢查用（步行係數、坐不坐得下、不接小孩的店） */
 export interface PartyProfile {
   size: number;
   elders: number;
@@ -161,22 +161,7 @@ export interface FreeItem extends ItemBase {
   travel?: TravelSpec | null;
 }
 
-export type GroupItem = VisitItem | FreeItem;
-
-export interface SplitGroup extends PartyProfile {
-  id: string;
-  name: string;
-  items: GroupItem[];
-}
-
-/** 分組行動：各組從上一站出發，在 meet 會合，之後的項目從會合點接著算 */
-export interface SplitItem extends ItemBase {
-  type: 'split';
-  groups: SplitGroup[];
-  meet: { place: string; time: TimeString };
-}
-
-export type ItineraryItem = VisitItem | FlightItem | FreeItem | SplitItem;
+export type ItineraryItem = VisitItem | FlightItem | FreeItem;
 
 export interface ItineraryDay {
   date: DateString;
@@ -225,7 +210,6 @@ export interface EngineWarning {
   message: string;
   date?: DateString;
   itemId?: string;
-  groupId?: string;
   placeId?: string;
   /** 這則警告來自那段交通（itemId 仍是目的地的項目；回住宿那段沒有 itemId） */
   leg?: true;
@@ -330,7 +314,7 @@ export interface Leg {
   basis: string;
 }
 
-export type EntryKind = 'start' | 'visit' | 'flight' | 'free' | 'meet' | 'lodging';
+export type EntryKind = 'start' | 'visit' | 'flight' | 'free' | 'lodging';
 
 export interface TimelineEntry {
   kind: EntryKind;
@@ -343,15 +327,12 @@ export interface TimelineEntry {
   end: TimeString;
   /** 到了之後等的分鐘（等開門、等指定時間） */
   waitMinutes: number;
-  /** 引擎猜的那一餐（內部用：休息、分組用餐的判斷） */
+  /** 引擎猜的那一餐（內部用：休息的判斷） */
   meal?: MealKind | null;
   /** 使用者標的那幾餐（畫面用），照 TAG_IDS 的順序；沒標是 [] */
   mealTags?: MealKind[];
   /** visit 標了「休息」 */
   rest?: boolean;
-  groupId?: string | null;
-  /** split 的各組 */
-  groups?: { id: string; name: string; entries: TimelineEntry[] }[];
 }
 
 export type GapKind = 'lodging' | 'idle';

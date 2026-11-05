@@ -5,7 +5,7 @@ import type { ConfigOverride, EngineConfig } from './config.ts';
 import type { EngineData } from './data.ts';
 import { findItem } from './ops.ts';
 import { planItinerary } from './timeline.ts';
-import type { DateString, EngineWarning, GroupItem, Itinerary, ItineraryItem, ItineraryPlan, TimelineEntry } from './types.ts';
+import type { DateString, EngineWarning, Itinerary, ItineraryItem, ItineraryPlan, TimelineEntry } from './types.ts';
 
 /**
  * return-travel：那天回住宿的交通（day.returnTravel）改了。
@@ -28,18 +28,17 @@ export interface Change {
   after?: string | null;
 }
 
-function placeOf(item: ItineraryItem | GroupItem | undefined): string | null {
+function placeOf(item: ItineraryItem | undefined): string | null {
   if (!item) return null;
   if (item.type === 'visit') return item.options[item.selected]?.place ?? null;
   if (item.type === 'free') return item.place ?? null;
   if (item.type === 'flight') return item.airport;
-  if (item.type === 'split') return item.meet.place;
   return null;
 }
 
 const same = (a: unknown, b: unknown) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
 
-function changedFields(a: ItineraryItem | GroupItem, b: ItineraryItem | GroupItem): string[] {
+function changedFields(a: ItineraryItem, b: ItineraryItem): string[] {
   const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
   const out: string[] = [];
   for (const k of keys) {
@@ -68,7 +67,7 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
     const loc = findItem(it, id);
     return loc && { date: it.days[loc.dayIndex].date, loc };
   };
-  const ids = (it: Itinerary) => it.days.flatMap((d) => d.items.flatMap((i) => [i.id, ...(i.type === 'split' ? i.groups.flatMap((g) => g.items.map((x) => x.id)) : [])]));
+  const ids = (it: Itinerary) => it.days.flatMap((d) => d.items.map((i) => i.id));
   const bIds = ids(before);
   const aIds = ids(after);
   for (const id of bIds) {
@@ -76,12 +75,11 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
     const a = posOf(after, id);
     if (!b) continue;
     if (!a) {
-      if (b.loc.splitId && !posOf(after, b.loc.splitId)) continue; // 整個分組刪掉時，只記分組
       changes.push({ kind: 'removed', date: b.date, itemId: id, place: placeOf(b.loc.item) });
       continue;
     }
     if (a.date !== b.date) changes.push({ kind: 'moved-day', date: a.date, fromDate: b.date, itemId: id, place: placeOf(a.loc.item) });
-    const f = changedFields(b.loc.item, a.loc.item).filter((k) => !(a.loc.item.type === 'split' && k === 'groups'));
+    const f = changedFields(b.loc.item, a.loc.item);
     if (f.length) {
       const was = placeOf(b.loc.item);
       const now = placeOf(a.loc.item);
@@ -92,21 +90,15 @@ export function diffItinerary(before: Itinerary, after: Itinerary): Change[] {
     if (bIds.includes(id)) continue;
     const a = posOf(after, id);
     if (!a) continue;
-    if (a.loc.splitId && !bIds.includes(a.loc.splitId)) continue;
     changes.push({ kind: 'added', date: a.date, itemId: id, place: placeOf(a.loc.item) });
   }
-  // 同一天、同一組裡，共同項目的相對順序變了
+  // 同一天裡，共同項目的相對順序變了
   for (const day of after.days) {
     const bd = before.days.find((d) => d.date === day.date);
     if (!bd) continue;
-    const lists = (d: Itinerary['days'][number]) => [
-      d.items.map((i) => i.id),
-      ...d.items.flatMap((i) => (i.type === 'split' ? i.groups.map((g) => g.items.map((x) => x.id)) : [])),
-    ];
-    const bl = lists(bd);
-    for (const al of lists(day)) {
-      const ref = bl.find((l) => l.some((x) => al.includes(x)));
-      if (!ref) continue;
+    {
+      const al = day.items.map((i) => i.id);
+      const ref = bd.items.map((i) => i.id);
       const common = al.filter((x) => ref.includes(x));
       const refOrder = ref.filter((x) => common.includes(x));
       common.forEach((id, k) => {
@@ -155,7 +147,7 @@ export function describeChanges(
   const md = (d: DateString) => `${Number(d.slice(5, 7))}/${Number(d.slice(8, 10))}`;
   const entryOf = (date: DateString, itemId?: string): TimelineEntry | undefined => {
     const day = opts.plan?.days.find((d) => d.date === date);
-    return day?.entries.flatMap((e) => [e, ...(e.groups?.flatMap((g) => g.entries) ?? [])]).find((e) => e.itemId === itemId && e.kind !== 'meet');
+    return day?.entries.find((e) => e.itemId === itemId);
   };
   const time = (c: Change) => {
     const e = entryOf(c.date, c.itemId);
@@ -211,7 +203,7 @@ export function checkProposal(
   const pb = planItinerary(before, data, config);
   const pa = planItinerary(after, data, config);
   const all = (p: ItineraryPlan) => [...p.warnings, ...p.days.flatMap((d) => d.warnings)];
-  const key = (w: EngineWarning) => `${w.date ?? ''}|${w.code}|${w.itemId ?? ''}|${w.groupId ?? ''}|${w.placeId ?? ''}`;
+  const key = (w: EngineWarning) => `${w.date ?? ''}|${w.code}|${w.itemId ?? ''}|${w.placeId ?? ''}`;
   const kb = new Set(all(pb).map(key));
   const ka = new Set(all(pa).map(key));
   const changes = diffItinerary(before, after);

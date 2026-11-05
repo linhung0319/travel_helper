@@ -9,11 +9,9 @@ import type { AreaId, DateString, ItineraryPlan, Itinerary, TimeString, Timeline
 /** 時間軸的一行 */
 export interface SummaryLine {
   start: TimeString;
-  /** 只有一個時間點的（抵達、起飛、集合）是 null */
+  /** 只有一個時間點的（抵達、起飛）是 null */
   end: TimeString | null;
   text: string;
-  /** 分組時是組名；全員是省略 */
-  group?: string;
 }
 
 /** 要預約的一列（主選和住宿）；狀態不存在這裡，回覆時再讀最新的預約筆記 */
@@ -56,30 +54,27 @@ export interface SummaryInput {
   areaOf?: AreaOfPlace;
 }
 
-/** 引擎的時間軸 → 摘要。同一時段有備選時只列主選（引擎本來就只算主選）；分組時各組都列 */
+/** 引擎的時間軸 → 摘要。同一時段有備選時只列主選（引擎本來就只算主選） */
 export function buildTripSummary({ itinerary, plan, nameOf, reservations = [], areaName, areaOf }: SummaryInput): TripSummary {
   const aName = (id: AreaId) => areaName?.(id) ?? id;
   const items = new Map<string, Itinerary['days'][number]['items'][number]>();
   for (const d of itinerary.days) for (const it of d.items) items.set(it.id, it);
   const name = (id: string | null) => (id ? (nameOf(id) ?? id) : null);
 
-  const lineOf = (e: TimelineEntry, group?: string): SummaryLine | null => {
-    const g = group ? { group } : {};
+  const lineOf = (e: TimelineEntry): SummaryLine | null => {
     switch (e.kind) {
       case 'visit':
-        return { start: e.start, end: e.end, text: name(e.placeId) ?? '（地點）', ...g };
+        return { start: e.start, end: e.end, text: name(e.placeId) ?? '（地點）' };
       case 'free': {
         const where = name(e.placeId);
-        return { start: e.start, end: e.end, text: where ? `自由時間：${where}` : '自由時間', ...g };
+        return { start: e.start, end: e.end, text: where ? `自由時間：${where}` : '自由時間' };
       }
       case 'flight': {
         const f = e.itemId ? items.get(e.itemId) : undefined;
         const no = f?.type === 'flight' && f.flightNo ? `（${f.flightNo}）` : '';
         const arrive = f?.type === 'flight' && f.direction === 'arrive';
-        return { start: e.start, end: null, text: `${arrive ? '抵達' : '起飛'} ${name(e.placeId) ?? '機場'}${no}`, ...g };
+        return { start: e.start, end: null, text: `${arrive ? '抵達' : '起飛'} ${name(e.placeId) ?? '機場'}${no}` };
       }
-      case 'meet':
-        return { start: e.start, end: null, text: `集合：${name(e.placeId) ?? '（地點）'}`, ...g };
       default:
         return null; // 出發、回住宿不列（最後一行寫住哪）
     }
@@ -88,12 +83,7 @@ export function buildTripSummary({ itinerary, plan, nameOf, reservations = [], a
   const days: SummaryDay[] = itinerary.days.map((d) => {
     const dp = plan.days.find((x) => x.date === d.date);
     const lines: SummaryLine[] = [];
-    for (const e of dp?.entries ?? []) {
-      if (e.groups?.length) {
-        for (const g of e.groups) for (const ge of g.entries) if (ge.kind !== 'meet') pushLine(lines, lineOf(ge, g.name));
-      }
-      pushLine(lines, lineOf(e));
-    }
+    for (const e of dp?.entries ?? []) pushLine(lines, lineOf(e));
     const stay = nightAreaOf(itinerary, d.date, areaOf);
     return {
       date: d.date,
@@ -126,7 +116,7 @@ export const shortDate = (date: DateString) => {
   return `${m}/${d}`;
 };
 
-const lineText = (l: SummaryLine) => `${l.group ? `【${l.group}】` : ''}${l.start}${l.end && l.end !== l.start ? `-${l.end}` : ''} ${l.text}`;
+const lineText = (l: SummaryLine) => `${l.start}${l.end && l.end !== l.start ? `-${l.end}` : ''} ${l.text}`;
 
 /** 「住：…」那行：選了住宿寫名稱，只定了區寫「志摩（還沒選住宿）」，都沒有是 null */
 function stayLine(day: SummaryDay): string | null {
@@ -155,7 +145,7 @@ export function tripRange(s: TripSummary): string {
 }
 
 /**
- * 現在、下一個（日本時間）。每一組（全員算一組）各自找：正在進行的（開始 ≤ 現在 < 結束），和下一個開始的。
+ * 現在、下一個（日本時間）：正在進行的（開始 ≤ 現在 < 結束），和下一個開始的。
  * 回 null：today 不在旅程裡
  */
 export function formatNow(s: TripSummary, now: { date: DateString; time: TimeString }): string | null {
@@ -163,17 +153,10 @@ export function formatNow(s: TripSummary, now: { date: DateString; time: TimeStr
   if (!day) return null;
   const t = toMinutes(now.time);
   const out = [`現在 ${now.time}（${dayHeading(now.date)}）`];
-  const tracks = new Map<string, SummaryLine[]>();
-  for (const l of day.lines) {
-    const k = l.group ?? '';
-    tracks.set(k, [...(tracks.get(k) ?? []), l]);
-  }
-  for (const [, lines] of tracks) {
-    const current = lines.filter((l) => toMinutes(l.start) <= t && l.end !== null && t < toMinutes(l.end));
-    const next = lines.find((l) => toMinutes(l.start) > t);
-    for (const l of current) out.push(`進行中：${lineText(l)}`);
-    if (next) out.push(`下一個：${lineText(next)}`);
-  }
+  const current = day.lines.filter((l) => toMinutes(l.start) <= t && l.end !== null && t < toMinutes(l.end));
+  const next = day.lines.find((l) => toMinutes(l.start) > t);
+  for (const l of current) out.push(`進行中：${lineText(l)}`);
+  if (next) out.push(`下一個：${lineText(next)}`);
   if (out.length === 1) out.push(day.lines.length ? '今天的行程都結束了' : '今天還沒排');
   const stay = stayLine(day);
   if (stay) out.push(stay);

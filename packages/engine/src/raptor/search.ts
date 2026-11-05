@@ -51,8 +51,6 @@ export interface SearchQuery {
   origins: Access[];
   targets: Access[];
   depart: number;
-  /** 全員（班距型等整個班距）或分組（等一半） */
-  whole: boolean;
   /** 團體步行係數 */
   factor: number;
   /** 離島：只收至少有一程是船的 */
@@ -129,7 +127,6 @@ export function searchJourneys(net: Network, q: SearchQuery, cfg: EngineConfig):
     q.origins.map((a) => `${a.stop}:${a.walk}`).join(','),
     q.targets.map((a) => `${a.stop}:${a.walk}`).join(','),
     q.depart,
-    q.whole,
     q.factor,
     !!q.requireFerry,
     [...(q.exclude ?? [])].sort().join(','),
@@ -381,7 +378,7 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
           if (base < Infinity) label(p, base + off[i], ri, -1, board, i, from, base + off[board], hw, leave);
           if (prev.foot[p] === Infinity && prev.ride[p] === Infinity) continue;
           const t = ready(p, route.group);
-          const w = headwayWait(route.service, t, q.whole);
+          const w = headwayWait(route.service, t);
           if (!w) continue;
           const b = t + w.wait - off[i];
           const l = leaveOf(t, t + w.wait);
@@ -423,7 +420,7 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
     for (const c of cands) {
       const j = rebuild(net, ix, rounds, k, c.s, egress[c.s], q, cfg);
       if (q.requireFerry && !j.rides.some((r) => r.route.kind === 'timetable' && r.route.mode === 'ferry')) continue;
-      results.push(laterDeparture(net, ix, j, cfg.transit, q.whole));
+      results.push(laterDeparture(net, ix, j, cfg.transit));
       bestTarget = c.arr;
       break;
     }
@@ -499,7 +496,7 @@ function rebuild(net: Network, ix: Indexed, rounds: Round[], k: number, s: numbe
 }
 
 /** group 裡停 from 再停 to 的 route，ready 以後最早到 to 的那一程；沒有回傳 null */
-export function earliestRide(net: Network, ix: Indexed, group: string, from: string, to: string, ready: number, whole: boolean, after = -Infinity): JourneyRide | null {
+export function earliestRide(net: Network, ix: Indexed, group: string, from: string, to: string, ready: number, after = -Infinity): JourneyRide | null {
   const a = ix.idx.get(from);
   const b = ix.idx.get(to);
   if (a == null || b == null) return null;
@@ -519,7 +516,7 @@ export function earliestRide(net: Network, ix: Indexed, group: string, from: str
       const trip = route.trips[e];
       ride = { route, trip, from, to, dep: trip.dep[i], arr: trip.arr[j], headway: null };
     } else {
-      const w = headwayWait(route.service, ready, whole);
+      const w = headwayWait(route.service, ready);
       if (!w) continue;
       const dep = ready + w.wait;
       ride = { route, trip: null, from, to, dep, arr: dep + route.offsets[j] - route.offsets[i], headway: headwayOf(route, w.headway) };
@@ -570,8 +567,8 @@ export type LaterRules = Pick<EngineConfig['transit'], 'minTransfer' | 'ticketMa
  * 只看第 2 程以後（到站時間算得出來的）；第一程上車前的空檔這裡不知道，只靠 ticket-tight 警告。
  * 照走法重算（path.ts 的 evaluatePath）也用這個，選了畫面上那條走法時班次和搜尋的一樣
  */
-export function laterDeparture(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole: boolean): Journey {
-  return sameArrivalLater(net, ix, laterFirst(net, ix, j, t, whole), t, whole);
+export function laterDeparture(net: Network, ix: Indexed, j: Journey, t: LaterRules): Journey {
+  return sameArrivalLater(net, ix, laterFirst(net, ix, j, t), t);
 }
 
 /** JourneyRide 換成 isTicketRide 要的欄位：近鐵 operator 是 'kintetsu'，其他用路線 ID 當業者 */
@@ -603,14 +600,14 @@ function keepsMargin(prev: readonly JourneyRide[], next: readonly JourneyRide[],
  * 第 2 程以後：同一條線（group）同一對站、同時到的班有好幾班（例如不同停站的巴士），換成晚出發的（照 earliestRide，
  * 和照走法重算一樣；RAPTOR 掃的時候上的是最早那班）。到達不變，只是轉乘時少等一點；買票站留不出空檔的不換
  */
-function sameArrivalLater(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole: boolean): Journey {
+function sameArrivalLater(net: Network, ix: Indexed, j: Journey, t: LaterRules): Journey {
   let rides: JourneyRide[] | null = null;
   for (let i = 1; i < j.rides.length; i++) {
     const p = j.rides[i];
     if (!p.trip) continue;
     const cur: JourneyRide[] = rides ?? j.rides;
     const prev = cur[i - 1];
-    const r = earliestRide(net, ix, p.route.group, p.from, p.to, prev.arr + Math.max(t.minTransfer, j.transfers[i - 1].walk), whole);
+    const r = earliestRide(net, ix, p.route.group, p.from, p.to, prev.arr + Math.max(t.minTransfer, j.transfers[i - 1].walk));
     if (!r || !r.trip || r.arr !== p.arr || r.dep <= p.dep) continue;
     const next: JourneyRide[] = [...cur];
     next[i] = r;
@@ -619,7 +616,7 @@ function sameArrivalLater(net: Network, ix: Indexed, j: Journey, t: LaterRules, 
   return rides ? { ...j, rides } : j;
 }
 
-function laterFirst(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole: boolean): Journey {
+function laterFirst(net: Network, ix: Indexed, j: Journey, t: LaterRules): Journey {
   const first = j.rides[0];
   if (first.route.kind !== 'timetable') return laterHeadway(j, t);
   const egress = j.target.walk;
@@ -627,14 +624,14 @@ function laterFirst(net: Network, ix: Indexed, j: Journey, t: LaterRules, whole:
   // 試過的第一程發車（買票站留不出空檔的跳過，繼續試後面的班）
   let after = first.dep;
   for (;;) {
-    const r0 = earliestRide(net, ix, first.route.group, first.from, first.to, after, whole, after);
+    const r0 = earliestRide(net, ix, first.route.group, first.from, first.to, after, after);
     if (!r0 || r0.dep > j.arr) return best;
     after = r0.dep;
     const rides = [r0];
     for (let i = 1; i < j.rides.length && rides.length === i; i++) {
       const p = j.rides[i];
       const ready = rides[i - 1].arr + Math.max(t.minTransfer, j.transfers[i - 1].walk);
-      const r = earliestRide(net, ix, p.route.group, p.from, p.to, ready, whole);
+      const r = earliestRide(net, ix, p.route.group, p.from, p.to, ready);
       if (r) rides.push(r);
     }
     if (rides.length < j.rides.length) return best;

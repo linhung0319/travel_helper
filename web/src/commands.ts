@@ -178,12 +178,11 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
       return bbox ? { ok: true, bbox } : { ok: false, error: `focus：子地區 ${target.region} 沒有資料點` };
     }
     if ('day' in target && target.day === 'all') {
-      // 整趟：每天排的點（含分組裡的點）和住宿
+      // 整趟：每天排的點和住宿
       const { byId, itinerary } = data.getState();
       const ids = (itinerary?.days ?? []).flatMap((d) => [
         ...stopsOn(itinerary, d.date).map((x) => x.place),
         ...(itinerary && lodgingOn(itinerary, d.date) ? [lodgingOn(itinerary, d.date)!] : []),
-        ...d.items.flatMap((i) => (i.type === 'split' ? i.groups.flatMap((g) => g.items.flatMap((x) => (x.type === 'visit' ? [x.options[x.selected]?.place] : []))) : [])),
       ]);
       const coords = ids.map((id) => (id ? byId.get(id)?.coords : undefined)).filter((c): c is LonLat => !!c);
       if (!coords.length) return { ok: true, bbox: null };
@@ -194,12 +193,10 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     if ('day' in target) {
       if (!dates().includes(target.day)) return { ok: false, error: `focus：${target.day} 不在旅程的日期裡` };
       const { byId, itinerary } = data.getState();
-      // 前一晚的住宿（那天的起點）、分組裡各組去的點也框進來
-      const day = itinerary?.days.find((d) => d.date === target.day);
+      // 前一晚的住宿（那天的起點）也框進來
       const prevDate = dates()[dates().indexOf(target.day) - 1];
       const prevLodging = itinerary && prevDate ? lodgingOn(itinerary, prevDate) : null;
-      const groupPlaces = (day?.items ?? []).flatMap((i) => (i.type === 'split' ? i.groups.flatMap((g) => g.items.flatMap((x) => (x.type === 'visit' ? [x.options[x.selected]?.place] : []))) : []));
-      const coords = [...stopsOn(itinerary, target.day).map((s) => s.place), ...(prevLodging ? [prevLodging] : []), ...groupPlaces]
+      const coords = [...stopsOn(itinerary, target.day).map((s) => s.place), ...(prevLodging ? [prevLodging] : [])]
         .map((id) => (id ? byId.get(id)?.coords : undefined))
         .filter((c): c is LonLat => !!c);
       if (!coords.length) return { ok: true, bbox: null };

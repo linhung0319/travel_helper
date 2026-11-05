@@ -2,10 +2,10 @@
 // 狀態用 (日期, 地點) 對應：項目移到別天、住宿換了入住日，就變回未訂位。純函式。
 
 import { lodgingOn } from '@travel-helper/engine';
-import type { DayPlan, Itinerary, TimelineEntry } from '@travel-helper/engine';
+import type { DayPlan, Itinerary } from '@travel-helper/engine';
 import type { Reservation, ReservationStatus } from '../backend/types.ts';
 import type { Place } from '../data/types.ts';
-import { allItems, type ItemRef } from './planView.ts';
+import { allItems } from './planView.ts';
 
 export interface NoteRow {
   /** 存狀態的 key：餐廳、體驗是排的那天；住宿是入住那晚 */
@@ -21,7 +21,7 @@ export interface NoteRow {
   /** 主要的、這個時段也可以去的、住宿 */
   role: 'main' | 'other' | 'lodging';
   time: string | null;
-  /** 幾個人（分組的那組人數，全員是行程的 party） */
+  /** 幾個人（行程的 party） */
   people: number;
   accepted: string | null;
   methods: string[];
@@ -54,12 +54,6 @@ function reservationOf(p: Place) {
   };
 }
 
-function groupSize(it: Itinerary, ref: ItemRef): number {
-  const day = it.days.find((d) => d.date === ref.date);
-  const sp = day?.items.find((x) => x.id === ref.split?.id);
-  return (sp?.type === 'split' && sp.groups.find((g) => g.id === ref.split?.group)?.size) || it.party.size;
-}
-
 /** 隔天的日期 */
 function nextDay(date: string): string {
   const d = new Date(`${date}T00:00:00Z`);
@@ -77,15 +71,7 @@ export function noteRows(it: Itinerary | null, plan: { days: DayPlan[] } | null,
   if (!it) return [];
   const saved = new Map(reservations.map((r) => [saveKey(r.date, r.placeId), r]));
   const startOf = new Map<string, string>();
-  for (const d of plan?.days ?? []) {
-    const walk = (es: TimelineEntry[]) => {
-      for (const e of es) {
-        if (e.itemId) startOf.set(e.itemId, e.start);
-        for (const g of e.groups ?? []) walk(g.entries);
-      }
-    };
-    walk(d.entries);
-  }
+  for (const d of plan?.days ?? []) for (const e of d.entries) if (e.itemId) startOf.set(e.itemId, e.start);
   const withState = (row: Omit<NoteRow, 'status' | 'note' | 'updatedBy' | 'updatedAt' | 'nightsChanged'>): NoteRow => {
     const s = saved.get(saveKey(row.key.date, row.key.placeId));
     return {
@@ -102,7 +88,7 @@ export function noteRows(it: Itinerary | null, plan: { days: DayPlan[] } | null,
   for (const ref of allItems(it)) {
     if (ref.item.type !== 'visit') continue;
     const v = ref.item;
-    const people = ref.split ? groupSize(it, ref) : it.party.size;
+    const people = it.party.size;
     v.options.forEach((o, i) => {
       const p = byId.get(o.place);
       if (!p || p.type === 'lodging') return;

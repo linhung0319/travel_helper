@@ -25,30 +25,29 @@ test('transit 新設定的預設值', () => {
 
 const svc = (over: Partial<UrbanService> = {}): UrbanService => ({ first: '05:24', last: '24:12', headway: [{ from: '10:00', to: '16:00', min: 7.5 }], ...over });
 
-test('headwayWait：全員等整個班距、分組等一半，向上取整', () => {
-  assert.deepEqual(headwayWait(svc(), 600, true), { wait: 8, headway: 7.5 });
-  assert.deepEqual(headwayWait(svc(), 600, false), { wait: 4, headway: 7.5 });
+test('headwayWait：等整個班距，向上取整', () => {
+  assert.deepEqual(headwayWait(svc(), 600), { wait: 8, headway: 7.5 });
 });
 
 test('headwayWait：首班前、末班後不能搭（24:12 過午夜）', () => {
   assert.equal(toMinutes('24:12'), 1452);
-  assert.equal(headwayWait(svc(), 300, true), null);
-  assert.notEqual(headwayWait(svc(), 1430, true), null);
-  assert.equal(headwayWait(svc(), 1460, true), null);
+  assert.equal(headwayWait(svc(), 300), null);
+  assert.notEqual(headwayWait(svc(), 1430), null);
+  assert.equal(headwayWait(svc(), 1460), null);
 });
 
 test('headwayWait：t 不在任何時段時用最近的時段', () => {
   const s = svc({ headway: [{ from: '06:00', to: '07:00', min: 8 }] });
-  assert.deepEqual(headwayWait(s, 330, true), { wait: 8, headway: 8 });
+  assert.deepEqual(headwayWait(s, 330), { wait: 8, headway: 8 });
   const two = svc({ headway: [{ from: '06:00', to: '07:00', min: 8 }, { from: '20:00', to: '21:00', min: 15 }] });
-  assert.deepEqual(headwayWait(two, 1300, true), { wait: 15, headway: 15 });
+  assert.deepEqual(headwayWait(two, 1300), { wait: 15, headway: 15 });
 });
 
 test('headwayWait：服務、班距、分鐘是 null 都不能搭', () => {
-  assert.equal(headwayWait(null, 600, true), null);
-  assert.equal(headwayWait(svc({ headway: null }), 600, true), null);
-  assert.equal(headwayWait(svc({ first: null }), 600, true), null);
-  assert.equal(headwayWait(svc({ headway: [{ from: '10:00', to: '16:00', min: null }] }), 600, true), null);
+  assert.equal(headwayWait(null, 600), null);
+  assert.equal(headwayWait(svc({ headway: null }), 600), null);
+  assert.equal(headwayWait(svc({ first: null }), 600), null);
+  assert.equal(headwayWait(svc({ headway: [{ from: '10:00', to: '16:00', min: null }] }), 600), null);
 });
 
 const headway = (routes: readonly { kind: string; key: string }[], key: string) =>
@@ -201,7 +200,7 @@ test('buildNetwork：國定假日空港急行沒有服務', () => {
   const r = net.routes.find((x): x is HeadwayRoute => x.kind === 'headway' && x.routeId === 'nankai-airport-express');
   assert.ok(r);
   assert.equal(r.service?.headway ?? null, null);
-  assert.equal(headwayWait(r.service, 600, true), null);
+  assert.equal(headwayWait(r.service, 600), null);
 });
 
 // --- 多輪搜尋（search.ts） ----------------------------------------------------
@@ -211,7 +210,6 @@ const q0 = (from: string, to: string, depart: number, over: Partial<SearchQuery>
   origins: [{ stop: from, walk: 0 }],
   targets: [{ stop: to, walk: 0 }],
   depart,
-  whole: true,
   factor: 1.4,
   ...over,
 });
@@ -250,19 +248,16 @@ test('近鐵轉 1 次的到達和 earliestTrain 一樣', () => {
 
 test('班距型：難波 → 大阪城 會轉乘', () => {
   const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');
-  const whole = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600), DEFAULT_CONFIG);
-  assert.ok(whole.length > 0);
-  const j = whole[0];
+  const js = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600), DEFAULT_CONFIG);
+  assert.ok(js.length > 0);
+  const j = js[0];
   assert.ok(j.rides.length >= 2);
   for (const r of j.rides) assert.ok(r.headway && r.trip === null && r.route.kind === 'headway');
   assert.equal(j.transfers.length, j.rides.length - 1);
   // 第一程：發車＝到站＋等車（全員等整個班距）
   assert.equal(j.rides[0].dep, 600 + Math.ceil(j.rides[0].headway!.min));
-  const sub = searchJourneys(net, q0('metro-namba', 'metro-tanimachi-4chome', 600, { whole: false, factor: 1.2 }), DEFAULT_CONFIG);
-  assert.ok(sub.length > 0);
-  assert.ok(whole[0].arr > sub[0].arr);
   // 依到達排序；程數越多到得越早（Pareto）
-  for (let i = 1; i < whole.length; i++) assert.ok(whole[i].arr > whole[i - 1].arr && whole[i].rides.length < whole[i - 1].rides.length);
+  for (let i = 1; i < js.length; i++) assert.ok(js[i].arr > js[i - 1].arr && js[i].rides.length < js[i - 1].rides.length);
 });
 
 test('轉乘步行套團體係數', () => {
@@ -323,7 +318,7 @@ test('pickDefault 照轉乘懲罰', () => {
 
 // --- 照走法重算、錯過的話（path.ts） -----------------------------------------
 
-const q1 = { whole: true, factor: 1.4 };
+const q1 = { factor: 1.4 };
 
 test('pathOf 再 evaluatePath 得到同樣的到達', () => {
   const net = buildNetwork(realData(), DEFAULT_CONFIG, '2027-02-12');

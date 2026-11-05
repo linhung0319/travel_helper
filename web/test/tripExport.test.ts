@@ -80,15 +80,7 @@ const ITIN: Itinerary = {
       items: [
         { id: 'f1', type: 'flight', direction: 'arrive', airport: 'kix', depart: '08:20', arrive: '11:55', flightNo: 'CI152', people: 8 },
         { id: 'v1', type: 'visit', options: [{ place: 'ama' }], selected: 0, note: '要脫鞋', travel: { note: '大件行李寄放' } },
-        {
-          id: 's1',
-          type: 'split',
-          meet: { place: 'st-b', time: '17:00' },
-          groups: [
-            { id: 'g1', name: '長輩組', size: 7, elders: 5, kids: 0, items: [{ id: 'v2', type: 'visit', options: [{ place: 'aq' }], selected: 0 }] },
-            { id: 'g2', name: '小孩組', size: 8, elders: 0, kids: 4, items: [{ id: 'v3', type: 'visit', options: [{ place: 'mk' }], selected: 0 }] },
-          ],
-        },
+        { id: 'v2', type: 'visit', options: [{ place: 'aq' }, { place: 'mk' }], selected: 0 },
       ],
     },
     { date: '2027-02-03', items: [] },
@@ -115,30 +107,8 @@ const DAY1: DayPlan = {
       end: '15:30',
       mealTags: ['lunch'],
     }),
-    entry({
-      kind: 'meet',
-      itemId: 's1',
-      placeId: 'st-b',
-      arrive: '16:50',
-      start: '17:00',
-      end: '17:00',
-      groups: [
-        {
-          id: 'g1',
-          name: '長輩組',
-          entries: [
-            entry({ itemId: 'v2', placeId: 'aq', groupId: 'g1', travel: leg({ mode: 'taxi', depart: '15:30', arrive: '15:45', minutes: 15, taxi: { cars: 2, jumboCars: 1, fareFromYen: null, fareEstimateYen: null, note: '' } }), start: '15:45', end: '16:30' }),
-            entry({ kind: 'meet', itemId: 's1', placeId: 'st-b', groupId: 'g1', travel: leg({ mode: 'walk', depart: '16:30', arrive: '16:45', minutes: 15 }), start: '16:45', end: '16:45' }),
-          ],
-        },
-        {
-          id: 'g2',
-          name: '小孩組',
-          entries: [entry({ itemId: 'v3', placeId: 'mk', groupId: 'g2', start: '15:40', end: '16:40' })],
-        },
-      ],
-    }),
-    entry({ kind: 'lodging', placeId: 'inn', travel: leg({ mode: 'taxi', depart: '17:00', arrive: '17:20', minutes: 20 }), arrive: '17:20', start: '17:20', end: '17:20' }),
+    entry({ itemId: 'v2', placeId: 'aq', travel: leg({ mode: 'taxi', depart: '15:30', arrive: '15:45', minutes: 15, taxi: { cars: 2, jumboCars: 1, fareFromYen: null, fareEstimateYen: null, note: '' } }), arrive: '15:45', start: '15:45', end: '16:30' }),
+    entry({ kind: 'lodging', placeId: 'inn', travel: leg({ mode: 'taxi', depart: '16:30', arrive: '16:50', minutes: 20 }), arrive: '16:50', start: '16:50', end: '16:50' }),
   ],
 };
 const PLAN: ItineraryPlan = { days: [DAY1, { ...DAY1, date: '2027-02-03', entries: [] }], warnings: [] };
@@ -158,7 +128,7 @@ function build(): ExportDoc {
   });
 }
 
-test('整份：航班、總覽、交通的車次和特急券、預約狀態、分組、住宿', () => {
+test('整份：航班、總覽、交通的車次和特急券、預約狀態、計程車、住宿', () => {
   const doc = build();
   assert.equal(doc.range, '2/2（二） ～ 2/3（三）');
   assert.deepEqual(doc.flights, [{ date: '2027-02-02', direction: 'arrive', flightNo: 'CI152', depart: '08:20', arrive: '11:55', airport: '關西機場', people: 8 }]);
@@ -166,7 +136,7 @@ test('整份：航班、總覽、交通的車次和特急券、預約狀態、�
   assert.equal(d1.area, '鳥羽');
   assert.equal(d1.note, '第一天輕鬆');
   const kinds = d1.rows.map((r) => r.kind);
-  assert.deepEqual(kinds, ['stop', 'leg', 'stop', 'split', 'stop', 'leg', 'stop']);
+  assert.deepEqual(kinds, ['stop', 'leg', 'stop', 'leg', 'stop', 'leg', 'stop']);
   const legRow = d1.rows[1];
   assert.ok(legRow.kind === 'leg');
   assert.equal(legRow.leg.title, '大眾運輸 140 分');
@@ -175,17 +145,10 @@ test('整份：航班、總覽、交通的車次和特急券、預約狀態、�
   const ama = d1.rows[2];
   assert.ok(ama.kind === 'stop');
   assert.deepEqual([ama.stop.time, ama.stop.reservation, ama.stop.meals, ama.stop.note, ama.stop.place?.ja], ['14:30–15:30', '已訂', ['午餐'], '要脫鞋', '海女小屋']);
-  const split = d1.rows[3];
-  assert.ok(split.kind === 'split');
-  assert.deepEqual(
-    split.groups.map((g) => [g.name, g.size, g.rows.map((r) => r.kind)]),
-    [
-      ['長輩組', 7, ['leg', 'stop', 'leg']],
-      ['小孩組', 8, ['stop']],
-    ],
-  );
-  const g1Leg = split.groups[0].rows[0];
-  assert.equal(g1Leg.kind === 'leg' && g1Leg.leg.taxi, '大型 1 台或一般 2 台');
+  const taxiLeg = d1.rows[3];
+  assert.equal(taxiLeg.kind === 'leg' && taxiLeg.leg.taxi, '大型 1 台或一般 2 台');
+  const aq = d1.rows[4];
+  assert.deepEqual(aq.kind === 'stop' && [aq.stop.time, aq.stop.place?.name], ['15:45–16:30', '鳥羽水族館']);
   assert.deepEqual(d1.lodging, {
     place: { name: '鳥羽<旅館>', ja: '鳥羽の宿', mapsUrl: d1.lodging?.place.mapsUrl },
     address: '三重県鳥羽市1-1',
@@ -207,9 +170,8 @@ test('MD：總覽表、每天一段、特急券、錯過的話、住宿', () => 
   assert.match(md, /12:30 大阪難波 → 14:10 鳥羽站　近鐵特急　\*\*先買特急券\*\*/);
   assert.match(md, /錯過的話：/);
   assert.match(md, /\*\*14:30–15:30 海女小屋 相差\*\*　海女小屋・午餐・預約：已訂　\[地圖\]\(https:\/\/maps.google.com\/\?cid=1\)/);
-  assert.match(md, /- \*\*長輩組\*\*（7 人）/);
-  assert.match(md, /\*\*17:00 集合 鳥羽站\*\*/);
-  assert.equal(md.match(/集合/g)?.length, 1);
+  assert.match(md, /\*\*15:45–16:30 鳥羽水族館\*\*/);
+  assert.doesNotMatch(md, /分組|集合/);
   assert.match(md, /- 入住 15:00・一泊二食・預約：待訂/);
   assert.match(md, /## 2\/3（三） 鳥羽\n\n還沒排/);
 });

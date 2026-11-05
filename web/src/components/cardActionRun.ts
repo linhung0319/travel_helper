@@ -26,8 +26,6 @@ export interface ActionTarget {
   placeId?: string;
   /** 時間軸上現在的開始時間（釘選用） */
   start?: string;
-  /** 移到某組（group-in）：那一組 */
-  split?: { id: string; group: string; name?: string };
 }
 
 /** 要開子畫面的動作，由呼叫的人決定怎麼開 */
@@ -40,58 +38,30 @@ export interface ActionUi {
   openReorder?: () => void;
 }
 
-/** 分組的日子：這張卡可以移進的組（自己這組以外，同一天所有分組的每一組） */
-export function groupTargetsOf(it: Itinerary | null, itemId: string): { splitId: string; groupId: string; name: string }[] {
-  const ref = findItemRef(it, itemId);
-  if (!ref || ref.item.type === 'split') return [];
-  const items = it?.days.find((d) => d.date === ref.date)?.items ?? [];
-  return items.flatMap((x) =>
-    x.type === 'split' ? x.groups.filter((g) => !(ref.split?.id === x.id && ref.split.group === g.id)).map((g) => ({ splitId: x.id, groupId: g.id, name: g.name })) : [],
-  );
-}
-
 /** 紅字的動作（刪掉東西的） */
 const DANGER = new Set<ActionId>(['delete', 'lodging-clear']);
 
 /** 選單的一項：網頁版的 ActionMenu、手機版的動作清單都照這個畫 */
 export interface MenuItem {
   id: ActionId;
-  /** React 的 key（「移到{組名}」每組一項，要加上組） */
+  /** React 的 key */
   key: string;
   text: string;
-  /** 這一項作用在哪（group-in 帶著那一組） */
+  /** 這一項作用在哪 */
   target: ActionTarget;
   danger: boolean;
-  /** group-in 的那一組（data-group） */
-  group?: string;
 }
 
-/** 選單要畫的項目，分好組（照 cardActions）；每個 group-in 和 ctx.groupTargets 照位置對上 */
+/** 選單要畫的項目，分好組（照 cardActions） */
 export function menuItems(ctx: CardActionContext, target: ActionTarget): MenuItem[][] {
-  const targets = ctx.groupTargets ?? [];
-  let nth = 0; // 第幾個 group-in
-  return cardActions(ctx).map((group) =>
-    group.map((id) => {
-      const g = id === 'group-in' ? targets[nth++] : undefined;
-      const danger = DANGER.has(id);
-      if (!g) return { id, key: id, text: ACTION_LABELS[id], target, danger };
-      return { id, key: `${id}:${g.splitId}:${g.groupId}`, text: `移到${g.name}`, target: { ...target, split: { id: g.splitId, group: g.groupId, name: g.name } }, danger, group: g.groupId };
-    }),
-  );
+  return cardActions(ctx).map((group) => group.map((id) => ({ id, key: id, text: ACTION_LABELS[id], target, danger: DANGER.has(id) })));
 }
 
-/** 這張卡在行程裡的位置：那天（或那一組）的第幾個 */
-function positionOf(it: Itinerary, itemId: string): { date: string; index: number; split?: { id: string; group: string } } | null {
+/** 這張卡在行程裡的位置：那天的第幾個 */
+function positionOf(it: Itinerary, itemId: string): { date: string; index: number } | null {
   for (const d of it.days) {
     const i = d.items.findIndex((x) => x.id === itemId);
     if (i >= 0) return { date: d.date, index: i };
-    for (const x of d.items) {
-      if (x.type !== 'split') continue;
-      for (const g of x.groups) {
-        const j = g.items.findIndex((y) => y.id === itemId);
-        if (j >= 0) return { date: d.date, index: j, split: { id: x.id, group: g.id } };
-      }
-    }
   }
   return null;
 }
@@ -105,16 +75,16 @@ const placeName = (id: string | null | undefined) => {
 function itemLabel(itemId: string, optionIndex?: number): string {
   const item = findItemRef(dataStore.getState().itinerary, itemId)?.item;
   if (item?.type === 'visit') return placeName(item.options[optionIndex ?? item.selected]?.place);
-  return item?.type === 'split' ? '分組' : item?.type === 'free' ? '自由時間' : '項目';
+  return item?.type === 'free' ? '自由時間' : '項目';
 }
 
-/** 重疊卡的「拿出」：那個選項變成單獨一張卡，放在主卡的下一個位置（在分組裡就留在同一組）。拿出的是主卡時，皇冠先給別張 */
+/** 重疊卡的「拿出」：那個選項變成單獨一張卡，放在主卡的下一個位置。拿出的是主卡時，皇冠先給別張 */
 function detach(it: Itinerary, itemId: string, optionIndex: number): Itinerary {
   const pos = positionOf(it, itemId);
   const item = findItemRef(it, itemId)?.item;
   if (!pos || item?.type !== 'visit') return it;
   const base = optionIndex === item.selected ? selectOption(it, itemId, optionIndex === 0 ? 1 : 0) : it;
-  return detachOption(base, itemId, optionIndex, pos.date, pos.index + 1, pos.split).itinerary;
+  return detachOption(base, itemId, optionIndex, pos.date, pos.index + 1).itinerary;
 }
 
 /** 候選的刪除：自己加的直接撤回，別人加的開對話框寫理由 */
@@ -126,7 +96,7 @@ function deleteCandidate(id: number) {
   openDialog({ kind: 'reject', candidateId: id });
 }
 
-/** 卡片（造訪、自由時間、分組）移到別天：放到那天的最後，留在原本那天，跳可以復原的「已移到 …」提示（網頁版、手機版共用） */
+/** 卡片（造訪、自由時間）移到別天：放到那天的最後，留在原本那天，跳可以復原的「已移到 …」提示（網頁版、手機版共用） */
 export async function moveItemToDayAction(itemId: string, date: string): Promise<boolean> {
   const label = itemLabel(itemId);
   const r = await shared.changeItinerary((it) => moveItemToDay(it, itemId, date), `${label} 移到 ${dayLabel(date)}`, { undo: { text: `已移到 ${dayLabel(date)}・${label}` } });
@@ -155,7 +125,7 @@ const typeOf = (id: string) => dataStore.getState().byId.get(id)?.type;
 
 /**
  * 調整順序的子畫面要的東西：第幾張、能不能上移下移、可以合併過去的卡（ID 和名稱）；
- * mergeable：只有造訪能合併成備選（自由時間、分組只有上移下移）。找不到卡是 null
+ * mergeable：只有造訪能合併成備選（自由時間只有上移下移）。找不到卡是 null
  */
 export function reorderState(it: Itinerary | null, itemId: string) {
   const r = it ? reorderInfo(it, itemId, typeOf) : null;
@@ -163,7 +133,7 @@ export function reorderState(it: Itinerary | null, itemId: string) {
   return r && { ...r, mergeable, merge: r.merge.map((id) => ({ itemId: id, name: itemLabel(id) })) };
 }
 
-/** 上移（dir＝-1）或下移（1）一張：留在同一天、同一組，可以復原；到頭了不動 */
+/** 上移（dir＝-1）或下移（1）一張：留在同一天，可以復原；到頭了不動 */
 export async function reorderStep(itemId: string, dir: -1 | 1): Promise<void> {
   const it = dataStore.getState().itinerary;
   const ref = findItemRef(it, itemId);
@@ -171,8 +141,7 @@ export async function reorderStep(itemId: string, dir: -1 | 1): Promise<void> {
   const index = r && (dir < 0 ? r.up : r.down);
   if (!ref || index == null) return;
   const label = `${itemLabel(itemId)} ${dir < 0 ? '上移' : '下移'}`;
-  const split = ref.split ? { id: ref.split.id, group: ref.split.group } : undefined;
-  await shared.changeItinerary((x) => moveItemTo(x, itemId, ref.date, index, split), label, { undo: { text: label } });
+  await shared.changeItinerary((x) => moveItemTo(x, itemId, ref.date, index), label, { undo: { text: label } });
 }
 
 /** 和另一張合併成備選（調整順序的「和哪一張合併成備選…」） */
@@ -239,20 +208,6 @@ export async function runCardAction(id: ActionId, target: ActionTarget, ui: Acti
       return;
     case 'unpin':
       await shared.changeItinerary((it) => setStart(it, itemId, null), `${label} 取消固定時間`);
-      return;
-    case 'group-in': {
-      const g = target.split;
-      if (!g) return;
-      await shared.changeItinerary((it) => moveItemTo(it, itemId, date, 0, { id: g.id, group: g.group }), `${label} 移到${g.name ?? '別組'}`);
-      return;
-    }
-    case 'group-out':
-      await shared.changeItinerary((it) => {
-        const ref = findItemRef(it, itemId);
-        const items = it.days.find((d) => d.date === ref?.date)?.items ?? [];
-        const out = ref?.split ? items.findIndex((x) => x.id === ref.split!.id) + 1 : 0;
-        return moveItemTo(it, itemId, ref?.date ?? date, out);
-      }, `${label} 移出分組`);
       return;
     case 'withdraw':
       return withdrawItem(itemId, date);

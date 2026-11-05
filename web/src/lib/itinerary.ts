@@ -9,7 +9,7 @@ export interface DayStop {
   /** 行程項目的 ID；住宿是 null */
   itemId: string | null;
   place: string;
-  kind: 'visit' | 'free' | 'flight' | 'meet' | 'lodging';
+  kind: 'visit' | 'free' | 'flight' | 'lodging';
   /** 指定的開始時間（訂位、航班）；沒有是 null */
   time: string | null;
 }
@@ -23,12 +23,9 @@ export function dayStops(day: ItineraryDay, lodging: string | null = null): DayS
       if (place) out.push({ itemId: it.id, place, kind: 'visit', time: it.start ?? null });
     } else if (it.type === 'free') {
       if (it.place) out.push({ itemId: it.id, place: it.place, kind: 'free', time: it.start ?? null });
-    } else if (it.type === 'flight') {
+    } else {
       // 同一個機場連續幾班（分兩批搭）只算一站
       if (out.at(-1)?.place !== it.airport) out.push({ itemId: it.id, place: it.airport, kind: 'flight', time: it.direction === 'arrive' ? it.arrive : it.depart });
-    } else if (it.type === 'split') {
-      // 分組的各組路線在 T15 畫；地圖的順序只放會合點
-      out.push({ itemId: it.id, place: it.meet.place, kind: 'meet', time: it.meet.time });
     }
   }
   if (lodging) out.push({ itemId: null, place: lodging, kind: 'lodging', time: null });

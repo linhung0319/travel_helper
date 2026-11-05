@@ -12,7 +12,7 @@ test('鳥羽一天：行程格式合法', () => {
   assert.deepEqual(validateItinerary(it), []);
 });
 
-test('鳥羽一天：時間軸從戶田家出發、分組會合、回到戶田家', () => {
+test('鳥羽一天：時間軸從戶田家出發、下午的合併卡只算主選、回到戶田家', () => {
   assert.ok(day);
   assert.deepEqual(
     day.entries.map((e) => [e.kind, e.placeId]),
@@ -20,7 +20,7 @@ test('鳥羽一天：時間軸從戶田家出發、分組會合、回到戶田�
       ['start', 'toba-todaya'],
       ['visit', 'toba-aquarium'],
       ['visit', 'toba-amiyaki-tenbinya'],
-      ['meet', 'toba-ichibangai'],
+      ['visit', 'toba-mikimoto-pearl-island'],
       ['visit', 'toba-mizunuma-sazae'],
       ['lodging', 'toba-todaya'],
     ],
@@ -31,8 +31,6 @@ test('鳥羽一天：時間軸從戶田家出發、分組會合、回到戶田�
   // 午餐指定 12:00，提早到就等
   assert.equal(day.entries[2].start, '12:00');
   assert.equal(day.entries[2].meal, 'lunch');
-  assert.deepEqual(day.entries[3].groups?.map((g) => g.name), ['長輩組', '爬坡組']);
-  assert.equal(day.entries[3].start, '15:45');
 });
 
 test('鳥羽一天：沒有空檔（不再產生晚餐未排）', () => {
@@ -45,5 +43,4 @@ test('鳥羽一天：警告（全員點心坐不下、計程車台數）', () =>
   const codes = day.warnings.map((w) => w.code);
   assert.ok(codes.includes('group-seats'));
   assert.ok(codes.includes('taxi'));
-  assert.ok(day.stats.tiring); // 爬坡組去了城山公園（階梯多）
 });

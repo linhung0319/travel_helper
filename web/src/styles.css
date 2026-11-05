@@ -1468,10 +1468,6 @@ button.planning-done {
   margin-left: 0;
 }
 
-.tl-meet .tl-body {
-  padding-top: 6px;
-}
-
 .tl-note {
   color: var(--fg);
 }
@@ -1693,45 +1689,6 @@ button.planning-done {
   flex-wrap: wrap;
   gap: 4px;
   padding: 4px 0 4px 6.1em;
-}
-
-.tl-split {
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 6px 8px;
-  margin: 6px 0;
-}
-
-.tl-split-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-weight: 600;
-}
-
-.tl-groups {
-  display: grid;
-  gap: 8px;
-}
-
-@media (min-width: 1100px) {
-  .tl-groups {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  }
-}
-
-.tl-group {
-  background: var(--soft);
-  border-radius: 14px;
-  padding: 4px 8px;
-}
-
-.tl-group-name {
-  font-weight: 600;
-}
-
-.tl-group .tl {
-  margin: 0;
 }
 
 .item-menu {

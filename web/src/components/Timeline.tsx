@@ -4,8 +4,8 @@
 // 滑鼠移到卡片上＝地圖的指到；只有從地圖指到的點，卡片才加 flash 框（卡片自己被指到時不回頭標自己）。
 // 交通是一行細字（shared/ui/LegLine.tsx，LegRow.tsx）：圖示、方式、時間、距離，右邊「地圖 ↗」；到了要等（指定開始時間、還沒開門）時下面一條黃色虛框的「幾點到，等 N 分（原因）」，純文字、不能點。
 // 編輯中才有：停留時間 −／＋、點時間固定開始（釘子）、有標籤的卡點標籤那一排開標籤彈窗（ItemTags.tsx；沒有標籤的從 ⋯ 加）、
-// 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、調整順序、移到第幾天、移進／移出分組、撤下；
-// 回住宿的這晚的方案、清掉住宿；自由時間、分組的刪除）。出發的住宿、航班沒有「⋯」；有地點的卡沒有刪除（要先撤下回候選）。
+// 「⋯」動作選單（ActionMenu.tsx，動作照 shared/cardActions.ts：重疊卡的主要、拿出，標籤、釘選、調整順序、移到第幾天、撤下；
+// 回住宿的這晚的方案、清掉住宿；自由時間的刪除）。出發的住宿、航班沒有「⋯」；有地點的卡沒有刪除（要先撤下回候選）。
 // 拖卡片（滑鼠整張卡、手指按把手，planDrag.ts）：停在同類型卡片中間 0.6 秒合併、邊緣換順序；看備卡時拖的是那張備卡；拖到左邊聊天室＝問 AI。
 // 有備卡的卡片（重疊卡）疊著淡色卡、‹ n/m › 換著看；看備卡時預約 tag、警告跟著那張備卡，「⋯」的主要、拿出作用在那張備卡，其他動作作用在整張卡片。
 // 資料準備（項目、警告、編號、候選）在 useDayTimeline，手機版的行程（mobile/DaySheet.tsx）也用；時間條 DayBar 手機版用 compact（變矮）。
@@ -31,12 +31,11 @@ import { openDialog, toggleExpandedItem } from '../uiStore.ts';
 import { cardTime, cardTypeLetter, needsStart, stayNight, dayBar, daySummary, findItemRef, formatStay, formatTravelTotal, hourTicks, isBarSelected, shownWarnings, stopMarks, timelineRows, waitNote, WARNING_ICONS, warningsByItem, type BarSegment, type TimelineRow } from '../lib/planView.ts';
 import { typeSwatch } from '../lib/typeStyle.ts';
 import type { Place } from '../data/types.ts';
-import { AvatarStack, PlaceChip } from './common.tsx';
+import { AvatarStack } from './common.tsx';
 import { LegRow } from './LegRow.tsx';
 import { ItemTags, LodgingTags, tagKindOf } from './ItemTags.tsx';
 import { ActionMenu } from './ActionMenu.tsx';
 import { Icon, type IconName } from './Icon.tsx';
-import { groupTargetsOf } from './cardActionRun.ts';
 import { useLiked } from '../shared/placeLists.ts';
 import { DragHandle, TripCard } from '../shared/ui/TripCard.tsx';
 import { askTripCard } from './webAi.ts';
@@ -66,19 +65,6 @@ export function CardType({ type }: { type: Place['type'] | 'airport' | null }) {
   return (
     <span className="tc-type-tile" style={typeColor(type === 'airport' ? null : type)} aria-hidden data-testid="item-type">
       {cardTypeLetter(type)}
-    </span>
-  );
-}
-
-/** 會合那列的編號（不是資料卡，跟著文字） */
-function Mark({ entry, marks }: { entry: TimelineEntry; marks: Marks }) {
-  const byId = useData((s) => s.byId);
-  const label = marks.byEntry.get(entry);
-  if (!label) return null;
-  const type = entry.placeId ? byId.get(entry.placeId)?.type : undefined;
-  return (
-    <span className="tl-mark" style={typeColor(type)} data-testid="tl-mark">
-      {label}
     </span>
   );
 }
@@ -193,7 +179,7 @@ function useCardExpand(key: string, placeId: string | null | undefined) {
 /** 滑鼠移上去／移開：地圖的「指到」 */
 const hoverPlace = (id: string | null | undefined) => (over: boolean) => appStore.getState().hover(over ? (id ?? null) : null);
 
-function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; plan: DayPlan; marks: Marks }) {
+function EntryRow({ entry, day, warnings, marks }: { entry: TimelineEntry; day: ItineraryDay; warnings: Map<string, EngineWarning[]>; marks: Marks }) {
   const byId = useData((s) => s.byId);
   const confirmed = useData((s) => s.itinerary);
   const diff = useTimelineDiff();
@@ -218,7 +204,7 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
   const visitItem = item?.type === 'visit' ? item : null;
   const backupPlace = visitItem && backup != null ? visitItem.options[backup]?.place : undefined;
   const dragSrc: DragSource | null =
-    !planning || !item || item.type === 'flight' || entry.kind === 'start' || entry.kind === 'lodging' || entry.kind === 'meet'
+    !planning || !item || item.type === 'flight' || entry.kind === 'start' || entry.kind === 'lodging'
       ? null
       : visitItem && backupPlace && backup !== visitItem.selected
         ? { kind: 'option', itemId: item.id, index: backup!, placeType: byId.get(backupPlace)?.type ?? null }
@@ -259,52 +245,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
         onDetail={expand.onDetail}
         onAsk={p ? () => askTripCard(p.id, day.date) : undefined}
       />
-    );
-  }
-
-  if (entry.kind === 'meet' && entry.groups) {
-    return (
-      <>
-        <li className="tl-split" data-testid="tl-split">
-          <div className="tl-split-head">
-            <span className="ic-text">
-              <Icon name="users" size={16} /> 分組行動
-            </span>
-            {planning && item && <ActionMenu ctx={{ kind: 'split', surface: 'desktop' }} target={{ date: day.date, itemId: item.id }} ui={{ ...NO_UI, openMove: () => openDialog({ kind: 'move', itemId: item.id }) }} label="分組" />}
-          </div>
-          <div className="tl-groups">
-            {entry.groups.map((g) => {
-              const sg = item?.type === 'split' ? item.groups.find((x) => x.id === g.id) : null;
-              return (
-                <div key={g.id} className="tl-group">
-                  <div className="tl-group-name">
-                    {g.name}
-                    {sg && <span className="muted small"> {sg.size} 人{sg.elders ? `・長輩 ${sg.elders}` : ''}{sg.kids ? `・小孩 ${sg.kids}` : ''}</span>}
-                  </div>
-                  <ol className="tl tc-list">
-                    {g.entries
-                      .filter((e) => e.kind !== 'meet')
-                      .map((e, i) => (
-                        <EntryRow key={e.itemId ?? `${e.kind}${i}`} entry={e} day={day} warnings={warnings} plan={plan} marks={marks} />
-                      ))}
-                  </ol>
-                </div>
-              );
-            })}
-          </div>
-          <Warnings list={item ? warnings.get(item.id) : undefined} />
-        </li>
-        <li className="tl-row tl-meet" data-testid="tl-meet">
-          <span className="tl-time">{entry.start}</span>
-          <span className="tl-body">
-            <span className="tl-title">
-              <Mark entry={entry} marks={marks} />
-              <Icon name="users" size={16} /> 會合：{entry.placeId ? <PlaceChip id={entry.placeId} /> : '（未定）'}
-            </span>
-            {entry.waitMinutes > 0 && <span className="muted small">（最早到的組等 {entry.waitMinutes} 分）</span>}
-          </span>
-        </li>
-      </>
     );
   }
 
@@ -419,8 +359,6 @@ function EntryRow({ entry, day, warnings, plan, marks }: { entry: TimelineEntry;
                 kind: visit ? 'visit' : 'free',
                 overlap: !!stacked,
                 pinned: !!visit?.start,
-                groupTargets: groupTargetsOf(itinerary, item.id),
-                inGroup: !!ref?.split,
                 surface: 'desktop',
               }}
               target={{ date: day.date, itemId: item.id, optionIndex: shownIndex, placeId: entry.placeId ?? undefined, start: entry.start }}
@@ -564,7 +502,7 @@ function GapRow({ gap, plan }: { gap: Gap; plan: DayPlan }) {
 
 /**
  * 交通卡下面、資料卡上面「到了要等」的那條（第五輪 §2）：只有一行文字 waitNote，不能點、不能展開（第六輪）。
- * 不用等就不畫；會合那列自己寫「最早到的組等 N 分」
+ * 不用等就不畫
  */
 function WaitRow({ entry, item }: { entry: TimelineEntry; item: VisitItem | null }) {
   const byId = useData((s) => s.byId);
@@ -705,7 +643,7 @@ export function Timeline({ tl, diff = null, originalPlan = null }: { tl: DayTime
         ) : (
           <Fragment key={row.entry.itemId ? `i:${row.entry.itemId}` : `${row.entry.kind}:${i}`}>
             {row.entry.itemId ? ghostsBefore(row.entry.itemId) : row.entry.kind === 'lodging' ? ghostsBefore(null) : null}
-            <EntryRow entry={row.entry} day={day} warnings={byItem} plan={plan} marks={marks} />
+            <EntryRow entry={row.entry} day={day} warnings={byItem} marks={marks} />
           </Fragment>
         ),
       )}
@@ -768,7 +706,7 @@ function jumpToCard(seg: BarSegment) {
 
 /**
  * 按時間比例的橫條（高 22px）：景點、餐廳用類型色並寫卡片編號，交通是細灰點線，等待是黃色斜紋，其他停留是灰色；
- * 分組的時段每組一條細條（總高度不變）。下面每個整點一個刻度，兩端寫出發、回住宿時間。
+ * 下面每個整點一個刻度，兩端寫出發、回住宿時間。
  * 點一段捲到那張卡並閃一下；selected（目前點的卡片的項目 ID 或交通卡 key）那段加藍框。compact：手機版，高度變矮
  */
 export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; selected?: string | null; compact?: boolean }) {
@@ -789,16 +727,13 @@ export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; sel
   const t0 = Math.min(...segs.map((s) => toMinutes(s.from)));
   const t1 = Math.max(...segs.map((s) => toMinutes(s.to)));
   const span = Math.max(1, t1 - t0);
-  const lanes = Math.max(...segs.map((s) => s.lane));
-  const laneH = lanes ? BAR_H / lanes : BAR_H;
   return (
     <div className={compact ? 'day-bar compact' : 'day-bar'} data-testid="day-bar">
       <div className="day-bar-track" ref={trackRef} style={{ height: BAR_H }}>
         {segs.map((s, i) => {
           const w = ((toMinutes(s.to) - toMinutes(s.from)) / span) * 100;
-          const lane = s.lane > 0;
-          const h = s.kind === 'travel' ? 6 : lane ? laneH - 1 : BAR_H;
-          const top = lane ? (s.lane - 1) * laneH + (s.kind === 'travel' ? (laneH - 6) / 2 : 0) : s.kind === 'travel' ? (BAR_H - 6) / 2 : 0;
+          const h = s.kind === 'travel' ? 6 : BAR_H;
+          const top = s.kind === 'travel' ? (BAR_H - 6) / 2 : 0;
           return (
             <button
               key={i}
@@ -815,7 +750,7 @@ export function DayBar({ plan, selected, compact = false }: { plan: DayPlan; sel
               data-testid="day-bar-seg"
               onClick={() => jumpToCard(s)}
             >
-              {s.mark && !lane && (w / 100) * width >= MARK_MIN_PX ? s.mark : null}
+              {s.mark && (w / 100) * width >= MARK_MIN_PX ? s.mark : null}
             </button>
           );
         })}

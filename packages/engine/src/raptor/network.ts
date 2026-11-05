@@ -98,7 +98,7 @@ export const KINTETSU = 'kintetsu';
 // --- 班距型的等車 -------------------------------------------------------------
 
 /** 班距型路線在 t（分鐘）上車的等車分鐘；不能搭回傳 null */
-export function headwayWait(service: UrbanService | null, t: number, whole: boolean): { wait: number; headway: number } | null {
+export function headwayWait(service: UrbanService | null, t: number): { wait: number; headway: number } | null {
   if (!service || service.first == null || service.last == null || !service.headway?.length) return null;
   // 用包含 t 的時段（from ≤ t < to）；沒有就用 from／to 離 t 最近的那段
   const spans = service.headway.map((h) => ({ h, from: toMinutes(h.from), to: toMinutes(h.to) }));
@@ -109,7 +109,7 @@ export function headwayWait(service: UrbanService | null, t: number, whole: bool
   }
   const min = span.h.min;
   if (min == null) return null;
-  const wait = Math.ceil(whole ? min : min / 2);
+  const wait = Math.ceil(min);
   const dep = t + wait;
   if (dep < toMinutes(service.first) || dep > toMinutes(service.last)) return null;
   return { wait, headway: min };

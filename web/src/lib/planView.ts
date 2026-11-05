@@ -65,7 +65,7 @@ export function showMinutesInput(leg: Pick<Leg, 'mode' | 'basis'>, spec: TravelS
   return leg.mode === 'unknown' || UNCOMPUTED_BASIS.has(leg.basis) || spec?.minutes != null;
 }
 
-/** 這一列的交通是設定在哪裡（setLegTravel 的對象）；起點、會合沒有可設的交通 */
+/** 這一列的交通是設定在哪裡（setLegTravel 的對象）；起點沒有可設的交通 */
 export function legTargetOf(entry: TimelineEntry, date: string): LegTarget | null {
   if (entry.kind === 'lodging') return { lodging: date };
   if ((entry.kind === 'visit' || entry.kind === 'free' || entry.kind === 'flight') && entry.itemId) return { itemId: entry.itemId };
@@ -77,20 +77,10 @@ export function legKeyOf(entry: TimelineEntry, date: string): string {
   return `${date}:${entry.kind === 'lodging' ? 'lodging' : `${entry.kind}:${entry.itemId ?? entry.placeId ?? ''}`}`;
 }
 
-/** 用 legKey 在這天的時間軸（含分組裡的）找那一段交通的資料卡；找不到或那張卡沒有交通回傳 null */
+/** 用 legKey 在這天的時間軸找那一段交通的資料卡；找不到或那張卡沒有交通回傳 null */
 export function findLegEntry(day: DayPlan | null, legKey: string): TimelineEntry | null {
   if (!day) return null;
-  const walk = (entries: TimelineEntry[]): TimelineEntry | null => {
-    for (const e of entries) {
-      if (e.travel && legKeyOf(e, day.date) === legKey) return e;
-      for (const g of e.groups ?? []) {
-        const hit = walk(g.entries);
-        if (hit) return hit;
-      }
-    }
-    return null;
-  };
-  return walk(day.entries);
+  return day.entries.find((e) => e.travel && legKeyOf(e, day.date) === legKey) ?? null;
 }
 
 /** 在 Google Maps 開這段路線（起訖座標、交通方式） */
@@ -104,22 +94,11 @@ export function legMapsUrl(from: Place, to: Place, mode: TravelMode): string {
 export interface ItemRef {
   item: ItineraryItem;
   date: string;
-  /** 在分組裡時：split 的 ID、組名 */
-  split: { id: string; group: string; groupName: string } | null;
 }
 
-/** 行程裡所有的項目（含分組裡的） */
+/** 行程裡所有的項目 */
 export function allItems(it: Itinerary | null): ItemRef[] {
-  const out: ItemRef[] = [];
-  for (const d of it?.days ?? []) {
-    for (const item of d.items) {
-      out.push({ item, date: d.date, split: null });
-      if (item.type === 'split') {
-        for (const g of item.groups) for (const x of g.items) out.push({ item: x, date: d.date, split: { id: item.id, group: g.id, groupName: g.name } });
-      }
-    }
-  }
-  return out;
+  return (it?.days ?? []).flatMap((d) => d.items.map((item) => ({ item, date: d.date })));
 }
 
 export function findItemRef(it: Itinerary | null, itemId: string): ItemRef | null {
@@ -174,14 +153,12 @@ const WARNING_TEXT: Record<string, string> = {
 /**
  * 引擎的警告，依項目分好；沒有項目的（整天的）放在 day。
  * 交通的警告（leg: true）不放：交通卡自己用 legView 的 legWarnings 顯示（T29c spec §8.2）；當天摘要的數字另外算（daySummary）。
- * 例外：分組各組走到會合點那段沒有交通卡（itemId 是分組），那段的交通警告留在分組卡
  */
 export function warningsByItem(day: DayPlan | null): { byItem: Map<string, EngineWarning[]>; day: EngineWarning[] } {
   const byItem = new Map<string, EngineWarning[]>();
   const rest: EngineWarning[] = [];
-  const splits = new Set((day?.entries ?? []).filter((e) => e.kind === 'meet' && e.groups && e.itemId).map((e) => e.itemId!));
   for (const raw of day?.warnings ?? []) {
-    if ((raw.leg && !(raw.itemId && splits.has(raw.itemId))) || HIDDEN_WARNINGS.has(raw.code)) continue;
+    if (raw.leg || HIDDEN_WARNINGS.has(raw.code)) continue;
     const w = WARNING_TEXT[raw.code] ? { ...raw, message: WARNING_TEXT[raw.code] } : raw;
     if (w.itemId) byItem.set(w.itemId, [...(byItem.get(w.itemId) ?? []), w]);
     else rest.push(w);
@@ -237,8 +214,6 @@ export interface BarSegment {
   from: string;
   to: string;
   itemId: string | null;
-  /** 0 是全員；分組的時段，第 n 組是 n */
-  lane: number;
   /** 停留段的卡片編號（stopMarks），給段落裡寫字用；交通、等待是 null */
   mark: string | null;
   /** 交通段、交通卡裡的等車段：那張交通卡的 key（legKeyOf）；其他是 null */
@@ -249,43 +224,34 @@ export interface BarSegment {
 export function dayBar(day: DayPlan, typeOf: (placeId: string | null) => PlaceType | null): BarSegment[] {
   const out: BarSegment[] = [];
   const { byEntry } = stopMarks(day);
-  const push = (kind: BarSegment['kind'], from: string, to: string, e: TimelineEntry, lane: number, mark: string | null = null, leg = false) => {
-    if (to > from) out.push({ kind, from, to, itemId: e.itemId, lane, mark, legKey: leg ? legKeyOf(e, day.date) : null });
+  const push = (kind: BarSegment['kind'], from: string, to: string, e: TimelineEntry, mark: string | null = null, leg = false) => {
+    if (to > from) out.push({ kind, from, to, itemId: e.itemId, mark, legKey: leg ? legKeyOf(e, day.date) : null });
   };
-  const walk = (entries: TimelineEntry[], lane: number) => {
-    for (const e of entries) {
-      if (e.kind === 'start') continue;
-      const t = e.travel;
-      if (t && t.minutes > 0) {
-        const ready = t.ready?.[0];
-        const board = t.rides[0]?.depart;
-        if (ready && board && board > ready) {
-          push('travel', t.depart, ready, e, lane, null, true);
-          push('wait', ready, board, e, lane, null, true);
-          push('travel', board, e.arrive, e, lane, null, true);
-        } else push('travel', t.depart, e.arrive, e, lane, null, true);
-      }
-      if (e.groups) {
-        e.groups.forEach((g, i) => walk(g.entries.filter((x) => x.kind !== 'meet'), i + 1));
-        continue;
-      }
-      push('wait', e.arrive, e.start, e, lane);
-      const type = typeOf(e.placeId);
-      push(type === 'spot' || type === 'restaurant' ? type : 'other', e.start, e.end, e, lane, byEntry.get(e) ?? null);
+  for (const e of day.entries) {
+    if (e.kind === 'start') continue;
+    const t = e.travel;
+    if (t && t.minutes > 0) {
+      const ready = t.ready?.[0];
+      const board = t.rides[0]?.depart;
+      if (ready && board && board > ready) {
+        push('travel', t.depart, ready, e, null, true);
+        push('wait', ready, board, e, null, true);
+        push('travel', board, e.arrive, e, null, true);
+      } else push('travel', t.depart, e.arrive, e, null, true);
     }
-  };
-  walk(day.entries, 0);
+    push('wait', e.arrive, e.start, e);
+    const type = typeOf(e.placeId);
+    push(type === 'spot' || type === 'restaurant' ? type : 'other', e.start, e.end, e, byEntry.get(e) ?? null);
+  }
   return out;
 }
 
-/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含各組、等車；沒有緩衝）、幾個要注意的警告 */
+/** 標題的一行：幾點出發、幾點回住宿、交通總分鐘（含等車；沒有緩衝）、幾個要注意的警告 */
 export function daySummary(day: DayPlan): { start: string | null; back: string | null; travelMinutes: number; warnings: number } {
-  const sum = (entries: TimelineEntry[]): number =>
-    entries.reduce((n, e) => n + (e.travel ? e.travel.minutes : 0) + (e.groups ?? []).reduce((m, g) => m + sum(g.entries), 0), 0);
   return {
     start: day.entries.find((e) => e.kind === 'start')?.start ?? null,
     back: day.entries.find((e) => e.kind === 'lodging')?.arrive ?? null,
-    travelMinutes: sum(day.entries),
+    travelMinutes: day.entries.reduce((n, e) => n + (e.travel ? e.travel.minutes : 0), 0),
     warnings: day.warnings.filter((w) => w.level !== 'info').length,
   };
 }
@@ -313,15 +279,7 @@ export function isBarSelected(seg: BarSegment, selected: string | null | undefin
 export function selectedBarKey(day: DayPlan | null, legOpen: string | null, detailId: string | null): string | null {
   if (legOpen && legOpen.startsWith(`${day?.date}:`)) return legOpen;
   if (!day || !detailId) return null;
-  const find = (entries: TimelineEntry[]): string | null => {
-    for (const e of entries) {
-      if (e.placeId === detailId && e.itemId && e.kind !== 'start') return e.itemId;
-      const g = (e.groups ?? []).map((x) => find(x.entries)).find(Boolean);
-      if (g) return g;
-    }
-    return null;
-  };
-  return find(day.entries);
+  return day.entries.find((e) => e.placeId === detailId && e.itemId && e.kind !== 'start')?.itemId ?? null;
 }
 
 /** 停留時間的標籤，分鐘補零：0小時45分、1小時00分、5小時15分（資料卡停留、時間條摘要的交通總時間） */
@@ -333,7 +291,7 @@ export function formatStay(minutes: number): string {
 
 /**
  * 地圖和時間軸共用的編號（第五輪 §2；T39 👤 改成字）：起點是「起」（住宿、航班抵達的機場或其他），中間依時間軸的順序 1、2、3…，
- * 終點（回到的住宿、出發的航班）是「終」。分組的那天，先編各組的點（照組的順序），再編會合點。
+ * 終點（回到的住宿、出發的航班）是「終」。
  * 這天沒有起點（前一晚還沒排住宿）時，第一個行程是 1，時間軸另外放一張「還沒有起點」（DayStartMissing）。
  * byPlace 是同一個點的所有號碼（依時間順序），地圖上顯示哪個交給 mapMark。isLodging 不再用到（起點不分住宿），留著相容舊的呼叫
  */
@@ -366,10 +324,7 @@ export function stopMarks(day: DayPlan | null, _isLodging?: (placeId: string) =>
     byEntry.set(e, label);
     byPlace.set(e.placeId, [...(byPlace.get(e.placeId) ?? []), label]);
   };
-  for (const e of day?.entries ?? []) {
-    if (e.groups) for (const g of e.groups) for (const x of g.entries) if (x.kind !== 'meet') mark(x);
-    mark(e);
-  }
+  for (const e of entries) mark(e);
   return { byEntry, byPlace };
 }
 

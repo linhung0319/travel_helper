@@ -179,47 +179,12 @@ test('小孩：不接受小孩、有年齡限制的店 → 有小孩時錯誤；
   assert.ok(!codes(adults).includes('kids-not-allowed'));
 });
 
-function splitItem(g1: NewItem[], g2: NewItem[], meet = { place: 'b', time: '12:00' }, sizes = [6, 9]): NewItem {
-  const strip = (x: NewItem) => ({ ...x, id: '', selected: 0 }) as never;
-  return {
-    type: 'split',
-    groups: [
-      { id: 'g1', name: '長輩組', size: sizes[0], elders: 5, kids: 0, items: g1.map(strip) },
-      { id: 'g2', name: '小孩組', size: sizes[1], elders: 0, kids: 4, items: g2.map(strip) },
-    ],
-    meet,
-  };
-}
-
-test('分組：各組自己的時間軸，在會合點會合，之後從會合點、會合時間接著算', () => {
-  const d = plan(build([splitItem([visit('a')], [visit('c', { stay: 30 })]), visit('r')]), fake(BASE));
-  const meet = d.entries[1];
-  assert.equal(meet.kind, 'meet');
-  assert.deepEqual(meet.groups?.map((g) => g.entries.map((e) => [e.kind, e.placeId])), [
-    [['visit', 'a'], ['meet', 'b']],
-    [['visit', 'c'], ['meet', 'b']],
-  ]);
-  assert.equal(meet.start, '12:00');
-  assert.equal(d.entries[2].travel?.depart, '12:00');
-  // 分組的步行係數：長輩組 1.2 → h→a 8 分（全員 1.4 是 10 分）
-  assert.equal(meet.groups?.[0].entries[0].arrive, '09:38');
-});
-
-test('分組：人數加起來不是全員 → 警告；趕不上會合 → 錯誤；分組坐不下 → 錯誤', () => {
-  const small = with_(R, { group: { fit15: 'no', fitSubgroup: 'no' } });
-  const d = plan(build([splitItem([visit('r')], [visit('a', { stay: 300 })], { place: 'b', time: '11:00' }, [6, 8])]), fake([...BASE.filter((p) => p.id !== 'r'), small]));
-  assert.ok(codes(d).includes('split-size'));
-  const late = d.warnings.find((w) => w.code === 'meet-late');
-  assert.equal(late?.groupId, 'g2');
-  assert.ok(d.warnings.some((w) => w.code === 'group-seats' && w.groupId === 'g1'));
-});
-
-test('長輩：階梯多 → 警告，那天算累；只有沒長輩的分組去就不警告', () => {
+test('長輩：階梯多 → 警告，那天算累；沒有長輩就不警告', () => {
   const stairs = with_(A, { accessibility: { stairs: '多' } });
   const d = plan(build([visit('a')]), fake([H, stairs]));
   assert.ok(codes(d).includes('stairs'));
   assert.ok(d.stats.tiring);
-  const g = plan(build([splitItem([], [visit('a')], { place: 'a', time: '12:00' })]), fake([H, stairs]));
+  const g = plan(build([visit('a')], { party: { size: 9, elders: 0, kids: 4 } }), fake([H, stairs]));
   assert.ok(!codes(g).includes('stairs'));
   assert.ok(g.stats.tiring);
 });
@@ -357,13 +322,11 @@ test('交通不加緩衝：到達＝出發＋交通分鐘', () => {
   const check = (entries: DayPlan['entries']) => {
     for (const e of entries) {
       if (e.travel) assert.equal(toMinutes(e.arrive) - toMinutes(e.travel.depart), e.travel.minutes);
-      for (const g of e.groups ?? []) check(g.entries);
     }
   };
   const d = planItinerary(build([visit('a'), visit('c'), visit('b')]), fake(BASE)).days.find((x) => x.date === D)!;
   assert.ok(d.entries.filter((e) => e.travel && e.travel.minutes > 0).length >= 3);
   check(d.entries);
-  check(planItinerary(build([splitItem([visit('a'), visit('c')], [visit('c')])]), fake(BASE)).days.find((x) => x.date === D)!.entries);
 });
 
 test('同一個點連續兩項（沒有移動）：到達＝上一項結束', () => {
@@ -416,11 +379,11 @@ test('去機場那段可以指定', () => {
 test('舊格式的行程結果不變', async () => {
   const { realData } = await import('./fixtures.ts');
   const { TOBA_DATE, tobaDay } = await import('./toba-day.ts');
-  type E = { kind: string; start: string; travel?: { minutes: number } | null; groups?: { entries: E[] }[] };
-  const f = (es: E[]): unknown[] => es.map((e) => [e.kind, e.start, e.travel?.minutes ?? null, ...(e.groups ? [e.groups.map((g) => f(g.entries))] : [])]);
+  type E = { kind: string; start: string; travel?: { minutes: number } | null };
+  const f = (es: E[]): unknown[] => es.map((e) => [e.kind, e.start, e.travel?.minutes ?? null]);
   const run = (cfg: ConfigOverride) => f(planItinerary(tobaDay(), realData(), cfg).days.find((x) => x.date === TOBA_DATE)!.entries as E[]);
   // 第一段是計程車：第四輪拿掉叫車的 5 分（8 → 3 分）；其他段不加緩衝
-  assert.deepEqual(run({}), [["start","09:30",null],["visit","09:33",3],["visit","12:00",8],["meet","15:45",null,[[["visit","13:23",8],["meet","14:49",11]],[["visit","13:20",5],["visit","13:59",9],["meet","15:08",9]]]],["visit","15:55",10],["lodging","16:39",14]]);
+  assert.deepEqual(run({}), [["start","09:30",null],["visit","09:33",3],["visit","12:00",8],["visit","13:24",9],["visit","14:49",10],["lodging","15:33",14]]);
 });
 
 test('景點標 rest 算休息，不發 no-rest', () => {
@@ -477,11 +440,4 @@ test('資料卡不能是車站：visit 選到 station → station-card 錯誤', 
   assert.equal(w.level, 'error');
   assert.equal(w.message, '資料卡不能是車站（st）');
   assert.ok(!codes(plan(build([visit('a')]), fake(BASE))).includes('station-card'));
-});
-
-test('分組的會合點可以是車站：不發 station-card', () => {
-  const S = station('st', at(400, 300));
-  const d = plan(build([splitItem([visit('a')], [visit('c')], { place: 'st', time: '12:00' })]), fake([...BASE, S]));
-  assert.ok(d.entries.some((e) => e.kind === 'meet' && e.placeId === 'st'));
-  assert.ok(!codes(d).includes('station-card'), codes(d).join(','));
 });

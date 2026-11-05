@@ -34,18 +34,17 @@ test('timetableSource：路線檔、近鐵、沒有來源', () => {
   assert.equal(timetableSource({ mode: 'bus', routeId: 'nope' }, { routes: [route] }, '2027-02-04', []), null);
 });
 
-test('legKeyOf、findLegEntry：用交通卡的 key 找那段交通（含分組裡的）', () => {
+test('legKeyOf、findLegEntry：用交通卡的 key 找那段交通', () => {
   const leg = { mode: 'walk', rides: [] };
   const e = (kind: TimelineEntry['kind'], itemId: string | null, extra: Partial<TimelineEntry> = {}) => ({ kind, itemId, placeId: `p-${itemId}`, travel: leg, ...extra }) as unknown as TimelineEntry;
-  const inGroup = e('visit', 'g1');
   const day = {
     date: '2027-02-04',
-    entries: [e('start', null, { travel: null }), e('visit', 'v1'), e('meet', 'm1', { groups: [{ id: 'a', name: 'A', entries: [inGroup] }] }), e('lodging', null)],
+    entries: [e('start', null, { travel: null }), e('visit', 'v1'), e('free', 'f1'), e('lodging', null)],
   } as unknown as DayPlan;
   assert.equal(legKeyOf(day.entries[1], day.date), '2027-02-04:visit:v1');
   assert.equal(legKeyOf(day.entries[3], day.date), '2027-02-04:lodging');
   assert.equal(findLegEntry(day, '2027-02-04:visit:v1'), day.entries[1]);
-  assert.equal(findLegEntry(day, '2027-02-04:visit:g1'), inGroup);
+  assert.equal(findLegEntry(day, '2027-02-04:free:f1'), day.entries[2]);
   assert.equal(findLegEntry(day, '2027-02-04:lodging'), day.entries[3]);
   assert.equal(findLegEntry(day, '2027-02-04:visit:gone'), null);
   // 起點沒有交通

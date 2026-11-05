@@ -159,28 +159,6 @@ test('指定開始時間、交通、住宿', () => {
   assert.deepEqual(setLodging(it, D, 'h', 'breakfast').nights[D], { lodging: 'h', meals: 'breakfast' });
 });
 
-test('分組裡的項目：可以新增、上下移、移到別天（移出分組）', () => {
-  let it = createItinerary();
-  const sp = addItem(it, D, {
-    type: 'split',
-    groups: [
-      { id: 'g1', name: '一', size: 7, elders: 5, kids: 0, items: [{ id: '', ...visit('a'), selected: 0 }] },
-      { id: 'g2', name: '二', size: 8, elders: 0, kids: 4, items: [] },
-    ],
-    meet: { place: 'a', time: '12:00' },
-  });
-  it = sp.itinerary;
-  const inner = `${sp.itemId}-g1-1`;
-  assert.ok(findItem(it, inner));
-  const add = addItem(it, D, visit('b'), { split: { id: sp.itemId, group: 'g1' } });
-  const g = findItem(add.itinerary, add.itemId);
-  assert.deepEqual([g?.splitId, g?.groupId, g?.index], [sp.itemId, 'g1', 1]);
-  assert.equal(findItem(moveItem(add.itinerary, add.itemId, 'up'), add.itemId)?.index, 0);
-  const out = moveItemToDay(add.itinerary, inner, '2027-02-06');
-  assert.equal(findItem(out, inner)?.splitId, null);
-  assert.throws(() => addItem(it, D, { type: 'split', groups: [], meet: { place: 'a', time: '12:00' } }, { split: { id: sp.itemId, group: 'g1' } }), /不能再分組/);
-});
-
 test('驗證：格式、ID 重複、selected 範圍、時間格式、日期順序', () => {
   assert.deepEqual(validateItinerary(createItinerary()), []);
   const bad = createItinerary();
@@ -250,16 +228,8 @@ test('moveItemTo：同一天換位置、移到別天的某個位置', () => {
   assert.equal(ids(moved, other)?.[0], b);
 });
 
-test('moveItemTo：移進分組、移出分組；分組不能放進分組；不能跨過航班', () => {
-  let { it, ids: [a, b] } = threeItems();
-  const sp = addItem(it, D, { type: 'split', groups: [{ id: 'g1', name: '一組', size: 15, elders: 5, kids: 4, items: [] }], meet: { place: 'a', time: '15:00' } } as never);
-  it = sp.itinerary;
-  const inGroup = moveItemTo(it, a, D, 0, { id: sp.itemId, group: 'g1' });
-  const split = inGroup.days.find((d) => d.date === D)!.items.find((x) => x.id === sp.itemId)!;
-  assert.deepEqual(split.type === 'split' && split.groups[0].items.map((x) => x.id), [a]);
-  const out = moveItemTo(inGroup, a, D, 0);
-  assert.equal(ids(out)?.[0], a);
-  assert.throws(() => moveItemTo(it, sp.itemId, D, 0, { id: sp.itemId, group: 'g1' }), ItineraryError);
+test('moveItemTo：不能跨過航班', () => {
+  const { it, ids: [, b] } = threeItems();
   const first = '2027-02-02';
   assert.throws(() => moveItemTo(it, b, first, 0), ItineraryError);
   const last = '2027-02-13';
@@ -284,22 +254,11 @@ test('setLegTravel：只有 path 也算有設定；舊的 trip 不寫（T29b）�
   assert.equal(it.days.find((d) => d.date === D)?.returnTravel, undefined); // 不改原本的
 });
 
-test('setLegTravel：航班可以；split 項目本身丟錯', () => {
+test('setLegTravel：航班可以；找不到的項目丟錯', () => {
   const it = createItinerary();
   const dep = it.days[11].items.find((i) => i.type === 'flight')!;
   assert.deepEqual(getLegTravel(setLegTravel(it, { itemId: dep.id }, { minutes: 90 }), { itemId: dep.id }), { minutes: 90 });
-  const sp = addItem(it, D, {
-    type: 'split',
-    groups: [
-      { id: 'g1', name: '一', size: 7, elders: 5, kids: 0, items: [{ id: '', ...visit('a'), selected: 0 }] },
-      { id: 'g2', name: '二', size: 8, elders: 0, kids: 4, items: [] },
-    ],
-    meet: { place: 'b', time: '12:00' },
-  });
-  assert.throws(() => setLegTravel(sp.itinerary, { itemId: sp.itemId }, { minutes: 5 }), ItineraryError);
-  assert.throws(() => setLegTravel(sp.itinerary, { itemId: 'nope' }, { minutes: 5 }), ItineraryError);
-  const inner = (findItem(sp.itinerary, sp.itemId)?.item as { groups: { items: { id: string }[] }[] }).groups[0].items[0].id;
-  assert.deepEqual(getLegTravel(setLegTravel(sp.itinerary, { itemId: inner }, { minutes: 5 }), { itemId: inner }), { minutes: 5 });
+  assert.throws(() => setLegTravel(it, { itemId: 'nope' }, { minutes: 5 }), ItineraryError);
 });
 
 test('setTags：去重、照 TAG_IDS 排序；validateItinerary 接受', () => {

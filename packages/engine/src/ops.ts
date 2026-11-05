@@ -9,7 +9,6 @@ import {
   TRAVEL_MODES,
   type DateString,
   type FlightItem,
-  type GroupItem,
   type Itinerary,
   type ItineraryItem,
   type LodgingMeals,
@@ -62,22 +61,16 @@ export function createItinerary(
 
 export interface ItemLocation {
   dayIndex: number;
-  /** 項目所在的陣列（一天的 items，或某一組的 items） */
-  list: (ItineraryItem | GroupItem)[];
+  /** 項目所在的陣列（那一天的 items） */
+  list: ItineraryItem[];
   index: number;
-  item: ItineraryItem | GroupItem;
-  /** 在分組裡時：split 的 ID、組的 ID */
-  splitId: string | null;
-  groupId: string | null;
+  item: ItineraryItem;
 }
 
 export function allItemIds(it: Itinerary): string[] {
   const ids: string[] = [];
   for (const d of it.days) {
-    for (const i of d.items) {
-      ids.push(i.id);
-      if (i.type === 'split') for (const g of i.groups) ids.push(...g.items.map((x) => x.id));
-    }
+    for (const i of d.items) ids.push(i.id);
   }
   return ids;
 }
@@ -87,13 +80,7 @@ export function findItem(it: Itinerary, id: string): ItemLocation | null {
     const items = it.days[dayIndex].items;
     for (let index = 0; index < items.length; index++) {
       const item = items[index];
-      if (item.id === id) return { dayIndex, list: items, index, item, splitId: null, groupId: null };
-      if (item.type === 'split') {
-        for (const g of item.groups) {
-          const gi = g.items.findIndex((x) => x.id === id);
-          if (gi >= 0) return { dayIndex, list: g.items, index: gi, item: g.items[gi], splitId: item.id, groupId: g.id };
-        }
-      }
+      if (item.id === id) return { dayIndex, list: items, index, item };
     }
   }
   return null;
@@ -121,7 +108,7 @@ export function nextItemId(it: Itinerary, prefix = 'i'): string {
   return `${prefix}-${max + 1}`;
 }
 
-function assertMovable(item: ItineraryItem | GroupItem): void {
+function assertMovable(item: ItineraryItem): void {
   if (item.type === 'flight') throw new ItineraryError('航班是固定項目，不能刪除或移動');
 }
 
@@ -129,14 +116,11 @@ function assertMovable(item: ItineraryItem | GroupItem): void {
 
 export type NewItem =
   | (Omit<VisitItem, 'id' | 'selected'> & { selected?: number })
-  | (Omit<Extract<ItineraryItem, { type: 'free' }>, 'id'>)
-  | (Omit<Extract<ItineraryItem, { type: 'split' }>, 'id'>);
+  | (Omit<Extract<ItineraryItem, { type: 'free' }>, 'id'>);
 
 export interface AddOptions {
   /** 插在第幾個（預設最後；在航班出發之前） */
   index?: number;
-  /** 加進某個分組：split 的 ID 和組的 ID */
-  split?: { id: string; group: string };
 }
 
 /** 新增項目，回傳新的行程和新項目的 ID */
@@ -151,22 +135,12 @@ export function addItem(it: Itinerary, date: DateString, item: NewItem, opts: Ad
     if (!full.options.length) throw new ItineraryError('visit 至少要有一個選項');
     if (full.selected < 0 || full.selected >= full.options.length) throw new ItineraryError('selected 超出選項範圍');
   }
-  if (full.type === 'split') {
-    if (opts.split) throw new ItineraryError('分組裡不能再分組');
-    full.groups.forEach((g) => g.items.forEach((x, k) => (x.id = `${id}-${g.id}-${k + 1}`)));
-  }
-  let list: (ItineraryItem | GroupItem)[] = day.items;
-  if (opts.split) {
-    const sp = day.items.find((x) => x.id === opts.split?.id);
-    const g = sp?.type === 'split' ? sp.groups.find((x) => x.id === opts.split?.group) : null;
-    if (!g) throw new ItineraryError(`這天沒有分組 ${opts.split.id}／${opts.split.group}`);
-    list = g.items;
-  }
+  const list = day.items;
   // 預設插在最後，但在出發的航班之前
   const lastFlight = list.findIndex((x) => x.type === 'flight' && x.direction === 'depart');
   const at = opts.index ?? (lastFlight >= 0 ? lastFlight : list.length);
   if (at < 0 || at > list.length) throw new ItineraryError(`位置 ${at} 超出範圍`);
-  list.splice(at, 0, full as GroupItem);
+  list.splice(at, 0, full);
   return { itinerary: next, itemId: id };
 }
 
@@ -178,7 +152,7 @@ export function removeItem(it: Itinerary, itemId: string): Itinerary {
   return next;
 }
 
-/** 移到別天（放在那天的最後、出發航班之前，或指定位置）；分組裡的項目會移出來 */
+/** 移到別天（放在那天的最後、出發航班之前，或指定位置） */
 export function moveItemToDay(it: Itinerary, itemId: string, date: DateString, index?: number): Itinerary {
   const next = clone(it);
   const loc = mustFind(next, itemId);
@@ -188,42 +162,34 @@ export function moveItemToDay(it: Itinerary, itemId: string, date: DateString, i
   const lastFlight = day.items.findIndex((x) => x.type === 'flight' && x.direction === 'depart');
   const at = index ?? (lastFlight >= 0 ? lastFlight : day.items.length);
   if (at < 0 || at > day.items.length) throw new ItineraryError(`位置 ${at} 超出範圍`);
-  day.items.splice(at, 0, item as ItineraryItem);
+  day.items.splice(at, 0, item);
   return next;
 }
 
 /**
- * 拖曳用：移到某天（或某天某個分組）的第 index 個。index 是「先拿出來、再插進去」之後的位置。
- * 分組不能放進分組；不能放在抵達航班之前、出發航班之後。
+ * 拖曳用：移到某天的第 index 個。index 是「先拿出來、再插進去」之後的位置。
+ * 不能放在抵達航班之前、出發航班之後。
  */
-export function moveItemTo(it: Itinerary, itemId: string, date: DateString, index: number, split?: { id: string; group: string }): Itinerary {
+export function moveItemTo(it: Itinerary, itemId: string, date: DateString, index: number): Itinerary {
   const next = clone(it);
   const loc = mustFind(next, itemId);
   assertMovable(loc.item);
   const [item] = loc.list.splice(loc.index, 1);
-  insertChecked(next, item, date, index, split);
+  insertChecked(next, item, date, index);
   return next;
 }
 
-/** moveItemTo 的插入：在 next（會被改）的 date（或某分組）第 index 個放進 item，並檢查航班邊界 */
-function insertChecked(next: Itinerary, item: ItineraryItem | GroupItem, date: DateString, index: number, split?: { id: string; group: string }): void {
-  const day = next.days[dayIndexOf(next, date)];
-  let list: (ItineraryItem | GroupItem)[] = day.items;
-  if (split) {
-    if (item.type === 'split') throw new ItineraryError('分組裡不能再分組');
-    const sp = day.items.find((x) => x.id === split.id);
-    const g = sp?.type === 'split' ? sp.groups.find((x) => x.id === split.group) : null;
-    if (!g) throw new ItineraryError(`這天沒有分組 ${split.id}／${split.group}`);
-    list = g.items;
-  }
+/** moveItemTo 的插入：在 next（會被改）的 date 第 index 個放進 item，並檢查航班邊界 */
+function insertChecked(next: Itinerary, item: ItineraryItem, date: DateString, index: number): void {
+  const list = next.days[dayIndexOf(next, date)].items;
   if (index < 0 || index > list.length) throw new ItineraryError(`位置 ${index} 超出範圍`);
   const lo = list.map((x) => x.type === 'flight' && x.direction === 'arrive').lastIndexOf(true) + 1;
   const firstDepart = list.findIndex((x) => x.type === 'flight' && x.direction === 'depart');
   if (index < lo || (firstDepart >= 0 && index > firstDepart)) throw new ItineraryError('不能移到航班的另一邊');
-  list.splice(index, 0, item as GroupItem);
+  list.splice(index, 0, item);
 }
 
-/** 上移／下移一格（同一天、同一組裡）；不能跨過航班 */
+/** 上移／下移一格（同一天裡）；不能跨過航班 */
 export function moveItem(it: Itinerary, itemId: string, direction: 'up' | 'down'): Itinerary {
   const next = clone(it);
   const loc = mustFind(next, itemId);
@@ -312,7 +278,7 @@ export function mergeItems(
   return { itinerary: next, droppedStart };
 }
 
-function mustBeBackup(item: ItineraryItem | GroupItem, optionIndex: number): VisitItem {
+function mustBeBackup(item: ItineraryItem, optionIndex: number): VisitItem {
   if (item.type !== 'visit') throw new ItineraryError('只有 visit 有備案');
   if (!Number.isInteger(optionIndex) || optionIndex < 0 || optionIndex >= item.options.length) throw new ItineraryError('沒有這個備案');
   if (optionIndex === item.selected) throw new ItineraryError('主卡要先把皇冠給別張');
@@ -326,21 +292,20 @@ function takeOption(item: VisitItem, optionIndex: number): VisitItem['options'][
   return opt;
 }
 
-/** 拆開：備卡拿出來變成獨立的一站，插在 date（或某分組）的第 index 個（先拿出來再插進去的位置，同 moveItemTo） */
+/** 拆開：備卡拿出來變成獨立的一站，插在 date 的第 index 個（先拿出來再插進去的位置，同 moveItemTo） */
 export function detachOption(
   it: Itinerary,
   itemId: string,
   optionIndex: number,
   date: DateString,
   index: number,
-  split?: { id: string; group: string },
 ): { itinerary: Itinerary; itemId: string } {
   const next = clone(it);
   const item = mustBeBackup(mustFind(next, itemId).item, optionIndex);
   const opt = takeOption(item, optionIndex);
   const id = nextItemId(next);
   next.seq = Number(id.split('-')[1]);
-  insertChecked(next, { id, type: 'visit', options: [opt], selected: 0 }, date, index, split);
+  insertChecked(next, { id, type: 'visit', options: [opt], selected: 0 }, date, index);
   return { itinerary: next, itemId: id };
 }
 
@@ -388,7 +353,7 @@ export type LegTarget = { itemId: string } | { lodging: DateString };
 const isEmptySpec = (s: TravelSpec) => s.mode == null && s.minutes == null && s.path == null && s.note == null;
 
 /**
- * 設定某一段交通（方式、分鐘、走法、備註可以只填一部分）；spec 是 null 或欄位全空：清掉。split 項目本身不能設。
+ * 設定某一段交通（方式、分鐘、走法、備註可以只填一部分）；spec 是 null 或欄位全空：清掉。
  * 舊的選定班次（trip）不寫（T29b 拿掉選班次）
  */
 export function setLegTravel(it: Itinerary, to: LegTarget, spec: TravelSpec | null): Itinerary {
@@ -399,9 +364,7 @@ export function setLegTravel(it: Itinerary, to: LegTarget, spec: TravelSpec | nu
     next.days[dayIndexOf(next, to.lodging)].returnTravel = value;
     return next;
   }
-  const { item } = mustFind(next, to.itemId);
-  if (item.type === 'split') throw new ItineraryError('分組項目不能指定交通；請設定組裡的項目');
-  item.travel = value;
+  mustFind(next, to.itemId).item.travel = value;
   return next;
 }
 
@@ -409,7 +372,7 @@ export function setLegTravel(it: Itinerary, to: LegTarget, spec: TravelSpec | nu
 export function getLegTravel(it: Itinerary, to: LegTarget): TravelSpec | null {
   if ('lodging' in to) return it.days[dayIndexOf(it, to.lodging)].returnTravel ?? null;
   const { item } = mustFind(it, to.itemId);
-  return item.type === 'split' ? null : (item.travel ?? null);
+  return item.travel ?? null;
 }
 
 /** 設定 visit 的標籤：去掉重複，照 TAG_IDS 的順序存（互斥是畫面規則，這裡不檢查） */
@@ -430,8 +393,8 @@ const legacyDay = (d: Itinerary['days'][number]) => 'lodging' in d || 'lodgingMe
  * - 每天的 lodging、lodgingMeals 搬到 nights（T45a）；areaOf 有給時順便寫區，沒給時區照住宿資料推（nightAreaOf）
  */
 export function upgradeItinerary(raw: Itinerary, areaOf?: (placeId: string) => AreaId | null | undefined): Itinerary {
-  const old = (i: ItineraryItem | GroupItem) => i.type === 'visit' && ('meal' in i || 'dining' in i);
-  const needsTags = raw.days.some((d) => d.items.some((i) => old(i) || (i.type === 'split' && i.groups.some((g) => g.items.some(old)))));
+  const old = (i: ItineraryItem) => i.type === 'visit' && ('meal' in i || 'dining' in i);
+  const needsTags = raw.days.some((d) => d.items.some(old));
   const needsNights = !raw.nights || raw.days.some(legacyDay);
   if (!needsTags && !needsNights) return raw;
   const next = clone(raw);
@@ -455,7 +418,7 @@ export function upgradeItinerary(raw: Itinerary, areaOf?: (placeId: string) => A
     });
     next.nights = nights;
   }
-  const fix = (i: ItineraryItem | GroupItem) => {
+  const fix = (i: ItineraryItem) => {
     if (i.type !== 'visit' || !('meal' in i || 'dining' in i)) return;
     const legacy = i as VisitItem & { meal?: TagId | null; dining?: string | null };
     const tags: TagId[] = [...(legacy.tags ?? [])];
@@ -466,12 +429,7 @@ export function upgradeItinerary(raw: Itinerary, areaOf?: (placeId: string) => A
     delete legacy.dining;
     legacy.tags = TAG_IDS.filter((t) => tags.includes(t));
   };
-  for (const d of next.days) {
-    for (const i of d.items) {
-      fix(i);
-      if (i.type === 'split') for (const g of i.groups) g.items.forEach(fix);
-    }
-  }
+  for (const d of next.days) d.items.forEach(fix);
   return next;
 }
 
@@ -578,7 +536,7 @@ export function validateItinerary(it: unknown): string[] {
       for (const k of ['from', 'to'] as const) if (pa[k] != null && typeof pa[k] !== 'string') errs.push(`${where}：travel.path.${k} 要是字串或 null`);
     }
   };
-  const checkItem = (i: ItineraryItem | GroupItem, where: string, inGroup: boolean) => {
+  const checkItem = (i: ItineraryItem, where: string) => {
     checkId(i?.id, where);
     switch (i?.type) {
       case 'visit':
@@ -595,18 +553,14 @@ export function validateItinerary(it: unknown): string[] {
         if (i.start != null && !isTime(i.start)) errs.push(`${where}：start 要是 HH:MM`);
         checkTravel(i.travel, where);
         break;
-      default: {
-        const it2 = i as ItineraryItem;
-        if (inGroup) errs.push(`${where}：分組裡只能有 visit、free`);
-        else if (it2?.type === 'flight') {
-          if (!isTime(it2.depart) || !isTime(it2.arrive)) errs.push(`${where}：航班時間要是 HH:MM`);
-          checkTravel(it2.travel, where);
-        } else if (it2?.type === 'split') {
-          if (!it2.meet || typeof it2.meet.place !== 'string' || !isTime(it2.meet.time)) errs.push(`${where}：meet 要有 place、time`);
-          if (!Array.isArray(it2.groups) || it2.groups.length < 2) errs.push(`${where}：至少兩組`);
-          else it2.groups.forEach((g, gi) => (g.items ?? []).forEach((gi2, k) => checkItem(gi2, `${where} 第 ${gi + 1} 組第 ${k + 1} 項`, true)));
-        } else errs.push(`${where}：不認得的 type`);
-      }
+      case 'flight':
+        if (!isTime(i.depart) || !isTime(i.arrive)) errs.push(`${where}：航班時間要是 HH:MM`);
+        checkTravel(i.travel, where);
+        break;
+      default:
+        // 分組（split）T72 拿掉了：舊存檔遇到要說清楚，不要默默丟掉
+        if ((i as { type?: unknown })?.type === 'split') errs.push(`${where}：分組已經拿掉，請改成合併卡`);
+        else errs.push(`${where}：不認得的 type`);
     }
   };
   let prev = '';
@@ -619,7 +573,7 @@ export function validateItinerary(it: unknown): string[] {
     if (d && typeof d === 'object' && legacyDay(d)) errs.push(`${where}：舊格式（住宿寫在 days 裡），請先 upgradeItinerary`);
     if (d?.dayArea != null && (typeof d.dayArea !== 'string' || !d.dayArea)) errs.push(`${where}：dayArea 要是非空字串或 null`);
     if (!Array.isArray(d?.items)) errs.push(`${where}：items 要是陣列`);
-    else d.items.forEach((i, k) => checkItem(i, `${where}第 ${k + 1} 項`, false));
+    else d.items.forEach((i, k) => checkItem(i, `${where}第 ${k + 1} 項`));
   });
   return errs;
 }

@@ -53,17 +53,10 @@ const viewTitle = (view: Exclude<ActionView, 'list'>, spec: ActionSheetSpec) => 
 
 const close = () => mobileStore.getState().closeActions();
 
-/** 這天時間軸上某個項目的那一列（分組裡的也找） */
+/** 這天時間軸上某個項目的那一列 */
 function entryOf(day: DayPlan | null, itemId: string | undefined): TimelineEntry | null {
   if (!day || !itemId) return null;
-  for (const e of day.entries) {
-    if (e.itemId === itemId) return e;
-    for (const g of e.groups ?? []) {
-      const x = g.entries.find((y) => y.itemId === itemId);
-      if (x) return x;
-    }
-  }
-  return null;
+  return day.entries.find((e) => e.itemId === itemId) ?? null;
 }
 
 /** 這張卡現在的停留分鐘（引擎算好的）；不知道是 null */
@@ -121,7 +114,6 @@ function ActionList({ spec, onView }: { spec: ActionSheetSpec; onView: (v: Exclu
               disabled={spec.disabled?.includes(m.id)}
               onClick={() => run(m.id, m.target)}
               data-testid={`m-action-${m.id}`}
-              {...(m.group ? { 'data-group': m.group } : {})}
             >
               <Icon name={ACTION_ICONS[m.id]} size={20} />
               <span className="m-ellipsis">{m.text}</span>

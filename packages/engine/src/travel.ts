@@ -27,22 +27,15 @@ export interface LegContext {
   /** 從起點出發的時間（分鐘） */
   depart: number;
   party: PartyProfile;
-  /** 全員（true）或分組 */
-  whole: boolean;
   data: EngineData;
   cfg: EngineConfig;
 }
 
 export type LegWarning = Omit<EngineWarning, 'date'>;
 
-/** 團體步行係數（§5.4） */
-export function walkFactor(party: PartyProfile, whole: boolean, cfg: EngineConfig): number {
-  if (whole) return cfg.walk.factorWhole;
-  return party.elders > 0 || party.kids > 0 ? cfg.walk.factorSubgroupWithElderOrKid : cfg.walk.factorSubgroupAdults;
-}
-
-export function legWalkMax(whole: boolean, cfg: EngineConfig): number {
-  return whole ? cfg.walk.legMaxWhole : cfg.walk.legMaxSubgroup;
+/** 團體步行係數（§5.4，全員） */
+export function walkFactor(cfg: EngineConfig): number {
+  return cfg.walk.factorWhole;
 }
 
 /** 步行分鐘（已套係數）：anchors（係數 1 的分鐘）→ nearestStation → walkMeters（OSRM 快取）→ 直線估算 */
@@ -108,8 +101,8 @@ interface Candidate {
   ruleWait?: number;
 }
 
-/** 班距型那程的等車（全員整個班距、分組一半，向上取整） */
-const headwayWaitOf = (r: JourneyRide, whole: boolean) => Math.ceil(whole ? (r.headway?.min ?? 0) : (r.headway?.min ?? 0) / 2);
+/** 班距型那程的等車（整個班距，向上取整） */
+const headwayWaitOf = (r: JourneyRide) => Math.ceil(r.headway?.min ?? 0);
 
 function stationName(id: string, data: EngineData): string {
   return (data.getPlace(id)?.record.name.ja as string | undefined) ?? id;
@@ -154,7 +147,7 @@ const netStopId = (net: Network, doc: RouteTimetable, stop: string) => (doc.mode
  * 步行已套係數、向上取整
  */
 function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network, pierSide = false): Access[] {
-  const within = accessWithin(e, ctx, factor, net, legWalkMax(ctx.whole, ctx.cfg));
+  const within = accessWithin(e, ctx, factor, net, ctx.cfg.walk.legMaxWhole);
   return pierSide && !within.length ? accessWithin(e, ctx, factor, net, Infinity) : within;
 }
 
@@ -258,7 +251,7 @@ function legAccess(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, ne
 function raptorQuery(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network, departMinutes: number): SearchQuery | null {
   const { origins, targets, sea } = legAccess(a, b, ctx, factor, net);
   if (!origins.length || !targets.length) return null;
-  return { origins, targets, depart: departMinutes, whole: ctx.whole, factor, requireFerry: sea };
+  return { origins, targets, depart: departMinutes, factor, requireFerry: sea };
 }
 
 /** 依 pickDefault 的值排序（到達＋每多一程 transferPenalty；同值程數少的在前），第一個就是 pickDefault 挑的。複製一份再排（searchJourneys 的結果是共用的） */
@@ -470,7 +463,7 @@ function journeyCandidate(j: Journey, net: Network, departMinutes: number, ctx: 
     dep: j.dep,
     wait: first.dep - (departMinutes + access),
     // 第一程是班距型：上車可以往後挪（laterHeadway 把等車移到起點），規則只看班距型本身的等車
-    ruleWait: first.headway ? Math.min(first.dep - (departMinutes + access), headwayWaitOf(first, ctx.whole)) : undefined,
+    ruleWait: first.headway ? Math.min(first.dep - (departMinutes + access), headwayWaitOf(first)) : undefined,
     rides: j.rides.map((r) => transitRide(r, net, data)),
     headway,
     basis: [...new Set(sources)].join('＋'),
@@ -485,7 +478,7 @@ function journeyCandidate(j: Journey, net: Network, departMinutes: number, ctx: 
 function withMissed(c: Candidate, ctx: LegContext, factor: number): TransitRide[] {
   const { journey: j, net } = c;
   return c.rides.map((r, i) => {
-    const m = ifMissed(net, j, i, { whole: ctx.whole, factor }, ctx.cfg);
+    const m = ifMissed(net, j, i, { factor }, ctx.cfg);
     return { ...r, ifMissed: m && { depart: fromMinutes(m.depart), arrive: fromMinutes(m.arrive), lateMinutes: m.lateMinutes } };
   });
 }
@@ -627,7 +620,7 @@ function leg(partial: Partial<Leg> & Pick<Leg, 'mode' | 'minutes' | 'basis'>, a:
 function fromCandidate(c: Candidate, a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, warnings: LegWarning[], alts: readonly Candidate[] = []): Leg {
   const wait = c.dep - (ctx.depart + c.access);
   const { transfers } = c;
-  const max = legWalkMax(ctx.whole, ctx.cfg);
+  const max = ctx.cfg.walk.legMaxWhole;
   // 轉乘步行不受單段步行上限管（站內轉乘躲不掉），超過時提醒
   for (const t of transfers) if (t.walkMinutes > max) warnings.push({ code: 'transfer-walk', level: 'info', message: `轉乘要走 ${t.walkMinutes} 分` });
   // 過海那段離島那端不設步行上限（legAccess）：超過時提醒（T60）
@@ -688,9 +681,9 @@ function drive(a: LonLat, b: LonLat, ctx: LegContext) {
 
 /** 從 a 到 b 的一段交通；spec 是使用者指定的方式 */
 export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: TravelSpec | null): { leg: Leg; warnings: LegWarning[] } {
-  const { cfg, party } = ctx;
+  const { cfg } = ctx;
   const warnings: LegWarning[] = [];
-  const factor = walkFactor(party, ctx.whole, cfg);
+  const factor = walkFactor(cfg);
   const walk = walkMinutes(a, b, factor, ctx.data, cfg);
   const same = !!((a.id && a.id === b.id) || (a.id == null && b.id == null && a.coords && b.coords && haversineMeters(a.coords, b.coords) < 1));
   // 出發後還有沒有電車、巴士、船（不管等多久）：沒有時規劃模式的「大眾運輸」灰掉
@@ -734,7 +727,7 @@ export function planLeg(a: Endpoint, b: Endpoint, ctx: LegContext, spec?: Travel
 function pathLeg(a: Endpoint, b: Endpoint, ctx: LegContext, path: PathRef, factor: number, warnings: LegWarning[]): Leg | null {
   if (!Array.isArray(path.rides) || !path.rides.length) return null;
   const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
-  const q = { whole: ctx.whole, factor };
+  const q = { factor };
   let j: Journey | null = null;
   const { origins, targets } = legAccess(a, b, ctx, factor, net);
   for (const o of origins) {
@@ -758,7 +751,7 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
     return leg({ mode: 'unknown', minutes: 0, basis: '缺座標' }, a, b, ctx.depart);
   }
 
-  const max = legWalkMax(ctx.whole, cfg);
+  const max = cfg.walk.legMaxWhole;
   const sea = crossesSea(a, b, cfg);
   if (walk.minutes <= max && !sea) {
     return leg({ mode: 'walk', minutes: walk.minutes, walkMinutes: round(walk.minutes), basis: `步行 ${walk.basis}` }, a, b, ctx.depart);

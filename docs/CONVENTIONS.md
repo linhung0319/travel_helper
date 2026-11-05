@@ -410,7 +410,7 @@ travel_helper/
 
 **資料卡不能是車站**（T29c）：`visit` 選項的地點 `type` 是 `station` 時，引擎報 `station-card` 錯誤（「資料卡不能是車站（{placeId}）」）；車站是交通的端點，不是去玩的點。檢查放在 `planItinerary` 的 `placeChecks`（`validateItinerary` 拿不到地點資料）。
 
-**項目**（`type` 有 4 種）。每個項目都有行程內唯一的 `id`（`i-<流水號>`、航班 `f-<流水號>`、分組裡的項目 `<分組 id>-<組 id>-<n>`），建議的 `adopted_item_ids` 指到這裡；ID 由引擎產生，不用亂數。
+**項目**（`type` 有 3 種：visit、flight、free）。每個項目都有行程內唯一的 `id`（`i-<流水號>`、航班 `f-<流水號>`），建議的 `adopted_item_ids` 指到這裡；ID 由引擎產生，不用亂數。
 
 ```jsonc
 // 1. visit：去一個點（景點、餐廳、住宿、車站、使用者加的點）
@@ -422,7 +422,7 @@ travel_helper/
   ],
   "selected": 0,
   "start": null,         // 指定開始時間（訂位、表演、船班）；null＝到了就開始，沒開門會等到開門。到得比指定時間晚 → 衝突
-  "tags": [],            // 標籤（省略或 [] ＝沒標）：breakfast | lunch | dinner | snack（用餐）、all | groups（全員／分組）、must | skippable | rainplan | rest（必去、可跳過、雨天備案、休息），照這個順序存；用餐標籤決定這張卡算哪一餐（沒標時引擎在餐廳的午餐、晚餐時段內自己猜，只用在休息、分組用餐的判斷）；groups 的餐廳不發全員用餐的座位、預約警告；rest 算休息
+  "tags": [],            // 標籤（省略或 [] ＝沒標）：breakfast | lunch | dinner | snack（用餐）、all | groups（全員／分組）、must | skippable | rainplan | rest（必去、可跳過、雨天備案、休息），照這個順序存；用餐標籤決定這張卡算哪一餐（沒標時引擎在餐廳的午餐、晚餐時段內自己猜，只用在休息的判斷）；groups 的餐廳不發全員用餐的座位、預約警告；rest 算休息
   "travel": null,        // 指定從上一站怎麼來：{ "mode": "transit", "minutes": null, "path": { … }, "note": "在車站前集合" }；null＝引擎依 §5.4 選
                          // 每個欄位都可以省略：mode 沒寫＝方式自動（只改時間或只選走法）；minutes 沒填時引擎照方式估算；交通不加緩衝
                          // mode：walk | taxi | transit（一定搭電車、巴士或船，班次由引擎挑，不套等車、班距的規則；找不到班次＝交通未定）
@@ -442,25 +442,17 @@ travel_helper/
   "depart": "08:20", "arrive": "11:55", "flightNo": null, "people": null, "note": "去程第一批",
   "travel": null }       // 出發航班可以指定「去機場那段」的交通（格式同 visit 的 travel）；省略或 null＝引擎依規則選
 
-// 3. split：分組行動。各組從上一站出發，在 meet 會合；之後的項目從會合點、會合時間接著算
-{
-  "id": "i-13", "type": "split",
-  "groups": [                                     // 至少兩組；只記人數組成，不記是誰
-    { "id": "g1", "name": "長輩組", "size": 6, "elders": 5, "kids": 0, "items": [ /* visit、free */ ] },
-    { "id": "g2", "name": "爬坡組", "size": 9, "elders": 0, "kids": 4, "items": [ ] }
-  ],
-  "meet": { "place": "toba-ichibangai", "time": "15:45" }
-}
-
-// 4. free：自由時間、休息（算進「半天自由時間」）；place null＝留在上一站
+// 3. free：自由時間、休息（算進「半天自由時間」）；place null＝留在上一站
 { "id": "i-14", "type": "free", "minutes": 180, "place": null, "start": null, "note": "回飯店休息" }
 ```
 
+**分組不另外記**（interaction-design §6「不做分組行動」）：分兩組各去一家用合併卡（主選＋備選）表示，卡上寫誰去哪家。舊的 `split`（分組行動）T72 拿掉了，`validateItinerary` 遇到會回「分組已經拿掉，請改成合併卡」。
+
 - **地點 ID** 用字串，不分預設資料或使用者加的點：引擎透過傳進來的 `getPlace` 查。使用者加的點只用座標估算交通，營業時間、團體條件標「未查」；已下架的點照常算，但發警告；查不到的點是錯誤。
 - **引擎的輸出**（`planItinerary(itinerary, data, config)`）：每天一個 `DayPlan`：
-  - `entries`：start（出發）、visit、flight、free、meet（分組，`groups` 是各組的 entries）、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`（每一程的「錯過的話」`ifMissed`）、轉乘步行 `transfers`、候選走法 `alternatives`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
+  - `entries`：start（出發）、visit、flight、free、lodging（回住宿），各有 `arrive`／`start`／`end`、`waitMinutes`、`meal`（引擎猜的）、`mealTags`（使用者標的幾餐，畫面用）、`rest`（標了休息），和到這一項的交通 `travel`（方式、出發／抵達、步行與等車分鐘、班次 `rides`（每一程的「錯過的話」`ifMissed`）、轉乘步行 `transfers`、候選走法 `alternatives`、出發後還有沒有班次 `transitAvailable`、計程車台數和費用 `taxi`、怎麼算的 `basis`）。
   - `gaps`：`lodging`「住宿（未排）」、`idle`「空檔 N 分」（不再產生午餐、晚餐的空檔），附建議插在哪兩個項目之間。
-  - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`groupId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
+  - `warnings`：`code`、`level`（error／warning／info）、`itemId`、`placeId`、`message`；`stats`：全員步行累計、主要景點數、回住宿時間、累不累、自由時間。
   - 整趟的警告（連續兩天都累、沒有半天自由時間）在 `ItineraryPlan.warnings`。
 - **改了什麼**：`diffItinerary(before, after)` 列出新增、刪除、移到別天、換順序、改欄位、改住宿；`checkProposal()` 套用前後都跑引擎，附文字摘要（「2/5：＋鳥羽水族館 09:38～11:38」）和新出現、消失的警告（T16 的提議、T15 的確認畫面用）。
 - **規則的數字**在 `packages/engine/src/config.ts`（`DEFAULT_CONFIG`），預設照 §5；§5 沒寫的：午餐 11:00～13:30、晚餐 17:30～19:30、一泊二食 17:00 前到、落地到出關 75 分、起飛前 120 分到機場、電車等車 30 分內、計程車用 OSRM 的開車時間（查不到時用距離 ÷ 30 km/h 估算，沒有路線距離時用直線 × 1.3；不加叫車時間）、加算費率未查（`null`，只顯示起跳價）。交通不加緩衝（2026-10-25 拿掉）。
@@ -995,8 +987,8 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 | 項目 | 規則 |
 |---|---|
 | 基本步速 | 80 m/分 × OSRM 路線距離 |
-| 團體係數 | 全員 **1.4**；分組有長輩或小孩 1.2；分組只有大人 1.0 |
-| 單段步行上限 | 全員：套係數後 **15 分**；分組：25 分 |
+| 團體係數 | 全員 **1.4**（分組不另外算，T72 拿掉分組的係數） |
+| 單段步行上限 | 全員：套係數後 **15 分** |
 | 一天累計步行（景點內不算） | 全員約 60 分以內 |
 | 超過上限 | ① 巴士：等車 20 分以內、不是 1 小時以上才一班 → 搭巴士；② 否則計程車：全員 4 台一般計程車，或大型計程車（9 人座）2 台；③ 一整天都在巴士稀少的子地區（`needsCar: true`）→ 建議包車 |
 | 離島 | 以船班為主；全員上島要確認回程末班船和冬季停航。離島是 `islandRegions` 的子地區（答志島、菅島、神島、坂手島、間崎島），只用同一個島的碼頭。島上沒有計程車、巴士：島內一律走路，超過上限加提醒。過海時島那端上限內沒有碼頭，照樣搭船，提醒下船後要走幾分（T60） |

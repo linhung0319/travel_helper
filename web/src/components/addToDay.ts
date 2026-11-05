@@ -18,7 +18,7 @@ import type { Result } from '../sharedStore.ts';
 export async function addPlaceToDay(
   placeId: string,
   date: string,
-  at?: { index: number; split?: { id: string; group: string } },
+  at?: { index: number },
   undo?: { text: string; after?: () => Promise<unknown> },
   settle?: () => Promise<unknown>,
 ): Promise<Result> {

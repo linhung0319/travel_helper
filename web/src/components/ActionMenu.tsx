@@ -1,6 +1,6 @@
 // 網頁版卡片右邊的「⋯」動作選單（設計 §2.3）：只有圖示，只在編輯中畫（呼叫的人決定）。
 // 動作照 menuItems（cardActionRun.ts，順序是 shared/cardActions.ts）畫，組與組之間一條分隔線；點了關選單、交給 runCardAction。
-// 選單用 Popover（portal 到 body、蓋過地圖和下一張卡、超出視窗自己翻）；「移到{組名}」每組一項（menuItems 已經和 ctx.groupTargets 對好）。
+// 選單用 Popover（portal 到 body、蓋過地圖和下一張卡、超出視窗自己翻）。
 // 「調整順序」在同一個選單裡換成子畫面（shared/ui/ReorderPanel.tsx；‹ 回到動作清單），上移、下移可以連按，合併好了才關。
 
 import { Fragment, useRef, useState } from 'react';
@@ -54,7 +54,6 @@ export function ActionMenu({ ctx, target, ui, label, disabled = [] }: { ctx: Car
                     disabled={disabled.includes(m.id)}
                     onClick={() => run(m.id, m.target)}
                     data-testid={`action-${m.id}`}
-                    {...(m.group ? { 'data-group': m.group } : {})}
                   >
                     <Icon name={ACTION_ICONS[m.id]} size={16} />
                     <span>{m.text}</span>

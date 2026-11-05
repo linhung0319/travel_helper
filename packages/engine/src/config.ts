@@ -11,13 +11,10 @@ export interface EngineConfig {
     metersPerMinute: number;
     /** 沒有路線距離時，直線距離的繞路係數（T6） */
     detourFactor: number;
-    /** 團體係數（§5.4）：全員、分組有長輩或小孩、分組只有大人 */
+    /** 團體係數（§5.4，全員） */
     factorWhole: number;
-    factorSubgroupWithElderOrKid: number;
-    factorSubgroupAdults: number;
-    /** 單段步行上限（套係數後，§5.4） */
+    /** 單段步行上限（套係數後，全員，§5.4） */
     legMaxWhole: number;
-    legMaxSubgroup: number;
     /** 一天累計步行（全員，景點內不算，§5.4） */
     dailyMaxWhole: number;
     /** 走到車站、停留所的最遠直線距離（公尺）；next-bus 的停留所 near 是 500 m 內 */
@@ -133,10 +130,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     metersPerMinute: 80,
     detourFactor: 1.3,
     factorWhole: 1.4,
-    factorSubgroupWithElderOrKid: 1.2,
-    factorSubgroupAdults: 1.0,
     legMaxWhole: 15,
-    legMaxSubgroup: 25,
     dailyMaxWhole: 60,
     accessMaxMeters: 1200,
   },

@@ -14,7 +14,6 @@ export function pathOf(j: Journey): PathRide[] {
 interface Ctx {
   net: Network;
   ix: Indexed;
-  whole: boolean;
   factor: number;
   minTransfer: number;
 }
@@ -46,7 +45,7 @@ function board(c: Ctx, p: PathRide, ready: number, after?: number): JourneyRide 
     const b = c.ix.idx.get(p.to);
     if (a != null && b != null && c.ix.osaka[a] && c.ix.osaka[b]) return null;
   }
-  return earliestRide(c.net, c.ix, p.line, p.from, p.to, ready, c.whole, after);
+  return earliestRide(c.net, c.ix, p.line, p.from, p.to, ready, after);
 }
 
 /** 後面幾程照走法接最早的；終點再走一段 footpath 的算進 target.walk。接不上回傳 null */
@@ -76,11 +75,11 @@ export function evaluatePath(
   origin: Access,
   target: Access,
   depart: number,
-  q: { whole: boolean; factor: number },
+  q: { factor: number },
   cfg: EngineConfig,
 ): Journey | null {
   if (!rides.length) return null;
-  const c: Ctx = { net, ix: indexOf(net), whole: q.whole, factor: q.factor, minTransfer: cfg.transit.minTransfer };
+  const c: Ctx = { net, ix: indexOf(net), factor: q.factor, minTransfer: cfg.transit.minTransfer };
   // 第一程的上車點和起點不同：起點先走一段 footpath（步行算在 origin，不套 minTransfer）
   let start = origin;
   if (rides[0].from !== origin.stop) {
@@ -92,7 +91,7 @@ export function evaluatePath(
   if (!first) return null;
   const j = finish(c, [first], [], rides.slice(1), start, target);
   // 到達一樣時往後挪發車（和搜尋一樣，search.ts 的 laterDeparture），選了畫面上的走法不會變成早一班
-  return j && laterDeparture(net, c.ix, j, cfg.transit, q.whole);
+  return j && laterDeparture(net, c.ix, j, cfg.transit);
 }
 
 /**
@@ -104,12 +103,12 @@ export function ifMissed(
   net: Network,
   j: Journey,
   i: number,
-  q: { whole: boolean; factor: number },
+  q: { factor: number },
   cfg: EngineConfig,
 ): { depart: number; arrive: number; lateMinutes: number } | null {
   const planned = j.rides[i];
   if (!planned) return null;
-  const c: Ctx = { net, ix: indexOf(net), whole: q.whole, factor: q.factor, minTransfer: cfg.transit.minTransfer };
+  const c: Ctx = { net, ix: indexOf(net), factor: q.factor, minTransfer: cfg.transit.minTransfer };
   const p: PathRide = { line: planned.route.group, from: planned.from, to: planned.to };
   const rides = j.rides.slice(0, i);
   const transfers = j.transfers.slice(0, Math.max(0, i - 1));

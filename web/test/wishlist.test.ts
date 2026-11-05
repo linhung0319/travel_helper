@@ -38,15 +38,10 @@ test('dayCandidates：只列那天的，已經排進那天的不列，照加的�
   assert.deepEqual(dayCandidates(list, '2027-02-05', null).map((c) => c.placeId), ['y', 'x', 'h', 'z']);
 });
 
-test('dayCandidates：備選、分組裡的項目也算已經排進那天', () => {
+test('dayCandidates：備選、自由時間的地點也算已經排進那天', () => {
   const it = itin({ '2027-02-05': ['x'] });
   it.days[0].items.push({ id: 'v2', type: 'visit', options: [{ place: 'main' }, { place: 'backup' }], selected: 0 });
-  it.days[0].items.push({
-    id: 's1',
-    type: 'split',
-    groups: [{ id: 'g1', name: '一組', size: 15, elders: 5, kids: 4, items: [{ id: 's1-g1-1', type: 'visit', options: [{ place: 'g' }], selected: 0 }] }],
-    meet: { place: 'x', time: '15:00' },
-  } as never);
+  it.days[0].items.push({ id: 'f1', type: 'free', minutes: 30, place: 'g' });
   const list = ['backup', 'g', 'main', 'free'].map((p) => cand(p, '2027-02-05'));
   assert.deepEqual(dayCandidates(list, '2027-02-05', it).map((c) => c.placeId), ['free']);
 });
