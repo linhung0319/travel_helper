@@ -44,6 +44,8 @@ export interface TripCardProps {
   meta?: ReactNode;
   /** 名稱下面的備註、警告清單 */
   below?: ReactNode;
+  /** 展開的內容最上面（手機：提醒的字，T74b） */
+  expandTop?: ReactNode;
   expanded: boolean;
   /** 點卡片（不是裡面的按鈕） */
   onToggle: () => void;
@@ -108,11 +110,12 @@ function CardThumb({ place, fallbackType, mark, size }: Pick<TripCardProps, 'pla
 }
 
 /** 展開的內容：介紹、兩顆按鈕 */
-function Expand({ place, onDetail, onAsk }: Pick<TripCardProps, 'place' | 'onDetail' | 'onAsk'>) {
+function Expand({ place, onDetail, onAsk, top }: Pick<TripCardProps, 'place' | 'onDetail' | 'onAsk'> & { top?: ReactNode }) {
   const full = useFullPlace(place);
   const intro = firstSentences(full.place?.summary?.text);
   return (
     <div className="tc-expand" data-testid="trip-card-expand">
+      {top}
       {!full.loaded && !full.error && <IntroPending />}
       {intro && (
         <p className="tc-intro" data-testid="trip-card-intro">
@@ -138,7 +141,7 @@ function Expand({ place, onDetail, onAsk }: Pick<TripCardProps, 'place' | 'onDet
 }
 
 /** 一張時間軸的卡（行程、候選） */
-export function TripCard({ itemKey, place, fallbackType, mark, time, name, label, meta, below, expanded, onToggle, onDetail, onAsk, selected = false, thumb, stacked = false, handle = null, more = null, dashed = false, movable = false, className = '', testId, liRef, liProps, dataPlace, onHover }: TripCardProps) {
+export function TripCard({ itemKey, place, fallbackType, mark, time, name, label, meta, below, expandTop, expanded, onToggle, onDetail, onAsk, selected = false, thumb, stacked = false, handle = null, more = null, dashed = false, movable = false, className = '', testId, liRef, liProps, dataPlace, onHover }: TripCardProps) {
   const click = (e: MouseEvent<HTMLElement>) => {
     if ((e.target as HTMLElement).closest(INTERACTIVE)) return;
     onToggle();
@@ -183,7 +186,7 @@ export function TripCard({ itemKey, place, fallbackType, mark, time, name, label
             <TypeSeal type={place.type} size="sm" label />
           </span>
         )}
-        {expanded && <Expand place={place} onDetail={onDetail} onAsk={onAsk} />}
+        {expanded && <Expand place={place} onDetail={onDetail} onAsk={onAsk} top={expandTop} />}
       </div>
       <span className="tc-more">{more}</span>
     </li>

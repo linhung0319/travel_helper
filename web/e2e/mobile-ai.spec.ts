@@ -15,10 +15,18 @@ async function aiReady(page: Page, delayMs = 0) {
   await fake(page, { delayMs });
 }
 
+/** 說一句、等這一輪真的結束：回完的那則（end）進來或出錯，而且狀態回 idle。
+ *  只等 idle 不夠——按 Enter 當下狀態可能還沒變，下一句會和上一句撞在一起（S28 偶發） */
 async function say(page: Page, text: string) {
+  const turn = () =>
+    page.evaluate(() => {
+      const s = (window as any).__th.ai.store.getState();
+      return { ends: s.messages.filter((m: any) => m.end).length, done: s.status === 'idle', err: !!s.error };
+    });
+  const before = (await turn()).ends;
   await page.getByTestId('chat-input').fill(text);
   await page.getByTestId('chat-input').press('Enter');
-  await idle(page);
+  await expect.poll(async () => { const t = await turn(); return t.done && (t.ends > before || t.err); }).toBe(true);
 }
 
 const app = <T,>(page: Page, fn: string) => page.evaluate((f) => new Function('th', 'm', `return ${f}`)((window as any).__th, (window as any).__thMobile), fn) as Promise<T>;
@@ -448,9 +456,10 @@ test('S12 提議過期：別人刪掉要換的那項 → 卡片過期，提議�
   await aiReady(page);
   await goTab(page, 'ai');
   await say(page, '2/5 午餐換成大阪屋');
-  // 這份提議真的有新警告（坐不下、打烊）
-  await expect(proposalCard(page).getByTestId('chat-proposal-warn')).toHaveCount(2);
-  await expect(proposalCard(page)).toContainText('要分桌或分批');
+  // 這份提議真的有新的要處理的（打烊）；大阪屋可預約、15 人要分桌只是留意（T74a），提議卡不列
+  await expect(proposalCard(page).getByTestId('chat-proposal-warn')).toHaveCount(1);
+  await expect(proposalCard(page)).toContainText('打烊');
+  await expect(proposalCard(page)).not.toContainText('要分桌');
   await page.getByTestId('chat-see-trip').click();
   await expect(bar(page)).toContainText('→ 大阪屋');
   await expect(page.getByTestId('tl-ghost')).toHaveCount(1);

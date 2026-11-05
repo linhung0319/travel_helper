@@ -1,14 +1,14 @@
 // 「行程」分頁（interaction-design §3、§6），兩層，像探索的清單和詳情：
 // 選「整趟」是直的骨架（地區、子地區、住宿，T45b §19.1）；選了某一天，最上面一列「日期、問 AI、討論、編輯」，下面一行這晚住哪一區・第幾晚（§19.3），編輯中換成墨色編輯條（日期、問 AI、討論、上一步、完成，T33），
-// 下面是摘要列（⚠ 點了展開提醒）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
+// 下面是摘要列（⚠ 點了展開這天所有的提醒，T74b）、比例橫條（時間條）、時間軸（資料卡是類型的淡底色，起點、終點的住宿也是卡片）、這天的候選（想去「加到某天」的點）。預約、下載在右欄右上的頭像選單（MeMenu.tsx 的 AccountMenu）。
 
 import { useRef, useState } from 'react';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
-import { useApp, useData, useNeedPlan, usePlan, useShared, useUi } from '../hooks.ts';
+import { useApp, useData, useNeedPlan, useShared, useUi } from '../hooks.ts';
 import { dayLabel, isRedDay } from '../lib/trip.ts';
 import { dayAreaTitle, dayTitle } from '../lib/dayTitle.ts';
-import { selectedBarKey, WARNING_ICONS } from '../lib/planView.ts';
-import { DayBar, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRevealProposal } from './Timeline.tsx';
+import { selectedBarKey } from '../lib/planView.ts';
+import { DayBar, DayReminders, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRevealProposal } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
 import { MemberName, stamp } from './common.tsx';
@@ -31,9 +31,8 @@ const WEB_SKELETON: SkeletonActions = {
   askLodging: askNightLodging,
 };
 
-/** 整趟（T45b）：最上面「整趟行程」、問 AI、討論；下面是直的骨架（地區、子地區、住宿，shared/ui/TripSkeleton.tsx） */
+/** 整趟（T45b）：最上面「整趟行程」、問 AI、討論；下面是直的骨架（地區、子地區、住宿，shared/ui/TripSkeleton.tsx；「累」標、沒有空檔、晚餐未選都在骨架上，T74b） */
 function Overview() {
-  const plan = usePlan((s) => s.plan);
   const updatedBy = useShared((s) => s.updatedBy);
   const updatedAt = useShared((s) => s.updatedAt);
   const version = useShared((s) => s.version);
@@ -49,11 +48,6 @@ function Overview() {
           第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
         </span>
       </div>
-      {plan?.warnings.map((w, i) => (
-        <p key={i} className={`small warning-${w.level}`}>
-          <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
-        </p>
-      ))}
       <TripSkeleton actions={WEB_SKELETON} />
     </div>
   );
@@ -97,7 +91,7 @@ export function DayPanel() {
   const planning = useApp((s) => s.planning);
   const shown = useProposalDay(day);
   const tl = useDayTimeline(day, shown?.source);
-  const { plan, itDay, status: planStatus, error: planError, dayWarnings } = tl;
+  const { plan, itDay, status: planStatus, error: planError } = tl;
   const [warnOpen, setWarnOpen] = useState(false);
   const legOpen = useUi((s) => s.legOpen);
   const detailId = useApp((s) => s.detailId);
@@ -120,18 +114,10 @@ export function DayPanel() {
       {!shown && !planning && <NightLine date={day} />}
       {plan && (
         <div className="day-head">
-          <DaySummaryLine plan={plan} warnOpen={warnOpen} reminders={dayWarnings.length} onWarn={() => setWarnOpen((o) => !o)} />
+          <DaySummaryLine plan={plan} warnOpen={warnOpen} onWarn={() => setWarnOpen((o) => !o)} />
         </div>
       )}
-      {warnOpen && dayWarnings.length > 0 && (
-        <ul className="tl-warnings day-warnings" data-testid="day-warnings">
-          {dayWarnings.map((w, i) => (
-            <li key={i} className={`warning-${w.level}`}>
-              <Icon name={WARNING_ICONS[w.level]} size={16} /> {w.message}
-            </li>
-          ))}
-        </ul>
-      )}
+      {warnOpen && plan && <DayReminders plan={plan} />}
       {plan && <DayBar plan={plan} selected={selectedKey} />}
       {!itDay && <p className="muted">行程裡沒有這一天。</p>}
       {itDay && planStatus === 'loading' && <TimelineSkeleton />}

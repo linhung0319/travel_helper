@@ -6,6 +6,7 @@ import { photoCandidates, sizedUrl, underlayUrl, wikimediaThumb } from '../src/l
 import { departuresAround, terminusName } from '../src/lib/timetable.ts';
 import { dayLabel, hoursKeys, timetableDayType, tripDates } from '../src/lib/trip.ts';
 import { EMPTY_FILTER, filterChips, matchesFilter, matchesQuery, setStationIds, toFilterPatch } from '../src/lib/filter.ts';
+import { stripParens, tripName } from '../src/lib/labels.ts';
 import { closedDaysLabel, rowForDate } from '../src/lib/hours.ts';
 import { nearbyPlaces } from '../src/lib/nearby.ts';
 import { DAY_PALETTE, dayColor, deltaE, labOf, placeVisual, wallPlaces } from '../src/lib/visual.ts';
@@ -19,7 +20,9 @@ import {
   cardTypeLetter,
   dayBar,
   actCount,
+  dayReminders,
   daySummary,
+  reminderCounts,
   editorModeOf,
   showMinutesInput,
   formatStay,
@@ -654,6 +657,44 @@ test('daySummary：出發、回住宿、交通總分鐘（不含緩衝）、要�
   assert.deepEqual(daySummary(day), { start: '09:30', back: '15:30', travelMinutes: 35, warnings: 2 });
 });
 
+test('reminderCounts：要處理、留意各幾條（鈕上有 act 才紅、數 act；只有 note 時數 note）', () => {
+  assert.deepEqual(reminderCounts([{ level: 'act' }, { level: 'note' }, { level: 'act' }]), { act: 2, note: 1 });
+  assert.deepEqual(reminderCounts([{ level: 'note' }]), { act: 0, note: 1 });
+  assert.deepEqual(reminderCounts(undefined), { act: 0, note: 0 });
+});
+
+test('dayReminders（T74b）：卡片的帶名字（交通的用目的地那張卡、回住宿那段用住宿）、整天的沒有名字、要處理的在前', () => {
+  const day = {
+    entries: [entry('start', 'h'), entry('visit', 'a', { itemId: 'i-a' }), entry('visit', 'b', { itemId: 'i-b' }), entry('lodging', 'h', { itemId: null })],
+    warnings: [
+      { code: 'late-return', level: 'note', message: '17:45 回住宿，2 月 17:00 天黑', placeId: 'h' },
+      { code: 'group-dining', level: 'act', message: '不接受預約', itemId: 'i-a', placeId: 'a' },
+      { code: 'bus-infrequent', level: 'note', message: '巴士要等 40 分，改搭計程車', itemId: 'i-b', leg: true },
+      { code: 'missed-last', level: 'act', message: '末班車已過，改搭計程車', leg: true },
+      { code: 'no-rest', level: 'note', message: '4 小時沒有用餐休息', itemId: 'i-b' },
+    ],
+  } as unknown as DayPlan;
+  const names: Record<string, string> = { a: '喫茶 Mori', b: '鳥羽水族館', h: '鳥羽國際飯店' };
+  assert.deepEqual(
+    dayReminders(day, (id) => names[id] ?? null).map((r) => [r.level, r.name, r.message]),
+    [
+      ['act', '喫茶 Mori', '不接受預約'],
+      ['act', '鳥羽國際飯店', '末班車已過，改搭計程車'],
+      ['note', null, '17:45 回住宿，2 月 17:00 天黑'],
+      ['note', '鳥羽水族館', '巴士要等 40 分，改搭計程車'],
+      ['note', '鳥羽水族館', '4 小時沒有用餐休息'],
+    ],
+  );
+  assert.deepEqual(dayReminders(null, () => null), []);
+});
+
+test('tripName／stripParens（T74b）：行程卡的名稱去掉全形括號；沒有中文用日文', () => {
+  assert.equal(stripParens('喫茶 Mori（拿坡里義大利麵）'), '喫茶 Mori');
+  assert.equal(tripName({ name: { ja: 'x', zh: '伊勢神宮 外宮（豐受大神宮）' } }), '伊勢神宮 外宮');
+  assert.equal(tripName({ name: { ja: '鳥羽水族館', zh: null } }), '鳥羽水族館');
+  assert.equal(tripName(undefined), null);
+});
+
 /** 只寫要的欄位，其他照 leg() 的預設 */
 const legWith = (p: Partial<NonNullable<TimelineEntry['travel']>>) => ({ ...leg('10:00', 0), ...p });
 
@@ -696,9 +737,12 @@ test('editorModeOf：舊的方式對到新選單', () => {
   assert.equal(editorModeOf({ mode: 'other' }), 'legacy');
 });
 
-test('formatStay：X小時MM分', () => {
-  assert.equal(formatStay(45), '0小時45分');
-  assert.equal(formatStay(60), '1小時00分');
+test('formatStay（T74b）：60 分以下「20分」、整點「2小時」、其他「2小時30分」', () => {
+  assert.equal(formatStay(20), '20分');
+  assert.equal(formatStay(45), '45分');
+  assert.equal(formatStay(60), '1小時');
+  assert.equal(formatStay(120), '2小時');
+  assert.equal(formatStay(150), '2小時30分');
   assert.equal(formatStay(315), '5小時15分');
 });
 
@@ -809,8 +853,8 @@ test('hourTicks：整點刻度的位置（百分比）', () => {
 
 test('formatTravelTotal：不到 60 分寫分鐘，之後寫小時', () => {
   assert.equal(formatTravelTotal(39), '39 分');
-  assert.equal(formatTravelTotal(60), '1小時00分');
-  assert.equal(formatTravelTotal(125), '2小時05分');
+  assert.equal(formatTravelTotal(60), '1小時');
+  assert.equal(formatTravelTotal(125), '2小時5分');
 });
 
 test('isBarSelected、selectedBarKey：交通段看 legKey，停留看項目 ID', () => {

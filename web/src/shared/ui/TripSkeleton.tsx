@@ -1,16 +1,18 @@
 // 整趟的直的骨架（T45b 起，T54 改版；interaction-design §19.1、§24）：網頁右欄、手機、iPad 共用同一份直的清單。
 // 第一列、最後一列是航班；中間一天一列：左邊細的地區色帶（換區時空一點，還沒決定是灰色虛線）、日期、這天在哪一區（第二行小字是子地區），
-// 右邊固定兩格「住哪區」「住宿」，寫的是狀態：住哪區＝區名（選了住宿加 鎖）或「未選區」；住宿＝名字加「待訂／✓ 已訂」、「未選住宿」或「—」。
+// 右邊固定兩格「住哪區」「住宿」，寫的是狀態：住哪區＝區名（選了住宿加 鎖）或「未選區」；住宿＝名字加「待訂／✓ 已訂」（有含不含晚餐兩種方案還沒選再接「· 晚餐未選」，T74b）、「未選住宿」或「—」。
+// 提醒（T74b，interaction-design §34.3）：那天引擎算出來累（stats.tiring）的，地區名後面一個小「累」標；整趟的提醒（只剩「沒有空檔」）一行墨色小字在數字那行下面。
 // 列本身不能點（進某一天用日期列）。點「未選區」或區名：下面展開地區鈕（只改這一晚，T59 拿掉「都套用」）；點有 鎖 的區名：說明加「拿掉住宿」；
 // 點「未選住宿」：說明加兩個捷徑（看那區的住宿、問 AI 推薦，捷徑由網頁、手機各自給 actions）。
 // 最上面一行數字「11 晚 · 區 8／11 · 住宿 6／11 · 已訂 3」和「只看還沒決定的」。
 // 有提議時那天變色、列出變動；看提議（proposalView 是 diff）時整份用提議之後的行程畫，有變的格子芥子黃框、旁邊劃掉舊值（T48）；這時格子不能點。
 
-import { nightAreaOf, setLodging, setNightArea } from '@travel-helper/engine';
+import { mealsUnchosen, nightAreaOf, setLodging, setNightArea, type PlaceMeals } from '@travel-helper/engine';
 import { useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import { shared } from '../../appShared.ts';
 import { dataStore } from '../../dataStore.ts';
-import { useApp, useData, useShared, useUi } from '../../hooks.ts';
+import { useApp, useData, usePlan, useShared, useUi } from '../../hooks.ts';
+import { dayPlanOf } from '../../planStore.ts';
 import { areaColor, areaTint } from '../../lib/areas.ts';
 import { areaNameIn, describeChanges } from '../../lib/overlays.ts';
 import { isRedDay, shortDayLabel, weekdayZh } from '../../lib/trip.ts';
@@ -30,6 +32,7 @@ import type { Itinerary } from '@travel-helper/engine/types';
 import type { Area } from '../../data/types.ts';
 import type { Reservation } from '../../backend/types.ts';
 import { Icon } from '../../components/Icon.tsx';
+import { stripParens } from '../../lib/labels.ts';
 
 /** 「未選住宿」的兩個捷徑：網頁、手機的分頁和聊天室位置不一樣，各自給 */
 export interface SkeletonActions {
@@ -176,19 +179,26 @@ function AreaCell({ row, areas, readOnly, open, onToggle }: { row: SkeletonRow; 
 
 const BOOKING_LABEL: Partial<Record<StayBooking, string>> = { pending: '待訂', booked: '✓ 已訂' };
 
-/** 住宿那格：名字加「待訂／✓ 已訂」、區定了沒住宿是「未選住宿」（可以點）、區還沒定是「—」；最後一天空著 */
-function StayCell({ row, readOnly, open, onToggle }: { row: SkeletonRow; readOnly: boolean; open: boolean; onToggle: () => void }) {
+/** 住宿那格：名字加「待訂／✓ 已訂」（mealsOpen：再接「· 晚餐未選」）、區定了沒住宿是「未選住宿」（可以點）、區還沒定是「—」；最後一天空著 */
+function StayCell({ row, readOnly, open, mealsOpen, onToggle }: { row: SkeletonRow; readOnly: boolean; open: boolean; mealsOpen: boolean; onToggle: () => void }) {
   const s = row.stay;
   if (!s) return <span className="ui-sk-stay empty" />;
   if (s.kind === 'lodging') {
     return (
       <span className="ui-sk-stay lodging" data-testid="sk-stay" data-stay="lodging" data-booking={s.booking}>
-        <span className="ui-sk-cell-text">{s.name}</span>
-        {BOOKING_LABEL[s.booking] && (
-          <small className={`ui-sk-booking ${s.booking}`} data-testid="sk-booking">
-            {BOOKING_LABEL[s.booking]}
-          </small>
-        )}
+        <span className="ui-sk-cell-text">{stripParens(s.name)}</span>
+        <span className="ui-sk-stay-meta">
+          {BOOKING_LABEL[s.booking] && (
+            <small className={`ui-sk-booking ${s.booking}`} data-testid="sk-booking">
+              {BOOKING_LABEL[s.booking]}
+            </small>
+          )}
+          {mealsOpen && (
+            <small className="ui-sk-meals" data-testid="sk-meals-unchosen">
+              · 晚餐未選
+            </small>
+          )}
+        </span>
       </span>
     );
   }
@@ -253,6 +263,8 @@ export function TripSkeleton({ head = true, actions }: { head?: boolean; actions
   const proposal = useApp((s) => s.proposal);
   const view = useUi((s) => s.proposalView);
   const reservations = useShared((s) => s.reservations);
+  // 引擎算好的整趟（確定的行程）：哪天累、整趟的提醒（沒有空檔）
+  const tripPlan = usePlan((s) => s.plan);
   const [panel, setPanel] = useState<Panel | null>(null);
   const [onlyOpen, setOnlyOpen] = useState(false);
   const changes = useMemo(() => {
@@ -270,6 +282,10 @@ export function TripSkeleton({ head = true, actions }: { head?: boolean; actions
   const arrive = flightLine(shown, shown.days[0]?.date, 'arrive');
   const depart = flightLine(shown, shown.days.at(-1)?.date, 'depart');
   const visible = onlyOpen ? rows.filter(isUndecided) : rows;
+  const mealsOf = (id: string): PlaceMeals => byId.get(id)?.raw.meals as PlaceMeals;
+  // 看提議時不標「累」（引擎算的是確定的行程）
+  const tired = (date: string) => !proposed && !!dayPlanOf(tripPlan, date)?.stats.tiring;
+  const tripNotes = tripPlan?.warnings ?? [];
   const toggle = (date: string, kind: Panel['kind']) => setPanel(panel?.date === date && panel.kind === kind ? null : { date, kind });
   return (
     <div className="ui-sk" data-testid="trip-skeleton" data-view={proposed ? 'proposal' : 'trip'}>
@@ -284,6 +300,11 @@ export function TripSkeleton({ head = true, actions }: { head?: boolean; actions
           只看還沒決定的
         </button>
       </div>
+      {tripNotes.length > 0 && (
+        <p className="ui-sk-trip-note" data-testid="sk-trip-note">
+          {tripNotes.map((w) => w.message).join('；')}
+        </p>
+      )}
       <div className="ui-sk-cols" aria-hidden>
         <span>住哪區</span>
         <span>住宿</span>
@@ -318,6 +339,11 @@ export function TripSkeleton({ head = true, actions }: { head?: boolean; actions
                   <b className={`${r.where ? '' : 'muted'} ${diff?.where ? 'changed' : ''}`} data-testid="sk-where">
                     {r.where ?? '還沒決定'}
                   </b>
+                  {tired(r.date) && (
+                    <span className="badge badge-warn ui-sk-tired" title="這天引擎算起來累（階梯多、走很多、搭船）" data-testid="sk-tired">
+                      累
+                    </span>
+                  )}
                   {diff?.where && <Old text={diff.where.before} />}
                 </span>
                 {r.regions.length > 0 && <small data-testid="sk-regions">{r.regions.join(' → ')}</small>}
@@ -331,7 +357,7 @@ export function TripSkeleton({ head = true, actions }: { head?: boolean; actions
                 <AreaCell row={r} areas={areas} readOnly={!!proposed} open={open === 'area' || open === 'lock'} onToggle={() => toggle(r.date, locked ? 'lock' : 'area')} />
               </Changed>
               <Changed diff={diff?.stay} testId="sk-stay-changed">
-                <StayCell row={r} readOnly={!!proposed} open={open === 'stay'} onToggle={() => toggle(r.date, 'stay')} />
+                <StayCell row={r} readOnly={!!proposed} open={open === 'stay'} mealsOpen={r.stay?.kind === 'lodging' && mealsUnchosen(shown, r.date, mealsOf)} onToggle={() => toggle(r.date, 'stay')} />
               </Changed>
               {open && (
                 <div className="ui-sk-pick" data-testid="sk-panel" data-kind={open}>

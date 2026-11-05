@@ -1,4 +1,5 @@
 // 資料欄位的固定值 → 顯示用的中文（值的清單見 CONVENTIONS §3）
+import { stripParens } from '@travel-helper/engine';
 
 export const SCORE_LABELS: Record<string, string> = {
   recommend: '推薦',
@@ -62,4 +63,15 @@ export function label(map: Record<string, string>, v: unknown): string | null {
 /** 複製名稱鍵複製的文字：日文名稱，沒有就中文 */
 export function copyText(place: { name: { ja: string; zh?: string | null } }): string {
   return place.name.ja || place.name.zh || '';
+}
+
+export { stripParens } from '@travel-helper/engine';
+
+/**
+ * 行程卡、整趟骨架、日期列點開的提醒上的名稱（T74b）：中文名（沒有就日文）去掉全形括號，
+ * 「喫茶 Mori（拿坡里義大利麵）」→「喫茶 Mori」；詳情、探索照原名。沒有資料是 null
+ */
+export function tripName(place: { name: { ja: string; zh?: string | null } } | null | undefined): string | null {
+  if (!place) return null;
+  return stripParens(place.name.zh || place.name.ja);
 }

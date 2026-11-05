@@ -2767,7 +2767,6 @@
 }
 
 .tc-warn {
-  color: var(--warn);
   font-weight: 700;
 }
 
@@ -3132,8 +3131,7 @@ button.ll-main {
   line-height: 1.35;
 }
 
-.ll-text > .ll-chips,
-.ll-text > .ll-sub {
+.ll-text > .ll-chips {
   grid-column: 1 / -1;
   grid-row: 3;
 }
@@ -3183,9 +3181,15 @@ button.ll-main {
   font-weight: 700;
 }
 
-.ll-sub {
-  overflow: hidden;
-  text-overflow: ellipsis;
+/* 第一行的標籤「已換走法」（T74b） */
+.ll-tag {
+  flex: none;
+  padding: 0 6px;
+  border: 1px solid var(--ink-3);
+  border-radius: 999px;
+  color: var(--ink-2);
+  font-size: 0.72rem;
+  font-weight: 500;
   white-space: nowrap;
 }
 
@@ -3376,6 +3380,17 @@ button.ll-main {
   font-size: 0.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 名稱列的「地圖 ↗」（T74b）：樣式同交通卡的「map ↗」 */
+.pd-maps {
+  flex: 0 0 auto;
+  margin-left: 4px;
+  color: var(--indigo);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
   white-space: nowrap;
 }
 
@@ -4599,8 +4614,9 @@ button.ll-main {
 }
 
 .badge.tag-pending {
-  background: var(--warn-bg);
-  color: var(--warn);
+  background: var(--bg);
+  color: var(--ink-2);
+  border: 1px solid var(--ink-3);
 }
 
 .note-disclaimer {
@@ -5087,7 +5103,39 @@ button.ui-sk-stay:disabled {
 }
 
 .ui-sk-booking.pending {
-  color: var(--warn);
+  color: var(--ink-2);
+  border: 1px solid var(--ink-3);
+  border-radius: 999px;
+  padding: 0 5px;
+}
+
+/* 住宿那格「待訂 · 晚餐未選」（T74b）；名字下面一行 */
+.ui-sk-stay-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+}
+
+.ui-sk-meals {
+  font-size: 0.6875rem;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* 那天累：地區名後面的小「累」標（同日期列） */
+.ui-sk-tired {
+  margin-left: 4px;
+  font-size: 0.6875rem;
+  padding: 0 5px;
+  vertical-align: 1px;
+}
+
+/* 整趟的提醒（只剩「沒有空檔」）：數字那行下面一行墨色小字 */
+.ui-sk-trip-note {
+  margin: -2px 0 6px;
+  font-size: 0.75rem;
+  color: var(--ink-2);
 }
 
 .ui-sk-booking.booked {
