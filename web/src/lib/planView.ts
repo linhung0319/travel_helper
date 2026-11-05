@@ -2,7 +2,7 @@
 // 純函式：時間軸、交通時間、空檔、警告都是引擎（T14）算好的，這裡只整理成畫面要的樣子。
 
 import type { DayPlan, EngineWarning, Itinerary, ItineraryItem, Leg, LegTarget, MealKind, TimelineEntry, TravelMode, TravelSpec, VisitItem } from '@travel-helper/engine';
-import { nightRunOf, toMinutes } from '@travel-helper/engine';
+import { formatDuration, nightRunOf, toMinutes } from '@travel-helper/engine';
 import { displayMinutes, estimateWalk } from './geo/walk.ts';
 import type { Place, PlaceType } from '../data/types.ts';
 import type { IconName } from './icons.ts';
@@ -32,10 +32,10 @@ export function legModeName(mode: Leg['mode']): string {
   }
 }
 
-/** 交通卡標題第一行（第五輪 §3.1）：方式＋分鐘，例如「計程車 12 分」「大眾運輸 115 分」；none 是空字串 */
+/** 交通卡標題第一行（第五輪 §3.1）：方式＋分鐘，例如「計程車 12 分」「大眾運輸 1 小時 55 分」（60 分以上寫小時，T73；下載共用）；none 是空字串 */
 export function legTitle(leg: Leg): string {
   if (leg.mode === 'none') return '';
-  return `${legModeName(leg.mode)}${leg.taxiBefore || leg.taxiAfter ? '＋計程車' : ''} ${leg.minutes} 分`;
+  return `${legModeName(leg.mode)}${leg.taxiBefore || leg.taxiAfter ? '＋計程車' : ''} ${formatDuration(leg.minutes)}`;
 }
 
 /** 編輯時的交通方式選單（auto：不寫 mode，由引擎挑） */

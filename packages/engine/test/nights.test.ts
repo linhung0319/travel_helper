@@ -241,8 +241,8 @@ test('摘要（LINE）：日期旁寫這天在哪一區；只定區寫「住：�
   const plan = planItinerary(it, DATA);
   const s = buildTripSummary({ itinerary: it, plan, nameOf: (id) => (id === 'toba-inn' ? '鳥羽旅館' : null), areaName });
   assert.equal(s.days[0].stayArea, '志摩');
-  assert.equal(formatDay(s.days[0]), '2/2（二） 志摩\n11:55 抵達 kansai-airport\n13:20 抵達 kansai-airport\n住：志摩（還沒選住宿）');
-  assert.match(formatDay(s.days[1]), /^2\/3（三） 志摩 → 鳥羽\n[\s\S]*住：鳥羽旅館$/);
+  assert.equal(formatDay(s.days[0]), '2/2（二）志摩\n11:55 抵達 kansai-airport\n13:20 抵達 kansai-airport\n住：志摩（還沒選住宿）');
+  assert.match(formatDay(s.days[1]), /^2\/3（三）志摩 → 鳥羽\n[\s\S]*住：鳥羽旅館$/);
   assert.equal(formatDay(s.days[2]), '2/4（四）\n還沒排');
   // T45a 之前存的摘要沒有 area、stayArea：照舊
   assert.equal(formatDay({ date: D1, lines: [], lodging: null }), '2/2（二）\n還沒排');

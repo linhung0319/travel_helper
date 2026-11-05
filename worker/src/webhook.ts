@@ -4,6 +4,7 @@
 // - leave：機器人被移出群組，這個群組不再拿來檢查
 // - memberLeft：核准的群組裡有人退出 → 這個人（source = 'group'）標成停用；重新登入時再檢查，還在別的核准群組就恢復
 // - message（T34）：核准的群組裡有人 @ 機器人 → 回覆最新的行程（bot.ts）。其他訊息、沒核准的群組、私訊都不回
+// - postback（T73）：核准的群組裡有人按回覆下面的按鈕（Quick Reply） → data 當成問的話回覆，不用 @
 // 簽章不對回 401；簽章對了一律回 200（LINE 會重送失敗的通知）。回覆在回 200 之後做（waitUntil），不讓 LINE 等 AI。
 
 import type { Env } from './env.ts';
@@ -21,6 +22,7 @@ interface LineEvent {
     text?: string;
     mention?: { mentionees?: { index: number; length: number; type?: string; isSelf?: boolean }[] };
   };
+  postback?: { data?: string };
 }
 
 /** 回 200 之後還要做完的事（Worker 的 ctx.waitUntil）；測試時沒有，就直接等 */
@@ -46,18 +48,21 @@ async function approved(env: Env, groupId: string): Promise<boolean> {
   return g?.status === 'approved' && !g.left_at;
 }
 
-/** 有人 @ 機器人：照問題回覆。出錯只記 log（不能讓 LINE 重送） */
-async function answer(env: Env, ev: LineEvent): Promise<void> {
+/** 有人 @ 機器人或按了按鈕：照問題回覆。出錯只記 log（不能讓 LINE 重送） */
+async function answer(env: Env, ev: LineEvent, question: string): Promise<void> {
   try {
-    const mentionees = ev.message?.mention?.mentionees ?? [];
-    const texts = await botReply(env, env.DB, stripMentions(ev.message?.text ?? '', mentionees));
-    await replyMessage(env.LINE_MESSAGING_ACCESS_TOKEN ?? '', ev.replyToken!, texts);
+    const { texts, buttons } = await botReply(env, env.DB, question);
+    await replyMessage(env.LINE_MESSAGING_ACCESS_TOKEN ?? '', ev.replyToken!, texts, buttons);
   } catch (e) {
     console.error('LINE 機器人回覆', e);
   }
 }
 
 const mentionsBot = (ev: LineEvent) => ev.type === 'message' && ev.message?.type === 'text' && !!ev.replyToken && !!ev.message.mention?.mentionees?.some((m) => m.isSelf);
+/** 按了回覆下面的按鈕（postback 在群組有沒有 reply token，👤 實測時確認；PLAN T73） */
+const isPostback = (ev: LineEvent) => ev.type === 'postback' && !!ev.replyToken && typeof ev.postback?.data === 'string';
+/** 要回的問題：@ 的訊息拿掉 @；按鈕是 data */
+const questionOf = (ev: LineEvent) => (ev.type === 'postback' ? (ev.postback?.data ?? '') : stripMentions(ev.message?.text ?? '', ev.message?.mention?.mentionees ?? []));
 
 export async function handleWebhook(req: Request, env: Env, waitUntil?: WaitUntil): Promise<Response> {
   if (req.method !== 'POST') return json({ error: 'method-not-allowed', message: '只收 POST' }, { status: 405 });
@@ -82,7 +87,7 @@ export async function handleWebhook(req: Request, env: Env, waitUntil?: WaitUnti
       continue;
     }
     await rememberGroup(env, groupId, ev.type === 'join');
-    if (mentionsBot(ev) && (await approved(env, groupId))) replies.push(answer(env, ev));
+    if ((mentionsBot(ev) || isPostback(ev)) && (await approved(env, groupId))) replies.push(answer(env, ev, questionOf(ev)));
     if (ev.type === 'memberLeft') {
       const g = await env.DB.prepare('SELECT status FROM line_groups WHERE group_id = ?').bind(groupId).first<{ status: string }>();
       if (g?.status !== 'approved') continue;

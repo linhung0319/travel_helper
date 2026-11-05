@@ -1,8 +1,9 @@
-// LINE @ 機器人（T34）：核准的家人群組裡 @ 它，回最新的行程（只有結果：幾點到幾點做什麼、住哪、預約狀態）。只能查，不能改。
+// LINE @ 機器人（T34）：核准的家人群組裡 @ 它，回最新的行程（只有結果：幾點做什麼、住哪、預約狀態）。只能查，不能改。
 // - 完全符合的指令（整趟、2/5、今天、明天、現在、預約、2/5 預約、網址、怎麼用）直接回，不呼叫 AI。
 // - 其他問法交給 Haiku 分類（structured output）；回覆的內容一律由程式照摘要排，AI 只有「其他問題」才自己回一兩句。
 // - 時間軸是瀏覽器算的，這裡讀瀏覽器存的摘要（trip_summary）；預約狀態讀最新的 reservations。
 // - 「現在」一律是日本時間。
+// - T73：每則回覆下面附 Quick Reply 按鈕（postback，按了不用 @），出發前和旅行中不同；說明也照時期切換。
 
 import Anthropic from '@anthropic-ai/sdk';
 import {
@@ -21,7 +22,7 @@ import {
 import type { Env } from './env.ts';
 import { addUsage, checkQuota, limitOf } from './api/claude.ts';
 import { HttpError } from './lib/http.ts';
-import { LINE_REPLY_MAX, LINE_TEXT_MAX } from './lib/line.ts';
+import { LINE_REPLY_MAX, LINE_TEXT_MAX, QUICK_REPLY_MAX, type QuickReplyButton } from './lib/line.ts';
 
 /** 機器人的 AI 用量記在 ai_usage 的這個 member_id（每月上限和大家共用） */
 export const BOT_USAGE_ID = 'line-bot';
@@ -188,7 +189,7 @@ async function classify(env: Env, db: D1Database, question: string, summary: Tri
  */
 export function externalUrl(base: string | undefined): string {
   if (!base) return '網站的網址還沒設定（PUBLIC_BASE_URL），請聯絡管理員';
-  return `用瀏覽器打開網站：\n${externalLink(base)}`;
+  return `用瀏覽器打開網站：\n${externalLink(base)}\n第一次打開要用 LINE 登入`;
 }
 
 function externalLink(base: string): string {
@@ -197,8 +198,23 @@ function externalLink(base: string): string {
   return u.toString();
 }
 
-/** 「怎麼用」（interaction-design §17.5）：現在是排行程的階段，不舉今天、明天、現在（指令照舊能用） */
-export function helpText(base: string | undefined): string {
+/**
+ * 「怎麼用」（interaction-design §17.5）照時期切換：
+ * 出發前是排行程階段的版本，不舉今天、明天、現在（指令照舊能用）；旅行中（today 在旅程裡）舉今天、明天、現在、整趟、預約
+ */
+export function helpText(base: string | undefined, during = false): string {
+  if (during) {
+    return [
+      '@ 我就能查行程：',
+      '「今天」「明天」今天、明天去哪',
+      '「現在」現在在做什麼、下一個',
+      '「整趟」每天去哪、住哪',
+      '「預約」哪些訂了',
+      '',
+      '或直接問，例如「哪天去伊勢神宮」',
+      ...(base ? ['', '用瀏覽器打開網站：', externalLink(base)] : []),
+    ].join('\n');
+  }
   return [
     '我們正在一起排 2/2～2/13 的行程，打開網址就能看：',
     '① 在「探索」喜歡的按 ♡',
@@ -211,6 +227,46 @@ export function helpText(base: string | undefined): string {
     '「預約」看哪些還沒訂（只是筆記，網站不會幫忙訂）',
     ...(base ? ['', externalLink(base)] : []),
   ].join('\n');
+}
+
+/** 看不懂的問法、AI 出錯：一行加按鈕，不回整段說明 */
+export const UNKNOWN_TEXT = '我只會查行程，可以按下面的按鈕';
+
+// --- 回覆下面的按鈕（Quick Reply，T73） ----------------------------------------
+
+export type BotButton = QuickReplyButton;
+
+/** 按鈕的 data 就是指令的字（parseCommand 認得的），label 一樣 */
+const btn = (label: string, data = label): BotButton => ({ label, data });
+
+/** 今天在旅程裡 */
+const isDuring = (days: string[], today: string) => days.length > 0 && days[0] <= today && today <= days[days.length - 1];
+
+/** 一般回覆下面的按鈕：旅行中「今天、明天、現在、整趟、預約、網址」；出發前「整趟、第一天、預約、網址」；結束後「整趟、預約、網址」 */
+export function defaultButtons(days: string[], today: string): BotButton[] {
+  if (isDuring(days, today)) return [btn('今天'), btn('明天'), btn('現在'), btn('整趟'), btn('預約'), btn('網址')];
+  const first = days[0];
+  if (first && today < first) return [btn('整趟'), btn(shortDate(first)), btn('預約'), btn('網址')];
+  return [btn('整趟'), btn('預約'), btn('網址')];
+}
+
+/** 看完單天：隔天（今天看的話叫「明天」）、整趟、那天的預約、網址 */
+export function dayButtons(days: string[], date: string, today: string): BotButton[] {
+  const next = days[days.indexOf(date) + 1];
+  const nextBtn = next ? [next === addDays(today, 1) ? btn('明天') : btn(shortDate(next))] : [];
+  return [...nextBtn, btn('整趟'), btn(`${shortDate(date)} 預約`), btn('網址')];
+}
+
+/** 看完整趟：旅行中先「今天、明天」，再每天的日期（最多 13 顆） */
+export function tripButtons(days: string[], today: string): BotButton[] {
+  const head = isDuring(days, today) ? [btn('今天'), btn('明天')] : [];
+  return [...head, ...days.map((d) => btn(shortDate(d)))].slice(0, QUICK_REPLY_MAX);
+}
+
+/** 機器人的一次回覆：幾則文字，和最後一則下面的按鈕 */
+export interface BotReply {
+  texts: string[];
+  buttons: BotButton[];
 }
 
 /** ISO 時間 → 日本時間的 11/2 14:05 */
@@ -242,18 +298,20 @@ async function load(db: D1Database): Promise<Loaded | null> {
   };
 }
 
-/** 收到一則 @ 機器人的話：回覆的幾則文字 */
-export async function botReply(env: Env, db: D1Database, question: string, nowMs = Date.now()): Promise<string[]> {
+/** 收到一則 @ 機器人的話（或按鈕的 data）：回覆的幾則文字和按鈕 */
+export async function botReply(env: Env, db: D1Database, question: string, nowMs = Date.now()): Promise<BotReply> {
   const link = env.PUBLIC_BASE_URL ? `\n網站：${env.PUBLIC_BASE_URL}` : '';
-  const help = helpText(env.PUBLIC_BASE_URL);
-  // 網址、怎麼用不用讀行程（還沒有摘要時也回得出來）
-  if (normalize(question) === '網址') return [externalUrl(env.PUBLIC_BASE_URL)];
-  if (isHelp(normalize(question))) return [help];
-  const loaded = await load(db);
-  if (!loaded) return [`行程還沒整理好：請有人打開網站看一次行程。${link}`];
-  const { summary, stale, footer } = loaded;
   const now = jstNow(nowMs);
-  const days = summary.days.map((d) => d.date);
+  const loaded = await load(db);
+  const days = loaded?.summary.days.map((d) => d.date) ?? [];
+  const buttons = defaultButtons(days, now.date);
+  const reply = (texts: string[], b: BotButton[] = buttons): BotReply => ({ texts, buttons: b });
+  const q = normalize(question);
+  // 網址、怎麼用不用讀行程（還沒有摘要時也回得出來；說明照出發前／旅行中切換）
+  if (q === '網址') return reply([externalUrl(env.PUBLIC_BASE_URL)]);
+  if (isHelp(q)) return reply([helpText(env.PUBLIC_BASE_URL, isDuring(days, now.date))]);
+  if (!loaded) return reply([`行程還沒整理好：請有人打開網站看一次行程。${link}`]);
+  const { summary, stale, footer } = loaded;
   const intent = parseCommand(question, now.date, days) ?? (await classify(env, db, question, summary, now)) ?? { type: 'help' as const };
   const notInTrip = (date: string) => `${dayHeading(date)}不在旅程裡（旅程是 ${tripRange(summary)}）`;
   // 行程的回覆最後寫誰什麼時候更新；摘要跟不上時註明
@@ -261,26 +319,26 @@ export async function botReply(env: Env, db: D1Database, question: string, nowMs
 
   switch (intent.type) {
     case 'help':
-      return [help];
+      return reply([UNKNOWN_TEXT]);
     case 'url':
-      return [externalUrl(env.PUBLIC_BASE_URL)];
+      return reply([externalUrl(env.PUBLIC_BASE_URL)]);
     case 'answer':
-      return [intent.text];
+      return reply([intent.text]);
     case 'trip':
-      return splitMessages(withTail(formatTrip(summary)));
+      return reply(splitMessages(withTail(formatTrip(summary))), tripButtons(days, now.date));
     case 'day': {
       const day = summary.days.find((d) => d.date === intent.date);
-      return [day ? withTail(formatDay(day)) : notInTrip(intent.date)];
+      return day ? reply([withTail(formatDay(day))], dayButtons(days, day.date, now.date)) : reply([notInTrip(intent.date)]);
     }
     case 'now': {
       const text = formatNow(summary, now);
-      return [text ? withTail(text) : `現在不在旅程裡（旅程是 ${tripRange(summary)}）`];
+      return reply([text ? withTail(text) : `現在不在旅程裡（旅程是 ${tripRange(summary)}）`]);
     }
     case 'reservations': {
-      if (intent.date && !days.includes(intent.date)) return [notInTrip(intent.date)];
+      if (intent.date && !days.includes(intent.date)) return reply([notInTrip(intent.date)]);
       const r = await db.prepare('SELECT date, place_id, status, note FROM reservations').all<{ date: string; place_id: string; status: ReservationStatusText; note: string | null }>();
       const saved = r.results.map((x) => ({ date: x.date, placeId: x.place_id, status: x.status, note: x.note }));
-      return splitMessages(formatReservations(summary, intent.date, saved));
+      return reply(splitMessages(formatReservations(summary, intent.date, saved)));
     }
   }
 }
