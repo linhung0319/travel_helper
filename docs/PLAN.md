@@ -161,7 +161,9 @@
 | T70 | AI 脈絡盤點（第二次）：搜尋結果帶分數、餐廳的料理座位小孩、住宿的房數餐價格；`get_place` 附旅程中公休的天；時刻表收站名、路線同名全查；拿掉 basis、verified、訂房網址、null 噪音和警告裡的內部用語；e2e 全跑 | S | T36、T69 | 4 | | ✅ |
 | T71 | 收尾小修：網頁整趟地圖的晚數標籤不互疊、`mobile-t45b` 不穩的測試、真 AI 跑一次 `ai:eval`（Sonnet 5.5、low，有問題就修）、關掉 §6「行程畫面精簡」、平板標成已做 | S | T70 | 4 | | ✅ |
 | T72 | 清掉分組（`split`）的舊程式：引擎的型別、操作、時間軸、比對，網站的時間軸、拖拉、卡片選單、手機、預約、下載、LINE 摘要和測試；餐廳的 `fit15: 'split'`（分桌）不動 | M | — | 4 | | ⬜ |
-| T73 | 下載行程與 LINE 機器人改版：PDF／MD 修四個印錯的地方、總覽加「去哪裡」、印合併卡的備選；LINE 單天、整趟、預約改成適合聊天氣泡的寬度，Quick Reply 按鈕（postback）、說明照出發前／旅行中切換（**開始前 👤 先回 7 個決定**） | M | T72 | 4 | | ⬜ |
+| T73 | 下載行程與 LINE 機器人改版：PDF／MD 修四個印錯的地方、總覽加「去哪裡」、印合併卡的備選；LINE 單天、整趟、預約改成適合聊天氣泡的寬度，Quick Reply 按鈕（postback）、說明照出發前／旅行中切換（**開始前 👤 先回 7 個決定**） | M | T72、T74a | 4 | | ⬜ |
+| T74a | 提醒精簡（引擎和字）：43 種提醒拿掉 11 種（計程車台數、巴士擠不上、入住前到、等開門、三個和步驟重複的交通補充…）、餐廳兩條合一、三級改兩級（要處理／留意）、全部改字、坐車 60 分算休息；`TaxiInfo`、`busCrowd` 拿掉；AI 工具和推薦問題跟著改 | M | T72 | 4 | | ⬜ |
+| T74b | 提醒精簡（畫面）：資料卡紅框只給要處理、點開每條一行；日期列的數字兩邊一致、點開列整天的（手機也能看字）；整趟的紅字長句改成骨架的「累」標和「晚餐未選」；交通卡拿掉台數、灰框不重複步驟；順手：「待訂」改墨色、行程卡名稱拿掉括號、停留時間寫法、詳情名稱列加 Google Maps 連結 | M | T74a | 4 | | ⬜ |
 
 ---
 
@@ -433,6 +435,18 @@ T72 清掉分組的舊程式 → T73 下載行程與 LINE 機器人改版（開�
 
 - **T72 隨時**：改動範圍廣（引擎、時間軸、拖拉、手機），要跑完整 e2e；不和改時間軸、拖拉的任務同時做。
 - **T73 等 T72**：改 `web/src/lib/tripExport*.ts`、`packages/engine/src/summary.ts`、`worker/src/bot.ts`、`worker/src/webhook.ts`、`worker/src/lib/line.ts`。
+
+2026-11-05 **第十八輪**（T74a、T74b，👤 決定）：
+
+- **為什麼**：👤 要盤點畫面上所有 warning、info：先判斷需不需要，再改成給家人看的字，最後是呈現不能搶主要資訊；順便看巴士「15 人擠不上」有沒有依據、計程車台數（👤：自己會叫，沒價值）。Claude 用 dev 的假行程實際跑出每一天的提醒、截網頁和手機的畫面：引擎 43 種訊息、假行程 12 天 24 條紅橘的，2/5 一天 13 條但真的要處理的只有 4、5 條；巴士擠不上只看「有巴士且人數 ≥ 10」、沒有座位資料；手機完全看不到提醒的文字（只有數字、點不開）；網頁日期列的數字只數整天的、手機數全部。草圖：[提醒訊息體檢](https://claude.ai/artifact/J7EaJ45youQW6XbPMNVdrQ)，畫法在 interaction-design §34。👤 2026-11-05 全部照建議，字的語感照 §34.2 的三個例子（「18:42 到，15:00 打烊」這種：時間＋標準用詞，不口語）；另外加「詳情的名稱列要有 Google Maps 連結」。
+- **順序**：T72 → T74a → T74b → T73。T72 和 T74 動同一批檔案（`timeline.ts`、`Timeline.tsx`、`DaySheet.tsx`），T72 清掉的 `split-size`、`meet-late` 也是提醒；T73 要印的計程車台數、LINE 摘要和 AI 工具的提醒字都由 T74a 改，所以 T73 的「計程車台數在總覽寫一次」改成不印。T73 的 LINE 按鈕那半只動 worker，想並行可以從 T73 拆出來先做。
+
+```
+T72 清分組 → T74a 提醒：引擎和字 → T74b 提醒：畫面 → T73 下載與 LINE（開始前 👤 回 7 個決定）
+```
+
+- **T74a 等 T72**：改 `packages/engine/src/timeline.ts`、`travel.ts`、`types.ts`、`config.ts`，`web/src/ai/readTools.ts`、`prompts.ts`，`web/src/lib/planView.ts`、`legView.ts`。
+- **T74b 等 T74a**：改 `Timeline.tsx`、`DayPanel.tsx`、`LegRow.tsx`、`mobile/DaySheet.tsx`、`MobileCard.tsx`、`shared/ui/PlaceDetail.tsx`、`styles.css`。
 
 ### 同時可以開幾個 session
 
@@ -1765,7 +1779,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   7. 下面「PDF／MD」的修正和改善全部照做？
 - **PDF／MD**（`web/src/lib/tripExport.ts`、`tripExportFormat.ts`）：
   - **印錯的**：有住宿、沒有任何點的那天印出「09:30 出發 紅葉軒／09:30 到住宿 紅葉軒」→ 寫「還沒排」；中間的空檔不見（2/10 13:39 下車到 18:00 晚餐、2/2 13:20 到 14:35）→ 30 分以上印一行「13:39–18:00 空檔 4 小時 21 分」；規劃的那班是末班時沒說（2/2 16:10 往賢島）→ 加「這是末班」；「大眾運輸 247 分」→「4 小時 7 分」（網站的交通卡如果也這樣寫，一起改）。
-  - **改善**：總覽加「去哪裡」一欄（那天的點，名稱拿掉括號）；預約一覽移到最後一頁；計程車台數在總覽寫一次（照 15 人算），每段只寫分鐘；合併卡的備選每個印一行「備案：一榮　地圖」（現在只印主選，2/5 一榮、2/10 赤福和豆腐庵都看不到）；「出發」「到住宿」那兩行不印日文名（住宿框已經有）；MD 最上面加兩句說明（15 人家族旅行、長輩 5、小孩 4、以網站為準、時間是規劃不是預約）。
+  - **改善**：總覽加「去哪裡」一欄（那天的點，名稱拿掉括號）；預約一覽移到最後一頁；計程車不印台數、起跳價（第十八輪 T74a 已從引擎拿掉），每段只寫分鐘；合併卡的備選每個印一行「備案：一榮　地圖」（現在只印主選，2/5 一榮、2/10 赤福和豆腐庵都看不到）；「出發」「到住宿」那兩行不印日文名（住宿框已經有）；MD 最上面加兩句說明（15 人家族旅行、長輩 5、小孩 4、以網站為準、時間是規劃不是預約）。
   - **還沒驗**（T35 留下的）：手機、LINE 內建瀏覽器按「行程 PDF」能不能叫出列印；驗之前手機的按鈕可以先寫「建議用電腦產生」。
 - **LINE 回覆**（`packages/engine/src/summary.ts` 的 `formatDay`、`formatTrip`、`formatReservations`，`worker/src/bot.ts`）：聊天氣泡在手機上約 15～16 個中文字寬。
   - **名稱拿掉括號說明**（「La Mer（志摩觀光飯店 The Bay Suites 法式）」→「La Mer」），單天、整趟、現在、預約都一樣。
@@ -1783,6 +1797,39 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **做法**：照草圖的做法用 `web/test/aiHarness.ts` 的真資料、範例行程產生 MD、列印用 HTML（Playwright 存成 PDF 看分頁）和每一種 LINE 回覆，改前改後都存下來比對。
 - **驗證**：`npm test`（`web/test/tripExport.test.ts`、`packages/engine/test/summary.test.ts`、`worker/test/bot.test.ts` 加案例：沒排的天、空檔、末班、小時、備選、整趟三行、預約分段、postback）、`typecheck`、`build`；e2e 跑下載相關的。**還沒驗**留給 👤：真的 LINE 群組裡按 Quick Reply（iOS、Android、電腦版看不看得到按鈕）、postback 的 reply token、一則的字數上限（T34 留下的）。
 - **文件**：architecture §6「LINE 機器人」的格式、interaction-design §17.5、§17.6（LINE 的狀態字）。
+
+### T74a 提醒精簡：引擎和字 〔M〕（第十八輪，2026-11-05 👤 決定）
+
+為什麼見 §3「2026-11-05 第十八輪」。定案的清單、字、兩級的定義都在 interaction-design §34（以它為準，這裡只寫做法）。草圖：[提醒訊息體檢](https://claude.ai/artifact/J7EaJ45youQW6XbPMNVdrQ)。
+
+- **拿掉**（`timeline.ts`、`travel.ts`）：`taxi`、`bus-crowd`、`before-checkin`、`wait-open`、`transfer-wait`、`transfer-walk`、`long-walk`（只留「可以問○○有沒有接送」那句，併進 `island-walk` 或改成只在有接送那句時發）、`path-unavailable`（改成 `Leg.pathReplaced: true` 這類欄位，畫面寫成標籤）；`split-size`、`meet-late` T72 已清。`busCrowd` 函式和 `config.transit.busCrowdSize` 整個拿掉（T60 補的過海那條也是）。
+- **計程車**：`TaxiInfo`、`Leg.taxi`、`config.taxi` 的 `carCapacity`、`jumboCapacity`、`baseYen`、`jumboBaseYen`、`baseMeters`、`stepMeters`、`stepYen` 拿掉，`drive()` 只回分鐘和公尺；留 `kmPerHour`、`roadDetour`、`overheadMinutes`、`maxKm`。`taxiBefore`、`taxiAfter` 不動（那是走法）。
+- **搬家**：`lodging-meals-unknown` 不再是每天的警告，改成 `nights` 的狀態（`planView`／整趟骨架讀住宿的 `meals` 有兩種方案而行程沒選就標「晚餐未選」）；`tiring-streak` 拿掉訊息，`DayPlan.stats.tiring` 本來就有，整趟骨架直接用它。
+- **合併**：餐廳的 `group-seats`＋`no-reservation` 合成一條 `group-dining`（規則見 §34.1.3）。
+- **兩級**：`WarningLevel` 改成 `'act' | 'note'`（要處理／留意）。act：`place-missing`、`station-card`、`closed`、`after-hours`、`before-open`、`last-entry`、`late`、`flight-late`、`kids-not-allowed`、`group-dining` 裡坐不下或不接受預約、`travel-unknown`、`missed-last`、`lodging-area-mismatch`。其他都是 note（含 `closes-during`、`stairs`、`late-return`、`daily-walk`、`too-full`、`travel-day-spot`、`no-rest`、`charter-suggested`、`no-free-time`、`hours-unknown`、`unchecked`、`place-retired`、`long-wait`、`bus-infrequent`、`transit-slow`、`rail-taxi`、`island-walk`、`ticket-tight`）。`diff.ts` 的 `checkProposal`、`readTools.ts` 的 `proposalWarnings`（只算 act）、`daySummary`、`warnCount`、`MapDays` 的紅點都改成數 act。
+- **字**：全部照 §34.2 的表改；分鐘超過 60 的寫「N 小時 M 分」（和 T73 的「4 小時 7 分」同一個函式，放引擎 `time.ts`）。
+- **坐車算休息**：`no-rest` 的迴圈裡交通 60 分以上的 leg 當 rest。
+- **AI**：`readTools.ts` 的 `get_day`、`get_route`、`check_changes` 回傳的 `level` 用新的兩個值；`prompts.ts` 的「哪天最趕？」小字改成「N 天要處理」（數有 act 的天）；`ai/prompts.ts` 提示詞裡講到警告等級的地方跟著改；跑幾個代表題的 `ai:eval`（照「AI 測試不打 API」的做法，先用假 AI）。
+- **驗證**：`packages/engine/test` 的 `timeline`、`travel`、`diff`、`toba-day.ts` 改期待（假行程 2/5 從 13 條變 5 條左右，寫進測試）；`web/test` 的 `planView`、`legView`、`readTools`；`npm test`、`typecheck`、`validate`。畫面還沒改之前舊的三個 class（`warning-error`…）會對不到新的 level，T74a 先在 `WARNING_ICONS`、`planView` 做最小對應讓畫面不壞，T74b 再整理。
+- **文件**：interaction-design §34 標成已做的部分；architecture §engine 的警告等級；CONVENTIONS 如果有寫到「計程車台數」「巴士擠不上」的檢查項目（§「團體」）拿掉那兩項。
+
+### T74b 提醒精簡：畫面 〔M〕（第十八輪，2026-11-05 👤 決定）
+
+為什麼見 §3「2026-11-05 第十八輪」。畫法以 interaction-design §34.3 為準，草圖同上。
+
+- **資料卡**（`Timeline.tsx` 的 `WarnToggle`、`Warnings`）：右下的鈕有 act 才是紅框「⚠ N」（N 只數 act），只有 note 時淡框「· N」；點開後 act 一條紅字前面 ⚠，note 墨色小字前面「·」，每條一行（字已經壓在一行內，CSS 不再換行處理）。
+- **日期列**（`DaySummaryLine`、`DayPanel`、`mobile/DaySheet.tsx`）：數字＝這天所有 act（卡片的也算），網頁手機一樣；點開列整天所有的：卡片的前面帶名字「喫茶 Mori：…」，整天的沒有名字；act 在前。手機也用這顆鈕（現在手機的 `DaySummaryLine` 沒接 `onWarn`）。
+- **手機卡片**（`MobileCard.tsx`）：「⚠ N」點了展開那張卡，提醒的字放展開內容的最上面（網頁的 `Warnings` 元件共用）。
+- **整趟**（`DayPanel.tsx` 的 `Overview`、`TripSkeleton`）：最上面的 `plan.warnings` 紅字拿掉；骨架 `stats.tiring` 的天在地區名後面一個小「累」標（樣式同日期列的 `badge-warn`「累」）；`no-free-time` 放統計列下面一行墨色小字；住宿那格「待訂」後面接「· 晚餐未選」。
+- **交通卡**（`LegRow.tsx`、`legView.ts`、`shared/ui/LegLine.tsx`）：第二行的台數拿掉（`taxiCarsText` 刪）；補充框（`infoLines`）不再放起跳價，只放還留著的交通提醒；`pathReplaced` 在第一行加標籤「已換走法」；「⚠ N」只數 act（交通的 act 只剩 `travel-unknown`、`missed-last`）。
+- **順手的三項**：
+  - 「待訂」膠囊改墨色外框（和「一泊二食」同一種），行程卡、整趟骨架、想去清單、預約一覽都一樣；紅色只留給 act 和週末日期。
+  - 行程卡、整趟骨架、日期列的「去哪裡」名稱拿掉全形括號（和 T73 LINE 一樣的 `stripParens`，放 `lib/labels.ts` 共用）；詳情、探索不動。
+  - 停留時間：60 分以下寫「20分」，整點寫「2小時」，其他「2小時30分」（`formatStay`）。
+  - 不做：交通卡的「map ↗」收進點開後（👤 先不動）。
+- **詳情的 Google Maps 連結**（👤 2026-11-05 加）：`shared/ui/PlaceDetail.tsx` 名稱那一列，在複製日文名的鈕後面加一個「地圖 ↗」小連結（樣式同交通卡的「map ↗」），`href` 用 `googleMapsUrl(place)`，新分頁開；一打開詳情就看得到，不用切到評論分頁的「連結」。自己加的點原本在簡介裡的「在 Google Maps 開啟 ↗」拿掉（統一用名稱列那個）。評論分頁最後的「連結」區塊照舊（裡面的 Google Maps 留著不礙事）。手機、網頁一樣。
+- **驗證**：e2e 加案例（網頁 `flows` 或 `detail-popup`：卡片的紅框／淡框、日期列點開有卡片名、整趟沒有紅字、交通卡沒有台數、詳情名稱列的地圖連結；手機 `mobile-t44b` 或新檔：日期列點開、卡片 ⚠ 展開看得到字）；`t29c`、`t44b`、`t45b` 和手機兩種尺寸要過；`npm test`、`typecheck`、`build`。用 dev 假行程截 2/2、2/5、2/10 和整趟的圖和草圖比。
+- **文件**：interaction-design §34 標成已做、§13.6 交通卡那段的「計程車的台數」拿掉、§14.2 加「待訂」的顏色；architecture §dataStore 如果寫到台數的地方拿掉。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。
