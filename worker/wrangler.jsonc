@@ -12,8 +12,10 @@
     {
       "binding": "DB",
       "database_name": "travel-helper",
-      // 本機（--local、wrangler dev）不會用到這個 ID；第一次部署前換成 `wrangler d1 create travel-helper` 印出的 ID
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      // 正式環境的 D1（T30，2026-11-05 建在 APAC）
+      "database_id": "b55afb80-3dce-4564-ba39-3138573f83ef",
+      // 本機（--local、wrangler dev）的 D1 檔名是用這個 ID 算的：留著原本的假 ID，本機資料才不會換成一個空的
+      "preview_database_id": "00000000-0000-0000-0000-000000000000",
       "migrations_dir": "migrations"
     }
   ],
