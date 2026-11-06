@@ -171,7 +171,7 @@
 | T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ✅ |
 | T81 | 第二十輪小修＋書架＋概覽：整趟拿掉「第 N 版」、問 AI／討論靠右；擠的標題列問 AI 變圖示鈕；吃的面板拿掉「分組去」；書架拿左邊色條、數字改類型色膠囊、黏頂標題白底細線；概覽照片 2:1、子地區改文字列移到主題列上面、拿掉代表地點、簡介字放大；不跑完整 e2e | S | T79 | 4 | | ✅ |
 | T82 | 列與愛心（Instagram 式）：照片清單的列不用卡片框、等級改第二行開頭方章、拿類別圓章、狀態改彩色字、底行「♡ 誰想去 留言」；詳情改「照片 → 愛心那排 → 誰想去 → 名字」、點兩下照片加想去、愛心彈跳；四格改四列；地圖連結靠右；不跑完整 e2e | M | T81 | 4 | | ✅ |
-| T83 | 網頁點列直接開詳情彈窗：拿掉探索、想去、搜尋、AI 結果集的原地展開，選中的列淡藍底＋左邊靛藍線，彈窗開著點別列換內容；不跑完整 e2e | S | T82 | 4 | | ⬜ |
+| T83 | 網頁點列直接開詳情彈窗：拿掉探索、想去、搜尋、AI 結果集的原地展開，選中的列淡藍底＋左邊靛藍線，彈窗開著點別列換內容；不跑完整 e2e | S | T82 | 4 | | ✅ |
 | T84 | 行程卡的類別：右上角類型色四分之一圓（46 px、白字 景／食／宿），網頁、手機；不跑完整 e2e | S | T79 | 4 | | ✅ |
 | T80 | e2e 體檢與完整 e2e：先逐支檢查 T75～T79、T81～T84 動到的 spec 哪些斷言過時並修正，再跑完整三組（網頁、手機 390、360）和 `e2e:worker`，程式真的壞的修掉 | M | T79、T81～T84 | 4 | | ⬜ |
 
@@ -2031,6 +2031,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 滑鼠指到列照舊呼叫 `hover`；想去列右邊的日曆鈕照舊（點它不開彈窗）。
 - **驗證**：`typecheck`、`build`；自己截圖。e2e 自己決定、只跑受影響的（`t78`、`detail-popup`、`t44b`、`ai-web`）。
 - **完成**：列出拿掉的 testid（原地展開的「詳細資料」鈕等）給 T80。
+- **完成（2026-11-06）**：`PlaceOpen.tsx` 刪了（`scrollerOf` 搬到 `shared/ui/scroller.ts`，Timeline、FilterBar 改 import；`useRevealOpen` 跟著刪）。`PlaceRow` 拿掉 `open`／`below`、加 `selected`（`.pr.sel`：`--indigo-wash` 底＋`inset 3px` 靛藍線、`aria-current`）；`WishSectionList` 的 `openId`／`onDetail`／`onAsk` 換成 `selectedId`。`store.openDetail` 多第五個參數 `fresh`：開著也原地換內容、`detailHistory` 清空（列、想去最新留言用）。寫進 interaction-design §36.T83，§13.3、§35.7 加註。
+  - **自己決定的**：① 選中的標記＝`detailId`（彈窗開著）；彈窗關掉後 `selectedId` 還在（地圖水滴照舊），但列不再標。原本「選中的點淡灰底」（`hot` 含 `selectedId`）拿掉，淡灰底只給地圖指到的點。② `revealInExplore` 捲到後 `select` 那個點、`commands.focus`，那列標選中直到選了別的點（`selectedId` 換了就不標）。③ 點已經開著的那列：彈窗不動（不切換關掉）。
+  - **測試**：`typecheck`、`build`、`npm test`（1117 過）。自己截圖（1366，`data/cache/work/r13/t83/`，不進 git）：點第一列開彈窗、點第三列原地換（`detailHistory` 空）、Esc 關掉後沒有列標著、revealInExplore 標第四列沒開彈窗、想去點列開彈窗、日曆鈕不開彈窗。e2e 只跑 `t44b`：詳情那支過；「探索的卡」那支在 master 一樣紅（`exploreAll` helper 過時，T80 處理）。`t78`、`detail-popup`、`ai-web` 都在點 `place-open-*`，沒跑，留給 T80。
+  - **給 T80：拿掉的 testid**：`place-open`（原地展開那塊）、`place-open-detail`、`place-open-add`、`place-open-ask`。列的 `aria-expanded` 也拿掉了（改成選中時 `aria-current="true"`）、`.pr-open`／`.pr-closed` 外層沒了。用到的 spec：`detail-popup`、`ai-web`、`add-place`、`flows`、`ui-fixes-2026-11`、`t78`、`t15m`（307、2534～2590 行）、`e2e-worker/t15`、`shots-add-place.mjs`。改法：點列（`explore-item`／`wish-open`）就是開詳情；「加到某天」「問 AI」改在詳情裡按。
 
 ### T84 行程卡的類別：右上角四分之一圓 〔S〕（第二十輪，2026-11-06 👤 決定）
 

@@ -13,7 +13,7 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode, type RefObject } from 'react';
 import { useStore } from 'zustand';
 import { ai } from '../appAi.ts';
-import { scrollerOf } from '../shared/ui/PlaceOpen.tsx';
+import { scrollerOf } from '../shared/ui/scroller.ts';
 import { fromMinutes, setStart, setStay, toMinutes, type DayPlan, type EngineWarning, type Gap, type TimelineEntry, lodgingMealsOn } from '@travel-helper/engine';
 import type { Itinerary, ItineraryDay, ItineraryItem, VisitItem } from '@travel-helper/engine/types';
 import { appStore } from '../store.ts';
