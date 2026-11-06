@@ -1,5 +1,6 @@
 // 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem，不改面板高度）、原地展開的卡（expanded、expandItem）、編輯中打開的「⋯」動作面板（actions）、
-// 整頁詳情、聊天（半屏、拉滿、清單或加地點面板、從聊天跳來的、回覆好了的小點）、整頁的預約、探索的篩選與顯示方式（feed.view 記在 localStorage）、想去的篩選、搜尋、排序（清單／照片牆、三段收合在 shared/wishPrefs.ts，網頁也用）。
+// 整頁詳情、聊天（半屏、拉滿、清單或加地點面板、從聊天跳來的、回覆好了的小點）、整頁的預約、探索和想去的篩選、搜尋、主題（feed.type／wish.type）、展開的區段（feedOpen／wishOpen，T77）。
+// feed.view、wish 的排序、shared/wishPrefs.ts 的清單／照片牆和段落偏好在 T77 之後不讀了（欄位留著，T79 清）。
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。
 // 返回鍵（interaction-design §16.2）：每一層（整頁、加地點、討論彈窗、半屏、對話清單或加地點面板、從聊天跳走）都佔一筆 history，syncHistory 照畫面狀態對齊筆數；手機的返回鍵一次關最上面一層。LINE 裡沒有 history 就離開網站了。
 // 整頁的東西一次只有一層（§3.0）：開詳情會關掉預約，開預約會關掉詳情；互換時共用同一筆 history。
@@ -57,12 +58,24 @@ export interface WishView {
   sort: ExploreSort;
 }
 
+/**
+ * 整頁詳情：哪個點、從哪個分頁打開、一打開選哪個分頁（想去列點最新留言：comments）。
+ * back 是返回鈕寫的目的地（T77，§35.2：「賢島 › 玩」「想去 › 吃」「海樂園」）；prev 是詳情裡再開詳情（附近）時底下那一頁，返回回到它
+ */
+export interface DetailView {
+  placeId: string;
+  from: MobileTab;
+  tab?: DetailTabId;
+  back?: string;
+  prev?: DetailView;
+}
+
 export interface MobileState {
   tab: MobileTab;
   /** 行程頁的時間軸面板停在哪（低：多看地圖；中；高：只看清單） */
   tripSnap: TripSnap;
   /** 整頁詳情：哪個點、從哪個分頁打開（返回時回到那裡） */
-  detail: { placeId: string; from: MobileTab; /** 一打開就選哪個分頁（想去列點最新留言：comments） */ tab?: DetailTabId } | null;
+  detail: DetailView | null;
   /** 行程頁上的半屏聊天（ChatSheet）；只在行程分頁有效，換分頁就變回 false */
   chatSheet: boolean;
   /** 半屏拉滿（不切分頁，編輯中也一樣） */
@@ -87,6 +100,9 @@ export interface MobileState {
   feed: Feed;
   /** 想去的設定（§3.4） */
   wish: WishView;
+  /** 探索、想去展開的區段 ID（T77，§35.4）：換主題、換子地區、回概覽收合，換區帶著 */
+  feedOpen: string[];
+  wishOpen: string[];
 }
 
 export interface MobileActions {
@@ -100,7 +116,8 @@ export interface MobileActions {
   /** 打開、關掉「⋯」動作面板 */
   openActions(spec: ActionSheetSpec): void;
   closeActions(): void;
-  openPlace(placeId: string, from: NonNullable<MobileState['detail']>['from'], tab?: DetailTabId): void;
+  /** 開整頁詳情；back 是返回鈕寫的目的地。nearby：從詳情裡再開（附近），返回回到原本那一頁 */
+  openPlace(placeId: string, from: MobileTab, tab?: DetailTabId, back?: string, nearby?: boolean): void;
   closePlace(): void;
   setPage(page: MobileState['page']): void;
   /** 切到行程分頁、打開半屏聊天 */
@@ -116,6 +133,10 @@ export interface MobileActions {
   toggleFeedQuick(token: string): void;
   toggleWishQuick(token: string): void;
   setWish(patch: Partial<WishView>): void;
+  /** 展開／收合一個區段 */
+  toggleOpen(where: 'feed' | 'wish', id: string): void;
+  /** 全部收合 */
+  closeAll(where: 'feed' | 'wish'): void;
 }
 
 export type MobileStore = MobileState & MobileActions;
@@ -171,7 +192,7 @@ function closeTopLayer() {
   if (mobileActive && uiStore.getState().timetable) uiStore.setState({ timetable: null });
   else if (mobileActive && addLayer?.isOpen()) addLayer.cancel();
   else if (mobileActive && uiStore.getState().discussion) uiStore.setState({ discussion: null });
-  else if (m.detail || m.page) mobileStore.setState({ detail: null, page: null });
+  else if (m.detail || m.page) mobileStore.setState({ detail: m.detail?.prev ?? null, page: null });
   else if (!mobileActive) return;
   else if (m.chatOverlay) m.setChatOverlay(null);
   else if (m.chatSheet && m.tab === 'trip') m.closeChatSheet();
@@ -220,6 +241,8 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   page: null,
   feed: { ...EMPTY_FEED, view: loadFeedView() },
   wish: { type: 'all', area: null, quick: [], query: '', sort: 'likes' },
+  feedOpen: [],
+  wishOpen: [],
   // 換分頁：整頁的東西、半屏聊天都關掉；提議、結果集留著（規格 §3.4）
   setTab: (tab) => {
     // 換分頁取消選中（第七輪 §8.3）
@@ -233,9 +256,14 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   expandItem: (key) => set({ expanded: key && key !== get().expanded ? key : null }),
   openActions: (actions) => set({ actions }),
   closeActions: () => set({ actions: null }),
-  openPlace: (placeId, from, tab) => set({ detail: tab ? { placeId, from, tab } : { placeId, from }, page: null }),
+  openPlace: (placeId, from, tab, back, nearby) => {
+    const prev = nearby ? get().detail : null;
+    set({ detail: { placeId, from, ...(tab ? { tab } : {}), ...(back ? { back } : {}), ...(prev ? { prev } : {}) }, page: null });
+  },
+  // 詳情裡再開的（附近）回到原本那一頁
   closePlace: () => {
-    if (get().detail) set({ detail: null });
+    const d = get().detail;
+    if (d) set({ detail: d.prev ?? null });
   },
   setPage: (page) => {
     if (page) set({ page, detail: null });
@@ -270,6 +298,16 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   setWish: (patch) => {
     const wish = { ...get().wish, ...patch };
     set({ wish, feed: withAreaOf(get().feed, wish) });
+  },
+  toggleOpen: (where, id) => {
+    const key = where === 'feed' ? 'feedOpen' : 'wishOpen';
+    const cur = get()[key];
+    const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];
+    set(where === 'feed' ? { feedOpen: next } : { wishOpen: next });
+  },
+  closeAll: (where) => {
+    const key = where === 'feed' ? 'feedOpen' : 'wishOpen';
+    if (get()[key].length) set(where === 'feed' ? { feedOpen: [] } : { wishOpen: [] });
   },
 }));
 

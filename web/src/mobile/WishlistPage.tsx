@@ -1,65 +1,76 @@
-// 手機版「想去」分頁（第六輪 §3.4、第七輪 §5.3）：網頁版右欄的「想去」整個搬進來，只列有人 ❤️ 的點。
-// 最上面是篩選列（搜尋、篩選、排序（預設依想去多）；FeedFilters.tsx 的 useWishModel → shared/ui/FilterBar），下面一列地區晶片（T42：第一顆是「全部」，類型收進面板），和探索一樣（第十輪：拿掉「想去」標題和有數字的分段；數字看段落標題），
-// 清單是 shared/ui/WishList（T53）：還沒排、已是候選、已排三排書架，「全部 ›」進那排的清單層（返回鈕「‹ 還沒排」；照片牆／清單切換只在這層，記在 localStorage）；列可以左滑露出「加到某天」。
-// 點列 → 整頁詳情（openPlace(id, 'wish')）；點最新留言 → 整頁詳情的留言分頁。清單的計算和網頁版共用 shared/placeLists.ts（useWishList）。
+// 手機版「想去」分頁（第六輪 §3.4、第七輪 §5.3；T77 照 interaction-design §35.8 改版）：只列有人 ❤️ 的點。
+// 頂端和探索同一套（FeedFilters.tsx 的 useWishModel → shared/ui/FilterBar，stage 'area'）：搜尋＋篩選（面板最前面「誰想去：只看我按的」）、
+// 地區分頁（第一顆「全部」）、子地區晶片、主題列（數字是有人按想去的）。條件列（FilterConds）在內容最上面。
+// 內容是 shared/ui/WishSectionList：還沒排／已是候選／已排進行程三個收合區段（展開狀態在 mobileStore.wishOpen），最下面一行說明；列可以左滑露出「加到某天」。
+// 點列 → 整頁詳情（openPlace(id, 'wish')，返回鈕「回到 想去 › 吃」）；點最新留言 → 整頁詳情的留言分頁。清單的計算和網頁版共用 shared/placeLists.ts（useWishList）。
 
-import { useScopeCounts, useSectionPool, useWishList, useWishUserChip } from '../shared/placeLists.ts';
+import { useMemo } from 'react';
+import { useWishList } from '../shared/placeLists.ts';
 import { RegionChips } from '../shared/ui/ExploreHome.tsx';
-import { hasLens } from '../exploreArea.ts';
-import { FilterBar } from '../shared/ui/FilterBar.tsx';
-import { WishList, useWishBack, useWishSections } from '../shared/ui/WishList.tsx';
-import { pickWishArea, pickWishRegion, useWishModel } from './FeedFilters.tsx';
+import { FilterBar, FilterConds } from '../shared/ui/FilterBar.tsx';
+import { WishSectionList } from '../shared/ui/WishList.tsx';
+import { pickWishArea, pickWishRegion, useThemeScopeCounts, useWishModel } from './FeedFilters.tsx';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { askList, askWishEmpty } from './mobileAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
-import { useWishPrefs } from '../shared/wishPrefs.ts';
+import { isTheme, THEMES, THEME_LABELS, themeCounts, type Theme } from '../lib/shelves.ts';
+import { useLiked } from '../shared/placeLists.ts';
+import { useData } from '../hooks.ts';
+import { wishFilter } from '../lib/explore.ts';
+import type { SectionId } from '../shared/wishSections.ts';
 
 /** 想去分頁 */
 export function WishlistPage() {
   const wish = useMobile((s) => s.wish);
-  const view = useWishPrefs((s) => s.view);
+  const openIds = useMobile((s) => s.wishOpen);
   const { setTab } = mobileStore.getState();
-  // 預設「全部」（記住上次選的類型）
-  const type = wish.type;
   const fromChat = useMobile((s) => s.fromChat);
-  const base = useWishModel(type);
-  const { pool, list: all } = useWishList(base.filter, wish.query, wish.sort);
-  // 「只看自己加的 N」（T69：條件列最前面的開關）
-  const { list, chip } = useWishUserChip(all);
-  // 三排書架；「全部 ›」進某一排的清單層（T53）：返回鈕「‹ 還沒排 · 6 個地點」、地點數寫那排的數字、切換鈕只在這層
-  const sections = useWishSections(list);
-  const { section, back } = useWishBack();
-  const count = section ? (sections.find((x) => x.id === section)?.count ?? 0) : list.length;
-  // 地區分頁、子地區晶片的小數字（T69）：進了某一排、或有條件時；照那一排、自己加的算
-  const userOnly = useWishPrefs((s) => s.userOnly);
-  const countPool = useSectionPool(pool, section, userOnly);
-  const counts = useScopeCounts(countPool, base.filter, wish.query, !!section || userOnly || hasLens(base.filter, wish.query));
-  const regionId = base.filter.regions.length === 1 ? base.filter.regions[0] : null;
+  const places = useData((s) => s.places);
+  const liked = useLiked();
+  const regionId = wish.quick.find((t) => t.startsWith('regions:'))?.slice('regions:'.length) ?? null;
+  const scope = useMemo(() => wishFilter('all', wish.area, regionId ? [`regions:${regionId}`] : []), [wish.area, regionId]);
+  // 主題列的數字：有人按想去的、目前地區（子地區）那一類有幾個
+  const likedPlaces = useMemo(() => places.filter((p) => liked.has(p.id)), [places, liked]);
+  const tCounts = useMemo(() => themeCounts(likedPlaces, scope), [likedPlaces, scope]);
+  // 主題：沒選過（'all'）時挑第一個有東西的那類
+  const theme: Theme = isTheme(wish.type) ? wish.type : (THEMES.find((t) => tCounts[t] > 0) ?? 'spot');
+  const base = useWishModel(theme);
+  const { pool, list } = useWishList(base.filter, wish.query, wish.sort);
+  const counts = useThemeScopeCounts(pool, base.filter, wish.query);
+  // 子地區晶片的「全部 N」和其他晶片一樣不看篩選
+  const regionCounts = useMemo(() => (wish.area ? new Map(counts).set(wish.area, themeCounts(likedPlaces, { areas: [wish.area], regions: [] })[theme]) : counts), [counts, wish.area, likedPlaces, theme]);
   const model = { ...base, onAsk: () => void askList('wish', base.filter, wish.query, list.length), ...(fromChat ? { onBack: () => mobileStore.getState().returnToChat() } : {}) };
+  const backTo = `想去 › ${THEME_LABELS[theme].tab}`;
 
   return (
-    <div className="m-wish" data-testid="m-wish">
+    <div className="m-wish" data-testid="m-wish" data-theme={theme}>
       <FilterBar
         source="wish"
         surface="mobile"
         model={model}
-        count={count}
-        back={back}
-        showView={!!section}
+        count={list.length}
+        stage="area"
+        themeCounts={tCounts}
         typeRow={<AreaChips value={wish.area} onPick={pickWishArea} firstLabel="全部" prefix="m-wish" counts={counts} />}
-        subRow={wish.area ? <RegionChips areaId={wish.area} regionId={regionId} onPick={pickWishRegion} counts={counts} /> : undefined}
-        extraCond={chip}
+        subRow={wish.area ? <RegionChips areaId={wish.area} regionId={regionId} onPick={pickWishRegion} counts={regionCounts} /> : undefined}
       />
-      <WishList
+      <FilterConds model={model} count={list.length} />
+      <WishSectionList
         surface="mobile"
         places={list}
-        view={view}
-        onOpen={(id) => mobileStore.getState().openPlace(id, 'wish')}
-        onOpenComments={(id) => mobileStore.getState().openPlace(id, 'wish', 'comments')}
+        openIds={openIds as SectionId[]}
+        onToggle={(id) => mobileStore.getState().toggleOpen('wish', id)}
+        onOpen={(id) => mobileStore.getState().openPlace(id, 'wish', undefined, backTo)}
+        onOpenComments={(id) => mobileStore.getState().openPlace(id, 'wish', 'comments', backTo)}
+        scroller=".m-page"
       />
       {pool.length === 0 && <WishEmpty onExplore={() => setTab('explore')} onAsk={askWishEmpty} />}
-      {list.length === 0 && pool.length > 0 && <p className="muted m-empty">這裡還沒有人按想去，換地區或取消篩選看看。</p>}
+      {list.length === 0 && pool.length > 0 && (
+        <p className="muted m-empty" data-testid="wish-theme-empty">
+          這裡還沒有人按想去的{THEME_LABELS[theme].noun}，換主題、地區或取消篩選看看。
+        </p>
+      )}
     </div>
   );
 }
