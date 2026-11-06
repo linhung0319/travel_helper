@@ -1,265 +1,169 @@
-// 探索選了一區之後的書架（T42、T50、T66，interaction-design §20、§32）、探索這時要畫哪一種畫面、清單的返回鈕。純函式，沒有畫面。
-// 每排書架有兩級條件（T66）：第一級一個都沒有才退到第二級，兩級都沒有才是 0（T64 的虛線框）。
-// 每一級就是一組篩選條件：「全部 ›」把那一級的條件套上去，回到照片牆或清單；書架上先放推薦順序的前 3 個。
-// AI 要問同樣的事（「一定要去」「全員吃飯」「住在這裡」「下雨也行」）時也用這幾組條件（set_filter 的欄位一樣）。
+// 探索、想去的「主題 × 區段」（T75，interaction-design §35.4）。純函式，沒有畫面；手機、網頁共用。
+// - 主題（玩、吃、住）就是 filter.types 的那一個；主題列的數字是那一類在目前地區（子地區）的總數，不看篩選。
+// - 每個主題的區段把那一類切完、加起來等於總數（「玩」的下雨也行例外，和前兩排重疊）。區段的條件就是 Filter 的值，
+//   和自己在面板加的條件「而且」：區段裡的列＝符合篩選（含主題）的點裡、再符合區段條件的。
+// - 沒有兩級退（§32 的舊做法在 shelvesLegacy.ts，舊畫面接上新的區段後 T79 刪）。
+// AI 問同樣的事（「一定要去」「全員吃飯」「包棟・全團一棟」「下雨也行」）時也用這幾組條件（set_filter 的欄位一樣）。
 
 import { displayName } from '../data/normalize.ts';
-import type { Area, Place } from '../data/types.ts';
-import { EMPTY_FILTER, RAIN_OK, isFilterEmpty, placeFit15, placeStayKind, type Filter, type FilterKey } from './filter.ts';
-import { fit15Caption, mealsCaption, stayCaption } from './badges.ts';
+import type { Area, Bbox, Place } from '../data/types.ts';
+import { EMPTY_FILTER, RAIN_OK, TYPE_LABELS, isFilterEmpty, matchesFilter, type Filter, type FilterKey } from './filter.ts';
 import { explorePlaces } from './explore.ts';
 
-/** 書架的一級 */
-export interface ShelfTier {
-  /** 套在目前地區上面的條件 */
-  filter: Partial<Filter>;
-  /** 不管子地區（下雨也行的第二級是全區：下雨是「那天去哪」的全區問題） */
-  wide?: boolean;
+// 舊的書架、清單層（T77、T78 之前舊畫面還在用）
+export * from './shelvesLegacy.ts';
+
+/** 主題：玩、吃、住（＝filter.types 的那一個） */
+export const THEMES = ['spot', 'restaurant', 'lodging'] as const;
+export type Theme = (typeof THEMES)[number];
+
+/** 主題列的字：大字（玩）、圓章（景）、名詞（景點） */
+export const THEME_LABELS: Record<Theme, { tab: string; seal: string; noun: string }> = {
+  spot: { tab: '玩', seal: '景', noun: TYPE_LABELS.spot },
+  restaurant: { tab: '吃', seal: '食', noun: TYPE_LABELS.restaurant },
+  lodging: { tab: '住', seal: '宿', noun: TYPE_LABELS.lodging },
+};
+
+export const isTheme = (v: string | null | undefined): v is Theme => !!v && (THEMES as readonly string[]).includes(v);
+
+/** 目前的主題：filter.types 剛好一個而且是三類之一；概覽、AI 給了好幾類時是 null */
+export function themeOf(filter: Pick<Filter, 'types'>): Theme | null {
+  return filter.types.length === 1 && isTheme(filter.types[0]) ? filter.types[0] : null;
 }
 
-/** 小字要用的地名：where 是最小的那層（「賢島」，沒選子地區是「志摩」），area 是整區（「志摩」） */
-export interface ShelfWhere {
-  where: string;
-  area: string;
-}
-
-export interface Shelf {
-  id: 'must' | 'fit15' | 'stay' | 'rain';
+/** 探索、想去的區段和想去的三段共用的頭（標題、說明小字），畫面用同一個元件畫 */
+export interface SectionHead {
+  id: string;
   title: string;
-  /** 第一級、第二級 */
-  tiers: readonly [ShelfTier, ShelfTier];
-  /** 這排第一級的條件，一行小字（「S、A 級景點」） */
+  /** 說明小字（「S、A 級」「15 人能坐一起」） */
   rule: string;
-  /** 第一級的小字改寫分布（「能坐一起 6 · 要分桌 2」）；items 是第一級的全部。沒有、或是空字串時寫 rule */
-  note?: (items: Place[]) => string;
-  /** 退到第二級的小字（換色）：「賢島沒有 S、A 級，這是 B 級」 */
-  fallback: (w: ShelfWhere) => string;
-  /** 小卡第二行：這排在意的那件事（「15 人能坐一起」「包棟 · 16 人 · 一泊二食」）；沒有就照舊只有名稱、等級 */
-  caption?: (p: Place) => string | null;
-  /** 兩級都 0 個時的那句（T64）：「賢島沒有 S、A 級的景點」的「S、A 級的景點」 */
-  empty: string;
-  /** 0 個時問 AI 的那句（T64，放進輸入框） */
+}
+
+/** 探索的一個區段 */
+export interface Section extends SectionHead {
+  id: ExploreSectionId;
+  theme: Theme;
+  /** 區段的條件（types 之外；和篩選「而且」） */
+  filter: Partial<Filter>;
+  /** 和同主題的其他區段重疊（下雨也行），不算進「加起來等於總數」 */
+  overlap?: boolean;
+  /** 問 AI 那句（0 個時的下一步，放進輸入框） */
   ask: (where: string) => string;
 }
 
-/** 分布的小字：「能坐一起 6 · 要分桌 2」，0 的那段不寫 */
-export const dist = (parts: [string, number][]) =>
-  parts
-    .filter(([, n]) => n > 0)
-    .map(([label, n]) => `${label} ${n}`)
-    .join(' · ');
+export type ExploreSectionId = 'must' | 'other' | 'rain' | 'together' | 'split' | 'apart' | 'whole' | 'multi' | 'hotel' | 'minshuku';
 
-/** 順序（T50）：一定要去、全員吃飯、住在這裡、下雨也行；之後加的排在後面 */
-export const SHELVES: readonly Shelf[] = [
-  {
-    id: 'must',
-    title: '一定要去',
-    tiers: [{ filter: { types: ['spot'], tiers: ['S', 'A'] } }, { filter: { types: ['spot'], tiers: ['B'] } }],
-    rule: 'S、A 級景點',
-    fallback: ({ where }) => `${where}沒有 S、A 級，這是 B 級`,
-    empty: 'S、A、B 級的景點',
-    ask: (w) => `${w}有什麼值得去的景點？`,
-  },
-  {
-    id: 'fit15',
-    title: '全員吃飯',
-    // 第一級：一家容納得下 15 人（能坐一起、要分桌），排掉不收小孩、有年齡限制的店；第二級：還沒查、坐不下（要分組去不同家）
-    tiers: [{ filter: { types: ['restaurant'], who: ['all'] } }, { filter: { types: ['restaurant'], who: ['apart'] } }],
-    rule: '15 人能一起吃的店',
-    note: (items) =>
-      dist([
-        ['能坐一起', items.filter((p) => placeFit15(p) === 'yes').length],
-        ['要分桌', items.filter((p) => placeFit15(p) === 'split').length],
-      ]),
-    fallback: ({ where }) => `${where}沒有容納得下 15 人的店，這些要分組去`,
-    caption: (p) => fit15Caption(p)?.label ?? null,
-    empty: '餐廳',
-    ask: (w) => `${w}有哪裡可以 15 人一起吃飯？`,
-  },
-  {
-    id: 'stay',
-    title: '住在這裡',
-    // 第一級：一間住得下全團（包棟 maxGuests ≥ 15、旅館飯店 5 間房以上）；第二級：其他（要分開住）
-    tiers: [{ filter: { types: ['lodging'], stay: ['fits'] } }, { filter: { types: ['lodging'], stay: ['apart'] } }],
-    rule: '一間住得下全團',
-    note: (items) =>
-      dist([
-        ['包棟', items.filter((p) => placeStayKind(p) === 'whole').length],
-        ['旅館飯店', items.filter((p) => placeStayKind(p) === 'hotel').length],
-      ]),
-    fallback: ({ where }) => `${where}沒有一間住得下全團的，這些要分開住`,
-    caption: (p) => {
-      const stay = stayCaption(p)?.label;
-      const meals = mealsCaption(p);
-      return stay ? (meals ? `${stay} · ${meals}` : stay) : null;
-    },
-    empty: '住宿',
-    ask: (w) => `${w}附近有哪裡適合 15 人住？`,
-  },
-  // 只放景點：餐廳、住宿本來就在室內（weather 不篩它們），另外兩排就是。室內、有遮蔽都算（T58）
-  {
-    id: 'rain',
-    title: '下雨也行',
-    tiers: [{ filter: { types: ['spot'], weather: RAIN_OK } }, { filter: { types: ['spot'], weather: RAIN_OK }, wide: true }],
-    rule: '室內或有遮蔽的景點',
-    fallback: ({ where, area }) => `${where}沒有，這是${area}全區的`,
-    empty: '室內或有遮蔽的景點',
-    ask: (w) => `${w}下雨天可以去哪裡？`,
-  },
-];
+/**
+ * 每個主題的區段（§35.4 的表），順序就是畫面的順序。
+ * 「其他景點」用 tiers B：沒評等級的也算 B（filter.ts 的 matchesFilter，T75），所以 S、A 和 B 加起來是全部的景點。
+ */
+export const SECTIONS: Record<Theme, readonly Section[]> = {
+  spot: [
+    { id: 'must', theme: 'spot', title: '一定要去', rule: 'S、A 級', filter: { tiers: ['S', 'A'] }, ask: (w) => `${w}有什麼值得去的景點？` },
+    { id: 'other', theme: 'spot', title: '其他景點', rule: 'B 級', filter: { tiers: ['B'] }, ask: (w) => `${w}還有什麼景點？` },
+    { id: 'rain', theme: 'spot', title: '下雨也行', rule: '室內或有遮蔽（和上面兩排有重複）', filter: { weather: RAIN_OK }, overlap: true, ask: (w) => `${w}下雨天可以去哪裡？` },
+  ],
+  restaurant: [
+    { id: 'together', theme: 'restaurant', title: '全員吃飯', rule: '15 人能坐一起', filter: { who: ['together'] }, ask: (w) => `${w}有哪裡可以 15 人一起吃飯？` },
+    { id: 'split', theme: 'restaurant', title: '要分桌', rule: '一家坐得下 15 人，分兩桌以上', filter: { who: ['split'] }, ask: (w) => `${w}有哪裡 15 人分桌坐得下？` },
+    { id: 'apart', theme: 'restaurant', title: '要分組去', rule: '坐不下 15 人，或席數還沒查', filter: { who: ['apart'] }, ask: (w) => `${w}適合 4～6 人分組吃的店？` },
+  ],
+  lodging: [
+    { id: 'whole', theme: 'lodging', title: '包棟・全團一棟', rule: '能包棟，住得下 15 人', filter: { stay: ['whole'] }, ask: (w) => `${w}有可以包棟住 15 人的嗎？` },
+    { id: 'multi', theme: 'lodging', title: '包棟・要分住', rule: '能包棟，但住不下 15 人', filter: { stay: ['multi'] }, ask: (w) => `${w}有哪些包棟可以分住？` },
+    { id: 'hotel', theme: 'lodging', title: '旅館飯店', rule: '分房住', filter: { stay: ['hotel'] }, ask: (w) => `${w}適合 15 人的旅館飯店？` },
+    { id: 'minshuku', theme: 'lodging', title: '民宿', rule: '不能包棟、房間少', filter: { stay: ['other'] }, ask: (w) => `${w}有哪些民宿？` },
+  ],
+};
 
-/** 書架上先放幾個 */
-export const SHELF_SIZE = 3;
+/** 所有區段（找 ID 用） */
+export const ALL_SECTIONS: readonly Section[] = THEMES.flatMap((t) => SECTIONS[t]);
+export const sectionById = (id: string): Section | undefined => ALL_SECTIONS.find((s) => s.id === id);
 
-export type TierNo = 1 | 2;
-
-/** 目前的地區、子地區加上書架那一級的條件（「全部 ›」套用的就是這個）；第二級是全區的（下雨也行）不留子地區 */
-export function shelfFilter(shelf: Shelf, base: Pick<Filter, 'areas' | 'regions'>, tier: TierNo = 1): Filter {
-  const t = shelf.tiers[tier - 1];
-  return { ...EMPTY_FILTER, areas: base.areas, regions: t.wide ? [] : base.regions, ...t.filter };
-}
-
-export interface ShelfRow {
-  shelf: Shelf;
-  /** 現在用的是第幾級（第一級 0 個才用第二級；兩級都 0 是 1） */
-  tier: TierNo;
-  /** 這一級的條件（「全部 ›」） */
-  filter: Filter;
-  /** 標題旁的小字 */
-  note: string;
-  /** 小字是退到第二級的那句（換色） */
-  fallback: boolean;
-  /** 推薦順序的前幾個 */
-  items: Place[];
-  /** 這一級一共幾個 */
-  total: number;
-}
-
-const rank = (places: Place[], filter: Filter) => explorePlaces(places, filter, null, 'recommend', () => 0);
-
-/** 小字的地名：「賢島」（沒選子地區是「志摩」）、「志摩」；找不到地區時寫「這裡」 */
-export function shelfWhere(base: Pick<Filter, 'areas' | 'regions'>, areas: Area[]): ShelfWhere {
-  const area = base.areas.length === 1 ? areas.find((a) => a.id === base.areas[0]) : undefined;
-  const areaName = area ? displayName(area.name, area.id) : '這裡';
-  const region = area && base.regions.length === 1 ? area.regions?.find((r) => r.id === base.regions[0]) : undefined;
-  return { where: region ? displayName(region.name, region.id) : areaName, area: areaName };
-}
-
-/** 一排書架：第一級 0 個才退到第二級 */
-export function shelfRow(places: Place[], shelf: Shelf, base: Pick<Filter, 'areas' | 'regions'>, areas: Area[] = [], size = SHELF_SIZE): ShelfRow {
-  const first = shelfFilter(shelf, base, 1);
-  const firstAll = rank(places, first);
-  if (firstAll.length === 0) {
-    const second = shelfFilter(shelf, base, 2);
-    const secondAll = rank(places, second);
-    if (secondAll.length > 0) return { shelf, tier: 2, filter: second, note: shelf.fallback(shelfWhere(base, areas)), fallback: true, items: secondAll.slice(0, size), total: secondAll.length };
+/** 區段的條件疊在目前的篩選上（主題換成區段的；同一個欄位篩選也有值時取交集，交集空的那欄留區段的值）——AI、「全部」之類要一份 Filter 時用 */
+export function sectionFilter(section: Section, filter: Filter): Filter {
+  const out: Filter = { ...filter, types: [section.theme] };
+  for (const [k, want] of Object.entries(section.filter) as [FilterKey, string[]][]) {
+    const have = filter[k] as string[];
+    const both = have.length ? want.filter((v) => have.includes(v)) : want;
+    (out[k] as string[]) = both.length ? both : want;
   }
-  return { shelf, tier: 1, filter: first, note: shelf.note?.(firstAll) || shelf.rule, fallback: false, items: firstAll.slice(0, size), total: firstAll.length };
-}
-
-/** 每排書架的內容；0 個的那排也列（T64：畫面寫「這裡沒有」和下一步，不藏）。areas：退到第二級的小字要地名 */
-export function shelfRows(places: Place[], base: Pick<Filter, 'areas' | 'regions'>, areas: Area[] = [], size = SHELF_SIZE): ShelfRow[] {
-  return SHELVES.map((shelf) => shelfRow(places, shelf, base, areas, size));
-}
-
-/** 概覽的四格數字（T52）：每排書架在這區一共幾個（第一級 0 個時是第二級的）；0 的也列（畫面灰掉、不能點），順序同 SHELVES */
-export function shelfCounts(places: Place[], base: Pick<Filter, 'areas' | 'regions'>): { shelf: Shelf; tier: TierNo; total: number }[] {
-  return SHELVES.map((shelf) => {
-    const { tier, total } = shelfRow(places, shelf, base, [], 0);
-    return { shelf, tier, total };
-  });
-}
-
-const sameSet = (a: readonly string[], b: readonly string[]) => a.length === b.length && a.every((v) => b.includes(v));
-
-/** 書架那一級的條件是哪幾個欄位（地區、子地區之外） */
-export const shelfKeys = (shelf: Shelf, tier: TierNo = 1) => Object.keys(shelf.tiers[tier - 1].filter) as FilterKey[];
-
-/**
- * 現在的條件裡有沒有一整排書架的某一級（T64、T66）：那一級的欄位剛好是那一級的值（順序不管），其他欄位隨便（自己在面板加的、搜尋）。
- * 拿掉書架帶來的任何一個條件、或在同一個欄位多選（例如多選一個類型，變成放寬）就不是了。不是就 null；兩級都對得上時算第一級
- */
-export function shelfTierOf(filter: Filter): { shelf: Shelf; tier: TierNo } | null {
-  for (const shelf of SHELVES) {
-    for (const tier of [1, 2] as const) {
-      const want = shelf.tiers[tier - 1].filter;
-      if (shelfKeys(shelf, tier).every((k) => sameSet(filter[k], want[k] ?? []))) return { shelf, tier };
-    }
-  }
-  return null;
-}
-
-/** 現在的條件裡有沒有一整排書架（哪一級都算）；不是就 null */
-export function shelfOf(filter: Filter): Shelf | null {
-  return shelfTierOf(filter)?.shelf ?? null;
-}
-
-/** 條件剛好是哪一排書架的某一級（地區、子地區之外的條件一樣；順序不管）；不是就 null */
-export function matchShelf(filter: Filter): Shelf | null {
-  const hit = shelfTierOf(filter);
-  if (!hit) return null;
-  const want = shelfFilter(hit.shelf, filter, hit.tier);
-  const keys = (Object.keys(EMPTY_FILTER) as FilterKey[]).filter((k) => k !== 'areas' && k !== 'regions');
-  return keys.every((k) => sameSet(filter[k], want[k])) ? hit.shelf : null;
-}
-
-/**
- * 清單層的返回鈕（T50、T64）：條件裡還有一整排書架寫書架名（「全員吃飯」，自己多加的條件、搜尋不影響），
- * 拿掉了書架帶來的條件、或本來就是自己在面板篩的寫「自己篩選」。畫面在前面加「‹ 」、後面接「· 志摩・賢島 · N 個地點」。
- */
-export function backLabel(filter: Filter): string {
-  const hit = shelfTierOf(filter);
-  if (!hit) return '自己篩選';
-  // 書架之外自己多加了幾個條件（T69）：「一定要去＋1」；換地區時照字面套用（rescopeFilter）
-  const own = new Set<FilterKey>(['areas', 'regions', ...shelfKeys(hit.shelf, hit.tier)]);
-  const extra = (Object.keys(EMPTY_FILTER) as FilterKey[]).filter((k) => !own.has(k)).reduce((n, k) => n + filter[k].length, 0);
-  return extra ? `${hit.shelf.title}＋${extra}` : hit.shelf.title;
-}
-
-/**
- * 換地區、子地區時「看什麼」跟著走（T69，interaction-design §33）：地區、子地區換成 base，其他條件不動。
- * 條件剛好是一排書架的某一級（沒自己加東西，matchShelf）時照新的範圍重挑那排的級數：第一級 0 個退第二級，跟書架同一個規則。
- * 第二級是全區的（下雨也行）不退：選了子地區就照第一級（0 個時畫面給下一步），不然子地區會被清掉。
- */
-export function rescopeFilter(filter: Filter, base: Pick<Filter, 'areas' | 'regions'>, places: Place[]): Filter {
-  const next = { ...filter, areas: [...base.areas], regions: [...base.regions] };
-  const shelf = matchShelf(filter);
-  if (!shelf) return next;
-  const row = shelfRow(places, shelf, base, [], 0);
-  return row.filter.regions.length === base.regions.length ? row.filter : shelfFilter(shelf, base, 1);
-}
-
-/**
- * 有「看什麼」時，每個地區（和目前地區的每個子地區）照同一個篩選有幾個（T69）：地區分頁、子地區晶片後面的小數字。
- * 每個範圍各自 rescopeFilter（書架照那裡的級數），所以數字和點進去看到的一樣。pool：探索是全部、想去是有人按想去的（已經照那一排篩好）；places 是全部的點（書架挑級數用）
- */
-export function scopeCounts(pool: Place[], filter: Filter, query: string, areas: Area[], places: Place[]): Map<string, number> {
-  const out = new Map<string, number>();
-  const count = (base: Pick<Filter, 'areas' | 'regions'>) => explorePlaces(pool, rescopeFilter(filter, base, places), null, 'recommend', () => 0, query).length;
-  for (const a of areas) out.set(a.id, count({ areas: [a.id], regions: [] }));
-  const cur = filter.areas.length === 1 ? areas.find((a) => a.id === filter.areas[0]) : undefined;
-  for (const r of cur?.regions ?? []) out.set(r.id, count({ areas: [cur!.id], regions: [r.id] }));
   return out;
 }
 
-/** 清單層的書架退到第二級時那句（「賢島沒有 S、A 級，這是 B 級」）；不是書架、或是第一級是 null */
-export function fallbackNote(filter: Filter, areas: Area[]): string | null {
-  const hit = shelfTierOf(filter);
-  if (!hit || hit.tier !== 2 || !matchShelf(filter)) return null;
-  return hit.shelf.fallback(shelfWhere(filter, areas));
+const sectionMatch = (section: Section) => {
+  const f: Filter = { ...EMPTY_FILTER, ...section.filter, types: [section.theme] };
+  return (p: Place) => matchesFilter(p, f);
+};
+
+export interface SectionOpts {
+  /** 搜尋 */
+  query?: string;
+  /** 只看地圖畫面裡的（網頁） */
+  bounds?: Bbox | null;
+}
+
+/** 一個主題在目前篩選下的點（推薦順序）：filter 的 types 換成那個主題 */
+export function themePlaces(places: Place[], theme: Theme, filter: Filter, opts: SectionOpts = {}): Place[] {
+  return explorePlaces(places, { ...filter, types: [theme] }, opts.bounds ?? null, 'recommend', () => 0, opts.query ?? '');
+}
+
+/** 區段裡的列（推薦順序）：符合篩選（主題換成區段的）而且符合區段的條件 */
+export function sectionPlaces(places: Place[], section: Section, filter: Filter, opts: SectionOpts = {}): Place[] {
+  return themePlaces(places, section.theme, filter, opts).filter(sectionMatch(section));
+}
+
+export interface SectionCount {
+  section: Section;
+  count: number;
 }
 
 /**
- * 探索這時畫哪一種：概覽（沒選地區）、選了一區（書架），或照片牆、清單（list）。
- * 有搜尋、AI 的結果集、或面板裡套了條件（地區、子地區以外的）就是清單；一次選了好幾區（AI 給的）也是清單。
+ * 區段的數量（§35.4）：沒篩選時是真實總數，有篩選時是符合篩選的數。total 是這個主題符合篩選的總數；
+ * 不重疊的區段加起來等於 total（下雨也行不算）
  */
-export type ExploreStage = 'overview' | 'area' | 'list';
+export function sectionCounts(places: Place[], theme: Theme, filter: Filter, opts: SectionOpts = {}): { total: number; sections: SectionCount[] } {
+  const pool = themePlaces(places, theme, filter, opts);
+  return { total: pool.length, sections: SECTIONS[theme].map((section) => ({ section, count: pool.filter(sectionMatch(section)).length })) };
+}
 
-export function exploreStage(filter: Filter, query: string, hasAiResult: boolean): ExploreStage {
+/** 主題列的三格數字（§35.3）：目前地區（子地區）那一類的總數，不看篩選。pool：探索是全部、想去是有人按想去的 */
+export function themeCounts(pool: Place[], scope: Pick<Filter, 'areas' | 'regions'>): Record<Theme, number> {
+  const out = { spot: 0, restaurant: 0, lodging: 0 };
+  const f: Filter = { ...EMPTY_FILTER, areas: scope.areas, regions: scope.regions };
+  for (const p of pool) if (isTheme(p.type) && matchesFilter(p, f)) out[p.type] += 1;
+  return out;
+}
+
+/**
+ * 地區分頁、子地區晶片後面的小數字（§35.2、35.3，取代 scopeCounts）：
+ * 地區分頁＝目前主題＋篩選（含搜尋）在那區有幾個（永遠寫）；目前地區的子地區晶片＝目前主題在那個子地區有幾個（不看篩選，同主題列）。
+ * 沒有主題（概覽）時地區分頁算三類加起來。pool：探索是全部、想去是有人按想去的
+ */
+export function scopeCountsByTheme(pool: Place[], filter: Filter, query: string, areas: Area[]): Map<string, number> {
+  const out = new Map<string, number>();
+  const theme = themeOf(filter);
+  const types = theme ? [theme] : [...THEMES];
+  const count = (f: Filter, q: string) => explorePlaces(pool, { ...f, types }, null, 'recommend', () => 0, q).length;
+  for (const a of areas) out.set(a.id, count({ ...filter, areas: [a.id], regions: [] }, query));
+  const cur = filter.areas.length === 1 ? areas.find((a) => a.id === filter.areas[0]) : undefined;
+  for (const r of cur?.regions ?? []) out.set(r.id, count({ ...EMPTY_FILTER, areas: [cur!.id], regions: [r.id] }, ''));
+  return out;
+}
+
+/**
+ * 探索這時畫哪一種（T75，取代 shelvesLegacy 的 exploreStage）：
+ * - list：搜尋、AI 的結果集（一份平的清單），或 AI 一次給了好幾區、沒給地區卻有條件；
+ * - area：選了一區（主題、區段、篩選都在這一層，書架不再進清單）；
+ * - overview：沒選地區、沒有條件（types 可以有：主題跟著回概覽）。
+ */
+export type ExploreLayer = 'overview' | 'area' | 'list';
+
+export function exploreLayer(filter: Filter, query: string, hasAiResult: boolean): ExploreLayer {
   if (hasAiResult || query.trim()) return 'list';
-  if (!isFilterEmpty({ ...filter, areas: [], regions: [] })) return 'list';
-  if (filter.areas.length === 0) return filter.regions.length ? 'list' : 'overview';
-  return filter.areas.length === 1 ? 'area' : 'list';
+  if (filter.areas.length === 1) return 'area';
+  if (filter.areas.length === 0 && isFilterEmpty({ ...filter, types: [] })) return 'overview';
+  return 'list';
 }
 
 /** 目前的地區：只選了一區時是那一區，其他（概覽、AI 一次給好幾區）是 null */
@@ -267,9 +171,12 @@ export function currentArea(filter: Pick<Filter, 'areas'>): string | null {
   return filter.areas.length === 1 ? filter.areas[0] : null;
 }
 
-/** 回到書架：清掉地區、子地區以外的條件 */
-export function areaOnly(filter: Filter): Filter {
-  return { ...EMPTY_FILTER, areas: filter.areas, regions: filter.regions };
+/** 最小的那一層的名字（「賢島」；沒選子地區是「志摩」）；找不到地區時寫「這裡」 */
+export function scopeName(base: Pick<Filter, 'areas' | 'regions'>, areas: Area[]): string {
+  const area = base.areas.length === 1 ? areas.find((a) => a.id === base.areas[0]) : undefined;
+  if (!area) return '這裡';
+  const region = base.regions.length === 1 ? area.regions?.find((r) => r.id === base.regions[0]) : undefined;
+  return region ? displayName(region.name, region.id) : displayName(area.name, area.id);
 }
 
 /** 聊天的「正在看：」（探索、想去）：探索是「概覽」或地區名，想去是「想去」或「想去・鳥羽」 */

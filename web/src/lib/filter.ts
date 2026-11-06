@@ -20,7 +20,10 @@ export interface Filter {
    * 面板只有「下雨也行」（rain＝室內、有遮蔽都算，T66）；indoor、covered 留給 AI
    */
   weather: WeatherFilter[];
-  /** 誰吃（T66）：全員 15 人（書架「全員吃飯」的第一級）、分組 4～6 人；apart（坐不下、還沒查＝書架第二級，面板沒有）。有值時只剩餐廳 */
+  /**
+   * 誰吃（T66、T75）：together 能坐一起（fit15 yes）、split 要分桌（fit15 split）、apart 坐不下或還沒查——這三個把餐廳切完（§35.4 吃的三個區段）；
+   * sub 分組 4～6 人（面板）；all 全員 15 人（together＋split 而且收小孩，AI 和舊條件用）。有值時只剩餐廳
+   */
   who: WhoFilter[];
   /** 帶小孩（T67）：kids.allowed 不是 no、age-limit（不明的當可以）；有值時只剩餐廳 */
   kids: KidsFilter[];
@@ -83,10 +86,13 @@ export function weatherMatches(w: Weather | null, values: readonly string[]): bo
 
 // ---- 餐廳 ----
 
-/** 誰吃（T66）：全員 15 人、分組 4～6 人；apart 是書架「全員吃飯」的第二級（坐不下、還沒查），面板不畫 */
-export const WHO_VALUES = ['all', 'sub', 'apart'] as const;
+/**
+ * 誰吃（T66、T75）：together、split、apart 照 fit15 把餐廳切成三份（§35.4：全員吃飯、要分桌、要分組去）；
+ * sub 是分組 4～6 人坐得下（面板「分組去」）；all 是舊的「全員 15 人」（together＋split 而且收小孩），AI 和舊條件還收
+ */
+export const WHO_VALUES = ['together', 'split', 'apart', 'sub', 'all'] as const;
 export type WhoFilter = (typeof WHO_VALUES)[number];
-export const WHO_LABELS: Record<WhoFilter, string> = { all: '全員 15 人', sub: '分組 4～6 人', apart: '15 人坐不下、還沒查' };
+export const WHO_LABELS: Record<WhoFilter, string> = { together: '15 人能坐一起', split: '15 人要分桌', apart: '15 人坐不下、還沒查', sub: '分組 4～6 人', all: '全員 15 人' };
 /** 面板上的誰吃 */
 export const WHO_PANEL: readonly WhoFilter[] = ['all', 'sub'];
 
@@ -115,7 +121,10 @@ export function eatsTogether(p: Place): boolean {
 export function matchesWho(p: Place, v: WhoFilter): boolean {
   if (p.type !== 'restaurant') return false;
   if (v === 'all') return eatsTogether(p);
-  // 坐不下、還沒查（沒寫也算）；fit15 是 yes、split 但不收小孩的店兩級都不在（T66）
+  // T75：together、split、apart 不看收不收小孩，三個加起來剛好是全部的餐廳
+  if (v === 'together') return placeFit15(p) === 'yes';
+  if (v === 'split') return placeFit15(p) === 'split';
+  // 坐不下、還沒查（沒寫也算）
   if (v === 'apart') return placeFit15(p) !== 'yes' && placeFit15(p) !== 'split';
   return groupOf(p).fitSubgroup !== 'no';
 }
@@ -156,7 +165,8 @@ export function matchesReach(p: Place, v: ReachFilter): boolean {
  */
 export const STAY_VALUES = ['whole', 'multi', 'hotel', 'other', 'fits', 'apart'] as const;
 export type StayFilter = (typeof STAY_VALUES)[number];
-export const STAY_LABELS: Record<StayFilter, string> = { whole: '包棟・一棟住全團', multi: '包棟・要和別處分住', hotel: '旅館・飯店', other: '民宿', fits: '一間住得下全團', apart: '要分開住' };
+// T75（§35.4）改字：包棟・全團一棟、包棟・要分住、旅館飯店
+export const STAY_LABELS: Record<StayFilter, string> = { whole: '包棟・全團一棟', multi: '包棟・要分住', hotel: '旅館飯店', other: '民宿', fits: '一間住得下全團', apart: '要分開住' };
 /** 面板上的住法 */
 export const STAY_PANEL: readonly StayFilter[] = ['whole', 'multi', 'hotel', 'other'];
 /** 旅館、飯店幾間房以上算住得下全團（👤 定：不補 maxGuests，用房間數判） */
@@ -292,8 +302,8 @@ export function matchesFilter(p: Place, f: Filter): boolean {
   if (f.regions.length && !(p.region && f.regions.includes(p.region))) return false;
   if (f.types.length && !f.types.includes(p.type)) return false;
   if (f.contexts.length && !f.contexts.some((v) => matchesContext(p, v))) return false;
-  // 車站沒有分級：只篩分級時車站照樣顯示，方便看交通
-  if (f.tiers.length && p.type !== 'station' && !(p.tier && f.tiers.includes(p.tier))) return false;
+  // 車站沒有分級：只篩分級時車站照樣顯示，方便看交通。沒評等級的算 B（T75，§35.4「其他景點」要收得到）
+  if (f.tiers.length && p.type !== 'station' && !f.tiers.includes(p.tier ?? 'B')) return false;
   if (f.who.length && !f.who.some((v) => matchesWho(p, v))) return false;
   if (f.kids.length && !(p.type === 'restaurant' && kidsWelcome(p))) return false;
   if (f.reach.length && !f.reach.some((v) => matchesReach(p, v))) return false;
@@ -312,7 +322,7 @@ export function matchesFilter(p: Place, f: Filter): boolean {
 
 /**
  * AI 的 set_filter（和 commands.setFilter）收到的舊欄位轉成新的（T67）：
- * fit15 yes、split → who all；no、unknown → who apart。lodging wholeRental → 住法的包棟兩顆；sleeps15 → 包棟一棟。suits 的 access → reach easy。
+ * fit15 yes → who together、split → split（T75）；no、unknown → who apart。lodging wholeRental → 住法的包棟兩顆；sleeps15 → 包棟一棟。suits 的 access → reach easy。
  * 其他欄位照舊；回傳的只有 Filter 的欄位
  */
 export function toFilterPatch(patch: Record<string, unknown>): Partial<Filter> {
@@ -323,7 +333,8 @@ export function toFilterPatch(patch: Record<string, unknown>): Partial<Filter> {
   for (const [k, v] of Object.entries(patch)) {
     const list = Array.isArray(v) ? v.map(String) : [];
     if (k === 'fit15') {
-      if (list.some((x) => x === 'yes' || x === 'split')) add('who', ['all']);
+      if (list.includes('yes')) add('who', ['together']);
+      if (list.includes('split')) add('who', ['split']);
       if (list.some((x) => x === 'no' || x === 'unknown')) add('who', ['apart']);
       if (!list.length) add('who', []);
     } else if (k === 'lodging') {

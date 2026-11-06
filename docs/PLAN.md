@@ -164,7 +164,7 @@
 | T73 | 下載行程與 LINE 機器人改版：PDF／MD 修四個印錯的地方、總覽加「去哪裡」、印合併卡的備選；LINE 單天、整趟、預約改成適合聊天氣泡的寬度，Quick Reply 按鈕（postback）、說明照出發前／旅行中切換（**開始前 👤 先回 7 個決定**） | M | T72、T74a | 4 | | ✅ |
 | T74a | 提醒精簡（引擎和字）：43 種提醒拿掉 11 種（計程車台數、巴士擠不上、入住前到、等開門、三個和步驟重複的交通補充…）、餐廳兩條合一、三級改兩級（要處理／留意）、全部改字、坐車 60 分算休息；`TaxiInfo`、`busCrowd` 拿掉；AI 工具和推薦問題跟著改 | M | T72 | 4 | | ✅ |
 | T74b | 提醒精簡（畫面）：資料卡紅框只給要處理、點開每條一行；日期列的數字兩邊一致、點開列整天的（手機也能看字）；整趟的紅字長句改成骨架的「累」標和「晚餐未選」；交通卡拿掉台數、灰框不重複步驟；順手：「待訂」改墨色、行程卡名稱拿掉括號、停留時間寫法、詳情名稱列加 Google Maps 連結 | M | T74a | 4 | | ✅ |
-| T75 | 探索改版（純邏輯）：書架改成「主題 × 區段」（玩 3 排、吃 3 排、住 4 排，加起來等於總數）、區段的數量、`who` 拆出能坐一起／要分桌、篩選面板照主題分組（書架切過的不進面板、吃住加等級）、探索的階段少掉清單層、AI 的 `set_filter`／系統提示跟著改 | M | T74b | 4 | | ⬜ |
+| T75 | 探索改版（純邏輯）：書架改成「主題 × 區段」（玩 3 排、吃 3 排、住 4 排，加起來等於總數）、區段的數量、`who` 拆出能坐一起／要分桌、篩選面板照主題分組（書架切過的不進面板、吃住加等級）、探索的階段少掉清單層、AI 的 `set_filter`／系統提示跟著改 | M | T74b | 4 | | ✅ |
 | T76 | 探索改版（共用畫面）：主題列、收合的書架區段（黏頂、0 個）、照片牆和清單合成一種列、工具列只剩搜尋＋篩選（概覽：問 AI、加地點）、條件列、篩選面板改主題分組和「只看我按的」、概覽卡「照片 → 玩吃住 → 文字」、想去的三排改區段、詳情的返回寫目的地、想去的提示手機也有 | M | T75 | 4 | 🌐 少量 | ⬜ |
 | T77 | 探索改版（手機接線）：`ExploreFeed`、`FeedFilters`、`WishlistPage`、`mobileStore` 的主題和展開狀態、捲動位置記憶、詳情返回字；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ⬜ |
 | T78 | 探索改版（網頁接線）：`Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`appStore` 的主題，地圖連動（指到、選中、點地圖展開區段捲到那列）、原地展開、右欄抽屜；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ⬜ |
@@ -1875,6 +1875,14 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **AI**（`ai/tools.ts` 的 `set_filter` 說明、`ai/systemPrompt.ts`、`ai/prompts.ts` 的推薦問題）：書架名改成區段名（一定要去、其他景點、下雨也行、全員吃飯、要分桌、要分組去、包棟・全團一棟、包棟・要分住、旅館飯店、民宿），`who` 的新值、拿掉「第二級」的說法。照「AI 測試不打 API」的做法，用 `aiHarness` 看幾個代表題的工具回傳。
 - **驗證**：`web/test` 加 `sections`（每個主題的區段加起來等於那一類的總數，下雨也行除外；志摩的數字：景點 5／19／8、餐廳 26／18／34、住宿 2／9／38／7，用真資料算一次寫進測試）、`who` 拆值、面板分組、`exploreStage`；`npm test`、`typecheck`、`validate`。舊的 `shelves` 測試改掉或刪。
 - **文件**：architecture 如果寫到 `SHELVES`、兩級退的地方改成區段；interaction-design §35 標「35.4、35.5 的邏輯 T75 做完」。
+- **完成（2026-11-06）**：照卡片做，畫面沒動（舊畫面照跑）。
+  - **新舊分開**：舊的書架（`SHELVES`、兩級退、`shelfTierOf`、`backLabel`、`rescopeFilter`、`scopeCounts`、`fallbackNote`、舊的 `exploreStage`、`areaOnly`）整份搬到 `lib/shelvesLegacy.ts`，`shelves.ts` 用 `export *` 轉出去，舊畫面的 import 不用改。**T79 刪掉這個檔案和那行轉出**，一起刪：`listConditions` 的 `pureShelf`、`shelfEmptyHelp`、`firstQuestionSwap`；`filterOptions` 的 `TYPE_GROUP`、`FILTER_SECTIONS`、`COMMON_GROUPS`、`panelLayout`、`sectionSummary`、`sectionApplied`；`filter.ts` 的 `WHO_PANEL`、`STAY_PANEL`；`web/test/shelves.test.ts`。
+  - **新的**（`lib/shelves.ts`）：`THEMES`、`THEME_LABELS`（玩／景／景點）、`themeOf`、`SECTIONS`（每個主題的區段：`id`、`title`、`rule`、`filter`、`overlap`、`ask`）、`sectionPlaces`（篩選「而且」區段條件）、`sectionCounts`（`{ total, sections }`，可給 `query`、`bounds`）、`themeCounts`（主題列，不看篩選）、`scopeCountsByTheme`（地區分頁＝主題＋篩選，子地區晶片＝主題、不看篩選；取代 `scopeCounts`）、`sectionFilter`（要一份 Filter 時用，同欄位取交集）。探索的層叫 **`exploreLayer`**（沒有直接改 `exploreStage`：舊畫面的「全部 ›」靠舊的 stage 進清單，改了舊畫面就壞；T79 刪舊的時可以改名）。想去三段多 `title`、`rule`（`WISH_SECTION_HEADS`，和探索區段共用 `SectionHead`），最下面那句是 `WISH_SECTIONS_NOTE`。
+  - **自己選的兩件事**：① `who` 的新值叫 `together`、`split`（`all`、`sub`、`apart` 留著）；together、split **不看收不收小孩**，這樣三段才切得完（志摩的 26 含 2 家不收小孩的，T76 的列可以用重點膠囊露出來）。② `tiers: ['B']` 在 `matchesFilter` 一律收得到 `tier` 是 null 的，沒有另外加 `includeUntiered`（目前只有鳥羽 5 個景點沒評，餐廳、住宿都有評），AI 的 tiers 說明也寫了。AI 的 fit15 yes 轉 `together`、split 轉 `split`；住法晶片改字（包棟・全團一棟、包棟・要分住、旅館飯店）。
+  - **面板**（`filterOptions.ts`）：`THEME_GROUPS`、`themePanel(theme, source)`（想去最前面「誰想去」，最後是網頁的地圖）、`sheetTitle(where, theme)` →「篩選 · 志摩的景點」、`themeApplied`（篩選鈕的小點）、**`themeFilter(filter, theme)`**：換主題時拿掉那個主題面板沒有的條件（不然在住宿選了一泊二食，切到玩會 0 個）。store 每個主題各留一份還是共用一份，留給 T77、T78 決定。
+  - **0 個**：`sectionEmptyHelp(places, filter, areas, section?)`：「賢島沒有『一定要去』的景點」；整個主題 0 個寫「賢島沒有住宿」，有篩選時寫「志摩沒有符合條件的住宿」；下一步是看全區、清除篩選、問 AI（區段的 `ask`）。`emptyHelp` 留給搜尋、AI 結果集。
+  - **AI**：`set_filter` 說明列出區段和對應的值；types 給多個只用第一個，回傳 `note`。`search_places` 的 who、stay、tiers 說明跟著改；系統提示講區段名；推薦問題 `LODGING_FOLLOWUPS` 改成「有哪些包棟能住全團？」。用 `aiHarness` 跑過 set_filter（多類、together、錯值）和 search_places（志摩 who split＝18）。
+  - **測試**：新增 `web/test/sections.test.ts`，14 個：志摩數字、每區每子地區每主題加起來等於總數、tiers B、who 拆值、「而且」、主題列和地區分頁的數字、`exploreLayer`、面板分組、`themeFilter`、0 個、想去的頭、AI。舊的 `shelves.test.ts` 留著守舊畫面；改了 4 支過時的斷言（`who` 的新值、住法新字）。`npm test` 1131 過，`typecheck`、`build`、`validate` 通過。**e2e 沒跑**（照第十九輪的原則）；已知 `e2e/t67.spec.ts` 54、59 行的住法字過時，留給 T80。
 
 ### T76 探索改版：共用畫面 〔M〕（第十九輪，2026-11-06 👤 決定）
 
