@@ -3,7 +3,8 @@
 // 右邊名字（最多兩行，只有名字和自己加、已訂這類小標）、第二行最前面等級方章＋子地區（餐廳加價位、住宿是住法那句・每人價）、
 // 狀態一行彩色字（已排、主辦考慮放、長輩 ◎ 很適合、二月休，最多兩項）、貼齊列底的一行：愛心（VoteHeart row）→ 誰想去 → 留言數。
 // caps、foot、right 是想去用的（「2/7 候選」在前、最新留言、網頁的日曆鈕）。
-// 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）；原地展開（below）接在列下面（§13.3 的 PlaceOpen，T83 拿掉）。樣式在 ui.css（.pr-）。
+// 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）；點列直接開詳情彈窗（T83 §36.T83，沒有原地展開），
+// 彈窗開著時對應的那列 selected（淡藍底＋左邊 3 px 靛藍線）。樣式在 ui.css（.pr-）。
 
 import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
@@ -140,27 +141,26 @@ export interface PlaceRowProps {
   hot?: boolean;
   /** 其他屬性（例如拖到聊天室的 draggable） */
   rootProps?: HTMLAttributes<HTMLDivElement>;
-  /** 原地展開了（網頁）：below 接在列下面 */
-  open?: boolean;
-  below?: ReactNode;
+  /** 網頁：詳情彈窗開著的就是這列（淡藍底＋左邊 3 px 靛藍線，T83 §36.T83） */
+  selected?: boolean;
   /** AI 挑的：一行理由（結果集，規格 §3.1） */
   aiNote?: string;
   /** AI 比較時的 A、B、C */
   letter?: string;
 }
 
-export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceRowProps) {
+export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testId, rank, hot, rootProps, selected = false, aiNote, letter }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
   const user = isUserPlace(place);
   const metaText = [rowMeta(place, areas), user ? userSubtitle(place, members) : ''].filter(Boolean).join('・');
   const tier = user ? null : place.tier;
-  const row = (
+  return (
     <div
       {...rootProps}
-      className={`pr ${user ? 'is-user' : ''} ${hot ? 'flash' : ''} ${open ? 'open' : ''}`}
-      aria-expanded={below !== undefined || open ? open : undefined}
+      className={`pr ${user ? 'is-user' : ''} ${hot ? 'flash' : ''} ${selected ? 'sel' : ''}`}
+      aria-current={selected || undefined}
       role="button"
       tabIndex={0}
       aria-label={name}
@@ -205,14 +205,6 @@ export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testI
           {right && <span className="pr-right">{right}</span>}
         </span>
       </span>
-    </div>
-  );
-  // 原地展開（網頁第八輪 §13.3）：列的下面接 below。可以展開的列外面一直包一層，展開、收合時列不會重建（照片才不會閃）
-  if (below === undefined) return row;
-  return (
-    <div className={open ? 'pr-open' : 'pr-closed'}>
-      {row}
-      {open && below}
     </div>
   );
 }

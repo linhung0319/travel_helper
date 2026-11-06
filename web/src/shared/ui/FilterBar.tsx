@@ -17,7 +17,7 @@ import { themeApplied, type FilterSource } from '../filterOptions.ts';
 import { conditionChips } from '../../lib/listConditions.ts';
 import type { ExploreLayer, Theme } from '../../lib/shelves.ts';
 import { FilterSheet, type FilterSurface } from './FilterSheet.tsx';
-import { scrollerOf } from './PlaceOpen.tsx';
+import { scrollerOf } from './scroller.ts';
 import { ThemeRow } from './ThemeRow.tsx';
 
 /** 篩選列要的資料和動作（網頁、手機各自接自己的 store） */

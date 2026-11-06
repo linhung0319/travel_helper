@@ -171,7 +171,8 @@ export interface AppActions {
   openPreview(id: string | null): void;
   /** from 沒給＝現在的分頁（行程分頁打開的在網頁浮在地圖上）；tab＝一打開就選的分頁 */
   /** at：還沒有彈窗時開在哪裡（預設 map）；已經開著就原地換內容，原本那個記進 detailHistory */
-  openDetail(id: string, from?: DetailFrom, tab?: DetailTabId, at?: DetailAt): void;
+  /** fresh：從清單點列（T83 §36.T83）：開著也原地換內容，但不記上一個（「‹」清空） */
+  openDetail(id: string, from?: DetailFrom, tab?: DetailTabId, at?: DetailAt, fresh?: boolean): void;
   closeDetail(): void;
   /** 彈窗的「‹」：回到上一個 */
   detailBack(): void;
@@ -273,11 +274,11 @@ export function createAppStore(init: Partial<AppState> = {}) {
     select: (selectedId) => set((s) => ({ selectedId, selectSeq: s.selectSeq + 1 })),
     openPreview: (previewId) => set({ previewId }),
     // 打開詳情時小卡片收起、指到的光圈拿掉；那個點就是選中的點
-    openDetail: (detailId, from, tab, at) =>
+    openDetail: (detailId, from, tab, at, fresh) =>
       set((s) => {
         // 同時只有一個詳情彈窗（§13.3 第 3 點）：開著時原地換內容，位置、從哪個分頁開的都不變，原本那個記起來給「‹」
         const open = !!s.detailId;
-        const detailHistory = open && s.detailId !== detailId ? [...s.detailHistory, s.detailId!] : open ? s.detailHistory : [];
+        const detailHistory = !open || fresh ? [] : s.detailId !== detailId ? [...s.detailHistory, s.detailId!] : s.detailHistory;
         return {
           detailId,
           detailFrom: open ? s.detailFrom : (from ?? s.mode),

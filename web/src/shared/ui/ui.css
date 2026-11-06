@@ -1119,7 +1119,6 @@
 
 /* 一份清單的最後一列不畫線（區段本身有下緣線） */
 li:last-child > .pr,
-li:last-child > .pr-closed > .pr,
 li:last-child > .wl-item .pr,
 .m-feed-list > .pr:last-child {
   border-bottom: 0;
@@ -1128,6 +1127,12 @@ li:last-child > .wl-item .pr,
 .pr:hover,
 .pr.flash {
   background: var(--wash);
+}
+
+/* 網頁：詳情彈窗開著的那列（T83 §36.T83）：淡藍底＋左邊 3 px 靛藍線（不佔版面，畫在列裡面） */
+.pr.sel {
+  background: var(--indigo-wash);
+  box-shadow: inset 3px 0 0 var(--indigo);
 }
 
 .pr-photo {
@@ -1347,75 +1352,6 @@ li:last-child > .wl-item .pr,
   display: flex;
   flex-direction: column;
   gap: 0;
-}
-
-/* 原地展開的卡（網頁探索、想去）：芥子黃框（選中），照片矮一點，下面是介紹、優缺點、詳細資料 */
-.pr-open {
-  border: 2px solid var(--mustard);
-  border-radius: 14px;
-}
-
-.pr-open .pr {
-  border-bottom: 0;
-}
-
-.pr-closed {
-  display: contents;
-}
-
-.po-body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0 12px 12px;
-  cursor: auto;
-}
-
-.po-intro {
-  margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.6;
-}
-
-/* 一排：主按鈕佔剩下的寬度，次要的照字寬；卡片窄時（右欄 360）次要的只留圖示，不換行、不增加高度 */
-.po-body {
-  container: po / inline-size;
-}
-
-.po-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.po-actions .ui-btn {
-  min-height: var(--tap);
-  white-space: nowrap;
-}
-
-.po-actions > .ui-btn-primary {
-  flex: 1 1 auto;
-}
-
-.po-actions > .ui-btn-secondary,
-.po-actions > .add-to-day {
-  flex: none;
-  padding: 0;
-}
-
-.po-actions > .ui-btn-secondary,
-.po-actions .add-to-day .ui-btn {
-  padding: 0 14px;
-}
-
-@container po (max-width: 339px) {
-  /* 字留著給讀屏器（font-size: 0），圖示大小是固定的 */
-  .po-actions > .ui-btn-secondary,
-  .po-actions .add-to-day .ui-btn {
-    width: var(--tap);
-    padding: 0;
-    gap: 0;
-    font-size: 0;
-  }
 }
 
 /* ---------- 想去的清單（WishSectionList，T76 §35.8）：三個收合區段、列、左滑 ---------- */

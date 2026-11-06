@@ -1,7 +1,7 @@
 // 想去的清單（網頁右欄、手機想去分頁共用，設計 §5.3；T76 起照 interaction-design §35.8）：
 // 還沒排／已是候選／已排進行程三個收合區段（Section.tsx，色條愛心紅），列是和探索同一種 PlaceRow，
 // 候選、已排的膠囊那行寫「2/7 候選」「2/5 排了」，最下面是最新一則留言的第一句（點了開詳情的留言分頁）；最下面一行說明。
-// 網頁：列右邊 ❤ 加日曆鈕（wish-add，開 DayPicker 小彈窗 wish-add-pop），點列原地展開（PlaceOpenBody）。
+// 網頁：列右邊 ❤ 加日曆鈕（wish-add，開 DayPicker 小彈窗 wish-add-pop），點列開詳情彈窗（T83），彈窗開著的那列 selected。
 // 手機：列可以左滑露出「加到某天」（wish-swipe-add），第一次時第一列自己滑 40px 再彈回（localStorage th.wishSwipeHint）。
 // 樣式在 ui.css（.wl-）。分段的計算在 shared/wishSections.ts；清單的計算（篩選、排序）由呼叫的畫面做好，這裡只管分段與顯示。
 
@@ -17,7 +17,6 @@ import { WISH_SECTIONS_NOTE, wishSections, wishWhen, type SectionId, type WishSe
 import { Section, SectionRows } from './Section.tsx';
 import type { Place } from '../../data/types.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
-import { PlaceOpenBody } from './PlaceOpen.tsx';
 
 export type WishSurface = 'desktop' | 'mobile';
 
@@ -162,12 +161,12 @@ interface WishRowProps {
   lastComment: string | undefined;
   onOpen: () => void;
   onOpenComments: () => void;
-  open?: boolean;
-  below?: ReactNode;
+  /** 網頁：詳情彈窗開著的就是這列 */
+  selected?: boolean;
 }
 
 /** 想去的一列（T76）：同探索的 PlaceRow；候選、已排的膠囊那行先放日期（「2/7 候選」「2/5 排了」），再放這團的標章，最多兩顆；最下面最新留言 */
-function WishRow({ place, status, section, surface, hot, hint, lastComment, onOpen, onOpenComments, open, below }: WishRowProps) {
+function WishRow({ place, status, section, surface, hot, hint, lastComment, onOpen, onOpenComments, selected }: WishRowProps) {
   const [adding, setAdding] = useState(false);
   const mobile = surface === 'mobile';
   const picker = adding && createPortal(<DayPicker placeId={place.id} onClose={() => setAdding(false)} testId={mobile ? 'day-picker' : 'wish-add-pop'} />, document.body);
@@ -211,9 +210,8 @@ function WishRow({ place, status, section, surface, hot, hint, lastComment, onOp
       hot={hot}
       testId={mobile ? 'm-wish-open' : 'wish-open'}
       onOpen={onOpen}
-      rootProps={mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' }}
-      open={open}
-      below={below}
+      rootProps={mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' }}
+      selected={selected}
       caps={when ? [...when, ...rowHighlights(place, { candidate: [], scheduled: [] })].slice(0, 2) : undefined}
       foot={foot}
       right={right}
@@ -243,10 +241,8 @@ export interface WishSectionListProps {
   onOpen: (id: string) => void;
   /** 點最新留言：開詳情的留言分頁 */
   onOpenComments: (id: string) => void;
-  /** 網頁：原地展開的那個點、展開後的「詳細資料」「問 AI」；手機不給 */
-  openId?: string | null;
-  onDetail?: (id: string) => void;
-  onAsk?: (id: string) => void;
+  /** 網頁：詳情彈窗開著的那個點（那列淡藍底＋左邊靛藍線）；手機不給 */
+  selectedId?: string | null;
   /** 地圖「指到」或被地圖點到的點（加底色） */
   hotId?: string | null;
   /** 捲動容器（分批畫）：手機 '.m-page'、網頁 '.side-body' */
@@ -259,7 +255,7 @@ export interface WishSectionListProps {
  * 想去（T76，§35.8）：還沒排／已是候選／已排進行程三個收合區段，數字永遠寫，0 個的段展開是一行灰字；最下面一行說明。
  * 一個點都沒有時什麼都不畫（空白狀態 §17.4 由呼叫的畫面放）。哪個點在哪一段用 useWishSections（呼叫的畫面要展開它那段時也用）
  */
-export function WishSectionList({ surface, places, openIds, onToggle, onOpen, onOpenComments, openId = null, onDetail, onAsk, hotId, scroller, minShown }: WishSectionListProps) {
+export function WishSectionList({ surface, places, openIds, onToggle, onOpen, onOpenComments, selectedId = null, hotId, scroller, minShown }: WishSectionListProps) {
   const lastComments = useLastComments();
   const statusOf = useDayStatus();
   const byId = useMemo(() => new Map(places.map((p) => [p.id, p])), [places]);
@@ -292,8 +288,7 @@ export function WishSectionList({ surface, places, openIds, onToggle, onOpen, on
                       lastComment={lastComments.get(p.id)}
                       onOpen={() => onOpen(p.id)}
                       onOpenComments={() => onOpenComments(p.id)}
-                      open={!!onDetail && openId === p.id}
-                      below={onDetail ? <PlaceOpenBody place={p} onDetail={() => onDetail(p.id)} onAsk={onAsk ? () => onAsk(p.id) : undefined} /> : undefined}
+                      selected={selectedId === p.id}
                     />
                   )}
                 />

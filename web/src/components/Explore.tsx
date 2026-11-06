@@ -5,10 +5,10 @@
 // - overview：概覽（ExploreOverview），卡片的主題列直接進那區那個主題（exploreArea.ts 的 overviewTheme）；
 // - area：條件列（FilterConds，有條件才有）＋「2 月注意」一行＋目前主題的書架區段（AreaThemeHome，預設收合，展開狀態在 appStore.sectionsOpen）；
 // - list：搜尋、AI 挑的結果集，一份平的清單（同一種列，分批畫）。在一區裡搜尋時主題列還在（搜的是那個主題）。
-// 列（shared/ui/PlaceRow）滑鼠移上去呼叫 appStore.hover（地圖的指到），點了原地展開（§13.3：介紹、優缺點、「詳細資料 ›」）並選中，再點一次收起；
-// 按「詳細資料」才開詳情彈窗。清單標出的列：選中的點、和滑鼠在地圖上指到的點（列自己被指到時不回頭標自己）。
+// 列（shared/ui/PlaceRow）滑鼠移上去呼叫 appStore.hover（地圖的指到），點了直接開詳情彈窗（T83 §36.T83，沒有原地展開）；彈窗開著時點別列原地換內容、
+// 不疊「‹」。彈窗開著的那列淡藍底＋左邊靛藍線（selected），關掉就取消；滑鼠在地圖上指到的點淡灰底（列自己被指到時不回頭標自己）。
 // 在探索、想去分頁點地圖上的點（mapPick.ts）：詳情彈窗蓋住整個右欄（§13.3，不動清單）；revealInExplore（AI、測試用）才切到那個點的主題、
-// 展開它所在的第一個區段、捲到那列。
+// 展開它所在的第一個區段、捲到那列並標選中（不開彈窗）。
 // 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，地區列第一顆是「全部」，區段是還沒排／已是候選／已排進行程（shared/ui/WishList 的 WishSectionList，
 // 列右邊有日曆鈕「加到某天」）；面板最前面多「誰想去：只看我按的」（filter.votes 的 mine）。
 // 篩選、搜尋、展開的區段：探索、想去各自一份（appStore 的 filterStash、sectionsOpen）；右欄捲到哪裡也各記一份（換分頁回來還在原位）。
@@ -32,7 +32,7 @@ import { overviewStore } from '../shared/overviewStore.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
 import { FilterBar, FilterConds, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
-import { askDraft, askList, askPlace, askWishEmpty } from './webAi.ts';
+import { askDraft, askList, askWishEmpty } from './webAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
 import { useAiPicked, usePlaceList } from '../shared/placeLists.ts';
 import { UndoToast } from '../shared/ui/UndoToast.tsx';
@@ -40,30 +40,17 @@ import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.ts
 import { WishSectionList, useWishSections } from '../shared/ui/WishList.tsx';
 import type { SectionId, WishSection } from '../shared/wishSections.ts';
 import { useBatch } from '../shared/useBatch.ts';
-import { PlaceOpenBody, useRevealOpen } from '../shared/ui/PlaceOpen.tsx';
 
 export type ListSource = 'explore' | 'wish';
 
 /** 右欄的捲動容器 */
 const SCROLLER = '.side-body';
 
-/** 開詳情（「詳細資料」、想去列的最新留言）：彈窗蓋在地圖右側、貼著右欄（§13.3 第 1 點），選中（openDetail 會選）、地圖照移動規則（tab＝一打開就選的分頁，例如最新留言開留言分頁） */
+/** 點清單的一列（或想去列的最新留言）：開詳情彈窗，蓋在地圖右側、貼著右欄（§13.3 第 1 點）；已經開著就原地換內容、不記「‹」（T83）。
+ *  選中（openDetail 會選）、地圖照移動規則；tab＝一打開就選的分頁（最新留言開留言分頁） */
 function open(id: string, tab?: DetailTabId) {
   const s = appStore.getState();
-  s.openDetail(id, s.mode === 'wish' ? 'wish' : 'explore', tab, 'map');
-  commands.focus(id);
-}
-
-/** 點清單的一列：原地展開、選中（地圖的水滴，照移動規則）；已經展開的再點一次收起、取消選中 */
-function toggleOpen(id: string, openId: string | null, setOpenId: (id: string | null) => void) {
-  const s = appStore.getState();
-  if (openId === id) {
-    setOpenId(null);
-    s.select(null);
-    return;
-  }
-  setOpenId(id);
-  s.select(id);
+  s.openDetail(id, s.mode === 'wish' ? 'wish' : 'explore', tab, 'map', true);
   commands.focus(id);
 }
 
@@ -74,7 +61,7 @@ const BATCH = 60;
  * 探索的一列（區段裡、搜尋和 AI 結果集）；想去的列在 shared/ui/WishList。
  * memo：選中、地圖上指到一個點時，只重畫有變的那一兩列。props 都要是穩定的值（statusOf、onToggle 不能每次換）
  */
-const Item = memo(function Item({ place, rank, hot, statusOf, isOpen, onToggle, aiNote, letter }: { place: Place; rank: number; hot: boolean; statusOf: (id: string) => DayStatus; isOpen: boolean; onToggle: (id: string) => void; aiNote?: string; letter?: string }) {
+const Item = memo(function Item({ place, rank, hot, statusOf, selected, aiNote, letter }: { place: Place; rank: number; hot: boolean; statusOf: (id: string) => DayStatus; selected: boolean; aiNote?: string; letter?: string }) {
   return (
     <PlaceRow
       place={place}
@@ -82,13 +69,12 @@ const Item = memo(function Item({ place, rank, hot, statusOf, isOpen, onToggle, 
       rank={rank}
       hot={hot}
       testId="explore-item"
-      onOpen={() => onToggle(place.id)}
-      open={isOpen}
-      below={<PlaceOpenBody place={place} onDetail={() => open(place.id)} onAsk={() => askPlace(place.id)} />}
+      onOpen={() => open(place.id)}
+      selected={selected}
       aiNote={aiNote}
       letter={letter}
       // 拖到左邊的聊天室＝問 AI
-      rootProps={{ ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' }}
+      rootProps={{ ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' }}
     />
   );
 });
@@ -152,10 +138,12 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const [inView, setInView] = useState(false);
   // 沒開「只列地圖畫面裡的」就不看地圖範圍：移動地圖時整個清單不用重畫
   const bounds = useApp((s) => (inView ? (s.view?.bounds ?? null) : null));
-  // 標出的列：選中的點、地圖上指到的點
+  // 標出的列：詳情彈窗開著的那個（selected；revealInExplore 捲到的也是，直到選了別的），地圖上指到的點（hot）
+  const detailId = useApp((s) => s.detailId);
   const selectedId = useApp((s) => s.selectedId);
-  const mapHovered = useApp((s) => (s.hoverFromMap ? s.hoveredId : null));
-  const hotId = mapHovered ?? selectedId ?? null;
+  const [revealedId, setRevealedId] = useState<string | null>(null);
+  const markId = detailId ?? (revealedId && revealedId === selectedId ? revealedId : null);
+  const hotId = useApp((s) => (s.hoverFromMap ? s.hoveredId : null));
   const target = useApp((s) => s.exploreTarget);
   const openIds = useApp((s) => s.sectionsOpen[source]);
   // 排序鈕拿掉了（§35.3）：探索固定推薦順序；想去「想去多的排前面」（還沒排那段）
@@ -164,16 +152,6 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   useScrollMemo(ref, source);
   const statusOf = useDayStatus();
   const ownsEmpty = useSuggestOwnsEmpty(query);
-  // 原地展開的那列（一次一列；換分頁時 ExplorePanel 換一個，自然收起）
-  const [openId, setOpenId] = useState<string | null>(null);
-  const hold = useRevealOpen(ref, openId);
-  // 給列的是同一個函式（memo 才有用），裡面讀最新的 openId
-  const latest = useRef({ hold, openId });
-  latest.current = { hold, openId };
-  const toggle = useCallback((id: string) => {
-    latest.current.hold(id);
-    toggleOpen(id, latest.current.openId, setOpenId);
-  }, []);
 
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(query);
@@ -244,9 +222,14 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   useEffect(() => {
     if (waiting) revealBatch(targetIndex);
   }, [waiting, targetIndex, revealBatch]);
-  // 捲到那列（清單可能很長，平滑捲動會在半路被照片載入打斷，直接跳）；區段展開、畫好了才捲
+  // 捲到那列（清單可能很長，平滑捲動會在半路被照片載入打斷，直接跳）；區段展開、畫好了才捲。捲到的那列標選中（T83：不展開）
   useEffect(() => {
     if (!scrollTo || waiting) return;
+    if (!appStore.getState().detailId) {
+      appStore.getState().select(scrollTo.id);
+      setRevealedId(scrollTo.id);
+      commands.focus(scrollTo.id);
+    }
     let id = requestAnimationFrame(() => {
       id = requestAnimationFrame(() => ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(scrollTo.id)}"]`)?.scrollIntoView({ block: 'center' }));
     });
@@ -287,8 +270,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const undo = useLensUndo((s) => s.undo);
   const onToggleSection = useCallback((id: string) => appStore.getState().toggleSection(id, source), [source]);
   const renderRow = useCallback(
-    (p: Place, i: number) => <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} isOpen={openId === p.id} onToggle={toggle} />,
-    [hotId, statusOf, openId, toggle],
+    (p: Place, i: number) => <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} selected={p.id === markId} />,
+    [hotId, statusOf, markId],
   );
   const conds = <FilterConds model={model} count={list.length} />;
   const applyAndReset = (f: Filter, q: string) => {
@@ -340,10 +323,8 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
                 places={list}
                 openIds={openIds as SectionId[]}
                 onToggle={onToggleSection}
-                onOpen={toggle}
-                openId={openId}
-                onDetail={(id) => open(id)}
-                onAsk={askPlace}
+                onOpen={open}
+                selectedId={markId}
                 onOpenComments={(id) => open(id, 'comments')}
                 hotId={hotId}
                 scroller={SCROLLER}
@@ -379,7 +360,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
             <ol className="ex-items">
               {shownList.map((p, i) => (
                 <li key={p.id}>
-                  <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} isOpen={openId === p.id} onToggle={toggle} {...aiProps(p.id)} />
+                  <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} selected={p.id === markId} {...aiProps(p.id)} />
                 </li>
               ))}
             </ol>

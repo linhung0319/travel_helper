@@ -216,7 +216,7 @@ T15m 先用假後端把畫面做出來，T15 換成呼叫 Worker 的實作（`ba
   - 大小（660 筆，gzip／br）：全部 937／841 KB；清單層 229／220 KB；詳情層 767／692 KB。照 `type, id` 排才有這個數字（照 `id` 排詳情層是 860 KB）。
   - `web/test/placeLayers.test.ts`：清單層和完整資料各算一次，引擎、標章、篩選、AI 搜尋、預約清單的結果要一樣；少讀欄位不會報錯，所以靠這個抓。
 - **什麼時候讀**（`dataStore.ts`）：啟動讀清單層；詳情層用到才讀（T47，以前是閒置時一次讀全部 597 個、約 770 KB）：`ensureDetails(ids)` 只讀那幾個點（同一輪要的併成一個請求，讀過的不再讀），`GET /api/places/details?ids=`，一次最多 50 個；匯出行程才讀全部（不給 ids）。詳情層放在 `dataStore.details`，不換 `places`：不然詳情一到，行程要整份重算、清單全部重畫。
-- **`place.raw` 只有清單層**。要完整欄位用 `fullPlace(state, id)`（hooks 的 `useFullPlace`）：清單層加詳情層，再用和 Worker 同一份規則套修改。用到的地方：`PlaceDetail`（分頁內容還沒到放 `DetailPending` 骨架，讀不到有重試）、卡片展開的介紹（`PlaceOpenBody`、`TripCard` 的 `Expand`）、地圖小卡（`PreviewCard`）、AI。
+- **`place.raw` 只有清單層**。要完整欄位用 `fullPlace(state, id)`（hooks 的 `useFullPlace`）：清單層加詳情層，再用和 Worker 同一份規則套修改。用到的地方：`PlaceDetail`（分頁內容還沒到放 `DetailPending` 骨架，讀不到有重試）、卡片展開的介紹（`TripCard` 的 `Expand`；探索、想去的 `PlaceOpenBody` T83 刪了）、地圖小卡（`PreviewCard`）、AI。
 - **AI**：`search_places`（回傳的那幾個）、`get_place`、`propose_place_edit`、對話的脈絡晶片（地點的晶片）都先讀用到的點的詳情層（`AiDeps.details(ids)`）；讀不到回明確的錯誤，不回 null（null 是「資料沒寫」）。`get_place` 多一個分區 `more`（`notes`、`extra`）。
 - **`extra`、`notes`**：詳情的「其他資訊」（`DetailPanel` 的 `ExtraSection`）和 `get_place` 看得到。`extra` 用白名單：`placeLayers.ts` 的 `EXTRA_LABELS`（給人看的鍵和名稱）、`EXTRA_HIDDEN`（研究用的 `conflicts`、`rakutenVacancy`、`dossierFacts`，座標和來源比對，內部欄位；不進詳情層，只留在 `places_base.data`）。新的鍵兩邊都沒有時 `npm test` 失敗。`dinnerAccessNote` 的工作註記在算詳情層時去掉。
 - **啟動**：`GET /api/bootstrap` 一次拿齊共用資料（一個 `db.batch`，取代 11 支 API，也少 10 次登入查詢），和清單層同時開始讀；兩個都到才算好（`status: 'ready'`），之前是 `#boot` 骨架。不選「畫面先出來、共用資料後到」：每個畫面都要處理沒有 `me`、行程、票的狀態，違反「畫面的程式不改」，時間軸也會先空後有。
