@@ -123,8 +123,6 @@ export function useFeedModel(): FilterModel {
     filter,
     query: feed.query,
     setQuery: (query) => mobileStore.getState().setFeed({ query }),
-    sort: 'recommend',
-    setSort: () => {},
     inView: false,
     setInView: () => {},
     pick: (key: FilterKey, value: string) => {
@@ -150,8 +148,6 @@ export function useWishModel(theme: Theme): FilterModel {
     filter,
     query: wish.query,
     setQuery: (query) => mobileStore.getState().setWish({ query }),
-    sort: wish.sort,
-    setSort: (sort) => mobileStore.getState().setWish({ sort }),
     inView: false,
     setInView: () => {},
     pick: (key: FilterKey, value: string) => {

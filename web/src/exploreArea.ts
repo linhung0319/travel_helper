@@ -1,7 +1,7 @@
 // 換探索、想去的目前地區（地區列、子地區列、概覽卡、地圖的地區標籤共用，T42、T43）。
 // T69（interaction-design §33）：「看哪裡」（地區、子地區）和「看什麼」（篩選、搜尋）分開——換地區、子地區只換範圍，篩選留著。
 // T78（§35.2）：主題（玩／吃／住）就是 filter.types 唯一的那個（setTheme）；換區時主題、篩選、展開的區段都帶著走，子地區清掉；
-// 換子地區、換主題、回概覽時區段全部收合；換區、換子地區、換主題右欄捲到頂。不再有書架的兩級退（rescopeFilter 不用了）。
+// 換子地區、換主題、回概覽時區段全部收合；換區、換子地區、換主題右欄捲到頂。不再有書架的兩級退。
 // 探索的「概覽」只有一層：有篩選時點它會離開篩選，留一份在 lensUndo，畫面出「復原」（復原就回到剛才的地區和篩選）。想去的「全部」也有區段，不離開。
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
@@ -11,7 +11,7 @@ import { dataStore } from './dataStore.ts';
 import { initialExtent } from './lib/areas.ts';
 import { EMPTY_FILTER, isFilterEmpty, type Filter } from './lib/filter.ts';
 import { overviewStore } from './shared/overviewStore.ts';
-import { backLabel, currentArea, themeOf, type Theme } from './lib/shelves.ts';
+import { currentArea, themeOf, type Theme } from './lib/shelves.ts';
 import { themeFilter } from './shared/filterOptions.ts';
 import { placeLabel } from './lib/listConditions.ts';
 
@@ -110,9 +110,9 @@ export function undoLeave() {
   u?.restore();
 }
 
-/** 離開篩選的那句（「一定要去 · 鳥羽」）：篩選是書架名或「自己篩選」，只有搜尋寫「「海女」」 */
+/** 離開篩選的那句（「自己篩選 · 鳥羽」）：有面板的條件寫「自己篩選」，只有搜尋寫「「海女」」 */
 export function lensLabel(filter: Filter, query: string, areaNames: Parameters<typeof placeLabel>[1]): string {
-  const what = hasLens(filter, '') ? backLabel(filter) : `「${query.trim()}」`;
+  const what = hasLens(filter, '') ? '自己篩選' : `「${query.trim()}」`;
   return [what, placeLabel(filter, areaNames)].filter(Boolean).join(' · ');
 }
 

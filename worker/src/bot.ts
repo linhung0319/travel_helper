@@ -217,7 +217,7 @@ export function helpText(base: string | undefined, during = false): string {
   }
   return [
     '2/2～2/13 伊勢志摩和大阪的景點、民宿、餐廳都整理在網站上，打開網址就能看：',
-    '① 在「探索」喜歡的按 ♡',
+    '① 在「探索」選地區和玩、吃、住，喜歡的按 ♡ 我想去',
     '② 在「行程」看每天排什麼',
     '③ 在 💬 留言討論',
     '④ 不知道從哪開始就問 AI',

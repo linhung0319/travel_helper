@@ -29,7 +29,7 @@ export interface Filter {
   kids: KidsFilter[];
   /** 怎麼去（T67）：車站旁（餐廳的 transit）、不用搭車（accessEase ≥ 4；餐廳沒有這個評分，看車站旁或車站走路 10 分內） */
   reach: ReachFilter[];
-  /** 住法（T66、T67、T69）：包棟一棟住全團、包棟要和別處分住、旅館飯店、民宿；fits、apart 是書架「住在這裡」的兩級（面板沒有）。有值時只剩住宿 */
+  /** 住法（T66、T67、T69）：包棟一棟住全團、包棟要和別處分住、旅館飯店、民宿；fits、apart 給 AI（面板、區段沒有）。有值時只剩住宿 */
   stay: StayFilter[];
   /** 住宿的晚餐（T67）：一泊二食、不含但走路有店、要開車找；有值時只剩住宿 */
   dinner: DinnerFilter[];
@@ -93,8 +93,6 @@ export function weatherMatches(w: Weather | null, values: readonly string[]): bo
 export const WHO_VALUES = ['together', 'split', 'apart', 'sub', 'all'] as const;
 export type WhoFilter = (typeof WHO_VALUES)[number];
 export const WHO_LABELS: Record<WhoFilter, string> = { together: '15 人能坐一起', split: '15 人要分桌', apart: '15 人坐不下、還沒查', sub: '分組 4～6 人', all: '全員 15 人' };
-/** 面板上的誰吃 */
-export const WHO_PANEL: readonly WhoFilter[] = ['all', 'sub'];
 
 /** 餐廳的 kids.allowed（yes、no、age-limit、unknown）；沒寫是 null（當可以） */
 export function placeKidsAllowed(p: Place): string | null {
@@ -109,7 +107,7 @@ export function kidsWelcome(p: Place): boolean {
 }
 
 /**
- * 全員 15 人能一起吃（書架「全員吃飯」的第一級，interaction-design §32）：fit15 是 yes 或 split（一家容納得下），
+ * 全員 15 人能一起吃（舊的「全員 15 人」，AI 的 who all，interaction-design §32）：fit15 是 yes 或 split（一家容納得下），
  * 而且不是不收小孩、有年齡限制的店（kids.allowed 不明的當可以）
  */
 export function eatsTogether(p: Place): boolean {
@@ -159,16 +157,14 @@ export function matchesReach(p: Place, v: ReachFilter): boolean {
 // ---- 住宿 ----
 
 /**
- * 住法（T66、T67、T69）。面板四顆：包棟・一棟住全團（能包棟、maxGuests ≥ 15）、包棟・要和別處分住（能包棟、住不下或人數不明；多半那裡只有一棟，要另外找一處，T69 從「要兩棟」改名）、
+ * 住法（T66、T67、T69）。四種（T75 起是「住」的四個區段，§35.4）：包棟・一棟住全團（能包棟、maxGuests ≥ 15）、包棟・要和別處分住（能包棟、住不下或人數不明；多半那裡只有一棟，要另外找一處，T69 從「要兩棟」改名）、
  * 旅館・飯店（kind 是 hotel、ryokan、other，分房住）、民宿（其他：不能包棟的 minshuku、rental-house，T69 補上，之前篩不到）。
- * 書架「住在這裡」的兩級（面板沒有）：fits 一間住得下全團（包棟一棟，或旅館飯店 5 間房以上）、apart 其他（要分開住）
+ * 另外兩個值給 AI（面板、區段沒有）：fits 一間住得下全團（包棟一棟，或旅館飯店 5 間房以上）、apart 其他（要分開住）
  */
 export const STAY_VALUES = ['whole', 'multi', 'hotel', 'other', 'fits', 'apart'] as const;
 export type StayFilter = (typeof STAY_VALUES)[number];
 // T75（§35.4）改字：包棟・全團一棟、包棟・要分住、旅館飯店
 export const STAY_LABELS: Record<StayFilter, string> = { whole: '包棟・全團一棟', multi: '包棟・要分住', hotel: '旅館飯店', other: '民宿', fits: '一間住得下全團', apart: '要分開住' };
-/** 面板上的住法 */
-export const STAY_PANEL: readonly StayFilter[] = ['whole', 'multi', 'hotel', 'other'];
 /** 旅館、飯店幾間房以上算住得下全團（👤 定：不補 maxGuests，用房間數判） */
 export const HOTEL_ROOMS_GROUP = 5;
 /** 算旅館、飯店的 kind（rental-house、minshuku 不算） */
@@ -184,7 +180,7 @@ export function placeStayKind(p: Place): StayKind | null {
   return 'other';
 }
 
-/** 一間住得下全團（書架「住在這裡」的第一級）：包棟一棟，或旅館飯店 5 間房以上 */
+/** 一間住得下全團（AI 的 stay fits）：包棟一棟，或旅館飯店 5 間房以上 */
 export function fitsWholeGroup(p: Place): boolean {
   const kind = placeStayKind(p);
   if (kind === 'whole') return true;

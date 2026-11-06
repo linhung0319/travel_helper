@@ -2,16 +2,12 @@
 // 網頁版右欄（ExplorePanel）、手機版（ExploreFeed、WishlistPage）、底部分頁的數字、「我」的留言數都用這裡。
 // 排序、篩選、每一類的數量是 lib/explore.ts 的純函式；這裡只負責從 store 拿資料、記住結果。
 
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useApp, useData, useShared } from '../hooks.ts';
 import { likedPlaces } from '../lib/wishlist.ts';
-import { isUserPlace } from '../lib/addPlace/view.ts';
-import { useWishPrefs, wishPrefs } from './wishPrefs.ts';
 import { voteCounts } from '../sharedStore.ts';
 import { explorePlaces, typeCounts, type ExploreSort, type ExploreType } from '../lib/explore.ts';
 import type { Filter } from '../lib/filter.ts';
-import { scopeCounts } from '../lib/shelves.ts';
-import { wishSections, type SectionId } from './wishSections.ts';
 import type { Bbox, Place } from '../data/types.ts';
 
 /** 有人 ❤️ 的點（想去分頁的內容）；地圖、分頁的數字也用這個 */
@@ -63,61 +59,19 @@ export function usePlaceList(source: 'explore' | 'wish', filter: Filter, query: 
   return { pool, list, counts };
 }
 
-/** AI 挑的（規格 §3.1）：只在探索；再篩選、搜尋是取交集；有結果集時預設照 AI 的順序，使用者可以自己換 */
+/** AI 挑的（規格 §3.1）：只在探索；再篩選、搜尋是取交集；照 AI 的順序（T79 拿掉排序鈕，不能換） */
 export function useAiPicked(all: Place[], on: boolean) {
   const aiResult = useApp((s) => (on ? s.aiResult : null));
-  const [sortByAi, setSortByAi] = useState(true);
-  useEffect(() => setSortByAi(true), [aiResult]);
   const list = useMemo(() => {
     if (!aiResult) return all;
-    const picked = all.filter((p) => aiResult.ids.includes(p.id));
-    return sortByAi ? picked.sort((a, b) => aiResult.ids.indexOf(a.id) - aiResult.ids.indexOf(b.id)) : picked;
-  }, [all, aiResult, sortByAi]);
+    return all.filter((p) => aiResult.ids.includes(p.id)).sort((a, b) => aiResult.ids.indexOf(a.id) - aiResult.ids.indexOf(b.id));
+  }, [all, aiResult]);
   const aiProps = (id: string) => (aiResult ? { aiNote: aiResult.notes[id], letter: aiResult.lettered ? String.fromCharCode(65 + aiResult.ids.indexOf(id)) : undefined } : {});
-  return { aiResult, list, sortByAi, setSortByAi, aiProps };
+  return { aiResult, list, aiProps };
 }
 
 /** 探索的清單：全部的點（車站不列） */
 export const useExploreList = (filter: Filter, query: string, sort: ExploreSort, bounds: Bbox | null = null) => usePlaceList('explore', filter, query, sort, bounds);
-
-/** 想去的「只看自己加的 N」（§17.7）：T69 從地區列搬到「現在看」的條件列，是篩選、不是地區；N 是現在的範圍和條件裡有幾個，0 個（又沒開）時不出現 */
-export interface WishUserChip {
-  label: string;
-  on: boolean;
-  testId: string;
-  onClick(): void;
-}
-
-export function useWishUserChip(list: Place[]): { list: Place[]; chip: WishUserChip | undefined } {
-  const on = useWishPrefs((s) => s.userOnly);
-  const mine = useMemo(() => list.filter(isUserPlace), [list]);
-  const shown = on ? mine : list;
-  const chip = mine.length > 0 || on ? { label: `只看自己加的 ${mine.length}`, on, testId: 'wish-type-user', onClick: () => wishPrefs.getState().setUserOnly(!on) } : undefined;
-  return { list: shown, chip };
-}
-
-/**
- * 地區分頁、子地區晶片的小數字（T69）：有「看什麼」（active）時，同一個篩選在每個地區、子地區有幾個；沒有是 null（不畫數字）。
- * pool：探索是全部的點；想去是有人 ❤️ 的（進了某一排時只算那一排的，useSectionPool）
- */
-export function useScopeCounts(pool: Place[], filter: Filter, query: string, active: boolean): Map<string, number> | null {
-  const areas = useData((s) => s.areas);
-  const places = useData((s) => s.places);
-  return useMemo(() => (active ? scopeCounts(pool, filter, query, areas, places) : null), [active, pool, filter, query, areas, places]);
-}
-
-/** 想去進了某一排（section）時，只留那一排的點（數字照那一排算）；三排那層照舊 */
-export function useSectionPool(pool: Place[], section: SectionId | null, userOnly: boolean): Place[] {
-  const candidates = useShared((s) => s.candidates);
-  const itinerary = useData((s) => s.itinerary);
-  const likes = useLikeCount();
-  return useMemo(() => {
-    const mine = userOnly ? pool.filter(isUserPlace) : pool;
-    if (!section) return mine;
-    const ids = new Set(wishSections(mine.map((p) => p.id), candidates, itinerary, likes).find((x) => x.id === section)?.groups.flatMap((g) => g.ids) ?? []);
-    return mine.filter((p) => ids.has(p.id));
-  }, [pool, section, userOnly, candidates, itinerary, likes]);
-}
 
 /** 想去的清單：有人 ❤️ 的點 */
 export const useWishList = (filter: Filter, query: string, sort: ExploreSort, bounds: Bbox | null = null) => usePlaceList('wish', filter, query, sort, bounds);

@@ -14,7 +14,7 @@ const POINTS: { pic: ReactNode; text: ReactNode }[] = [
     ),
     text: (
       <>
-        在「探索」喜歡的按 <Icon name="heart" size={16} />
+        在「探索」選地區和玩、吃、住，喜歡的按 <Icon name="heart" size={16} /> 我想去
       </>
     ),
   },

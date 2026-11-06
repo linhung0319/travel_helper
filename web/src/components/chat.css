@@ -776,28 +776,6 @@ body.dragging-plan .chat-column.drop-over .chat-panel {
   font-size: 0.8125rem;
 }
 
-.fb-listhead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 6px;
-  font-size: 0.8125rem;
-  color: var(--ink-2);
-}
-
-.fb-ask {
-  border: 0;
-  background: none;
-  padding: 2px 4px;
-  color: var(--indigo);
-  font: inherit;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-}
-
 .ai-note {
   display: flex;
   gap: 3px;

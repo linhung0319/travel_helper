@@ -2,16 +2,13 @@
 // - 主題（玩、吃、住）就是 filter.types 的那一個；主題列的數字是那一類在目前地區（子地區）的總數，不看篩選。
 // - 每個主題的區段把那一類切完、加起來等於總數（「玩」的下雨也行例外，和前兩排重疊）。區段的條件就是 Filter 的值，
 //   和自己在面板加的條件「而且」：區段裡的列＝符合篩選（含主題）的點裡、再符合區段條件的。
-// - 沒有兩級退（§32 的舊做法在 shelvesLegacy.ts，舊畫面接上新的區段後 T79 刪）。
+// - 沒有兩級退（§32 的舊書架 T79 刪了）。
 // AI 問同樣的事（「一定要去」「全員吃飯」「包棟・全團一棟」「下雨也行」）時也用這幾組條件（set_filter 的欄位一樣）。
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Bbox, Place } from '../data/types.ts';
 import { EMPTY_FILTER, RAIN_OK, TYPE_LABELS, isFilterEmpty, matchesFilter, type Filter, type FilterKey } from './filter.ts';
 import { explorePlaces } from './explore.ts';
-
-// 舊的書架、清單層（T77、T78 之前舊畫面還在用）
-export * from './shelvesLegacy.ts';
 
 /** 主題：玩、吃、住（＝filter.types 的那一個） */
 export const THEMES = ['spot', 'restaurant', 'lodging'] as const;
@@ -152,7 +149,7 @@ export function scopeCountsByTheme(pool: Place[], filter: Filter, query: string,
 }
 
 /**
- * 探索這時畫哪一種（T75，取代 shelvesLegacy 的 exploreStage）：
+ * 探索這時畫哪一種（T75，取代舊的 exploreStage）：
  * - list：搜尋、AI 的結果集（一份平的清單），或 AI 一次給了好幾區、沒給地區卻有條件；
  * - area：選了一區（主題、區段、篩選都在這一層，書架不再進清單）；
  * - overview：沒選地區、沒有條件（types 可以有：主題跟著回概覽）。

@@ -1,6 +1,5 @@
 // 手機版自己的畫面狀態（第六輪 §3、§6）：現在在哪個分頁、行程面板停在哪、行程選到的卡（focusItem，不改面板高度）、原地展開的卡（expanded、expandItem）、編輯中打開的「⋯」動作面板（actions）、
 // 整頁詳情、聊天（半屏、拉滿、清單或加地點面板、從聊天跳來的、回覆好了的小點）、整頁的預約、探索和想去的篩選、搜尋、主題（feed.type／wish.type）、展開的區段（feedOpen／wishOpen，T77）。
-// feed.view、wish 的排序、shared/wishPrefs.ts 的清單／照片牆和段落偏好在 T77 之後不讀了（欄位留著，T79 清）。
 // 不放進 store.ts（地圖指令那層）；網頁版用不到。
 // 返回鍵（interaction-design §16.2）：每一層（整頁、加地點、討論彈窗、半屏、對話清單或加地點面板、從聊天跳走）都佔一筆 history，syncHistory 照畫面狀態對齊筆數；手機的返回鍵一次關最上面一層。LINE 裡沒有 history 就離開網站了。
 // 整頁的東西一次只有一層（§3.0）：開詳情會關掉預約，開預約會關掉詳情；互換時共用同一筆 history。
@@ -49,7 +48,7 @@ function withAreaOf<T extends { area: string | null; quick: string[] }>(target: 
   return { ...target, area: from.area, quick: [...target.quick.filter((t) => !isRegionToken(t)), ...regions] };
 }
 
-/** 想去分頁的設定：哪一類（null＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序。清單或照片牆、三段的收合在 shared/wishPrefs.ts（網頁版也用） */
+/** 想去分頁的設定：哪一類（'all'＝還沒選，打開時挑有東西的那類）、地區、面板選的條件（quick，寫法同 Feed.quick）、搜尋、排序（固定想去多的排前面）。展開的段在 wishOpen */
 export interface WishView {
   type: ExploreType | 'all';
   area: string | null;
@@ -205,25 +204,6 @@ export function setMobileActive(active: boolean) {
   syncHistory();
 }
 
-const FEED_VIEW_KEY = 'travel-helper:feedView';
-
-/** 探索上次的顯示方式（照片牆或清單）；讀不到就是照片牆 */
-function loadFeedView(): Feed['view'] {
-  try {
-    return localStorage.getItem(FEED_VIEW_KEY) === 'list' ? 'list' : 'photo';
-  } catch {
-    return 'photo';
-  }
-}
-
-function saveFeedView(v: Feed['view']) {
-  try {
-    localStorage.setItem(FEED_VIEW_KEY, v);
-  } catch {
-    // 私密視窗等存不了：只是下次回到預設
-  }
-}
-
 export const mobileStore = createStore<MobileStore>()((set, get) => ({
   // 打開網站先看探索（T39，👤 決定；之前是行程）
   tab: 'explore',
@@ -239,7 +219,7 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
   expanded: null,
   actions: null,
   page: null,
-  feed: { ...EMPTY_FEED, view: loadFeedView() },
+  feed: EMPTY_FEED,
   wish: { type: 'all', area: null, quick: [], query: '', sort: 'likes' },
   feedOpen: [],
   wishOpen: [],
@@ -281,7 +261,6 @@ export const mobileStore = createStore<MobileStore>()((set, get) => ({
     else get().setTab('ai');
   },
   setFeed: (patch) => {
-    if (patch.view) saveFeedView(patch.view);
     const feed = { ...get().feed, ...patch };
     set({ feed, wish: withAreaOf(get().wish, feed) });
   },

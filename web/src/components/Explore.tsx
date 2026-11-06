@@ -178,7 +178,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(query);
   const { pool, list: every } = usePlaceList(source, filter, listQuery, sort, bounds);
-  const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(every, !wish);
+  const { aiResult, list, aiProps } = useAiPicked(every, !wish);
   // 探索這時畫哪一種；想去一律是區段
   const stage = wish ? 'area' : exploreLayer(filter, listQuery, !!aiResult);
   const area = currentArea(filter);
@@ -257,8 +257,6 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     filter,
     query,
     setQuery: (q) => appStore.getState().setQuery(q),
-    sort,
-    setSort: () => {},
     inView,
     setInView,
     pick: pickOption,
@@ -270,7 +268,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     },
     ...(wish ? {} : { onAdd: () => addPlaceStore.getState().openEntry() }),
     onAsk: () => void askList(source, filter, query, list.length),
-    ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
+    ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, onClear: () => commands.clearResult() } } : {}),
     // 主題列、面板的組：選了一區（想去一律）；在一區裡搜尋也是（搜的是那個主題）
     theme: aiResult ? null : wish || area ? theme : themeOf(filter),
     setTheme,

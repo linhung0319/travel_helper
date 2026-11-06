@@ -1,5 +1,5 @@
 // 小卡片的關鍵標章（interaction-design §4：1～2 個，例如「15 人能坐一起」「需預約」「週二休」）。
-// 餐廳的 15 人、住宿的住法和書架小卡的第二行同一個寫法（T66，interaction-design §32）。
+// 餐廳的 15 人、住宿的住法和列的第二行同一個寫法（T66，interaction-design §32、§35.7）。
 
 import { closedDaysLabel } from './hours.ts';
 import type { Place } from '../data/types.ts';
@@ -46,7 +46,7 @@ export function stayCaption(p: Place): Badge | null {
   return { label: `${kindLabel} · ${rooms === null ? '房數不明' : `${rooms} 間房`}`, tone: fitsWholeGroup(p) ? 'good' : 'info' };
 }
 
-/** 住宿的餐食那段（書架小卡接在住法後面）：一泊二食、可選、含早餐、不含餐；沒寫是 null */
+/** 住宿的餐食那段（接在住法後面）：一泊二食、可選、含早餐、不含餐；沒寫是 null */
 export function mealsCaption(p: Place): string | null {
   const meals = p.raw.meals;
   if (meals === 'dinner+breakfast') return '一泊二食';

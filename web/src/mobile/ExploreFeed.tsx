@@ -94,7 +94,7 @@ export function ExploreFeed() {
   const listFilter = useMemo(() => (listQuery.trim() ? { ...filter, types: [] } : filter), [filter, listQuery]);
   const { pool, list: all } = useExploreList(listFilter, listQuery, 'recommend');
   // AI 挑的（規格 §3.1）：取交集、照 AI 的順序、列多一行理由
-  const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, true);
+  const { aiResult, list, aiProps } = useAiPicked(all, true);
   const back = () => mobileStore.getState().returnToChat();
   const statusOf = useDayStatus();
   const ownsEmpty = useSuggestOwnsEmpty(feed.query);
@@ -130,7 +130,7 @@ export function ExploreFeed() {
           onAsk: () => void askList('explore', filter, feed.query, list.length),
           onAdd: () => addPlaceStore.getState().openEntry(),
           ...(fromChat || aiResult ? { onBack: back } : {}),
-          ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
+          ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, onClear: () => commands.clearResult() } } : {}),
         }}
         subRow={feed.area && stage === 'area' ? <RegionChips areaId={feed.area} regionId={regionId} onPick={pickFeedRegion} counts={regionCounts} /> : undefined}
       />

@@ -401,11 +401,7 @@
   padding-bottom: 16px;
 }
 
-/* 照片牆（shared/ui PlaceWall）和清單（PlaceRow）的外框 */
-.m-feed-wall {
-  padding: 8px 8px 0;
-}
-
+/* 列（PlaceRow）的外框 */
 .m-feed-list {
   padding: 0 16px;
 }
@@ -425,16 +421,6 @@
   right: 2px;
   bottom: 2px;
   display: flex;
-}
-
-.m-vote-count {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--fg);
-}
-
-.m-vote-count:empty {
-  display: none;
 }
 
 /* ---------- 想去 ---------- */

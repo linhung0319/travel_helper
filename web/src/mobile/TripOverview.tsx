@@ -6,17 +6,17 @@
 
 import { Button } from '../shared/ui/Button.tsx';
 import { DiscussButton } from '../shared/ui/DiscussButton.tsx';
-import { scrollToShelf, TripSkeleton, type SkeletonActions } from '../shared/ui/TripSkeleton.tsx';
+import { TripSkeleton, type SkeletonActions } from '../shared/ui/TripSkeleton.tsx';
 import { askNightLodging, askTrip } from './mobileAi.ts';
 import { mobileStore } from './mobileStore.ts';
-import { pickFeedArea } from './FeedFilters.tsx';
+import { pickFeedArea, setFeedTheme } from './FeedFilters.tsx';
 
-/** 「未選住宿」的捷徑（T54）：到探索分頁、選那區、捲到住宿那排；問 AI 開半屏聊天 */
+/** 「未選住宿」的捷徑（T54）：到探索分頁、選那區的「住」（T79，區段收合、捲到頂，同網頁）；問 AI 開半屏聊天 */
 const MOBILE_SKELETON: SkeletonActions = {
   lodgingShelf: (area) => {
     pickFeedArea(area);
+    setFeedTheme('lodging');
     mobileStore.getState().setTab('explore');
-    scrollToShelf('stay');
   },
   askLodging: askNightLodging,
 };

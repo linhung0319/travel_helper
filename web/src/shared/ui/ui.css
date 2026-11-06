@@ -611,135 +611,6 @@
   cursor: pointer;
 }
 
-/* 「現在看」的條件列（T64）：每個條件一顆、都有 ✕；藍底是書架帶來的，白底是自己加的；最後虛線的「＋ 條件」打開面板 */
-.fb-conds {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 0 4px;
-}
-
-.fb-cond {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  min-height: 28px;
-  padding: 0 7px 0 10px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink);
-  font: inherit;
-  font-size: 0.8125rem;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.fb-cond .ui-icon,
-.fb-cond svg {
-  color: var(--ink-3);
-}
-
-.fb-cond.preset {
-  border-color: var(--indigo-line);
-  background: var(--indigo-wash);
-  color: var(--indigo);
-  font-weight: 700;
-}
-
-.fb-cond:hover {
-  border-color: var(--indigo);
-}
-
-/* 誰吃、住法晶片右邊的分布小字（T67） */
-.fb-cond-note {
-  align-self: center;
-  white-space: nowrap;
-  font-size: 0.75rem;
-  color: var(--ink-2);
-}
-
-.fb-cond-add {
-  padding: 0 10px;
-  border-style: dashed;
-  border-color: var(--indigo-line);
-  color: var(--indigo);
-  font-weight: 700;
-}
-
-.fb-desktop .fb-conds {
-  padding: 8px 0 0;
-}
-
-/* 排序選單 */
-.fb-sort {
-  position: relative;
-  flex: 0 0 auto;
-}
-
-.fb-menu {
-  position: absolute;
-  right: 0;
-  top: calc(100% + 6px);
-  z-index: 30;
-  min-width: 150px;
-  padding: 6px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--paper);
-  box-shadow: var(--shadow);
-}
-
-.fb-menu-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  min-height: var(--tap);
-  padding: 0 12px;
-  border: 0;
-  border-radius: 999px;
-  background: none;
-  color: var(--ink-2);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.fb-menu-item.on {
-  background: var(--wash);
-  color: var(--ink);
-  font-weight: 700;
-}
-
-/* 照片牆／清單切換 */
-.fb-view {
-  display: inline-flex;
-  flex: 0 0 auto;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.fb-view button {
-  display: inline-grid;
-  place-items: center;
-  width: var(--tap);
-  height: var(--tap);
-  border: 0;
-  background: var(--paper);
-  color: var(--ink-3);
-  cursor: pointer;
-}
-
-.fb-view button[aria-pressed='true'] {
-  background: var(--ink);
-  color: var(--paper);
-}
-
 /* 網頁：整列黏在右欄上面 */
 .fb-desktop {
   position: sticky;
@@ -767,7 +638,7 @@
   display: contents;
 }
 
-/* 在靛藍色帶裡（§12.4）：搜尋框白底，篩選、排序是半透明白。z-index 讓排序選單蓋得過下面的類型列 */
+/* 在靛藍色帶裡（§12.4）：搜尋框白底，圓鈕是半透明白 */
 .fb-mobile {
   position: sticky;
   top: 0;
@@ -782,22 +653,10 @@
 }
 
 .fb-mobile .fb-row > .ui-chip,
-.fb-mobile .fb-sort > .ui-chip,
 .fb-mobile .fb-tool {
   border-color: var(--on-band-line);
   background: var(--on-band-wash);
   color: var(--paper);
-}
-
-.fb-mobile .fb-row > .ui-chip.fb-filter.on::before {
-  border-color: var(--band);
-  background: var(--mustard);
-}
-
-.fb-mobile .fb-row > .ui-chip.on:not(.fb-filter) {
-  border-color: var(--paper);
-  background: var(--paper);
-  color: var(--ink);
 }
 
 .fb-below {
@@ -928,20 +787,11 @@
   font-weight: 700;
 }
 
-/* ---------- 篩選列 T69（interaction-design §33）：工具一排圓鈕、地區分頁、子地區小晶片、「看什麼」淡藍帶 ---------- */
+/* ---------- 篩選列（T69 起，T76 改版 §35.3）：工具列、地區分頁、子地區小晶片、主題列 ---------- */
 
-/* 工具列：篩選、排序、問 AI、加地點都是同樣大小的圓鈕，只放圖示（字給讀屏器、滑鼠移上去看 title） */
-.fb .fb-label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
+/* 工具列：搜尋後面同樣大小的圓鈕（地區頁是篩選；概覽是問 AI、加地點），只放圖示（字給讀屏器、滑鼠移上去看 title） */
 
 .fb-row > .ui-chip,
-.fb-sort > .ui-chip,
 .fb-tool {
   flex: 0 0 auto;
   justify-content: center;
@@ -974,25 +824,6 @@
   border-color: var(--mustard);
   background: var(--mustard-wash);
   color: var(--mustard-ink);
-}
-
-/* 有條件時篩選鈕不整顆變黑，右上一個小藍點（看什麼由下面的淡藍帶說） */
-.fb-row > .ui-chip.fb-filter.on {
-  border-color: var(--indigo-line);
-  background: var(--paper);
-  color: var(--indigo);
-}
-
-.fb-row > .ui-chip.fb-filter.on::before {
-  content: '';
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 8px;
-  height: 8px;
-  border: 1.5px solid var(--paper);
-  border-radius: 999px;
-  background: var(--indigo);
 }
 
 /* 地區＝分頁：文字加底線，概覽的底線是芥子黃；跟子地區小晶片分得出層級 */
@@ -1064,121 +895,6 @@
 .fb-subrow .ui-chip.zero {
   border-style: dashed;
   color: var(--ink-3);
-}
-
-/* 「看什麼」淡藍帶：只有照片牆／清單那層有，整條就是目前的篩選；左邊「‹ 書架 ›」像麵包屑 */
-.fb-lens {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 8px -12px 0;
-  padding: 8px 12px 10px;
-  border-top: 1px solid var(--indigo-line);
-  background: var(--indigo-wash);
-}
-
-.fb-desktop:has(.fb-lens) {
-  padding-bottom: 0;
-}
-
-.fb-lens-top {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-.fb-crumb {
-  flex: 0 0 auto;
-  min-height: 30px;
-  padding: 0 10px;
-  border: 1px solid var(--indigo-line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--indigo);
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.fb-crumb:hover {
-  border-color: var(--indigo);
-}
-
-.fb-crumb-sep {
-  flex: 0 0 auto;
-  color: var(--indigo);
-  opacity: 0.6;
-}
-
-.fb-lens-title {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--ink);
-}
-
-.fb-lens-n {
-  flex: 0 0 auto;
-  font-size: 0.8125rem;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-
-.fb-lens-end {
-  display: inline-flex;
-  margin-left: auto;
-  flex: 0 0 auto;
-}
-
-.fb-lens .fb-view {
-  border-color: var(--indigo-line);
-}
-
-.fb-lens .fb-view button {
-  width: 34px;
-  height: 30px;
-}
-
-.fb-lens-note {
-  margin: 0;
-  font-size: 0.8125rem;
-  color: var(--mustard-ink);
-}
-
-.fb-lens .fb-conds {
-  padding: 0;
-}
-
-.fb-lens .fb-cond.preset {
-  background: var(--paper);
-}
-
-.fb-lens .fb-cond-add {
-  background: transparent;
-}
-
-/* 想去的「只看自己加的 N」：開關，開了是墨色 */
-.fb-cond-toggle {
-  border-style: dashed;
-  border-color: var(--ink-3);
-  color: var(--ink-2);
-}
-
-.fb-cond-toggle.on {
-  border-style: solid;
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.fb-cond-toggle.on svg {
-  color: var(--paper);
 }
 
 /* 手機的「‹ 回 AI」：沒有帶子時自己一行 */
@@ -1290,123 +1006,11 @@
   padding: 8px 16px 16px;
 }
 
-.fs-body > * + *,
-.fs-section > * + * {
+.fs-body > * + * {
   margin-top: 14px;
 }
 
-/* 選了兩類以上時每段的標題（T67） */
-.fs-section-h {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-/* 類型的三塊大鈕（T69）：圓章、名稱、選了會多哪些問題的小字；選了的那類淡色底、外框換那類的顏色，沒選的在別類被選時變淡 */
-.fs-tiles {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.fs-tile {
-  --c: var(--t-spot);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  min-width: 0;
-  padding: 10px 6px 9px;
-  border: 1.5px solid var(--line);
-  border-radius: 14px;
-  background: var(--paper);
-  color: inherit;
-  font: inherit;
-  text-align: center;
-  cursor: pointer;
-}
-
-.fs-tile[data-type='restaurant'] {
-  --c: var(--t-food);
-}
-
-.fs-tile[data-type='lodging'] {
-  --c: var(--t-stay);
-}
-
-.fs-tile:hover {
-  border-color: color-mix(in srgb, var(--c) 45%, var(--line));
-}
-
-.fs-tile.on {
-  border-color: var(--c);
-  background: color-mix(in srgb, var(--c) 10%, var(--paper));
-}
-
-.fs-tile.off {
-  opacity: 0.55;
-}
-
-.fs-tile-name {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: 700;
-  font-size: 0.875rem;
-  white-space: nowrap;
-}
-
-.fs-tile-sub {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  font-size: 0.6875rem;
-  line-height: 1.35;
-  color: var(--ink-3);
-}
-
 /* 選了類型：那類的組左邊一條同色線，看得出這些條件只管那一類 */
-.fs-section {
-  --c: var(--t-spot);
-  padding-left: 10px;
-  border-left: 3px solid var(--c);
-}
-
-.fs-section[data-section='restaurant'] {
-  --c: var(--t-food);
-}
-
-.fs-section[data-section='lodging'] {
-  --c: var(--t-stay);
-}
-
-@media (max-width: 420px) {
-  .fs-tile-sub {
-    display: none;
-  }
-}
-
-.fs-fold-n {
-  min-width: 20px;
-  padding: 0 6px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--paper);
-  font-size: 0.75rem;
-  line-height: 20px;
-  text-align: center;
-}
-
-.fs-fold-chev {
-  color: var(--ink-3);
-  font-size: 1.125rem;
-}
 
 .fs-h {
   margin: 0 0 6px;
@@ -1419,11 +1023,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-}
-
-/* 只對別的類型有用的組（T57）：變淡，點了照樣能選 */
-.fs-group.dim {
-  opacity: 0.45;
 }
 
 /* 晶片裡的說明小字（「車站旁」的「主要車站走路 5 分內」） */
@@ -1622,16 +1221,14 @@
 }
 
 /* 自己加、已訂、待訂（T69）：名稱後面的小方標 */
-.pr-name .ui-place-tags,
-.pt-name .ui-place-tags {
+.pr-name .ui-place-tags {
   flex: 0 0 auto;
   flex-wrap: nowrap;
   margin: 0;
   font-weight: 400;
 }
 
-.pr-name .ui-place-tags .badge,
-.pt-photo .ui-place-tags .badge {
+.pr-name .ui-place-tags .badge {
   margin: 0;
   padding: 0 6px;
   border-radius: 999px;
@@ -1657,36 +1254,16 @@
 
 /* 舊的清單（還沒接上區段的畫面，T79 刪）：列之間留空 */
 .ex-items,
-.ex-list.view-list > .ex-items,
-.wl-items {
+.ex-list.view-list > .ex-items {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-/* ---------- 照片牆（PlaceWall、PlaceTile） ---------- */
-/* 照片牆：一段一段往下排；每段是兩欄（.pw-cols），展開的卡自己一整段（.pw-wide，第八輪 §13.3） */
-.pw {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.pw-cols {
-  display: flex;
-  align-items: flex-start;
   gap: 8px;
 }
 
 /* 原地展開的卡（網頁探索、想去）：芥子黃框（選中），照片矮一點，下面是介紹、優缺點、詳細資料 */
-.pt.open,
 .pr-open {
   border: 2px solid var(--mustard);
   border-radius: 14px;
-}
-
-.pt.open .pt-photo .photo {
-  max-height: 180px;
 }
 
 .pr-open .pr {
@@ -1752,162 +1329,7 @@
   }
 }
 
-.pw-col {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.pw-cell {
-  min-width: 0;
-}
-
-.pt {
-  display: block;
-  min-width: 0;
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  cursor: pointer;
-}
-
-.pt:hover,
-.pt.flash {
-  border-color: var(--ink-3);
-  box-shadow: 0 2px 10px var(--shade-1);
-}
-
-/* 展開的卡一定是選中的：框照樣芥子黃（§12.1 芥子黃＝選中） */
-.pt.open.flash {
-  border-color: var(--mustard);
-}
-
-.pt-photo {
-  position: relative;
-  display: block;
-  background: var(--wash);
-}
-
-/* 高度照原圖比例，太高或太扁的裁到 120～260px */
-.pt-photo .photo {
-  display: block;
-  width: 100%;
-  height: auto;
-  min-height: 120px;
-  max-height: 260px;
-  object-fit: cover;
-}
-
-/* 還沒載到：先佔一個常見的比例，載好才照原圖比例（T32） */
-.pt-photo .photo-loading {
-  aspect-ratio: 4 / 3;
-}
-
-.pt-photo .photo-fallback {
-  height: 140px;
-  display: grid;
-  place-items: center;
-}
-
-/* 沒有照片：整塊類型色加一個字 */
-.pt-fallback {
-  display: grid;
-  place-items: center;
-  height: 140px;
-  color: var(--paper);
-  font-weight: 700;
-  font-size: 2.4rem;
-}
-
-.pt-type {
-  position: absolute;
-  left: 6px;
-  top: 6px;
-}
-
-/* 自己加、已訂、待訂（T69）：照片右上角；AI 比較的 A、B、C 也在右上時往左讓 */
-.pt-tags {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-}
-
-.pt-photo:has(.ai-letter) .pt-tags {
-  right: 38px;
-}
-
-.pt-tags .ui-place-tags {
-  margin: 0;
-  flex-wrap: nowrap;
-}
-
-.pt-tags .badge {
-  box-shadow: 0 1px 3px var(--shade-2);
-}
-
-.pt-tags .badge.tag-user {
-  background: var(--paper);
-}
-
-.pt-heart {
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  display: flex;
-}
-
-/* 愛心的白色圓底比點的範圍小一圈 */
-.pt-heart .ui-heart {
-  position: relative;
-  isolation: isolate;
-}
-
-.pt-heart .ui-heart::before {
-  content: '';
-  position: absolute;
-  inset: 6px 2px;
-  z-index: -1;
-  border-radius: 999px;
-  background: var(--veil);
-  box-shadow: 0 1px 3px var(--shade-2);
-}
-
-.pt-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 8px 10px 10px;
-  min-width: 0;
-}
-
-.pt-name {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  font-weight: 700;
-  font-size: 0.95rem;
-}
-
-.pt-name-text {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.pt-meta {
-  font-size: 0.8125rem;
-  color: var(--ink-2);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ---------- 想去的清單（WishList）：三排書架（T53）、某一排的全部（列、左滑） ---------- */
+/* ---------- 想去的清單（WishSectionList，T76 §35.8）：三個收合區段、列、左滑 ---------- */
 .wl {
   min-width: 0;
 }
@@ -1919,91 +1341,9 @@
   white-space: nowrap;
 }
 
-/* 三排書架（樣式沿用探索的 .xs-*）；小卡名稱下面「2/7 候選」「2/5 排了」 */
-.wl-shelves {
-  padding-bottom: 12px;
-}
-
-.wl-shelves .xs:first-child {
-  margin-top: 4px;
-}
-
-.xs-caption {
-  margin-top: -3px;
-  padding: 0 7px 6px;
-  color: var(--ink-3);
-  font-family: var(--font-num);
-  font-size: 0.6875rem;
-  line-height: 1.3;
-}
-
 /* 空的那排不藏，寫一行灰字 */
-.xs-empty {
-  margin: 0;
-  padding: 10px 0;
-  color: var(--ink-3);
-  font-size: 0.8125rem;
-}
-
-.wl-sub {
-  margin: 12px 0 0;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: var(--ink-2);
-}
-
-.wl-items,
-.wl-tile {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
 
 .wl-item {
-  min-width: 0;
-}
-
-.wl-more {
-  display: block;
-  width: 100%;
-  min-height: 44px;
-  margin: 8px 0 4px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  font: inherit;
-  color: var(--ink-2);
-  cursor: pointer;
-}
-
-/* 列的第二行：誰想去（頭像＋名字）／膠囊＋頭像 */
-.wl-who,
-.wl-status {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  font-size: 0.8125rem;
-  color: var(--ink-2);
-}
-
-.wl-avatars {
-  display: inline-flex;
-  flex: 0 0 auto;
-}
-
-.wl-avatars .avatar {
-  width: 20px;
-  height: 20px;
-  font-size: 0.6875rem;
-  border: 1px solid var(--paper);
-}
-
-.wl-avatars .avatar + .avatar {
-  margin-left: -6px;
-}
-
-.wl-status .pr-caps {
   min-width: 0;
 }
 
@@ -3421,10 +2761,6 @@ button.ll-main {
 }
 
 /* 自己加的點（T31 §4）：虛線框、副標「自己加的 · 誰」；詳情的膠囊、提示框 */
-.pt.is-user {
-  border-style: dashed;
-  border-color: var(--ink-3);
-}
 
 /* 自己加的列：虛線框（T76 的列是陰影框，換成虛線） */
 .pr.is-user::after {
@@ -3436,8 +2772,7 @@ button.ll-main {
   pointer-events: none;
 }
 
-.pr-user-by,
-.pt-user-by {
+.pr-user-by {
   display: block;
   color: var(--ink-2);
   font-size: 0.8rem;
@@ -4731,10 +4066,6 @@ button.ll-main {
   height: 100%;
 }
 
-.pt-fallback.type-art {
-  background-size: 40px 20px;
-}
-
 /* T39：這天還沒有起點 */
 .tc-start-missing {
   display: flex;
@@ -5420,7 +4751,7 @@ button.ui-sk-stay:disabled {
   font-size: 0.8125rem;
 }
 
-/* ---------- 探索的概覽、選了一區、書架（T42，interaction-design §20；ExploreHome.tsx） ---------- */
+/* ---------- 探索的概覽、選了一區（T42 起，interaction-design §35.6；ExploreHome.tsx） ---------- */
 
 .xo {
   display: flex;
@@ -5658,149 +4989,9 @@ button.ui-sk-stay:disabled {
 }
 
 /* 選了一區：頂端 */
-.xa-head {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 4px;
-}
 
 .xa-regions.m-chips {
   padding: 0;
-}
-
-.xa-feb-toggle {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: var(--warn);
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.xa-feb-list {
-  margin: 4px 0 0;
-  padding-left: 1.2em;
-  color: var(--warn);
-  font-size: 0.75rem;
-  line-height: 1.5;
-}
-
-.xa-feb-list li + li {
-  margin-top: 3px;
-}
-
-/* 書架 */
-.xs {
-  margin-top: 12px;
-}
-
-.xs-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.xs-title {
-  margin: 0;
-  font-family: var(--font-round);
-  font-size: 0.9375rem;
-  font-weight: 900;
-}
-
-/* 標題旁一行小字：這排的條件（T50） */
-.xs-note {
-  margin-left: 8px;
-  color: var(--ink-3);
-  font-size: 0.75rem;
-  font-weight: 400;
-}
-
-/* 退到第二級（T66）：小字換成芥子黃 */
-.xs-note.fallback {
-  color: var(--mustard-ink);
-}
-
-/* 小卡右上角的類型圓章（T50，取代愛心） */
-.xs-seal {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  display: inline-flex;
-}
-
-.xs-all {
-  padding: 2px 0;
-  border: 0;
-  background: none;
-  color: var(--indigo);
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.xs-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.xs-card {
-  min-width: 0;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--paper);
-  cursor: pointer;
-}
-
-.xs-card:hover {
-  border-color: var(--indigo-line);
-}
-
-.xs-photo {
-  position: relative;
-  height: 78px;
-  background: var(--wash);
-}
-
-.xs-name {
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-  padding: 5px 7px 6px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-.xs-name-text {
-  flex: 1;
-  min-width: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* 選了一區、但套了條件或搜尋：地點數前面的「‹ 一定要去」回到書架（T50 從單獨一列搬進來） */
-.ex-back-area {
-  position: relative;
-  flex: 0 0 auto;
-  min-height: 30px;
-  padding: 2px 12px;
-  border: 1px solid var(--indigo-line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--indigo);
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  cursor: pointer;
 }
 
 /* 0 個的時候（T64）：虛線框、一句「賢島沒有 S、A 級的景點」、下面一個一列的下一步；問 AI 是淡芥子黃 */

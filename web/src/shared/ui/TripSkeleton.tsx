@@ -36,21 +36,10 @@ import { stripParens } from '../../lib/labels.ts';
 
 /** 「未選住宿」的兩個捷徑：網頁、手機的分頁和聊天室位置不一樣，各自給 */
 export interface SkeletonActions {
-  /** 到探索、選那區、捲到住宿那排 */
+  /** 到探索、進那區的「住」 */
   lodgingShelf(area: string): void;
   /** 問 AI 推薦這幾晚在這區的住宿 */
   askLodging(dates: string[], area: string): void;
-}
-
-/** 換到探索之後捲到那排書架（畫出來要等幾個畫面，最多等半秒） */
-export function scrollToShelf(id: string) {
-  let n = 0;
-  const tick = () => {
-    const el = document.querySelector<HTMLElement>(`[data-testid="shelf"][data-shelf="${CSS.escape(id)}"]`);
-    if (el) el.scrollIntoView({ block: 'start' });
-    else if (n++ < 30) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
 }
 
 /** 選這晚住哪一區：存進 nights（換區會清掉這晚的住宿，engine 的 setNightArea），跳「復原」 */
