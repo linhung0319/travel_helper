@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI 結果與書架</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap">
+<style>
+/* 版面：說明頁（跟主題）包著網頁版的三格草圖（聊天｜地圖｜右欄）；草圖本身照網站的淺色長相 */
+:root{
+  --bg:#eef0f5;--fg:#1c2840;--muted:#5d6680;--rule:#d5d9e3;--card:#ffffff;--accent:#24468a;--note:#9a6a00;--note-wash:#fcf3de;
+  --round:'Zen Maru Gothic','Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;
+  --body:system-ui,-apple-system,'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;
+  /* 網站本身的色（草圖裡用，固定淺色） */
+  --ink:#1c2840;--ink-2:#5d6680;--ink-3:#a3a9b8;--ink-4:#c3c7d1;--paper:#fff;--line:#e6e8ee;--wash:#f3f5fa;
+  --indigo:#24468a;--indigo-wash:#e9eef8;--indigo-line:#cdd6ea;--mustard:#e3a92b;--mustard-wash:#fcf3de;--mustard-ink:#9a6a00;
+  --matcha:#5f8a3e;--love:#d8453a;--bad:#b3261e;
+  --t-food:#c9541f;--t-food-wash:#fbece3;--t-spot:#5f8a3e;
+  --sea:#dbe8f3;--land:#f4f1e8;--land-line:#e2dccb;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141a26;--fg:#e6e9f1;--muted:#9aa3b8;--rule:#2c3446;--card:#1c2333;--accent:#9db4ea;--note:#f0c25a;--note-wash:#2e2814;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141a26;--fg:#e6e9f1;--muted:#9aa3b8;--rule:#2c3446;--card:#1c2333;--accent:#9db4ea;--note:#f0c25a;--note-wash:#2e2814;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 60px}
+.wrap{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1{font-family:var(--round);font-weight:900;font-size:28px;margin:0;text-wrap:balance}
+h2{font-family:var(--round);font-weight:900;font-size:21px;margin:0;text-wrap:balance;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+h2 .tag{font-family:var(--body);font-size:12.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--card);border:1px solid var(--rule);color:var(--muted)}
+h2 .tag.rec{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+p{margin:0;max-width:68ch}
+.lead{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:14px}
+.notes{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:4px;max-width:78ch}
+.notes b{color:var(--fg)}
+.pain{color:var(--muted)}
+.pain li::marker{color:#d8453a}
+code{font-size:.9em;background:var(--card);border:1px solid var(--rule);border-radius:5px;padding:0 4px}
+
+/* 規則表 */
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;min-width:640px;width:100%;font-size:14px;background:var(--card);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.04em}
+tr:last-child td{border-bottom:0}
+td b{font-family:var(--round)}
+
+/* 草圖外框（網頁版三格） */
+.frame-wrap{overflow-x:auto;padding-bottom:4px}
+.frame{width:1080px;height:600px;display:grid;grid-template-columns:270px 1fr 360px;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(20,30,50,.18),0 0 0 1px rgba(20,30,50,.08);background:var(--paper);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5}
+.frame.short{height:470px}
+
+/* 聊天 */
+.chat{border-right:1px solid var(--line);display:flex;flex-direction:column;background:#fafbfd}
+.chat-h{display:flex;align-items:center;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line);font-family:var(--round);font-weight:900}
+.chat-h .sp{color:var(--mustard)}
+.chat-b{flex:1;padding:14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
+.me{align-self:flex-end;background:var(--indigo);color:#fff;border-radius:16px 16px 4px 16px;padding:8px 12px;max-width:88%}
+.bot{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px 16px 16px 4px;padding:8px 12px;max-width:94%}
+.ptag{display:inline-block;background:var(--t-food-wash);color:var(--t-food);border-radius:6px;padding:0 5px;font-weight:700;font-size:13px}
+.res{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12.5px;color:var(--indigo);font-weight:700}
+.chat-in{margin:10px 14px 14px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;color:var(--ink-3);background:#fff}
+
+/* 地圖 */
+.map{position:relative;background:var(--sea);overflow:hidden}
+.map svg.base{position:absolute;inset:0;width:100%;height:100%}
+.map .lbl{position:absolute;font-family:var(--round);font-weight:700;font-size:13px;color:#7b7462}
+.back-ai{position:absolute;left:12px;top:12px;background:#fff;border-radius:999px;padding:6px 14px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:13px}
+.dot{position:absolute;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--t-food);border:2px solid #fff;box-shadow:0 1px 2px rgba(0,0,0,.25)}
+.dot.dim{background:#c9b9ae;width:9px;height:9px;margin:-4.5px 0 0 -4.5px}
+.dot.pulse::after{content:'';position:absolute;inset:-2px;border-radius:50%;border:3px solid var(--t-food);opacity:0}
+.play .dot.pulse::after{animation:ring 1.1s ease-out 2}
+@keyframes ring{0%{transform:scale(1);opacity:.85}100%{transform:scale(3.6);opacity:0}}
+.drop{position:absolute;width:30px;height:40px;margin:-40px 0 0 -15px;transform-origin:50% 100%}
+.drop svg{width:30px;height:40px;display:block;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25))}
+.drop .sh{position:absolute;left:8px;bottom:-4px;width:14px;height:5px;border-radius:50%;background:rgba(0,0,0,.25)}
+.play .drop svg{animation:hop 1.5s ease-out 1}
+.play .drop .sh{animation:shadow 1.5s ease-out 1}
+@keyframes hop{0%,100%{transform:translateY(0)}14%{transform:translateY(-16px)}28%{transform:translateY(0)}42%{transform:translateY(-9px)}56%{transform:translateY(0)}70%{transform:translateY(-4px)}84%{transform:translateY(0)}}
+@keyframes shadow{0%,28%,56%,84%,100%{transform:scale(1)}14%{transform:scale(.5)}42%{transform:scale(.7)}70%{transform:scale(.85)}}
+.drop .nm{position:absolute;left:30px;top:6px;white-space:nowrap;font-size:12px;font-weight:700;background:rgba(255,255,255,.92);padding:0 6px;border-radius:6px;color:var(--ink)}
+.replay{position:absolute;right:12px;bottom:12px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;color:var(--indigo);font-weight:700;cursor:pointer}
+.replay:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
+.callout{position:absolute;background:var(--mustard-wash);color:var(--mustard-ink);border:1px solid #efd9a2;border-radius:10px;padding:6px 10px;font-size:12.5px;line-height:1.45;max-width:230px;font-weight:700}
+
+/* 右欄 */
+.col{border-left:1px solid var(--line);display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.band{background:var(--indigo);padding:10px 12px;display:flex;gap:8px}
+.search{flex:1;background:#fff;border-radius:999px;padding:7px 14px;color:var(--ink-3)}
+.rb{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);display:grid;place-items:center;color:#fff;position:relative}
+.rb.on{background:#fff;color:var(--indigo)}
+.rb.on::after{content:'';position:absolute;top:3px;right:3px;width:8px;height:8px;border-radius:50%;background:var(--mustard);box-shadow:0 0 0 2px #fff}
+.areas{display:flex;gap:16px;padding:0 14px;border-bottom:1px solid var(--line);font-family:var(--round)}
+.areas span{padding:9px 0 7px;color:var(--ink-2);border-bottom:2.5px solid transparent;font-weight:500;white-space:nowrap}
+.areas span.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:900}
+.areas span.ov{color:var(--mustard-ink)}
+.areas small{font-size:11px;color:var(--ink-3);margin-left:2px}
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px 14px}
+.themes span{border:1px solid var(--line);border-radius:12px;padding:6px;display:flex;align-items:center;justify-content:center;gap:6px;font-family:var(--round);font-weight:900;color:var(--ink)}
+.themes span small{font-family:var(--body);font-weight:400;font-size:11px;color:var(--ink-2)}
+.themes span.on{background:var(--t-food-wash);color:var(--t-food);border-color:transparent;box-shadow:inset 0 0 0 1.5px currentColor}
+.themes span.on small{color:inherit}
+.body{flex:1;overflow:hidden;padding:0 14px;position:relative}
+
+.sec-h{display:flex;align-items:center;gap:10px;min-height:52px;border-bottom:1px solid var(--line);background:#fff}
+.sec-h.stuck{position:relative;box-shadow:0 6px 10px -6px rgba(28,40,64,.25);z-index:1}
+.sec-h .tt{flex:1;min-width:0;line-height:1.2}
+.sec-h .t{font-family:var(--round);font-weight:900;font-size:15.5px}
+.sec-h .r{font-size:11.5px;color:var(--ink-3);margin-top:2px}
+.cnt{font-family:var(--round);font-weight:900;font-size:14px;height:24px;padding:0 9px;border-radius:999px;display:inline-grid;place-items:center;background:var(--t-food-wash);color:var(--t-food)}
+.cnt.open{background:var(--t-food);color:#fff}
+.cnt.zero{background:var(--wash);color:var(--ink-3)}
+.chev{color:var(--ink-3);width:14px;text-align:center}
+.chev.open{transform:rotate(90deg);color:var(--ink)}
+
+.row{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.ph{flex:0 0 76px;height:76px;border-radius:13px;background:var(--wash);display:grid;place-items:center;color:#d9c2b3;font-family:var(--round);font-weight:900;font-size:20px}
+.tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.nm{font-weight:700;font-size:14px;line-height:1.3;display:flex;gap:5px;align-items:flex-start}
+.tier{display:inline-grid;place-items:center;min-width:1.6em;height:1.6em;border:1px solid var(--ink-4);border-radius:999px;font-family:var(--round);font-size:11px;color:var(--ink-2);flex:0 0 auto}
+.tier.S{color:var(--indigo);border-color:var(--indigo)}
+.mt{font-size:12px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shelf{display:inline-block;font-size:11px;font-weight:700;color:var(--t-food);background:var(--t-food-wash);border-radius:5px;padding:0 5px;margin-right:4px}
+.why{font-size:12px;color:var(--indigo);display:flex;gap:4px}
+.why::before{content:'✦';color:var(--mustard)}
+.ln{font-size:12px;color:var(--ink-3)}
+.row.new{background:linear-gradient(90deg,var(--mustard-wash),transparent 70%);margin:0 -14px;padding-left:14px;padding-right:14px}
+
+.aibar{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.aipill{display:inline-flex;align-items:center;gap:6px;background:var(--indigo-wash);color:var(--indigo);border-radius:999px;padding:3px 6px 3px 10px;font-weight:700;font-size:13px}
+.aipill .x{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#fff;font-size:11px}
+.aibar .sum{font-size:12px;color:var(--ink-2)}
+.aibar .act{margin-left:auto;font-size:12px;color:var(--indigo);font-weight:700}
+.aiset{background:var(--indigo-wash);border-radius:12px;padding:9px 11px;margin:10px 0 4px;display:flex;flex-direction:column;gap:6px}
+.aiset .top{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--indigo);font-weight:700}
+.aiset .top .sp{color:var(--mustard)}
+.aiset .chips{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.cond{display:inline-flex;align-items:center;gap:4px;background:var(--ink);color:#fff;border-radius:999px;padding:1px 6px 1px 9px;font-size:12px;font-weight:700}
+.cond i{font-style:normal;opacity:.7}
+.aiset .foot{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2)}
+.aiset .foot b{color:var(--indigo)}
+.feb{font-size:12px;color:var(--ink-2);padding:8px 0 4px;display:flex;align-items:center;gap:6px}
+.feb::before{content:'';width:6px;height:6px;border-radius:50%;background:#c8372d}
+.mark{outline:2px dashed var(--mustard);outline-offset:2px;border-radius:8px}
+
+/* 地圖兩種的比較 */
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.mini{background:var(--card);border:1px solid var(--rule);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.mini .map{height:240px}
+.mini .cap{padding:12px 14px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.mini .cap b{font-family:var(--round);font-size:16px}
+.mini .cap span{color:var(--muted)}
+.decide{background:var(--note-wash);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.decide h2{color:var(--note)}
+.decide ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:6px;max-width:78ch}
+@media (prefers-reduced-motion: reduce){.play .drop svg,.play .drop .sh,.play .dot.pulse::after{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header style="display:flex;flex-direction:column;gap:10px">
+    <h1>AI 結果與書架</h1>
+    <p class="lead">問 AI「鳥羽有哪些餐廳適合去」之後，右欄和地圖該長什麼樣。AI 給點有兩種方式：挑幾家（<code>show_places</code>），或套用篩選（<code>set_filter</code>）。這次走的是套用篩選，所以跳到書架、書架又收著、地圖也沒有水滴。下面先畫現況，再畫兩個建議。網頁版，手機照同樣的規則。</p>
+  </header>
+
+  <section>
+    <h2>規則一覽</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>問法</th><th>AI 用</th><th>右欄</th><th>地圖</th></tr></thead>
+      <tbody>
+        <tr><td>「有哪些<b>適合</b>去」「推薦幾家」「哪家好」<br><small style="color:var(--muted)">要 AI 判斷、挑</small></td><td><b>① 挑幾家</b><br>show_places，3～6 家</td><td>平的清單「AI 挑的」，每列標書架名、附理由</td><td>水滴，跳三下（現在就有）</td></tr>
+        <tr><td>「<b>全部</b>列出來」「有哪些能帶小孩的」<br><small style="color:var(--muted)">只是條件，不用判斷</small></td><td><b>② 套篩選</b><br>set_filter</td><td>頂端「AI 幫你套了」，<b>有結果的書架自動展開</b></td><td>符合的點全部畫水滴，跳三下，縮放到框住</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- 現況 -->
+  <section>
+    <h2>現況 <span class="tag">問題</span></h2>
+    <div class="frame-wrap"><div class="frame short" id="f0">
+      <div class="chat">
+        <div class="chat-h"><span class="sp">✦</span>問 AI</div>
+        <div class="chat-b">
+          <div class="me">鳥羽有哪些餐廳適合去？</div>
+          <div class="bot">幫你篩了鳥羽的餐廳，右邊分成「全員吃飯」「要分桌」「要分組去」。<div class="res">✦ 已套用篩選</div></div>
+        </div>
+        <div class="chat-in">問 AI…</div>
+      </div>
+      <div class="map">
+        <svg class="base" viewBox="0 0 450 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 0H450V140C400 150 360 120 320 150S250 230 210 220 140 260 120 330 60 400 0 410Z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/><path d="M300 330c30-10 60 0 70 20s-20 40-50 35-40-45-20-55z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/></svg>
+        <span class="lbl" style="left:70px;top:90px">鳥羽站周邊</span>
+        <span class="lbl" style="left:300px;top:395px">答志島</span>
+        <div class="back-ai">‹ 回 AI</div>
+        <div class="dot" style="left:118px;top:150px"></div><div class="dot" style="left:140px;top:132px"></div><div class="dot" style="left:160px;top:168px"></div><div class="dot" style="left:105px;top:185px"></div><div class="dot" style="left:180px;top:140px"></div><div class="dot" style="left:150px;top:205px"></div><div class="dot" style="left:90px;top:130px"></div><div class="dot" style="left:200px;top:180px"></div><div class="dot" style="left:250px;top:110px"></div><div class="dot" style="left:290px;top:90px"></div><div class="dot" style="left:60px;top:240px"></div><div class="dot" style="left:330px;top:60px"></div><div class="dot" style="left:350px;top:350px"></div>
+        <div class="callout" style="left:210px;top:240px">② 地圖只是一般的點。AI 動過什麼，地圖上看不出來。</div>
+      </div>
+      <div class="col">
+        <div class="band"><div class="search">搜尋</div><div class="rb on">⚲</div></div>
+        <div class="areas"><span class="ov">概覽</span><span>志摩</span><span class="on">鳥羽<small>83</small></span><span>伊勢</span><span>大阪</span></div>
+        <div class="themes"><span>玩 <small>24</small></span><span class="on">吃 <small>83</small></span><span>住 <small>31</small></span></div>
+        <div class="body">
+          <div class="feb">2 月注意 4 則</div>
+          <div class="mark" style="margin-top:4px">
+            <div class="sec-h"><div class="tt"><div class="t">全員吃飯</div><div class="r">15 人能坐一起</div></div><span class="cnt">19</span><span class="chev">›</span></div>
+            <div class="sec-h"><div class="tt"><div class="t">要分桌</div><div class="r">一家坐得下 15 人，分兩桌以上</div></div><span class="cnt">18</span><span class="chev">›</span></div>
+            <div class="sec-h"><div class="tt"><div class="t">要分組去</div><div class="r">坐不下 15 人，或席數還沒查</div></div><span class="cnt">46</span><span class="chev">›</span></div>
+          </div>
+          <div class="callout" style="position:static;margin-top:14px;max-width:none">① 書架全部收著。看起來跟自己點「鳥羽 › 吃」一模一樣，不知道 AI 做了什麼。</div>
+        </div>
+      </div>
+    </div></div>
+    <ol class="notes pain">
+      <li>書架收著：AI 有沒有幫忙選出來，看不出來。</li>
+      <li>展開一格：只看到那一類，看不到全部。</li>
+      <li>拿掉書架改成平的清單：看不到每家屬於哪一類（全員吃飯、要分桌），而這正是 15 人出遊最想知道的。</li>
+      <li>其實「鳥羽的餐廳」這個條件，和自己點「鳥羽 › 吃」完全一樣。AI 等於只幫你換了頁，沒有幫你挑。</li>
+    </ol>
+  </section>
+
+  <!-- 建議一 -->
+  <section>
+    <h2>① 「適合去」改成挑幾家 <span class="tag rec">建議</span></h2>
+    <p class="lead">「適合」是要 AI 判斷的，用挑幾家：右欄是平的清單，書架名放進每一列的第二行，地圖是水滴（點「重播」看跳三下）。</p>
+    <div class="frame-wrap"><div class="frame" id="f1">
+      <div class="chat">
+        <div class="chat-h"><span class="sp">✦</span>問 AI</div>
+        <div class="chat-b">
+          <div class="me">鳥羽有哪些餐廳適合去？</div>
+          <div class="bot">15 人一起吃，先看這 5 家：<span class="ptag">燒貝 いろは</span>、<span class="ptag">Sea Horse</span>、<span class="ptag">屋形船 Okita</span> 都能坐一起；<span class="ptag">大阪屋</span>、<span class="ptag">Moto 牡蠣</span> 要分桌。<div class="res">✦ AI 挑的 5 家 · 再看一次</div></div>
+        </div>
+        <div class="chat-in">問 AI…</div>
+      </div>
+      <div class="map" id="m1">
+        <svg class="base" viewBox="0 0 450 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 0H450V170C400 180 360 150 320 180S250 280 210 270 140 310 120 400 60 480 0 500Z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/><path d="M300 420c30-10 60 0 70 20s-20 40-50 35-40-45-20-55z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/></svg>
+        <span class="lbl" style="left:40px;top:70px">鳥羽站周邊</span>
+        <span class="lbl" style="left:330px;top:120px">浦村</span>
+        <div class="back-ai">‹ 回 AI</div>
+        <div class="dot dim" style="left:150px;top:200px"></div><div class="dot dim" style="left:105px;top:230px"></div><div class="dot dim" style="left:180px;top:170px"></div><div class="dot dim" style="left:90px;top:160px"></div><div class="dot dim" style="left:60px;top:300px"></div><div class="dot dim" style="left:250px;top:130px"></div><div class="dot dim" style="left:360px;top:440px"></div>
+        <div class="drop" style="left:130px;top:190px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span><span class="nm">燒貝 いろは</span></div>
+        <div class="drop" style="left:110px;top:120px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span><span class="nm">Sea Horse</span></div>
+        <div class="drop" style="left:165px;top:145px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span><span class="nm">屋形船 Okita</span></div>
+        <div class="drop" style="left:150px;top:250px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span><span class="nm">大阪屋</span></div>
+        <div class="drop" style="left:340px;top:175px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span><span class="nm">Moto 牡蠣</span></div>
+        <button type="button" class="replay" data-target="m1" id="replay1">↻ 重播</button>
+      </div>
+      <div class="col">
+        <div class="band"><div class="search">搜尋</div><div class="rb">⚲</div></div>
+        <div class="areas"><span class="ov">概覽</span><span>志摩</span><span>鳥羽</span><span>伊勢</span><span>大阪</span></div>
+        <div class="body">
+          <div class="aibar"><span class="aipill">✦ AI 挑的 · 5 家<span class="x">✕</span></span><span class="sum">鳥羽適合 15 人去的餐廳</span></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">燒貝 いろは <span class="tier">A</span></div><div class="mt"><span class="shelf">全員吃飯</span>鳥羽站周邊 · ¥2,000～</div><div class="why">半包廂 10～20 人，可包場</div><div class="ln">♡　阿姨 想去</div></div></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">主餐廳 Sea Horse（鳥羽國際飯店） <span class="tier">A</span></div><div class="mt"><span class="shelf">全員吃飯</span>鳥羽站周邊 · ¥4,000～</div><div class="why">88 席，可包場 20～50 人</div><div class="ln">♡</div></div></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">屋形船 Okita <span class="tier">A</span></div><div class="mt"><span class="shelf">全員吃飯</span>鳥羽站周邊 · 套餐 ¥4,980～</div><div class="why">可包船，小孩會喜歡</div><div class="ln">♡</div></div></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">大阪屋 鳥羽店 <span class="tier">A</span></div><div class="mt"><span class="shelf">要分桌</span>鳥羽站周邊</div><div class="why">80 席有包廂，會席料理</div><div class="ln">♡</div></div></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">Moto 牡蠣養殖場 <span class="tier">A</span></div><div class="mt"><span class="shelf">要分桌</span>浦村 · ¥4,000</div><div class="why">牡蠣吃到飽，100 席桌席</div><div class="ln">♡</div></div></div>
+        </div>
+      </div>
+    </div></div>
+    <ul class="notes">
+      <li><b>改的只有兩處</b>：提示裡「適合、推薦、哪家好」一律用挑幾家；列的第二行最前面加書架名的小標（淡橘底）。其他（AI 挑的晶片、✕、理由、水滴跳三下）現在都有。</li>
+      <li>書架名用同一組字（全員吃飯、要分桌、要分組去；玩的是一定要去、其他景點；住的照住法），使用者回到書架時認得出來。</li>
+      <li>混了兩類（例如吃和住一起列）也一樣，小標換成那一類的書架名和顏色。</li>
+    </ul>
+  </section>
+
+  <!-- 建議二 -->
+  <section>
+    <h2>② 套篩選時，有結果的書架自動展開 <span class="tag rec">建議</span></h2>
+    <p class="lead">使用者真的要「全部列出來」時（例如「鳥羽能帶小孩的餐廳全部列給我」），留在書架，但 AI 一套用就把有結果的書架打開，頂端加一條說明 AI 套了什麼。</p>
+    <div class="frame-wrap"><div class="frame" id="f2">
+      <div class="chat">
+        <div class="chat-h"><span class="sp">✦</span>問 AI</div>
+        <div class="chat-b">
+          <div class="me">鳥羽能帶小孩的餐廳全部列給我</div>
+          <div class="bot">有 12 家：全員吃飯 3、要分桌 5、要分組去 4，右邊都打開了。<div class="res">✦ 已套用篩選 · 再看一次</div></div>
+        </div>
+        <div class="chat-in">問 AI…</div>
+      </div>
+      <div class="map" id="m2">
+        <svg class="base" viewBox="0 0 450 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 0H450V170C400 180 360 150 320 180S250 280 210 270 140 310 120 400 60 480 0 500Z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/><path d="M300 420c30-10 60 0 70 20s-20 40-50 35-40-45-20-55z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/></svg>
+        <span class="lbl" style="left:40px;top:70px">鳥羽站周邊</span>
+        <span class="lbl" style="left:330px;top:120px">浦村</span>
+        <div class="back-ai">‹ 回 AI</div>
+        <div class="dot pulse" style="left:130px;top:190px"></div><div class="dot pulse" style="left:110px;top:120px"></div><div class="dot pulse" style="left:165px;top:145px"></div><div class="dot pulse" style="left:150px;top:250px"></div><div class="dot pulse" style="left:90px;top:160px"></div><div class="dot pulse" style="left:180px;top:210px"></div><div class="dot pulse" style="left:205px;top:175px"></div><div class="dot pulse" style="left:60px;top:300px"></div><div class="dot pulse" style="left:340px;top:175px"></div><div class="dot pulse" style="left:310px;top:220px"></div><div class="dot pulse" style="left:365px;top:240px"></div><div class="dot pulse" style="left:250px;top:130px"></div>
+        <div class="callout" style="left:200px;top:330px">（定案改成 B：這 12 家也是水滴，見下面右邊那張。不論幾家都畫。）</div>
+        <button type="button" class="replay" data-target="m2" id="replay2">↻ 重播</button>
+      </div>
+      <div class="col">
+        <div class="band"><div class="search">搜尋</div><div class="rb on">⚲</div></div>
+        <div class="areas"><span class="ov">概覽</span><span>志摩</span><span class="on">鳥羽<small>12</small></span><span>伊勢</span><span>大阪</span></div>
+        <div class="themes"><span>玩 <small>24</small></span><span class="on">吃 <small>83</small></span><span>住 <small>31</small></span></div>
+        <div class="body">
+          <div class="aiset">
+            <div class="top"><span class="sp">✦</span>AI 幫你套了</div>
+            <div class="chips"><span class="cond">可以帶小孩 <i>✕</i></span></div>
+            <div class="foot"><span>符合 12 家，有結果的都打開了</span><b>全部收起 · 復原</b></div>
+          </div>
+          <div class="sec-h stuck"><div class="tt"><div class="t">全員吃飯</div><div class="r">15 人能坐一起</div></div><span class="cnt open">3</span><span class="chev open">›</span></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">燒貝 いろは <span class="tier">A</span></div><div class="mt">鳥羽站周邊 · ¥2,000～</div><div class="ln">♡　阿姨 想去</div></div></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">天秤屋 本店 <span class="tier">B</span></div><div class="mt">鳥羽站周邊 · ¥2,000～</div><div class="ln">♡</div></div></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">滿點食堂 <span class="tier">B</span></div><div class="mt">中之郷 · ¥700～</div><div class="ln">♡</div></div></div>
+          <div class="sec-h"><div class="tt"><div class="t">要分桌</div><div class="r">一家坐得下 15 人，分兩桌以上</div></div><span class="cnt open">5</span><span class="chev open">›</span></div>
+          <div class="row"><div class="ph">食</div><div class="tx"><div class="nm">大阪屋 鳥羽店 <span class="tier">A</span></div><div class="mt">鳥羽站周邊</div><div class="ln">♡</div></div></div>
+        </div>
+      </div>
+    </div></div>
+    <ul class="notes">
+      <li><b>全部打開等於看到全部</b>，標題黏在頂端，往下捲時一直知道這段是哪一類。「看不到全部」和「沒有類型」兩個問題一起解決。</li>
+      <li><b>只打開一次</b>：AI 每次套用時，把數字大於 0 的書架打開，0 的照樣收著。之後使用者要收要開都照舊；自己換主題、換子地區、回概覽，照 §35 恢復收合。</li>
+      <li><b>條件剛好就是某一個書架</b>（「鳥羽能全員一起吃的」就是全員吃飯）：只打開那一格，其他兩格是淡灰的 0。</li>
+      <li><b>「AI 幫你套了」那條</b>：只有 AI 套的時候才出現。晶片可以一顆顆點掉；「全部收起」只收書架、條件留著；「復原」回到 AI 套用之前。自己動了篩選，這條就變回一般的條件列。</li>
+      <li>聊天回覆照書架講數字（全員吃飯 3、要分桌 5…），和右欄對得上。</li>
+    </ul>
+  </section>
+
+  <!-- 地圖兩種 -->
+  <section>
+    <h2>② 的地圖：閃一圈，還是少的時候也畫水滴</h2>
+    <div class="pair">
+      <div class="mini">
+        <div class="map" id="m3">
+          <svg class="base" viewBox="0 0 450 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 0H450V90C400 100 360 80 320 100S250 160 210 150 140 180 120 230 60 270 0 280Z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/></svg>
+          <div class="dot pulse" style="left:120px;top:90px"></div><div class="dot pulse" style="left:150px;top:70px"></div><div class="dot pulse" style="left:175px;top:110px"></div><div class="dot pulse" style="left:95px;top:130px"></div><div class="dot pulse" style="left:200px;top:90px"></div><div class="dot pulse" style="left:240px;top:60px"></div><div class="dot pulse" style="left:70px;top:170px"></div><div class="dot pulse" style="left:300px;top:110px"></div>
+          <button type="button" class="replay" data-target="m3" id="replay3">↻ 重播</button>
+        </div>
+        <div class="cap"><b>A. 一律閃一圈（不採用）</b><span>水滴代表「AI 挑的」，閃一圈代表「AI 篩的」。👤 不要第二種標示方式。</span></div>
+      </div>
+      <div class="mini">
+        <div class="map" id="m4">
+          <svg class="base" viewBox="0 0 450 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 0H450V90C400 100 360 80 320 100S250 160 210 150 140 180 120 230 60 270 0 280Z" fill="var(--land)" stroke="var(--land-line)" stroke-width="2"/></svg>
+          <div class="drop" style="left:120px;top:110px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:155px;top:80px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:185px;top:125px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:95px;top:150px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:215px;top:100px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:250px;top:75px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:75px;top:190px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <div class="drop" style="left:305px;top:130px"><svg viewBox="0 0 30 40"><path d="M15 39C15 39 2 23 2 14a13 13 0 0 1 26 0c0 9-13 25-13 25z" fill="#c9541f" stroke="#fff" stroke-width="2"/><text x="15" y="19" text-anchor="middle" font-size="12" font-weight="900" fill="#fff" font-family="Zen Maru Gothic,sans-serif">食</text></svg><span class="sh"></span></div>
+          <button type="button" class="replay" data-target="m4" id="replay4">↻ 重播</button>
+        </div>
+        <div class="cap"><b>B. 統一用水滴，不論幾家 <span class="tag" style="font-family:var(--body);font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--accent);color:var(--bg)">定案</span></b><span>👤 只要一種標示。套篩選的點全部畫水滴、跳三下；店擠在一起時，名稱照舊放大到 13 級才寫。</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="decide">
+    <h2>定案（2026-11-06）</h2>
+    <ol>
+      <li><b>① 的提示改法</b>：同意。「適合、推薦、哪家好」一律挑幾家，只有說「全部」才套篩選。</li>
+      <li><b>② 的地圖</b>：<b>B</b>，統一用水滴。套篩選的點不論幾家都畫水滴，不用閃一圈之類的別種方式。</li>
+      <li><b>② 的自動展開</b>：打開有結果的書架。</li>
+    </ol>
+    <p>寫進 interaction-design §37、PLAN T85。</p>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('.replay').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var m = document.getElementById(b.dataset.target);
+    m.classList.remove('play'); void m.offsetWidth; m.classList.add('play');
+  });
+});
+['m1','m2','m3','m4'].forEach(function (id) { var m = document.getElementById(id); if (m) m.classList.add('play'); });
+</script>
+</body>
+</html>
