@@ -3,7 +3,7 @@
 // 「篩選」打開的抽屜蓋住整個右欄（FilterSheet，只畫目前主題的組；網頁多「地圖：只看地圖畫面裡的」）。
 // 內容照 lib/shelves.ts 的 exploreLayer 分三種：
 // - overview：概覽（ExploreOverview），卡片的主題列直接進那區那個主題（exploreArea.ts 的 overviewTheme）；
-// - area：條件列（FilterConds，有條件才有）＋「2 月注意」一行＋目前主題的書架區段（AreaThemeHome，預設收合，展開狀態在 appStore.sectionsOpen）；
+// - area：條件列（FilterConds，有條件才有；AI 套的篩選是「✦ AI 幫你套了」，T85 §37）＋「2 月注意」一行＋目前主題的書架區段（AreaThemeHome，預設收合，展開狀態在 appStore.sectionsOpen）；
 // - list：搜尋、AI 挑的結果集，一份平的清單（同一種列，分批畫）。在一區裡搜尋時主題列還在（搜的是那個主題）。
 // 列（shared/ui/PlaceRow）滑鼠移上去呼叫 appStore.hover（地圖的指到），點了直接開詳情彈窗（T83 §36.T83，沒有原地展開）；彈窗開著時點別列原地換內容、
 // 不疊「‹」。彈窗開著的那列淡藍底＋左邊靛藍線（selected），關掉就取消；滑鼠在地圖上指到的點淡灰底（列自己被指到時不回頭標自己）。
@@ -40,6 +40,7 @@ import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.ts
 import { WishSectionList, useWishSections } from '../shared/ui/WishList.tsx';
 import type { SectionId, WishSection } from '../shared/wishSections.ts';
 import { useBatch } from '../shared/useBatch.ts';
+import { undoAiFilter, useAiFilterWatch } from '../shared/aiFilter.ts';
 
 export type ListSource = 'explore' | 'wish';
 
@@ -61,7 +62,7 @@ const BATCH = 60;
  * 探索的一列（區段裡、搜尋和 AI 結果集）；想去的列在 shared/ui/WishList。
  * memo：選中、地圖上指到一個點時，只重畫有變的那一兩列。props 都要是穩定的值（statusOf、onToggle 不能每次換）
  */
-const Item = memo(function Item({ place, rank, hot, statusOf, selected, aiNote, letter }: { place: Place; rank: number; hot: boolean; statusOf: (id: string) => DayStatus; selected: boolean; aiNote?: string; letter?: string }) {
+const Item = memo(function Item({ place, rank, hot, statusOf, selected, aiNote, letter, shelf }: { place: Place; rank: number; hot: boolean; statusOf: (id: string) => DayStatus; selected: boolean; aiNote?: string; letter?: string; shelf?: boolean }) {
   return (
     <PlaceRow
       place={place}
@@ -73,6 +74,7 @@ const Item = memo(function Item({ place, rank, hot, statusOf, selected, aiNote, 
       selected={selected}
       aiNote={aiNote}
       letter={letter}
+      shelf={shelf}
       // 拖到左邊的聊天室＝問 AI
       rootProps={{ ...dragPlaceProps(place.id), title: '點了看詳情；拖到左邊的聊天室可以問 AI' }}
     />
@@ -273,7 +275,15 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     (p: Place, i: number) => <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} selected={p.id === markId} />,
     [hotId, statusOf, markId],
   );
-  const conds = <FilterConds model={model} count={list.length} />;
+  // AI 套的篩選（T85 §37）：條件列換成「✦ AI 幫你套了」；使用者自己動了篩選就變回一般的條件列
+  const aiSet = useAiFilterWatch(!wish && !aiResult, filter, query);
+  const conds = (
+    <FilterConds
+      model={model}
+      count={list.length}
+      ai={aiSet ? { onUndo: undoAiFilter, ...(stage === 'area' ? { onCollapse: () => appStore.getState().setSectionsOpen([], 'explore') } : {}) } : undefined}
+    />
+  );
   const applyAndReset = (f: Filter, q: string) => {
     setInView(false);
     applyHelp(f, q);

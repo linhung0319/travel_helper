@@ -31,6 +31,7 @@ import { FeedFilters, feedTheme, pickFeedArea, pickFeedRegion, pickFeedTheme, sc
 import { askDraft, askList } from './mobileAi.ts';
 import { mobileStore, useMobile } from './mobileStore.ts';
 import { useBatch } from '../shared/useBatch.ts';
+import { undoAiFilter, useAiFilterWatch } from '../shared/aiFilter.ts';
 
 export interface VoteState {
   like: number;
@@ -103,6 +104,8 @@ export function ExploreFeed() {
   const areaTotal = useMemo(() => (stage === 'area' ? themePlaces(places, theme, filter).length : 0), [stage, places, theme, filter]);
   const count = stage === 'area' ? areaTotal : list.length;
   const undo = useLensUndo((s) => s.undo);
+  // AI 套的篩選（T85 §37）：條件列換成「✦ AI 幫你套了」；使用者自己動了篩選就變回一般的條件列
+  const aiSet = useAiFilterWatch(!aiResult, filter, feed.query);
 
   // 詳情的返回字（§35.2）
   const backTo = stage === 'area' ? scopeBackLabel(filter, theme) : stage === 'overview' ? '概覽' : aiResult ? 'AI 挑的' : '搜尋結果';
@@ -125,7 +128,9 @@ export function ExploreFeed() {
         subRow={feed.area && stage === 'area' ? <RegionChips areaId={feed.area} regionId={regionId} onPick={pickFeedRegion} counts={regionCounts} /> : undefined}
       />
       {stage === 'overview' && undo && <UndoToast label={undo.label} onUndo={undoLeave} onClose={() => lensUndo.getState().set(null)} />}
-      {stage !== 'overview' && !aiResult && <FilterConds model={model} count={count} />}
+      {stage !== 'overview' && !aiResult && (
+        <FilterConds model={model} count={count} ai={aiSet ? { onUndo: undoAiFilter, ...(stage === 'area' ? { onCollapse: () => mobileStore.getState().closeAll('feed') } : {}) } : undefined} />
+      )}
       <AddPlaceSuggest query={feed.query} surface="mobile" />
       {stage === 'overview' ? (
         <ExploreOverview

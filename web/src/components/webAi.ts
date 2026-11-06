@@ -4,7 +4,8 @@ import { appStore } from '../store.ts';
 import { ai, resetScreenSurface, setScreenSurface, watchProposalView } from '../appAi.ts';
 import { openDialog, openDiscussion, openMapPanel, uiStore } from '../uiStore.ts';
 import type { Filter } from '../lib/filter.ts';
-import type { ScreenSurface } from '../ai/stage.ts';
+import { appFilterSnapshot, type ScreenSurface } from '../ai/stage.ts';
+import { commands } from '../appCommands.ts';
 import type { ChatContext } from '../ai/types.ts';
 import { emptyDayFollowups, LODGING_FOLLOWUPS, lodgingDraft, nightLodgingStarter, WISH_EMPTY_DRAFT, type Starter } from '../ai/prompts.ts';
 import { dataStore } from '../dataStore.ts';
@@ -42,6 +43,9 @@ const webSurface: ScreenSurface = {
   },
   filterApplied: () => {},
   screenFilter: () => null,
+  exploreFilter: () => null,
+  snapshotFilter: () => appFilterSnapshot(appStore, (area) => commands.focus({ area })),
+  openSections: (ids) => appStore.getState().setSectionsOpen(ids, 'explore'),
   afterAdopt: () => {},
   proposalStale: () => {},
 };

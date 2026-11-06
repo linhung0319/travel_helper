@@ -148,6 +148,7 @@ export async function harness(opts: HarnessOptions = {}) {
 
   return {
     app,
+    stage,
     data,
     plan,
     backend,

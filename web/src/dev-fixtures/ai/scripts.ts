@@ -200,6 +200,38 @@ export const SCRIPTS: Script[] = [
       () => ({ text: '探索只留鳥羽的餐廳了。' }),
     ],
   },
+  // --- T85（§37）：要判斷的用 show_places 挑幾家；明說「全部」才 set_filter，回覆照區段講數字 ---
+  {
+    id: 'T85a',
+    sample: '鳥羽有哪些餐廳適合去',
+    match: (e) => /鳥羽/.test(e.text) && /餐廳/.test(e.text) && /適合/.test(e.text),
+    steps: [
+      () => ({ tools: [tool('search_places', { areas: ['toba'], types: ['restaurant'], limit: 5 })] }),
+      (e) => {
+        const list = e.results.search_places.places as any[];
+        return { tools: [tool('show_places', { ids: list.map((p) => p.id), title: '鳥羽適合 15 人去的餐廳', notes: Object.fromEntries(list.map((p) => [p.id, '評價高'])) })] };
+      },
+      (e) => ({ text: `先看這 ${e.results.show_places.ids.length} 家，書架名寫在每家的第二行。` }),
+    ],
+  },
+  ...[
+    { id: 'T85b', sample: '鳥羽 15 人能坐一起的餐廳全部列出來', re: /15 ?人能坐一起的餐廳全部/, input: { areas: ['toba'], types: ['restaurant'], who: ['together'] } },
+    { id: 'T85c', sample: '鳥羽的餐廳全部列出來', re: /鳥羽的餐廳全部/, input: { areas: ['toba'], types: ['restaurant'] } },
+  ].map(
+    (s): Script => ({
+      id: s.id,
+      sample: s.sample,
+      match: (e) => s.re.test(e.text),
+      steps: [
+        () => ({ tools: [tool('set_filter', { clear: true, ...s.input })] }),
+        (e) => {
+          const r = e.results.set_filter;
+          const parts = Object.entries((r.sections ?? {}) as Record<string, number>).map(([k, n]) => `${k} ${n}`);
+          return { text: `有 ${r.total} 家${parts.length ? `：${parts.join('、')}` : ''}，右邊都打開了。` };
+        },
+      ],
+    }),
+  ),
   // --- 指稱（規格 §4.5） ---
   {
     id: 'S30',

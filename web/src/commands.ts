@@ -30,6 +30,7 @@ import { areasExtent, extentOf, inBbox } from './lib/areas.ts';
 import { stopsOn } from './lib/itinerary.ts';
 import { hullAround } from './lib/mapLayers.ts';
 import { tripDates, dayLabel } from './lib/trip.ts';
+import { currentArea, filterMatches, sectionsWithResults, type ExploreSectionId } from './lib/shelves.ts';
 
 /**
  * 提議出現時右欄、地圖跳到哪裡（T48）：只動到 1 天的點 → 那天；動到 2 天以上，或有任何「住哪一區」「住宿」的變動 → 整趟。
@@ -286,6 +287,28 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     return { ok: true };
   }
 
+  /**
+   * AI 套了篩選（set_filter，T85 §37）：符合的點不論幾個都畫水滴，地圖框住它們（一個都沒有時飛到那區）。
+   * filter 是套好以後那頁的篩選；undo 回到套用之前。回傳要打開的區段（目前主題裡數字大於 0 的）
+   */
+  function showFilterResult(filter: Filter, undo: () => void): CommandResult<{ ids: string[]; sections: ExploreSectionId[] }> {
+    const { places } = data.getState();
+    const hits = filterMatches(places, filter);
+    const ids = hits.map((p) => p.id);
+    app.getState().setAiFilter({ ids, key: null, undo });
+    dropStaleSelection(ids);
+    const area = currentArea(filter);
+    if (hits.length) moveTo(hits.map((p) => p.coords));
+    else if (area) focus({ area });
+    return { ok: true, ids, sections: sectionsWithResults(places, filter) };
+  }
+
+  /** 清掉 AI 套的篩選標示（「AI 幫你套了」、水滴）；篩選本身不動 */
+  function clearFilterResult(): CommandResult {
+    app.getState().setAiFilter(null);
+    return { ok: true };
+  }
+
   /** 清掉標示、路線（結果集、篩選、選取、提議不動） */
   function clearHighlights(): CommandResult {
     app.getState().clearHighlights();
@@ -447,6 +470,8 @@ export function createCommands(app: StoreApi<AppStore>, data: StoreApi<DataState
     selectDay,
     setFilter,
     clearFilter,
+    showFilterResult,
+    clearFilterResult,
     showProposal,
     clearProposal,
     getViewState,

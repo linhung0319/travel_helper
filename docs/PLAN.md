@@ -2071,6 +2071,9 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **地圖水滴**：`lib/overlays.ts` 的 `aiDrops` 多吃「AI 套的篩選結果」：符合的點不論幾個都畫水滴（頭是類型漢字）、新出現的跳三下，地圖縮放到框住它們。幾十個水滴疊在一起時自己截圖看，太擠可以照現有規則處理名稱（13 級才寫），不改成別種標示。和 `aiResult`、提議照 §16.4「只畫最新的一組」互相取代；使用者自己改了篩選就收掉。手機地圖看得到時一樣。
 - **驗證**：`typecheck`、`build`、`npm test`（`aiDrops`、打開區段的邏輯補單元測試）；自己截圖（網頁 1366、手機 390）：dev-fixtures 的 `show_places` 腳本 → 平的清單有小標、水滴；`set_filter` 腳本（符合幾個、幾十個各一）→ 區段打開、「AI 幫你套了」、水滴；點掉晶片後變回條件列、水滴收掉。提示改了，跑幾個代表題的 `npm run ai:eval -- --only …`（先跟 👤 說要花 API 費用）。e2e 自己決定、只跑受影響的（`ai-web`、`ai-core`、`commands`、`ui-fixes-2026-11`、`mobile-ai`）。
 - **完成**：列出改過的 testid 給 T80。
+- **完成（2026-11-06）**：照 §37 做完，程式位置和「自己決定的」寫在 §37。`typecheck`、`build`、`npm test`（1125 個，新的在 `web/test/t85.test.ts`）通過；自己截圖網頁 1366、手機 390 看過（dev-fixtures 新腳本 `T85a`「鳥羽有哪些餐廳適合去」、`T85b`「鳥羽 15 人能坐一起的餐廳全部列出來」20 個只開全員吃飯、`T85c`「鳥羽的餐廳全部列出來」83 個三段都開）。`ai:eval` 要花 API 費用，還沒跑（等 👤）。
+  - **e2e（只跑受影響的）**：網頁 `ai-web`、`ai-core`、`commands`、`ui-fixes-2026-11` 38 支 29 過、9 支失敗；這 9 支在 master 上一樣失敗（T75～T84 的舊斷言，例如 `place-open-*`、照片牆），不是 T85 造成的，留給 T80。手機 `mobile-ai` 32 支 29 過，失敗的 48、206、864 行在 master 上也一樣失敗（錯誤相同）。
+  - **給 T80：新的 testid**：`ai-filter-bar`（AI 套的篩選時取代 `cond-row`，裡面的晶片、數字照舊是 `cond-chip`、`cond-count`）、`ai-filter-collapse`（全部收起）、`ai-filter-undo`（復原）、`row-shelf`（AI 結果集列的書架名小標，`data-section` 是區段 ID）。地圖上 AI 套的篩選的水滴也是 `map-ai-drop`。**行為改了**：網頁的 `set_filter` 會先切到探索分頁；`set_filter` 套用後區段會打開（以前全收著）。`mobile-ai` 864 行那支（「只看鳥羽的餐廳」）的 `cond-chip` 現在在 `ai-filter-bar` 裡。
 
 ### T80 e2e 體檢與完整 e2e 〔M〕（第十九輪，2026-11-06 👤 決定）
 

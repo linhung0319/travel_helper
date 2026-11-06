@@ -124,6 +124,46 @@ export function sectionCounts(places: Place[], theme: Theme, filter: Filter, opt
   return { total: pool.length, sections: SECTIONS[theme].map((section) => ({ section, count: pool.filter(sectionMatch(section)).length })) };
 }
 
+/**
+ * 一個點在書架上屬於哪個區段（T85 §37：AI 結果集的列第二行最前面的小標）。同時在兩個區段時取第一個符合的，
+ * 「下雨也行」和前兩排重疊，不標；景點一定落在「一定要去」或「其他景點」。車站、沒有符合的是 null
+ */
+export function shelfOf(place: Place): Section | null {
+  if (!isTheme(place.type)) return null;
+  return SECTIONS[place.type].find((s) => !s.overlap && sectionMatch(s)(place)) ?? null;
+}
+
+/** 選了一區時一定有一個主題（同探索的 needTheme）：沒給或給了好幾類，換成第一個（沒有就「玩」）；不用換時回傳同一個物件 */
+export function withTheme(filter: Filter): Filter {
+  if (!currentArea(filter) || themeOf(filter)) return filter;
+  return { ...filter, types: [filter.types.find(isTheme) ?? 'spot'] };
+}
+
+/** 符合篩選的點（推薦順序，不看搜尋、地圖範圍）：AI 套了篩選時地圖畫水滴的那些（T85 §37） */
+export function filterMatches(places: Place[], filter: Filter): Place[] {
+  return explorePlaces(places, filter, null, 'recommend', () => 0, '');
+}
+
+/**
+ * AI 套了篩選（set_filter）的那一下要打開的區段（T85 §37）：選了一區、有主題時，目前主題裡數字大於 0 的區段；
+ * 0 的照舊收著。沒選地區（平的清單）、沒有主題時是空的
+ */
+export function sectionsWithResults(places: Place[], filter: Filter): ExploreSectionId[] {
+  const theme = themeOf(filter);
+  if (!theme || !currentArea(filter)) return [];
+  return sectionCounts(places, theme, filter)
+    .sections.filter((c) => c.count > 0)
+    .map((c) => c.section.id);
+}
+
+/** set_filter 回給 AI 的數字（T85 §37：回覆照區段講，和右欄對得上）：符合幾個；選了一區、有主題時加每個區段（區段名 → 數字） */
+export function filterSummary(places: Place[], filter: Filter): { total: number; sections?: Record<string, number> } {
+  const theme = themeOf(filter);
+  if (!theme || !currentArea(filter)) return { total: filterMatches(places, filter).length };
+  const { total, sections } = sectionCounts(places, theme, filter);
+  return { total, sections: Object.fromEntries(sections.map((c) => [c.section.title, c.count])) };
+}
+
 /** 主題列的三格數字（§35.3）：目前地區（子地區）那一類的總數，不看篩選。pool：探索是全部、想去是有人按想去的 */
 export function themeCounts(pool: Place[], scope: Pick<Filter, 'areas' | 'regions'>): Record<Theme, number> {
   const out = { spot: 0, restaurant: 0, lodging: 0 };

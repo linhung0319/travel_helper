@@ -66,7 +66,8 @@ export function useAiPicked(all: Place[], on: boolean) {
     if (!aiResult) return all;
     return all.filter((p) => aiResult.ids.includes(p.id)).sort((a, b) => aiResult.ids.indexOf(a.id) - aiResult.ids.indexOf(b.id));
   }, [all, aiResult]);
-  const aiProps = (id: string) => (aiResult ? { aiNote: aiResult.notes[id], letter: aiResult.lettered ? String.fromCharCode(65 + aiResult.ids.indexOf(id)) : undefined } : {});
+  // shelf：列的第二行最前面標書架名（T85 §37）
+  const aiProps = (id: string) => (aiResult ? { aiNote: aiResult.notes[id], letter: aiResult.lettered ? String.fromCharCode(65 + aiResult.ids.indexOf(id)) : undefined, shelf: true } : {});
   return { aiResult, list, aiProps };
 }
 

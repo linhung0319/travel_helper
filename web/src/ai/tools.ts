@@ -12,10 +12,11 @@ import { applyOps, type Op } from './ops.ts';
 import { createReadTools, PLACE_SECTIONS, type ToolOutput } from './readTools.ts';
 import { opsContext, placeName, type AiDeps } from './deps.ts';
 import { untagged } from './transcript.ts';
-import type { AddPlaceInit, ScreenTarget, ShowPlaces, ShowRoute } from './stage.ts';
+import type { AddPlaceInit, ScreenTarget, ShowPlaces, ShowRoute, Stage } from './stage.ts';
 import type { CardState, ToolSchema } from './types.ts';
 import { fullPlace } from '../dataStore.ts';
-import { toFilterPatch } from '../lib/filter.ts';
+import { EMPTY_FILTER, toFilterPatch, type Filter } from '../lib/filter.ts';
+import { filterSummary, withTheme } from '../lib/shelves.ts';
 
 /** 一輪回覆結束時要呈現的東西：「再看一次」用相同的參數再跑一次 */
 export type Presentation =
@@ -65,7 +66,8 @@ const SCREEN_PANELS = ['comments', 'reservations', 'snapshots'];
 
 const fail = (error: string): ToolRun => ({ output: { ok: false, error } });
 
-export function createTools(d: AiDeps): ToolDef[] {
+/** stage：set_filter 要知道探索現在的篩選（回給 AI 的區段數字疊在它上面）；測試可以不給，用 appStore 的 */
+export function createTools(d: AiDeps & { stage?: Pick<Stage, 'exploreFilter'> }): ToolDef[] {
   const read = createReadTools(d);
   const byId = () => d.data.getState().byId;
   const ro = (fn: (input: never) => ToolOutput | Promise<ToolOutput>) => async (input: Record<string, unknown>): Promise<ToolRun> => ({ output: await fn(input as never) });
@@ -174,7 +176,7 @@ export function createTools(d: AiDeps): ToolDef[] {
     {
       name: 'show_places',
       kind: 'stage',
-      description: '給使用者看挑過的一組點：地圖標出來，清單只列這幾個，每個點可以附一行理由。比較時 lettered=true，地圖標 A、B、C，文字用 A、B、C 對應。畫面上永遠只有一組，每次給完整的一組：使用者要多找幾家、拿掉某家，就把調整後的整組和理由再給一次（現在的在 context.screen.aiResult）；問別的事才給全新的一組。',
+      description: '給使用者看挑過的一組點：地圖標出來，清單只列這幾個，每個點可以附一行理由。要判斷、挑選的問法（適合、推薦、哪家好、有什麼好吃的）一律用這個，挑 3～6 家、每家附理由。比較時 lettered=true，地圖標 A、B、C，文字用 A、B、C 對應。畫面上永遠只有一組，每次給完整的一組：使用者要多找幾家、拿掉某家，就把調整後的整組和理由再給一次（現在的在 context.screen.aiResult）；問別的事才給全新的一組。',
       input_schema: obj({ ids: strs(), title: str('使用者看得懂的標題（寫名字，不用 [[place:]]）'), notes: { type: 'object', additionalProperties: { type: 'string' }, description: '資料點 ID → 一行理由，20 字內（寫名字，不用 [[place:]]）' }, lettered: bool() }, ['ids', 'title']),
       run(input) {
         const i = input as unknown as ShowPlaces;
@@ -250,7 +252,7 @@ export function createTools(d: AiDeps): ToolDef[] {
       name: 'set_filter',
       kind: 'stage',
       description:
-        '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types（畫面一次看一類，只給一個：spot 玩、restaurant 吃、lodging 住；給多個只用第一個）、tiers（S、A、B；B 也包含沒評等級的）、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。' +
+        '套用探索的篩選（使用者看得到、可以自己取消）。只有使用者明說要「全部」、或純粹是條件（「能帶小孩的全部列出來」）才用；要判斷、挑選的（適合、推薦、哪家好）用 show_places 挑幾家。回傳 total（符合幾個）和 sections（選了一區時，每個區段幾個），回覆照區段講數字，例如「全員吃飯 3、要分桌 5、要分組去 4」。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types（畫面一次看一類，只給一個：spot 玩、restaurant 吃、lodging 住；給多個只用第一個）、tiers（S、A、B；B 也包含沒評等級的）、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。' +
         '探索每一類分成幾個區段，就是這些條件：玩＝一定要去（tiers S、A）、其他景點（tiers B）、下雨也行（weather rain）；吃＝全員吃飯（who together）、要分桌（who split）、要分組去（who apart）；住＝包棟・全團一棟（stay whole）、包棟・要分住（stay multi）、旅館飯店（stay hotel）、民宿（stay other）。' +
         '餐廳（給了只留餐廳）：who（together 15 人能坐一起＝fit15 yes、split 一家坐得下但要分桌、apart 15 人坐不下或還沒查、sub 分組 4～6 人坐得下、all 全員 15 人能一起吃＝together 加 split 而且收小孩）、contexts（lunch 午餐、dinner 晚餐、light 小吃咖啡；transit 車站旁）、kids（ok 可以帶小孩）。' +
         '住宿（給了只留住宿）：stay（whole 包棟・全團一棟、multi 包棟・要分住（一棟住不下 15 人）、hotel 旅館飯店、other 民宿（不能包棟）、fits 一間住得下全團＝包棟一棟或旅館飯店 5 間房以上、apart 要分開住）、dinner（included 一泊二食、walk 不含但走路有店、car 不含要開車找）、amenity（onsen 溫泉、stationWalk 車站走路到；給幾個都要符合）。' +
@@ -265,7 +267,12 @@ export function createTools(d: AiDeps): ToolDef[] {
         const types = patch.types;
         const note = Array.isArray(types) && types.length > 1 ? `畫面一次只看一類，只套用了 ${types[0]}；其他類要另外 set_filter，或用 show_places 一起列` : undefined;
         if (note) patch.types = [types[0]];
-        return { output: note ? { ok: true, note } : { ok: true }, present: { kind: 'filter', patch: toFilterPatch(patch), clear: !!clear }, card: {} };
+        const fp = toFilterPatch(patch);
+        // 套好以後符合幾個、每個區段幾個（T85 §37：回覆照區段講，和右欄對得上）
+        const base = clear ? EMPTY_FILTER : (d.stage?.exploreFilter() ?? d.app.getState().filter);
+        const after = withTheme({ ...base, ...(fp as Partial<Filter>) });
+        const summary = filterSummary(d.data.getState().places, after);
+        return { output: { ok: true, ...summary, ...(note ? { note } : {}) }, present: { kind: 'filter', patch: fp, clear: !!clear }, card: {} };
       },
     },
     { name: 'clear_view', kind: 'stage', description: '清掉畫面上 AI 的結果集、路線。', input_schema: obj({}), run: () => ({ output: { ok: true }, present: { kind: 'clear' }, card: {} }) },

@@ -1275,6 +1275,15 @@
 
 來源：§35 改版後，問 AI「鳥羽有哪些餐廳適合去」走 `set_filter`，探索跳到「鳥羽 › 吃」，但書架全收著、地圖沒有水滴，使用者看不出 AI 做了什麼；展開一格又只看到那一類；改成平的清單又看不到類型。草圖：`design-lab/ai-shelves.html`（線上 [AI 結果與書架](https://claude.ai/artifact/Vc4mni7tL8FAuNrz64R6NL)）。手機、網頁一樣。和 §16.4、§35 衝突的地方以這節為準。
 
+**進度**：T85 做完（2026-11-06）。提示在 `ai/systemPrompt.ts`、`ai/tools.ts`（`show_places`、`set_filter` 的說明；`set_filter` 回傳 `total`、`sections`（區段名 → 數字），`lib/shelves.ts` 的 `filterSummary`）。書架名小標是 `PlaceRow` 的 `shelf`（`shelves.shelfOf`，`useAiPicked` 的 `aiProps` 帶）。套篩選在 `ai/stage.ts` 的 `setFilter`：先切到探索、記下復原（`ScreenSurface.snapshotFilter`）、補主題（`shelves.withTheme`）、`commands.showFilterResult`（水滴、框地圖、`shelves.sectionsWithResults`）、`ScreenSurface.openSections`。狀態是 `appStore.aiFilter`（`aiLatest` 多一個 `'filter'`），「AI 幫你套了」是 `FilterConds` 的 `ai`，什麼時候變回一般條件列在 `shared/aiFilter.ts`（`useAiFilterWatch`）。地圖是 `overlays.aiDrops` 的 `aiFilter`。
+
+**自己決定的**：
+- 「使用者自己動了篩選」用比對的：AI 套好後探索第一次畫出來時記下那頁的篩選和搜尋，之後不一樣就算（點掉晶片、面板、換主題，也包括換區、換子地區、打字搜尋）。只收區段（「全部收起」、自己開關區段）不算。
+- `set_filter` 在網頁先切到探索分頁（和 `show_places` 一樣），篩選才一定套在探索那份；手機照舊留在聊天，訊息裡的「看探索」過去。
+- 沒選地區的 `set_filter`（平的清單）不動區段，「AI 幫你套了」也沒有「全部收起」。`clear_view` 連這組水滴、「AI 幫你套了」一起收掉（篩選本身留著）。
+- 「復原」連展開的區段一起回到套用前；網頁地圖飛回原本那區。
+- 「全部收起」「復原」是文字鈕，點擊範圍照 `--tap`（44 px）。
+
 - **AI 給點的兩條路**：
   - 要 AI 判斷、挑選的問法（「適合」「推薦」「哪家好」「有什麼好吃的」）一律用 `show_places` 挑 3～6 家附理由。
   - 只有使用者明說要「全部」、或純粹是條件（「有哪些能帶小孩的，全部列出來」），才用 `set_filter`。
