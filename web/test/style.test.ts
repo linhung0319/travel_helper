@@ -41,7 +41,8 @@ function offSpecRadii(css: string): string[] {
   const out: string[] = [];
   body.split('\n').forEach((line, i) => {
     const m = line.match(/border(?:-[a-z-]+)?-radius\s*:\s*([^;]+)/);
-    if (m && !m[1].trim().split(/\s+/).every((v) => /^(999px|14px|20px|50%|0|var\(--radius\))$/.test(v))) out.push(`${i + 1}:${m[1].trim()}`);
+    // var(--radius-inner)：貼齊卡片角的東西（卡片圓角減 1px 框）；var(--tc-corner)：行程卡右上四分之一圓的弧（T84，是形狀不是圓角）
+    if (m && !m[1].trim().split(/\s+/).every((v) => /^(999px|14px|20px|50%|0|var\(--(radius|radius-inner|tc-corner)\))$/.test(v))) out.push(`${i + 1}:${m[1].trim()}`);
   });
   return out;
 }
