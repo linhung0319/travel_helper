@@ -87,6 +87,8 @@
   --tier-a: var(--ink-2);
   --tier-b: var(--ink-2);
   --radius: 14px;
+  /* 卡片裡面貼齊卡片角的東西（行程卡右上的四分之一圓，T84）：卡片圓角減 1px 框 */
+  --radius-inner: 13px;
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
   /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
   --z-popover: 110;

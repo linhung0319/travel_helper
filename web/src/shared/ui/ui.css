@@ -2054,7 +2054,7 @@
 }
 
 /* 類型的四分之一圓（T84 §36，取代第十輪的小圓章）：有照片的卡右上角一塊類型色，46px、左下是弧線，白色圓體字靠右上。
-   不用 overflow: hidden（會切掉卡裡的選單），改成自己的右上圓角跟著卡片（卡 14px 減 1px 框）。沒照片的縮圖本身就是類型色塊，不放 */
+   不用 overflow: hidden（會切掉卡裡的選單），改成自己的右上圓角跟著卡片（--radius-inner：卡 14px 減 1px 框）。沒照片的縮圖本身就是類型色塊，不放 */
 .tc-type {
   --tc-corner: 46px;
   --seal: var(--ink-2);
@@ -2063,7 +2063,7 @@
   right: 0;
   width: var(--tc-corner);
   height: var(--tc-corner);
-  border-radius: 0 13px 0 var(--tc-corner);
+  border-radius: 0 var(--radius-inner) 0 var(--tc-corner);
   background: var(--seal);
   color: var(--paper);
   font-family: var(--font-round);
