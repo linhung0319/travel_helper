@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D 版：主題分頁＋收合書架</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c2840;--ink-2:#5d6680;--ink-3:#a3a9b8;--ink-4:#c3c7d1;--paper:#fff;--line:#e6e8ee;--wash:#f3f5fa;
+  --indigo:#24468a;--indigo-wash:#e9eef8;--indigo-line:#cdd6ea;--mustard:#e3a92b;--mustard-wash:#fcf3de;--mustard-ink:#9a6a00;
+  --matcha:#5f8a3e;--matcha-wash:#edf3e6;--love:#d8453a;--love-wash:#fde9e5;--love-line:#f3b9ae;--warn:#c8372d;--warn-bg:#fdecea;
+  --t-spot:#5f8a3e;--t-food:#c9541f;--t-stay:#7a5aa6;--t-spot-wash:#eef4e8;--t-food-wash:#fbece3;--t-stay-wash:#f0eaf7;--bad:#b3261e;
+  --round:'Zen Maru Gothic','Noto Sans TC',system-ui,sans-serif;--tap:44px;
+  font-family:system-ui,-apple-system,'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;font-size:16px;line-height:1.5;color:var(--ink);
+}
+*{box-sizing:border-box}
+body{margin:0;background:#dfe3ec;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:16px 0}
+button{font:inherit;color:inherit;cursor:pointer}
+svg{flex:0 0 auto}
+.phone{width:390px;height:min(844px,calc(100vh - 32px));background:var(--paper);border-radius:28px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;display:flex;flex-direction:column;position:relative}
+.lab{position:fixed;left:16px;top:16px;font-size:13px;color:#445;max-width:230px;line-height:1.4}
+.lab a{color:var(--indigo)}
+.lab b{display:block;font-size:15px;margin-bottom:4px}
+@media (max-width:860px){.lab{position:static;max-width:390px;margin:0 auto 8px}body{flex-direction:column;align-items:center}}
+
+/* 頂端 */
+.band{background:var(--indigo);padding:10px 12px 10px;color:#fff;flex:0 0 auto}
+.tools{display:flex;gap:8px;align-items:center}
+.search{flex:1;display:flex;align-items:center;gap:8px;min-height:var(--tap);padding:0 14px;border-radius:999px;background:#fff;color:var(--ink-3);border:0;font-size:15px}
+.rbtn{width:var(--tap);height:var(--tap);border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;position:relative}
+.rbtn.on{background:#fff;color:var(--indigo)}
+.rbtn .dot{position:absolute;top:5px;right:5px;width:9px;height:9px;border-radius:50%;background:var(--mustard);box-shadow:0 0 0 2px var(--indigo)}
+.head{flex:0 0 auto;background:var(--paper);border-bottom:1px solid var(--line)}
+.areas{display:flex;gap:18px;padding:0 14px;overflow-x:auto;scrollbar-width:none}
+.areas::-webkit-scrollbar{display:none}
+.areas button{flex:0 0 auto;min-height:42px;border:0;border-bottom:2.5px solid transparent;background:none;color:var(--ink-2);font-size:15px;padding:0 1px;white-space:nowrap;font-family:var(--round);font-weight:500}
+.areas button.on{border-bottom-color:var(--ink);color:var(--ink);font-weight:900}
+.areas button.ov{color:var(--mustard-ink)}
+.areas button.ov.on{border-bottom-color:var(--mustard);color:var(--ink)}
+.areas .n{font-size:12px;color:var(--ink-3);margin-left:3px;font-weight:500}
+.chipwrap{position:relative}
+.chipwrap::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff 70%);pointer-events:none}
+.chips{display:flex;gap:6px;padding:8px 14px 10px;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;min-height:30px;padding:0 11px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:13px;white-space:nowrap;color:var(--ink-2)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
+.chip.zero{border-style:dashed;color:var(--ink-3)}
+.chip .n{font-size:11px;margin-left:4px;font-family:var(--round);opacity:.8}
+/* 主題列：玩、吃、住 */
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 14px 10px}
+.ov .themes{padding:10px 12px 2px}
+.themes button{border:1px solid var(--line);border-radius:12px;background:#fff;min-height:52px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ink-2);padding:0 6px}
+.themes button .lbl{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+.themes button .lbl b{font-family:var(--round);font-size:16px;font-weight:900;color:var(--ink)}
+.themes button .lbl small{font-size:11.5px}
+.themes button .lbl small i{font-style:normal;font-family:var(--round);font-weight:700;font-size:13px}
+.themes button.on{border-color:transparent;box-shadow:inset 0 0 0 1.5px currentColor}
+.themes button.on.spot{background:var(--t-spot-wash);color:var(--t-spot)}
+.themes button.on.restaurant{background:var(--t-food-wash);color:var(--t-food)}
+.themes button.on.lodging{background:var(--t-stay-wash);color:var(--t-stay)}
+.themes button.on .lbl small{color:inherit}
+/* 內容 */
+.page{flex:1 1 auto;overflow-y:auto;position:relative;padding:0 14px 28px}
+.conds{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:10px 0 2px}
+.cond{display:inline-flex;align-items:center;gap:4px;min-height:28px;padding:0 6px 0 10px;border-radius:999px;background:var(--ink);color:#fff;font-size:13px;font-weight:700;border:0}
+.cond .x{opacity:.7;display:inline-flex}
+.conds .sum{font-size:12.5px;color:var(--ink-2);margin-left:4px}
+.feb{margin:8px 0 0}
+.feb button{display:inline-flex;align-items:center;gap:6px;border:0;background:none;color:var(--ink-2);font-size:13px;padding:4px 0}
+.feb button i{width:7px;height:7px;border-radius:50%;background:var(--warn);display:inline-block}
+.feb ul{margin:4px 0 6px;padding-left:18px;font-size:13px;color:var(--ink-2)}
+/* 書架（區段）：標題黏在頂端 */
+.sec{margin:0}
+.sec-h{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:10px;width:100%;min-height:54px;padding:6px 0;border:0;border-bottom:1px solid var(--line);background:#fff;text-align:left}
+.sec.open .sec-h{box-shadow:0 6px 10px -8px rgba(28,40,64,.25)}
+.sec-h .bar{width:4px;height:26px;border-radius:2px;background:var(--line)}
+.sec.spot .sec-h .bar{background:var(--t-spot)}.sec.restaurant .sec-h .bar{background:var(--t-food)}.sec.lodging .sec-h .bar{background:var(--t-stay)}.sec.wish .sec-h .bar{background:var(--love)}
+.sec-h .tt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.2}
+.sec-h .t{font-family:var(--round);font-size:16px;font-weight:900}
+.sec-h .r{font-size:12px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.sec-h .c{font-family:var(--round);font-weight:900;font-size:17px;color:var(--ink)}
+.sec-h .c.zero{color:var(--ink-4)}
+.sec-h .tg{color:var(--ink-3);display:inline-flex;transition:transform .15s}
+.sec.open .sec-h .tg{transform:rotate(90deg);color:var(--ink)}
+.sec-body{padding:8px 0 12px;border-bottom:1px solid var(--line)}
+/* 照片牆和清單合一：大照片在左、文字在右 */
+.rows{display:flex;flex-direction:column;gap:8px}
+.rw{display:flex;gap:10px;border-radius:14px;overflow:hidden;background:var(--paper);min-width:0;cursor:pointer;box-shadow:0 1px 2px rgba(28,40,64,.08),0 0 0 1px var(--line)}
+.rw .ph{position:relative;flex:0 0 136px;height:112px;background:var(--wash)}
+.rw .tp{position:absolute;left:6px;top:6px}
+.rw .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding:8px 8px 8px 0;position:relative}
+.rw .nm{display:flex;align-items:flex-start;gap:6px;font-weight:700;font-size:15px;line-height:1.3;min-width:0;padding-right:40px}
+.rw .nm .n2{min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rw .nm .tier{margin-top:2px}
+.rw .mt{font-size:12.5px;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rw .mt .price{font-family:var(--round);color:var(--ink);font-weight:700}
+.rw .who{font-size:12px;color:var(--ink-2);display:flex;align-items:center;gap:4px;padding:0}
+.rw .ht{position:absolute;right:4px;top:4px}
+.pills{display:flex;gap:4px;flex-wrap:wrap}
+.pill{font-size:11px;padding:1px 7px;border-radius:999px;background:var(--wash);color:var(--ink-2)}
+.pill.good{background:var(--matcha-wash);color:var(--matcha)}.pill.bad{background:var(--warn-bg);color:var(--bad)}.pill.day{background:var(--indigo-wash);color:var(--indigo)}.pill.feb{background:var(--warn-bg);color:var(--bad)}
+.heart{display:inline-flex;align-items:center;gap:2px;min-width:36px;min-height:36px;justify-content:center;border-radius:999px;background:#fff;color:var(--ink-3);font-size:13px;padding:0 6px;border:0}
+.heart.on{color:var(--love)}
+.av{display:inline-flex}
+.av i{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--indigo-wash);color:var(--indigo);font-style:normal;font-size:10px;font-weight:700;border:1.5px solid #fff;margin-left:-5px}
+.av i:first-child{margin-left:0}
+.seal{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;color:#fff;font-family:var(--round);font-weight:900;font-size:14px;box-shadow:0 0 0 2px #fff}
+.seal.sm{width:18px;height:18px;font-size:10px;box-shadow:none}
+.seal.md{width:22px;height:22px;font-size:12px;box-shadow:none}
+.seal.spot{background:var(--t-spot)}.seal.restaurant{background:var(--t-food)}.seal.lodging{background:var(--t-stay)}
+.tier{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;padding:0 .25em;border:1px solid var(--ink-4);border-radius:999px;font-family:var(--round);font-size:.8em;color:var(--ink-2);line-height:1;flex:0 0 auto}
+.tier.S{color:var(--indigo);border-color:var(--indigo)}
+.img{width:100%;height:100%;object-fit:cover;display:block}
+.fallback{width:100%;height:100%;display:grid;place-items:center;color:#fff;font-family:var(--round);font-weight:900;font-size:26px;opacity:.85}
+.fallback.spot{background:var(--t-spot)}.fallback.restaurant{background:var(--t-food)}.fallback.lodging{background:var(--t-stay)}
+.empty{border:1px dashed var(--ink-4);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--ink-2)}
+.empty .steps{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.empty .steps button{border:1px solid var(--indigo-line);background:#fff;color:var(--indigo);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700}
+.skip{padding:8px 0 2px;color:var(--ink-3);font-size:12px;text-align:center}
+.foot{display:flex;justify-content:center;gap:18px;padding:18px 0 0;font-size:13px}
+.foot button{border:0;background:none;color:var(--indigo);display:inline-flex;align-items:center;gap:4px}
+.stub{padding:40px 16px;text-align:center;color:var(--ink-3);font-size:14px}
+/* 概覽卡：圖片 → 玩吃住 → 文字 */
+.ov{padding:12px 0}
+.ov .card{border-radius:16px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 2px rgba(28,40,64,.08),0 0 0 1px var(--line);background:#fff}
+.ov .ph{height:170px;background:var(--wash);position:relative;cursor:pointer}
+.ov .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55))}
+.ov .ph h3{position:absolute;left:14px;bottom:10px;margin:0;color:#fff;font-family:var(--round);font-size:26px;font-weight:900;z-index:1;display:flex;align-items:center;gap:6px}
+.ov .ph h3 small{font-size:13px;font-weight:500;opacity:.85;margin-left:4px}
+.ov .tx{padding:4px 14px 12px}
+.ov .sum{font-size:15px;line-height:1.65;color:var(--ink)}
+/* 篩選面板 */
+.dim{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:40}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:41;background:#fff;border-radius:20px 20px 0 0;max-height:78%;display:flex;flex-direction:column;box-shadow:0 -8px 30px rgba(0,0,0,.2);animation:sheetup .18s ease-out}
+@keyframes sheetup{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.sheet-h{display:flex;align-items:center;gap:8px;padding:14px 16px 6px}
+.sheet-h b{font-family:var(--round);font-size:17px;flex:1}
+.sheet-h button{border:0;background:none;color:var(--ink-2);display:inline-flex;padding:4px}
+.sheet-b{overflow-y:auto;padding:0 16px 10px}
+.fg{padding:8px 0 6px;border-top:1px solid var(--line)}
+.fg:first-child{border-top:0}
+.fg .g{font-size:12.5px;color:var(--ink-2);margin-bottom:6px}
+.fg .row{display:flex;flex-wrap:wrap;gap:6px}
+.fc{display:inline-flex;align-items:center;gap:4px;min-height:32px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:13.5px;white-space:nowrap}
+.fc.on{border-color:var(--ink);background:var(--ink);color:#fff;font-weight:700}
+.sheet-f{display:flex;gap:8px;padding:10px 16px 16px;border-top:1px solid var(--line)}
+.sheet-f .clr{border:1px solid var(--line);background:#fff;border-radius:999px;min-height:var(--tap);padding:0 16px;color:var(--ink-2)}
+.sheet-f .ok{flex:1;border:0;background:var(--indigo);color:#fff;border-radius:999px;min-height:var(--tap);font-weight:700}
+/* 詳情 */
+.detail{position:absolute;inset:0;background:var(--paper);display:flex;flex-direction:column;z-index:20}
+.d-top{position:absolute;left:0;right:0;top:0;z-index:3;display:flex;align-items:center;gap:8px;padding:10px 12px}
+.d-back{display:inline-flex;align-items:center;gap:2px;min-height:38px;padding:0 14px 0 8px;border-radius:999px;background:rgba(255,255,255,.94);border:0;font-weight:700;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:280px}
+.d-back span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.d-scroll{flex:1;overflow-y:auto}
+.d-hero{height:230px;background:var(--wash);position:relative}
+.d-hero .cr{position:absolute;left:10px;bottom:8px;font-size:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.d-body{padding:12px 16px 24px}
+.d-name{display:flex;align-items:center;gap:8px;font-family:var(--round);font-size:22px;font-weight:900;margin:0;line-height:1.3}
+.d-name .tier{font-size:13px}
+.d-sub{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink-2);margin:4px 0 0;flex-wrap:wrap}
+.d-sub a{color:var(--indigo);text-decoration:none;font-size:13px;display:inline-flex;align-items:center;gap:2px}
+.d-act{display:flex;gap:8px;align-items:stretch;padding:12px 0 4px}
+.btn-love{display:inline-flex;align-items:center;gap:6px;min-height:var(--tap);padding:0 16px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-2);font-weight:700;flex:0 0 auto}
+.btn-love.on{border-color:var(--love-line);background:var(--love-wash);color:var(--love)}
+.btn-dis{display:inline-flex;align-items:center;gap:4px;min-height:var(--tap);padding:0 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-2)}
+.btn-day{flex:1;min-height:var(--tap);border:0;border-radius:999px;background:var(--indigo);color:#fff;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.btn-day b{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.btn-day small{font-weight:400;font-size:11px;opacity:.85}
+.who{font-size:13px;color:var(--ink-2);padding:2px 0 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.who .me{color:var(--love);font-weight:700}
+.who .av i{width:20px;height:20px;font-size:11px}
+.d-tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+.d-tabs button{flex:1;min-height:var(--tap);border:0;border-bottom:4px solid transparent;background:none;color:var(--ink-3)}
+.d-tabs button.on{border-bottom-color:var(--mustard);color:var(--ink);font-weight:700}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.sq{background:var(--wash);border-radius:12px;padding:8px 6px;text-align:center;font-size:12px;line-height:1.3;border:0}
+.sq .m{font-size:20px;line-height:1;font-family:var(--round)}
+.sq .w{display:block;font-weight:700;margin-top:2px}
+.sq .k{display:block;color:var(--ink-2);margin-top:1px;font-size:11px}
+.sq .y{display:block;color:var(--ink-3);font-size:11px;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sq.g .m{color:var(--matcha)}.sq.b .m{color:var(--bad)}.sq.w .m{color:var(--mustard-ink)}.sq.n .m{color:var(--ink-4)}
+.sq.n{background:#fafbfd;border:1px dashed var(--ink-4)}
+.legend{font-size:11px;color:var(--ink-3);margin:-6px 0 10px}
+.d-p{margin:8px 0;font-size:15px;line-height:1.65}
+.d-fact{display:flex;gap:8px;font-size:14px;margin:6px 0;color:var(--ink-2)}
+.d-fact b{flex:0 0 3.5em;color:var(--ink)}
+.d-feb{background:var(--warn-bg);border-radius:10px;padding:8px 10px;font-size:13px;color:var(--bad);margin:10px 0}
+.d-more{border:1px solid var(--line);border-radius:999px;background:#fff;padding:6px 14px;font-size:14px;margin-top:6px}
+.d-pc{margin:10px 0 0;padding-left:0;list-style:none;font-size:14px}
+.d-pc li{padding-left:1.4em;text-indent:-1.4em;margin:3px 0}
+.d-pc li.p::before{content:'＋ ';color:var(--matcha);font-weight:900}.d-pc li.c::before{content:'－ ';color:var(--bad);font-weight:900}
+.d-nodata{background:var(--mustard-wash);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--mustard-ink);margin:10px 0}
+.near h4{margin:14px 0 6px;font-size:14px;display:flex;justify-content:space-between;align-items:baseline}
+.near h4 small{font-weight:400;color:var(--ink-2)}
+.near h4 button{border:0;background:none;color:var(--indigo);font-weight:700;font-size:13px}
+.near .nr{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;background:none;border-top:0;border-left:0;border-right:0;width:100%;text-align:left}
+.near .nr small{color:var(--ink-2);white-space:nowrap}
+.near .none{font-size:13px;color:var(--ink-3);padding:4px 0}
+/* 底部分頁、提示 */
+.tabbar{flex:0 0 auto;display:flex;border-top:1px solid var(--line);background:#fff;height:58px}
+.tabbar button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11.5px;color:var(--ink-2);position:relative}
+.tabbar button.on{color:var(--indigo);font-weight:700}
+.tabbar .bd{position:absolute;top:7px;left:calc(50% + 7px);background:var(--love);color:#fff;border-radius:999px;font-size:10px;padding:0 5px;min-width:16px;text-align:center;font-family:var(--round)}
+.toast{position:absolute;left:50%;bottom:70px;transform:translateX(-50%);z-index:50;background:var(--ink);color:#fff;border-radius:14px;padding:9px 14px;font-size:14px;display:flex;align-items:center;gap:10px;max-width:366px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.25);animation:up .18s ease-out}
+.toast.warnish{background:#5a3a00}
+.toast .undo{background:var(--mustard);color:var(--ink);border:0;border-radius:999px;padding:2px 10px;font-weight:700;font-size:13px}
+.toast .cl{border:0;background:none;color:#fff;opacity:.7;padding:0 2px;display:inline-flex}
+@keyframes up{from{transform:translate(-50%,8px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.hint{font-size:12px;color:var(--ink-2);background:var(--wash);border-radius:10px;padding:8px 10px;margin:12px 0}
+</style>
+</head>
+<body>
+<div class="lab"><b>D 版（第四版）</b>地區（含概覽）› 子地區 › 玩／吃／住 › 收合的書架 › 詳情。書架是篩選組合（一定要去＝S、A），自己組條件用篩選面板；照片牆和清單合成一種列。想去用同一套頂端，書架是還沒排／候選／已排。<br><a href="index.html">‹ 回比較頁</a></div>
+<div class="phone" id="app"></div>
+<script src="sample-data.js"></script>
+<script>
+// ====== 正式版的線條圖示（lib/icons.ts 的子集） ======
+const ICONS = {
+  search: 'M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM15.3 15.3L20 20',
+  heart: 'M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z',
+  'thumb-down': 'M10 15V5H5.5l-1.2 8H10zM10 15l-1.2 4.2c-.2.9.4 1.8 1.4 1.8.7 0 1.3-.4 1.6-1L14 15h4.5V5H10',
+  calendar: 'M4.5 6h15v14h-15zM4.5 10.5h15M8.5 3.5v4M15.5 3.5v4',
+  spark: 'M12 3.5l1.9 5.6 5.6 1.9-5.6 1.9L12 18.5l-1.9-5.6L4.5 11l5.6-1.9zM19 16.5v4M17 18.5h4',
+  user: 'M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM4.5 20c.6-3.8 3.6-6 7.5-6s6.9 2.2 7.5 6',
+  sliders: 'M4 7h9M17 7h3M13 4.5v5h4v-5zM4 17h3M11 17h9M7 14.5v5h4v-5z',
+  back: 'M15 5l-7 7 7 7',
+  close: 'M6 6l12 12M18 6L6 18',
+  check: 'M5 12.5l4.5 4.5L19 7.5',
+  chevron: 'M9 5l7 7-7 7',
+  plus: 'M12 5v14M5 12h14',
+  map: 'M4 6.5l5-2 6 2 5-2v13l-5 2-6-2-5 2zM9 4.5v13M15 6.5v13',
+};
+const icon = (n, size = 20, filled = false) => `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="${filled ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${ICONS[n]}"/></svg>`;
+
+// ====== 假資料與狀態 ======
+const D = window.SAMPLE;
+const P = D.places;
+const byId = Object.fromEntries(P.map(p => [p.id, p]));
+const AREAS = D.areas;
+const ME = '媽媽';
+const AV = { 小林: '林', 阿姨: '姨', 小雯: '雯', 舅舅: '舅', 媽媽: '媽', 爸爸: '爸' };
+const findId = (prefix) => (P.find(p => p.name.startsWith(prefix)) || {}).id;
+const votes = {
+  [findId('橫山展望台')]: ['小林', '阿姨'],
+  [findId('鳥羽水族館')]: ['小林', '阿姨', '小雯', '舅舅'],
+  [findId('大王埼燈塔')]: ['阿姨'],
+  [findId('的矢牡蠣露台')]: ['小林'],
+  [findId('志摩觀光飯店 The Classic')]: ['舅舅'],
+  [findId('伊雜宮')]: ['小林', '媽媽'],
+  [findId('御木本珍珠島')]: ['小雯'],
+  [findId('筏莊 山上')]: ['爸爸'],
+  [findId('海上料亭')]: ['小雯'],
+};
+const dayStatus = {
+  [findId('橫山展望台')]: { scheduled: '2/3' },
+  [findId('伊雜宮')]: { candidate: '2/4' },
+  [findId('志摩觀光飯店 The Classic')]: { scheduled: '2/2' },
+  [findId('鳥羽水族館')]: { scheduled: '2/5' },
+  [findId('海上料亭')]: { candidate: '2/5' },
+};
+const AREA_IDS = ['overview', 'shima', 'toba', 'futami', 'ise', 'osaka', 'kix'];
+const AREA_LABEL = ['概覽', '志摩', '鳥羽', '二見', '伊勢', '大阪', '關西機場周邊'];
+const AREA_JA = { shima: 'しま', toba: 'とば' };
+const typeZh = { spot: '景點', restaurant: '餐廳', lodging: '住宿' };
+const typeCh = { spot: '景', restaurant: '食', lodging: '宿' };
+const themeName = { spot: '玩', restaurant: '吃', lodging: '住' };
+const typeKey = { spot: 'spots', restaurant: 'restaurants', lodging: 'lodging' };
+
+// 篩選面板：書架已經切過的條件不放進來（玩的下雨也行、吃的全員 15 人、住的住法）；餐廳、住宿多一組等級
+const walk = (p) => !!(p.station && p.station.includes('走路'));
+const walkMin = (p) => { const m = p.station && p.station.match(/走路 (\d+)/); return m ? +m[1] : 99; };
+const TIER_GROUP = { g: '等級', items: [['tS', 'S', p => p.tier === 'S'], ['tA', 'A', p => p.tier === 'A'], ['tB', 'B', p => p.tier === 'B']] };
+const FILTERS = {
+  spot: [
+    { g: '適合', items: [['elder', '長輩', p => p.four[0].m === '◎'], ['kids', '小孩', p => p.four[1].m === '◎'], ['feb', '2 月', p => p.four[2].m === '◎']] },
+    { g: '怎麼去', items: [['walk', '不用搭車', walk]] },
+  ],
+  restaurant: [
+    { g: '分組去', items: [['sub', '4～6 人一組坐得下', p => p.fit15 !== 'no']] },
+    { g: '哪一餐', items: [['lunch', '午餐', p => !p.fee || /午|¥/.test(p.fee) && !/^晚/.test(p.fee)], ['dinner', '晚餐', p => !!p.fee && /晚/.test(p.fee)], ['cafe', '小吃咖啡', p => /咖啡|喫茶|Cafe/i.test(p.name)]] },
+    { g: '帶小孩', items: [['kidsok', '可以', p => p.four[1].m !== '✕']] },
+    { g: '怎麼去', items: [['station', '車站旁', p => walkMin(p) <= 5], ['walk', '不用搭車', walk]] },
+    TIER_GROUP,
+  ],
+  lodging: [
+    { g: '晚餐', items: [['meal2', '一泊二食', p => !!p.meals && p.meals.includes('一泊二食')], ['nomeal', '不含晚餐', p => !p.meals || !p.meals.includes('一泊二食')]] },
+    { g: '適合', items: [['elder', '長輩', p => p.four[0].m === '◎'], ['kids', '小孩', p => p.four[1].m === '◎']] },
+    { g: '其他', items: [['onsen', '溫泉', p => /溫泉|湯/.test(p.name) || p.tags.includes('溫泉')], ['walk', '車站走路到', walk]] },
+    TIER_GROUP,
+  ],
+};
+// 想去分頁多一組
+const WISH_GROUP = { g: '誰想去', items: [['mine', '只看我按的', p => mine(p.id)]] };
+// 書架＝篩選組合。玩：一定要去、其他景點、下雨也行（下雨也行和前兩排有重疊）；吃：三種坐法；住：四種住法
+const isWholeFull = p => p.wholeRental && p.maxGuests >= 15;
+const isWholePart = p => p.wholeRental && !(p.maxGuests >= 15);
+const isHotel = p => !p.wholeRental && ['hotel', 'ryokan', 'other'].includes(p.kind);
+const SECTIONS = {
+  spot: [
+    { id: 'must', title: '一定要去', rule: 'S、A 級', fn: p => p.tier === 'S' || p.tier === 'A', real: c => c.spotsS + c.spotsA },
+    { id: 'other', title: '其他景點', rule: 'B 級', fn: p => !(p.tier === 'S' || p.tier === 'A'), real: c => c.spotsB + c.spotsNone },
+    { id: 'rain', title: '下雨也行', rule: '室內或有遮蔽（和上面兩排有重複）', fn: p => p.weather === 'indoor' || p.weather === 'covered', real: c => c.rainOk },
+  ],
+  restaurant: [
+    { id: 'yes', title: '全員吃飯', rule: '15 人能坐一起', fn: p => p.fit15 === 'yes', real: c => c.fit15yes },
+    { id: 'split', title: '要分桌', rule: '一家坐得下 15 人，分兩桌以上', fn: p => p.fit15 === 'split', real: c => c.fit15split },
+    { id: 'apart', title: '要分組去', rule: '坐不下 15 人，或席數還沒查', fn: p => !(p.fit15 === 'yes' || p.fit15 === 'split'), real: c => c.restaurants - c.fit15yes - c.fit15split },
+  ],
+  lodging: [
+    { id: 'wfull', title: '包棟・全團一棟', rule: '能包棟，住得下 15 人', fn: isWholeFull, real: c => c.wholeFull },
+    { id: 'wpart', title: '包棟・要分住', rule: '能包棟，但住不下 15 人', fn: isWholePart, real: c => c.wholePart },
+    { id: 'hotel', title: '旅館飯店', rule: '分房住', fn: isHotel, real: c => c.hotelRyokan },
+    { id: 'minshuku', title: '民宿', rule: '不能包棟、房間少', fn: p => !isWholeFull(p) && !isWholePart(p) && !isHotel(p), real: c => c.minshuku },
+  ],
+};
+const WISH_SECTIONS = [
+  { id: 'none', title: '還沒排', rule: '想去的人多的排前面', fn: p => !dayStatus[p.id] },
+  { id: 'cand', title: '已是候選', rule: '主辦考慮放某一天，還沒定', fn: p => dayStatus[p.id] && dayStatus[p.id].candidate },
+  { id: 'sched', title: '已排進行程', rule: '主辦已經排進那天', fn: p => dayStatus[p.id] && dayStatus[p.id].scheduled },
+];
+
+const S = { tab: 'explore', area: null, region: null, theme: 'spot', filters: new Set(), open: { spot: new Set(), restaurant: new Set(), lodging: new Set(), wish: new Set() }, sheet: false, stack: [], febOpen: {}, dtab: 'intro', moreOpen: false, scrollMemo: 0, toast: null, toastTimer: null,
+  wish: { area: null, region: null, theme: 'spot' } };
+
+// ====== 工具 ======
+const h = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const img = (p) => p.photo ? `<img class="img" src="${h(p.photo)}" referrerpolicy="no-referrer" loading="lazy" onerror="this.outerHTML='<div class=\\'fallback ${p.type}\\'>${typeCh[p.type]}</div>'">` : `<div class="fallback ${p.type}">${typeCh[p.type]}</div>`;
+const seal = (t, size = '') => `<span class="seal ${t} ${size}">${typeCh[t]}</span>`;
+const tier = (p) => p.tier ? `<span class="tier ${p.tier}">${p.tier}</span>` : '';
+const likes = (id) => votes[id] || [];
+const mine = (id) => likes(id).includes(ME);
+const avatars = (names) => `<span class="av">${names.map(n => `<i title="${h(n)}">${AV[n] || n[0]}</i>`).join('')}</span>`;
+const markWord = { '◎': '很適合', '○': '可以', '△': '要注意', '✕': '不適合', '—': '沒資料' };
+const markCls = { '◎': 'g', '○': 'g', '△': 'w', '✕': 'b', '—': 'n' };
+const areaOf = (id) => AREAS.find(a => a.id === id);
+const regionName = (id) => { for (const a of AREAS) { const r = a.regions.find(r => r.id === id); if (r) return r.name; } return id; };
+// 現在是探索還是想去：各自的地區、子地區、主題；篩選鍵用 "explore:spot:xx" 這種
+const view = () => S.tab === 'wish' ? S.wish : S;
+const where = () => { const v = view(); return v.region ? regionName(v.region) : v.area ? areaOf(v.area).name : '全部'; };
+const fkey = (k) => `${S.tab}:${view().theme}:${k}`;
+const filterGroups = (theme) => S.tab === 'wish' ? [WISH_GROUP, ...FILTERS[theme]] : FILTERS[theme];
+function passFilters(p, theme = view().theme) {
+  for (const g of filterGroups(theme)) {
+    const on = g.items.filter(([k]) => S.filters.has(`${S.tab}:${theme}:${k}`));
+    if (on.length && !on.some(([, , fn]) => fn(p))) return false;
+  }
+  return true;
+}
+const activeFilters = (theme = view().theme) => filterGroups(theme).flatMap(g => g.items.filter(([k]) => S.filters.has(`${S.tab}:${theme}:${k}`)).map(([k, l]) => ({ key: `${S.tab}:${theme}:${k}`, label: l.split('（')[0] })));
+const filtersOn = (theme = view().theme) => activeFilters(theme).length;
+// 範圍裡的點：探索是全部，想去是有人按過的
+const pool = () => S.tab === 'wish' ? P.filter(p => likes(p.id).length) : P;
+const scoped = (areaId, regionId, theme) => pool().filter(p => (!areaId || p.area === areaId) && (!regionId || p.region === regionId) && p.type === theme);
+// 真實總數：探索用 counts／regionCounts，想去用抽樣（想去的點本來就只有這些）
+function realTotal(areaId, regionId, theme) {
+  if (S.tab === 'wish') return scoped(areaId, regionId, theme).length;
+  if (regionId) { const rc = D.regionCounts[regionId]; return rc ? rc[typeKey[theme]] : scoped(areaId, regionId, theme).length; }
+  return areaOf(areaId).counts[typeKey[theme]];
+}
+function sectionCount(sec, areaId, regionId, theme) {
+  const list = scoped(areaId, regionId, theme).filter(sec.fn).filter(p => passFilters(p, theme));
+  const real = (S.tab === 'explore' && !regionId && !filtersOn(theme)) ? sec.real(areaOf(areaId).counts) : list.length;
+  return { list, real };
+}
+const sectionsOf = (theme) => S.tab === 'wish' ? WISH_SECTIONS : SECTIONS[theme];
+const matchedTotal = (areaId, regionId, theme) => S.tab === 'wish' ? scoped(areaId, regionId, theme).filter(p => passFilters(p, theme)).length : SECTIONS[theme].reduce((n, s) => n + sectionCount(s, areaId, regionId, theme).real, 0);
+
+// ====== 動作 ======
+function go(fn) { fn(); render(); }
+function setArea(id) {
+  const v = view();
+  if (id === 'overview' || id === 'all') { v.area = null; v.region = null; S._scrollTo = 0; if (S.tab === 'explore') for (const k in S.open) S.open[k].clear(); return; }
+  if (v.area !== id) { v.region = null; S._scrollTo = 0; }
+  v.area = id;
+}
+function setTheme(t) { view().theme = t; S._scrollTo = 0; }
+function toggleFilter(k) { if (S.filters.has(k)) S.filters.delete(k); else S.filters.add(k); }
+function clearFilters() { const pre = `${S.tab}:${view().theme}:`; for (const k of [...S.filters]) if (k.startsWith(pre)) S.filters.delete(k); }
+const openSet = () => S.tab === 'wish' ? S.open.wish : S.open[S.theme];
+function toggleSec(id) { const o = openSet(); if (o.has(id)) o.delete(id); else o.add(id); }
+function openPlace(id) { const sc = document.querySelector('.page'); if (sc && S.stack.length === 0) S.scrollMemo = sc.scrollTop; S.stack.push(id); S.dtab = 'intro'; S.moreOpen = false; }
+function back() { S.stack.pop(); S.dtab = 'intro'; }
+function toggleLove(id) {
+  const l = votes[id] = likes(id).slice();
+  if (l.includes(ME)) { votes[id] = l.filter(n => n !== ME); toast(`已收回想去（${byId[id].name.slice(0, 10)}）`, () => { votes[id] = l; render(); }, true); }
+  else { l.push(ME); toast('✓ 已加到想去，家人也看得到', () => { votes[id] = l.filter(n => n !== ME); render(); }); }
+}
+function toast(msg, undo, warnish) { clearTimeout(S.toastTimer); S.toast = { msg, undo, warnish }; S.toastTimer = setTimeout(() => { S.toast = null; render(); }, 6000); }
+function stub(what) { toast(`「${what}」原型未做`); render(); }
+
+// ====== 畫面 ======
+function render() {
+  const app = document.getElementById('app');
+  const page = document.querySelector('.page');
+  const keepScroll = page ? page.scrollTop : 0;
+  const detail = S.stack.length ? renderDetail(byId[S.stack[S.stack.length - 1]]) : '';
+  let body;
+  if (S.tab === 'explore' || S.tab === 'wish') body = renderExplore();
+  else body = `<div class="page"><div class="stub">「${{ trip: '行程', ai: 'AI', me: '我' }[S.tab]}」分頁原型未做</div></div>`;
+  const wishN = Object.values(votes).filter(l => l.length).length;
+  app.innerHTML = body + detail + (S.sheet ? renderSheet() : '') + `
+    <div class="tabbar">
+      ${[['explore', '探索', 'search'], ['wish', '想去', 'heart'], ['trip', '行程', 'calendar'], ['ai', 'AI', 'spark'], ['me', '我', 'user']].map(([k, l, ic]) => `<button class="${S.tab === k ? 'on' : ''}" onclick="go(()=>{S.tab='${k}';S.stack=[];S._scrollTo=0})">${icon(ic, 24)}${l}${k === 'wish' ? `<span class="bd">${wishN}</span>` : ''}</button>`).join('')}
+    </div>
+    ${S.toast ? `<div class="toast ${S.toast.warnish ? 'warnish' : ''}">${h(S.toast.msg)}${S.toast.undo ? '<button class="undo" onclick="S.toast.undo();S.toast=null;render()">復原</button>' : ''}<button class="cl" onclick="S.toast=null;render()">${icon('close', 16)}</button></div>` : ''}`;
+  const np = document.querySelector('.page');
+  if (np) np.scrollTop = S._scrollTo != null ? S._scrollTo : keepScroll;
+  S._scrollTo = null;
+}
+
+/** 玩、吃、住那一列（概覽卡、地區頁、想去同一個長相） */
+function themeRow(areaId, regionId, onPick) {
+  const v = view();
+  return `<div class="themes">${['spot', 'restaurant', 'lodging'].map(t => `<button class="${v.area === areaId && v.theme === t ? 'on' : ''} ${t}" onclick="go(()=>{${onPick(t)}})">${seal(t, 'md')}<span class="lbl"><b>${themeName[t]}</b><small><i>${realTotal(areaId, regionId, t)}</i> ${typeZh[t]}</small></span></button>`).join('')}</div>`;
+}
+
+function renderExplore() {
+  const wish = S.tab === 'wish';
+  const v = view();
+  const a = v.area ? areaOf(v.area) : null;
+  const fOn = filtersOn();
+  const showHead = wish || !!a;   // 想去的「全部」也有子地區（空）和主題列
+  const areaTabs = `<div class="areas">${AREA_IDS.map((id, i) => {
+    const first = id === 'overview';
+    const on = first ? !v.area : v.area === id;
+    let n = '';
+    if (!first && (a || wish)) { const x = areaOf(id); n = `<span class="n">${x ? (fOn || wish ? matchedTotal(id, null, v.theme) : x.counts[typeKey[v.theme]]) : '略'}</span>`; }
+    return `<button class="${on ? 'on' : ''} ${first && !wish ? 'ov' : ''}" onclick="go(()=>setArea('${first ? (wish ? 'all' : 'overview') : id}'))">${first && wish ? '全部' : AREA_LABEL[i]}${n}</button>`;
+  }).join('')}</div>`;
+  let sub = '', themes = '';
+  if (a) {
+    const cnt = (rid) => wish ? scoped(a.id, rid, v.theme).length : rid ? (D.regionCounts[rid] ? D.regionCounts[rid][typeKey[v.theme]] : scoped(a.id, rid, v.theme).length) : a.counts[typeKey[v.theme]];
+    const chips = [['', '全部', v.region === null]].concat(a.regions.map(r => [r.id, r.name, v.region === r.id])).map(([id, name, on]) => {
+      const n = cnt(id || null);
+      return `<button class="chip ${on ? 'on' : ''} ${n === 0 ? 'zero' : ''}" onclick="go(()=>{view().region='${id}'||null;S._scrollTo=0})">${h(name)}<span class="n">${n}</span></button>`;
+    }).join('');
+    sub = `<div class="chipwrap"><div class="chips">${chips}<span style="flex:0 0 40px"></span></div></div>`;
+  }
+  if (showHead) themes = themeRow(a ? a.id : null, v.region, t => `setTheme('${t}')`);
+  // 工具列：概覽是問 AI、加地點；地區頁（和想去）只有篩選
+  const tools = showHead
+    ? `<button class="rbtn ${fOn ? 'on' : ''}" onclick="go(()=>S.sheet=true)" title="篩選">${icon('sliders', 22)}${fOn ? '<span class="dot"></span>' : ''}</button>`
+    : `<button class="rbtn" onclick="stub('問 AI')" title="問 AI">${icon('spark', 22)}</button><button class="rbtn" onclick="stub('加地點')" title="自己加一個">${icon('plus', 22)}</button>`;
+  const head = `<div class="band"><div class="tools"><button class="search" onclick="stub('搜尋')">${icon('search', 20)} 搜尋名稱</button>${tools}</div></div>
+  <div class="head">${areaTabs}${sub}${themes}</div>`;
+  return head + `<div class="page">${showHead ? renderTheme(a) : renderOverview()}</div>`;
+}
+
+function renderOverview() {
+  return `<div class="ov">${AREAS.map(a => {
+    const rep = P.find(p => p.area === a.id && p.tier === 'S') || P.find(p => p.area === a.id);
+    const open = !!S.febOpen[a.id];
+    return `<div class="card">
+      <div class="ph" onclick="go(()=>setArea('${a.id}'))">${rep ? img(rep) : ''}<h3>${h(a.name)}<small lang="ja">${AREA_JA[a.id] || ''}</small></h3></div>
+      ${themeRow(a.id, null, t => `setArea('${a.id}');setTheme('${t}')`)}
+      <div class="tx">
+        <div class="sum">${h(a.summary)}</div>
+        ${a.february.length ? `<div class="feb"><button onclick="go(()=>S.febOpen['${a.id}']=!S.febOpen['${a.id}'])"><i></i>2 月注意 ${a.february.length} 則 ${icon('chevron', 14)}</button>${open ? `<ul>${a.february.map(x => `<li>${h(x)}</li>`).join('')}</ul>` : ''}</div>` : ''}
+      </div></div>`;
+  }).join('')}<div class="skip">二見、伊勢、大阪、關西機場周邊（略）</div></div>`;
+}
+
+function renderTheme(a) {
+  const wish = S.tab === 'wish';
+  const v = view();
+  const t = v.theme;
+  const areaId = a ? a.id : null;
+  const total = realTotal(areaId, v.region, t);
+  const fOn = filtersOn();
+  const secs = sectionsOf(t).map(sec => ({ sec, ...sectionCount(sec, areaId, v.region, t) }));
+  const openS = openSet();
+  let out = '';
+  if (fOn) out += `<div class="conds">${activeFilters().map(f => `<button class="cond" onclick="go(()=>toggleFilter('${f.key}'))">${h(f.label)}<span class="x">${icon('close', 14)}</span></button>`).join('')}<span class="sum">符合 ${matchedTotal(areaId, v.region, t)} 個</span></div>`;
+  if (!wish && a && !v.region && a.february.length) out += `<div class="feb"><button onclick="go(()=>S.febOpen['${a.id}']=!S.febOpen['${a.id}'])"><i></i>2 月注意 ${a.february.length} 則 ${icon('chevron', 14)}</button>${S.febOpen[a.id] ? `<ul>${a.february.map(x => `<li>${h(x)}</li>`).join('')}</ul>` : ''}</div>`;
+  if (total === 0) return out + `<div class="empty" style="margin-top:12px">${wish ? `${h(where())}還沒有人按想去的${typeZh[t]}。` : `${h(where())}沒有${typeZh[t]}。`}<div class="steps">${v.region ? `<button onclick="go(()=>{view().region=null})">看${h(a.name)}全區</button>` : ''}${wish && v.area ? `<button onclick="go(()=>setArea('all'))">看全部地區</button>` : ''}</div></div>`;
+  for (const { sec, list, real } of secs) {
+    const open = openS.has(sec.id);
+    out += `<section class="sec ${wish ? 'wish' : t} ${open ? 'open' : ''}"><button class="sec-h" onclick="go(()=>toggleSec('${sec.id}'))"><span class="bar"></span><span class="tt"><span class="t">${sec.title}</span><span class="r">${h(sec.rule)}</span></span><span class="c ${real === 0 ? 'zero' : ''}">${real}</span><span class="tg">${icon('chevron', 18)}</span></button>`;
+    if (open) {
+      out += `<div class="sec-body">`;
+      if (list.length === 0 && real > 0) out += `<div class="skip">（正式資料這排有 ${real} 個，原型沒抽到，略）</div>`;
+      else if (list.length === 0) out += `<div class="empty">${h(where())}沒有${fOn ? '符合篩選的' : ''}「${sec.title}」的${typeZh[t]}。<div class="steps">${v.region ? `<button onclick="go(()=>{view().region=null})">看${h(a.name)}全區</button>` : ''}${fOn ? `<button onclick="go(()=>clearFilters())">清除篩選</button>` : ''}</div></div>`;
+      else {
+        out += `<div class="rows">${list.map(row).join('')}</div>`;
+        if (real > list.length) out += `<div class="skip">（原型只抽了 ${list.length} 個；正式資料這排還有 ${real - list.length} 個，略）</div>`;
+      }
+      out += `</div>`;
+    }
+    out += `</section>`;
+  }
+  if (!wish) out += `<div class="foot"><button onclick="stub('問 AI')">${icon('spark', 16)} 問 AI 幫我挑</button><button onclick="stub('加地點')">${icon('plus', 16)} 找不到？自己加一個</button></div>`;
+  else out += `<div class="hint">「已是候選」是主辦考慮放進那天、還沒定；「已排進行程」是主辦已經排了。</div>`;
+  return out;
+}
+
+function renderSheet() {
+  const v = view(); const t = v.theme;
+  const n = matchedTotal(v.area, v.region, t);
+  return `<div class="dim" onclick="go(()=>S.sheet=false)"></div><div class="sheet">
+    <div class="sheet-h"><b>篩選 · ${S.tab === 'wish' ? '想去的' : h(where()) + '的'}${typeZh[t]}</b><button onclick="go(()=>S.sheet=false)">${icon('close', 22)}</button></div>
+    <div class="sheet-b">${filterGroups(t).map(g => `<div class="fg"><div class="g">${g.g}</div><div class="row">${g.items.map(([k, l]) => { const on = S.filters.has(fkey(k)); return `<button class="fc ${on ? 'on' : ''}" onclick="go(()=>toggleFilter('${fkey(k)}'))">${on ? icon('check', 14) : ''}${l}</button>`; }).join('')}</div></div>`).join('')}</div>
+    <div class="sheet-f"><button class="clr" onclick="go(()=>clearFilters())">清除</button><button class="ok" onclick="go(()=>S.sheet=false)">看 ${n} 個${typeZh[t]}</button></div>
+  </div>`;
+}
+
+/** 一列：大照片在左、文字在右（照片牆和清單合一） */
+function row(p) {
+  const d = dayStatus[p.id]; const pills = [];
+  if (d && d.scheduled) pills.push(`<span class="pill day">已排 ${d.scheduled}</span>`);
+  if (d && d.candidate) pills.push(`<span class="pill day">主辦考慮放 ${d.candidate}</span>`);
+  const el = p.four[0];
+  if (el.m === '◎') pills.push('<span class="pill good">長輩 ◎ 很適合</span>'); else if (el.m === '✕' || el.m === '△') pills.push(`<span class="pill bad">長輩 ${el.m} ${markWord[el.m]}</span>`);
+  if (p.closedInTrip) pills.push('<span class="pill feb">二月休</span>');
+  const l = likes(p.id); const me = l.includes(ME);
+  const heart = `<button class="heart ${me ? 'on' : ''}" onclick="event.stopPropagation();go(()=>toggleLove('${p.id}'))" title="${me ? '你想去' : '按想去'}">${icon('heart', 18, me)}</button>`;
+  const who = l.length ? `<div class="who">${avatars(l)}<span>${me ? (l.length > 1 ? `你、${h(l.filter(n => n !== ME).join('、'))}` : '你') : h(l.join('、'))} 想去</span></div>` : '';
+  const meta = p.type === 'lodging' ? `${h(p.stay)}${p.pricePerPerson ? ` <span class="price">每人 ${p.pricePerPerson.toLocaleString()} 円起</span>` : ''}` : p.type === 'restaurant' ? `${h(p.regionName)}${p.fee ? '・' + h(p.fee.split('（')[0].split('／')[0]) : ''}` : h(p.regionName);
+  return `<div class="rw" role="button" tabindex="0" onclick="go(()=>openPlace('${p.id}'))"><div class="ph">${img(p)}<span class="tp">${seal(p.type)}</span></div><div class="tx"><div class="nm"><span class="n2">${h(p.name)}</span>${tier(p)}</div><div class="mt">${meta}${p.userAdded ? '・' + p.addedBy + ' 加的' : ''}</div>${pills.length ? `<div class="pills">${pills.slice(0, 2).join('')}</div>` : ''}${who}<span class="ht">${heart}</span></div></div>`;
+}
+
+function renderDetail(p) {
+  const l = likes(p.id); const me = l.includes(ME); const others = l.filter(n => n !== ME);
+  const v = view();
+  const prev = S.stack.length > 1 ? byId[S.stack[S.stack.length - 2]].name : (S.tab === 'wish' ? `想去 › ${themeName[v.theme]}` : `${where()} › ${themeName[v.theme]}`);
+  const d = dayStatus[p.id];
+  const nearR = P.filter(x => x.id !== p.id && x.region === p.region && x.type === 'restaurant');
+  const nearL = P.filter(x => x.id !== p.id && x.region === p.region && x.type === 'lodging');
+  const rc = D.regionCounts[p.region] || null;
+  const nearSec = (title, list, realN) => `<h4>${title} <small>${list.length === 0 ? '' : `列出 ${Math.min(3, list.length)} 個${realN != null && realN > 3 ? `，共 ${realN} 個` : ''}`}</small>${realN > 3 ? `<button onclick="stub('附近更多')">更多 ${realN - 3} 個 ›</button>` : ''}</h4>${list.length ? list.slice(0, 3).map(x => `<button class="nr" onclick="go(()=>openPlace('${x.id}'))"><span>${h(x.name)}</span><small>走路約 ${(5 + (x.name.length * 3) % 12)} 分 · 全員 ${Math.round((5 + (x.name.length * 3) % 12) * 1.4)} 分</small></button>`).join('') : `<div class="none">附近沒有${title.replace('附近的', '')}（0 個）</div>`}`;
+  const four = `<div class="four">${p.four.map(s => `<button class="sq ${markCls[s.m]}" onclick="stub('四格展開')"><span class="m">${s.m}</span><span class="w">${markWord[s.m]}</span><span class="k">${s.k}</span><span class="y">${h(s.why)}</span></button>`).join('')}</div><div class="legend">◎ 很適合 ○ 可以 △ 要注意 ✕ 不適合 — 沒資料</div>`;
+  const intro = p.userAdded ? `<div class="d-nodata">這是 ${p.addedBy} 自己加的點，主辦還沒查過：沒有照片、介紹、營業時間和費用。</div>` :
+    `${four}
+    ${p.closedInTrip ? `<div class="d-feb">二月休：旅程期間有休業，去之前要確認。</div>` : ''}
+    <p class="d-p">${h(p.intro)}</p>
+    ${p.hours ? `<div class="d-fact"><b>時間</b><span>${h(p.hours)}${p.stayMinutes ? `，停留約 ${p.stayMinutes} 分` : ''}</span></div>` : ''}
+    ${p.fee ? `<div class="d-fact"><b>費用</b><span>${h(p.fee)}</span></div>` : ''}
+    ${p.type === 'lodging' ? `<div class="d-fact"><b>住法</b><span>${h(p.stay)}${p.meals ? '・' + h(p.meals) : ''}${p.pricePerPerson ? `・每人約 ${p.pricePerPerson.toLocaleString()} 円起／晚` : ''}</span></div>` : ''}
+    ${p.type === 'restaurant' && p.reservation ? `<div class="d-fact"><b>預約</b><span>${h(p.reservation)}</span></div>` : ''}
+    ${p.febNote ? `<div class="d-feb">2 月：${h(p.febNote)}</div>` : ''}
+    ${d && d.scheduled ? `<div class="d-fact"><b>行程</b><span>主辦已排進 ${d.scheduled}</span></div>` : d && d.candidate ? `<div class="d-fact"><b>行程</b><span>主辦考慮放 ${d.candidate}，還沒定</span></div>` : ''}
+    <button class="d-more" onclick="go(()=>S.moreOpen=!S.moreOpen)">${S.moreOpen ? '收起' : '更多 ›'}</button>
+    ${S.moreOpen ? `<ul class="d-pc">${p.pros.map(t => `<li class="p">${h(t)}</li>`).join('')}${p.cons.map(t => `<li class="c">${h(t)}</li>`).join('')}</ul>` : ''}`;
+  const tabBody = S.dtab === 'intro' ? intro : S.dtab === 'location' ? `<div class="near"><div class="d-fact" style="margin-top:12px"><b>地點</b><span>${h(p.areaName)}・${h(p.regionName)}${p.station ? '・' + h(p.station) : ''}</span></div>${nearSec('附近的餐廳', nearR, rc ? rc.restaurants - (p.type === 'restaurant' ? 1 : 0) : nearR.length)}${nearSec('附近的住宿', nearL, rc ? rc.lodging - (p.type === 'lodging' ? 1 : 0) : nearL.length)}</div>` : `<div class="stub">${S.dtab === 'reviews' ? '評論' : '留言'}分頁原型未做</div>`;
+  return `<div class="detail">
+    <div class="d-top"><button class="d-back" onclick="go(()=>{back();if(!S.stack.length)S._scrollTo=S.scrollMemo})">${icon('back', 20)}<span>回到 ${h(prev)}</span></button></div>
+    <div class="d-scroll">
+      <div class="d-hero">${img(p)}${p.photo ? `<span class="cr">${h(p.name)}</span>` : ''}</div>
+      <div class="d-body">
+        <h2 class="d-name">${tier(p)}<span>${h(p.name)}</span></h2>
+        <div class="d-sub">${seal(p.type, 'sm')} ${typeZh[p.type]}・${h(p.regionName)}${p.star ? `・★ ${p.star}（${p.starN >= 10000 ? (p.starN / 10000).toFixed(1) + ' 萬' : p.starN}）` : ''}<a href="#" onclick="event.preventDefault();stub('地圖')">${icon('map', 14)} 地圖</a></div>
+        <div class="d-act">
+          <button class="btn-love ${me ? 'on' : ''}" onclick="go(()=>toggleLove('${p.id}'))">${icon('heart', 20, me)} ${me ? '我想去 ✓' : '我想去'}</button>
+          <button class="btn-dis" onclick="stub('不想去')">${icon('thumb-down', 20)}</button>
+          <button class="btn-day" onclick="stub('加到某天')"><b>${icon('calendar', 18)} 加到某天</b><small>給主辦的建議，不會動到行程</small></button>
+        </div>
+        <div class="who">${me ? `<span class="me">你想去</span>${others.length ? `，${avatars(others)} ${h(others.join('、'))} 也想去` : '，家人都看得到'}` : others.length ? `${avatars(others)} ${h(others.join('、'))} 想去，你還沒按` : '還沒有人按想去'}</div>
+        <div class="d-tabs">${[['intro', '簡介'], ['location', '位置'], ['reviews', '評論'], ['comments', '留言']].map(([k, l]) => `<button class="${S.dtab === k ? 'on' : ''}" onclick="go(()=>S.dtab='${k}')">${l}</button>`).join('')}</div>
+        ${tabBody}
+      </div>
+    </div>
+  </div>`;
+}
+render();
+</script>
+</body>
+</html>

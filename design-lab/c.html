@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C 版原型：一步一問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f2ea; --card:#fffdf8; --ink:#2b2622; --ink2:#6b625a; --ink3:#9a918a;
+    --line:#e3dcd0; --accent:#b4532a; --accent2:#f3e2d6; --go:#2f6b4f; --go2:#dfeee4;
+    --warn:#a8741a; --warn2:#f7ecd3; --bad:#9d3434; --bad2:#f6dede; --none:#ece7df;
+    --blue:#355f8a; --blue2:#e0eaf4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#e9e3d8;color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:16px;line-height:1.5}
+  #app{max-width:390px;margin:0 auto;background:var(--paper);min-height:100vh;position:relative;padding-bottom:84px}
+  a{color:var(--blue)}
+  button{font:inherit;cursor:pointer}
+
+  /* 路徑列：永遠在最上面 */
+  .crumbs{position:sticky;top:0;z-index:20;background:#fffdf8;border-bottom:1px solid var(--line);padding:8px 12px 6px}
+  .crumbs .lbl{font-size:11px;color:var(--ink3);letter-spacing:.08em;margin-bottom:2px}
+  .crumbs .row{display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;font-size:14px}
+  .crumbs .c{border:0;background:transparent;padding:3px 6px;border-radius:6px;color:var(--blue);text-decoration:underline;text-underline-offset:3px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .crumbs .c:hover{background:var(--blue2)}
+  .crumbs .c.cur{color:var(--ink);text-decoration:none;font-weight:700;background:var(--accent2);cursor:default}
+  .crumbs .sep{color:var(--ink3);padding:0 1px}
+  .backrow{display:flex;align-items:center;justify-content:space-between;padding:8px 12px 0}
+  .back{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px 6px 10px;font-size:14px;color:var(--ink)}
+  .back b{color:var(--blue)}
+  .stepno{font-size:12px;color:var(--ink3)}
+
+  .screen{padding:10px 14px 24px}
+  h1{font-size:22px;line-height:1.3;margin:6px 0 4px;font-weight:700}
+  .sub{color:var(--ink2);font-size:14px;margin:0 0 14px}
+  .sub b{color:var(--ink)}
+  .note{font-size:13px;color:var(--ink2);background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:8px 10px;margin:10px 0}
+
+  /* 選項卡片（每個畫面只問一件事，選項大顆） */
+  .opts{display:flex;flex-direction:column;gap:10px}
+  .opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:14px 14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+  .opt:hover{border-color:var(--accent)}
+  .opt .big{font-size:26px;font-weight:700;width:44px;text-align:center;color:var(--accent);flex:none}
+  .opt .t{font-size:17px;font-weight:700}
+  .opt .d{font-size:13px;color:var(--ink2);margin-top:2px}
+  .opt .n{margin-left:auto;flex:none;font-size:15px;font-weight:700;color:var(--ink);background:var(--accent2);border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .opt .arrow{flex:none;color:var(--ink3);font-size:18px;margin-left:4px}
+  .opt.zero{background:transparent;color:var(--ink3);border-style:dashed}
+  .opt.zero .t{color:var(--ink3);font-weight:500}
+  .opt.zero .n{background:var(--none);color:var(--ink3);font-weight:500}
+  .opt.dim{opacity:.6}
+  .opt.all{border-color:var(--accent);background:#fff8f2}
+  .optgroup{font-size:12px;color:var(--ink3);margin:14px 0 6px;letter-spacing:.06em}
+  .sumline{font-size:12px;color:var(--ink3);text-align:right;margin-top:8px}
+
+  /* 清單列 */
+  .list{display:flex;flex-direction:column;gap:8px}
+  .item{display:flex;gap:10px;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px;position:relative}
+  .item:hover{border-color:var(--accent)}
+  .item.seen{outline:2px solid var(--blue);outline-offset:-1px}
+  .item .ph{width:76px;height:76px;flex:none;border-radius:8px;overflow:hidden;background:#d9d2c5;position:relative;display:flex;align-items:center;justify-content:center;color:#6b625a;font-size:13px;font-weight:700}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+  .ph.fail img{display:none}
+  .ph.t-spot{background:#cfe0d5}.ph.t-restaurant{background:#f1dcc6}.ph.t-lodging{background:#d6dfec}
+  .item .body{flex:1;min-width:0}
+  .item .nm{font-size:16px;font-weight:700;line-height:1.3}
+  .item .meta{font-size:12.5px;color:var(--ink2);margin-top:2px}
+  .tier{display:inline-block;font-size:11px;padding:1px 6px;border-radius:4px;background:var(--none);color:var(--ink2);margin-right:4px;vertical-align:1px;white-space:nowrap}
+  .tier.S{background:#f3d7a3;color:#5a3d00}.tier.A{background:#f8e7c5;color:#5a3d00}
+  .seenchip{position:absolute;top:-8px;right:10px;font-size:11px;background:var(--blue);color:#fff;border-radius:999px;padding:1px 8px}
+  .marks{display:flex;flex-wrap:wrap;gap:3px 6px;margin-top:5px}
+  .mk{font-size:11.5px;border-radius:4px;padding:0 5px;white-space:nowrap;background:var(--none);color:var(--ink2)}
+  .mk.good{background:var(--go2);color:var(--go)}.mk.ok{background:#eef2e6;color:#4b6b3a}.mk.warn{background:var(--warn2);color:var(--warn)}.mk.bad{background:var(--bad2);color:var(--bad)}.mk.none{background:transparent;color:var(--ink3);border:1px dashed var(--line)}
+  .wl{font-size:12.5px;margin-top:5px;color:var(--ink2)}
+  .wl .me{color:var(--go);font-weight:700}
+  .wl .heart{color:var(--accent)}
+  .skip{border:1px dashed var(--line);border-radius:12px;padding:12px;color:var(--ink3);font-size:13px;text-align:center}
+  .legend{font-size:11.5px;color:var(--ink3);margin:10px 0 0}
+
+  /* 詳情 */
+  .hero{width:100%;height:190px;border-radius:14px;margin:6px 0 10px;font-size:18px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#6b625a}
+  .tierline{font-size:13px;color:var(--ink2);margin-bottom:6px}
+  .ja{font-size:13px;color:var(--ink3)}
+  .intro{font-size:15px;line-height:1.7;margin:10px 0}
+  .kv{display:grid;grid-template-columns:64px 1fr;gap:6px 10px;font-size:14px;margin:12px 0}
+  .kv dt{color:var(--ink3);font-size:13px;padding-top:1px}
+  .kv dd{margin:0}
+  .kv .nil{color:var(--ink3)}
+  .four{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+  .fcell{border-radius:10px;padding:8px 10px;background:var(--card);border:1px solid var(--line)}
+  .fcell .k{font-size:12px;color:var(--ink3)}
+  .fcell .m{font-size:16px;font-weight:700;margin:1px 0}
+  .fcell .why{font-size:12px;color:var(--ink2);line-height:1.4}
+  .fcell.good{border-color:#bcd8c7;background:#f0f7f2}.fcell.ok{background:#f5f7f0}.fcell.warn{border-color:#e5cf9a;background:#fbf4e3}.fcell.bad{border-color:#e4b9b9;background:#fbeeee}.fcell.none{background:transparent;border-style:dashed}
+  .fcell.none .m{color:var(--ink3);font-weight:500}
+  .feb{background:var(--bad2);border-left:4px solid var(--bad);border-radius:8px;padding:8px 10px;font-size:13.5px;line-height:1.6;margin:12px 0}
+  .feb b{color:var(--bad)}
+  h3{font-size:14px;color:var(--ink3);margin:16px 0 6px;font-weight:500;letter-spacing:.05em}
+  ul.pc{margin:0;padding-left:18px;font-size:14px}
+  ul.pc li{margin:3px 0}
+  .sec{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+  .sec button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-size:13px;color:var(--ink2)}
+  .admin{border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin:14px 0;font-size:13px;color:var(--ink2)}
+  .admin b{color:var(--ink)}
+
+  /* 想去方塊 */
+  .wish{border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin:12px 0;background:var(--card)}
+  .wish.on{border-color:var(--go);background:#f3f9f5}
+  .wish .who{font-size:14px;margin-bottom:8px}
+  .wish .who .me{color:var(--go);font-weight:700}
+  .wish .who .none{color:var(--ink3)}
+  .bigbtn{width:100%;border:0;border-radius:12px;padding:13px;font-size:17px;font-weight:700;background:var(--accent);color:#fff}
+  .bigbtn.off{background:transparent;color:var(--ink2);border:1px solid var(--line);font-weight:500;font-size:14px;padding:9px}
+  .wish .hint{font-size:12.5px;color:var(--ink2);margin-top:8px;line-height:1.5}
+  .result{margin-top:10px;border-radius:10px;padding:9px 10px;font-size:14px;line-height:1.5}
+  .result.added{background:var(--go2);color:#1f4d36}
+  .result.removed{background:var(--warn2);color:#5c3f08}
+  .result button{border:0;background:transparent;text-decoration:underline;color:inherit;padding:0 2px;font-size:14px}
+
+  /* 動作通知（不會自己消失） */
+  .banner{margin:10px 14px 0;border-radius:10px;padding:9px 12px;font-size:13.5px;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+  .banner.added{background:var(--go2);color:#1f4d36}.banner.removed{background:var(--warn2);color:#5c3f08}
+  .banner .x{margin-left:auto;border:0;background:transparent;color:inherit;font-size:16px;padding:0 4px}
+  .banner a{color:inherit}
+
+  /* 底部：我想去的 */
+  .foot{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;pointer-events:none}
+  .foot button{pointer-events:auto;width:100%;max-width:390px;border:0;border-top:1px solid var(--line);background:#fffdf8;padding:12px 16px;display:flex;align-items:center;gap:10px;font-size:15px;text-align:left}
+  .foot .cnt{background:var(--go);color:#fff;border-radius:999px;padding:1px 10px;font-weight:700;min-width:30px;text-align:center}
+  .foot .cnt.zero{background:var(--none);color:var(--ink3)}
+  .foot .sm{font-size:12px;color:var(--ink3);margin-left:auto}
+  .foot .bump{animation:bump .4s}
+  @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#2b2622;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;z-index:40;opacity:0;transition:opacity .2s;pointer-events:none}
+  .toast.show{opacity:1}
+  .wishsec{margin-top:18px}
+  .empty{padding:30px 10px;text-align:center;color:var(--ink3);font-size:14px}
+  .twolinks{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .twolinks button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-size:13px}
+  details.feb2{margin:12px 0}
+  details.feb2 summary{cursor:pointer;font-size:14px;color:var(--bad);font-weight:700}
+  details.feb2 ol{font-size:13px;padding-left:20px;line-height:1.6}
+  .areasum{font-size:14px;color:var(--ink2);line-height:1.6}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="foot" id="foot"></div>
+<div class="toast" id="toast"></div>
+<script src="sample-data.js"></script>
+<script>
+(function(){
+  const S = window.SAMPLE;
+  const ME = '媽媽';
+  const TYPES = {
+    spot:       {word:'玩', label:'景點', unit:'個', key:'spots',       d:'展望台、燈塔、遊船、體驗'},
+    restaurant: {word:'吃', label:'餐廳', unit:'家', key:'restaurants', d:'牡蠣、河豚、和食、咖啡'},
+    lodging:    {word:'住', label:'住宿', unit:'間', key:'lodging',     d:'飯店、旅館、民宿、包棟'}
+  };
+  const TIER = {S:'主辦特別推薦', A:'主辦推薦', B:'主辦說也可以', '': '主辦還沒評'};
+  const MARK = {'◎':{w:'很適合',c:'good'}, '○':{w:'可以',c:'ok'}, '△':{w:'要注意',c:'warn'}, '✕':{w:'不適合',c:'bad'}, '—':{w:'沒資料',c:'none'}};
+  const FIT15 = {yes:'15 人可以一起坐', split:'15 人要分桌或分組', no:'15 人坐不下', unknown:'15 人坐不坐得下沒資料'};
+  const STATION = {kashikojima:'賢島站', ugata:'鵜方站', 'shima-shimmei':'志摩神明站', kaminogo:'上之鄉站', 'shima-isobe':'志摩磯部站', 'shima-yokoyama':'志摩橫山站', toba:'鳥羽站'};
+  const MODE = {'走路':'走路', taxi:'計程車', bus:'巴士', ferry:'搭船', shuttle:'接駁車'};
+  const OTHER_AREAS = [{name:'伊勢', d:'伊勢神宮、外宮、おかげ横丁'}, {name:'大阪', d:'最後 1～2 天'}];
+
+  // 假的多人狀態：別人已經按過的
+  const wishes = {
+    'shima-yokoyama-observatory': ['小林','阿姨'],
+    'toba-aquarium': ['小林','阿姨','爸爸'],
+    'shima-ikadaso-sanjo-dining': ['阿姨'],
+    'shima-kanko-classic': ['小林'],
+    'shima-anorisaki-lighthouse': ['爸爸'],
+    'shima-satoumian': ['小林'],
+    'shima-mazakijima': ['阿姨']
+  };
+  const wishOf = id => wishes[id] || (wishes[id] = []);
+  const iWant = id => wishOf(id).includes(ME);
+
+  let path = {};            // {area, type, region, place} 或 {wish:true, place}
+  let lastSeen = null;      // 剛才打開過的地點
+  const scrollMemo = {};    // 每個畫面離開時捲到哪
+  const resultOf = {};      // 每個地點最後一次想去動作的結果（留在畫面上）
+  let banner = null;        // 跨畫面的動作通知
+  let bump = false;
+
+  const areaById = id => S.areas.find(a => a.id === id);
+  const placeById = id => S.places.find(p => p.id === id);
+  const regionName = (area, rid) => { const r = area.regions.find(r => r.id === rid); return r ? r.name : rid; };
+  const placesOf = (areaId, type, rid) => S.places.filter(p => p.area === areaId && p.type === type && (!rid || rid === 'all' || p.region === rid));
+  const tierOrder = {S:0, A:1, B:2};
+  const sortTier = arr => arr.slice().sort((a,b) => (tierOrder[a.tier] ?? 9) - (tierOrder[b.tier] ?? 9));
+  // 真實數量：志摩有 regionCounts；鳥羽只有抽樣，回 null 表示「略」
+  const countOf = (area, type, rid) => {
+    if (!rid || rid === 'all') return area.counts[TYPES[type].key];
+    const rc = S.regionCounts[rid];
+    if (rc) return rc[TYPES[type].key];
+    return null;
+  };
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const key = p => JSON.stringify(p);
+  const unit = type => TYPES[type].unit;
+
+  function stationText(s){
+    if (!s) return null;
+    const m = s.match(/^(\S+)\s+(\S+)\s+(.+)$/);
+    if (!m) return s;
+    return (STATION[m[1]] || m[1]) + ' ' + (MODE[m[2]] || m[2]) + ' ' + m[3].replace('? 分','？分');
+  }
+
+  /* ---------- 導覽 ---------- */
+  function go(next, opts){
+    opts = opts || {};
+    scrollMemo[key(path)] = window.scrollY;
+    path = next;
+    if (!opts.pop) history.pushState(path, '');
+    render();
+    const y = opts.back || opts.pop ? (scrollMemo[key(path)] || 0) : 0;
+    window.scrollTo(0, y);
+  }
+  window.addEventListener('popstate', e => { go(e.state || {}, {pop:true}); });
+
+  function crumbs(){
+    const list = [{label:'地區', p:{}}];
+    if (path.wish){
+      list.push({label:'我想去的 ' + myCount(), p:{wish:true}});
+      if (path.place) list.push({label:placeById(path.place).name, p:{wish:true, place:path.place}});
+      return list;
+    }
+    if (path.area){
+      const a = areaById(path.area);
+      list.push({label:a.name, p:{area:path.area}});
+      if (path.type){
+        const n = countOf(a, path.type);
+        list.push({label:TYPES[path.type].label + ' ' + n, p:{area:path.area, type:path.type}});
+        if (path.region){
+          const c = countOf(a, path.type, path.region);
+          const nm = path.region === 'all' ? '全部' : regionName(a, path.region);
+          list.push({label:nm + ' ' + (c == null ? '略' : c), p:{area:path.area, type:path.type, region:path.region}});
+          if (path.place) list.push({label:placeById(path.place).name, p:Object.assign({}, path)});
+        }
+      }
+    }
+    return list;
+  }
+
+  function crumbsHtml(){
+    const cs = crumbs();
+    const row = cs.map((c, i) => {
+      const last = i === cs.length - 1;
+      const sep = i ? '<span class="sep">›</span>' : '';
+      if (last) return sep + '<span class="c cur" title="' + esc(c.label) + '">' + esc(c.label) + '</span>';
+      return sep + '<button class="c" data-crumb="' + i + '" title="' + esc(c.label) + '">' + esc(c.label) + '</button>';
+    }).join('');
+    let back = '';
+    if (cs.length > 1){
+      const prev = cs[cs.length - 2];
+      back = '<div class="backrow"><button class="back" data-back>‹ 回到 <b>' + esc(prev.label) + '</b></button><span class="stepno">第 ' + cs.length + ' 層</span></div>';
+    }
+    return '<div class="crumbs"><div class="lbl">你在這裡</div><div class="row">' + row + '</div></div>' + back;
+  }
+
+  /* ---------- 畫面 ---------- */
+  function render(){
+    let html = crumbsHtml();
+    if (banner && !(path.place === banner.placeId)) html += bannerHtml();
+    if (path.wish) html += path.place ? detailScreen() : wishScreen();
+    else if (!path.area) html += areaScreen();
+    else if (!path.type) html += typeScreen();
+    else if (!path.region) html += regionScreen();
+    else if (!path.place) html += listScreen();
+    else html += detailScreen();
+    document.getElementById('app').innerHTML = html;
+    renderFoot();
+    bind();
+  }
+
+  function ph(p, cls){
+    const t = TYPES[p.type].label;
+    const img = p.photo ? '<img src="' + esc(p.photo) + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'fail\')">' : '';
+    return '<div class="ph t-' + p.type + ' ' + (p.photo ? '' : 'fail') + ' ' + (cls || '') + '"><span>' + t + (p.photo ? '' : '・沒有照片') + '</span>' + img + '</div>';
+  }
+
+  function areaScreen(){
+    let h = '<div class="screen"><h1>先看哪一區？</h1><p class="sub">一次看一區。選了區，下一步再選玩、吃、住。</p><div class="opts">';
+    for (const a of S.areas){
+      const c = a.counts;
+      h += '<button class="opt" data-area="' + a.id + '"><div class="big">' + esc(a.name[0]) + '</div><div><div class="t">' + esc(a.name) + '</div><div class="d">景點 ' + c.spots + ' 個・餐廳 ' + c.restaurants + ' 家・住宿 ' + c.lodging + ' 間</div></div><span class="arrow">›</span></button>';
+    }
+    for (const o of OTHER_AREAS){
+      h += '<button class="opt dim" data-noop><div class="big">' + esc(o.name[0]) + '</div><div><div class="t">' + esc(o.name) + '</div><div class="d">' + esc(o.d) + '（原型略）</div></div><span class="arrow">›</span></button>';
+    }
+    h += '</div><div class="note">旅程 2027-02-02～02-13，順序是志摩 → 鳥羽 → 伊勢 → 大阪。你標的「想去」在最下面那條隨時看得到。</div></div>';
+    return h;
+  }
+
+  function typeScreen(){
+    const a = areaById(path.area);
+    const c = a.counts;
+    const total = c.spots + c.restaurants + c.lodging;
+    let h = '<div class="screen"><h1>在' + esc(a.name) + '，想看玩、吃、還是住？</h1>';
+    h += '<p class="sub">主辦在' + esc(a.name) + '一共蒐集了 <b>' + total + ' 個地方</b>，分成這三類，三個數加起來就是全部。</p><div class="opts">';
+    for (const t of Object.keys(TYPES)){
+      const T = TYPES[t];
+      h += '<button class="opt" data-type="' + t + '"><div class="big">' + T.word + '</div><div><div class="t">' + T.label + '</div><div class="d">' + T.d + '</div></div><span class="n">' + c[T.key] + ' ' + T.unit + '</span><span class="arrow">›</span></button>';
+    }
+    h += '</div>';
+    h += '<div class="areasum" style="margin-top:16px">' + esc(a.summary) + '</div>';
+    h += '<details class="feb2"><summary>2 月要注意的 ' + a.february.length + ' 件事</summary><ol>' + a.february.map(f => '<li>' + esc(f) + '</li>').join('') + '</ol></details>';
+    h += '</div>';
+    return h;
+  }
+
+  function regionScreen(){
+    const a = areaById(path.area);
+    const T = TYPES[path.type];
+    const total = countOf(a, path.type);
+    const sampled = placesOf(a.id, path.type).length;
+    const isShima = a.id === 'shima';
+    let h = '<div class="screen"><h1>' + esc(a.name) + '的' + T.label + ' ' + total + ' ' + T.unit + '，看哪一帶？</h1>';
+    h += '<p class="sub">可以一次全部列出來，或先縮到一帶。每一帶後面的數字是那一帶有幾' + T.unit + '' + T.label + '。</p>';
+    h += '<div class="opts"><button class="opt all" data-region="all"><div class="big">全</div><div><div class="t">全部一次列出</div><div class="d">' + (isShima ? '主辦推薦的排前面，其他接在後面' : '原型只放了 ' + sampled + ' ' + T.unit + '代表，其他略') + '</div></div><span class="n">' + total + ' ' + T.unit + '</span><span class="arrow">›</span></button></div>';
+    h += '<div class="optgroup">分帶看</div><div class="opts">';
+    let sum = 0;
+    for (const r of a.regions){
+      const c = countOf(a, path.type, r.id);
+      if (c == null){
+        const n = placesOf(a.id, path.type, r.id).length;
+        if (n) h += '<button class="opt" data-region="' + r.id + '"><div><div class="t">' + esc(r.name) + '</div><div class="d">原型放了 ' + n + ' ' + T.unit + '代表</div></div><span class="n">' + n + '＋略</span><span class="arrow">›</span></button>';
+        else h += '<button class="opt zero" data-region="' + r.id + '"><div><div class="t">' + esc(r.name) + '</div></div><span class="n">略</span><span class="arrow">›</span></button>';
+        continue;
+      }
+      sum += c;
+      if (c === 0){
+        const zeroAll = S.regionCounts[r.id].spots + S.regionCounts[r.id].restaurants + S.regionCounts[r.id].lodging === 0;
+        h += '<button class="opt zero" data-region="' + r.id + '"><div><div class="t">' + esc(r.name) + '</div><div class="d">' + (zeroAll ? '這一帶什麼都沒蒐集（旅程期間休園）' : '這一帶沒有' + T.label) + '</div></div><span class="n">0 ' + T.unit + '</span><span class="arrow">›</span></button>';
+      } else {
+        h += '<button class="opt" data-region="' + r.id + '"><div><div class="t">' + esc(r.name) + '</div></div><span class="n">' + c + ' ' + T.unit + '</span><span class="arrow">›</span></button>';
+      }
+    }
+    h += '</div>';
+    if (isShima) h += '<div class="sumline">' + a.regions.length + ' 帶加起來 = ' + sum + ' ' + T.unit + '，和上面的總數一樣</div>';
+    else h += '<div class="sumline">鳥羽的分帶數量原型沒做，只放了代表點</div>';
+    h += '</div>';
+    return h;
+  }
+
+  function markChips(p){
+    return '<div class="marks">' + p.four.map(f => { const m = MARK[f.m] || MARK['—']; return '<span class="mk ' + m.c + '">' + esc(f.k) + ' ' + f.m + ' ' + m.w + '</span>'; }).join('') + '</div>';
+  }
+
+  function wishLine(id){
+    const w = wishOf(id);
+    if (!w.length) return '<div class="wl"><span class="heart">♡</span> 還沒有人標想去</div>';
+    const others = w.filter(n => n !== ME);
+    let s = '<div class="wl"><span class="heart">♥</span> ';
+    if (iWant(id)) s += '<span class="me">你（' + ME + '）</span>' + (others.length ? '、' + others.join('、') : '') + ' 想去';
+    else s += others.join('、') + ' 想去';
+    s += '（' + w.length + ' 人）</div>';
+    return s;
+  }
+
+  function metaLine(p){
+    const bits = [];
+    if (p.type === 'spot'){
+      if (p.station) bits.push(stationText(p.station));
+      if (p.fee) bits.push(p.fee.split('・')[0].replace(/^大人 /, ''));
+    } else if (p.type === 'restaurant'){
+      if (p.cuisine && p.cuisine.length) bits.push(p.cuisine.join('・'));
+      if (p.fee) bits.push(p.fee.length > 26 ? p.fee.slice(0, 26) + '…' : p.fee);
+      if (p.fit15) bits.push(FIT15[p.fit15]);
+    } else {
+      if (p.stay) bits.push(p.stay);
+      if (p.meals) bits.push(p.meals);
+      if (p.pricePerPerson) bits.push('每人約 ¥' + p.pricePerPerson.toLocaleString() + ' 起');
+      else bits.push('價格沒資料');
+    }
+    return bits.map(esc).join('<br>');
+  }
+
+  function itemHtml(p, showRegion){
+    const seen = lastSeen === p.id;
+    return '<button class="item ' + (seen ? 'seen' : '') + '" data-place="' + p.id + '">' + (seen ? '<span class="seenchip">剛才看的</span>' : '') + ph(p) +
+      '<div class="body"><div class="nm">' + esc(p.name) + '</div>' +
+      '<div class="meta"><span class="tier ' + (p.tier || '') + '">' + TIER[p.tier || ''] + '</span>' + (showRegion ? esc(p.regionName) : '') + (p.userAdded ? '（' + esc(p.addedBy) + ' 自己加的）' : '') + '</div>' +
+      '<div class="meta">' + metaLine(p) + '</div>' + markChips(p) + wishLine(p.id) + '</div></button>';
+  }
+
+  function listScreen(){
+    const a = areaById(path.area);
+    const T = TYPES[path.type];
+    const rid = path.region;
+    const all = rid === 'all';
+    const total = countOf(a, path.type, rid);
+    const rname = all ? '' : regionName(a, rid);
+    const ps = sortTier(placesOf(a.id, path.type, rid));
+    const areaTotal = countOf(a, path.type);
+    let h = '<div class="screen">';
+    if (total === 0){
+      const rc = S.regionCounts[rid];
+      const zeroAll = rc.spots + rc.restaurants + rc.lodging === 0;
+      h += '<h1>' + esc(rname) + '沒有' + T.label + '</h1>';
+      if (zeroAll) h += '<p class="sub">主辦在這一帶沒有蒐集任何東西。原因：' + esc(a.february[0]) + '</p>';
+      else {
+        h += '<p class="sub">主辦在' + esc(rname) + '沒有蒐集到' + T.label + '，不是沒顯示。這一帶有的是：</p><div class="twolinks">';
+        for (const t of Object.keys(TYPES)) if (t !== path.type && rc[TYPES[t].key]) h += '<button data-switch="' + t + '">看' + esc(rname) + '的' + TYPES[t].label + ' ' + rc[TYPES[t].key] + ' ' + TYPES[t].unit + '</button>';
+        h += '</div>';
+      }
+      h += '<div class="twolinks"><button data-back>‹ 回去選別的一帶</button></div></div>';
+      return h;
+    }
+    if (total == null){
+      h += '<h1>' + esc(rname) + '的' + T.label + '</h1><p class="sub">鳥羽這一帶原型只放了 ' + ps.length + ' ' + T.unit + '代表，實際數量略。</p>';
+    } else if (all){
+      h += '<h1>' + esc(a.name) + '的' + T.label + '，全部 ' + total + ' ' + T.unit + '</h1>';
+      if (ps.length === total){
+        const rec = ps.filter(p => p.tier === 'S' || p.tier === 'A').length;
+        h += '<p class="sub">這 ' + total + ' ' + T.unit + '<b>全部列在下面</b>，沒有藏起來的。主辦推薦的 ' + rec + ' ' + T.unit + '排前面，其他 ' + (total - rec) + ' ' + T.unit + '接在後面。</p>';
+      } else {
+        h += '<p class="sub">原型只放了其中 ' + ps.length + ' ' + T.unit + '，其他 ' + (total - ps.length) + ' ' + T.unit + '略；真的網站會把 ' + total + ' ' + T.unit + '都列出來。</p>';
+      }
+    } else {
+      h += '<h1>' + esc(rname) + '的' + T.label + '，' + total + ' ' + T.unit + '</h1>';
+      if (ps.length === total) h += '<p class="sub">這 ' + total + ' ' + T.unit + '就是' + esc(rname) + '<b>全部</b>的' + T.label + '（' + esc(a.name) + '一共 ' + areaTotal + ' ' + T.unit + '）。點一' + T.unit + '看詳情。</p>';
+      else h += '<p class="sub">' + esc(rname) + '一共 ' + total + ' ' + T.unit + '，原型放了 ' + ps.length + ' ' + T.unit + '，其他略（' + esc(a.name) + '一共 ' + areaTotal + ' ' + T.unit + '）。</p>';
+    }
+    h += '<div class="list">';
+    let lastTier = null;
+    for (const p of ps){
+      if (all && ps.length === total){
+        const grp = (p.tier === 'S' || p.tier === 'A') ? '主辦推薦的' : '其他的';
+        if (grp !== lastTier){ h += '<div class="optgroup">' + grp + '（' + ps.filter(q => ((q.tier === 'S' || q.tier === 'A') ? '主辦推薦的' : '其他的') === grp).length + ' ' + T.unit + '）</div>'; lastTier = grp; }
+      }
+      h += itemHtml(p, all);
+    }
+    if (total != null && ps.length < total) h += '<div class="skip">（略，還有 ' + (total - ps.length) + ' ' + T.unit + T.label + '原型沒放進來）</div>';
+    if (total == null) h += '<div class="skip">（略，鳥羽其他的' + T.label + '原型沒放進來）</div>';
+    h += '</div><div class="legend">記號：◎ 很適合　○ 可以　△ 要注意　✕ 不適合　— 主辦沒有資料。四格分別是長輩、小孩、2 月、15 人。</div>';
+    h += '<div class="sec"><button data-noop>排序</button><button data-noop>篩選</button><button data-noop>問 AI</button><button data-noop>＋ 自己加一個地點</button></div>';
+    h += '</div>';
+    return h;
+  }
+
+  function kv(label, val, nil){
+    return '<dt>' + label + '</dt><dd' + (val == null || val === '' ? ' class="nil"' : '') + '>' + (val == null || val === '' ? (nil || '沒資料') : esc(val)) + '</dd>';
+  }
+
+  function detailScreen(){
+    const p = placeById(path.place);
+    lastSeen = p.id;
+    const T = TYPES[p.type];
+    let h = '<div class="screen">';
+    h += '<h1>' + esc(p.name) + '</h1>';
+    h += '<div class="tierline"><span class="tier ' + (p.tier || '') + '">' + TIER[p.tier || ''] + '</span> ' + T.label + '・' + esc(p.areaName) + '・' + esc(p.regionName) + (p.star ? '・Google ' + p.star + (p.starN ? '（' + p.starN.toLocaleString() + ' 則）' : '') : '') + '</div>';
+    if (p.nameJa) h += '<div class="ja">' + esc(p.nameJa) + '</div>';
+    h += ph(p, 'hero');
+    h += wishBlock(p);
+    if (p.userAdded) h += '<div class="note">這一筆是 ' + esc(p.addedBy) + ' 自己加進來的，主辦還沒有填任何資料，所以下面都是空的。</div>';
+    if (p.intro) h += '<div class="intro">' + esc(p.intro) + '</div>'; else h += '<div class="intro" style="color:var(--ink3)">（沒有簡介）</div>';
+    if (p.febNote) h += '<div class="feb"><b>2 月注意：</b>' + esc(p.febNote).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') + '</div>';
+    h += '<h3>這四件事合不合適</h3><div class="four">';
+    for (const f of p.four){
+      const m = MARK[f.m] || MARK['—'];
+      h += '<div class="fcell ' + m.c + '"><div class="k">' + esc(f.k) + '</div><div class="m">' + f.m + ' ' + m.w + '</div><div class="why">' + esc(f.why) + '</div></div>';
+    }
+    h += '</div>';
+    h += '<h3>基本資料</h3><dl class="kv">';
+    if (p.type === 'spot'){
+      h += kv('費用', p.fee) + kv('時間', p.hours) + kv('停留', p.stayMinutes ? '約 ' + p.stayMinutes + ' 分' : null) + kv('怎麼去', stationText(p.station)) + kv('室內外', p.weather === 'indoor' ? '室內' : p.weather === 'outdoor' ? '戶外' : p.weather === 'covered' ? '有遮蔽' : null);
+    } else if (p.type === 'restaurant'){
+      h += kv('菜色', p.cuisine ? p.cuisine.join('・') : null) + kv('價位', p.fee) + kv('時間', p.hours) + kv('15 人', p.fit15 ? FIT15[p.fit15] : null) + kv('訂位', p.reservation) + kv('怎麼去', stationText(p.station));
+    } else {
+      h += kv('型態', p.stay) + kv('餐', p.meals) + kv('價格', p.fee, '價格沒資料') + kv('包棟', p.wholeRental ? '可以包棟' + (p.maxGuests ? '，最多 ' + p.maxGuests + ' 人' : '') : '不是包棟') + kv('怎麼去', stationText(p.station));
+    }
+    h += '</dl>';
+    if (p.pros.length) h += '<h3>好的地方</h3><ul class="pc">' + p.pros.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+    if (p.cons.length) h += '<h3>要注意的地方</h3><ul class="pc">' + p.cons.map(x => '<li>' + esc(x) + '</li>').join('') + '</ul>';
+    if (p.tags && p.tags.length) h += '<div class="meta" style="margin-top:10px;font-size:12.5px;color:var(--ink3)">標籤：' + p.tags.map(esc).join('、') + '</div>';
+    h += '<div class="sec"><button data-noop>地圖</button><button data-noop>附近有什麼</button><button data-noop>留言給大家</button></div>';
+    h += '<div class="admin"><b>主辦用</b>（兒子排行程時才會用到，家人不用管）<br><button data-noop style="margin-top:6px">放進某一天的候選名單</button><div style="margin-top:4px">只是先放著，<b>不會</b>動到已經排好的行程。</div></div>';
+    h += '</div>';
+    return h;
+  }
+
+  function wishBlock(p){
+    const w = wishOf(p.id);
+    const me = iWant(p.id);
+    const others = w.filter(n => n !== ME);
+    let who;
+    if (me) who = '<span class="me">✓ 你（' + ME + '）</span>' + (others.length ? '、' + others.join('、') : '') + ' 想去（' + w.length + ' 人）';
+    else if (others.length) who = others.join('、') + ' 想去（' + others.length + ' 人）。<span class="none">你還沒標。</span>';
+    else who = '<span class="none">還沒有人標想去。</span>';
+    let h = '<div class="wish ' + (me ? 'on' : '') + '"><div class="who">' + who + '</div>';
+    if (me) h += '<button class="bigbtn off" data-wish="off">取消我的想去（只拿掉你的名字）</button>';
+    else h += '<button class="bigbtn" data-wish="on">' + (others.length ? '我也想去' : '我想去') + '</button>';
+    const r = resultOf[p.id];
+    if (r === 'added') h += '<div class="result added">✓ 記下來了。全家人（包括排行程的兒子）現在都看得到「' + ME + '想去」。<button data-wish="off">按錯了？取消</button></div>';
+    if (r === 'removed') h += '<div class="result removed">已取消，你的名字從這裡拿掉了' + (others.length ? '；' + others.join('、') + '的還在' : '') + '。<button data-wish="on">再標回去</button></div>';
+    if (!r) h += '<div class="hint">「想去」是每個人各投一票，只會加上或拿掉你自己的名字，不會動到別人的，也不會動到行程。</div>';
+    return h + '</div>';
+  }
+
+  function wishScreen(){
+    const mine = S.places.filter(p => iWant(p.id));
+    const theirs = S.places.filter(p => !iWant(p.id) && wishOf(p.id).length);
+    let h = '<div class="screen"><h1>我想去的，' + mine.length + ' 個</h1><p class="sub">這是你（' + ME + '）自己標的。兒子排行程時會看這份名單，也看得到其他人的。</p>';
+    if (!mine.length) h += '<div class="empty">你還沒有標任何想去。<br>回到地區，開一個地點，按「我想去」。</div>';
+    else {
+      let lastArea = null;
+      h += '<div class="list">';
+      for (const p of mine){
+        if (p.areaName !== lastArea){ h += '<div class="optgroup">' + esc(p.areaName) + '</div>'; lastArea = p.areaName; }
+        h += itemHtml(p, true);
+      }
+      h += '</div>';
+    }
+    h += '<div class="wishsec"><h3>家人標了、你還沒標的（' + theirs.length + ' 個）</h3>';
+    if (theirs.length) h += '<div class="list">' + theirs.map(p => itemHtml(p, true)).join('') + '</div>';
+    h += '</div></div>';
+    return h;
+  }
+
+  function myCount(){ return S.places.filter(p => iWant(p.id)).length; }
+  function familyCount(){ return S.places.filter(p => wishOf(p.id).length).length; }
+
+  function renderFoot(){
+    const n = myCount();
+    const f = document.getElementById('foot');
+    if (path.wish && !path.place){ f.innerHTML = ''; return; }
+    f.innerHTML = '<button data-foot><span class="cnt ' + (n ? '' : 'zero') + (bump ? ' bump' : '') + '">' + n + '</span><span>我想去的</span><span class="sm">全家一共標了 ' + familyCount() + ' 個 ›</span></button>';
+    bump = false;
+  }
+
+  function bannerHtml(){
+    const p = placeById(banner.placeId);
+    const txt = banner.kind === 'added'
+      ? '✓ 剛才把「<a href="#" data-goplace="' + p.id + '">' + esc(p.name) + '</a>」標成想去了，全家人都看得到。'
+      : '剛才取消了「<a href="#" data-goplace="' + p.id + '">' + esc(p.name) + '</a>」的想去，你的名字已拿掉。';
+    return '<div class="banner ' + banner.kind + '"><span>' + txt + '</span><button class="x" data-banner-x aria-label="關閉">✕</button></div>';
+  }
+
+  function toast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  /* ---------- 事件 ---------- */
+  function bind(){
+    const app = document.getElementById('app');
+    app.querySelectorAll('[data-crumb]').forEach(b => b.onclick = () => go(crumbs()[+b.dataset.crumb].p, {back:true}));
+    app.querySelectorAll('[data-back]').forEach(b => b.onclick = () => { const cs = crumbs(); go(cs[cs.length - 2].p, {back:true}); });
+    app.querySelectorAll('[data-area]').forEach(b => b.onclick = () => go({area:b.dataset.area}));
+    app.querySelectorAll('[data-type]').forEach(b => b.onclick = () => go({area:path.area, type:b.dataset.type}));
+    app.querySelectorAll('[data-region]').forEach(b => b.onclick = () => go({area:path.area, type:path.type, region:b.dataset.region}));
+    app.querySelectorAll('[data-switch]').forEach(b => b.onclick = () => go({area:path.area, type:b.dataset.switch, region:path.region}));
+    app.querySelectorAll('[data-place]').forEach(b => b.onclick = () => go(Object.assign({}, path, {place:b.dataset.place})));
+    app.querySelectorAll('[data-goplace]').forEach(b => b.onclick = e => { e.preventDefault(); const p = placeById(b.dataset.goplace); go({area:p.area, type:p.type, region:p.region, place:p.id}); });
+    app.querySelectorAll('[data-wish]').forEach(b => b.onclick = () => setWish(path.place, b.dataset.wish === 'on'));
+    app.querySelectorAll('[data-banner-x]').forEach(b => b.onclick = () => { banner = null; render(); });
+    app.querySelectorAll('[data-noop]').forEach(b => b.onclick = () => toast('原型未做這個功能'));
+    const foot = document.querySelector('[data-foot]');
+    if (foot) foot.onclick = () => go({wish:true});
+  }
+
+  function setWish(id, on){
+    const w = wishOf(id);
+    const i = w.indexOf(ME);
+    if (on && i < 0) w.push(ME);
+    if (!on && i >= 0) w.splice(i, 1);
+    resultOf[id] = on ? 'added' : 'removed';
+    banner = {placeId:id, kind:resultOf[id]};
+    bump = true;
+    const y = window.scrollY;
+    render();
+    window.scrollTo(0, y);
+  }
+
+  history.replaceState(path, '');
+  render();
+})();
+</script>
+</body>
+</html>

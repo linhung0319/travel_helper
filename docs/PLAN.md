@@ -164,6 +164,12 @@
 | T73 | 下載行程與 LINE 機器人改版：PDF／MD 修四個印錯的地方、總覽加「去哪裡」、印合併卡的備選；LINE 單天、整趟、預約改成適合聊天氣泡的寬度，Quick Reply 按鈕（postback）、說明照出發前／旅行中切換（**開始前 👤 先回 7 個決定**） | M | T72、T74a | 4 | | ✅ |
 | T74a | 提醒精簡（引擎和字）：43 種提醒拿掉 11 種（計程車台數、巴士擠不上、入住前到、等開門、三個和步驟重複的交通補充…）、餐廳兩條合一、三級改兩級（要處理／留意）、全部改字、坐車 60 分算休息；`TaxiInfo`、`busCrowd` 拿掉；AI 工具和推薦問題跟著改 | M | T72 | 4 | | ✅ |
 | T74b | 提醒精簡（畫面）：資料卡紅框只給要處理、點開每條一行；日期列的數字兩邊一致、點開列整天的（手機也能看字）；整趟的紅字長句改成骨架的「累」標和「晚餐未選」；交通卡拿掉台數、灰框不重複步驟；順手：「待訂」改墨色、行程卡名稱拿掉括號、停留時間寫法、詳情名稱列加 Google Maps 連結 | M | T74a | 4 | | ✅ |
+| T75 | 探索改版（純邏輯）：書架改成「主題 × 區段」（玩 3 排、吃 3 排、住 4 排，加起來等於總數）、區段的數量、`who` 拆出能坐一起／要分桌、篩選面板照主題分組（書架切過的不進面板、吃住加等級）、探索的階段少掉清單層、AI 的 `set_filter`／系統提示跟著改 | M | T74b | 4 | | ⬜ |
+| T76 | 探索改版（共用畫面）：主題列、收合的書架區段（黏頂、0 個）、照片牆和清單合成一種列、工具列只剩搜尋＋篩選（概覽：問 AI、加地點）、條件列、篩選面板改主題分組和「只看我按的」、概覽卡「照片 → 玩吃住 → 文字」、想去的三排改區段、詳情的返回寫目的地、想去的提示手機也有 | M | T75 | 4 | 🌐 少量 | ⬜ |
+| T77 | 探索改版（手機接線）：`ExploreFeed`、`FeedFilters`、`WishlistPage`、`mobileStore` 的主題和展開狀態、捲動位置記憶、詳情返回字；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ⬜ |
+| T78 | 探索改版（網頁接線）：`Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`appStore` 的主題，地圖連動（指到、選中、點地圖展開區段捲到那列）、原地展開、右欄抽屜；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ⬜ |
+| T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ⬜ |
+| T80 | e2e 體檢與完整 e2e：先逐支檢查 T75～T79 動到的 spec 哪些斷言過時並修正，再跑完整三組（網頁、手機 390、360）和 `e2e:worker`，程式真的壞的修掉 | M | T79 | 4 | | ⬜ |
 
 ---
 
@@ -447,6 +453,26 @@ T72 清分組 → T74a 提醒：引擎和字 → T74b 提醒：畫面 → T73 �
 
 - **T74a 等 T72**：改 `packages/engine/src/timeline.ts`、`travel.ts`、`types.ts`、`config.ts`，`web/src/ai/readTools.ts`、`prompts.ts`，`web/src/lib/planView.ts`、`legView.ts`。
 - **T74b 等 T74a**：改 `Timeline.tsx`、`DayPanel.tsx`、`LegRow.tsx`、`mobile/DaySheet.tsx`、`MobileCard.tsx`、`shared/ui/PlaceDetail.tsx`、`styles.css`。
+
+2026-11-06 **第十九輪**（T75～T79，👤 決定）：
+
+- **為什麼**：2026-11-06 的可用性走訪（`docs/ux-review/report.md`）：三位受測者都把書架的「全部 5 ›」讀成「志摩只有 5 個景點」，退路靠看不懂的「‹ 書架」，想去的紅心分不出是誰按的。Claude 把報告歸納成三個根本原因（`design-lab/root-causes.md`），做了 A（順著框架）、B（一頁到底）、C（一步一問）三個拋棄式原型，👤 親自點過後定出 D 版，再修四輪（`design-lab/d.html`，以最後一版為準）。定案寫在 interaction-design **§35**。
+- **D 版只是示意 UI、UX**：版面、層級、每層的長相、字、行為以它為準；網頁版、手機版各自的程式邏輯（地圖連動、彈窗還是整頁、分批載入、只看地圖畫面裡的、localStorage 偏好、AI 結果集、搜尋、加地點建議）照舊，D 版沒畫到的照現在的做法。原型的程式碼不要搬進正式版（它是一個檔案裡的字串拼接，沒有 React、沒有 store），只看它的長相和行為。
+- **順序**：純邏輯先（T75），再改共用畫面（T76），手機和網頁的接線可以並行（T77 ∥ T78），最後收尾（T79）。T76 之後 master 會有一段時間舊畫面接新邏輯，所以 T76 要把舊元件留到 T77、T78 都 merge 再刪。
+
+```
+T75 純邏輯 ──► T76 共用畫面 ──┬──► T77 手機接線 ──┐
+                              └──► T78 網頁接線 ──┴──► T79 收尾（👤 真機驗收）──► T80 e2e 體檢與完整 e2e
+```
+
+- **e2e 的原則（👤 2026-11-06）**：T75～T79 每張任務**由執行的 session 自己決定要不要跑 e2e，可以不跑**；要跑也只跑受影響的那幾支（不跑完整三組）。完整的 e2e 只在最後的 T80 做一次：先檢查哪些測試過時、修正，再全跑。每改一部分就全跑一次太慢，👤 不要。
+
+- **T75 隨時**：只改 `web/src/lib/shelves.ts`、`filter.ts`、`listConditions.ts`、`shared/filterOptions.ts`、`shared/wishSections.ts`、`ai/tools.ts`、`ai/systemPrompt.ts`、`ai/prompts.ts` 和單元測試；畫面不動（舊畫面要能照跑，`SHELVES` 暫時保留或做相容層）。
+- **T76 等 T75**：改 `shared/ui/` 下的 `ExploreHome.tsx`、`FilterBar.tsx`、`FilterSheet.tsx`、`PlaceRow.tsx`、`WishList.tsx`、`PlaceDetail.tsx`、`ui.css`，新增主題列、區段元件；不接 store。
+- **T77 等 T76**：改 `mobile/ExploreFeed.tsx`、`FeedFilters.tsx`、`WishlistPage.tsx`、`PlaceDetailPage.tsx`、`mobileStore.ts`、`mobile.css`；e2e `mobile-t42`、`mobile-t67`、`mobile-t69`、`mobile-t49`、`mobile-t46`、`mobile.spec`、`mobile-add-place`。
+- **T78 等 T76**：改 `components/Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`store.ts`、`mapPick.ts`、`styles.css`；e2e `t42`、`t67`、`t69`、`t49`、`t46`、`t43`、`t65`、`add-place`、`detail-popup`、`flows`、`ai-web`。T77 和 T78 不要同時動 `shared/`，共用的小修集中在 T76 或等對方 merge。
+- **T79 等 T77、T78**：刪舊元件、文件、說明字、`ai:eval` 代表題、👤 真機驗收；不跑完整 e2e。
+- **T80 等 T79**：唯一一次完整 e2e：先把 T75～T79 動到的 spec 逐支看過哪些斷言過時、改掉，再跑三組加 `e2e:worker`；程式真的壞的修掉。
 
 ### 同時可以開幾個 session
 
@@ -1834,6 +1860,77 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **驗證**：e2e 加案例（網頁 `flows` 或 `detail-popup`：卡片的紅框／淡框、日期列點開有卡片名、整趟沒有紅字、交通卡沒有台數、詳情名稱列的地圖連結；手機 `mobile-t44b` 或新檔：日期列點開、卡片 ⚠ 展開看得到字）；`t29c`、`t44b`、`t45b` 和手機兩種尺寸要過；`npm test`、`typecheck`、`build`。用 dev 假行程截 2/2、2/5、2/10 和整趟的圖和草圖比。
 - **文件**：interaction-design §34 標成已做、§13.6 交通卡那段的「計程車的台數」拿掉、§14.2 加「待訂」的顏色；architecture §dataStore 如果寫到台數的地方拿掉。
 - **完成（2026-11-05）**：Claude Code 自主執行，照卡片做。共用的清單和數字放 `shared/ui/Reminders.tsx`（`ReminderList`、`ReminderCount`、`reminderLevel`），網頁卡片、日期列、手機卡片、手機日期列都用它；日期列點開的清單由 `planView.dayReminders` 整理（卡片的帶名字，交通的用目的地那張卡、回住宿那段用住宿；整天的沒有名字；act 在前），數字用 `reminderCounts`（act 幾條、note 幾條），`WARNING_ICONS` 拿掉。**和卡片略有不同**：① 只有留意、沒有要處理的那天，日期列的鈕也畫成淡框「· N」（N 是留意的條數），和卡片一致，不然那天的提醒點不開；② 手機卡片的「⚠ N」是鈕（`m-card-warn`），點了就是點卡片（展開、選中），提醒用 `TripCard` 新的 `expandTop` 放在展開內容最上面；③ `stripParens` 直接從引擎 re-export，`lib/labels.ts` 另外加 `tripName(place)`（中文名沒有用日文、去括號），行程卡（網頁、手機）、整趟骨架的住宿名、日期列點開的名字都用它，NightLine 沒動；④ 「累」標只在看確定的行程時畫（看提議時引擎算的不是提議後的）；⑤ 「待訂」的墨色外框也套到預約一覽的狀態膠囊、待訂卡的框、頭像選單的「N 待訂」（紅色只留要處理和週末）；⑥ 交通卡 `LegLine` 的 `sub` 拿掉、加 `replaced`（`Leg.pathReplaced` → 第一行標籤「已換走法」）；⑦ architecture 沒有寫到台數的地方，不用改。測試：`web/test/lib.test.ts` 改 `formatStay`、加 `reminderCounts`、`dayReminders`、`tripName`；e2e 新增 `t74b.spec.ts`（4 個）、`mobile-t74b.spec.ts`（2 個 × 兩種尺寸），截圖 2/2、2/5、整趟、手機和草圖比過。`npm test` 1117（含 worker 的 LINE 機器人回覆測試，不開真的 LINE）、`typecheck`、`build`、`validate` 通過。完整 e2e：586 個跑 582 過、4 不過，4 個在 master 上重跑確認都不是 T74b 弄壞的——`mobile-ai` S12 的斷言過時（T74a 把「可預約、15 人要分桌」降成留意，提議卡只列要處理的，現在只剩「打烊」一條）、`t15m` T29c 的標題正則過時（T73 把 60 分以上改寫「N 小時 N 分」），兩個改成對的；`mobile-ai` S28～S33（360）是偶發：`say` 只等狀態回 idle，但按 Enter 當下狀態可能還沒變，下一句撞上一句，改成等回完的那則（`end`）進來才算一輪結束。改完三個單跑 5/5、`mobile-ai` 整份兩種尺寸 64/64 都過。AI 聊天室的測試就是 `ai-core`／`ai-web`／`mobile-ai`（假 AI）。
+
+### T75 探索改版：純邏輯 〔M〕（第十九輪，2026-11-06 👤 決定）
+
+為什麼、順序見 §3「2026-11-06 第十九輪」。畫面定案在 interaction-design §35，示意原型 `design-lab/d.html`（以最後一版為準；原型碼不搬進正式版）。這張只做純函式和 AI，畫面不動，舊畫面要能照跑到 T77、T78 接上。
+
+- **書架改成「主題 × 區段」**（`lib/shelves.ts`）：取代 `SHELVES`（四排、兩級）。新的結構：每個主題（spot、restaurant、lodging）一組區段，條件照 §35.4 的表（都是 `Filter` 的 `Partial`），每個區段有 `id`、`title`、`rule`（說明小字）、`filter`。想去的三段照舊在 `shared/wishSections.ts`（`wishSections`），改成同一個區段介面輸出（標題、說明、條件或 `fn`）讓畫面用同一個元件畫。
+  - `who` 拆出「能坐一起」和「分桌」兩個值（名字自己定，例如 `together`、`split`），`all` 留著給 AI 和舊條件（＝兩者）；`matchesWho`、`fit15 → who` 的對應（`filter.ts` 315 行附近）、`placeFit15` 跟著改。
+  - `tiers: ['B']` 要收得到 `tier` 是 null 的（§35.4「其他景點」）；或在區段條件另外標 `includeUntiered`，自己選一種，寫清楚。
+  - 區段的數量：`sectionCounts(places, base, theme, filter)`（沒自訂篩選時用全部、有時套上），給主題列、區段標題、地區分頁和子地區晶片的小數字用（取代 `shelfCounts`、`scopeCounts` 的一部分：地區分頁的數字現在永遠寫，算「目前主題＋篩選」在那區有幾個；子地區晶片算目前主題）。
+  - `rescopeFilter`、`shelfTierOf`、`fallbackNote`、`backLabel` 的兩級退拿掉（§35.4 不再有兩級退）；`exploreStage` 改成 `overview`／`area`／`list`，`list` 只給搜尋和 AI 結果集（書架不再進 `list`）。`listConditions.ts` 的 `emptyHelp` 改成區段 0 個的那句和下一步（看全區、清除篩選、問 AI）。
+- **篩選面板的分組**（`shared/filterOptions.ts`）：照 §35.5——每個主題自己的組，書架切過的不進面板（玩：天氣、等級；吃：誰吃的「全員 15 人」；住：住法），吃、住加「等級」；類型三塊大鈕的資料拿掉；想去多「誰想去：只看我按的」（`votes: mine`）。`sheetTitle` 改「篩選 · 志摩的景點」。
+- **主題就是 `types`**：探索、想去的 `filter.types` 永遠剛好一個（主題列選的），概覽時可以空。AI 的 `set_filter` 給多個 types 時取第一個並在工具回傳說明；`search_places` 不變。
+- **AI**（`ai/tools.ts` 的 `set_filter` 說明、`ai/systemPrompt.ts`、`ai/prompts.ts` 的推薦問題）：書架名改成區段名（一定要去、其他景點、下雨也行、全員吃飯、要分桌、要分組去、包棟・全團一棟、包棟・要分住、旅館飯店、民宿），`who` 的新值、拿掉「第二級」的說法。照「AI 測試不打 API」的做法，用 `aiHarness` 看幾個代表題的工具回傳。
+- **驗證**：`web/test` 加 `sections`（每個主題的區段加起來等於那一類的總數，下雨也行除外；志摩的數字：景點 5／19／8、餐廳 26／18／34、住宿 2／9／38／7，用真資料算一次寫進測試）、`who` 拆值、面板分組、`exploreStage`；`npm test`、`typecheck`、`validate`。舊的 `shelves` 測試改掉或刪。
+- **文件**：architecture 如果寫到 `SHELVES`、兩級退的地方改成區段；interaction-design §35 標「35.4、35.5 的邏輯 T75 做完」。
+
+### T76 探索改版：共用畫面 〔M〕（第十九輪，2026-11-06 👤 決定）
+
+為什麼見 §3「2026-11-06 第十九輪」。長相以 interaction-design §35 和 `design-lab/d.html`（最後一版）為準；用正式版的 token（§12 的顏色、圓體）和 `Icon`，不要用原型裡寫死的色碼。只改 `shared/ui/`，不接 store（手機、網頁的接線在 T77、T78）。**舊元件（`ShelfCard`、`AreaHome`、`PlaceTile`、`PlaceWall`、`FilterBar` 的帶子、`WishList` 的三排小卡）先留著不刪**，T79 再清。
+
+- **主題列** `shared/ui/ThemeRow.tsx`：三格「玩／吃／住」（圓章、大字、小字「24 景點」），選到的用那一類的淡底和外框色；概覽卡和地區頁同一個元件，數字由呼叫的畫面給。
+- **書架區段** `shared/ui/Section.tsx`：標題列（類型色條、標題、說明小字、數字、›）、展開／收合、**標題黏頂**（`position: sticky; top: 0` 在自己的區段裡；手機的 `.m-page` 和網頁右欄都要試過真的黏住，右欄有 `scrollbar-gutter`）、0 個的虛線框和下一步（`NextSteps` 改字）、分批載入的插槽（`useBatch` 的觀察點放在區段裡）。想去的區段色條用愛心紅。
+- **列** `PlaceRow.tsx` 改成「大照片在左 136×112、文字在右」的一種列（§35.7）：名稱兩行不截斷、第二行照類型、重點膠囊最多兩顆、「誰想去」一行（頭像＋人名，自己在前寫「你」）、右上愛心只有自己按過才實心（`VoteHeart` 的 `on` 不變，但別人按過不再給顏色，數字拿掉改人名）。網頁原地展開（`PlaceOpen`）接在列下面、照片牆不再橫跨兩欄。`PlaceTile`、`PlaceWall` 不再被探索、想去用（AI 結果集、搜尋結果也改用這種列）。
+- **篩選列** `FilterBar.tsx`：工具列只剩搜尋＋篩選圓鈕（有條件時芥子黃小點、白底）；`stage === 'overview'` 時是搜尋＋問 AI＋加地點；排序、照片牆／清單切換、「看什麼」淡藍帶、「‹ 書架」「‹ 三排」、`extraCond` 拿掉；地區分頁的小數字永遠寫（T75 的 `sectionCounts`）；子地區晶片每顆帶數字、0 的虛線、選到的墨色實心；主題列接在子地區下面（黏頂的那組）。`FilterModel` 多 `theme`／`setTheme`。搜尋、AI 結果集那層的返回鈕照舊。
+- **條件列**：有條件時才畫在內容最上面（墨色膠囊、每顆可點掉、右邊「符合 N 個」）；放在 `FilterBar` 或新元件都可以，但不黏頂（會捲走）。
+- **篩選面板** `FilterSheet.tsx`：拿掉 `TypeTiles`，只畫目前主題的組（T75 的分組）；標題「篩選 · 志摩的景點」；腳「清除」「看 N 個景點」；想去多「只看我按的」。
+- **概覽卡** `ExploreHome.tsx` 的 `AreaCard`：照 §35.6（照片 170px、點照片進那區、沒有「看志摩 ›」；主題列；一句特色 15px；「● 2 月注意 N 則 ›」收合）；四格書架數字、紅字第一則拿掉；代表地點、住幾晚、作者授權留著。`AreaHome` 改成「2 月注意收合一行＋區段」（`RegionChips` 搬進 `FilterBar`），四排小卡拿掉。
+- **想去** `WishList.tsx`：三排小卡改成三個區段（同 `Section`），列同一種、第二行候選／已排膠囊、最新留言照舊；「全部 N ›」、`wishPrefs.section`、照片牆拿掉；最下面一行說明。日曆鈕、左滑照舊。
+- **詳情** `PlaceDetail.tsx`：返回鈕的字由呼叫的畫面給（「回到 賢島 › 玩」「回到 海樂園」），動作列「♡ 我想去」／「♥ 我想去 ✓」加下面那行「你想去，小林、阿姨也想去」，「加到某天」下面小字「給主辦的建議，不會動到行程」；按想去、取消的提示手機、網頁都要有（`castVote` 的 toast 加「復原」）；四格「符號＋字」加圖例，沒資料是「—」虛線框；附近「列出 3 個，共 N 個」「更多 ›」「附近沒有住宿（0 個）」。
+- **驗證**：`npm run typecheck`、`npm test`（元件的單元測試如果有）、`npm run build`；用 dev 先在 Storybook 式的臨時頁或直接接到手機版看過主題列、區段、列、面板、概覽卡的長相和 D 版比（截圖留在 `design-lab/shots-t76/`，不進 repo 也可以）。手機、網頁的 e2e 這張不改（T77、T78）。
+
+### T77 探索改版：手機接線 〔M〕（第十九輪，2026-11-06 👤 決定）
+
+為什麼見 §3「2026-11-06 第十九輪」。行為以 interaction-design §35 為準，手機獨有的邏輯照舊。
+
+- **狀態**（`mobile/mobileStore.ts`）：`feed`、`wish` 各自多 `theme`（spot／restaurant／lodging，就是 `types` 唯一的那個；預設 spot）、`open`（每個主題一組展開的區段 id）、捲動位置（每個「地區＋子地區＋主題」一份，詳情退回時還原；換區、換子地區、換主題捲到頂）；`view`（照片牆／清單）、`sort`、`wishPrefs.section`、`wish.view` 不用了（可以留欄位不讀）。回概覽時 `open` 全清（§35.2）。
+- **探索** `ExploreFeed.tsx`、`FeedFilters.tsx`：`stage` 是 `overview` 畫概覽（工具列搜尋＋問 AI＋加地點）、`area` 畫「2 月注意一行＋區段」、`list` 只剩搜尋和 AI 結果集（用新的列）。區段裡的列用 `useBatch`（觀察點在每個展開的區段尾端）。最下面「問 AI 幫我挑」「找不到？自己加一個」兩行文字連結（接 `askDraft`、`addPlaceStore.openEntry`）。`AddPlaceSuggest` 照舊。`UndoToast`（概覽離開篩選）照舊。
+- **想去** `WishlistPage.tsx`：同一套頂端（地區列第一顆「全部」、子地區、主題列、篩選面板多「只看我按的」）、三個區段；左滑「加到某天」、第一次的滑動提示照舊。
+- **詳情** `PlaceDetailPage.tsx`：`onBack` 的字從 `openPlace(id, from)` 帶進來（「回到 賢島 › 玩」「回到 想去 › 吃」、附近開的「回到 海樂園」）；退回時捲動位置還原。
+- **手機獨有、不要動**：底部分頁列、聊天半屏、整頁詳情、`PlacePicker`（加到某天的選點）、`.m-page` 的黏頂規則（`.fb-stick`）、360 寬的斷行。
+- **驗證**：`npm test`、`typecheck`、`build` 一定跑；用 Chrome 截圖和 D 版比（🌐 少量）。**e2e 自己決定要不要跑，可以不跑**；要跑只跑受影響的（`mobile-t42`、`mobile-t67`、`mobile-t69`、`mobile-t49`、`mobile-t46`、`mobile.spec`、`mobile-add-place`、`mobile-ui-fixes` 裡會動到的那幾支）。建議寫一支新的 `mobile-t77.spec.ts` 當核心流程的保險：概覽 → 玩 → 區段收合＋數字加起來等於總數 → 展開「其他景點」看到 B 級 → 子地區「賢島」0 的那排 → 篩選面板勾長輩 → 條件列 → 換鳥羽條件帶過去 → 開詳情、按我想去有提示、退回停在原位 → 想去分頁三個區段。舊 spec 過時的斷言這張可以先不改，T80 一起處理。
+- **文件**：interaction-design §35 標「手機 T77 做完」。
+
+### T78 探索改版：網頁接線 〔M〕（第十九輪，2026-11-06 👤 決定）
+
+為什麼見 §3「2026-11-06 第十九輪」。行為以 interaction-design §35 為準，網頁獨有的邏輯照舊（§13.3 詳情彈窗、三欄、地圖連動）。
+
+- **狀態**（`store.ts`、`exploreArea.ts`）：主題＝`filter.types` 唯一的那個（`setTheme` 換 types、其他條件留著；概覽時 types 空）；探索、想去各自的展開區段和捲動位置（`filterStash` 那套各自一份）；`pickArea` 換區時 types、其他篩選、展開狀態帶著走，子地區清掉，右欄捲到頂；回概覽時展開全清；`lensUndo` 照舊。`sort`、`inView` 的位置：排序鈕拿掉但 `sort` 留推薦順序；「只看地圖畫面裡的」留在篩選面板「地圖」組。
+- **探索** `Explore.tsx`：`stage` 三種同 T77；區段裡的列原地展開（`PlaceOpen`，不再橫跨兩欄）、再按「詳細資料」開彈窗；滑鼠指到 `hover`、清單標出選中和指到的點照舊。**點地圖上的點**（`mapPick.ts`）：彈窗蓋右欄照 §13.3 不動；`revealInExplore`（AI、測試用）改成「切到那個點的主題、展開它所在的區段（第一個含它的）、捲到那列」。AI 結果集、搜尋結果用新的列、返回鈕照舊。最下面兩行文字連結（問 AI 接 `askDraft`、加地點接 `addPlaceStore`）。
+- **想去** `Wishlist.tsx` 接 `WishList` 的區段版；日曆鈕「加到某天」、`DayPicker` 照舊；拖到時間軸（`dragPlaceProps`）照舊。
+- **右欄的抽屜**：篩選面板照現在掛在 `.side-panel`；區段標題黏頂要在 400 寬、`scrollbar-gutter: stable` 的右欄裡試過；列的照片 136px 在 360 寬（1100～1279）的右欄要縮到約 120px。
+- **網頁獨有、不要動**：三欄寬度、地圖的分層和地區標籤（§21、§31）、詳情彈窗的位置和「‹ 上一個」、拖曳到 AI 欄、整趟「未選住宿」的捷徑（`openAreaHome` 改成進那區的「住」主題）。
+- **驗證**：`npm test`、`typecheck`、`build` 一定跑；截圖和 D 版比（🌐 少量）。**e2e 自己決定要不要跑，可以不跑**；要跑只跑受影響的（`t42`、`t67`、`t69`、`t49`、`t46`、`t43`、`t65`、`add-place`、`detail-popup`、`flows`、`ai-web`、`commands` 裡會動到的那幾支）。建議寫一支新的 `t78.spec.ts` 當核心流程的保險（同 T77 的流程，加：點地圖的點彈窗照舊、`revealInExplore` 展開區段捲到那列、換區右欄捲到頂、1180 寬的右欄）。舊 spec 過時的斷言這張可以先不改，T80 一起處理。
+- **文件**：interaction-design §35 標「網頁 T78 做完」；architecture §dataStore／§右欄如果寫到書架、照片牆的地方改。
+
+### T79 探索改版：收尾 〔S〕（第十九輪，2026-11-06 👤 決定）
+
+- **刪舊的**：`ShelfCard`、`AreaHome` 的四排、`PlaceTile`、`PlaceWall`、`FilterBar` 的帶子和切換、`wishPrefs` 的 `view`／`section`、`SHELVES` 和兩級退、`TypeTiles`、`scopeCounts` 用不到的部分、`lib/overview.ts` 四格數字；grep「書架」「全部 N」「‹ 書架」「shelf-all」「xs-card」「pt-」確認沒人用。
+- **不跑完整 e2e**（留給 T80）；`npm test`、`typecheck`、`build` 要過。
+- **文件**：interaction-design §20、§25、§26、§28、§30、§32、§33 開頭加一句「T75～T79 起以 §35 為準，這節只留歷史」；§35 標成已做；architecture 的探索、想去段落更新；`web/src/components/HowToDialog.tsx`「怎麼用」和 `worker/src/bot.ts` LINE 說明裡提到書架、「全部 N ›」、照片牆的字改成區段的說法；CONVENTIONS 不用動。
+- **AI**：`ai/prompts.ts` 推薦問題如果引用書架名跟著改；`npm run ai:eval` 只跑幾個代表題（照「AI 測試不打 API」，先假 AI；真模型要不要跑 👤 決定）。
+- **👤 真機驗收**：照 `docs/ux-review/report.md` §六第 3 點，讓母親在真手機再走 1a（志摩有什麼）和 1c（標一個想去的），只給任務不教；說出的數字接近 24、愛心按一次就確定才算過。結果記回 `docs/ux-review/`。
+
+### T80 e2e 體檢與完整 e2e 〔M〕（第十九輪，2026-11-06 👤 決定）
+
+為什麼見 §3「2026-11-06 第十九輪」的「e2e 的原則」：T75～T79 不跑完整 e2e，改動全部 merge 後只在這裡做一次。做法照 T70 的經驗：**先分清楚測試過時還是程式真的壞**，不要看到紅的就改程式。
+
+- **第一步：體檢（不跑）**：列出 T75～T79 動到的畫面對應的 spec（探索、想去、篩選、書架、照片牆、詳情、加地點、AI 結果集：`t42`、`t43`、`t46`、`t49`、`t65`、`t67`、`t69`、`add-place`、`detail-popup`、`flows`、`ai-web`、`commands`、`t15m` 裡探索那幾支、`ui-fixes-2026-11`；手機 `mobile-t42`、`mobile-t46`、`mobile-t49`、`mobile-t67`、`mobile-t69`、`mobile.spec`、`mobile-add-place`、`mobile-ai`、`mobile-ui-fixes-2026-11`；`helpers.ts`、`mobileHelpers.ts` 裡找書架、全部 N、照片牆、帶子、排序的 helper），逐支讀過，找出照舊行為寫的斷言和選擇器（`shelf-all`、`xs-card`、`m-feed-wall`、`place-row` 的三行、`‹ 書架`、`sort-open`、`view` 切換、`filter-count`、`TypeTiles`、灰數字只在清單層…），對照 §35 改成新的行為；整支都在測拿掉的功能就刪。改的時候每支寫一行「為什麼改」在 commit 訊息或卡片的結果裡。
+- **第二步：完整跑**：`npm run e2e` 三組（網頁、手機 390、360）和 `npm run e2e:worker`。失敗的逐個查：測試過時 → 改測試；程式真的壞 → 修程式（修完只重跑受影響的）；偶發 → 單獨再跑 3～5 次，重現不了記下來不改。
+- **結果**：寫進這張卡：跑了幾支、幾過、改了哪些測試（過時）、修了哪些程式、留下哪些偶發；過時的 helper 刪掉。
+- **完成條件**：三組和 worker 版全過（偶發的要有重跑紀錄）；`npm test`、`typecheck`、`build`、`validate`。
 
 ### T21 代表照片 〔M〕
 - 給 T11 的探索模式、小卡片用（[interaction-design.md](interaction-design.md) §7）。

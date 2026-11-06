@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A 版：順著框架</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c2840;--ink-2:#5d6680;--ink-3:#a3a9b8;--ink-4:#c3c7d1;--paper:#fff;--line:#e6e8ee;--wash:#f3f5fa;
+  --indigo:#24468a;--indigo-wash:#e9eef8;--indigo-line:#cdd6ea;--mustard:#e3a92b;--mustard-wash:#fcf3de;--mustard-ink:#9a6a00;
+  --matcha:#5f8a3e;--matcha-wash:#edf3e6;--love:#d8453a;--love-wash:#fde9e5;--love-line:#f3b9ae;--warn:#c8372d;--warn-bg:#fdecea;
+  --t-spot:#5f8a3e;--t-food:#c9541f;--t-stay:#7a5aa6;--bad:#b3261e;--good:#5f8a3e;
+  --round:'Zen Maru Gothic','Noto Sans TC',system-ui,sans-serif;--tap:44px;
+  font-family:system-ui,-apple-system,'Segoe UI','PingFang TC','Microsoft JhengHei',sans-serif;font-size:16px;line-height:1.5;color:var(--ink);
+}
+*{box-sizing:border-box}
+body{margin:0;background:#dfe3ec;min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:16px 0}
+button{font:inherit;color:inherit;cursor:pointer}
+.phone{width:390px;height:min(844px,calc(100vh - 32px));background:var(--paper);border-radius:28px;box-shadow:0 12px 40px rgba(0,0,0,.25);overflow:hidden;display:flex;flex-direction:column;position:relative}
+.lab{position:fixed;left:16px;top:16px;font-size:13px;color:#445;max-width:220px;line-height:1.4}
+.lab a{color:var(--indigo)}
+.lab b{display:block;font-size:15px;margin-bottom:4px}
+@media (max-width:860px){.lab{position:static;max-width:390px;margin:0 auto 8px}body{flex-direction:column;align-items:center}}
+
+/* 頂端：靛藍色帶、工具列 */
+.band{background:var(--indigo);padding:10px 12px 8px;color:#fff;flex:0 0 auto}
+.tools{display:flex;gap:8px;align-items:center}
+.search{flex:1;display:flex;align-items:center;gap:8px;min-height:var(--tap);padding:0 12px;border-radius:999px;background:#fff;color:var(--ink-3);border:0}
+.rbtn{width:var(--tap);height:var(--tap);border-radius:50%;border:1px solid rgba(255,255,255,.32);background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;font-size:18px;position:relative}
+.rbtn .dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--mustard)}
+/* 地區分頁、子地區晶片 */
+.head{flex:0 0 auto;background:var(--paper);border-bottom:1px solid var(--line)}
+.areas{display:flex;gap:18px;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+.areas::-webkit-scrollbar{display:none}
+.areas button{flex:0 0 auto;min-height:40px;border:0;border-bottom:2.5px solid transparent;background:none;color:var(--ink-2);font-size:15px;padding:0 1px;white-space:nowrap}
+.areas button.on{border-bottom-color:var(--ink);color:var(--ink);font-weight:700}
+.areas button.ov{color:var(--mustard-ink);font-weight:700}
+.areas button.ov.on{border-bottom-color:var(--mustard);color:var(--ink)}
+.areas .n{font-size:12px;color:var(--ink-3);margin-left:3px;font-family:var(--round)}
+.areas .n.zero{opacity:.5}
+.chips{display:flex;gap:6px;padding:6px 12px 8px;overflow-x:auto;scrollbar-width:none;position:relative}
+.chips::-webkit-scrollbar{display:none}
+.chipwrap{position:relative}
+.chipwrap::after{content:'';position:absolute;right:0;top:0;bottom:0;width:36px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff 70%);pointer-events:none}
+.chipwrap .more{position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--ink-2);background:#fff;border:1px solid var(--line);border-radius:999px;padding:1px 7px;z-index:1}
+.chip{flex:0 0 auto;min-height:30px;padding:0 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-size:13px;white-space:nowrap}
+.chip.on{background:var(--indigo-wash);border-color:var(--indigo-line);color:var(--indigo);font-weight:700}
+.chip.zero{border-style:dashed;color:var(--ink-3)}
+.chip .n{font-size:11px;color:var(--ink-3);margin-left:3px;font-family:var(--round)}
+.chip.on .n{color:var(--indigo)}
+/* 清單層的帶子（「看什麼」） */
+.lens{background:var(--indigo-wash);border-top:1px solid var(--indigo-line);padding:8px 12px 8px}
+.lens-top{display:flex;align-items:center;gap:6px}
+.back{display:inline-flex;align-items:center;gap:2px;min-height:30px;padding:0 10px 0 6px;border:1px solid var(--indigo-line);border-radius:999px;background:#fff;color:var(--indigo);font-weight:700;font-size:14px}
+.lens-title{font-weight:700;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.lens-n{font-size:13px;color:var(--ink-2);white-space:nowrap}
+.lens-denom{font-size:13px;color:var(--ink-2);margin-top:2px}
+.lens-denom b{color:var(--ink)}
+.lens-note{font-size:13px;color:var(--mustard-ink);margin-top:3px}
+.view{margin-left:auto;display:inline-flex;border:1px solid var(--indigo-line);border-radius:8px;overflow:hidden;background:#fff}
+.view button{width:34px;height:30px;border:0;background:none;color:var(--ink-3);font-size:14px}
+.view button.on{background:var(--ink);color:#fff}
+.conds{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.cond{display:inline-flex;align-items:center;gap:4px;min-height:28px;padding:0 8px 0 10px;border:1px solid var(--indigo-line);border-radius:999px;background:#fff;color:var(--indigo);font-size:13px;font-weight:700}
+.cond.add{border-style:dashed;background:transparent}
+.cond .x{color:var(--ink-3);font-weight:400}
+/* 內容 */
+.page{flex:1 1 auto;overflow-y:auto;position:relative;padding:0 12px 24px}
+.total{display:flex;gap:6px;align-items:baseline;padding:10px 0 4px;font-family:var(--round);font-size:15px;font-weight:700}
+.total .cnt{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-size:14px;font-weight:700;color:var(--ink)}
+.total .cnt b{font-size:17px;color:var(--indigo)}
+.total .cnt:active{background:var(--indigo-wash)}
+.total-note{font-size:12px;color:var(--ink-2);margin:0 0 8px}
+.feb{margin:4px 0 10px}
+.feb button{border:0;background:none;color:var(--warn);font-weight:700;font-size:14px;padding:4px 0}
+.feb ul{margin:4px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)}
+.shelf{margin:4px 0 16px}
+.shelf-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:2px}
+.shelf-title{margin:0;font-family:var(--round);font-size:15px;font-weight:900}
+.shelf-all{border:0;background:none;color:var(--indigo);font-size:13px;font-weight:700;padding:2px 0;white-space:nowrap}
+.shelf-rule{font-size:12px;color:var(--ink-2);margin:0 0 6px}
+.shelf-rule.fb{color:var(--mustard-ink)}
+.shelf-rule b{color:var(--ink)}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sc{min-width:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);position:relative;text-align:left;padding:0;display:block}
+.sc .ph{position:relative;height:78px;background:var(--wash)}
+.sc .nm{display:flex;align-items:flex-start;gap:4px;padding:5px 7px 6px;font-size:12px;font-weight:700;line-height:1.35}
+.sc .nm .n2{flex:1;min-width:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc .cap{margin-top:-3px;padding:0 7px 6px;color:var(--ink-3);font-size:11px;line-height:1.3}
+.sc .dup{position:absolute;left:5px;top:5px;background:rgba(255,255,255,.92);border-radius:999px;font-size:10px;padding:1px 6px;color:var(--ink-2)}
+.sc.tail{border-style:dashed;border-color:var(--indigo-line);background:var(--indigo-wash);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2px;color:var(--indigo);font-weight:700;font-size:13px;text-align:center;padding:8px 6px;min-height:124px}
+.sc.tail b{font-family:var(--round);font-size:22px;line-height:1}
+.sc.tail small{font-weight:400;font-size:11px;color:var(--ink-2)}
+.seal{position:absolute;top:5px;right:5px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;font-family:var(--round);font-weight:900;font-size:14px;box-shadow:0 0 0 2px #fff}
+.seal.sm{position:static;width:16px;height:16px;font-size:9px;box-shadow:none}
+.seal.spot{background:var(--t-spot)}.seal.restaurant{background:var(--t-food)}.seal.lodging{background:var(--t-stay)}
+.tier{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;padding:0 .25em;border:1px solid var(--ink-4);border-radius:999px;font-family:var(--round);font-size:.85em;color:var(--ink-2);line-height:1;flex:0 0 auto}
+.tier.S{color:var(--indigo);border-color:var(--indigo)}
+.img{width:100%;height:100%;object-fit:cover;display:block}
+.fallback{width:100%;height:100%;display:grid;place-items:center;color:#fff;font-family:var(--round);font-weight:900;font-size:26px;opacity:.85}
+.fallback.spot{background:var(--t-spot)}.fallback.restaurant{background:var(--t-food)}.fallback.lodging{background:var(--t-stay)}
+.empty{border:1px dashed var(--ink-4);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--ink-2)}
+.empty .steps{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.empty .steps button{border:1px solid var(--indigo-line);background:#fff;color:var(--indigo);border-radius:999px;padding:3px 10px;font-size:13px;font-weight:700}
+/* 照片牆、清單 */
+.wall{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-top:10px}
+.pt{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper);text-align:left;padding:0;display:block;min-width:0;cursor:pointer}
+.pt .ph{position:relative;height:120px;background:var(--wash)}
+.pt .tp{position:absolute;left:6px;top:6px;background:rgba(255,255,255,.92);border-radius:999px;padding:1px 7px;font-size:11px;display:inline-flex;gap:3px;align-items:center}
+.pt .ht{position:absolute;right:4px;bottom:4px}
+.pt .tx{padding:8px 10px 10px;display:flex;flex-direction:column;gap:2px}
+.pt .nm{display:flex;align-items:center;gap:6px;font-weight:700;font-size:15px;min-width:0}
+.pt .nm .n2{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.pt .mt{font-size:13px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pills{display:flex;gap:4px;flex-wrap:wrap}
+.pill{font-size:11px;padding:1px 7px;border-radius:999px;background:var(--wash);color:var(--ink-2)}
+.pill.good{background:var(--matcha-wash);color:var(--matcha)}.pill.bad{background:var(--warn-bg);color:var(--bad)}.pill.day{background:var(--indigo-wash);color:var(--indigo)}.pill.feb{background:var(--warn-bg);color:var(--bad)}
+.heart{display:inline-flex;align-items:center;gap:3px;min-width:36px;min-height:36px;justify-content:center;border-radius:999px;background:rgba(255,255,255,.9);color:var(--ink-3);font-size:13px;padding:0 6px;border:0}
+.heart.on{color:var(--love)}
+.heart.others{color:var(--ink-2)}
+.heart .av{display:inline-flex}
+.av i{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--indigo-wash);color:var(--indigo);font-style:normal;font-size:10px;font-weight:700;border:1.5px solid #fff;margin-left:-5px}
+.av i:first-child{margin-left:0}
+.list{display:flex;flex-direction:column;padding-top:8px}
+.rw{display:flex;gap:10px;align-items:center;min-height:88px;padding:8px 0;border-bottom:1px solid var(--line);text-align:left;cursor:pointer}
+.rw .th{flex:0 0 72px;height:72px;border-radius:10px;overflow:hidden;background:var(--wash);position:relative}
+.rw .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.rw .nm{font-weight:700;font-size:15px;display:flex;gap:6px;align-items:center;min-width:0}
+.rw .nm .n2{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rw .mt{font-size:13px;color:var(--ink-2)}
+.rw .price{font-family:var(--round);color:var(--ink);font-weight:700}
+.rw .ht{flex:0 0 auto}
+.tailrow{margin:14px 0 0;padding:12px;border:1px dashed var(--indigo-line);border-radius:12px;background:var(--indigo-wash);font-size:14px;text-align:center}
+.tailrow button{border:0;background:none;color:var(--indigo);font-weight:700;font-size:15px}
+.tailrow small{display:block;color:var(--ink-2);font-size:12px}
+.skip{padding:10px;color:var(--ink-3);font-size:12px;text-align:center}
+/* 詳情（整頁） */
+.detail{position:absolute;inset:0;background:var(--paper);display:flex;flex-direction:column;z-index:20}
+.d-top{position:absolute;left:0;right:0;top:0;z-index:3;display:flex;align-items:center;gap:8px;padding:10px 12px}
+.d-back{display:inline-flex;align-items:center;gap:4px;min-height:36px;padding:0 12px 0 8px;border-radius:999px;background:rgba(255,255,255,.94);border:0;font-weight:700;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:260px}
+.d-back span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.d-scroll{flex:1;overflow-y:auto}
+.d-hero{height:220px;background:var(--wash);position:relative}
+.d-hero .cr{position:absolute;left:8px;bottom:6px;font-size:10px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.d-body{padding:10px 14px 24px}
+.d-name{display:flex;align-items:center;gap:8px;font-family:var(--round);font-size:21px;font-weight:700;margin:0}
+.d-name .tier{font-size:13px}
+.d-sub{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink-2);margin:4px 0 0;flex-wrap:wrap}
+.d-sub a{color:var(--indigo);text-decoration:none;font-size:13px}
+.d-act{display:flex;gap:8px;align-items:stretch;padding:10px 0 4px}
+.btn-love{display:inline-flex;align-items:center;gap:6px;min-height:var(--tap);padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-2);font-weight:700;flex:0 0 auto}
+.btn-love.on{border-color:var(--love-line);background:var(--love-wash);color:var(--love)}
+.btn-dis{display:inline-flex;align-items:center;gap:4px;min-height:var(--tap);padding:0 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink-2)}
+.btn-day{flex:1;min-height:var(--tap);border:0;border-radius:999px;background:var(--indigo);color:#fff;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15}
+.btn-day small{font-weight:400;font-size:11px;opacity:.85}
+.who{font-size:13px;color:var(--ink-2);padding:2px 0 8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.who .me{color:var(--love);font-weight:700}
+.who .av i{width:20px;height:20px;font-size:11px}
+.d-tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+.d-tabs button{flex:1;min-height:var(--tap);border:0;border-bottom:4px solid transparent;background:none;color:var(--ink-3)}
+.d-tabs button.on{border-bottom-color:var(--mustard);color:var(--ink);font-weight:700}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.sq{background:var(--wash);border-radius:12px;padding:8px 6px;text-align:center;font-size:12px;line-height:1.3;border:0}
+.sq .m{font-size:20px;line-height:1;font-family:var(--round)}
+.sq .w{display:block;font-weight:700;margin-top:2px}
+.sq .k{display:block;color:var(--ink-2);margin-top:1px;font-size:11px}
+.sq .y{display:block;color:var(--ink-3);font-size:11px;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sq.g .m{color:var(--matcha)}.sq.b .m{color:var(--bad)}.sq.w .m{color:var(--mustard-ink)}.sq.n .m{color:var(--ink-4)}
+.sq.n{background:#fafbfd;border:1px dashed var(--ink-4)}
+.legend{font-size:11px;color:var(--ink-3);margin:-6px 0 10px}
+.d-p{margin:8px 0;font-size:15px}
+.d-fact{display:flex;gap:8px;font-size:14px;margin:6px 0;color:var(--ink-2)}
+.d-fact b{flex:0 0 3.5em;color:var(--ink)}
+.d-feb{background:var(--warn-bg);border-radius:10px;padding:8px 10px;font-size:13px;color:var(--bad);margin:10px 0}
+.d-more{border:1px solid var(--line);border-radius:999px;background:#fff;padding:6px 14px;font-size:14px;margin-top:6px}
+.d-pc{margin:10px 0 0;padding-left:0;list-style:none;font-size:14px}
+.d-pc li{padding-left:1.4em;text-indent:-1.4em;margin:3px 0}
+.d-pc li.p::before{content:'＋ ';color:var(--matcha);font-weight:900}.d-pc li.c::before{content:'－ ';color:var(--bad);font-weight:900}
+.d-nodata{background:var(--mustard-wash);border-radius:10px;padding:10px 12px;font-size:14px;color:var(--mustard-ink);margin:10px 0}
+.near h4{margin:14px 0 6px;font-size:14px;display:flex;justify-content:space-between;align-items:baseline}
+.near h4 small{font-weight:400;color:var(--ink-2)}
+.near h4 button{border:0;background:none;color:var(--indigo);font-weight:700;font-size:13px}
+.near .nr{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px;background:none;border-top:0;border-left:0;border-right:0;width:100%;text-align:left}
+.near .nr small{color:var(--ink-2);white-space:nowrap}
+.near .none{font-size:13px;color:var(--ink-3);padding:4px 0}
+/* 底部分頁 */
+.tabbar{flex:0 0 auto;display:flex;border-top:1px solid var(--line);background:#fff;height:56px}
+.tabbar button{flex:1;border:0;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:12px;color:var(--ink-2);position:relative}
+.tabbar button.on{color:var(--indigo);font-weight:700}
+.tabbar .ic{font-size:18px;line-height:1}
+.tabbar .bd{position:absolute;top:6px;left:calc(50% + 6px);background:var(--love);color:#fff;border-radius:999px;font-size:10px;padding:0 5px;min-width:16px;text-align:center;font-family:var(--round)}
+/* 提示 */
+.toast{position:absolute;left:50%;bottom:68px;transform:translateX(-50%);z-index:50;background:var(--ink);color:#fff;border-radius:14px;padding:9px 14px;font-size:14px;display:flex;align-items:center;gap:10px;max-width:366px;white-space:nowrap;box-shadow:0 4px 16px rgba(0,0,0,.25);animation:up .18s ease-out}
+.toast.warnish{background:#5a3a00}
+.toast .undo{background:var(--mustard);color:var(--ink);border:0;border-radius:999px;padding:2px 10px;font-weight:700;font-size:13px}
+.toast .cl{border:0;background:none;color:#fff;opacity:.7;padding:0 2px}
+@keyframes up{from{transform:translate(-50%,8px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+.stub{padding:40px 16px;text-align:center;color:var(--ink-3);font-size:14px}
+.wish-sec h3{font-family:var(--round);font-size:15px;margin:14px 0 4px}
+.wish-sec h3 small{color:var(--ink-2);font-weight:400;font-size:12px;margin-left:6px}
+.wish-sec .emptyline{font-size:13px;color:var(--ink-3);padding:4px 0 8px}
+.hint{font-size:12px;color:var(--ink-2);background:var(--wash);border-radius:10px;padding:8px 10px;margin:8px 0}
+.ov{padding:12px 0}
+.ov .card{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:10px}
+.ov .card .ph{height:120px;background:var(--wash);position:relative}
+.ov .card .ph h3{position:absolute;left:12px;bottom:8px;margin:0;color:#fff;font-family:var(--round);font-size:22px;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.ov .card .tx{padding:10px 12px}
+.ov .four4{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:8px 0}
+.ov .four4 button{border:0;border-right:1px solid var(--line);background:none;padding:6px 2px;font-size:11px;color:var(--ink-2);display:flex;flex-direction:column;align-items:center}
+.ov .four4 button:last-child{border-right:0}
+.ov .four4 b{font-family:var(--round);font-size:18px;color:var(--indigo)}
+.ov .four4 small{font-size:10px;color:var(--ink-3)}
+.ov .go{border:0;background:none;color:var(--indigo);font-weight:700;padding:6px 0 0;font-size:14px}
+</style>
+</head>
+<body>
+<div class="lab"><b>A 版：順著框架</b>保留現在的版面和操作（工具列、地區分頁、子地區、四排書架、清單帶子、整頁詳情），在框架內補分母、退路、狀態說明。<br><a href="index.html">‹ 回比較頁</a></div>
+<div class="phone" id="app"></div>
+<script src="sample-data.js"></script>
+<script>
+// ====== 假資料與狀態 ======
+const D = window.SAMPLE;
+const P = D.places;
+const byId = Object.fromEntries(P.map(p => [p.id, p]));
+const AREAS = D.areas;
+const ME = '媽媽';
+const AV = { 小林: '林', 阿姨: '姨', 小雯: '雯', 舅舅: '舅', 媽媽: '媽', 爸爸: '爸' };
+const findId = (prefix) => (P.find(p => p.name.startsWith(prefix)) || {}).id;
+const votes = {
+  [findId('橫山展望台')]: ['小林', '阿姨'],
+  [findId('鳥羽水族館')]: ['小林', '阿姨', '小雯', '舅舅'],
+  [findId('大王埼燈塔')]: ['阿姨'],
+  [findId('的矢牡蠣露台')]: ['小林'],
+  [findId('志摩觀光飯店 The Classic')]: ['舅舅'],
+  [findId('伊雜宮')]: ['小林', '媽媽'],
+  [findId('御木本珍珠島')]: ['小雯'],
+};
+const dayStatus = {
+  [findId('橫山展望台')]: { scheduled: '2/3' },
+  [findId('伊雜宮')]: { candidate: '2/4' },
+  [findId('志摩觀光飯店 The Classic')]: { scheduled: '2/2' },
+  [findId('鳥羽水族館')]: { scheduled: '2/5' },
+};
+const AREA_LABEL = ['概覽', '志摩', '鳥羽', '二見', '伊勢', '大阪', '關西機場周邊'];
+
+const S = {
+  tab: 'explore', area: 'shima', region: null, lens: null, view: 'photo', stack: [], febOpen: false, dtab: 'intro', moreOpen: false,
+  scrollMemo: 0, toast: null, toastTimer: null,
+};
+
+// ====== 工具 ======
+const h = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const typeZh = { spot: '景點', restaurant: '餐廳', lodging: '住宿' };
+const typeCh = { spot: '景', restaurant: '食', lodging: '宿' };
+const img = (p, cls = '') => p.photo ? `<img class="img ${cls}" src="${h(p.photo)}" referrerpolicy="no-referrer" loading="lazy" onerror="this.outerHTML='<div class=\\'fallback ${p.type}\\'>${typeCh[p.type]}</div>'">` : `<div class="fallback ${p.type}">${typeCh[p.type]}</div>`;
+const seal = (p, sm) => `<span class="seal ${p.type} ${sm ? 'sm' : ''}">${typeCh[p.type]}</span>`;
+const tier = (p) => p.tier ? `<span class="tier ${p.tier}">${p.tier}</span>` : '';
+const likes = (id) => votes[id] || [];
+const mine = (id) => likes(id).includes(ME);
+const avatars = (names) => `<span class="av">${names.map(n => `<i title="${h(n)}">${AV[n] || n[0]}</i>`).join('')}</span>`;
+const markWord = { '◎': '很適合', '○': '可以', '△': '要注意', '✕': '不適合', '—': '沒資料' };
+const markCls = { '◎': 'g', '○': 'g', '△': 'w', '✕': 'b', '—': 'n' };
+const areaOf = (id) => AREAS.find(a => a.id === id);
+const inScope = (p) => p.area === S.area && (!S.region || p.region === S.region);
+const placesIn = (type) => P.filter(p => inScope(p) && p.type === type);
+
+// 書架定義（兩級）：first 是第一級、second 第二級；總數用真實 counts
+function shelves() {
+  const a = areaOf(S.area);
+  const c = a.counts;
+  const rc = S.region ? D.regionCounts[S.region] : null;
+  const spots = placesIn('spot'), rest = placesIn('restaurant'), lodg = placesIn('lodging');
+  const totalSpots = rc ? rc.spots : c.spots, totalRest = rc ? rc.restaurants : c.restaurants, totalLodg = rc ? rc.lodging : c.lodging;
+  const where = S.region ? regionName(S.region) : a.name;
+  const must1 = spots.filter(p => p.tier === 'S' || p.tier === 'A'), must2 = spots.filter(p => p.tier === 'B');
+  const fit1 = rest.filter(p => p.fit15 === 'yes' || p.fit15 === 'split'), fit2 = rest.filter(p => !(p.fit15 === 'yes' || p.fit15 === 'split'));
+  const stay1 = lodg.filter(p => (p.wholeRental && p.maxGuests >= 15) || (['hotel', 'ryokan'].includes(p.kind) && p.rooms >= 5)), stay2 = lodg.filter(p => !stay1.includes(p));
+  const rain1 = spots.filter(p => p.weather === 'indoor' || p.weather === 'covered');
+  const rainAll = P.filter(p => p.area === S.area && p.type === 'spot' && (p.weather === 'indoor' || p.weather === 'covered'));
+  // 真實總數（沒選子地區時用 counts；選了子地區用抽樣本身）
+  const n = (list, real) => S.region ? list.length : real;
+  const mk = (id, title, type, items1, items2, total1, total2, rule1, rule2, denomLabel, denomN, tailLabel, caption) => {
+    const fb = items1.length === 0 && items2.length > 0;
+    const items = fb ? items2 : items1;
+    const total = fb ? total2 : total1;
+    return { id, title, type, items, total, fb, rule: fb ? rule2 : rule1, denomLabel, denomN, rest: total1 + total2 - total, tailLabel, caption, filterFn: fb ? (p => items2.includes(p)) : (p => items1.includes(p)), restFn: (p => (fb ? items1 : items2).includes(p)), allFn: (p => p.type === type) };
+  };
+  return [
+    mk('must', '一定要去', 'spot', must1, must2, n(must1, c.spotsS + c.spotsA), n(must2, c.spotsB), `主辦最推薦的（S、A 級）`, `${where}沒有 S、A 級，這是其他的景點`, '景點', totalSpots, '個還沒列的景點', null),
+    mk('fit15', '全員吃飯', 'restaurant', fit1, fit2, n(fit1, c.fit15yes + c.fit15split), n(fit2, c.restaurants - c.fit15yes - c.fit15split), `一家坐得下 15 人的店`, `${where}沒有坐得下 15 人的店，這些要分組去`, '餐廳', totalRest, '家要分組去或還沒查的', p => ({ yes: '15 人能坐一起', split: '15 人要分桌', no: '坐不下 15 人', unknown: '15 人還沒查' }[p.fit15 || 'unknown'])),
+    mk('stay', '住在這裡', 'lodging', stay1, stay2, n(stay1, c.hotels + c.whole), n(stay2, c.lodging - c.hotels - c.whole), `一間住得下全團的`, `${where}沒有一間住得下全團的，這些要分開住`, '住宿', totalLodg, '間要分開住的', p => [p.stay, p.meals].filter(Boolean).join(' · ')),
+    mk('rain', '下雨也行', 'spot', rain1, S.region ? rainAll : [], n(rain1, c.rainOk), S.region ? rainAll.length : 0, `室內或有遮蔽的景點`, `${where}沒有，這是${a.name}全區的`, '景點', totalSpots, '個室外的景點', null),
+  ];
+}
+const regionName = (id) => { for (const a of AREAS) { const r = a.regions.find(r => r.id === id); if (r) return r.name; } return id; };
+
+// 清單：目前帶子的點
+function lensList() {
+  const L = S.lens; if (!L) return [];
+  return P.filter(p => inScope(p) && L.fn(p));
+}
+// 另一區用同一個帶子會有幾個（真實數字）
+function lensCountIn(areaId) {
+  const a = areaOf(areaId); if (!a) return null; const c = a.counts; const L = S.lens; if (!L) return null;
+  return { must: c.spotsS + c.spotsA, mustb: c.spotsB, allspot: c.spots, fit15: c.fit15yes + c.fit15split, fit15b: c.restaurants - c.fit15yes - c.fit15split, allrest: c.restaurants, stay: c.hotels + c.whole, stayb: c.lodging - c.hotels - c.whole, alllodg: c.lodging, rain: c.rainOk, rainb: c.spots - c.rainOk }[L.key] ?? null;
+}
+
+// ====== 動作 ======
+function go(fn) { fn(); render(); }
+function setArea(id) {
+  if (id === 'overview') { S.area = null; S.lens = null; S.region = null; return; }
+  if (S.area === id && S.lens) { S.lens = null; return; }   // 再點一次目前的地區：回到這一區的書架
+  if (S.area !== id) { S.region = null; }
+  S.area = id; S.scrollMemo = 0;
+}
+function openLens(key, title, fn, denomLabel, denomN, note) { S.lens = { key, title, fn, denomLabel, denomN, note }; S.scrollMemo = 0; }
+function openPlace(id) { const sc = document.querySelector('.page'); if (sc && S.stack.length === 0) S.scrollMemo = sc.scrollTop; S.stack.push(id); S.dtab = 'intro'; S.moreOpen = false; }
+function back() { S.stack.pop(); S.dtab = 'intro'; }
+function toggleLove(id) {
+  const l = votes[id] = likes(id).slice();
+  if (l.includes(ME)) { votes[id] = l.filter(n => n !== ME); toast(`已收回想去（${byId[id].name.slice(0, 10)}）`, () => { votes[id] = l; render(); }, true); }
+  else { l.push(ME); toast('✓ 已加到想去，家人也看得到', () => { votes[id] = l.filter(n => n !== ME); render(); }); }
+}
+function toast(msg, undo, warnish) {
+  clearTimeout(S.toastTimer);
+  S.toast = { msg, undo, warnish };
+  S.toastTimer = setTimeout(() => { S.toast = null; render(); }, 6000);
+}
+function stub(what) { toast(`「${what}」原型未做`); render(); }
+
+// ====== 畫面 ======
+function render() {
+  const app = document.getElementById('app');
+  const page = document.querySelector('.page');
+  const keepScroll = page ? page.scrollTop : 0;
+  const detail = S.stack.length ? renderDetail(byId[S.stack[S.stack.length - 1]]) : '';
+  let body;
+  if (S.tab === 'explore') body = renderExplore();
+  else if (S.tab === 'wish') body = renderWish();
+  else body = `<div class="page"><div class="stub">「${{ trip: '行程', ai: 'AI', me: '我' }[S.tab]}」分頁原型未做</div></div>`;
+  const wishN = Object.values(votes).filter(l => l.length).length;
+  app.innerHTML = body + detail + `
+    <div class="tabbar">
+      ${[['explore', '探索', '🔍'], ['wish', '想去', '♡'], ['trip', '行程', '📅'], ['ai', 'AI', '✦'], ['me', '我', '👤']].map(([k, l, ic]) => `<button class="${S.tab === k ? 'on' : ''}" onclick="go(()=>{S.tab='${k}';S.stack=[]})"><span class="ic">${ic}</span>${l}${k === 'wish' ? `<span class="bd">${wishN}</span>` : ''}</button>`).join('')}
+    </div>
+    ${S.toast ? `<div class="toast ${S.toast.warnish ? 'warnish' : ''}">${h(S.toast.msg)}${S.toast.undo ? '<button class="undo" onclick="S.toast.undo();S.toast=null;render()">復原</button>' : ''}<button class="cl" onclick="S.toast=null;render()">✕</button></div>` : ''}`;
+  const np = document.querySelector('.page');
+  if (np) np.scrollTop = S._scrollTo != null ? S._scrollTo : keepScroll;
+  S._scrollTo = null;
+}
+
+function renderExplore() {
+  const a = S.area ? areaOf(S.area) : null;
+  const L = S.lens;
+  const areaTabs = `<div class="areas">${['overview', 'shima', 'toba', 'futami', 'ise', 'osaka', 'kix'].map((id, i) => {
+    const on = id === 'overview' ? !S.area : S.area === id;
+    let n = '';
+    if (L && id !== 'overview') { const c = lensCountIn(id); n = `<span class="n ${c === 0 ? 'zero' : ''}">${c == null ? '略' : c}</span>`; }
+    return `<button class="${on ? 'on' : ''} ${id === 'overview' ? 'ov' : ''}" onclick="go(()=>setArea('${id}'))">${AREA_LABEL[i]}${n}</button>`;
+  }).join('')}</div>`;
+  let sub = '';
+  if (a) {
+    const chips = [['', '全部', S.region === null]].concat(a.regions.map(r => [r.id, r.name, S.region === r.id])).map(([id, name, on]) => {
+      let n = '';
+      if (a.id === 'shima') { const rc = id ? D.regionCounts[id] : null; const cnt = L ? (id ? P.filter(p => p.region === id && L.fn(p)).length : lensCountIn(a.id)) : (rc ? rc.spots + rc.restaurants + rc.lodging : a.counts.spots + a.counts.restaurants + a.counts.lodging); n = `<span class="n">${cnt}</span>`; return `<button class="chip ${on ? 'on' : ''} ${cnt === 0 ? 'zero' : ''}" onclick="go(()=>{S.region='${id}'||null;S.scrollMemo=0})">${h(name)}${n}</button>`; }
+      return `<button class="chip ${on ? 'on' : ''}" onclick="go(()=>{S.region='${id}'||null})">${h(name)}</button>`;
+    }).join('');
+    sub = `<div class="chipwrap"><div class="chips">${chips}<span style="flex:0 0 40px"></span></div><span class="more">還有 ›</span></div>`;
+  }
+  let lens = '';
+  if (a && L) {
+    const list = lensList();
+    const total = S.region ? list.length : (L.total != null ? L.total : list.length);
+    lens = `<div class="lens">
+      <div class="lens-top"><button class="back" onclick="go(()=>{S.lens=null;S._scrollTo=0})">‹ ${h(S.region ? regionName(S.region) : a.name)}</button><span class="lens-title">${h(L.title)}</span><span class="lens-n">${total} 個</span>
+        <span class="view"><button class="${S.view === 'photo' ? 'on' : ''}" onclick="go(()=>S.view='photo')">▦</button><button class="${S.view === 'list' ? 'on' : ''}" onclick="go(()=>S.view='list')">☰</button></span></div>
+      <div class="lens-denom">${L.denomLabel ? `這是 <b>${h(S.region ? regionName(S.region) : a.name)}${L.denomLabel}共 ${L.denomN}</b> 的其中 ${total} 個` : `${h(a.name)}全部的${h(L.title)}`}</div>
+      ${L.note ? `<div class="lens-note">${h(L.note)}</div>` : ''}
+      <div class="conds">${L.conds.map(c => `<span class="cond">${h(c)} <span class="x">✕</span></span>`).join('')}<button class="cond add" onclick="stub('＋ 條件')">＋ 條件</button></div>
+    </div>`;
+  }
+  const head = `<div class="band"><div class="tools"><button class="search" onclick="stub('搜尋')">🔍 搜尋名稱</button><button class="rbtn" onclick="stub('篩選')">⚙${L ? '<span class="dot"></span>' : ''}</button><button class="rbtn" onclick="stub('排序')">⇅</button><button class="rbtn" onclick="stub('問 AI')">✦</button><button class="rbtn" onclick="stub('加地點')">＋</button></div></div>
+  <div class="head">${areaTabs}${sub}${lens}</div>`;
+  let content;
+  if (!a) content = renderOverview();
+  else if (!L) content = renderAreaHome(a);
+  else content = renderList(a);
+  return head + `<div class="page">${content}</div>`;
+}
+
+function renderOverview() {
+  return `<div class="ov">${AREAS.map(a => {
+    const c = a.counts; const rep = P.find(p => p.area === a.id);
+    return `<div class="card"><div class="ph">${rep ? img(rep) : ''}<h3>${h(a.name)}</h3></div><div class="tx">
+      <div style="font-size:14px;color:var(--ink-2)">${h(a.summary)}</div>
+      <div class="total" style="padding-top:8px">${[['spot', '景點', c.spots], ['restaurant', '餐廳', c.restaurants], ['lodging', '住宿', c.lodging]].map(([t, l, n]) => `<button class="cnt" onclick="go(()=>{setArea('${a.id}');openAllOf('${t}')})">${seal({ type: t }, 1)} ${l} <b>${n}</b></button>`).join('')}</div>
+      <div class="four4">${[['一定要去', c.spotsS + c.spotsA, `共 ${c.spots} 景點`, 'must'], ['全員吃飯', c.fit15yes + c.fit15split, `共 ${c.restaurants} 餐廳`, 'fit15'], ['住在這裡', c.hotels + c.whole, `共 ${c.lodging} 住宿`, 'stay'], ['下雨也行', c.rainOk, `共 ${c.spots} 景點`, 'rain']].map(([t, n, d, k]) => `<button onclick="go(()=>{setArea('${a.id}');openShelf('${k}')})">${t}<b>${n}</b><small>${d}</small></button>`).join('')}</div>
+      <button class="go" onclick="go(()=>setArea('${a.id}'))">看${h(a.name)} ›</button></div></div>`;
+  }).join('')}<div class="skip">二見、伊勢、大阪、關西機場周邊（略）</div></div>`;
+}
+
+function openAllOf(type) {
+  const a = areaOf(S.area); const c = a.counts; const rc = S.region ? D.regionCounts[S.region] : null;
+  const total = rc ? rc[{ spot: 'spots', restaurant: 'restaurants', lodging: 'lodging' }[type]] : { spot: c.spots, restaurant: c.restaurants, lodging: c.lodging }[type];
+  S.lens = { key: { spot: 'allspot', restaurant: 'allrest', lodging: 'alllodg' }[type], title: `全部${typeZh[type]}`, fn: p => p.type === type, denomLabel: null, total, conds: [typeZh[type]] };
+  S._scrollTo = 0;
+}
+function openShelf(key, rest) {
+  const sh = shelves().find(s => s.id === key);
+  const fn = rest ? sh.restFn : sh.filterFn;
+  const total = rest ? sh.rest : sh.total;
+  const title = rest ? (key === 'must' ? '其他景點' : key === 'fit15' ? '要分組去的店' : key === 'stay' ? '要分開住的' : '室外的景點') : sh.title;
+  const conds = { must: rest ? ['景點', '其他等級'] : ['景點', '主辦推薦'], fit15: rest ? ['餐廳', '要分組'] : ['餐廳', '全員 15 人'], stay: rest ? ['住宿', '要分開住'] : ['住宿', '一間住全團'], rain: rest ? ['景點', '室外'] : ['景點', '室內或有遮蔽'] }[key];
+  S.lens = { key: rest ? key + 'b' : key, title, fn, denomLabel: sh.denomLabel, denomN: sh.denomN, total, conds, note: sh.fb && !rest ? sh.rule : null, shelf: key, isRest: !!rest };
+  S._scrollTo = 0;
+}
+
+function renderAreaHome(a) {
+  const c = a.counts; const rc = S.region ? D.regionCounts[S.region] : null;
+  const where = S.region ? regionName(S.region) : a.name;
+  const tot = rc ? [rc.spots, rc.restaurants, rc.lodging] : [c.spots, c.restaurants, c.lodging];
+  const feb = a.february;
+  const sh = shelves();
+  const mustIds = new Set((sh[0].items).map(p => p.id));
+  let out = `<div class="total">${[['spot', '景點', tot[0]], ['restaurant', '餐廳', tot[1]], ['lodging', '住宿', tot[2]]].map(([t, l, n]) => `<button class="cnt" onclick="go(()=>openAllOf('${t}'))">${seal({ type: t }, 1)} ${l} <b>${n}</b></button>`).join('')}</div>
+  <p class="total-note">${h(where)}全部的地點。下面四排是主辦先挑出來的，每排的數字都寫在總數旁邊。</p>`;
+  if (!S.region && feb.length) out += `<div class="feb"><button onclick="go(()=>S.febOpen=!S.febOpen)">2 月注意（${feb.length}）${S.febOpen ? '▴' : '▾'}</button>${S.febOpen ? `<ul>${feb.map(t => `<li>${h(t)}</li>`).join('')}</ul>` : ''}</div>`;
+  for (const s of sh) {
+    const shown = s.items.slice(0, s.rest > 0 ? 2 : 3);
+    const dup = (p) => s.id === 'rain' && mustIds.has(p.id) ? '<span class="dup">也在「一定要去」</span>' : '';
+    out += `<section class="shelf"><div class="shelf-head"><h3 class="shelf-title">${s.title}</h3>${s.total > 0 ? `<button class="shelf-all" onclick="go(()=>openShelf('${s.id}'))">這 ${s.total} 個 ›</button>` : ''}</div>
+      <p class="shelf-rule ${s.fb ? 'fb' : ''}">${h(s.rule)} · <b>${h(where)}${s.denomLabel}共 ${s.denomN}</b>，這排 ${s.total}</p>`;
+    if (s.total === 0) {
+      out += `<div class="empty">${h(where)}沒有${h(s.denomLabel)}${s.id === 'rain' ? '是室內或有遮蔽的' : ''}。<div class="steps"><button onclick="go(()=>{S.region=null})">看${h(a.name)}全區 ›</button><button onclick="stub('問 AI')">✦ 問 AI</button></div></div>`;
+    } else {
+      out += `<div class="row3">${shown.map(p => `<button class="sc" onclick="go(()=>openPlace('${p.id}'))"><div class="ph">${img(p)}${seal(p)}${dup(p)}</div><div class="nm"><span class="n2">${h(p.name)}</span>${tier(p)}</div>${s.caption ? `<div class="cap">${h(s.caption(p))}</div>` : ''}</button>`).join('')}
+        ${s.rest > 0 ? `<button class="sc tail" onclick="go(()=>openShelf('${s.id}',true))"><small>還有</small><b>${s.rest}</b><small>${h(s.tailLabel)} ›</small></button>` : ''}</div>`;
+    }
+    out += `</section>`;
+  }
+  return out;
+}
+
+function renderList(a) {
+  const list = lensList();
+  const L = S.lens;
+  const total = S.region ? list.length : (L.total != null ? L.total : list.length);
+  const missing = total - list.length;
+  const status = (p) => { const d = dayStatus[p.id]; const pills = []; if (d && d.scheduled) pills.push(`<span class="pill day">已排 ${d.scheduled}</span>`); if (d && d.candidate) pills.push(`<span class="pill day">主辦考慮放 ${d.candidate}</span>`); const el = p.four[0]; if (el.m === '◎') pills.push('<span class="pill good">長輩 ◎ 很適合</span>'); else if (el.m === '✕' || el.m === '△') pills.push(`<span class="pill bad">長輩 ${el.m} ${markWord[el.m]}</span>`); if (p.closedInTrip) pills.push('<span class="pill feb">二月休</span>'); return pills.slice(0, 2).join(''); };
+  const heart = (p) => { const l = likes(p.id); const me = l.includes(ME); return `<button class="heart ${me ? 'on' : l.length ? 'others' : ''}" onclick="event.stopPropagation();go(()=>toggleLove('${p.id}'))" title="${me ? '你想去' : l.length ? l.join('、') + ' 想去' : '按想去'}">${me ? '♥' : '♡'}${l.length ? avatars(l) : ''}</button>`; };
+  let out = '';
+  if (list.length === 0) out = `<div class="empty" style="margin-top:12px">${h(S.region ? regionName(S.region) : a.name)}沒有${h(L.title)}。<div class="steps"><button onclick="go(()=>{S.region=null})">看${h(a.name)}全區 ›</button>${L.shelf ? `<button onclick="go(()=>openShelf('${L.shelf}',${!L.isRest}))">看${L.isRest ? '主辦挑的' : '其他的'} ›</button>` : ''}</div></div>`;
+  else if (S.view === 'photo') out = `<div class="wall">${list.map(p => `<div class="pt" role="button" tabindex="0" onclick="go(()=>openPlace('${p.id}'))"><div class="ph">${img(p)}<span class="tp">${seal(p, 1)} ${typeZh[p.type]}</span><span class="ht">${heart(p)}</span></div><div class="tx"><div class="nm"><span class="n2">${h(p.name)}</span>${tier(p)}</div><div class="mt">${h(p.regionName)}${p.userAdded ? '・' + p.addedBy + ' 加的' : ''}</div><div class="pills">${status(p)}</div></div></div>`).join('')}</div>`;
+  else out = `<div class="list">${list.map(p => `<div class="rw" role="button" tabindex="0" onclick="go(()=>openPlace('${p.id}'))"><div class="th">${img(p)}</div><div class="tx"><div class="nm"><span class="n2">${h(p.name)}</span>${tier(p)}</div><div class="mt">${typeZh[p.type]}・${h(p.regionName)}${p.type === 'lodging' ? '・' + h(p.stay) : ''}${p.type === 'lodging' && p.pricePerPerson ? ` <span class="price">每人 ${p.pricePerPerson.toLocaleString()} 円起</span>` : ''}</div><div class="pills">${status(p)}</div></div><span class="ht">${heart(p)}</span></div>`).join('')}</div>`;
+  if (missing > 0) out += `<div class="skip">（原型只抽了 ${list.length} 個；正式資料還有 ${missing} 個，略）</div>`;
+  // 清單尾端：其餘的入口（分母）
+  if (L.shelf) {
+    const sh = shelves().find(s => s.id === L.shelf);
+    const other = L.isRest ? sh.total : sh.rest;
+    if (other > 0) out += `<div class="tailrow"><button onclick="go(()=>openShelf('${L.shelf}',${!L.isRest}))">${L.isRest ? `看主辦挑的 ${other} 個 ›` : `還有 ${other} ${h(sh.tailLabel)} ›`}</button><small>${h(S.region ? regionName(S.region) : a.name)}${sh.denomLabel}共 ${sh.denomN}，你看完的是其中 ${total} 個</small></div>`;
+    else out += `<div class="tailrow"><small>${h(S.region ? regionName(S.region) : a.name)}${sh.denomLabel}共 ${sh.denomN}，這裡就是全部了</small></div>`;
+  } else out += `<div class="tailrow"><small>${h(S.region ? regionName(S.region) : a.name)}的${h(L.title)}就是這 ${total} 個</small></div>`;
+  // 其他地區有幾個
+  const others = AREAS.filter(x => x.id !== a.id).map(x => `${x.name} ${lensCountIn(x.id)}`).join('、');
+  out += `<div class="hint">同一個條件在別區：${others}。點上面的地區會帶著「${h(L.title)}」過去；再點一次「${h(a.name)}」回到${h(a.name)}的首頁。</div>`;
+  return out;
+}
+
+function renderWish() {
+  const minePlaces = P.filter(p => mine(p.id));
+  const others = P.filter(p => !mine(p.id) && likes(p.id).length);
+  const card = (p) => `<button class="sc" onclick="go(()=>openPlace('${p.id}'))"><div class="ph">${img(p)}${seal(p)}</div><div class="nm"><span class="n2">${h(p.name)}</span>${tier(p)}</div><div class="cap">${h(likes(p.id).join('、'))}${dayStatus[p.id] && dayStatus[p.id].scheduled ? ` · 已排 ${dayStatus[p.id].scheduled}` : dayStatus[p.id] && dayStatus[p.id].candidate ? ` · 主辦考慮放 ${dayStatus[p.id].candidate}` : ''}</div></button>`;
+  return `<div class="band"><div class="tools"><button class="search">🔍 搜尋名稱</button><button class="rbtn">⚙</button><button class="rbtn">⇅</button><button class="rbtn">✦</button></div></div>
+  <div class="head"><div class="areas"><button class="on">全部</button><button>志摩</button><button>鳥羽</button><button>二見</button><button>伊勢</button></div></div>
+  <div class="page">
+    <div class="wish-sec"><h3>我想去的<small>${minePlaces.length} 個 · 家人都看得到</small></h3>${minePlaces.length ? `<div class="row3">${minePlaces.map(card).join('')}</div>` : '<div class="emptyline">還沒有。在地點的詳情按「我想去」就會出現在這裡。</div>'}</div>
+    <div class="wish-sec"><h3>其他家人想去的<small>${others.length} 個</small></h3><div class="row3">${others.map(card).join('')}</div></div>
+    <div class="hint">「已排 2/3」是主辦已經排進行程；「主辦考慮放 2/4」是主辦放進那天的候選，還沒定。</div>
+  </div>`;
+}
+
+function renderDetail(p) {
+  const l = likes(p.id); const me = l.includes(ME); const others = l.filter(n => n !== ME);
+  const prev = S.stack.length > 1 ? byId[S.stack[S.stack.length - 2]].name : (S.tab === 'wish' ? '想去' : S.lens ? S.lens.title : (S.region ? regionName(S.region) : (areaOf(S.area) || {}).name || '探索'));
+  const d = dayStatus[p.id];
+  const nearR = P.filter(x => x.id !== p.id && x.region === p.region && x.type === 'restaurant');
+  const nearL = P.filter(x => x.id !== p.id && x.region === p.region && x.type === 'lodging');
+  const rc = D.regionCounts[p.region] || null;
+  const nearSec = (title, list, realN) => `<h4>${title} <small>${list.length === 0 ? '' : `列出 ${Math.min(3, list.length)} 個${realN != null && realN > 3 ? `，共 ${realN} 個` : ''}`}</small>${realN > 3 ? `<button onclick="stub('附近更多')">更多 ${realN - 3} 個 ›</button>` : ''}</h4>${list.length ? list.slice(0, 3).map(x => `<button class="nr" onclick="go(()=>openPlace('${x.id}'))"><span>${h(x.name)}</span><small>走路約 ${(5 + (x.name.length * 3) % 12)} 分 · 全員 ${Math.round((5 + (x.name.length * 3) % 12) * 1.4)} 分</small></button>`).join('') : `<div class="none">附近沒有${title.replace('附近的', '')}（0 個）</div>`}`;
+  const four = `<div class="four">${p.four.map(s => `<button class="sq ${markCls[s.m]}" onclick="stub('四格展開')"><span class="m">${s.m}</span><span class="w">${markWord[s.m]}</span><span class="k">${s.k}</span><span class="y">${h(s.why)}</span></button>`).join('')}</div><div class="legend">◎ 很適合 ○ 可以 △ 要注意 ✕ 不適合 — 沒資料</div>`;
+  const intro = p.userAdded ? `<div class="d-nodata">這是 ${p.addedBy} 自己加的點，主辦還沒查過：沒有照片、介紹、營業時間和費用。</div>` :
+    `${four}
+    ${p.closedInTrip ? `<div class="d-feb">二月休：旅程期間有休業，去之前要確認。</div>` : ''}
+    <p class="d-p">${h(p.intro)}</p>
+    ${p.hours ? `<div class="d-fact"><b>時間</b><span>${h(p.hours)}${p.stayMinutes ? `，停留約 ${p.stayMinutes} 分` : ''}</span></div>` : ''}
+    ${p.fee ? `<div class="d-fact"><b>費用</b><span>${h(p.fee)}</span></div>` : ''}
+    ${p.type === 'lodging' ? `<div class="d-fact"><b>住法</b><span>${h(p.stay)}${p.meals ? '・' + h(p.meals) : ''}${p.pricePerPerson ? `・每人約 ${p.pricePerPerson.toLocaleString()} 円起／晚` : ''}</span></div>` : ''}
+    ${p.type === 'restaurant' && p.reservation ? `<div class="d-fact"><b>預約</b><span>${h(p.reservation)}</span></div>` : ''}
+    ${p.febNote ? `<div class="d-feb">2 月：${h(p.febNote)}</div>` : ''}
+    ${d && d.scheduled ? `<div class="d-fact"><b>行程</b><span>主辦已排進 ${d.scheduled}</span></div>` : d && d.candidate ? `<div class="d-fact"><b>行程</b><span>主辦考慮放 ${d.candidate}，還沒定</span></div>` : ''}
+    <button class="d-more" onclick="go(()=>S.moreOpen=!S.moreOpen)">${S.moreOpen ? '收起' : '更多 ›'}</button>
+    ${S.moreOpen ? `<ul class="d-pc">${p.pros.map(t => `<li class="p">${h(t)}</li>`).join('')}${p.cons.map(t => `<li class="c">${h(t)}</li>`).join('')}</ul>` : ''}`;
+  const tabBody = S.dtab === 'intro' ? intro : S.dtab === 'location' ? `<div class="near"><div class="d-fact" style="margin-top:12px"><b>地點</b><span>${h(p.areaName)}・${h(p.regionName)}${p.station ? '・' + h(p.station) : ''}</span></div>${nearSec('附近的餐廳', nearR, rc ? rc.restaurants - (p.type === 'restaurant' ? 1 : 0) : nearR.length)}${nearSec('附近的住宿', nearL, rc ? rc.lodging - (p.type === 'lodging' ? 1 : 0) : nearL.length)}</div>` : `<div class="stub">${S.dtab === 'reviews' ? '評論' : '留言'}分頁原型未做</div>`;
+  return `<div class="detail">
+    <div class="d-top"><button class="d-back" onclick="go(()=>{back();if(!S.stack.length)S._scrollTo=S.scrollMemo})">‹ <span>回到 ${h(prev)}</span></button></div>
+    <div class="d-scroll">
+      <div class="d-hero">${img(p)}${p.photo ? `<span class="cr">${h(p.name)}</span>` : ''}</div>
+      <div class="d-body">
+        <h2 class="d-name">${tier(p)}<span>${h(p.name)}</span></h2>
+        <div class="d-sub">${seal(p, 1)} ${typeZh[p.type]}・${h(p.regionName)}${p.star ? `・★ ${p.star}（${p.starN >= 10000 ? (p.starN / 10000).toFixed(1) + ' 萬' : p.starN}）` : ''}<a href="#" onclick="event.preventDefault();stub('地圖')">地圖 ↗</a></div>
+        <div class="d-act">
+          <button class="btn-love ${me ? 'on' : ''}" onclick="go(()=>toggleLove('${p.id}'))">${me ? '♥ 我想去 ✓' : '♡ 我想去'}</button>
+          <button class="btn-dis" onclick="stub('不想去')">👎</button>
+          <button class="btn-day" onclick="stub('加到某天')">加到某天<small>給主辦的建議，不會動到行程</small></button>
+        </div>
+        <div class="who">${me ? `<span class="me">你想去</span>${others.length ? `，${avatars(others)} ${h(others.join('、'))} 也想去` : '，家人都看得到'}` : others.length ? `${avatars(others)} ${h(others.join('、'))} 想去，你還沒按` : '還沒有人按想去'}</div>
+        <div class="d-tabs">${[['intro', '簡介'], ['location', '位置'], ['reviews', '評論'], ['comments', '留言']].map(([k, l]) => `<button class="${S.dtab === k ? 'on' : ''}" onclick="go(()=>S.dtab='${k}')">${l}</button>`).join('')}</div>
+        ${tabBody}
+      </div>
+    </div>
+  </div>`;
+}
+render();
+</script>
+</body>
+</html>
