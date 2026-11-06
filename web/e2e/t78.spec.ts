@@ -1,7 +1,7 @@
 // T78：探索改版的網頁接線（interaction-design §35）。核心流程的保險：
 // 概覽 → 進志摩「玩」→ 區段收合、數字加起來等於總數 → 展開「其他景點」看到 B 級 → 標題黏頂 → 子地區晶片的數字、換子地區收合 →
-// 篩選面板勾長輩 → 條件列 → 換鳥羽條件、主題、展開的區段帶過去、子地區清掉、右欄捲到頂 → 原地展開、「詳細資料」開彈窗 →
-// 點地圖的點彈窗蓋右欄 → revealInExplore 切主題、展開區段、捲到那列 → 換主題收合 → 回概覽全收 → 想去三個區段 → 1180 寬的右欄照片縮小。
+// 篩選面板勾長輩 → 條件列 → 換鳥羽條件、主題、展開的區段帶過去、子地區清掉、右欄捲到頂 → 點列開彈窗（T83 起不原地展開） →
+// 點地圖的點彈窗蓋右欄 → revealInExplore 切主題、展開區段、捲到那列 → 換主題收合 → 回概覽全收 → 想去三個區段 → 1180 寬的右欄照片縮小（T82 起 92）。
 // SHOT_DIR 有設時把畫面存下來（和 design-lab/d.html 比）。
 
 import { test, type Page } from '@playwright/test';
@@ -103,13 +103,11 @@ test('網頁探索：主題、區段、篩選跟著換區、詳情彈窗、revea
   await page.getByTestId('cond-chip').click();
   await expect(page.getByTestId('cond-row')).toHaveCount(0);
 
-  // 列點了原地展開，「詳細資料」開彈窗（蓋在地圖右側）
+  // 點列直接開彈窗（T83；蓋在地圖右側），列標成目前這個
   const row = sec(page, 'must').getByTestId('explore-item').first();
   const rowId = (await row.getAttribute('data-id'))!;
   await row.click();
-  await expect(row).toHaveAttribute('aria-expanded', 'true');
-  await expect(sec(page, 'must').getByTestId('place-open')).toBeVisible();
-  await page.getByTestId('place-open-detail').click();
+  await expect(row).toHaveAttribute('aria-current', 'true');
   await expect(page.getByTestId('detail-float')).toHaveAttribute('data-at', 'map');
   expect(await th<string>(page, `(t) => t.appStore.getState().detailId`)).toBe(rowId);
   await page.keyboard.press('Escape');
@@ -166,13 +164,13 @@ test('網頁探索：主題、區段、篩選跟著換區、詳情彈窗、revea
   await expect(wl.locator('[data-testid="wish-section"][data-section="unscheduled"]')).toHaveAttribute('data-open', 'true');
 });
 
-test('1180 寬：右欄 360，列的照片縮到 120；區段標題照樣黏在篩選列下面', async ({ page }) => {
+test('1180 寬：右欄 360，列的照片縮到 92；區段標題照樣黏在篩選列下面', async ({ page }) => {
   await page.setViewportSize({ width: 1180, height: 800 });
   await ready(page, { tab: 'default' });
   await page.getByTestId('ex-area-shima').click();
   await sec(page, 'other').getByTestId('section-head').click();
   const photo = (await sec(page, 'other').locator('.pr-photo').first().boundingBox())!;
-  expect(Math.round(photo.width)).toBe(120);
+  expect(Math.round(photo.width)).toBe(92);
   await page.evaluate(() => (document.querySelector('.side-body') as HTMLElement).scrollBy(0, 500));
   await waitIdle(page);
   const bar = (await page.getByTestId('filter-bar').boundingBox())!;

@@ -73,34 +73,40 @@ test('地區列：滾輪捲到最後一顆、箭頭只在還有東西的那邊�
   await expect.poll(() => lastChipShown(page)).toBe(true);
 });
 
-test('點地區鈕：書架「全部 ›」後點概覽回概覽（可以復原）、點別區和目前這顆篩選留著（T69）、「‹ 書架」才回書架；想去一樣', async ({ page }) => {
+test('點地區鈕：有篩選時點概覽回概覽（可以復原）、點別區和目前這顆主題、篩選、搜尋留著（T69、T78）；想去一樣', async ({ page }) => {
   await ready(page, { tab: 'default' });
+  const lunch = async () => {
+    await page.getByTestId('filter-open').click();
+    await page.getByTestId('filter-opt-context-lunch').click();
+    await page.getByTestId('filter-done').click();
+  };
   await page.getByTestId('ex-area-toba').click();
-  await page.locator('[data-shelf="must"]').getByTestId('shelf-all').click();
-  await expect(page.getByTestId('area-home')).toHaveCount(0);
+  await page.getByTestId('theme-restaurant').click();
+  await lunch();
 
   // 概覽：離開篩選，留一份復原
   await page.getByTestId('ex-area-all').click();
   await expect(page.getByTestId('explore-overview')).toBeVisible();
-  expect((await appState(page)).filter).toMatchObject({ areas: [], regions: [], types: [], tiers: [] });
-  await expect(page.getByTestId('lens-undo')).toContainText('一定要去 · 鳥羽');
+  expect((await appState(page)).filter).toMatchObject({ areas: [], regions: [], types: [], contexts: [] });
+  await expect(page.getByTestId('lens-undo')).toContainText('自己篩選 · 鳥羽');
 
-  // 別區：只換範圍，還是「一定要去」（T69）
+  // 別區：只換範圍，主題、條件留著（T69、T78）
   await page.getByTestId('ex-area-toba').click();
-  await page.locator('[data-shelf="must"]').getByTestId('shelf-all').click();
+  await page.getByTestId('theme-restaurant').click();
+  await lunch();
   await page.getByTestId('ex-area-ise').click();
-  await expect(page.getByTestId('area-home')).toHaveCount(0);
-  await expect(page.getByTestId('lens-title')).toHaveText('一定要去');
-  expect((await appState(page)).filter).toMatchObject({ areas: ['ise'], types: ['spot'], tiers: ['S', 'A'] });
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'ise');
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-theme', 'restaurant');
+  expect((await appState(page)).filter).toMatchObject({ areas: ['ise'], types: ['restaurant'], contexts: ['lunch'] });
 
-  // 目前這顆、搜尋：也留著；「‹ 書架」才回到伊勢的書架（條件、搜尋清掉）
+  // 目前這顆、搜尋：也留著（搜尋是平的清單）；清掉搜尋回到伊勢的區段
   await page.evaluate(() => (window as any).__th.appStore.getState().setQuery('神'));
   await page.getByTestId('ex-area-ise').click();
   await expect(page.getByTestId('area-home')).toHaveCount(0);
-  expect(await appState(page)).toMatchObject({ query: '神', filter: { areas: ['ise'], types: ['spot'] } });
-  await page.getByTestId('back-to-area').click();
+  expect(await appState(page)).toMatchObject({ query: '神', filter: { areas: ['ise'], types: ['restaurant'] } });
+  await page.getByTestId('search').fill('');
   await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'ise');
-  expect(await appState(page)).toMatchObject({ query: '', filter: { areas: ['ise'], types: [], tiers: [] } });
+  expect(await appState(page)).toMatchObject({ query: '', filter: { areas: ['ise'], types: ['restaurant'], contexts: ['lunch'] } });
 
   // 想去：換地區、「全部」都只換範圍，條件、搜尋留著
   await page.getByTestId('side-tab-wish').click();

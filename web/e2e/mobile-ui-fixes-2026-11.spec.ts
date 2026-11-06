@@ -125,10 +125,11 @@ test('探索、想去：往下捲時三列都黏在上面，想去的段落標�
 
   await page.getByTestId('m-tab-wish').click();
   const wish = page.getByTestId('m-wish');
-  // T53：想去是三排書架，段落標題拿掉了；進某一排的全部捲下去，篩選列（含地點數）照樣黏住
+  // T76：想去是三個區段；展開一段捲下去，篩選列（含主題列）照樣黏住
   await openWishSection(page, 'scheduled');
   await scroll(600);
-  await expect(wish.getByTestId('list-count')).toBeInViewport();
+  await expect(wish.getByTestId('fb-stick')).toBeInViewport();
+  await expect(wish.getByTestId('fb-stick').locator('[data-testid^="theme-"]').first()).toBeInViewport();
 
   const size = page.viewportSize()!;
   await page.setViewportSize({ width: 800, height: 360 });

@@ -49,18 +49,18 @@ test('套用、取消篩選', async ({ page }) => {
       const spot = th.dataStore.getState().places.find((p: any) => p.type === 'spot');
       return th.visual(spot.id).dim;
     });
-  // 電腦版：探索分頁的類型、常用篩選；回到「行程」時拿掉探索的類型
+  // 電腦版：探索分頁的主題（類型）、常用篩選；回到「行程」時篩選留著
   await page.getByTestId('side-tab-explore').click();
   await pickType(page, 'restaurant');
-  await pickFilter(page, 'tier-S');
-  // 類型在面板裡，算進篩選的數字（T42）
-  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
+  await pickFilter(page, 'restaurant-tier-S');
+  // 主題是主題列，不算條件晶片（T75）
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   expect((await filter()).tiers).toEqual(['S']);
   expect(await dimSpotNow()).toBe(true);
   // 打開面板再點一次取消
-  await pickFilter(page, 'tier-S');
+  await pickFilter(page, 'restaurant-tier-S');
   expect((await filter()).tiers).toEqual([]);
-  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(0);
   await page.getByTestId('side-tab-day').click();
   // 回到行程：篩選留著（行程分頁的地圖不套、也沒有篩選列）
   expect((await filter()).types).toEqual(['restaurant']);
@@ -68,10 +68,10 @@ test('套用、取消篩選', async ({ page }) => {
 });
 
 test('探索：只列地圖畫面裡的點，移動地圖跟著換', async ({ page }) => {
-  // 電腦版是右側「探索」分頁的清單：看景點、按「只列地圖畫面裡的」
+  // 電腦版是右側「探索」分頁的清單：平清單（T80：選了一區是收合的區段、看不到別區，改用全部地點的清單）、按「只列地圖畫面裡的」
   const itemId = 'explore-item';
   await page.getByTestId('side-tab-explore').click();
-  await pickType(page, 'spot');
+  await exploreAll(page);
   await pickFilter(page, 'map-inView');
   const ids = () => page.getByTestId(itemId).evaluateAll((els) => els.map((e) => (e as HTMLElement).dataset.id!));
   const inView = () =>
@@ -96,10 +96,9 @@ test('探索：只列地圖畫面裡的點，移動地圖跟著換', async ({ pa
   expect(after).not.toEqual(before);
   expect(await inView()).toBe(true);
 
-  // 點了卡片原地展開，按「詳細資料」開詳情（第八輪 §13.3）
+  // 點列開詳情（T83）
   const item = page.locator(`[data-testid="${itemId}"][data-id="ise-naiku"]`);
   await item.click();
-  await item.getByTestId('place-open-detail').click();
   await expect(page.getByTestId('detail-panel')).toBeVisible();
 });
 
@@ -163,12 +162,10 @@ test('問 AI：把探索卡片、詳情標題拖到聊天室', async ({ page }) 
   await expect(page.getByTestId('detail-panel')).toHaveCount(0);
 
   // 詳情的標題也可以拖
-  // 照片牆兩欄的 DOM 順序不是排名順序，展開後位置會變：用 data-id 找
   const id2 = (await page.getByTestId('explore-item').nth(1).getAttribute('data-id'))!;
   const second = page.locator(`[data-testid="explore-item"][data-id="${id2}"]`);
-  // 第八輪：點卡片先原地展開，按「詳細資料」才開詳情
+  // T83：點列直接開詳情
   await second.click();
-  await second.getByTestId('place-open-detail').click();
   await page.getByTestId('detail-panel').locator('.detail-head').dragTo(page.locator('.chat-column'));
   await expect.poll(chips).toEqual([id, id2]);
 });

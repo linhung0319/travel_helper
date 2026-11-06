@@ -171,8 +171,9 @@ test('不在行程時，有新留言「行程」帶紅點', async ({ page }) => 
 test('加地點：搜尋列不動，按鈕在清單標題列；彈窗走完才存；返回鍵關掉；鍵盤開著按鈕捲得到', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
-  // 篩選、排序的文字都還在
-  await expect(page.getByTestId('filter-open')).toContainText('篩選');
+  // T76 起概覽的工具列是搜尋＋問 AI＋加地點（篩選鈕是圓形圖示，只在選了一區後才有）
+  await expect(page.getByTestId('filter-open')).toHaveCount(0);
+  await expect(page.getByTestId('list-ask-ai')).toBeVisible();
   const open = page.getByTestId('add-place-open');
   await expect(open).toBeVisible();
   expect(await scrollsSideways(page)).toBe(false);
@@ -215,8 +216,10 @@ test('加地點：搜尋列不動，按鈕在清單標題列；彈窗走完才�
 test('類型列：沒有套用的晶片；「現在看」那一列有一顆（T64 取代篩選按鈕的數字）', async ({ page }) => {
   await ready(page);
   await goTab(page, 'explore');
+  // T76：篩選鈕在選了一區後才有
+  await page.getByTestId('m-feed-area-toba').click();
   await page.getByTestId('filter-open').click();
-  await page.locator('[data-testid^="filter-opt-tier-"]').first().click();
+  await page.getByTestId('filter-opt-suits-elderly').click();
   await page.getByTestId('filter-done').click();
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('filter-applied')).toHaveCount(0);

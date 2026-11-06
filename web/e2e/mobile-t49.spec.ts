@@ -88,30 +88,34 @@ test('整趟的標題列：大字「整趟」、右邊問 AI 和討論同一列�
   await shot(page, 'mobile-t49-overview');
 });
 
-test('探索、想去：書架「全部 ›」後點概覽回概覽（可以復原）、點別區篩選留著（T69）；子地區列只橫滑', async ({ page }) => {
+test('探索、想去：有篩選時點概覽回概覽（可以復原）、點別區主題和篩選留著（T69、T77）；子地區列只橫滑', async ({ page }) => {
   await ready(page, { tab: 'default' });
   const feed = () => page.evaluate(() => {
     const f = (window as any).__thMobile.getState().feed;
     return { area: f.area, type: f.type, quick: f.quick, query: f.query };
   });
+  const lunch = async () => {
+    await page.getByTestId('fb-stick').getByTestId('theme-restaurant').click();
+    await page.getByTestId('filter-open').click();
+    await page.getByTestId('filter-opt-context-lunch').click();
+    await page.getByTestId('filter-done').click();
+  };
   await page.getByTestId('m-feed-area-toba').click();
-  await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
-  await expect(page.getByTestId('area-home')).toHaveCount(0);
+  await lunch();
   await page.getByTestId('m-feed-area-all').click();
   await expect(page.getByTestId('explore-overview')).toBeVisible();
-  expect(await feed()).toEqual({ area: null, type: 'all', quick: [], query: '' });
-  await expect(page.getByTestId('lens-undo')).toContainText('全員吃飯 · 鳥羽');
+  // 主題不算篩選：跟著回概覽，再進一區還是吃（FeedFilters.pickFeedArea）
+  expect(await feed()).toEqual({ area: null, type: 'restaurant', quick: [], query: '' });
+  await expect(page.getByTestId('lens-undo')).toContainText('自己篩選 · 鳥羽');
 
   await page.getByTestId('m-feed-area-toba').click();
-  await page.locator('[data-shelf="fit15"]').getByTestId('shelf-all').click();
+  await lunch();
   await page.getByTestId('m-feed-area-ise').click();
-  // T69：換地區只換範圍，還是全員吃飯（不回書架）
-  await expect(page.getByTestId('fb-stick').getByTestId('lens-title')).toHaveText('全員吃飯');
-  expect(await feed()).toMatchObject({ area: 'ise', type: 'restaurant', query: '' });
-  // ‹ 書架 回到伊勢的書架
-  await page.getByTestId('fb-stick').getByTestId('back-to-area').click();
+  // T69、T77：換地區只換範圍，主題、條件帶過去
   await expect(page.getByTestId('area-home')).toHaveAttribute('data-area', 'ise');
-  expect(await feed()).toEqual({ area: 'ise', type: 'all', quick: [], query: '' });
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-theme', 'restaurant');
+  await expect(page.getByTestId('cond-chip')).toHaveText(['午餐']);
+  expect(await feed()).toMatchObject({ area: 'ise', type: 'restaurant', query: '' });
 
   // 子地區列：手指只橫滑
   const regions = page.getByTestId('region-chips');

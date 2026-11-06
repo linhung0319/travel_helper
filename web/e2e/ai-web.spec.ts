@@ -48,8 +48,10 @@ test('S1 找地點：右欄只列 AI 挑的、每張有理由；手動按想去�
   expect(await items(page).evaluateAll((els) => els.map((e) => [Number(e.getAttribute('data-rank')), e.getAttribute('data-id')]).sort((a: any, b: any) => a[0] - b[0]).map((x) => x[1]))).toEqual(ids);
 
   // 手動：按想去
+  // T82 起愛心按一下是切換；種子資料裡「我」本來就按過第一家（seed.ts），所以看按完和按之前相反
+  const liked0 = await app<number>(page, `th.shared.store.getState().votes.filter((v) => v.placeId === '${ids[0]}' && v.memberId === th.shared.store.getState().me.id).length`);
   await items(page).first().getByTestId('card-like').click();
-  await expect.poll(() => app<number>(page, `th.shared.store.getState().votes.filter((v) => v.placeId === '${ids[0]}' && v.memberId === th.shared.store.getState().me.id).length`)).toBe(1);
+  await expect.poll(() => app<number>(page, `th.shared.store.getState().votes.filter((v) => v.placeId === '${ids[0]}' && v.memberId === th.shared.store.getState().me.id).length`)).toBe(1 - liked0);
   // 再搜尋：取交集
   await page.getByTestId('search').fill('いろは');
   await expect(chip(page)).toContainText('AI 挑的 3 家中的 1 家');
@@ -91,27 +93,26 @@ test('S2 問單點：按詳情的問 AI 只帶晶片和建議問題，不送出�
   await shot(page, 's2-answer');
 });
 
-test('問 AI 入口：清單、展開卡、想去、行程的卡、一天、整趟；都不送出；拖到聊天欄也一樣', async ({ page }) => {
+test('問 AI 入口：清單、詳情、行程的卡、一天、整趟；都不送出；拖到聊天欄也一樣', async ({ page }) => {
   await aiReady(page);
   const chips = page.locator('.ac-chips [data-testid="chat-context"]');
   const none = () => expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await page.getByTestId('side-tab-explore').click();
-  await exploreAll(page);
 
+  // T75 起清單的問 AI 圓鈕只在概覽的工具列（§35.8；選了一區在區頁的底下）
   await page.getByTestId('list-ask-ai').click();
   await expect(chips.last()).toHaveAttribute('data-kind', 'list');
   await expect(page.getByTestId('chat-suggestion').first()).toContainText('挑 3 家');
   await chips.last().getByRole('button').click();
+  await exploreAll(page);
 
+  // T83：點列開詳情，「問 AI」在詳情裡
   await items(page).first().click();
-  await page.getByTestId('place-open-ask').click();
+  await page.getByTestId('detail-ask-ai').click();
   await expect(chips.last()).toHaveAttribute('data-kind', 'place');
   await chips.last().getByRole('button').click();
 
-  await page.getByTestId('side-tab-wish').click();
-  await page.getByTestId('list-ask-ai').click();
-  await expect(page.getByTestId('chat-suggestion').first()).toContainText('把還沒排的');
-  await chips.last().getByRole('button').click();
+  // （T76 起想去的工具列只有搜尋、篩選，沒有問 AI 圓鈕（§35.8），那段拿掉）
 
   await page.getByTestId('side-tab-day').click();
   await page.locator('[data-day="2027-02-05"]').first().click();
@@ -278,7 +279,6 @@ test('S16 手動接手：打開詳情、切到行程再切回探索，結果集�
   await aiReady(page);
   await say(page, S1);
   await items(page).first().click();
-  await page.getByTestId('place-open-detail').click();
   await expect(page.getByTestId('detail-float')).toBeVisible();
   await page.keyboard.press('Escape');
   await page.getByTestId('side-tab-day').click();
@@ -403,7 +403,7 @@ test('S22 對話滿了：快滿有提示還能問；滿了只留開新對話；�
 
   await fake(page, { usage: 'ok' });
   await items(page).first().click();
-  await page.getByTestId('place-open-ask').click();
+  await page.getByTestId('detail-ask-ai').click();
   await expect(page.getByTestId('chat-input')).toBeVisible();
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   await expect(page.getByTestId('chat-context')).toHaveCount(1);

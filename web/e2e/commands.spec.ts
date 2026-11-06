@@ -2,7 +2,7 @@
 // 另外看標示、路線（OSRM 用假的回應）、比較、AI 的提議畫得出來。
 // 設 TH_SHOTS=<目錄> 時順便拍截圖（手機 390px、電腦）。
 import { test, type Page } from '@playwright/test';
-import { expect, expectFilterOpt, pickFilter, pickType, ready, waitIdle } from './helpers.ts';
+import { expect, pickFilter, pickType, ready, waitIdle } from './helpers.ts';
 
 const DAY = '2027-02-05';
 
@@ -64,7 +64,7 @@ test('用指令重現 T11 的手動操作：切天數、篩選、聚焦，畫面
   await page.getByTestId('side-tab-explore').click();
   await page.getByTestId('ex-area-toba').click();
   await pickType(page, 'restaurant');
-  await pickFilter(page, 'tier-S');
+  await pickFilter(page, 'restaurant-tier-S');
   const manual = await snapshot(page);
   await ready(page);
   expect((await run(page, 'selectDay', DAY)).ok).toBe(true);
@@ -113,18 +113,18 @@ test('聚焦一個點：看得到就不動、太遠才拉到 13（不閃、不�
   await waitIdle(page);
   expect(await page.evaluate(() => (window as any).__th.map.getCenter().toArray())).toEqual(c1);
 
-  // AI 套的條件：想去分頁看「現在看」那一列幾顆（T64；類型也算、地區不算）、打開面板看條件，地區列標亮（T33 取代晶片）
+  // AI 套的條件：想去分頁看條件列幾顆（T64；地區不算，T75 起類型是主題列、也不算），地區列、主題列標亮（T33 取代晶片）
   await page.getByTestId('side-tab-wish').click();
   await run(page, 'setFilter', { areas: ['toba'], types: ['restaurant'], who: ['all'] });
-  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(2);
-  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
-  await expectFilterOpt(page, 'group-all', true);
-  await expectFilterOpt(page, 'type-restaurant', true);
-  // 從面板取消：類型、地區還在
-  await pickFilter(page, 'group-all');
-  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.who)).toEqual([]);
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByTestId('filter-bar').getByTestId('theme-restaurant')).toHaveAttribute('aria-selected', 'true');
+  // 從條件列取消（T81 起吃的面板沒有誰吃那組）：主題、地區還在
+  await page.locator('[data-testid="cond-chip"][data-key="who"]').click();
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.who)).toEqual([]);
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(0);
+  await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
+  expect(await page.evaluate(() => (window as any).__th.appStore.getState().filter.types)).toEqual(['restaurant']);
 });
 
 test('標示、路線（沿道路）、比較：畫在地圖上，可以清掉', async ({ page }) => {

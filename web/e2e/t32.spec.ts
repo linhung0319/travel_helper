@@ -83,7 +83,8 @@ test('快進畫面才載照片：開探索只載前面幾張', async ({ page }) 
   expect(without).toBeGreaterThan(withSrc);
 });
 
-test('楽天主照片：卡片用 HIMG/300，展開換原圖', async ({ page }) => {
+// T80：T82 起列的照片要 320 寬（楽天還是 HIMG/300、Google =w320）；T83 起點列開詳情彈窗（1000 寬：楽天原圖、Google =w1000），不再原地展開
+test('楽天主照片：列用 HIMG/300，詳情換原圖', async ({ page }) => {
   await stubPhotos(page);
   await ready(page);
   const place = await findPlace(page, RAKUTEN);
@@ -92,18 +93,18 @@ test('楽天主照片：卡片用 HIMG/300，展開換原圖', async ({ page }) 
   const img = card.locator('img.photo').first();
   await expect(img).toHaveAttribute('src', `https://img.travel.rakuten.co.jp/HIMG/300/${hotel}.jpg`);
   await card.click();
-  await expect(card.locator('img.photo').first()).toHaveAttribute('src', place.url);
+  await expect(page.getByTestId('detail-float').locator('img.photo').first()).toHaveAttribute('src', place.url);
 });
 
-test('Google 照片：卡片 =w500，展開 =w1000', async ({ page }) => {
+test('Google 照片：列 =w320，詳情 =w1000', async ({ page }) => {
   await stubPhotos(page);
   await ready(page);
   const place = await findPlace(page, GOOGLE);
   const base = place.url.replace(/=[^=]*$/, '');
   const card = await showOnly(page, place.id);
-  await expect(card.locator('img.photo').first()).toHaveAttribute('src', `${base}=w500`);
+  await expect(card.locator('img.photo').first()).toHaveAttribute('src', `${base}=w320`);
   await card.click();
-  await expect(card.locator('img.photo').first()).toHaveAttribute('src', `${base}=w1000`);
+  await expect(page.getByTestId('detail-float').locator('img.photo').first()).toHaveAttribute('src', `${base}=w1000`);
 });
 
 test('小尺寸的網址打不開：退回原圖', async ({ page }) => {

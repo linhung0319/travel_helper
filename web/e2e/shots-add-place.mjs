@@ -91,7 +91,6 @@ async function web() {
     await page.getByTestId('add-form').waitFor({ state: 'detached' });
     await page.getByTestId('search').fill('珈琲');
     await page.locator('.is-user').first().click();
-    await page.getByTestId('place-open-detail').click();
     await page.getByTestId('detail-user-warning').waitFor();
     await shot(page, 'web-03-detail');
     await page.keyboard.press('Escape');

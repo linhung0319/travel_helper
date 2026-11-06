@@ -1,6 +1,6 @@
 // T16m-c：AI 手機版的畫面（規格 §8 的腳本、interaction-design §16.2、§16.3）。假 AI、假後端；截圖放 data/cache/work/t16m/，檔名 m-* 和網頁版區分開。
 import { test, expect, type Page } from '@playwright/test';
-import { expectFilterOpt, ready, exploreAll } from './helpers.ts';
+import { ready, exploreAll } from './helpers.ts';
 import { goTab, scrollsSideways } from './mobileHelpers.ts';
 
 const SHOTS = '../data/cache/work/t16m';
@@ -66,8 +66,10 @@ test('AI 分頁：沒有對話時給問題；S1 輪播有理由、想去、詳�
 
   // 按想去：直接做
   const ids = await app<string[]>(page, 'th.appStore.getState().aiResult.ids');
+  // T82 起愛心按一下是切換；種子資料裡「我」本來就按過第一家（seed.ts），所以看按完和按之前相反
+  const liked0 = await app<number>(page, `th.shared.store.getState().votes.filter((v) => v.placeId === '${ids[0]}' && v.memberId === th.shared.store.getState().me.id).length`);
   await cards(page).first().getByTestId('m-result-like').click();
-  await expect.poll(() => app<number>(page, `th.shared.store.getState().votes.filter((v) => v.placeId === '${ids[0]}' && v.memberId === th.shared.store.getState().me.id).length`)).toBe(1);
+  await expect.poll(() => app<number>(page, `th.shared.store.getState().votes.filter((v) => v.placeId === '${ids[0]}' && v.memberId === th.shared.store.getState().me.id).length`)).toBe(1 - liked0);
 
   // AI 分頁看不到地圖：點卡片、點地點都直接開詳情，返回回聊天
   await cards(page).first().click();
@@ -203,7 +205,7 @@ test('跳來跳去按底部的「AI」：同一段對話、捲動位置、打到
   expect(await app<boolean>(page, '!!th.appStore.getState().proposal && !!th.appStore.getState().aiResult')).toBe(true);
 });
 
-test('問 AI 入口：詳情、探索、想去、行程的一天、一張卡、整趟；只帶晶片和建議問題，不叫鍵盤、不送出', async ({ page }) => {
+test('問 AI 入口：詳情、探索、行程的一天、一張卡、整趟；只帶晶片和建議問題，不叫鍵盤、不送出', async ({ page }) => {
   await aiReady(page);
   const none = () => expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
   const noKeyboard = () => expect(page.getByTestId('chat-input')).not.toBeFocused();
@@ -228,19 +230,16 @@ test('問 AI 入口：詳情、探索、想去、行程的一天、一張卡、�
   await shot(page, 'ask-detail');
   await clear();
 
-  // 探索的清單
+  // 探索的清單（T75 起問 AI 圓鈕只在概覽的工具列：回概覽）
   await goTab(page, 'explore');
+  await page.getByTestId('m-feed-area-all').click();
   await tap(page, 'list-ask-ai');
   await page.getByTestId('list-ask-ai').click();
   await expect(page.getByTestId('chat-context')).toHaveAttribute('data-kind', 'list');
   await expect(page.getByTestId('chat-suggestion').first()).toContainText('挑 3 家');
   await clear();
 
-  // 想去的清單
-  await goTab(page, 'wish');
-  await page.getByTestId('list-ask-ai').click();
-  await expect(page.getByTestId('chat-suggestion').first()).toContainText('把還沒排的');
-  await clear();
+  // （T76 起想去的工具列只有搜尋、篩選，沒有問 AI 圓鈕（§35.8），想去的清單那段拿掉）
 
   // 行程的一天 → 半屏
   await goTab(page, 'trip');
@@ -882,10 +881,11 @@ test('set_filter 接到探索的 feed：看探索就是那些條件；探索、�
   expect(feed.area).toBe('toba');
   await page.locator('[data-testid="chat-present"][data-tool="set_filter"]').getByTestId('m-see-map').click();
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
-  // 條件看「現在看」那一列（T64），點開面板看；地區在地區列（T42）
-  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
+  // T85：AI 套的篩選用「✦ AI 幫你套了」那條取代條件列；T75 起類型是主題列（不是晶片）；set_filter 只換給的項目，exploreAll 勾的等級 S、A、B 留著還是晶片；地區在地區列（T42）
+  await expect(page.getByTestId('ai-filter-bar')).toBeVisible();
+  await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(3);
   await expect(page.getByTestId('m-feed-area-toba')).toHaveAttribute('aria-pressed', 'true');
-  await expectFilterOpt(page, 'type-restaurant', true);
+  await expect(page.getByTestId('fb-stick').getByTestId('theme-restaurant')).toHaveAttribute('aria-selected', 'true');
   await expect(page.getByTestId('ai-back')).toBeVisible();
 });
 

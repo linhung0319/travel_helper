@@ -55,11 +55,11 @@ test('排了一半的行程：引導的區、住宿完成，第 ④ 步還沒；
   await expect(page.getByTestId('chat-starter').first()).toContainText('2/7 去哪？');
 });
 
-test('想去頁空白：三格小圖、沒有書架；去探索、問 AI 推薦', async ({ page }) => {
+test('想去頁空白：三格小圖、沒有區段；去探索、問 AI 推薦', async ({ page }) => {
   await flightsOnly(page);
   await page.getByTestId('side-tab-wish').click();
   await expect(page.getByTestId('wish-empty')).toContainText('還沒有人按');
-  await expect(page.getByTestId('wish-shelf')).toHaveCount(0);
+  await expect(page.getByTestId('wish-section')).toHaveCount(0);
   await page.getByTestId('wish-empty-ask').click();
   await expect(page.getByTestId('chat-input')).toHaveValue('推薦幾個適合全家去的地方');
   await expect(page.getByTestId('chat-msg-me')).toHaveCount(0);
@@ -81,24 +81,23 @@ test('空的一天：虛線框；問 AI 不帶晶片，問題放進輸入框；�
   await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');
 });
 
-test('第一次按 ♡：提示一次、去看到想去；第二次不提示，重新整理也不再提示', async ({ page }) => {
+// T80：T76（§35.9）起一次性提示 hint 拿掉，改成每次按想去、收回都出提示帶「復原」
+test('按 ♡：每次都提示、可以復原；收回也提示', async ({ page }) => {
   await flightsOnly(page);
   await page.getByTestId('side-tab-explore').click();
   await exploreAll(page);
   const hearts = page.getByTestId('card-like');
+  const toast = page.getByTestId('toast');
   await hearts.first().click();
-  const toast = page.getByTestId('hint');
   await expect(toast).toContainText('已加到想去，家人也看得到');
-  await page.getByTestId('hint-close').click();
-  await expect(toast).toHaveCount(0);
+  await expect(page.getByTestId('side-tab-wish')).toContainText('想去 1');
+  await page.getByTestId('toast-undo').click();
+  await expect(hearts.first()).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.getByTestId('side-tab-wish')).not.toContainText('想去 1');
   await hearts.nth(1).click();
-  await page.waitForTimeout(200);
-  await expect(toast).toHaveCount(0);
-  await expect(page.getByTestId('side-tab-wish')).toContainText('想去 2');
-  await page.evaluate(() => localStorage.removeItem('th.hint.firstLike'));
-  await hearts.nth(2).click();
-  await page.getByTestId('hint-action').click();
-  await expect(page.getByTestId('side-tab-wish')).toHaveAttribute('aria-selected', 'true');
+  await expect(toast).toContainText('已加到想去，家人也看得到');
+  await hearts.nth(1).click();
+  await expect(toast).toContainText('已收回想去');
 });
 
 test('怎麼用：頭像選單第一列，四點', async ({ page }) => {

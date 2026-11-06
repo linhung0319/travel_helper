@@ -48,8 +48,8 @@ async function openDetail(page: Page, desktop: boolean, name = NAME) {
   if (desktop) {
     await page.getByTestId('side-tab-explore').click();
     await page.getByTestId('search').fill(name);
+    // T83：點列直接開詳情
     await page.getByTestId('explore-item').first().click();
-    await page.getByTestId('place-open-detail').click();
     await expect(page.getByTestId('detail-name')).toContainText(name);
   } else {
     await page.getByTestId('m-tab-explore').click();
@@ -171,7 +171,8 @@ test('T15：想去 → 留言 → 別人看得到、改不了 → 加到某天 �
   // 2. 乙看得到留言、改不了；❤️ 數是 1；加到 2/7
   await open(b, desktop);
   detail = await openDetail(b, desktop);
-  await expect(detail.getByTestId('detail-who')).toHaveText('1');
+  // T82 起誰想去寫成字（「dev-a 想去，你還沒按」），不再是數字
+  await expect(detail.getByTestId('detail-who')).toContainText('想去，你還沒按');
   await detail.getByTestId('detail-tab-comments').click();
   await expect(detail.getByTestId('wish-comment')).toContainText(TEXT);
   await expect(detail.getByTestId('wish-comment').getByRole('button', { name: '改' })).toHaveCount(0);

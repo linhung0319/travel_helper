@@ -25,14 +25,13 @@ async function clickBlankMap(page: Page) {
   await page.mouse.click(m.x + 30, m.y + 30);
 }
 
-test('從右欄的卡開：彈窗蓋在地圖右側、貼著右欄（380 寬），右欄不動、展開的卡還在', async ({ page }) => {
+test('從右欄的列開（T83 點列就開）：彈窗蓋在地圖右側、貼著右欄（380 寬），右欄不動、那列標選中', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
   await exploreAll(page);
   const id = (await page.locator('[data-testid="explore-item"][data-rank="1"]').getAttribute('data-id'))!;
   const card = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
   await card.click();
-  await card.getByTestId('place-open-detail').click();
   await expect(popup(page)).toHaveAttribute('data-at', 'map');
   await expect(page.getByTestId('detail-panel')).toHaveAttribute('data-id', id);
   const p = (await popup(page).boundingBox())!;
@@ -41,8 +40,8 @@ test('從右欄的卡開：彈窗蓋在地圖右側、貼著右欄（380 寬）�
   // 貼著右欄：右邊留 12px，上下各 12px
   expect(Math.round(map.x + map.width - (p.x + p.width))).toBe(12);
   expect(Math.round(p.y - map.y)).toBe(12);
-  // 右欄照舊：探索清單、展開的卡都還在，沒有變淡
-  await expect(card.getByTestId('place-open')).toBeVisible();
+  // 右欄照舊：探索清單還在、那列標選中，沒有變淡
+  await expect(card).toHaveAttribute('aria-current', 'true');
   await expect(page.locator('.side-panel')).not.toHaveClass(/covered/);
 });
 
@@ -100,32 +99,30 @@ test('同時只有一個彈窗：開著時點地圖上別的點＝原地換內�
   const id = (await page.locator('[data-testid="explore-item"][data-rank="1"]').getAttribute('data-id'))!;
   const card = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
   await card.click();
-  await card.getByTestId('place-open-detail').click();
   await expect(popup(page)).toHaveAttribute('data-at', 'map');
   await clickOnMap(page, a, 15, true);
   await expect(page.getByTestId('detail-panel')).toHaveAttribute('data-id', a);
   await expect(popup(page)).toHaveAttribute('data-at', 'map');
 });
 
-test('關掉：Esc、點地圖空白處；展開的卡、選中都不動', async ({ page }) => {
+test('關掉：Esc、點地圖空白處；選中不動，列不再標著（T83）', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-explore').click();
   await exploreAll(page);
   const id = (await page.locator('[data-testid="explore-item"][data-rank="1"]').getAttribute('data-id'))!;
   const card = page.locator(`[data-testid="explore-item"][data-id="${id}"]`);
   await card.click();
-  await card.getByTestId('place-open-detail').click();
   await expect(popup(page)).toBeVisible();
   await waitIdle(page);
   await clickBlankMap(page);
   await expect(popup(page)).toHaveCount(0);
-  await expect(card.getByTestId('place-open')).toBeVisible();
+  await expect(card).not.toHaveAttribute('aria-current', 'true');
   expect(await th(page, '__th.appStore.getState().selectedId')).toBe(id);
-  await card.getByTestId('place-open-detail').click();
+  await card.click();
   await expect(popup(page)).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(popup(page)).toHaveCount(0);
-  await expect(card.getByTestId('place-open')).toBeVisible();
+  await expect(card).toBeVisible();
 });
 
 test('位置分頁的附近：點一列＝地圖上那個點變成水滴，原本的點保持水滴、彈窗不動；「詳情 ›」換成它', async ({ page }) => {
