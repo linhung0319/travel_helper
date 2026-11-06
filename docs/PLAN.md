@@ -169,7 +169,7 @@
 | T77 | 探索改版（手機接線）：`ExploreFeed`、`FeedFilters`、`WishlistPage`、`mobileStore` 的主題和展開狀態、捲動位置記憶、詳情返回字；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ✅ |
 | T78 | 探索改版（網頁接線）：`Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`appStore` 的主題，地圖連動（指到、選中、點地圖展開區段捲到那列）、原地展開、右欄抽屜；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ✅ |
 | T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ✅ |
-| T81 | 第二十輪小修＋書架＋概覽：整趟拿掉「第 N 版」、問 AI／討論靠右；擠的標題列問 AI 變圖示鈕；吃的面板拿掉「分組去」；書架拿左邊色條、數字改類型色膠囊、黏頂標題白底細線；概覽照片 2:1、子地區改文字列移到主題列上面、拿掉代表地點、簡介字放大；不跑完整 e2e | S | T79 | 4 | | ⬜ |
+| T81 | 第二十輪小修＋書架＋概覽：整趟拿掉「第 N 版」、問 AI／討論靠右；擠的標題列問 AI 變圖示鈕；吃的面板拿掉「分組去」；書架拿左邊色條、數字改類型色膠囊、黏頂標題白底細線；概覽照片 2:1、子地區改文字列移到主題列上面、拿掉代表地點、簡介字放大；不跑完整 e2e | S | T79 | 4 | | ✅ |
 | T82 | 列與愛心（Instagram 式）：照片清單的列不用卡片框、等級改第二行開頭方章、拿類別圓章、狀態改彩色字、底行「♡ 誰想去 留言」；詳情改「照片 → 愛心那排 → 誰想去 → 名字」、點兩下照片加想去、愛心彈跳；四格改四列；地圖連結靠右；不跑完整 e2e | M | T81 | 4 | | ⬜ |
 | T83 | 網頁點列直接開詳情彈窗：拿掉探索、想去、搜尋、AI 結果集的原地展開，選中的列淡藍底＋左邊靛藍線，彈窗開著點別列換內容；不跑完整 e2e | S | T82 | 4 | | ⬜ |
 | T84 | 行程卡的類別：右上角類型色四分之一圓（46 px、白字 景／食／宿），網頁、手機；不跑完整 e2e | S | T79 | 4 | | ✅ |
@@ -1989,6 +1989,11 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 簡介 15 → **16.5 px**、行高 1.75；「● 2 月注意 N 則 ›」留一行在簡介下面。
 - **驗證**：`npm test`、`typecheck`、`build`；自己截網頁 1366、手機 390 的探索概覽、書架展開往下捲、整趟、某一天和草圖比。e2e 自己決定、只跑受影響的（例如 `t78`、`mobile-t77`、`t42`）。
 - **完成**：列出改掉或拿掉的 testid、選擇器給 T80。
+- **完成（2026-11-06）**：寫進 interaction-design §36.T81（§35.4、§35.5、§35.6 加註）。
+  - **改了什麼**：整趟標題列拿掉版本那行、按鈕包進 `.day-nav-actions` 靠右（`.day-head.trip-head`）；問 AI、討論共用新的 `.icon-round`（`DiscussButton` 的 white、quiet 也加）；`THEME_GROUPS.restaurant` 拿掉 `group`；`Section.tsx` 拿掉 `.sec-bar`、加 `.sec-shade`，膠囊顏色用區段上的 `--sec-c`／`--sec-wash`；`ExploreHome.tsx` 子地區改成 `RegionText`（還是包在 `ChipScroller` 裡，網頁有 ‹ ›），代表地點拿掉，`OverviewActions.onOpen` 跟著拿掉（`Explore.tsx`、`ExploreFeed.tsx` 不再傳）；`lib/overview.ts` 拿掉 `highlights`。
+  - **自己決定的**：① 手機的兩顆圓鈕是 44 px 不是 36（`mobile-t33` 要求 ≥ 44，手機點擊範圍規則 §0）；網頁 36。② 子地區選到的底色圓角用 999px：設計 §2.3 只允許 999／14／20，`style.test` 會擋 8 px。③ 黏住時的陰影用 `scroll-state(stuck: top)` 容器查詢，Safari 不支援就只有下緣線。④ 箭頭沿用 `chevron`（›），收著轉 90° 朝下、展開轉 −90° 朝上，不另加圖示。
+  - **測試**：`npm test`（1118 過，`sections`、`shared`、`overview` 的測試跟著改）、`typecheck`、`build` 通過；截了網頁 1366、手機 390 的概覽、子地區、書架展開往下捲、吃的面板、整趟、某一天，和草圖比過（截圖腳本 `data/cache/work/r13/t81shots.mjs`，不進 git）。e2e 只跑受影響的 `t33`、`t42`、`t67`、`mobile-t33`、`mobile-t42`、`mobile-t49`、`mobile-t67`（網頁、手機 390）：T81 該保證的過了（`mobile-t33` 標題列三顆同一排、討論 ≥ 44 px；`mobile-t49` 整趟的問 AI 和標題對齊）；19 個失敗，因 T81 而過時的是 `t42`、`mobile-t42` 的代表地點和 `t67`、`mobile-t67` 組順序裡的 `group`，其他都是 T75～T79 留下的過時斷言（「全部 ›」、類型三塊大鈕、`filter-open` 的「篩選」字、`data-tier` 兩級退），照第十九輪的原則留給 T80，沒改測試。另外 merge master 後 `style.test` 的圓角那項失敗：是 T84 的 `.tc-type` 用了 `0 13px 0 …`（master 上一樣紅），不是這張改的，留給 T84 的 session 或 T80
+  - **給 T80（testid、選擇器）**：`overview-rep`、`overview-reps-title`、`.xo-reps`、`.xo-rep` 沒了（`t42`、`mobile-t42`）；概覽的子地區不再是 `.ui-chip`，改成 `.xo-region`（testid `overview-region-*`、`overview-regions` 照舊，`aria-pressed` 照舊）；吃的面板沒有 `data-group="group"`（`t67`、`mobile-t67` 的組順序要拿掉 `group`）；`.sec-bar` 沒了；整趟、某一天的 `trip-ask-ai`、`day-ask-ai`、`m-trip-ai` 沒有「問 AI」字了（testid 照舊，用 `aria-label` 找）；整趟標題列沒有版本那行。
 
 ### T82 列與愛心（Instagram 式） 〔M〕（第二十輪，2026-11-06 👤 決定）
 

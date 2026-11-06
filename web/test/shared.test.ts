@@ -85,7 +85,7 @@ test('篩選的組（T75、T79）：ID 不重複、地區不在面板裡；沒�
   assert.ok(!FILTER_GROUPS.some((g) => g.key === 'areas' || g.key === 'regions'));
   const ids = (types: string[], source: 'explore' | 'wish' = 'explore') => listPanel(types, source).map((g) => g.id);
   assert.deepEqual(ids([]), ['type', 'map']);
-  assert.deepEqual(ids(['restaurant']), ['type', 'group', 'context', 'kids', 'reach', 'restaurant-tier', 'map']);
+  assert.deepEqual(ids(['restaurant']), ['type', 'context', 'kids', 'reach', 'restaurant-tier', 'map']);
   // 同一個欄位只畫第一次出現的組（景點的適合、怎麼去在前）
   assert.deepEqual(ids(['lodging', 'spot']), ['type', 'suits', 'spot-reach', 'dinner', 'amenity', 'lodging-tier', 'map']);
   assert.deepEqual(ids([], 'wish'), ['wish', 'type', 'map']);

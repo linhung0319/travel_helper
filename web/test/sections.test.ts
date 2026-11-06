@@ -144,17 +144,17 @@ test('exploreLayer：概覽、選了一區（書架不進清單）、清單只�
   assert.equal(themeOf({ types: ['spot', 'lodging'] }), null);
 });
 
-test('面板照主題分組（§35.5）：書架切過的不進面板，吃、住有等級；想去最前面多「誰想去」；網頁多地圖', () => {
+test('面板照主題分組（§35.5）：書架切過的不進面板（T81 吃連「分組去」也拿掉），吃、住有等級；想去最前面多「誰想去」；網頁多地圖', () => {
   const ids = (t: Theme, src: 'explore' | 'wish' = 'explore') => themePanel(t, src).map((g) => g.id);
   assert.deepEqual(ids('spot'), ['suits', 'spot-reach', 'map']);
-  assert.deepEqual(ids('restaurant'), ['group', 'context', 'kids', 'reach', 'restaurant-tier', 'map']);
+  assert.deepEqual(ids('restaurant'), ['context', 'kids', 'reach', 'restaurant-tier', 'map']);
   assert.deepEqual(ids('lodging'), ['dinner', 'lodging-suits', 'amenity', 'lodging-tier', 'map']);
   assert.deepEqual(ids('spot', 'wish')[0], 'wish');
   assert.deepEqual(themePanel('spot', 'wish')[0].options([], 'wish').map((o) => o.label), ['只看我按的']);
   const keys = (t: Theme) => THEME_GROUPS[t].map((g) => g.key);
   assert.ok(!keys('spot').includes('weather') && !keys('spot').includes('tiers'));
   assert.ok(!keys('lodging').includes('stay'));
-  assert.deepEqual(THEME_GROUPS.restaurant[0].options([], 'explore').map((o) => o.value), ['sub']);
+  assert.ok(!keys('restaurant').includes('who')); // T81：「分組去」那組也拿掉，書架的「要分組去」就是它
   assert.ok(!keys('spot').includes('types'));
   assert.equal(sheetTitle('志摩', 'spot'), '篩選 · 志摩的景點');
   assert.equal(sheetTitle('賢島', 'restaurant'), '篩選 · 賢島的餐廳');
@@ -166,7 +166,7 @@ test('themeFilter：換主題時拿掉那個主題面板沒有的條件；themeA
   const spot = themeFilter(f, 'spot');
   assert.deepEqual(spot, { ...EMPTY_FILTER, areas: ['shima'], regions: ['kashikojima'], types: ['spot'], suits: ['elderly', 'winter'] });
   const food = themeFilter(f, 'restaurant', 'wish');
-  assert.deepEqual([food.who, food.tiers, food.votes, food.suits], [['sub'], ['S'], ['mine'], []]);
+  assert.deepEqual([food.who, food.tiers, food.votes, food.suits], [[], ['S'], ['mine'], []]);
   assert.deepEqual(themeFilter(f, 'lodging').suits, ['elderly']);
   assert.equal(themeApplied('lodging', f), 3); // 一泊二食、長輩、S
   assert.equal(themeApplied('spot', { ...EMPTY_FILTER, types: ['spot'] }), 0);

@@ -4,14 +4,13 @@
 
 import { useRef, useState } from 'react';
 import { TimelineSkeleton } from '../shared/ui/Skeleton.tsx';
-import { useApp, useData, useNeedPlan, useShared, useUi } from '../hooks.ts';
+import { useApp, useData, useNeedPlan, useUi } from '../hooks.ts';
 import { dayLabel, isRedDay } from '../lib/trip.ts';
 import { dayAreaTitle, dayTitle } from '../lib/dayTitle.ts';
 import { selectedBarKey } from '../lib/planView.ts';
 import { DayBar, DayReminders, DaySummaryLine, Timeline, useDayTimeline, useProposalDay, useRevealProposal } from './Timeline.tsx';
 import { DayCandidates } from './Wishlist.tsx';
 import { EditHint, PlanningBar, PlanningToggle } from './Planning.tsx';
-import { MemberName, stamp } from './common.tsx';
 import { askDay, askEmptyDay, askNightLodging, askTrip } from './webAi.ts';
 import { openAreaHome } from '../exploreArea.ts';
 import { showList } from './SidePanel.tsx';
@@ -30,21 +29,20 @@ const WEB_SKELETON: SkeletonActions = {
   askLodging: askNightLodging,
 };
 
-/** 整趟（T45b）：最上面「整趟行程」、問 AI、討論；下面是直的骨架（地區、子地區、住宿，shared/ui/TripSkeleton.tsx；「累」標、沒有空檔、晚餐未選都在骨架上，T74b） */
+/**
+ * 整趟（T45b）：最上面「整趟行程」，問 AI、討論兩顆圓形圖示鈕靠右（T81 拿掉「第 N 版・誰 幾點改的」，過去的版本在頭像選單）；
+ * 下面是直的骨架（地區、子地區、住宿，shared/ui/TripSkeleton.tsx；「累」標、沒有空檔、晚餐未選都在骨架上，T74b）
+ */
 function Overview() {
-  const updatedBy = useShared((s) => s.updatedBy);
-  const updatedAt = useShared((s) => s.updatedAt);
-  const version = useShared((s) => s.version);
   return (
     <div className="day-panel" data-testid="day-panel">
-      <div className="day-head">
+      <div className="day-head trip-head">
         <h3>整趟行程</h3>
-        <button type="button" className="text-button ask-ai-quiet" onClick={askTrip} data-testid="trip-ask-ai">
-          <Icon name="spark" size={20} /> 問 AI
-        </button>
-        <DiscussButton variant="quiet" />
-        <span className="muted small">
-          第 {version} 版・<MemberName id={updatedBy} /> {stamp(updatedAt)} 改的
+        <span className="day-nav-actions">
+          <button type="button" className="text-button ask-ai-quiet icon-round" aria-label="問 AI 整趟" title="問 AI 整趟" onClick={askTrip} data-testid="trip-ask-ai">
+            <Icon name="spark" size={20} />
+          </button>
+          <DiscussButton variant="quiet" />
         </span>
       </div>
       <TripSkeleton actions={WEB_SKELETON} />
@@ -57,7 +55,7 @@ function goWish() {
   showList('wish');
 }
 
-/** 某一天最上面一列（§6.1、T33）：圓體的大日期，旁邊「週五 · 鳥羽」；右邊「問 AI」、討論和主要按鈕「編輯」。換天用地圖上的日期晶片 */
+/** 某一天最上面一列（§6.1、T33）：圓體的大日期，旁邊「週五 · 鳥羽」；右邊問 AI、討論兩顆圓形圖示鈕（T81）和主要按鈕「編輯」。換天用地圖上的日期晶片 */
 function DayHead({ day }: { day: string }) {
   const itinerary = useData((s) => s.itinerary);
   const byId = useData((s) => s.byId);
@@ -74,8 +72,8 @@ function DayHead({ day }: { day: string }) {
         </span>
       </h3>
       <span className="day-nav-actions">
-        <button type="button" className="text-button ask-ai-quiet" onClick={() => askDay(day)} data-testid="day-ask-ai">
-          <Icon name="spark" size={20} /> 問 AI
+        <button type="button" className="text-button ask-ai-quiet icon-round" aria-label="問 AI 這天" title="問 AI 這天" onClick={() => askDay(day)} data-testid="day-ask-ai">
+          <Icon name="spark" size={20} />
         </button>
         <DiscussButton variant="quiet" />
         <PlanningToggle />

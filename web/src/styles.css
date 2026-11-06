@@ -1388,6 +1388,12 @@ button.planning-done {
   gap: 6px;
 }
 
+/* 整趟的標題列（T81）：「整趟行程」後面留空，問 AI、討論靠右（.day-nav-actions 的 margin-left: auto） */
+.day-head.trip-head {
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
 .day-stats {
   color: var(--muted);
 }

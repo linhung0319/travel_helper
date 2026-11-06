@@ -1,4 +1,4 @@
-// 探索的概覽卡（T63，interaction-design §28）：選了子地區時卡片換成那個子地區的簡介、二月注意、代表點。純邏輯，ExploreHome 讀。
+// 探索的概覽卡（T63，interaction-design §28）：選了子地區時卡片換成那個子地區的簡介、二月注意（代表點 T81 拿掉了，資料照舊給 AI）。純邏輯，ExploreHome 讀。
 // 區域一律從 areas.json 來，不寫死區域 ID。
 
 import { displayName } from '../data/normalize.ts';
@@ -7,13 +7,11 @@ import type { Area } from '../data/types.ts';
 export interface OverviewContent {
   /** 選著的子地區；null＝全區 */
   regionId: string | null;
-  /** 「志摩」或「賢島」：代表點的小標題、「看賢島 ›」用 */
+  /** 「志摩」或「賢島」：照片的「看賢島」用 */
   label: string;
   summary: string | null;
   /** 二月注意（只放一則） */
   feb: string | null;
-  /** 代表點的 ID（areas.json 的 highlights） */
-  highlights: string[];
 }
 
 /** 子地區一行的第一顆：「志摩全區」 */
@@ -35,7 +33,6 @@ export function overviewContent(area: Area, regionId: string | null): OverviewCo
       label: displayName(region.name, region.id),
       summary: region.intro?.summary || null,
       feb: region.intro?.febNote || null,
-      highlights: region.intro?.highlights ?? [],
     };
   }
   return {
@@ -43,6 +40,5 @@ export function overviewContent(area: Area, regionId: string | null): OverviewCo
     label: displayName(area.name, area.id),
     summary: area.intro?.summary || null,
     feb: area.intro?.february?.[0]?.text || null,
-    highlights: area.intro?.highlights ?? [],
   };
 }

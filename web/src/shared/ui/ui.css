@@ -3300,6 +3300,31 @@ button.ll-main {
   gap: 3px;
 }
 
+/* 標題列這種擠的地方：問 AI、討論都是 36 px 圓形圖示鈕（T81，interaction-design §36.T81）；討論有數字時變成膠囊。前面加 button 壓過 .text-button、.ui-btn-sm 的 padding */
+button.icon-round {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-sizing: border-box;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 999px;
+}
+
+button.icon-round:has(.discuss-n) {
+  padding: 0 9px 0 7px;
+}
+
+/* 手機的點擊範圍至少 44 px（--tap）：兩顆一樣是 44 的圓 */
+.m-app button.icon-round {
+  min-width: var(--tap);
+  height: var(--tap);
+  min-height: var(--tap);
+}
+
 .discuss-n {
   font-variant-numeric: tabular-nums;
   font-weight: 700;
@@ -4816,10 +4841,9 @@ button.ui-sk-stay:disabled {
   overflow: hidden;
 }
 
-/* T52：上半是地區的代表照片，區名壓左下、住幾晚右上、作者和授權右下 */
+/* T52：上半是地區的代表照片，區名壓左下、住幾晚右上、作者和授權右下（比例 T81 改 2:1，在下面 §35.6 那段） */
 .xo-cover {
   position: relative;
-  aspect-ratio: 16 / 7;
   background: var(--wash);
 }
 
@@ -4934,30 +4958,78 @@ button.ui-sk-stay:disabled {
   padding: 8px 10px 8px;
 }
 
-/* 子地區一行（T63 §28）：照片下面第一行，「志摩全區」加全部的子地區，一排橫滑（網頁有 ‹ › 箭頭）；選到的是淡靛藍底 */
-.xo-regions.m-chips {
-  gap: 5px;
-  padding: 8px 10px 2px;
+/* 子地區一排（T63 §28；§36.T81 改成文字列、移到照片下面主題列上面）：最前面靛藍的定位圖示，每個子地區是文字；
+   選到的靛藍粗字＋淡靛藍底（圓角照設計 §2.3 用 999px，草圖的 8px 不在允許的值裡）；右邊淡出，一排橫捲（網頁有 ‹ › 箭頭，§31） */
+.xo-regions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 10px 0 12px;
+}
+
+.xo-regions-pin {
+  flex: none;
+  display: inline-flex;
+  color: var(--indigo);
+}
+
+.xo-regions > .ui-hscroll {
+  flex: 1 1 auto;
+}
+
+.xo-regions-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  overflow-x: auto;
   overflow-y: hidden;
+  scrollbar-width: none;
   touch-action: pan-x;
   overscroll-behavior-x: contain;
 }
 
-.xo-regions .ui-chip {
-  min-height: 30px;
-  padding: 0 11px;
-  font-size: 0.8125rem;
+.xo-regions-row::-webkit-scrollbar {
+  display: none;
 }
 
-.xo-regions .ui-chip::after {
+.xo-region {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.84375rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* 點擊範圍上下各多一點（列本身矮） */
+.xo-region::after {
+  content: '';
+  position: absolute;
   inset: -7px 0;
 }
 
-.xo-regions .ui-chip.on {
-  border-color: var(--indigo-line);
+.xo-region:hover {
+  color: var(--indigo);
+}
+
+.xo-region.on {
   background: var(--indigo-wash);
   color: var(--indigo);
   font-weight: 700;
+}
+
+/* 手機的橫捲列平常不淡出（.m-app .ui-hscroll-row），子地區這排右邊還有的時候要淡出，看得出可以捲 */
+.m-app .xo-regions .ui-hscroll.at-end-more .xo-regions-row {
+  -webkit-mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
 }
 
 .xo-summary {
@@ -4967,70 +5039,8 @@ button.ui-sk-stay:disabled {
   line-height: 1.65;
 }
 
-.xo-feb {
-  margin: 4px 0 0;
-  color: var(--warn);
-  font-size: 0.8125rem;
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.xo-reps {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 5px;
-  padding: 7px 10px;
-  border-top: 1px solid var(--line);
-}
-
-/* 代表點的小標題：「志摩的代表地點」，跟著子地區換（T63） */
-.xo-reps-title {
-  flex: 0 0 100%;
-  margin: 0;
-  color: var(--ink-2);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.xo-rep {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  max-width: 100%;
-  min-height: 28px;
-  padding: 2px 9px 2px 4px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink);
-  font: inherit;
-  font-size: 0.75rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  cursor: pointer;
-}
-
-.xo-rep:hover,
 .xo-name button:hover {
   color: var(--indigo);
-}
-
-.xo-go {
-  margin-left: auto;
-  padding: 2px 4px;
-  border: 0;
-  background: none;
-  color: var(--indigo);
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  white-space: nowrap;
-  cursor: pointer;
 }
 
 /* 選了一區：頂端 */
@@ -5206,20 +5216,44 @@ button.ui-sk-stay:disabled {
 }
 
 /* ---------- 書架區段（Section）：一行一個，展開的標題黏在篩選列下面 ---------- */
+/* §36.T81：拿掉左邊類型色條，類型色只留在右邊的數字膠囊；黏頂的標題整條白底、下緣細線，黏住時下方很淡的陰影 */
 .sec {
   margin: 0;
+  --sec-c: var(--ink-2);
+  --sec-wash: var(--wash);
+}
+
+.sec[data-kind='spot'] {
+  --sec-c: var(--t-spot);
+  --sec-wash: var(--t-spot-wash);
+}
+
+.sec[data-kind='restaurant'] {
+  --sec-c: var(--t-food);
+  --sec-wash: var(--t-food-wash);
+}
+
+.sec[data-kind='lodging'] {
+  --sec-c: var(--t-stay);
+  --sec-wash: var(--t-stay-wash);
+}
+
+.sec[data-kind='wish'] {
+  --sec-c: var(--love);
+  --sec-wash: var(--love-wash);
 }
 
 .sec-h {
   position: sticky;
   top: var(--sec-top, 0px);
   z-index: 2;
+  container-type: scroll-state;
   display: flex;
   align-items: center;
   gap: 10px;
   width: 100%;
   min-height: 54px;
-  padding: 6px 2px 6px 0;
+  padding: 6px 2px 6px 2px;
   border: 0;
   border-bottom: 1px solid var(--line);
   background: var(--paper);
@@ -5229,32 +5263,20 @@ button.ui-sk-stay:disabled {
   cursor: pointer;
 }
 
-.sec.open .sec-h {
-  box-shadow: 0 6px 10px -8px var(--shade-2);
+/* 黏住時下方的淡陰影：只在支援 scroll-state 查詢的瀏覽器畫（不支援的只有下緣那條線） */
+.sec-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow: 0 6px 10px -6px var(--shade-2);
+  transition: opacity 0.15s;
 }
 
-.sec-bar {
-  flex: 0 0 auto;
-  width: 4px;
-  height: 26px;
-  border-radius: 999px;
-  background: var(--line);
-}
-
-.sec[data-kind='spot'] .sec-bar {
-  background: var(--t-spot);
-}
-
-.sec[data-kind='restaurant'] .sec-bar {
-  background: var(--t-food);
-}
-
-.sec[data-kind='lodging'] .sec-bar {
-  background: var(--t-stay);
-}
-
-.sec[data-kind='wish'] .sec-bar {
-  background: var(--love);
+@container scroll-state(stuck: top) {
+  .sec-shade {
+    opacity: 1;
+  }
 }
 
 .sec-tt {
@@ -5280,28 +5302,54 @@ button.ui-sk-stay:disabled {
   text-overflow: ellipsis;
 }
 
+/* 數字膠囊：收著是那一類的淡底＋類型色字，展開是實心類型色＋白字；0 淡灰 */
 .sec-n {
   flex: 0 0 auto;
-  font-family: var(--font-num);
-  font-size: 1.0625rem;
+  display: inline-grid;
+  place-items: center;
+  box-sizing: border-box;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--sec-wash);
+  color: var(--sec-c);
+  font-family: var(--font-round);
+  font-size: 0.9375rem;
   font-weight: 900;
+  line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 
-.sec-n.zero {
-  color: var(--ink-4);
+.sec.open .sec-n {
+  background: var(--sec-c);
+  color: var(--paper);
 }
 
+.sec .sec-n.zero {
+  background: var(--wash);
+  color: var(--ink-3);
+}
+
+/* 箭頭：收著朝下（› 轉 90°），展開朝上 */
 .sec-tg {
   flex: 0 0 auto;
   display: inline-flex;
   color: var(--ink-3);
-  transition: transform 0.15s;
+  transform: rotate(90deg);
+  transition: transform 0.2s;
 }
 
 .sec.open .sec-tg {
-  transform: rotate(90deg);
+  transform: rotate(-90deg);
   color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-tg,
+  .sec-shade {
+    transition: none;
+  }
 }
 
 .sec-body {
@@ -5495,10 +5543,9 @@ button.ui-sk-stay:disabled {
   text-decoration: underline;
 }
 
-/* ---------- 概覽卡（§35.6）：照片 170px → 主題列 → 子地區 → 特色 15px → 2 月注意 ---------- */
+/* ---------- 概覽卡（§35.6、§36.T81）：照片 2:1 → 子地區 → 主題列 → 特色 16.5px → 2 月注意 ---------- */
 .xo-cover {
-  aspect-ratio: auto;
-  height: 170px;
+  aspect-ratio: 2 / 1;
 }
 
 .xo-name {
@@ -5512,7 +5559,8 @@ button.ui-sk-stay:disabled {
 
 .xo-summary {
   color: var(--ink);
-  font-size: 0.9375rem;
+  font-size: 1.03125rem;
+  line-height: 1.75;
 }
 
 .xo-text {
