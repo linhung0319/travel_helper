@@ -1,66 +1,51 @@
-// 電腦版右側的「探索」分頁：最上面是篩選列（shared/ui/FilterBar：搜尋、篩選、排序、照片牆／清單，套用的條件變成小晶片），一直黏在上面；
-// 「篩選」打開的抽屜蓋住整個右欄（FilterSheet），類型、團體、天氣、情境、想去、等級、只看地圖畫面裡的都在裡面。
-// 篩選列下面一列是地區（T42，interaction-design §20）：探索沒選地區、沒搜尋、沒其他條件時是概覽（ExploreOverview），選了一區是子地區列（篩選列裡）加書架（AreaHome），
-// 其他時候才是照片牆或清單。目前地區就是 filter.areas（只有一區時），換到想去時跟著走（store 的 setMode），地圖飛過去。
-// 清單可以切換照片牆（兩欄，PlaceTile）或清單列（PlaceRow，88px），都是兩邊共用的元件；滑鼠移上去呼叫 appStore.hover（地圖的指到），
-// 點了原地展開（第八輪 §13.3：照片牆橫跨兩欄、清單在原地，介紹、優缺點、「詳細資料 ›」）並選中（地圖的水滴），再點一次收起；按「詳細資料」才開詳情。想去一樣。
-// 反過來，在探索、想去分頁點地圖上的點（mapPick.ts）：詳情彈窗蓋住整個右欄，不再捲到卡片（第八輪 §13.3）；revealInExplore（AI、測試用）才捲到那張卡。
-// 清單標出的卡：選中的點、和滑鼠在地圖上指到的點（卡片自己被指到時不回頭標自己）。
-// 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，清單換成 shared/ui/WishList（分成還沒排、已是候選、已排三段，列右邊有 ❤ 和日曆鈕「加到某天」）；
-// 探索只有愛心，流程是先按想去再到想去加到某天。想去的顯示方式（清單、照片牆）記在 shared/wishPrefs.ts（手機也用），和探索各自記。
-// 篩選、搜尋：探索、想去各自一份（appStore.filter／query 是現在這頁的，另一頁的收在 filterStash，第七輪最終 review #3）。
-// 卡片照片右下角是想去的愛心（VoteHeart），左上角是類型；重點膠囊（已排、候選、15 人、預約）在名稱下面。探索的照片牆是兩欄。
-// 清單的計算（篩選、排序、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
+// 電腦版右側的「探索」「想去」分頁（T78，interaction-design §35）。最上面是篩選列（shared/ui/FilterBar 的新長相：給了 stage），一直黏在右欄上面：
+// 工具列（搜尋＋篩選；概覽是搜尋＋問 AI＋加地點）、地區分頁（每顆後面是目前主題＋篩選的數字）、子地區晶片、主題列「玩／吃／住」。
+// 「篩選」打開的抽屜蓋住整個右欄（FilterSheet，只畫目前主題的組；網頁多「地圖：只看地圖畫面裡的」）。
+// 內容照 lib/shelves.ts 的 exploreLayer 分三種：
+// - overview：概覽（ExploreOverview），卡片的主題列直接進那區那個主題（exploreArea.ts 的 overviewTheme）；
+// - area：條件列（FilterConds，有條件才有）＋「2 月注意」一行＋目前主題的書架區段（AreaThemeHome，預設收合，展開狀態在 appStore.sectionsOpen）；
+// - list：搜尋、AI 挑的結果集，一份平的清單（同一種列，分批畫）。在一區裡搜尋時主題列還在（搜的是那個主題）。
+// 列（shared/ui/PlaceRow）滑鼠移上去呼叫 appStore.hover（地圖的指到），點了原地展開（§13.3：介紹、優缺點、「詳細資料 ›」）並選中，再點一次收起；
+// 按「詳細資料」才開詳情彈窗。清單標出的列：選中的點、和滑鼠在地圖上指到的點（列自己被指到時不回頭標自己）。
+// 在探索、想去分頁點地圖上的點（mapPick.ts）：詳情彈窗蓋住整個右欄（§13.3，不動清單）；revealInExplore（AI、測試用）才切到那個點的主題、
+// 展開它所在的第一個區段、捲到那列。
+// 「想去」分頁是同一個元件（source="wish"）：只列有人按想去的點，地區列第一顆是「全部」，區段是還沒排／已是候選／已排進行程（shared/ui/WishList 的 WishSectionList，
+// 列右邊有日曆鈕「加到某天」）；面板最前面多「誰想去：只看我按的」（filter.votes 的 mine）。
+// 篩選、搜尋、展開的區段：探索、想去各自一份（appStore 的 filterStash、sectionsOpen）；右欄捲到哪裡也各記一份（換分頁回來還在原位）。
+// 清單的計算（篩選、數量、想去的範圍）在 shared/placeLists.ts 的 usePlaceList，手機版也用。
 
-import { memo, useCallback, useDeferredValue, useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, type RefObject } from 'react';
 import { appStore, type DetailTabId } from '../store.ts';
 import { commands } from '../appCommands.ts';
+import { dataStore } from '../dataStore.ts';
 import { useApp, useData } from '../hooks.ts';
 import type { ExploreSort } from '../lib/explore.ts';
-import type { Place } from '../data/types.ts';
+import type { Bbox, Place } from '../data/types.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { AreaChips } from '../shared/ui/AreaChips.tsx';
-import { AreaHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/ExploreHome.tsx';
-import { areaOnly, backLabel, currentArea, exploreStage, fallbackNote } from '../lib/shelves.ts';
-import { emptyHelp } from '../lib/listConditions.ts';
-import { EMPTY_FILTER, type Filter, type FilterKey } from '../lib/filter.ts';
-import { focusOverview, hasLens, lensUndo, overviewRegion, pickArea, pickAreaChip, pickRegion, undoLeave, useLensUndo } from '../exploreArea.ts';
+import { AreaThemeHome, ExploreOverview, NextSteps, RegionChips } from '../shared/ui/ExploreHome.tsx';
+import { SECTIONS, THEME_LABELS, currentArea, exploreLayer, isTheme, scopeCountsByTheme, sectionPlaces, themeCounts, themeOf, type Theme } from '../lib/shelves.ts';
+import { emptyHelp, listDraft } from '../lib/listConditions.ts';
+import { EMPTY_FILTER, isFilterEmpty, type Filter, type FilterKey } from '../lib/filter.ts';
+import { focusOverview, lensUndo, overviewRegion, overviewTheme, pickArea, pickAreaChip, pickRegion, setTheme, undoLeave, useLensUndo } from '../exploreArea.ts';
 import { overviewStore } from '../shared/overviewStore.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
-import { FilterBar, type FilterModel } from '../shared/ui/FilterBar.tsx';
+import { FilterBar, FilterConds, type FilterModel } from '../shared/ui/FilterBar.tsx';
 import { dragPlaceProps } from './askAi.ts';
 import { askDraft, askList, askPlace, askWishEmpty } from './webAi.ts';
 import { WishEmpty } from '../shared/ui/EmptyStates.tsx';
-import { useAiPicked, usePlaceList, useScopeCounts, useSectionPool, useWishUserChip } from '../shared/placeLists.ts';
+import { useAiPicked, usePlaceList } from '../shared/placeLists.ts';
 import { UndoToast } from '../shared/ui/UndoToast.tsx';
-import { useWishPrefs, wishPrefs } from '../shared/wishPrefs.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from '../shared/ui/PlaceRow.tsx';
-import { PlaceTile } from '../shared/ui/PlaceTile.tsx';
-import { PlaceWall } from '../shared/ui/PlaceWall.tsx';
-import { WishList, useWishBack, useWishSections } from '../shared/ui/WishList.tsx';
+import { WishSectionList, useWishSections } from '../shared/ui/WishList.tsx';
+import type { SectionId, WishSection } from '../shared/wishSections.ts';
 import { useBatch } from '../shared/useBatch.ts';
 import { PlaceOpenBody, useRevealOpen } from '../shared/ui/PlaceOpen.tsx';
 
 export type ListSource = 'explore' | 'wish';
 
-type View = 'photo' | 'list';
-const VIEW_KEY = 'travel-helper:exploreView';
-
-function loadView(): View {
-  try {
-    return localStorage.getItem(VIEW_KEY) === 'list' ? 'list' : 'photo';
-  } catch {
-    return 'photo';
-  }
-}
-
-function saveView(v: View) {
-  try {
-    localStorage.setItem(VIEW_KEY, v);
-  } catch {
-    // 私密視窗等存不了：只是下次回到預設
-  }
-}
+/** 右欄的捲動容器 */
+const SCROLLER = '.side-body';
 
 /** 開詳情（「詳細資料」、想去列的最新留言）：彈窗蓋在地圖右側、貼著右欄（§13.3 第 1 點），選中（openDetail 會選）、地圖照移動規則（tab＝一打開就選的分頁，例如最新留言開留言分頁） */
 function open(id: string, tab?: DetailTabId) {
@@ -69,7 +54,7 @@ function open(id: string, tab?: DetailTabId) {
   commands.focus(id);
 }
 
-/** 點清單的一張卡：原地展開、選中（地圖的水滴，照移動規則）；已經展開的再點一次收起、取消選中 */
+/** 點清單的一列：原地展開、選中（地圖的水滴，照移動規則）；已經展開的再點一次收起、取消選中 */
 function toggleOpen(id: string, openId: string | null, setOpenId: (id: string | null) => void) {
   const s = appStore.getState();
   if (openId === id) {
@@ -82,35 +67,34 @@ function toggleOpen(id: string, openId: string | null, setOpenId: (id: string | 
   commands.focus(id);
 }
 
-/** 網頁探索一批畫幾張（T32）：捲到底再畫下一批 */
+/** 搜尋、AI 結果集那層一批畫幾個（T32）：捲到底再畫下一批 */
 const BATCH = 60;
-/** 探索時給 useWishSections 的空清單（同一個陣列，不重算） */
-const EMPTY_LIST: Place[] = [];
 
 /**
- * 探索的一張卡片（照片牆）或一列（清單）；想去分頁的列在 shared/ui/WishList。
- * memo：選中、地圖上指到一個點時，只重畫有變的那一兩張。props 都要是穩定的值（statusOf、onToggle 不能每次換）
+ * 探索的一列（區段裡、搜尋和 AI 結果集）；想去的列在 shared/ui/WishList。
+ * memo：選中、地圖上指到一個點時，只重畫有變的那一兩列。props 都要是穩定的值（statusOf、onToggle 不能每次換）
  */
-const Item = memo(function Item({ place, rank, view, hot, statusOf, isOpen, onToggle, aiNote, letter }: { place: Place; rank: number; view: View; hot: boolean; statusOf: (id: string) => DayStatus; isOpen: boolean; onToggle: (id: string) => void; aiNote?: string; letter?: string }) {
-  const props = {
-    place,
-    status: statusOf(place.id),
-    rank,
-    hot,
-    testId: 'explore-item',
-    onOpen: () => onToggle(place.id),
-    open: isOpen,
-    below: <PlaceOpenBody place={place} onDetail={() => open(place.id)} onAsk={() => askPlace(place.id)} />,
-    aiNote,
-    letter,
-    // 拖到左邊的聊天室＝問 AI
-    rootProps: { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' },
-  };
-  return view === 'list' ? <PlaceRow {...props} /> : <PlaceTile {...props} />;
+const Item = memo(function Item({ place, rank, hot, statusOf, isOpen, onToggle, aiNote, letter }: { place: Place; rank: number; hot: boolean; statusOf: (id: string) => DayStatus; isOpen: boolean; onToggle: (id: string) => void; aiNote?: string; letter?: string }) {
+  return (
+    <PlaceRow
+      place={place}
+      status={statusOf(place.id)}
+      rank={rank}
+      hot={hot}
+      testId="explore-item"
+      onOpen={() => onToggle(place.id)}
+      open={isOpen}
+      below={<PlaceOpenBody place={place} onDetail={() => open(place.id)} onAsk={() => askPlace(place.id)} />}
+      aiNote={aiNote}
+      letter={letter}
+      // 拖到左邊的聊天室＝問 AI
+      rootProps={{ ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' }}
+    />
+  );
 });
 
-/** 書架的「全部 ›」、0 個時的下一步：套那組條件（和搜尋）；子地區換了，地圖跟著框 */
-function applyShelf(filter: Filter, query?: string) {
+/** 0 個時的下一步（看全區、清除篩選）：套那組條件（和搜尋）；子地區換了，地圖跟著框 */
+function applyHelp(filter: Filter, query?: string) {
   const s = appStore.getState();
   const regionChanged = s.filter.regions.join() !== filter.regions.join();
   s.setFilter(filter);
@@ -133,31 +117,57 @@ function pickOption(key: FilterKey, value: string) {
   if (key === 'regions' && !was) commands.focus({ region: value });
 }
 
+/** 換分頁時右欄捲到哪裡（探索、想去各一份；ExplorePanel 換分頁時重新掛上） */
+const scrollMemo: Record<ListSource, number> = { explore: 0, wish: 0 };
+
+/** 掛上時捲回上次的位置，捲動時記住 */
+function useScrollMemo(ref: RefObject<HTMLElement | null>, source: ListSource) {
+  useLayoutEffect(() => {
+    const body = ref.current?.closest<HTMLElement>(SCROLLER);
+    if (!body) return;
+    body.scrollTop = scrollMemo[source];
+    const save = () => {
+      scrollMemo[source] = body.scrollTop;
+    };
+    body.addEventListener('scroll', save, { passive: true });
+    return () => body.removeEventListener('scroll', save);
+  }, [ref, source]);
+}
+
+/** revealInExplore 要捲到的那列：哪一段、在段裡第幾個 */
+interface Reveal {
+  section: string;
+  index: number;
+}
+
+/** 想去的空清單（同一個陣列，不重算） */
+const EMPTY: Place[] = [];
+
+const placeById = (id: string) => dataStore.getState().places.find((p) => p.id === id);
+
 export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
   const filter = useApp((s) => s.filter);
   const query = useApp((s) => s.query);
+  const wish = source === 'wish';
   const [inView, setInView] = useState(false);
   // 沒開「只列地圖畫面裡的」就不看地圖範圍：移動地圖時整個清單不用重畫
   const bounds = useApp((s) => (inView ? (s.view?.bounds ?? null) : null));
-  // 標出的卡：選中的點、地圖上指到的點
+  // 標出的列：選中的點、地圖上指到的點
   const selectedId = useApp((s) => s.selectedId);
   const mapHovered = useApp((s) => (s.hoverFromMap ? s.hoveredId : null));
-  const hotOf = (id: string) => id === selectedId || id === mapHovered;
+  const hotId = mapHovered ?? selectedId ?? null;
   const target = useApp((s) => s.exploreTarget);
-  const [exploreView, setExploreView] = useState<View>(loadView);
-  const wishView = useWishPrefs((s) => s.view);
-  const wish = source === 'wish';
-  // 探索、想去各自記住上次的顯示方式
-  const view: View = wish ? wishView : exploreView;
-  // 想去預設依 ❤️ 多排
-  const [sort, setSort] = useState<ExploreSort>(source === 'wish' ? 'likes' : 'recommend');
+  const openIds = useApp((s) => s.sectionsOpen[source]);
+  // 排序鈕拿掉了（§35.3）：探索固定推薦順序；想去「想去多的排前面」（還沒排那段）
+  const sort: ExploreSort = wish ? 'likes' : 'recommend';
   const ref = useRef<HTMLDivElement>(null);
+  useScrollMemo(ref, source);
   const statusOf = useDayStatus();
   const ownsEmpty = useSuggestOwnsEmpty(query);
-  // 原地展開的那張（一次一張；換分頁時 ExplorePanel 換一個，自然收起）
+  // 原地展開的那列（一次一列；換分頁時 ExplorePanel 換一個，自然收起）
   const [openId, setOpenId] = useState<string | null>(null);
   const hold = useRevealOpen(ref, openId);
-  // 給卡片的是同一個函式（memo 才有用），裡面讀最新的 openId
+  // 給列的是同一個函式（memo 才有用），裡面讀最新的 openId
   const latest = useRef({ hold, openId });
   latest.current = { hold, openId };
   const toggle = useCallback((id: string) => {
@@ -165,172 +175,270 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
     toggleOpen(id, latest.current.openId, setOpenId);
   }, []);
 
-  // 清單的計算在 shared/placeLists.ts（手機版也用）；沒選類型就是三類都列
   // 打字時輸入框先跟上，清單晚一點算（T32）
   const listQuery = useDeferredValue(query);
   const { pool, list: every } = usePlaceList(source, filter, listQuery, sort, bounds);
-  // 想去的「只看自己加的 N」（T69：條件列最前面的開關，不再放在地區列）
-  const userChip = useWishUserChip(every);
-  const all = wish ? userChip.list : every;
-  const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(all, source === 'explore');
-  const { shown, moreRef, reveal, hasMore } = useBatch({ total: list.length, batch: BATCH, resetOn: [filter, listQuery, sort, aiResult], scroller: '.side-body' });
-  // 想去的清單自己分批（WishList）
-  const shownList = wish ? list : list.slice(0, shown);
+  const { aiResult, list, sortByAi, setSortByAi, aiProps } = useAiPicked(every, !wish);
+  // 探索這時畫哪一種；想去一律是區段
+  const stage = wish ? 'area' : exploreLayer(filter, listQuery, !!aiResult);
+  const area = currentArea(filter);
+  const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
+  const theme: Theme = themeOf(filter) ?? 'spot';
+  const areas = useData((s) => s.areas);
+  const places = useData((s) => s.places);
 
-  // 地圖上點了某個點：清單直接跳到那張卡片（清單可能很長，平滑捲動會在半路被照片載入打斷）
-  // 還沒畫到的先多畫到它（只捲一次，之後捲下去多畫一批不會跳回來）
-  const targetIndex = target && !wish ? list.findIndex((p) => p.id === target.id) : -1;
+  // 選了一區（想去一律）時一定有一個主題：AI 的 set_filter、復原可能沒給或給了好幾類，換成第一個（沒有就「玩」）
+  const needTheme = (wish || stage === 'area') && filter.types.length !== 1;
+  useEffect(() => {
+    if (!needTheme) return;
+    const first = filter.types.find(isTheme);
+    appStore.getState().setFilter({ types: [first ?? 'spot'] });
+  }, [needTheme, filter.types]);
+
+  // 搜尋、AI 結果集那層的分批
+  const flat = stage === 'list';
+  const { shown, moreRef, reveal: revealBatch, hasMore } = useBatch({ total: flat ? list.length : 0, batch: BATCH, resetOn: [filter, listQuery, aiResult], scroller: SCROLLER });
+  const shownList = flat ? list.slice(0, shown) : EMPTY;
+
+  // 想去的三段（revealInExplore 找它在哪一段）
+  const wishSections = useWishSections(wish ? list : EMPTY);
+
+  // revealInExplore：先切到那個點的地區、主題（探索），再展開它所在的第一個區段、多畫到它、捲過去
+  const [pending, setPending] = useState<{ id: string; seq: number } | null>(null);
+  const [minShown, setMinShown] = useState<Partial<Record<string, number>>>({});
+  const [scrollTo, setScrollTo] = useState<{ id: string; seq: number } | null>(null);
+  // 掛上之前就留在 store 的那個不算（換分頁回來不要又跳一次）
+  const staleSeq = useRef(target?.seq);
+  useEffect(() => {
+    if (!target || target.seq === staleSeq.current) return;
+    const s = appStore.getState();
+    const p = placeById(target.id);
+    if (!p) return;
+    // 搜尋、AI 結果集：平的清單，直接捲過去
+    if (!wish && exploreLayer(s.filter, s.query, !!s.aiResult) === 'list') {
+      setScrollTo(target);
+      return;
+    }
+    if (!wish && p.area && currentArea(s.filter) !== p.area) pickArea(p.area);
+    else if (s.filter.regions.length && !(p.region && s.filter.regions.includes(p.region))) pickRegion(null);
+    if (isTheme(p.type)) setTheme(p.type);
+    setPending(target);
+    // 只看 target：其他的變化不要重來
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target]);
+  useEffect(() => {
+    if (!pending) return;
+    // 等主題換好（setTheme 之後下一輪才是新的 filter）
+    if (needTheme || themeOf(filter) !== placeById(pending.id)?.type) return;
+    const found = wish ? findWish(wishSections, list, pending.id) : findSection(places, filter, bounds, pending.id);
+    setPending(null);
+    if (!found) return;
+    if (!appStore.getState().sectionsOpen[source].includes(found.section)) appStore.getState().toggleSection(found.section, source);
+    setMinShown({ [found.section]: found.index + 1 });
+    setScrollTo(pending);
+  }, [pending, needTheme, filter, wish, wishSections, list, places, bounds, source]);
+
+  // 搜尋、AI 結果集那層：還沒畫到的先多畫到它
+  const targetIndex = scrollTo && flat ? list.findIndex((p) => p.id === scrollTo.id) : -1;
   const waiting = targetIndex >= shown;
   useEffect(() => {
-    if (waiting) reveal(targetIndex);
-  }, [waiting, targetIndex, reveal]);
+    if (waiting) revealBatch(targetIndex);
+  }, [waiting, targetIndex, revealBatch]);
+  // 捲到那列（清單可能很長，平滑捲動會在半路被照片載入打斷，直接跳）；區段展開、畫好了才捲
   useEffect(() => {
-    if (!target || waiting) return;
-    // 想去的清單要先把它那段展開、多顯示到它（WishList 的 revealId），等畫完再捲
-    const id = requestAnimationFrame(() => ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(target.id)}"]`)?.scrollIntoView({ block: 'center' }));
+    if (!scrollTo || waiting) return;
+    let id = requestAnimationFrame(() => {
+      id = requestAnimationFrame(() => ref.current?.querySelector<HTMLElement>(`[data-id="${CSS.escape(scrollTo.id)}"]`)?.scrollIntoView({ block: 'center' }));
+    });
     return () => cancelAnimationFrame(id);
-  }, [target, waiting]);
+  }, [scrollTo, waiting]);
 
   const model: FilterModel = {
     filter,
     query,
     setQuery: (q) => appStore.getState().setQuery(q),
     sort,
-    setSort,
-    view,
-    setView: (v) => {
-      if (wish) {
-        wishPrefs.getState().setView(v);
-        return;
-      }
-      setExploreView(v);
-      saveView(v);
-    },
+    setSort: () => {},
     inView,
     setInView,
     pick: pickOption,
-    // 地區、子地區在外面一列，不跟著清掉（同手機）
+    // 地區、子地區、主題在上面，不跟著清掉（同手機）
     clear: () => {
-      const { areas, regions } = appStore.getState().filter;
-      appStore.getState().setFilter({ ...EMPTY_FILTER, areas, regions });
+      const { areas: a, regions, types } = appStore.getState().filter;
+      appStore.getState().setFilter({ ...EMPTY_FILTER, areas: a, regions, types });
       setInView(false);
     },
     ...(wish ? {} : { onAdd: () => addPlaceStore.getState().openEntry() }),
     onAsk: () => void askList(source, filter, query, list.length),
     ...(aiResult ? { ai: { title: aiResult.title, total: aiResult.ids.length, sortByAi, setSortByAi, onClear: () => commands.clearResult() } } : {}),
+    // 主題列、面板的組：選了一區（想去一律）；在一區裡搜尋也是（搜的是那個主題）
+    theme: aiResult ? null : wish || area ? theme : themeOf(filter),
+    setTheme,
   };
 
-  // 探索這時畫哪一種：概覽、選了一區（書架）、照片牆或清單（想去一律是清單）
-  const stage = wish ? 'list' : exploreStage(filter, listQuery, !!aiResult);
-  const area = currentArea(filter);
-  const areas = useData((s) => s.areas);
-  const places = useData((s) => s.places);
-  // 選了一區、但套了其他條件或搜尋：淡藍帶「‹ 書架 › 一定要去」（還是那排書架）或「‹ 書架 › 自己篩選」，點「‹ 書架」回到目前地區＋子地區的書架（T50、T64、T69）
-  const back =
-    !wish && !aiResult && stage === 'list' && area
-      ? {
-          label: backLabel(filter),
-          note: fallbackNote(filter, areas),
-          onClick: () => {
-            appStore.getState().setFilter(areaOnly(appStore.getState().filter));
-            appStore.getState().setQuery('');
-            setInView(false);
-          },
-        }
-      : null;
-  const regionId = filter.regions.length === 1 ? filter.regions[0] : null;
+  // 在一區裡搜尋：清單是平的，但頂端照樣有主題列（篩選列當成地區頁畫）
+  const barStage = stage === 'list' && !aiResult && area ? 'area' : stage;
   // 離開概覽（選了一區、搜尋、篩選）：概覽在地圖上的框拿掉，卡片選的子地區留著（T63 §28）
   useEffect(() => {
     if (!wish && stage !== 'overview') overviewStore.getState().clearFocus();
   }, [wish, stage]);
-  // 想去（T53）：三排書架，「全部 ›」進某一排的清單層，返回鈕「‹ 還沒排 · 6 個地點」；地點數寫那排的數字
-  const wishSections = useWishSections(wish ? list : EMPTY_LIST);
-  const wishBack = useWishBack();
-  const wishCount = wishBack.section ? (wishSections.find((x) => x.id === wishBack.section)?.count ?? 0) : list.length;
-  // 地區分頁、子地區晶片的小數字（T69）：探索在照片牆／清單那層（不是 AI 挑的）；想去進了某一排、或有條件時。想去照那一排、自己加的算
-  const userOnly = useWishPrefs((s) => s.userOnly);
-  const countPool = useSectionPool(pool, wish ? wishBack.section : null, wish && userOnly);
-  const counting = wish ? !!wishBack.section || userOnly || hasLens(filter, listQuery) : stage === 'list' && !aiResult;
-  const counts = useScopeCounts(countPool, filter, listQuery, counting);
+  // 地區分頁、子地區晶片的小數字（§35.2）：選了一區（或想去）就永遠寫；概覽、AI 結果集不寫
+  const counts = useMemo(() => (stage === 'overview' || aiResult ? null : scopeCountsByTheme(pool, filter, listQuery, areas)), [stage, aiResult, pool, filter, listQuery, areas]);
+  // 主題列的三格（目前地區、子地區那一類的總數，不看篩選；想去是有人按想去的）
+  const tCounts = useMemo(() => themeCounts(pool, filter), [pool, filter]);
   const undo = useLensUndo((s) => s.undo);
+  const onToggleSection = useCallback((id: string) => appStore.getState().toggleSection(id, source), [source]);
+  const renderRow = useCallback(
+    (p: Place, i: number) => <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} isOpen={openId === p.id} onToggle={toggle} />,
+    [hotId, statusOf, openId, toggle],
+  );
+  const conds = <FilterConds model={model} count={list.length} />;
+  const applyAndReset = (f: Filter, q: string) => {
+    setInView(false);
+    applyHelp(f, q);
+  };
 
   return (
-    <div className={`explore-panel source-${source}`} data-testid={source === 'wish' ? 'wish-panel' : 'explore-panel'}>
+    <div className={`explore-panel source-${source}`} data-testid={wish ? 'wish-panel' : 'explore-panel'} data-stage={stage}>
       <FilterBar
         source={source}
         surface="desktop"
         model={model}
-        count={wish ? wishCount : list.length}
-        typeRow={<AreaChips value={filter.areas.length === 1 ? filter.areas[0] : null} onPick={(a) => {
-            setInView(false);
-            pickAreaChip(a);
-          }} firstLabel={wish ? '全部' : '概覽'} prefix="ex" testId="ex-area-chips" counts={counts} />}
-        subRow={area && (wish || stage !== 'overview') ? <RegionChips areaId={area} regionId={regionId} onPick={pickRegion} counts={counts} /> : undefined}
-        back={wish ? wishBack.back : back}
-        showView={wish ? !!wishBack.section : stage === 'list'}
-        extraCond={wish ? userChip.chip : undefined}
+        count={list.length}
+        stage={barStage}
+        themeCounts={tCounts}
+        typeRow={
+          <AreaChips
+            value={area}
+            onPick={(a) => {
+              setInView(false);
+              pickAreaChip(a);
+            }}
+            firstLabel={wish ? '全部' : '概覽'}
+            prefix="ex"
+            testId="ex-area-chips"
+            counts={counts}
+          />
+        }
+        subRow={area && stage !== 'overview' ? <RegionChips areaId={area} regionId={regionId} onPick={pickRegion} counts={counts} /> : undefined}
       />
       {!wish && stage === 'overview' && undo && <UndoToast label={undo.label} onUndo={undoLeave} onClose={() => lensUndo.getState().set(null)} />}
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
-      <div className={`ex-list view-${stage === 'list' ? view : stage} source-${source}`} ref={ref}>
+      <div className={`ex-list view-${flat ? 'list' : stage} source-${source}`} ref={ref}>
         {stage === 'overview' ? (
-          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onPickRegion={overviewRegion} onFocus={focusOverview} />
-        ) : stage === 'area' && area ? (
-          <AreaHome areaId={area} regionId={regionId} surface="desktop" onOpen={(id) => open(id)} onShelfAll={applyShelf} onAsk={askDraft} />
+          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onPickRegion={overviewRegion} onFocus={focusOverview} onPickTheme={overviewTheme} />
         ) : wish ? (
-          <WishList
-            surface="desktop"
-            places={list}
-            view={view}
-            onOpen={toggle}
-            openId={openId}
-            onDetail={(id) => open(id)}
-            onAsk={askPlace}
-            onOpenComments={(id) => open(id, 'comments')}
-            hotId={mapHovered ?? selectedId ?? null}
-            revealId={target?.id ?? null}
-            revealSeq={target?.seq}
-          />
-        ) : view === 'photo' ? (
-          <PlaceWall items={shownList} total={list.length} openId={openId} render={(p, i) => <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} statusOf={statusOf} isOpen={openId === p.id} onToggle={toggle} {...aiProps(p.id)} />} />
+          <>
+            {conds}
+            {pool.length === 0 ? (
+              <WishEmpty onExplore={() => appStore.getState().setMode('explore')} onAsk={askWishEmpty} />
+            ) : list.length === 0 ? (
+              <p className="muted ex-empty" data-testid="wish-none">
+                {wishNone(filter, query, inView)}
+              </p>
+            ) : (
+              <WishSectionList
+                surface="desktop"
+                places={list}
+                openIds={openIds as SectionId[]}
+                onToggle={onToggleSection}
+                onOpen={toggle}
+                openId={openId}
+                onDetail={(id) => open(id)}
+                onAsk={askPlace}
+                onOpenComments={(id) => open(id, 'comments')}
+                hotId={hotId}
+                scroller={SCROLLER}
+                minShown={minShown}
+              />
+            )}
+          </>
+        ) : stage === 'area' && area ? (
+          <>
+            {conds}
+            <AreaThemeHome
+              areaId={area}
+              regionId={regionId}
+              theme={theme}
+              filter={filter}
+              bounds={bounds}
+              surface="desktop"
+              openIds={openIds}
+              onToggle={onToggleSection}
+              onOpen={(id) => open(id)}
+              onApply={applyAndReset}
+              onAsk={askDraft}
+              onAskAi={() => askDraft(listDraft(filter, '', areas) ?? '')}
+              onAdd={() => addPlaceStore.getState().openEntry()}
+              renderRow={renderRow}
+              scroller={SCROLLER}
+              minShown={minShown}
+            />
+          </>
         ) : (
-          <ol className="ex-items">
-            {shownList.map((p, i) => (
-              <li key={p.id}>
-                <Item place={p} rank={i + 1} view={view} hot={hotOf(p.id)} statusOf={statusOf} isOpen={openId === p.id} onToggle={toggle} {...aiProps(p.id)} />
-              </li>
-            ))}
-          </ol>
-        )}
-        {stage === 'list' && !wish && hasMore && <div ref={moreRef} className="ex-next" aria-hidden />}
-        {stage === 'list' && list.length === 0 && aiResult && (
-          <div className="muted ex-empty" data-testid="ai-result-empty">
-            <p>AI 挑的 {aiResult.ids.length} 家沒有符合這些篩選的。</p>
-            <button type="button" className="button small" onClick={() => {
-                model.clear();
-                model.setQuery('');
-              }} data-testid="ai-result-unfilter">
-              取消篩選，回到 AI 挑的 {aiResult.ids.length} 家
-            </button>
-          </div>
-        )}
-        {stage === 'list' && list.length === 0 && !aiResult && wish && pool.length === 0 && <WishEmpty onExplore={() => appStore.getState().setMode('explore')} onAsk={askWishEmpty} />}
-        {stage === 'list' && list.length === 0 && !aiResult && wish && pool.length > 0 && <p className="muted ex-empty">沒有符合的地點，取消一些篩選看看。</p>}
-        {stage === 'list' && list.length === 0 && !aiResult && !wish && !ownsEmpty && (
-          <NextSteps
-            help={emptyHelp(places, filter, query, areas)}
-            onApply={(f, q) => {
-              setInView(false);
-              applyShelf(f, q);
-            }}
-            onAsk={askDraft}
-          />
+          <>
+            {conds}
+            <ol className="ex-items">
+              {shownList.map((p, i) => (
+                <li key={p.id}>
+                  <Item place={p} rank={i + 1} hot={p.id === hotId} statusOf={statusOf} isOpen={openId === p.id} onToggle={toggle} {...aiProps(p.id)} />
+                </li>
+              ))}
+            </ol>
+            {hasMore && <div ref={moreRef} className="ex-next" aria-hidden />}
+            {list.length === 0 && aiResult && (
+              <div className="muted ex-empty" data-testid="ai-result-empty">
+                <p>AI 挑的 {aiResult.ids.length} 家沒有符合這些篩選的。</p>
+                <button
+                  type="button"
+                  className="button small"
+                  onClick={() => {
+                    model.clear();
+                    model.setQuery('');
+                  }}
+                  data-testid="ai-result-unfilter"
+                >
+                  取消篩選，回到 AI 挑的 {aiResult.ids.length} 家
+                </button>
+              </div>
+            )}
+            {list.length === 0 && !aiResult && !ownsEmpty && <NextSteps help={emptyHelp(places, filter, query, areas)} onApply={applyAndReset} onAsk={askDraft} />}
+          </>
         )}
       </div>
     </div>
   );
 }
 
+/** 想去在這個主題、範圍裡一個都沒有：有條件時叫人取消篩選，沒有時寫「這裡還沒有人想去的餐廳」 */
+function wishNone(filter: Filter, query: string, inView: boolean): string {
+  if (query.trim() || inView || !isFilterEmpty({ ...filter, areas: [], regions: [], types: [] })) return '沒有符合的地點，取消一些篩選看看。';
+  return `這裡還沒有人想去的${THEME_LABELS[themeOf(filter) ?? 'spot'].noun}。`;
+}
+
+/** 探索：那個點在目前主題的第一個區段（篩選、地圖範圍照現在的）和它在段裡的位置 */
+function findSection(places: Place[], filter: Filter, bounds: Bbox | null, id: string): Reveal | null {
+  const theme = themeOf(filter);
+  if (!theme) return null;
+  for (const section of SECTIONS[theme]) {
+    const index = sectionPlaces(places, section, filter, { bounds }).findIndex((p) => p.id === id);
+    if (index >= 0) return { section: section.id, index };
+  }
+  return null;
+}
+
+/** 想去：那個點在哪一段、段裡第幾個（段裡的順序照 WishSectionList：組照順序攤平，只算清單裡有的） */
+function findWish(sections: WishSection[], list: Place[], id: string): Reveal | null {
+  const inList = new Set(list.map((p) => p.id));
+  for (const sec of sections) {
+    const index = sec.groups
+      .flatMap((g) => g.ids)
+      .filter((x) => inList.has(x))
+      .indexOf(id);
+    if (index >= 0) return { section: sec.id, index };
+  }
+  return null;
+}
 
 /** 右側切回「行程」：關掉詳情（篩選留著，行程分頁的地圖本來就不套篩選，第七輪 §8.4） */
 export function showItinerary() {
