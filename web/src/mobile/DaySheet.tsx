@@ -306,10 +306,8 @@ function DayView({ date }: { date: string }) {
           <span className="m-dayhead-sub">{title.week}</span>
           {title.area && <span className="m-dayhead-area"> · {title.area}</span>}
         </h2>
-        {/* 半屏聊天（ChatSheet） */}
-        <Button kind="secondary" size="sm" icon="spark" className="m-ask-day" aria-label="問 AI 這天" onClick={() => askDay(date)} data-testid="m-trip-ai">
-          問 AI
-        </Button>
+        {/* 半屏聊天（ChatSheet）；標題列擠，問 AI 和討論一樣是 36 px 圓形圖示鈕（T81） */}
+        <Button kind="secondary" size="sm" icon="spark" className="m-ask-day icon-round" aria-label="問 AI 這天" title="問 AI 這天" onClick={() => askDay(date)} data-testid="m-trip-ai" />
         <DiscussButton variant="white" />
         <Button kind="primary" size="sm" icon="pen" onClick={() => openDialog({ kind: 'planning' })} data-testid="m-trip-edit">
           編輯

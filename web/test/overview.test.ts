@@ -20,16 +20,16 @@ const NORTH: Area = {
 };
 
 test('沒選子地區：整區的簡介、第一則二月注意、代表點，標題是區名', () => {
-  assert.deepEqual(overviewContent(NORTH, null), { regionId: null, label: '北', summary: '整區的特色', feb: '整區的二月注意', highlights: ['a', 'b'] });
+  assert.deepEqual(overviewContent(NORTH, null), { regionId: null, label: '北', summary: '整區的特色', feb: '整區的二月注意' });
 });
 
 test('選了子地區：換成那個子地區的簡介、二月注意、代表點', () => {
-  assert.deepEqual(overviewContent(NORTH, 'north-port'), { regionId: 'north-port', label: '港邊', summary: '港邊的特色', feb: '港邊的二月注意', highlights: ['c'] });
+  assert.deepEqual(overviewContent(NORTH, 'north-port'), { regionId: 'north-port', label: '港邊', summary: '港邊的特色', feb: '港邊的二月注意' });
 });
 
 test('子地區沒寫的那一行不放（不拿整區的補）', () => {
-  assert.deepEqual(overviewContent(NORTH, 'north-hill'), { regionId: 'north-hill', label: '山丘', summary: '山丘的特色', feb: null, highlights: [] });
-  assert.deepEqual(overviewContent(NORTH, 'north-bare'), { regionId: 'north-bare', label: '空地', summary: null, feb: null, highlights: [] });
+  assert.deepEqual(overviewContent(NORTH, 'north-hill'), { regionId: 'north-hill', label: '山丘', summary: '山丘的特色', feb: null });
+  assert.deepEqual(overviewContent(NORTH, 'north-bare'), { regionId: 'north-bare', label: '空地', summary: null, feb: null });
 });
 
 test('找不到的子地區當全區', () => {

@@ -1,13 +1,13 @@
 // 探索的概覽、選了一區之後的內容（T42 起，interaction-design §35）。手機、網頁共用；開詳情、換地區這些動作由呼叫的畫面給。
-// 概覽（§35.6，延續 §26、§28）：一區一張卡，由上往下是照片（點了進那區）→ 主題列（點了直接進那區那個主題）→ 子地區一行（點了在卡片裡換內容，
-// overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）→ 一句特色 → 「● 2 月注意 N 則 ›」收合 → 代表地點；住幾晚、作者授權照舊。
+// 概覽（§35.6，T81 改成 §36.3）：一區一張卡，由上往下是照片 2:1（點了進那區）→ 子地區一排文字（📍 開頭，點了在卡片裡換內容，
+// overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）→ 主題列（點了直接進那區那個主題）→ 一句特色（16.5 px）→ 「● 2 月注意 N 則 ›」收合；
+// 住幾晚、作者授權照舊。代表地點 T81 拿掉了（進那區的「玩」第一排「一定要去」就是它們）。
 // 選了一區是 AreaThemeHome（§35.4）：「2 月注意」一行收合＋目前主題的區段（Section.tsx；一定要去、其他景點…），
 // 最下面「問 AI 幫我挑」「找不到？自己加一個」兩行小字。0 個的區段、搜尋篩到 0 個用 NextSteps（lib/listConditions.ts）。
 // 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
 // 樣式在 ui.css（.xo-*、.xa-*、.xe-*）。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
 import { displayName } from '../../data/normalize.ts';
 import { SECTIONS, sectionCounts, sectionPlaces, themeCounts, type Theme } from '../../lib/shelves.ts';
@@ -22,22 +22,14 @@ import { Icon } from '../../components/Icon.tsx';
 import { Chip } from './Chip.tsx';
 import { ChipScroller } from './ChipScroller.tsx';
 import { ScopeCount } from './AreaChips.tsx';
-import { TypeSeal } from './TypeLabel.tsx';
 import { ThemeRow } from './ThemeRow.tsx';
 import { Section, SectionRows } from './Section.tsx';
 import { PlaceRow, useDayStatus } from './PlaceRow.tsx';
 
 export type HomeSurface = 'desktop' | 'mobile';
 
-const placeName = (p: Place) => p.name.zh || p.name.ja;
-
-/** 網頁：滑鼠移上去指到地圖上的點 */
-const hoverProps = (surface: HomeSurface, id: string) =>
-  surface === 'desktop' ? { onMouseEnter: () => appStore.getState().hover(id), onMouseLeave: () => appStore.getState().hover(null) } : {};
-
-/** 概覽的動作：開詳情、進那一區、進那一區再選那個子地區；onFocus（網頁）是點了卡片的子地區一行，地圖框到那裡 */
+/** 概覽的動作：進那一區、進那一區再選那個子地區；onFocus（網頁）是點了卡片的子地區一行，地圖框到那裡 */
 export interface OverviewActions {
-  onOpen: (id: string) => void;
   onPickArea: (area: string) => void;
   onPickRegion: (area: string, region: string) => void;
   onFocus?: (area: string, region: string | null) => void;
@@ -61,16 +53,15 @@ export function ExploreOverview({ surface, ...actions }: { surface: HomeSurface 
 const creditOf = (p: PhotoData | undefined) => (p ? [p.credit?.replace(/^Wikimedia:s*/, ''), p.license].filter(Boolean).join(' · ') : '');
 
 /**
- * 概覽的一張卡（T52、T63）：上半是那區的代表照片（區名和日文名壓在左下、住幾晚在右上、作者和授權在右下），
- * 下面子地區一行（「志摩全區」加全部的子地區，點了在卡片裡換內容）、簡介、二月注意一則，最後是代表點（有小標題）和「看志摩 ›」。
+ * 概覽的一張卡（T52、T63、T81）：上半是那區的代表照片（2:1；區名和日文名壓在左下、住幾晚在右上、作者和授權在右下），
+ * 下面子地區一排文字（「志摩全區」加全部的子地區，點了在卡片裡換內容）、主題列、簡介、「2 月注意」一行。
  */
-function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus, onPickTheme }: { area: Area; surface: HomeSurface } & OverviewActions) {
+function AreaCard({ area, onPickArea, onPickRegion, onFocus, onPickTheme }: { area: Area; surface: HomeSurface } & OverviewActions) {
   const byId = useData((s) => s.byId);
   const places = useData((s) => s.places);
   const itinerary = useData((s) => s.itinerary);
   const picked = useOverview((s) => s.picks[area.id] ?? null);
   const content = overviewContent(area, picked);
-  const reps = content.highlights.map((id) => byId.get(id)).filter((p): p is Place => !!p);
   const name = displayName(area.name, area.id);
   const sub = areaSubName(area);
   // 進那一區；選了子地區時再選好那個子地區
@@ -117,19 +108,24 @@ function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus, on
             </span>
           ))}
       </div>
-      <ThemeRow value={null} counts={counts} onPick={pickTheme} className="xo-themes" testId="overview-themes" />
       {regions.length > 1 && (
-        <ChipScroller className="m-chips xo-regions" testId="overview-regions" activeKey={content.regionId ?? 'all'}>
-          <Chip on={!content.regionId} onClick={() => pickRegion(null)} testId="overview-region-all">
-            {allRegionsLabel(area)}
-          </Chip>
-          {regions.map((r) => (
-            <Chip key={r.id} on={content.regionId === r.id} onClick={() => pickRegion(r.id)} testId={`overview-region-${r.id}`}>
-              {displayName(r.name, r.id)}
-            </Chip>
-          ))}
-        </ChipScroller>
+        <div className="xo-regions">
+          <span className="xo-regions-pin" aria-hidden>
+            <Icon name="pin" size={16} />
+          </span>
+          <ChipScroller className="xo-regions-row" testId="overview-regions" activeKey={content.regionId ?? 'all'}>
+            <RegionText on={!content.regionId} onClick={() => pickRegion(null)} testId="overview-region-all">
+              {allRegionsLabel(area)}
+            </RegionText>
+            {regions.map((r) => (
+              <RegionText key={r.id} on={content.regionId === r.id} onClick={() => pickRegion(r.id)} testId={`overview-region-${r.id}`}>
+                {displayName(r.name, r.id)}
+              </RegionText>
+            ))}
+          </ChipScroller>
+        </div>
       )}
+      <ThemeRow value={null} counts={counts} onPick={pickTheme} className="xo-themes" testId="overview-themes" />
       <div className="xo-text">
         {content.summary && (
           <p className="xo-summary" data-testid="overview-summary">
@@ -138,20 +134,16 @@ function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus, on
         )}
         <FebNote items={feb} testId="overview-feb" />
       </div>
-      {reps.length > 0 && (
-        <div className="xo-reps">
-          <h4 className="xo-reps-title" data-testid="overview-reps-title">
-            {content.label}的代表地點
-          </h4>
-          {reps.map((p) => (
-            <button key={p.id} type="button" className="xo-rep" onClick={() => onOpen(p.id)} data-testid="overview-rep" data-id={p.id} {...hoverProps(surface, p.id)}>
-              <TypeSeal type={p.type} size="sm" />
-              {placeName(p)}
-            </button>
-          ))}
-        </div>
-      )}
     </article>
+  );
+}
+
+/** 概覽卡子地區那排的一個（T81）：文字，不是膠囊；選到的靛藍粗字＋淡靛藍底。aria-pressed 給 ChipScroller 找選到的那顆捲進畫面 */
+function RegionText({ on, onClick, testId, children }: { on: boolean; onClick: () => void; testId: string; children: ReactNode }) {
+  return (
+    <button type="button" className={`xo-region${on ? ' on' : ''}`} aria-pressed={on} onClick={onClick} data-testid={testId}>
+      {children}
+    </button>
   );
 }
 

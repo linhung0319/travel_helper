@@ -18,7 +18,6 @@ import {
   SUIT_LABELS,
   TYPE_LABELS,
   VOTE_FILTER_LABELS,
-  WHO_LABELS,
   filterChips,
   type Filter,
   type FilterChip,
@@ -79,7 +78,7 @@ export function appliedChips(f: Filter, areas: Area[]): FilterChip[] {
 const tierGroup = (id: string): FilterGroup => ({ id, title: '等級', key: 'tiers', options: () => TIERS.map((t) => ({ value: t, label: `${t} 級` })) });
 
 /**
- * 每個主題自己的組（§35.5），書架區段切過的不進面板：玩沒有天氣、等級；吃沒有「全員 15 人」（只留分組 4～6 人）；住沒有住法。
+ * 每個主題自己的組（§35.5），書架區段切過的不進面板：玩沒有天氣、等級；吃沒有「誰吃」（T81 連「分組 4～6 人」那組也拿掉，書架的「要分組去」就是它；who 照舊給 AI、書架、舊的分享條件用）；住沒有住法。
  * 吃、住各自有等級（三類共用的等級組拿掉）。
  */
 export const THEME_GROUPS: Record<Theme, FilterGroup[]> = {
@@ -88,7 +87,6 @@ export const THEME_GROUPS: Record<Theme, FilterGroup[]> = {
     { id: 'spot-reach', title: '怎麼去', key: 'reach', options: () => [{ value: 'easy', label: REACH_LABELS.easy }] },
   ],
   restaurant: [
-    { id: 'group', title: '分組去', key: 'who', options: opts(['sub'] as const, WHO_LABELS) },
     { id: 'context', title: '哪一餐', key: 'contexts', options: opts(MEAL_VALUES, CONTEXT_LABELS) },
     { id: 'kids', title: '帶小孩', key: 'kids', options: () => [{ value: 'ok', label: KIDS_LABELS.ok }] },
     {

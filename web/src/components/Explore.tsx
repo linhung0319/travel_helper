@@ -324,7 +324,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
       {!wish && <AddPlaceSuggest query={query} surface="desktop" />}
       <div className={`ex-list view-${flat ? 'list' : stage} source-${source}`} ref={ref}>
         {stage === 'overview' ? (
-          <ExploreOverview surface="desktop" onOpen={(id) => open(id)} onPickArea={pickArea} onPickRegion={overviewRegion} onFocus={focusOverview} onPickTheme={overviewTheme} />
+          <ExploreOverview surface="desktop" onPickArea={pickArea} onPickRegion={overviewRegion} onFocus={focusOverview} onPickTheme={overviewTheme} />
         ) : wish ? (
           <>
             {conds}

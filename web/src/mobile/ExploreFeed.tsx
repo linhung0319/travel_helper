@@ -140,7 +140,6 @@ export function ExploreFeed() {
       {stage === 'overview' ? (
         <ExploreOverview
           surface="mobile"
-          onOpen={open}
           onPickArea={pickFeedArea}
           onPickRegion={(area, region) => {
             pickFeedArea(area);
