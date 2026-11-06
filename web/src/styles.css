@@ -2844,6 +2844,13 @@ button.edited {
   gap: 0;
 }
 
+/* T78（§35.7）：1100～1279 的右欄只有 360 寬，列的照片從 136 縮到 120 */
+@media (max-width: 1279px) {
+  .layout.desktop .side-panel .pr-photo {
+    flex-basis: 120px;
+  }
+}
+
 .ex-empty {
   padding: 24px 0;
   text-align: center;

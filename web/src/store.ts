@@ -104,6 +104,8 @@ export interface AppState {
   query: string;
   /** 網頁的探索、想去各自一份篩選和搜尋（第七輪最終 review #3，和手機一樣）：filter、query 是現在那頁的，另一頁的收在這裡；行程分頁沿用探索那份 */
   filterStash: Record<FilterOwner, { filter: Filter; query: string }>;
+  /** 探索、想去各自展開的書架區段（T78，§35.4）：換主題、換子地區、回概覽清掉，換區帶著；換分頁各自留著 */
+  sectionsOpen: Record<FilterOwner, string[]>;
   mode: 'map' | 'explore' | 'wish';
   /** 編輯中（進入前確認、閒置結束）；選「全部」時一定結束 */
   planning: boolean;
@@ -158,6 +160,10 @@ export interface AppActions {
   clearFilter(): void;
   setQuery(query: string): void;
   setMode(mode: AppState['mode']): void;
+  /** 展開或收起一個區段（owner 沒給＝現在這頁） */
+  toggleSection(id: string, owner?: FilterOwner): void;
+  /** 展開的區段整份換掉（[] 是全部收合） */
+  setSectionsOpen(ids: string[], owner?: FilterOwner): void;
   setPlanning(on: boolean): void;
   /** 拖曳行程中（body.dragging-plan）不理；from='map'：從地圖的點來的 */
   hover(id: string | null, from?: 'map'): void;
@@ -194,6 +200,7 @@ export const initialState: AppState = {
   filter: EMPTY_FILTER,
   query: '',
   filterStash: { explore: { filter: EMPTY_FILTER, query: '' }, wish: { filter: EMPTY_FILTER, query: '' } },
+  sectionsOpen: { explore: [], wish: [] },
   // 進網站先看探索（T39）
   mode: 'explore',
   planning: false,
@@ -245,6 +252,18 @@ export function createAppStore(init: Partial<AppState> = {}) {
         const filterStash = { ...s.filterStash, [from]: { filter: s.filter, query: s.query } };
         const filter = { ...filterStash[to].filter, areas: s.filter.areas, regions: s.filter.regions };
         return { mode, selectedId: null, filterStash, filter, query: filterStash[to].query };
+      }),
+    toggleSection: (id, owner) =>
+      set((s) => {
+        const o = owner ?? ownerOf(s.mode);
+        const cur = s.sectionsOpen[o];
+        return { sectionsOpen: { ...s.sectionsOpen, [o]: cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id] } };
+      }),
+    setSectionsOpen: (ids, owner) =>
+      set((s) => {
+        const o = owner ?? ownerOf(s.mode);
+        if (!ids.length && !s.sectionsOpen[o].length) return s;
+        return { sectionsOpen: { ...s.sectionsOpen, [o]: ids } };
       }),
     setPlanning: (planning) => set({ planning }),
     hover: (hoveredId, from) => {

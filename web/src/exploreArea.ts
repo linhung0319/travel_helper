@@ -1,7 +1,8 @@
-// 換探索、想去的目前地區（地區列、子地區列、概覽的「看鳥羽 ›」、地圖的地區標籤共用，T42、T43）。
-// T69（interaction-design §33）：「看哪裡」（地區、子地區）和「看什麼」（篩選、搜尋、想去的那一排）分開——換地區、子地區只換範圍，篩選留著，
-// 書架帶來的條件照新的範圍重挑級數（lib/shelves.ts 的 rescopeFilter）。回書架是篩選列的「▤ 書架」（Explore.tsx）。
-// 探索的「概覽」只有一層：有篩選時點它會離開篩選，留一份在 lensUndo，畫面出「復原」（復原就回到剛才的地區和篩選）。想去的「全部」也有三排書架，不離開。
+// 換探索、想去的目前地區（地區列、子地區列、概覽卡、地圖的地區標籤共用，T42、T43）。
+// T69（interaction-design §33）：「看哪裡」（地區、子地區）和「看什麼」（篩選、搜尋）分開——換地區、子地區只換範圍，篩選留著。
+// T78（§35.2）：主題（玩／吃／住）就是 filter.types 唯一的那個（setTheme）；換區時主題、篩選、展開的區段都帶著走，子地區清掉；
+// 換子地區、換主題、回概覽時區段全部收合；換區、換子地區、換主題右欄捲到頂。不再有書架的兩級退（rescopeFilter 不用了）。
+// 探索的「概覽」只有一層：有篩選時點它會離開篩選，留一份在 lensUndo，畫面出「復原」（復原就回到剛才的地區和篩選）。想去的「全部」也有區段，不離開。
 import { createStore } from 'zustand/vanilla';
 import { useStore } from 'zustand';
 import { appStore } from './store.ts';
@@ -10,7 +11,8 @@ import { dataStore } from './dataStore.ts';
 import { initialExtent } from './lib/areas.ts';
 import { EMPTY_FILTER, isFilterEmpty, type Filter } from './lib/filter.ts';
 import { overviewStore } from './shared/overviewStore.ts';
-import { backLabel, currentArea, rescopeFilter } from './lib/shelves.ts';
+import { backLabel, currentArea, themeOf, type Theme } from './lib/shelves.ts';
+import { themeFilter } from './shared/filterOptions.ts';
 import { placeLabel } from './lib/listConditions.ts';
 
 /** 地圖飛到那區（null：整個伊勢志摩） */
@@ -24,21 +26,40 @@ function focusArea(area: string | null) {
   if (bbox) commands.focus({ bbox });
 }
 
-/** 有沒有「看什麼」：地區、子地區以外的條件或搜尋 */
-export const hasLens = (filter: Filter, query: string) => !!query.trim() || !isFilterEmpty({ ...filter, areas: [], regions: [] });
+/** 有沒有「看什麼」：地區、子地區、主題（types，§35 起是分頁）以外的條件或搜尋 */
+export const hasLens = (filter: Filter, query: string) => !!query.trim() || !isFilterEmpty({ ...filter, areas: [], regions: [], types: [] });
 
-/** 換範圍：地區、子地區換成 base，篩選照 rescopeFilter 跟著走 */
-function setScope(areas: string[], regions: string[]) {
-  const s = appStore.getState();
-  s.setFilter(rescopeFilter(s.filter, { areas, regions }, dataStore.getState().places));
+/** 右欄捲到頂（換區、換子地區、換主題，§35.2） */
+export function scrollSideTop() {
+  const body = typeof document !== 'undefined' ? document.querySelector<HTMLElement>('.side-body') : null;
+  if (body) body.scrollTop = 0;
 }
 
-/** 換地區（子地區清掉、取消選中的點），地圖飛過去；篩選、搜尋留著（T69）。null 是沒選地區（探索的概覽、想去的「全部」） */
+/** 換範圍：地區、子地區換掉，其他條件照舊。選了一區時一定有主題（沒有就從「玩」開始） */
+function setScope(areas: string[], regions: string[]) {
+  const s = appStore.getState();
+  const types: Filter['types'] = areas.length === 1 && !themeOf(s.filter) ? ['spot'] : s.filter.types;
+  s.setFilter({ areas, regions, types });
+}
+
+/** 換地區（子地區清掉、取消選中的點），地圖飛過去；主題、篩選、搜尋、展開的區段留著（T69、§35.2）。null 是沒選地區（探索的概覽、想去的「全部」） */
 export function pickArea(area: string | null) {
   const s = appStore.getState();
   s.select(null);
   setScope(area ? [area] : [], []);
   focusArea(area);
+  scrollSideTop();
+}
+
+/** 換主題（主題列）：types 換成那一類，面板裡那一類沒有的條件拿掉（filterOptions 的 themeFilter，不然住宿的一泊二食切到玩會 0 個）；區段收合、捲到頂 */
+export function setTheme(theme: Theme) {
+  const s = appStore.getState();
+  const source = s.mode === 'wish' ? 'wish' : 'explore';
+  if (themeOf(s.filter) !== theme) {
+    s.setFilter(themeFilter(s.filter, theme, source));
+    s.setSectionsOpen([]);
+  }
+  scrollSideTop();
 }
 
 /** 概覽離開篩選時留的那一份（T69）：「復原」回到剛才的地區和篩選；換到別的地方就不要了 */
@@ -67,6 +88,8 @@ export function pickAreaChip(area: string | null) {
     overviewStore.getState().reset();
     s.setFilter(EMPTY_FILTER);
     s.setQuery('');
+    // 回概覽：區段全部收合（§35.2）
+    s.setSectionsOpen([]);
   }
   pickArea(area);
 }
@@ -93,13 +116,21 @@ export function lensLabel(filter: Filter, query: string, areaNames: Parameters<t
   return [what, placeLabel(filter, areaNames)].filter(Boolean).join(' · ');
 }
 
-/** 回到那區的書架（第一頁）：地區、子地區以外的條件和搜尋都清掉。整趟「未選住宿」的捷徑用（換到那區的書架、捲到住宿那排） */
+/** 進那區的「住」（區段收合）：地區、子地區以外的條件和搜尋都清掉。整趟「未選住宿」的捷徑用 */
 export function openAreaHome(area: string) {
   const s = appStore.getState();
   lensUndo.getState().set(null);
-  s.setFilter(EMPTY_FILTER);
+  s.setFilter({ ...EMPTY_FILTER, types: ['lodging'] });
   s.setQuery('');
+  s.setSectionsOpen([]);
   pickArea(area);
+}
+
+/** 概覽卡的主題列（T76 的 onPickTheme）：進那區（卡片選了子地區時連子地區）再選那個主題 */
+export function overviewTheme(area: string, region: string | null, theme: Theme) {
+  pickArea(area);
+  if (region) pickRegion(region);
+  setTheme(theme);
 }
 
 /** 概覽的卡點了子地區一行（T63 §28，網頁）：地圖框到那個子地區，region 是 null 時框到整區；人還在概覽 */
@@ -116,7 +147,9 @@ export function showAllAreas() {
 /** 子地區列：一次一個；null 是整區。篩選留著（T69） */
 export function pickRegion(region: string | null) {
   const s = appStore.getState();
+  if ((s.filter.regions[0] ?? null) !== region) s.setSectionsOpen([]);
   setScope(s.filter.areas, region ? [region] : []);
+  scrollSideTop();
   const area = currentArea(appStore.getState().filter);
   if (region) commands.focus({ region });
   else if (area) commands.focus({ area });
