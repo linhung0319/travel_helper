@@ -40,8 +40,8 @@ test('貼 Google Maps 連結 → 名稱預填 → 選餐廳 → 儲存 → 清�
   await page.getByTestId('add-save').click();
   await expectUserCard(page);
   await expect(page.getByTestId('add-dialog')).toHaveCount(0);
+  // T83：點列直接開詳情
   await page.locator('.is-user').first().click();
-  await page.getByTestId('place-open-detail').click();
   await expect(page.getByTestId('detail-user-warning')).toBeVisible();
 });
 

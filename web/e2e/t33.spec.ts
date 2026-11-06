@@ -350,6 +350,8 @@ test('加地點：搜尋比不到時「＋ 自己加」帶入文字；搜尋框�
   await page.getByTestId('add-suggest-add').click();
   await expect(page.getByTestId('add-entry-input')).toHaveValue('完全比不到的店名xyz');
   await page.getByTestId('add-close').click();
+  // T75 起加地點圓鈕只在概覽的工具列（§35.8）：清掉搜尋回概覽才有
+  await page.getByTestId('search').fill('');
   await expect(page.getByTestId('add-place-open')).toBeVisible();
   // 想去沒有加地點
   await page.getByTestId('side-tab-wish').click();
@@ -369,9 +371,13 @@ test('地區列取代類型列（T42）：類型在面板裡、算進篩選的�
     await page.getByTestId('filter-done').click();
     return n;
   };
+  // T75：主題列換類型，數字換成那一類的；主題不是條件晶片
   const area = await count();
   await pickType(page, 'restaurant');
-  await expect.poll(count).toBeLessThan(area);
+  await expect.poll(count).not.toBe(area);
+  await page.getByTestId('filter-open').click();
+  await page.getByTestId('filter-opt-context-lunch').click();
+  await page.getByTestId('filter-done').click();
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(1);
   await expect(page.getByTestId('filter-applied')).toHaveCount(0);
 
@@ -382,6 +388,4 @@ test('地區列取代類型列（T42）：類型在面板裡、算進篩選的�
   await expect(page.locator('[data-testid="cond-chip"]:not([data-key="query"])')).toHaveCount(0);
   await page.getByTestId('filter-close').click();
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
-  // 照片牆切換只在照片牆、清單那層（T50）：回到書架就沒有
-  await expect(page.getByTestId('view-list')).toHaveCount(0);
 });

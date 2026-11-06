@@ -1,6 +1,6 @@
 // 2026-11-01 👤 試用回饋（網頁）：想去、探索展開不跳；地圖上 AI 的點是水滴、只畫最新的一組；提議時不畫日期那排、捲到提議的卡。
 import { test, expect, type Page } from '@playwright/test';
-import { ready, exploreAll, openWishSection } from './helpers.ts';
+import { ready, openWishSection } from './helpers.ts';
 
 const fake = (page: Page, s: Record<string, unknown>) => page.evaluate((x) => Object.assign((window as any).__th.aiFake, x), s);
 const idle = (page: Page) => expect.poll(() => page.evaluate(() => (window as any).__th.ai.store.getState().status)).toBe('idle');
@@ -46,44 +46,20 @@ async function topsWhileClicking(page: Page, opener: ReturnType<Page['getByTestI
   });
 }
 
-test('想去的照片牆：展開、收合時被點的卡留在原位，不會跳走又捲回來', async ({ page }) => {
+// T83 起點列直接開詳情彈窗（照片牆、原地展開拿掉了）：列不重建、彈窗開著點別列原地換，被點的列不跑掉
+test('想去的列：點了開詳情，列不重建（縮圖不閃）；彈窗開著點別列，被點的列不跑掉', async ({ page }) => {
   await ready(page);
   await page.getByTestId('side-tab-wish').click();
   await openWishSection(page, 'scheduled');
-  await page.getByTestId('view-photo').click();
-  await page.waitForTimeout(800);
-  // 右欄（第二張）展開：卡要橫跨兩欄，以前會先跳到下面再捲回來
-  const second = page.getByTestId('wish-open').nth(1);
-  const opened = await topsWhileClicking(page, second);
-  expect(Math.max(...opened) - opened[0], `展開時往下跳：${opened.join(',')}`).toBeLessThanOrEqual(1);
-  await expect(page.getByTestId('place-open')).toBeVisible();
-  // 收合
-  const closed = await topsWhileClicking(page, page.locator('.pt.open'));
-  expect(Math.abs(closed.at(-1)! - closed[0]), `收合時跳走：${closed.join(',')}`).toBeLessThanOrEqual(1);
-  await expect(page.getByTestId('place-open')).toHaveCount(0);
-});
-
-test('想去的清單：展開、收合時列不重建（縮圖不閃）；上面的卡收起來時被點的列不跑掉', async ({ page }) => {
-  await ready(page);
-  await page.getByTestId('side-tab-wish').click();
-  await openWishSection(page, 'scheduled');
-  await page.getByTestId('view-list').click();
   const first = page.getByTestId('wish-open').first();
   await first.evaluate((el) => ((window as any).__row = el));
   await first.click();
-  await expect(page.getByTestId('place-open')).toBeVisible();
+  await expect(page.getByTestId('detail-float')).toBeVisible();
   expect(await first.evaluate((el) => (window as any).__row === el)).toBe(true);
-  await first.click();
-  await expect(page.getByTestId('place-open')).toHaveCount(0);
-  expect(await first.evaluate((el) => (window as any).__row === el)).toBe(true);
-  // 第一張開著，點下面一張：第一張收起來，被點的列不會一下跳走（放不下時才平滑捲）
-  await first.click();
-  await expect(page.getByTestId('place-open')).toBeVisible();
   const tops = await topsWhileClicking(page, page.getByTestId('wish-open').nth(2));
-  const moved = tops.find((t) => Math.abs(t - tops[0]) > 1);
-  // 清單已經捲到最上面時，上面的卡收起來沒有地方補償，列只能跟著往上（這時 scrollTop 是 0）
-  const atTop = (await page.locator('.side-body').evaluate((el) => el.scrollTop)) === 0;
-  expect(moved === undefined || Math.abs(moved - tops[0]) <= 60 || atTop, `一下跳走：${tops.join(',')}`).toBe(true);
+  expect(Math.max(...tops.map((t) => Math.abs(t - tops[0]))), `跳走：${tops.join(',')}`).toBeLessThanOrEqual(1);
+  expect(await first.evaluate((el) => (window as any).__row === el)).toBe(true);
+  await expect(page.getByTestId('detail-float')).toHaveCount(1);
 });
 
 test('AI 找地點：地圖上是水滴不是圈；換一組時舊的水滴和舊的選取都不留；新出現的才跳', async ({ page }) => {
@@ -211,31 +187,6 @@ test('日期晶片在地圖上：寬地圖一排、窄地圖兩排，全部看�
   await expect(days).toBeVisible();
   await page.getByTestId('side-tab-explore').click();
   await expect(days).toHaveCount(0);
-});
-
-test('展開卡的按鈕：右欄 420 三顆都寫字、一排；右欄 360 次要鈕只留圖示；都不換行、至少 44px', async ({ page }) => {
-  await ready(page);
-  await page.getByTestId('side-tab-explore').click();
-  await exploreAll(page);
-  await page.getByTestId('explore-item').first().click();
-  await expect(page.getByTestId('place-open')).toBeVisible();
-  const check = async (text: boolean) => {
-    const ids = ['place-open-detail', 'place-open-add', 'place-open-ask'];
-    const boxes = [];
-    for (const id of ids) boxes.push((await page.getByTestId(id).boundingBox())!);
-    expect(new Set(boxes.map((b) => Math.round(b.y))).size, '同一排').toBe(1);
-    for (const b of boxes) expect(b.height).toBeLessThanOrEqual(46);
-    for (const b of boxes) expect(b.height).toBeGreaterThanOrEqual(44);
-    const size = await page.getByTestId('place-open-add').evaluate((e) => getComputedStyle(e).fontSize);
-    expect(size === '0px').toBe(!text);
-    await expect(page.getByTestId('place-open-add')).toHaveAttribute('title', '加到某天');
-  };
-  await page.setViewportSize({ width: 1280, height: 800 });
-  await expect.poll(() => page.locator('.side-column').evaluate((e) => e.getBoundingClientRect().width)).toBe(420);
-  await check(true);
-  await page.setViewportSize({ width: 1180, height: 800 });
-  await expect.poll(() => page.locator('.side-column').evaluate((e) => e.getBoundingClientRect().width)).toBe(360);
-  await check(false);
 });
 
 test('某一天的標題：副標是「週五 · 地區」，沒有第 N 天；右欄窄、寬都和按鈕同一排', async ({ page }) => {

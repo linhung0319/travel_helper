@@ -85,18 +85,16 @@ export async function openDiscussion(page: Page) {
   await expect(page.getByTestId('discussion')).toBeVisible();
 }
 
-/** 電腦版：點類型列（全部、景點、餐廳、住宿）；類型不在篩選面板裡（T33） */
-export async function pickType(page: Page, type: 'all' | 'spot' | 'restaurant' | 'lodging') {
-  // T42：類型收進篩選面板；只留這一類（all＝都不選）
-  await page.getByTestId('filter-open').click();
-  for (const t of ['spot', 'restaurant', 'lodging']) {
-    const opt = page.getByTestId(`filter-opt-type-${t}`);
-    const want = String(t === type);
-    if ((await opt.getAttribute('aria-pressed')) !== want) await opt.click();
-    await expect(opt).toHaveAttribute('aria-pressed', want);
-  }
-  await page.getByTestId('filter-done').click();
-  await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
+/**
+ * 選類型（T80 改）：T75 起類型就是篩選列的主題列（玩／吃／住），不在面板裡、也不算條件晶片。
+ * 主題列只在選了一區（或想去）時有：還在概覽就先進鳥羽。網頁、手機都能用
+ */
+export async function pickType(page: Page, type: 'spot' | 'restaurant' | 'lodging') {
+  const bar = page.locator('[data-testid="filter-bar"]:visible').first();
+  const theme = bar.getByTestId(`theme-${type}`);
+  if (!(await theme.count())) await page.locator('[data-testid="ex-area-toba"]:visible, [data-testid="m-feed-area-toba"]:visible').first().click();
+  await theme.click();
+  await expect(theme).toHaveAttribute('aria-selected', 'true');
 }
 
 /** 套用的條件不再列成晶片（T33）：打開篩選面板看這個選項有沒有選，看完關掉（手機、網頁都能用） */
@@ -107,7 +105,10 @@ export async function expectFilterOpt(page: Page, opt: string, pressed: boolean)
   await expect(page.getByTestId('filter-sheet')).toHaveCount(0);
 }
 
-/** 電腦版：打開右欄的篩選抽屜，點幾個選項（例如 'tier-S'、'type-restaurant'、'map-inView'；已經選的再點是取消），按「顯示 N 個」關掉 */
+/**
+ * 電腦版：打開右欄的篩選抽屜，點幾個選項（已經選的再點是取消），按「看 N 個」關掉。
+ * 選項是「組 ID-值」：主題面板例如 'context-lunch'、'restaurant-tier-S'、'suits-elderly'、'map-inView'；沒有主題的面板才有 'type-restaurant'
+ */
 export async function pickFilter(page: Page, ...opts: string[]) {
   await page.getByTestId('filter-open').click();
   for (const o of opts) await page.getByTestId(`filter-opt-${o}`).click();
@@ -135,40 +136,41 @@ export async function likeMany(page: Page, n: number, type = 'spot'): Promise<st
 }
 
 /**
- * T42：探索沒選地區、沒有條件時是概覽（不是照片牆）。測照片牆、清單本身的測試先呼叫這個：
- * 面板裡三類都選（等於全部的地點，只是畫成照片牆或清單）；手機的 feed 也一樣。
+ * 探索的平清單（T80 改）：T75 起選了一區是主題的區段、沒選地區沒條件是概覽。測清單列本身的測試先呼叫這個：
+ * 沒選地區、等級 S、A、B 都勾（B 收得到沒評的，T75）＝全部的地點，exploreLayer 是 list（和搜尋、AI 結果集同一層）。手機的 feed 也一樣。
  */
 export async function exploreAll(page: Page) {
   await page.evaluate(() => {
     const w = window as any;
-    w.__th.appStore.getState().setFilter({ types: ['spot', 'restaurant', 'lodging'] });
-    w.__thMobile?.getState().setFeed({ type: 'all', quick: ['types:spot', 'types:restaurant', 'types:lodging'] });
+    w.__th.appStore.getState().setFilter({ areas: [], regions: [], types: [], tiers: ['S', 'A', 'B'] });
+    w.__thMobile?.getState().setFeed({ type: 'all', area: null, quick: ['tiers:S', 'tiers:A', 'tiers:B'] });
   });
 }
 
 export type WishSectionId = 'unscheduled' | 'candidate' | 'scheduled';
 
-/** T53：想去是三排書架。按那排的「全部 ›」進它的照片牆或清單（網頁、手機一樣） */
+/** 想去的面板（網頁右欄、手機的想去分頁） */
+const wishRoot = (page: Page) => page.locator('[data-testid="wish-panel"], [data-testid="m-wish"]');
+const wishSection = (page: Page, section: WishSectionId) => page.locator(`[data-testid="wish-list"] [data-testid="wish-section"][data-section="${section}"]`);
+
+/** T76 起想去是三個收合的區段：展開這一段（已經展開就不動）（網頁、手機一樣） */
 export async function openWishSection(page: Page, section: WishSectionId) {
-  await page.getByTestId(`wish-shelf-all-${section}`).click();
-  await expect(page.locator(`[data-testid="wish-list"][data-stage="list"] [data-section="${section}"]`)).toBeVisible();
+  const sec = wishSection(page, section);
+  if ((await sec.getAttribute('data-open')) !== 'true') await sec.getByTestId('section-head').click();
+  await expect(sec).toHaveAttribute('data-open', 'true');
 }
 
-/** T53：回到三排書架（篩選列的「‹ 還沒排」） */
-export async function backToWishShelves(page: Page) {
-  await page.getByTestId('back-to-area').click();
-  await expect(page.locator('[data-testid="wish-list"][data-stage="shelves"]')).toBeVisible();
-}
-
-/** T53：等這個點出現在想去（書架的小卡或清單的列）；在書架上就按它那排的「全部 ›」，回傳那排 */
+/** 等這個點出現在想去：切到它那一類的主題、有東西的段都展開，回傳它在哪一段 */
 export async function revealWishRow(page: Page, id: string): Promise<WishSectionId> {
-  await expect(page.locator(`[data-testid="wish-list"] [data-id="${id}"]`).first()).toBeVisible();
-  const shelf = page.locator(`[data-testid="wish-shelf"]:has([data-id="${id}"])`);
-  if (await shelf.count()) {
-    const sec = (await shelf.getAttribute('data-section')) as WishSectionId;
-    await openWishSection(page, sec);
+  const type = await page.evaluate((id) => (window as any).__th.dataStore.getState().byId.get(id)?.type, id);
+  const theme = wishRoot(page).getByTestId(`theme-${type}`);
+  if ((await theme.count()) && (await theme.getAttribute('aria-selected')) !== 'true') await theme.click();
+  await expect(page.getByTestId('wish-list').getByTestId('wish-section')).toHaveCount(3);
+  await expect(page.locator(`[data-testid="wish-list"] [data-testid="wish-section"]:has([data-testid="section-count"]:not(:text-is("0")))`).first()).toBeVisible();
+  for (const s of ['unscheduled', 'candidate', 'scheduled'] as const) {
+    if ((await wishSection(page, s).getByTestId('section-count').innerText()) !== '0') await openWishSection(page, s);
   }
-  const row = page.locator(`[data-testid="wish-list"][data-stage="list"] [data-section]:has([data-id="${id}"])`);
-  await expect(row).toBeVisible();
-  return (await row.getAttribute('data-section')) as WishSectionId;
+  const sec = page.locator(`[data-testid="wish-list"] [data-testid="wish-section"]:has([data-id="${id}"])`);
+  await expect(sec).toBeVisible();
+  return (await sec.getAttribute('data-section')) as WishSectionId;
 }

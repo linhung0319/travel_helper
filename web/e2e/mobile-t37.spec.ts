@@ -85,25 +85,27 @@ test('想去頁空白：三格小圖；去探索', async ({ page }) => {
   await flightsOnly(page);
   await goTab(page, 'wish');
   await expect(page.getByTestId('wish-empty')).toContainText('數字代表幾個人想去');
-  await expect(page.getByTestId('wish-shelf')).toHaveCount(0);
+  await expect(page.getByTestId('wish-section')).toHaveCount(0);
   expect(await scrollsSideways(page)).toBe(false);
   await page.getByTestId('wish-empty-explore').click();
   await expect(page.getByTestId('m-tab-explore')).toHaveAttribute('aria-current', 'page');
 });
 
-test('第一次按 ♡：提示在分頁列上面，去看到想去', async ({ page }) => {
+// T76 起按想去每次都有提示＋「復原」（舊的「去看」一次性提示拿掉）
+test('按 ♡：提示在分頁列上面、有復原，想去分頁的數字 +1', async ({ page }) => {
   await flightsOnly(page);
   await goTab(page, 'explore');
   await exploreAll(page);
   await page.getByTestId('card-like').first().click();
-  const toast = page.getByTestId('hint');
+  const toast = page.getByTestId('toast');
   await expect(toast).toContainText('已加到想去');
+  await expect(page.getByTestId('toast-undo')).toBeVisible();
   const box = (await toast.boundingBox())!;
   const bar = (await page.getByTestId('m-tabbar').boundingBox())!;
   expect(box.y + box.height).toBeLessThanOrEqual(bar.y);
-  await page.getByTestId('hint-action').click();
-  await expect(page.getByTestId('m-tab-wish')).toHaveAttribute('aria-current', 'page');
   await expect(page.getByTestId('m-tab-count')).toHaveText('1');
+  await goTab(page, 'wish');
+  await expect(page.getByTestId('wish-section')).toHaveCount(3);
 });
 
 test('怎麼用：「我」分頁第一列，四點', async ({ page }) => {

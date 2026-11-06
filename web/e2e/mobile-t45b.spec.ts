@@ -87,6 +87,8 @@ test('手機整趟：有鎖的區名的說明；未選住宿的「看那區的�
   await r9.getByTestId('sk-stay-shelf').click();
   await expect.poll(() => page.evaluate(() => (window as any).__thMobile.getState().tab)).toBe('explore');
   await expect.poll(() => page.evaluate(() => (window as any).__thMobile.getState().feed.area)).toBe('ise');
-  await expect(page.locator('[data-testid="shelf"][data-shelf="stay"]')).toBeInViewport();
+  // T79：進那區的「住」（沒有住宿那排了）
+  await expect(page.getByTestId('area-home')).toHaveAttribute('data-theme', 'lodging');
+  await expect(page.getByTestId('area-home')).toBeInViewport();
   await shot(page, 't45b-m-stay-shelf');
 });
