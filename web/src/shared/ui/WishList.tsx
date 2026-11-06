@@ -6,6 +6,10 @@
 // 網頁：列右邊 ❤ 加日曆鈕（wish-add，開 DayPicker 小彈窗 wish-add-pop）。手機：列可以左滑露出「加到某天」（wish-swipe-add），
 // 第一次打開某排的清單時第一列自己滑 40px 再彈回（localStorage th.wishSwipeHint）。照片牆的卡片用 PlaceTile。
 // 樣式在 ui.css（.wl-、書架沿用 .xs-）。清單的計算（篩選、排序）由呼叫的畫面做好，這裡只管分段與顯示。
+//
+// T76（interaction-design §35.8）：新的是 WishSectionList：三排改成和探索一樣的收合區段（Section.tsx，色條愛心紅），列是同一種 PlaceRow，
+// 候選、已排的第二行寫「2/7 候選」「2/5 排了」，最新留言照舊；「全部 N ›」、wishPrefs.section、照片牆、日期小標拿掉；最下面一行說明。
+// 日曆鈕（網頁）、左滑（手機）照舊。舊的 WishList（三排小卡）留到 T77、T78 接上新的再刪（T79）。
 
 import { createPortal } from 'react-dom';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -18,9 +22,10 @@ import { dragPlaceProps } from '../../components/askAi.ts';
 import { useWishPrefs, wishPrefs } from '../wishPrefs.ts';
 import { useLikeCount, useLiked } from '../placeLists.ts';
 import { SHELF_SIZE } from '../../lib/shelves.ts';
-import { statusHighlights } from '../rowHighlights.ts';
+import { rowHighlights, statusHighlights } from '../rowHighlights.ts';
 import { fitBadges } from '../../lib/placeSummary.ts';
-import { PAGE_FIRST, PAGE_MORE, wishSections, type SectionId, type WishGroup, type WishSection } from '../wishSections.ts';
+import { PAGE_FIRST, PAGE_MORE, WISH_SECTIONS_NOTE, wishSections, wishWhen, type SectionId, type WishGroup, type WishSection } from '../wishSections.ts';
+import { Section, SectionRows } from './Section.tsx';
 import type { Place } from '../../data/types.ts';
 import { Highlights, PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
 import { PlaceTile } from './PlaceTile.tsx';
@@ -464,6 +469,172 @@ export function WishList({ surface, places, view, onOpen, onOpenComments, hotId,
           </button>
         )}
       </section>
+    </div>
+  );
+}
+
+// ---------------- T76：收合的三段 ----------------
+
+interface WishRowProps {
+  place: Place;
+  status: DayStatus;
+  section: SectionId;
+  surface: WishSurface;
+  hot: boolean;
+  hint: boolean;
+  lastComment: string | undefined;
+  onOpen: () => void;
+  onOpenComments: () => void;
+  open?: boolean;
+  below?: ReactNode;
+}
+
+/** 想去的一列（T76）：同探索的 PlaceRow；候選、已排的膠囊那行先放日期（「2/7 候選」「2/5 排了」），再放這團的標章，最多兩顆；最下面最新留言 */
+function WishRow({ place, status, section, surface, hot, hint, lastComment, onOpen, onOpenComments, open, below }: WishRowProps) {
+  const [adding, setAdding] = useState(false);
+  const mobile = surface === 'mobile';
+  const picker = adding && createPortal(<DayPicker placeId={place.id} onClose={() => setAdding(false)} testId={mobile ? 'day-picker' : 'wish-add-pop'} />, document.body);
+  const when = section === 'unscheduled' ? null : wishWhen(section, status);
+  const foot = (
+    <button
+      type="button"
+      className={`wl-comment ${lastComment ? '' : 'none'}`}
+      data-testid="wish-last-comment"
+      onClick={(e) => {
+        e.stopPropagation();
+        onOpenComments();
+      }}
+    >
+      <Icon name="chat" size={16} />
+      <span className="wl-ell">{lastComment ?? '還沒有留言'}</span>
+    </button>
+  );
+  // 車站不能排進行程（T29c §8.10）：不放日曆鈕、不能左滑
+  const canAdd = place.type !== 'station';
+  const right = mobile ? undefined : (
+    <span className="wl-right">
+      <VoteHeart placeId={place.id} />
+      {canAdd && (
+        <button
+          type="button"
+          className="wl-add"
+          aria-label="加到某天"
+          title="加到某天（給主辦的建議）"
+          data-testid="wish-add"
+          onClick={(e) => {
+            e.stopPropagation();
+            setAdding(true);
+          }}
+        >
+          <Icon name="calendar" size={20} />
+        </button>
+      )}
+    </span>
+  );
+  const row = (
+    <PlaceRow
+      place={place}
+      status={status}
+      hot={hot}
+      testId={mobile ? 'm-wish-open' : 'wish-open'}
+      onOpen={onOpen}
+      rootProps={mobile ? undefined : { ...dragPlaceProps(place.id), title: '點了展開；拖到左邊的聊天室可以問 AI' }}
+      open={open}
+      below={below}
+      caps={when ? [...when, ...rowHighlights(place, { candidate: [], scheduled: [] })].slice(0, 2) : undefined}
+      foot={foot}
+      right={right}
+    />
+  );
+  return (
+    <div className={`wl-item type-${place.type}`} data-testid={mobile ? 'm-wish-item' : 'wish-item'} data-id={place.id} data-type={place.type} data-section={section}>
+      {mobile && canAdd ? (
+        <SwipeRow hint={hint} onAdd={() => setAdding(true)}>
+          {row}
+        </SwipeRow>
+      ) : (
+        row
+      )}
+      {picker}
+    </div>
+  );
+}
+
+export interface WishSectionListProps {
+  surface: WishSurface;
+  /** 已經篩選（含主題）、排好的想去的點 */
+  places: Place[];
+  /** 展開的段（呼叫的畫面記） */
+  openIds: readonly SectionId[];
+  onToggle: (id: SectionId) => void;
+  onOpen: (id: string) => void;
+  /** 點最新留言：開詳情的留言分頁 */
+  onOpenComments: (id: string) => void;
+  /** 網頁：原地展開的那個點、展開後的「詳細資料」「問 AI」；手機不給 */
+  openId?: string | null;
+  onDetail?: (id: string) => void;
+  onAsk?: (id: string) => void;
+  /** 地圖「指到」或被地圖點到的點（加底色） */
+  hotId?: string | null;
+  /** 捲動容器（分批畫）：手機 '.m-page'、網頁 '.side-body' */
+  scroller: string;
+  /** 段裡至少畫到第幾個（地圖點到的點要捲到它）：段 ID → 個數 */
+  minShown?: Partial<Record<SectionId, number>>;
+}
+
+/**
+ * 想去（T76，§35.8）：還沒排／已是候選／已排進行程三個收合區段，數字永遠寫，0 個的段展開是一行灰字；最下面一行說明。
+ * 一個點都沒有時什麼都不畫（空白狀態 §17.4 由呼叫的畫面放）。哪個點在哪一段用 useWishSections（呼叫的畫面要展開它那段時也用）
+ */
+export function WishSectionList({ surface, places, openIds, onToggle, onOpen, onOpenComments, openId = null, onDetail, onAsk, hotId, scroller, minShown }: WishSectionListProps) {
+  const lastComments = useLastComments();
+  const statusOf = useDayStatus();
+  const byId = useMemo(() => new Map(places.map((p) => [p.id, p])), [places]);
+  const sections = useWishSections(places);
+  if (!places.length) return null;
+  // 手機左滑的提示只放在第一個展開的段的第一列
+  const hintSection = sections.find((sec) => sec.count > 0 && openIds.includes(sec.id))?.id;
+  return (
+    <div className="wl wl-v2" data-testid="wish-list" data-surface={surface} data-stage="sections">
+      {sections.map((sec) => {
+        const open = openIds.includes(sec.id);
+        const items = open ? sec.groups.flatMap((g) => g.ids).map((id) => byId.get(id)).filter((p): p is Place => !!p) : [];
+        return (
+          <Section key={sec.id} head={sec} kind="wish" count={sec.count} open={open} onToggle={() => onToggle(sec.id)} testId="wish-section">
+            {open &&
+              (items.length ? (
+                <SectionRows
+                  items={items}
+                  scroller={scroller}
+                  resetOn={[places]}
+                  minShown={minShown?.[sec.id]}
+                  render={(p, i) => (
+                    <WishRow
+                      place={p}
+                      status={statusOf(p.id)}
+                      section={sec.id}
+                      surface={surface}
+                      hot={hotId === p.id}
+                      hint={surface === 'mobile' && sec.id === hintSection && i === 0}
+                      lastComment={lastComments.get(p.id)}
+                      onOpen={() => onOpen(p.id)}
+                      onOpenComments={() => onOpenComments(p.id)}
+                      open={!!onDetail && openId === p.id}
+                      below={onDetail ? <PlaceOpenBody place={p} onDetail={() => onDetail(p.id)} onAsk={onAsk ? () => onAsk(p.id) : undefined} /> : undefined}
+                    />
+                  )}
+                />
+              ) : (
+                <p className="sec-none" data-testid="wish-section-empty">
+                  {SECTION_EMPTY[sec.id]}
+                </p>
+              ))}
+          </Section>
+        );
+      })}
+      <p className="wl-note" data-testid="wish-note">
+        {WISH_SECTIONS_NOTE}
+      </p>
     </div>
   );
 }

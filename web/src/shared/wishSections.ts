@@ -5,6 +5,8 @@ import type { Itinerary } from '@travel-helper/engine/types';
 import type { Candidate } from '../backend/types.ts';
 import { placeDayStatus } from '../lib/wishlist.ts';
 import type { SectionHead } from '../lib/shelves.ts';
+import { shortDayLabel } from '../lib/trip.ts';
+import type { RowHighlight } from './rowHighlights.ts';
 
 export type SectionId = 'unscheduled' | 'candidate' | 'scheduled';
 
@@ -61,4 +63,13 @@ export function wishSections(ids: string[], candidates: Candidate[], it: Itinera
     section('candidate', grouped(byDate.candidate)),
     section('scheduled', grouped(byDate.scheduled)),
   ];
+}
+
+/** 候選、已排那段的第二行（§35.8）：「2/7 候選」「2/5 排了」；同一個點也是別天的候選時多一顆（那段的那顆在前） */
+export function wishWhen(section: SectionId, status: { candidate: string[]; scheduled: string[] }): RowHighlight[] {
+  const days = (list: string[]) => list.map(shortDayLabel).join('、');
+  const out: RowHighlight[] = [];
+  if (status.scheduled.length) out.push({ label: `${days(status.scheduled)} 排了`, tone: 'good' });
+  if (status.candidate.length) out.push({ label: `${days(status.candidate)} 候選`, tone: 'indigo' });
+  return section === 'candidate' ? out.reverse() : out;
 }

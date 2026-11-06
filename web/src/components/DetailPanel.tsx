@@ -23,17 +23,18 @@ import {
   SEATING_LABELS,
   label,
 } from '../lib/labels.ts';
-import { nearbyPlaces } from '../lib/nearby.ts';
+import { nearbyPlaces, type NearbyItem } from '../lib/nearby.ts';
 import { dayLabel, shortDayLabel } from '../lib/trip.ts';
 import { TypeSeal } from '../shared/ui/TypeLabel.tsx';
 import { Icon } from './Icon.tsx';
 import { placeBadges } from '../lib/badges.ts';
-import type { Place } from '../data/types.ts';
+import type { Place, PlaceType } from '../data/types.ts';
 import { StationTimetablePanel } from './StationTimetable.tsx';
 import { EditedMark, editedOf } from './EditHistory.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { askPlace } from './webAi.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
+import { MARK_LEGEND, MARK_WORDS } from '../shared/rowHighlights.ts';
 import { EXTRA_LABELS } from '../../../worker/src/lib/placeLayers.ts';
 
 type Obj = Record<string, unknown>;
@@ -337,14 +338,21 @@ export function LinksSection({ place }: { place: Place }) {
   );
 }
 
+/** 附近一定列的三類（車站有的才列）、每類先列幾個 */
+const NEARBY_TYPES = ['spot', 'restaurant', 'lodging'] as const;
+const NEARBY_FIRST = 3;
+
 /**
  * 附近的點。電腦版（第八輪 §13.3 第 5 點）：點一列＝地圖上那個點變成水滴、跳三下（選中它；詳情自己的點保持水滴但不跳，MapView 的 detail 水滴），彈窗不動；
  * 列尾「詳情 ›」（或再點地圖上那個點）＝彈窗原地換成它。onPick（手機版）：點名稱改做這件事（例如打開它的詳情）
  */
 export function NearbySection({ place, onPick }: { place: Place; onPick?(id: string): void }) {
   const places = useData((s) => s.places);
-  const groups = useMemo(() => nearbyPlaces(place, places), [place, places]);
-  if (groups.size === 0) return null;
+  // T76（§35.9）：每類先列 3 個、寫「列出 3 個，共 N 個」加「更多 ›」；景點、餐廳、住宿一類是零寫「附近沒有住宿（0 個）」
+  const all = useMemo(() => nearbyPlaces(place, places, Infinity), [place, places]);
+  const [more, setMore] = useState<Set<string>>(() => new Set());
+  const groups = new Map<PlaceType, NearbyItem[]>(NEARBY_TYPES.map((t) => [t, all.get(t) ?? []]));
+  for (const [t, items] of all) if (!groups.has(t)) groups.set(t, items);
   // 點了選中那個點（地圖的數字水滴，看得到就不動）；要看它的介紹，再點地圖上的點
   const find = (id: string) => {
     if (onPick) return onPick(id);
@@ -354,9 +362,28 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
   return (
     <Section title="附近">
       <p className="muted small">{onPick ? '點名稱看它的介紹。' : '點名稱，地圖上那個點會跳出來；「詳情 ›」或再點地圖上的點看它的介紹。'}</p>
-      {[...groups.entries()].map(([type, items]) => (
-        <div key={type} className="nearby-group">
-          <h4>{TYPE_LABELS[type]}</h4>
+      {[...groups.entries()].map(([type, list]) => {
+        const items = more.has(type) ? list : list.slice(0, NEARBY_FIRST);
+        return (
+        <div key={type} className="nearby-group" data-type={type}>
+          <h4 className="nearby-h">
+            {TYPE_LABELS[type]}
+            {list.length > 0 && (
+              <small className="nearby-n" data-testid="nearby-count">
+                {list.length > NEARBY_FIRST && !more.has(type) ? `列出 ${NEARBY_FIRST} 個，共 ${list.length} 個` : `共 ${list.length} 個`}
+              </small>
+            )}
+            {list.length > NEARBY_FIRST && !more.has(type) && (
+              <button type="button" className="link-button nearby-more" onClick={() => setMore(new Set(more).add(type))} data-testid="nearby-more">
+                更多 ›
+              </button>
+            )}
+          </h4>
+          {list.length === 0 && (
+            <p className="muted small nearby-none" data-testid="nearby-none">
+              附近沒有{TYPE_LABELS[type]}（0 個）
+            </p>
+          )}
           <ul className="nearby">
             {items.map((it) => (
               <li key={it.place.id}>
@@ -381,7 +408,8 @@ export function NearbySection({ place, onPick }: { place: Place; onPick?(id: str
             ))}
           </ul>
         </div>
-      ))}
+        );
+      })}
       <p className="muted small">步行分鐘是一般成人的速度；全員一起走大約要乘 1.4。</p>
     </Section>
   );
@@ -458,23 +486,32 @@ function Tags({ place }: { place: Place }) {
   );
 }
 
-/** 四格「長輩／小孩／2 月／15 人」（T44b §18.2）：記號＋一句理由；點了展開完整的一句（兩行放不下時） */
+/**
+ * 四格「長輩／小孩／2 月／15 人」（T44b §18.2）：記號＋一句理由；點了展開完整的一句（兩行放不下時）。
+ * T76（§35.9）：記號下面寫字（很適合、可以、要注意、不適合、沒資料），沒資料的格子是「—」虛線框；下面一行圖例
+ */
 function FitGrid({ place }: { place: Place }) {
   const cells = fitCells(place);
   const [open, setOpen] = useState(false);
   if (!cells.length) return null;
   return (
-    <button type="button" className={`pd-fit ${open ? 'open' : ''}`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="detail-fit">
-      {cells.map((c) => (
-        <span key={c.key} className={`pd-fit-cell tone-${c.tone}`} data-testid={`detail-fit-${c.key}`}>
-          <b className="pd-fit-mark" aria-hidden>
-            {c.mark ?? '—'}
-          </b>
-          <span className="pd-fit-label">{c.label}</span>
-          <span className="pd-fit-why">{c.reason ?? '沒有資料'}</span>
-        </span>
-      ))}
-    </button>
+    <>
+      <button type="button" className={`pd-fit ${open ? 'open' : ''}`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="detail-fit">
+        {cells.map((c) => (
+          <span key={c.key} className={`pd-fit-cell tone-${c.tone}`} data-testid={`detail-fit-${c.key}`}>
+            <b className="pd-fit-mark" aria-hidden>
+              {c.mark ?? '—'}
+            </b>
+            <span className="pd-fit-word">{MARK_WORDS[c.mark ?? '—']}</span>
+            <span className="pd-fit-label">{c.label}</span>
+            <span className="pd-fit-why">{c.reason ?? '沒有資料'}</span>
+          </span>
+        ))}
+      </button>
+      <p className="pd-fit-legend" data-testid="detail-fit-legend">
+        {MARK_LEGEND}
+      </p>
+    </>
   );
 }
 
@@ -701,7 +738,7 @@ export function DetailPanel({ place, from }: { place: Place; from: DetailFrom })
         {prev ? (
           <button type="button" className="detail-back" onClick={() => appStore.getState().detailBack()} data-testid="detail-back">
             <Icon name="back" size={16} />
-            <span className="detail-back-name">{prev.name.zh || prev.name.ja}</span>
+            <span className="detail-back-name">回到 {prev.name.zh || prev.name.ja}</span>
           </button>
         ) : (
           <span className="detail-bar-name" aria-hidden>

@@ -7,16 +7,28 @@
 // 書架、概覽那層沒有帶子；有條件時（想去在三排那層也能篩）條件列單獨一列。誰吃、住法兩題的晶片右邊多一段分布小字（T67）。
 // 網頁：整組黏在右欄上面。手機：整組也黏在最上面（2026-11-02 👤）；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留第一列，其他的跟著內容捲走。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
+//
+// T76（interaction-design §35.3、35.5）：呼叫的畫面給了 stage（lib/shelves.ts 的 exploreLayer）就是新的長相：
+// - 工具列只剩搜尋＋篩選圓鈕（有條件時芥子黃小點、白底）；stage 是 overview 時是搜尋＋問 AI＋加地點。排序、照片牆／清單切換、「看什麼」淡藍帶、
+//   「‹ 書架」「‹ 三排」、extraCond 都不畫（沒給 stage 的舊畫面照舊，T77、T78 接上新的之後 T79 刪）。
+// - 地區分頁（typeRow，數字由呼叫的畫面給、永遠寫）、子地區晶片（subRow，RegionChips）、主題列（model.theme＋themeCounts，stage 是 area 時）由上往下，整組黏頂。
+// - 條件列不在這裡（會捲走）：呼叫的畫面在內容最上面放 FilterConds。
+// - 篩選面板只畫目前主題的組（FilterSheet 的 theme）。
+// - 量好黏住的高度寫在捲動容器的 --sec-top（區段標題黏在它下面，Section.tsx）。
 
-import { Fragment, useEffect, useRef, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode, type RefObject } from 'react';
 import { useData } from '../../hooks.ts';
+import type { Area } from '../../data/types.ts';
 import { Icon } from '../../components/Icon.tsx';
 import { EXPLORE_SORTS, EXPLORE_SORT_LABELS, type ExploreSort } from '../../lib/explore.ts';
 import type { Filter, FilterKey } from '../../lib/filter.ts';
-import { type FilterSource } from '../filterOptions.ts';
+import { themeApplied, type FilterSource } from '../filterOptions.ts';
 import { conditionChips, type CondChip } from '../../lib/listConditions.ts';
+import type { ExploreLayer, Theme } from '../../lib/shelves.ts';
 import { Chip } from './Chip.tsx';
 import { FilterSheet, type FilterSurface } from './FilterSheet.tsx';
+import { scrollerOf } from './PlaceOpen.tsx';
+import { ThemeRow } from './ThemeRow.tsx';
 
 export type ListView = 'photo' | 'list';
 
@@ -46,6 +58,10 @@ export interface FilterModel {
   onBack?(): void;
   /** 工具列的加地點（只有探索，T33） */
   onAdd?(): void;
+  /** 目前的主題（T76：主題列、面板只畫這個主題的組）；概覽、搜尋、AI 結果集是 null */
+  theme?: Theme | null;
+  /** 換主題（主題列） */
+  setTheme?(theme: Theme): void;
 }
 
 /** 排序：晶片，點了出現選單（不用 <select>，兩邊樣子一樣） */
@@ -201,7 +217,212 @@ function Tool({ icon, label, onClick, testId, className }: { icon: 'spark' | 'pl
   );
 }
 
-export function FilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true, extraCond }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; typeRow?: ReactNode; subRow?: ReactNode; back?: FilterBack | null; showView?: boolean; extraCond?: ExtraCond }) {
+export interface FilterBarProps {
+  source: FilterSource;
+  surface: FilterSurface;
+  model: FilterModel;
+  /** 符合的數量（面板的「看 N 個」） */
+  count: number;
+  /** 地區分頁（AreaChips） */
+  typeRow?: ReactNode;
+  /** 子地區晶片（RegionChips） */
+  subRow?: ReactNode;
+  /** 舊的「看什麼」帶子（T79 刪） */
+  back?: FilterBack | null;
+  showView?: boolean;
+  extraCond?: ExtraCond;
+  /** T76：給了就是新的長相（探索的層；想去給 'area'） */
+  stage?: ExploreLayer;
+  /** T76：主題列的三格數字（lib/shelves.ts 的 themeCounts） */
+  themeCounts?: Record<Theme, number>;
+}
+
+export function FilterBar(props: FilterBarProps) {
+  return props.stage ? <ThemeFilterBar {...props} stage={props.stage} /> : <LegacyFilterBar {...props} />;
+}
+
+/** 面板裡套了條件沒有（篩選鈕的小點）：有主題時只看那個主題的組（T75 的 themeApplied），沒有時看條件晶片 */
+function hasConditions(model: FilterModel, source: FilterSource, areas: Area[]): boolean {
+  if (model.theme) return themeApplied(model.theme, model.filter, source) > 0 || model.inView;
+  return conditionChips(model.filter, '', areas, { inView: model.inView, shelves: false }).length > 0;
+}
+
+/**
+ * 黏住的篩選列有多高，寫在捲動容器的 --sec-top（展開的區段標題黏在它下面，Section.tsx）。
+ * 手機螢幕太矮時 .fb-stick 是 display: contents，只有工具列（靛藍色帶）黏住，量它；網頁量整個 .fb-desktop
+ */
+function useSectionTop(stick: RefObject<HTMLElement | null>, band: RefObject<HTMLElement | null>) {
+  useLayoutEffect(() => {
+    const el = stick.current;
+    const scroller = el && scrollerOf(el);
+    if (!el || !scroller) return;
+    const measure = () => {
+      const sticky = getComputedStyle(el).display === 'contents' ? band.current : el;
+      scroller.style.setProperty('--sec-top', `${sticky?.offsetHeight ?? 0}px`);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    for (const c of [el, band.current, ...Array.from(el.children)]) if (c) ro.observe(c);
+    window.addEventListener('resize', measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
+      scroller.style.removeProperty('--sec-top');
+    };
+  }, [stick, band]);
+}
+
+/** 工具列的篩選圓鈕（T76）：有條件時白底、右上芥子黃小點 */
+function FilterButton({ on, onClick }: { on: boolean; onClick(): void }) {
+  return (
+    <button type="button" className={`fb-tool fb-filter2${on ? ' on' : ''}`} aria-label={on ? '篩選（有條件）' : '篩選'} title="篩選" aria-pressed={on} onClick={onClick} data-testid="filter-open">
+      <Icon name="sliders" size={20} />
+      {on && <span className="fb-dot" aria-hidden />}
+    </button>
+  );
+}
+
+/** 新的篩選列（T76）：搜尋＋篩選（概覽是搜尋＋問 AI＋加地點）、地區分頁、子地區、主題列，整組黏頂 */
+function ThemeFilterBar({ source, surface, model, count, typeRow, subRow, stage, themeCounts }: FilterBarProps & { stage: ExploreLayer }) {
+  const areas = useData((s) => s.areas);
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const stickRef = useRef<HTMLDivElement>(null);
+  const desktop = surface === 'desktop';
+  useSectionTop(desktop ? rootRef : stickRef, rootRef);
+  const overview = stage === 'overview';
+  const searchTestId = desktop ? 'search' : source === 'wish' ? 'm-wish-search' : 'm-feed-search';
+  const aiLabel = model.ai && (count === model.ai.total ? `AI 挑的 · ${model.ai.total} 家` : `AI 挑的 ${model.ai.total} 家中的 ${count} 家`);
+  const backButton = model.onBack && (
+    <button type="button" className="ai-back flat" onClick={model.onBack} data-testid="ai-back">
+      ‹ 回 AI
+    </button>
+  );
+  const themeRow = stage === 'area' && model.theme !== undefined && model.setTheme && themeCounts && (
+    <div className="fb-themerow">
+      <ThemeRow value={model.theme ?? null} counts={themeCounts} onPick={model.setTheme} />
+    </div>
+  );
+  const tools = overview ? (
+    <>
+      {model.onAsk && <Tool icon="spark" label="問 AI" onClick={model.onAsk} testId="list-ask-ai" className="fb-tool-ai" />}
+      {model.onAdd && <Tool icon="plus" label="自己加一個" onClick={model.onAdd} testId="add-place-open" className="fb-tool-add" />}
+    </>
+  ) : (
+    <FilterButton on={hasConditions(model, source, areas)} onClick={() => setOpen(true)} />
+  );
+  const row = (
+    <div className="fb-row">
+      <label className="fb-search">
+        <Icon name="search" size={20} />
+        <input type="search" value={model.query} placeholder="搜尋名稱" aria-label="搜尋名稱" onChange={(e) => model.setQuery(e.target.value)} data-testid={searchTestId} />
+        {model.query && (
+          <button type="button" className="fb-search-clear" aria-label="清除搜尋" onClick={() => model.setQuery('')}>
+            <Icon name="close" size={16} />
+          </button>
+        )}
+      </label>
+      {tools}
+    </div>
+  );
+  const ai = model.ai && (
+    <div className="fb-ai">
+      {desktop ? (
+        <button type="button" className="fb-ai-chip" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
+          ✦ {aiLabel}
+          <Icon name="close" size={16} />
+        </button>
+      ) : (
+        <div className="fb-ai-row">
+          {backButton}
+          <span className="ai-pill" data-testid="ai-result-pill">
+            <button type="button" className="ai-pill-body" onClick={model.onBack} data-testid="ai-result-open">
+              ✦ {aiLabel}
+            </button>
+            <button type="button" className="ai-pill-x" aria-label="清掉 AI 挑的" onClick={model.ai.onClear} data-testid="ai-result-chip">
+              <Icon name="close" size={16} />
+            </button>
+          </span>
+        </div>
+      )}
+      <span className="fb-ai-title" data-testid="ai-result-title">
+        {model.ai.title}
+      </span>
+    </div>
+  );
+  const below = (
+    <>
+      {ai}
+      {!desktop && !model.ai && backButton && <div className="fb-backrow">{backButton}</div>}
+      {typeRow && (
+        <div className="fb-typerow">
+          <div className="fb-types">{typeRow}</div>
+        </div>
+      )}
+      {subRow && <div className="fb-subrow">{subRow}</div>}
+      {themeRow}
+    </>
+  );
+  const sheet = open && <FilterSheet source={source} surface={surface} model={model} count={count} theme={model.theme ?? null} host={desktop ? (rootRef.current?.closest('.side-panel') as HTMLElement | null) : null} onClose={() => setOpen(false)} />;
+  if (desktop) {
+    return (
+      <>
+        <div className="fb fb-desktop fb-v2" ref={rootRef} data-testid="filter-bar" data-stage={stage}>
+          {row}
+          {below}
+        </div>
+        {sheet}
+      </>
+    );
+  }
+  return (
+    <>
+      <div className="fb-stick fb-v2" ref={stickRef} data-testid="fb-stick" data-stage={stage}>
+        <div className="fb fb-mobile" ref={rootRef} data-testid="filter-bar">
+          {row}
+        </div>
+        <div className="fb-below">{below}</div>
+      </div>
+      {sheet}
+    </>
+  );
+}
+
+/**
+ * 條件列（T76，§35.5）：有條件時才畫，放在內容最上面（不黏頂，會捲走）：墨色實心膠囊「長輩 ✕」每顆可點掉，右邊小字「符合 N 個」。
+ * 主題（類型）、地區、子地區、搜尋不算（都在頂端看得到）；網頁的「只看地圖畫面裡的」算一顆
+ */
+export function FilterConds({ model, count }: { model: FilterModel; count: number }) {
+  const areas = useData((s) => s.areas);
+  const chips = conditionChips(model.filter, '', areas, { inView: model.inView, shelves: false }).filter((c) => c.key !== 'types');
+  if (!chips.length) return null;
+  return (
+    <div className="fc-row" data-testid="cond-row">
+      {chips.map((c) => (
+        <button
+          key={`${c.key}:${c.value}`}
+          type="button"
+          className="fc-chip"
+          aria-label={`拿掉「${c.label}」`}
+          title={`拿掉「${c.label}」`}
+          onClick={() => (c.key === 'inView' ? model.setInView(false) : c.key === 'query' ? model.setQuery('') : model.pick(c.key, c.value))}
+          data-testid="cond-chip"
+          data-key={c.key}
+          data-value={c.value}
+        >
+          {c.label}
+          <Icon name="close" size={16} />
+        </button>
+      ))}
+      <span className="fc-sum" data-testid="cond-count">
+        符合 {count} 個
+      </span>
+    </div>
+  );
+}
+
+/** 舊的篩選列（T69）：沒給 stage 的畫面照舊，T79 刪 */
+function LegacyFilterBar({ source, surface, model, count, typeRow, subRow, back, showView = true, extraCond }: FilterBarProps) {
   const areas = useData((s) => s.areas);
   const places = useData((s) => s.places);
   const [open, setOpen] = useState(false);
