@@ -1,10 +1,10 @@
 // 詳情的內容，手機（mobile/PlaceDetailPage）和網頁（components/DetailPanel）共用（第七輪 §7）：
-// 照片輪播（點了放大）、名稱列（等級、名稱、複製日文名、網頁多一顆愛心）、動作列（❤ 想去 N、👎 N、加到某天，編輯中從行程打開多「排進這天」）、
+// 照片輪播（點了放大、點兩下加想去）→ 按鈕那排（愛心、留言、👎、加到某天，編輯中從行程打開多「排進這天」）→ 誰想去 → 名稱列（等級方章、名稱、複製日文名、最右「地圖 ↗」）→ 類型・子地區・評分（T82 §36.T82 的 Instagram 順序）→
 // 四個分頁——簡介、交通、評論、留言（車站只有前兩個）。手機另外有捲過照片才出現的白色頂端列（‹、名稱、❤），分頁列接在它下面。
 // 這個檔只管版面和投票；分頁裡的各區塊（介紹、團體、附近…）還是 components/DetailPanel 匯出的那些元件。
 // 這個檔和 DetailPanel.tsx 互相 import（這裡用它的區塊、它用這裡的版面），都只在 render 時用，沒有載入順序的問題。
 
-import { useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailTabId } from '../../store.ts';
 import { commands } from '../../appCommands.ts';
 import { useApp, useData, useFullPlace, useShared } from '../../hooks.ts';
@@ -25,8 +25,6 @@ import { CopyName } from '../../components/CopyName.tsx';
 import { AddToDay } from '../../components/DayPicker.tsx';
 import { castVote } from '../../components/Votes.tsx';
 import { Comments } from '../../components/Wishlist.tsx';
-import { Avatar } from '../../components/common.tsx';
-import { detailWhoText, meFirst } from '../whoLine.ts';
 import { dragPlaceProps } from '../../components/askAi.ts';
 import { LinksSection, NearbySection, PlaceFacts, PlaceIntro, PlaceMore, PlaceReviews, SourcesSection, usesRakuten } from '../../components/DetailPanel.tsx';
 import { useCommentCount } from '../placeLists.ts';
@@ -35,7 +33,8 @@ import { PhotoViewer } from './PhotoViewer.tsx';
 import { DetailPending } from './Skeleton.tsx';
 import { TierMark } from './TierMark.tsx';
 import { TypeLabel } from './TypeLabel.tsx';
-import { VoteHeart } from './VoteHeart.tsx';
+import { useLiked, usePop, VoteHeart } from './VoteHeart.tsx';
+import { WhoLine } from './PlaceRow.tsx';
 
 export const DETAIL_TABS = ['intro', 'location', 'reviews', 'comments'] as const;
 export const DETAIL_TAB_LABELS: Record<DetailTabId, string> = { intro: '簡介', location: '位置', reviews: '評論', comments: '留言' };
@@ -55,10 +54,38 @@ export function starLine(place: Place): string | null {
   return null;
 }
 
-/** 照片輪播：左右滑（CSS scroll-snap）、網頁多左右鈕；點照片放大。沒有照片時是類型色塊 */
-function PhotoCarousel({ place, desktop, onOpen }: { place: Place; desktop: boolean; onOpen(index: number): void }) {
+/** 點兩下的間隔（ms）；點一下要等這麼久確認不是點兩下才開大圖 */
+const DOUBLE_TAP_MS = 280;
+
+/**
+ * 照片輪播：左右滑（CSS scroll-snap）、網頁多左右鈕；點照片放大。沒有照片時是類型色塊。
+ * T82（§36.T82）：點兩下照片＝加到想去（onDouble），照片中間跳出白色大愛心；點一下要等 DOUBLE_TAP_MS 確認不是點兩下才開大圖
+ */
+function PhotoCarousel({ place, desktop, onOpen, onDouble }: { place: Place; desktop: boolean; onOpen(index: number): void; onDouble(): void }) {
   const [at, setAt] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
+  const [burst, setBurst] = useState(0);
+  const tap = useRef<{ at: number; timer: number | undefined }>({ at: 0, timer: undefined });
+  useEffect(() => () => window.clearTimeout(tap.current.timer), []);
+  /** 照片被點了：index 是第幾張（沒照片是 null，點一下什麼都不做） */
+  const onTap = (index: number | null) => {
+    const t = tap.current;
+    const now = Date.now();
+    window.clearTimeout(t.timer);
+    t.timer = undefined;
+    if (now - t.at < DOUBLE_TAP_MS) {
+      t.at = 0;
+      setBurst((n) => n + 1);
+      onDouble();
+      return;
+    }
+    t.at = now;
+    if (index !== null)
+      t.timer = window.setTimeout(() => {
+        t.timer = undefined;
+        onOpen(index);
+      }, DOUBLE_TAP_MS);
+  };
   const count = place.photos.length;
   const usable = photoCandidates(place.photos).length > 0;
   const onScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -75,12 +102,12 @@ function PhotoCarousel({ place, desktop, onOpen }: { place: Place; desktop: bool
       <div className="pd-photos" ref={ref} onScroll={onScroll} data-testid="m-detail-photos">
         {usable ? (
           place.photos.map((ph, i) => (
-            <button key={ph.url} type="button" className="pd-slide" aria-label={`放大第 ${i + 1} 張照片`} data-testid="detail-photo" onClick={() => onOpen(i)}>
+            <button key={ph.url} type="button" className="pd-slide" aria-label={`放大第 ${i + 1} 張照片（點兩下加到想去）`} data-testid="detail-photo" onClick={() => onTap(i)}>
               <Photo place={place} index={i} only width={1000} showName />
             </button>
           ))
         ) : (
-          <figure className="pd-slide pd-slide-empty">
+          <figure className="pd-slide pd-slide-empty" onClick={() => onTap(null)}>
             <Photo place={place} width={1000} showName />
           </figure>
         )}
@@ -108,75 +135,69 @@ function PhotoCarousel({ place, desktop, onOpen }: { place: Place; desktop: bool
         </>
       )}
       {credit && <span className="pd-credit">{credit}</span>}
+      {burst > 0 && (
+        <span key={burst} className="pd-bigheart" aria-hidden data-testid="detail-bigheart">
+          <Icon name="heart" size={24} filled />
+        </span>
+      )}
     </div>
   );
 }
 
-/** 這個點的投票：誰按了想去、不想去、我按的 */
+/** 這個點的投票：誰按了不想去、我按的 */
 function useVotesOf(placeId: string) {
   const votes = useShared((s) => s.votes);
   const me = useShared((s) => s.me?.id);
   const list = votes.filter((v) => v.placeId === placeId && !v.deletedAt);
-  const likes = list.filter((v) => v.value === 'like').map((v) => v.memberId);
   const dislikes = list.filter((v) => v.value === 'dislike').map((v) => v.memberId);
-  return { likes, dislikes, mine: (list.find((v) => v.memberId === me)?.value ?? null) as VoteValue | null };
+  return { dislikes, mine: (list.find((v) => v.memberId === me)?.value ?? null) as VoteValue | null };
 }
 
 /**
- * 照片下面的動作列（T76，interaction-design §35.9）：「♡ 我想去」／「♥ 我想去 ✓」（點了投或收回，按了、收回都有提示和「復原」，castVote）、👎 N、
- * 主要按鈕「加到某天」（下面一行小字「給主辦的建議，不會動到行程」）；編輯中從行程打開多一個「排進這天」（住宿是「設成這晚的住宿」）。
- * 動作列下面一行誰想去：「你想去，小林、阿姨也想去」「小林、阿姨想去，你還沒按」「還沒有人按想去」（頭像＋人名，取代 §17 的數字和名單小視窗）。
+ * 照片下面那排（T82 §36.T82，Instagram 式）：左邊愛心（點擊 44、圖示 28、沒有框；按了、收回都有提示和「復原」）、
+ * 留言（對話框，右上角小數字；點了切到留言分頁）、👎（同樣長相），最右「加到某天」實心靛藍膠囊；
+ * 編輯中從行程打開多一個「排進這天」（住宿是「設成這晚的住宿」）。下面一行誰想去（列的 WhoLine，沒人按整行不出現）。
  */
-function ActionRow({ place, schedule }: { place: Place; schedule: boolean }) {
-  const { likes, dislikes, mine } = useVotesOf(place.id);
-  const me = useShared((s) => s.me?.id);
-  const members = useShared((s) => s.members);
-  const toggle = (value: VoteValue, from?: Element) => void castVote(place.id, mine === value ? null : value, true, from);
+function ActionRow({ place, schedule, pop, onComments }: { place: Place; schedule: boolean; pop: number; onComments?(): void }) {
+  const { dislikes, mine } = useVotesOf(place.id);
+  const comments = useCommentCount(place.id);
   const lodging = place.type === 'lodging';
-  const liked = mine === 'like';
-  const others = likes.filter((id) => id !== me);
+  const disliked = mine === 'dislike';
   return (
     <>
       <div className="pd-actions" data-testid="detail-actions">
-        <button type="button" className={`pd-love${liked ? ' on' : ''}`} aria-pressed={liked} onClick={(e) => toggle('like', e.currentTarget)} data-testid="detail-like">
-          <Icon name="heart" size={20} filled={liked} />
-          {liked ? '我想去 ✓' : '我想去'}
-        </button>
+        <VoteHeart placeId={place.id} size="bar" testId="detail-like" pop={pop} />
+        {onComments && (
+          <button type="button" className="pd-ibtn" aria-label={`留言（${comments} 則）`} title="留言" onClick={onComments} data-testid="detail-comment">
+            <Icon name="chat" size={24} />
+            {comments > 0 && <span className="pd-ibtn-n">{comments}</span>}
+          </button>
+        )}
         <button
           type="button"
-          className={`pd-dislike ${mine === 'dislike' ? 'on' : ''}`}
-          aria-pressed={mine === 'dislike'}
+          className={`pd-ibtn pd-dislike ${disliked ? 'on' : ''}`}
+          aria-pressed={disliked}
           aria-label={`不想去（${dislikes.length} 人）`}
           title="不想去"
-          onClick={() => toggle('dislike')}
+          onClick={() => void castVote(place.id, disliked ? null : 'dislike', true)}
           data-testid="detail-dislike"
         >
-          <Icon name="thumb-down" size={20} filled={mine === 'dislike'} /> {dislikes.length > 0 && dislikes.length}
+          <Icon name="thumb-down" size={24} filled={disliked} />
+          {dislikes.length > 0 && <span className="pd-ibtn-n">{dislikes.length}</span>}
         </button>
-        {place.type !== 'station' && (
-          <span className="pd-add" data-testid="detail-add">
-            <AddToDay placeId={place.id} />
-            <small className="pd-add-note">給主辦的建議，不會動到行程</small>
-          </span>
-        )}
+        <span className="pd-actions-gap" />
         {schedule && (
           <Button kind="secondary" size="sm" icon="calendar" data-testid="detail-schedule" onClick={() => openDialog({ kind: 'add', placeId: place.id })}>
             {lodging ? '設成這晚的住宿' : '排進這天'}
           </Button>
         )}
-      </div>
-      <p className="pd-who-line" data-testid="detail-who">
-        {meFirst(likes, me).length > 0 && (
-          <span className="pr-avatars">
-            {meFirst(likes, me)
-              .slice(0, 4)
-              .map((id) => (
-                <Avatar key={id} id={id} />
-              ))}
+        {place.type !== 'station' && (
+          <span className="pd-add" data-testid="detail-add">
+            <AddToDay placeId={place.id} />
           </span>
         )}
-        <span className={liked ? 'pd-who-me' : undefined}>{detailWhoText(others, liked, (id) => memberName(members, id))}</span>
-      </p>
+      </div>
+      <WhoLine placeId={place.id} className="pd-who-line" testId="detail-who" />
     </>
   );
 }
@@ -331,6 +352,14 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
   ].filter(Boolean);
   const stars = user ? null : starLine(place);
   const barShown = scrolled || !hasHero;
+  // 點兩下照片＝加到想去（T82）：愛心按鈕彈一下、出提示；已經按過的只跳大愛心、不取消；刪掉的點不能按
+  const liked = useLiked(place.id);
+  const [pop, bump] = usePop();
+  const likeByPhoto = () => {
+    if (liked || isDeletedUserPlace(place)) return;
+    bump();
+    void castVote(place.id, 'like', true);
+  };
 
   return (
     <div className={`pd pd-${surface} ${desktop ? '' : 'm-detail-scroll'}`} onScroll={onScroll} data-testid="place-detail">
@@ -340,12 +369,12 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
             <Icon name="back" size={24} />
           </button>
           <span className="m-detail-bar-name">{name}</span>
-          <VoteHeart placeId={place.id} />
+          {!isDeletedUserPlace(place) && <VoteHeart placeId={place.id} pop={pop} />}
         </div>
       )}
       {hasHero && (
         <div className={`pd-hero ${noPhoto ? 'short' : ''}`} ref={heroRef}>
-          <PhotoCarousel place={place} desktop={desktop} onOpen={setViewer} />
+          <PhotoCarousel place={place} desktop={desktop} onOpen={setViewer} onDouble={likeByPhoto} />
           {!desktop && onBack && (
             <button type="button" className={`m-back m-detail-back${backLabel ? ' has-label' : ''}`} onClick={onBack} aria-label={backLabel ? `回到 ${backLabel}` : '返回'} data-testid="m-detail-back">
               <Icon name="back" size={24} />
@@ -354,23 +383,25 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
           )}
         </div>
       )}
+      {!isDeletedUserPlace(place) && <ActionRow place={place} schedule={planning && fromTrip && place.type !== 'station'} pop={pop} onComments={tabs.includes('comments') ? () => setTab('comments') : undefined} />}
+
       <header className={`pd-head detail-head ${desktop ? 'draggable' : ''}`} {...dragPlaceProps(place.id, desktop)} title={desktop ? '拖到左邊的聊天室可以問 AI' : undefined}>
         <div className="pd-title">
           <div className="pd-title-row">
-            {!user && <TierMark tier={place.tier} />}
+            {!user && <TierMark tier={place.tier} size="md" />}
             <h2 className="pd-name" data-testid={desktop ? 'detail-name' : 'm-detail-name'}>
               {name}
             </h2>
             <CopyName place={place} />
-            {/* 一打開就看得到的 Google Maps 連結（T74b）：樣式同交通卡的「map ↗」，新分頁開；評論分頁最後的「連結」照舊 */}
-            <a className="pd-maps" href={googleMapsUrl(place)} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開啟" draggable={false} onMouseDown={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()} data-testid="detail-maps">
-              地圖 ↗
-            </a>
             {user && (
               <span className="pd-user-badge" data-testid="detail-user-badge">
                 自己加的
               </span>
             )}
+            {/* 一打開就看得到的 Google Maps 連結（T74b）：新分頁開，靠最右（T82）；評論分頁最後的「連結」照舊 */}
+            <a className="pd-maps" href={googleMapsUrl(place)} target="_blank" rel="noreferrer" aria-label="在 Google Maps 開啟" draggable={false} onMouseDown={(e) => e.stopPropagation()} onClick={(e) => e.stopPropagation()} data-testid="detail-maps">
+              地圖 ↗
+            </a>
           </div>
           <PlaceTags place={place} />
           {user && place.user && (
@@ -391,10 +422,7 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
             )}
           </p>
         </div>
-        {desktop && !isDeletedUserPlace(place) && <VoteHeart placeId={place.id} />}
       </header>
-
-      {!isDeletedUserPlace(place) && <ActionRow place={place} schedule={planning && fromTrip && place.type !== 'station'} />}
 
       <div className="pd-tabs" role="tablist" aria-label="詳情分頁">
         {tabs.map((t) => (

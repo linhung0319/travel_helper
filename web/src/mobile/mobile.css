@@ -1309,7 +1309,8 @@ body.dragging-plan .m-dropend {
 }
 
 .m-detail-scroll .pd-head,
-.m-detail-scroll .pd-actions {
+.m-detail-scroll .pd-actions,
+.m-detail-scroll .pd-who-line {
   padding-left: 12px;
   padding-right: 12px;
 }

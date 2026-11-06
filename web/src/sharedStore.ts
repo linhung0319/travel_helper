@@ -322,7 +322,12 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
   }
 
   /** ❤️（想去）／👎：value 是 null 時收回 */
+  // T82（§36.T82）：先改畫面（愛心、「誰想去」那行立刻變），後端回來再換成真的那筆；失敗就改回去
   async function vote(placeId: string, value: VoteValue | null): Promise<Result> {
+    const st = store.getState();
+    const me = st.me?.id;
+    const before = st.votes.find((x) => x.placeId === placeId && x.memberId === me) ?? null;
+    if (me) putMyVote(placeId, value ? { placeId, memberId: me, value, updatedAt: new Date().toISOString(), deletedAt: null } : null);
     try {
       if (value) putMyVote(placeId, await getBackend().putVote(placeId, value));
       else {
@@ -331,6 +336,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
       }
       return { ok: true };
     } catch (e) {
+      if (me) putMyVote(placeId, before);
       return fail(e);
     }
   }

@@ -1,9 +1,9 @@
-// 列（探索的區段、想去、搜尋結果、AI 挑的結果集共用，兩邊一樣）。T76（interaction-design §35.7）照片牆和清單合成這一種：
-// 左邊大照片 136×112（圓角、類型圓章在左上），右邊名稱（最多兩行）＋等級、第二行（景點：子地區；餐廳：子地區・價位第一段；
-// 住宿：住法那句・每人價下限）、重點膠囊（已排、主辦考慮放、長輩 ◎ 很適合、二月休，最多兩顆）、「誰想去」一行（頭像＋人名，自己在前寫「你」）。
-// 右上角愛心只有自己按過才實心紅（VoteHeart；別人按的寫在「誰想去」那行）。
-// extra 有給就換掉第二行以下（舊的想去清單用，T79 刪）；meta、caps、foot 是想去的新列用的（第二行換成「2/7 候選」、最下面加最新留言）。
-// 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）；原地展開（below）接在列下面（§13.3 的 PlaceOpen）。樣式在 ui.css（.pr-）。
+// 列（探索的區段、想去、搜尋結果、AI 挑的結果集共用，兩邊一樣）。T76（§35.7）照片牆和清單合成這一種；T82（§36.T82）改成 Instagram 式：
+// 不用卡片框（列之間 1 px 細線）；左邊照片 104×104（圓角 12，沒有類別圓章；沒照片是灰底淡淡一個「景／食／宿」）；
+// 右邊名字（最多兩行，只有名字和自己加、已訂這類小標）、第二行最前面等級方章＋子地區（餐廳加價位、住宿是住法那句・每人價）、
+// 狀態一行彩色字（已排、主辦考慮放、長輩 ◎ 很適合、二月休，最多兩項）、貼齊列底的一行：愛心（VoteHeart row）→ 誰想去 → 留言數。
+// caps、foot、right 是想去用的（「2/7 候選」在前、最新留言、網頁的日曆鈕）。
+// 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）；原地展開（below）接在列下面（§13.3 的 PlaceOpen，T83 拿掉）。樣式在 ui.css（.pr-）。
 
 import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
@@ -12,7 +12,6 @@ import { Photo } from '../../components/Photo.tsx';
 import { Avatar } from '../../components/common.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
 import { memberName } from '../../sharedStore.ts';
-import { TypeArt } from './TypeArt.tsx';
 import { placeDayStatus } from '../../lib/wishlist.ts';
 import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/view.ts';
 import { PlaceTags } from './PlaceTags.tsx';
@@ -21,7 +20,9 @@ import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
 import { TierMark } from './TierMark.tsx';
 import { stayCaption } from '../../lib/badges.ts';
 import { rowPrice } from '../../lib/placeSummary.ts';
-import { TypeSeal } from './TypeLabel.tsx';
+import { TYPE_GLYPHS } from '../../lib/typeStyle.ts';
+import { Icon } from '../../components/Icon.tsx';
+import { useCommentCount } from '../placeLists.ts';
 import { VoteHeart } from './VoteHeart.tsx';
 import { meFirst, whoText } from '../whoLine.ts';
 
@@ -39,13 +40,14 @@ export function useDayStatus(): (placeId: string) => DayStatus {
 
 export { placeMetaText };
 
-/** 重點膠囊 */
+/** 狀態一行（T82 §36.T82）：彩色字、不用底色；已排前面一個日曆圖示 */
 export function Highlights({ list, testId = 'place-caps' }: { list: RowHighlight[]; testId?: string }) {
   if (!list.length) return null;
   return (
     <span className="pr-caps" data-testid={testId}>
       {list.map((h) => (
         <span key={h.label} className={`pr-cap pr-cap-${h.tone}`}>
+          {h.tone === 'plan' && <Icon name="calendar" size={16} />}
           {h.label}
         </span>
       ))}
@@ -67,14 +69,14 @@ function useLikers(placeId: string): string[] {
   return useMemo(() => votes.filter((v) => v.placeId === placeId && !v.deletedAt && v.value === 'like').map((v) => v.memberId), [votes, placeId]);
 }
 
-/** 「誰想去」一行：頭像（最多三個）＋人名；沒人按不畫 */
-export function WhoLine({ placeId }: { placeId: string }) {
+/** 「誰想去」：頭像疊起來（最多三個，自己在前）＋「你和阿姨 想去」「阿姨 想去，你還沒按」；沒人按不畫。列的最底一行、詳情愛心那排下面共用 */
+export function WhoLine({ placeId, className = 'pr-who', testId = 'row-who' }: { placeId: string; className?: string; testId?: string }) {
   const ids = useLikers(placeId);
   const me = useShared((s) => s.me?.id);
   const members = useShared((s) => s.members);
   if (!ids.length) return null;
   return (
-    <span className="pr-who" data-testid="row-who">
+    <span className={className} data-testid={testId}>
       <span className="pr-avatars">
         {meFirst(ids, me)
           .slice(0, 3)
@@ -87,14 +89,29 @@ export function WhoLine({ placeId }: { placeId: string }) {
   );
 }
 
-/** 大照片：有照片用照片（打不開自己換下一張），沒有就是 TypeArt；類型圓章在左上 */
+/** 留言數（小對話框＋數字）；0 不畫 */
+function CommentCount({ placeId }: { placeId: string }) {
+  const n = useCommentCount(placeId);
+  if (!n) return null;
+  return (
+    <span className="pr-cm" aria-label={`${n} 則留言`} data-testid="row-comments">
+      <Icon name="chat" size={16} />
+      {n}
+    </span>
+  );
+}
+
+/** 大照片 104×104：有照片用照片（打不開自己換下一張），沒有是灰底中間淡淡一個「景／食／宿」 */
 function RowPhoto({ place, letter }: { place: Place; letter?: string }) {
   return (
     <span className="pr-photo">
-      {photoCandidates(place.photos).length ? <Photo place={place} width={320} /> : <TypeArt type={place.type} className="pr-photo-fallback" testId="m-thumb-fallback" />}
-      <span className="pr-seal">
-        <TypeSeal type={place.type} size="lg" label />
-      </span>
+      {photoCandidates(place.photos).length ? (
+        <Photo place={place} width={320} />
+      ) : (
+        <span className="pr-photo-none" data-testid="m-thumb-fallback" aria-hidden>
+          {TYPE_GLYPHS[place.type]}
+        </span>
+      )}
       {letter && (
         <span className="ai-letter" data-testid="ai-letter">
           {letter}
@@ -107,17 +124,13 @@ function RowPhoto({ place, letter }: { place: Place; letter?: string }) {
 export interface PlaceRowProps {
   place: Place;
   status?: DayStatus;
-  /** 換掉第二行以下（舊的想去清單，T79 刪） */
-  extra?: ReactNode;
-  /** 換掉第二行（想去：「2/7 候選」膠囊） */
+  /** 換掉第二行（等級方章＋子地區…） */
   meta?: ReactNode;
-  /** 換掉重點膠囊 */
+  /** 換掉狀態那行（想去：「2/7 候選」在前） */
   caps?: RowHighlight[];
-  /** 最下面多一行（想去：最新留言） */
+  /** 狀態下面多一行（想去：最新留言） */
   foot?: ReactNode;
-  /** 「誰想去」那行；預設畫 */
-  who?: boolean;
-  /** 右上角；預設是 VoteHeart */
+  /** 最底一行的最右邊（網頁想去：日曆鈕） */
   right?: ReactNode;
   onOpen: () => void;
   testId?: string;
@@ -136,12 +149,13 @@ export interface PlaceRowProps {
   letter?: string;
 }
 
-export function PlaceRow({ place, status, extra, meta, caps, foot, who = true, right, onOpen, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceRowProps) {
+export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
   const user = isUserPlace(place);
   const metaText = [rowMeta(place, areas), user ? userSubtitle(place, members) : ''].filter(Boolean).join('・');
+  const tier = user ? null : place.tier;
   const row = (
     <div
       {...rootProps}
@@ -167,30 +181,30 @@ export function PlaceRow({ place, status, extra, meta, caps, foot, who = true, r
       <span className="pr-text">
         <span className="pr-name">
           <span className="pr-name-text">{name}</span>
-          {!user && <TierMark tier={place.tier} />}
           <PlaceTags place={place} />
         </span>
-        {extra ?? (
-          <>
-            {meta ??
-              (metaText && (
-                <span className="pr-meta" data-testid="row-meta">
-                  {metaText}
-                </span>
-              ))}
-            {aiNote ? (
-              <span className="ai-note" data-testid="ai-note">
-                ✦ {aiNote}
-              </span>
-            ) : (
-              <Highlights list={caps ?? rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
-            )}
-            {who && <WhoLine placeId={place.id} />}
-            {foot}
-          </>
+        {meta ??
+          ((metaText || tier) && (
+            <span className="pr-meta" data-testid="row-meta">
+              <TierMark tier={tier} />
+              {metaText}
+            </span>
+          ))}
+        {aiNote ? (
+          <span className="ai-note" data-testid="ai-note">
+            ✦ {aiNote}
+          </span>
+        ) : (
+          <Highlights list={caps ?? rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
         )}
+        {foot}
+        <span className="pr-foot">
+          <VoteHeart placeId={place.id} size="row" />
+          <WhoLine placeId={place.id} />
+          <CommentCount placeId={place.id} />
+          {right && <span className="pr-right">{right}</span>}
+        </span>
       </span>
-      <span className="pr-right">{right ?? <VoteHeart placeId={place.id} />}</span>
     </div>
   );
   // 原地展開（網頁第八輪 §13.3）：列的下面接 below。可以展開的列外面一直包一層，展開、收合時列不會重建（照片才不會閃）
@@ -202,3 +216,4 @@ export function PlaceRow({ place, status, extra, meta, caps, foot, who = true, r
     </div>
   );
 }
+

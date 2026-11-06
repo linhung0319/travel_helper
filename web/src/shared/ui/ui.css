@@ -122,25 +122,73 @@
   cursor: default;
 }
 
-/* ---------- 想去的愛心 ---------- */
+/* ---------- 想去的愛心（VoteHeart；T82 §36.T82 Instagram 式：沒有框，沒按是墨色空心、按了實心紅，按下去彈一下） ---------- */
 .ui-heart {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   gap: 4px;
   min-width: var(--tap);
   min-height: var(--tap);
-  color: var(--ink-3);
+  border-radius: 999px;
+  color: var(--ink);
   cursor: pointer;
-}
-
-/* sm 只是圖示小一點；點的範圍一樣 44px */
-.ui-heart-sm {
-  gap: 2px;
 }
 
 .ui-heart.on {
   color: var(--love);
+}
+
+.ui-heart:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: -2px;
+}
+
+.ui-heart-ic {
+  display: inline-grid;
+}
+
+/* 列的最底一行：點擊 36、圖示 25 */
+.ui-heart-row {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.ui-heart-row svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* 詳情照片下面那排：點擊 44、圖示 28 */
+.ui-heart-bar svg {
+  width: 28px;
+  height: 28px;
+}
+
+.ui-heart-ic.pop {
+  animation: ui-heart-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+@keyframes ui-heart-pop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.75);
+  }
+  65% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-heart-ic.pop {
+    animation: none;
+  }
 }
 
 .ui-heart-count {
@@ -209,27 +257,39 @@
   display: inline-flex;
 }
 
-/* ---------- 等級 ---------- */
+/* ---------- 等級（TierMark；T82 §36.T82 小方章）：S 實心靛藍白字、A 靛藍框靛藍字、B 灰框灰字 ---------- */
 .ui-tier {
   display: inline-grid;
+  flex: 0 0 auto;
   place-items: center;
-  min-width: 1.5em;
-  height: 1.5em;
-  padding: 0 0.25em;
-  border: 1px solid var(--ink-4);
-  border-radius: 999px;
-  font-family: var(--font-num);
-  font-weight: 600;
-  font-size: 0.9rem;
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-seal);
+  box-shadow: inset 0 0 0 1.2px var(--ink-3);
+  font-family: var(--font-round);
+  font-weight: 900;
+  font-size: 11.5px;
   line-height: 1;
   color: var(--ink-2);
-  margin-right: 6px;
-  vertical-align: 0.1em;
+  vertical-align: 1px;
+}
+
+.ui-tier-md {
+  width: 22px;
+  height: 22px;
+  font-size: 13px;
 }
 
 .ui-tier-S {
+  background: var(--indigo);
+  box-shadow: none;
+  color: var(--paper);
+}
+
+.ui-tier-A {
+  box-shadow: inset 0 0 0 1.5px var(--indigo);
   color: var(--indigo);
-  border-color: var(--indigo);
 }
 
 /* ---------- 12 天日期格 ---------- */
@@ -1043,21 +1103,26 @@
   flex: 1;
 }
 
-/* ---------- 列（PlaceRow，T76 §35.7）：大照片在左 136×112、文字在右；照片牆和清單合成這一種 ---------- */
+/* ---------- 列（PlaceRow；T76 §35.7，T82 §36.T82 改成 Instagram 式）：不用卡片框，列之間 1 px 細線；照片 104×104 在左、文字在右 ---------- */
 .pr {
   position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: stretch;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
-  min-height: 112px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--line);
   background: var(--paper);
-  box-shadow: 0 1px 2px var(--shade-1);
   cursor: pointer;
+}
+
+/* 一份清單的最後一列不畫線（區段本身有下緣線） */
+li:last-child > .pr,
+li:last-child > .pr-closed > .pr,
+li:last-child > .wl-item .pr,
+.m-feed-list > .pr:last-child {
+  border-bottom: 0;
 }
 
 .pr:hover,
@@ -1067,14 +1132,16 @@
 
 .pr-photo {
   position: relative;
-  flex: 0 0 136px;
-  min-height: 112px;
+  flex: 0 0 104px;
+  width: 104px;
+  height: 104px;
+  border-radius: var(--radius-inner);
+  overflow: hidden;
   background: var(--wash);
 }
 
 .pr-photo > .photo,
-.pr-photo > img,
-.pr-photo-fallback {
+.pr-photo > img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1082,19 +1149,16 @@
   object-fit: cover;
 }
 
-.pr-photo-fallback {
+/* 沒照片：灰底中間淡淡一個「景／食／宿」 */
+.pr-photo-none {
+  position: absolute;
+  inset: 0;
   display: grid;
   place-items: center;
-  color: var(--paper);
-  font-weight: 700;
-  font-size: 1.6rem;
-}
-
-.pr-seal {
-  position: absolute;
-  left: 6px;
-  top: 6px;
-  display: inline-flex;
+  color: var(--ink-4);
+  font-family: var(--font-round);
+  font-weight: 900;
+  font-size: 1.75rem;
 }
 
 .pr-photo .ai-letter {
@@ -1109,18 +1173,17 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
-  padding: 8px 8px 8px 0;
 }
 
-/* 名稱最多兩行（不再一行省略）；右上角留給愛心 */
+/* 名字最多兩行（不截斷成一行）；名字那行只剩名字（和自己加、已訂的小標） */
 .pr-name {
   display: flex;
   align-items: flex-start;
   gap: 6px;
   min-width: 0;
-  padding-right: 36px;
+  font-family: var(--font-round);
   font-weight: 700;
-  font-size: 0.9375rem;
+  font-size: 0.96875rem;
   line-height: 1.3;
 }
 
@@ -1134,67 +1197,86 @@
   overflow: hidden;
 }
 
-.pr-name .ui-tier {
-  flex: 0 0 auto;
-  margin-top: 2px;
-}
-
+/* 第二行：等級方章＋子地區… */
 .pr-meta {
   display: block;
   min-width: 0;
-  font-size: 0.78rem;
+  font-size: 0.78125rem;
+  line-height: 1.5;
   color: var(--ink-2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.pr-meta .ui-tier {
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+
+/* 狀態：一行彩色字，項目之間空 10 px（不用底色膠囊） */
 .pr-caps {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 2px 10px;
   min-width: 0;
   overflow: hidden;
+  font-size: 0.78125rem;
+  font-weight: 500;
+  line-height: 1.45;
 }
 
 .pr-cap {
-  flex: 0 1 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
   min-width: 0;
-  padding: 1px 7px;
-  border-radius: 999px;
-  font-size: 0.6875rem;
-  line-height: 1.45;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: var(--wash);
   color: var(--ink-2);
 }
 
+.pr-cap svg {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+}
+
+.pr-cap-plan,
 .pr-cap-good {
-  background: var(--good-bg);
   color: var(--good);
 }
 
 .pr-cap-indigo {
-  background: var(--indigo-wash);
   color: var(--indigo);
 }
 
-/* 這團的標章（T44b §18.1）：最差的那個 */
 .pr-cap-warn {
-  background: var(--warn-bg);
+  color: var(--mustard-ink);
+}
+
+.pr-cap-bad {
   color: var(--bad);
 }
 
-/* 誰想去：頭像＋人名，自己在前寫「你」 */
-.pr-who {
+/* 最底一行（貼齊列底）：愛心 → 誰想去 → 留言數；愛心的點擊範圍往左超出文字欄，圖示和上面的字對齊 */
+.pr-foot {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
-  font-size: 0.75rem;
+  min-height: 32px;
+  margin: auto 0 -6px -7px;
+  font-size: 0.78125rem;
   color: var(--ink-2);
+}
+
+.pr-who {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
 }
 
 .pr-who-text {
@@ -1210,14 +1292,36 @@
 }
 
 .pr-avatars .avatar {
-  width: 18px;
-  height: 18px;
-  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
   border: 1.5px solid var(--paper);
+  overflow: hidden;
 }
 
 .pr-avatars .avatar + .avatar {
   margin-left: -5px;
+}
+
+.pr-cm {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.pr-cm svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* 最右（網頁想去：日曆鈕） */
+.pr-right {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  margin-left: auto;
 }
 
 /* 自己加、已訂、待訂（T69）：名稱後面的小方標 */
@@ -1237,27 +1341,12 @@
   font-weight: 600;
 }
 
-/* 右上角的愛心（想去的網頁列是愛心＋日曆鈕） */
-.pr-right {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  display: flex;
-  align-items: center;
-}
-
-.pr-right .ui-heart {
-  min-width: 38px;
-  min-height: 38px;
-  border-radius: 999px;
-}
-
 /* 舊的清單（還沒接上區段的畫面，T79 刪）：列之間留空 */
 .ex-items,
 .ex-list.view-list > .ex-items {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 }
 
 /* 原地展開的卡（網頁探索、想去）：芥子黃框（選中），照片矮一點，下面是介紹、優缺點、詳細資料 */
@@ -1613,95 +1702,38 @@
   overflow-wrap: anywhere;
 }
 
-/* 動作列：❤ 想去 N、👎 N、加到某天 */
+/* 照片下面那排（T82）：愛心、留言、👎 靠左，「加到某天」實心靛藍膠囊靠右 */
 .pd-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-  padding: 8px 0;
+  gap: 0;
+  margin: 0 0 0 -8px;
+  padding: 4px 0 2px;
 }
 
-.pd-like-wrap {
-  position: relative;
-  display: inline-flex;
-}
-
-.pd-like,
-.pd-dislike {
-  display: inline-flex;
-  align-items: center;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink-2);
-}
-
-.pd-like button,
-.pd-dislike {
-  font: inherit;
-  font-weight: 500;
-  color: inherit;
-  cursor: pointer;
-}
-
-.pd-like button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: var(--tap);
-  border: 0;
-  background: none;
-  padding: 0 4px 0 14px;
-}
-
-.pd-like .pd-like-count {
-  padding: 0 14px 0 6px;
-  font-family: var(--font-num);
-  font-size: 1rem;
-}
-
-.pd-like-count:disabled {
-  cursor: default;
-}
-
-.pd-like.on {
-  border-color: var(--love-line);
-  background: var(--love-wash);
-  color: var(--love);
-}
-
-.pd-dislike {
-  gap: 6px;
-  min-height: var(--tap);
-  padding: 0 14px;
-  font-variant-numeric: tabular-nums;
+.pd-actions-gap {
+  flex: 1 1 8px;
 }
 
 .pd-dislike.on {
-  border-color: var(--ink-2);
-  background: var(--wash);
   color: var(--ink);
 }
 
 .pd-add {
-  flex: 1 1 auto;
+  flex: 0 0 auto;
   display: inline-flex;
   min-width: 0;
 }
 
-.pd-add .add-to-day {
-  flex: 1;
-  display: flex;
-}
-
-.pd-add .ui-btn {
-  flex: 1;
-  min-height: var(--tap);
+.pd-add .ui-btn,
+.pd-actions > .ui-btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
 }
 
 .pd-actions > .ui-btn {
-  min-height: var(--tap);
+  margin-right: 8px;
 }
 
 /* 誰想去：網頁是數字下面的小視窗，手機直接展開在動作列下面 */
@@ -2807,14 +2839,10 @@ button.ll-main {
 
 /* 自己加的點（T31 §4）：虛線框、副標「自己加的 · 誰」；詳情的膠囊、提示框 */
 
-/* 自己加的列：虛線框（T76 的列是陰影框，換成虛線） */
-.pr.is-user::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1.5px dashed var(--ink-3);
-  border-radius: 14px;
-  pointer-events: none;
+/* 自己加的列：照片是虛線框（T82 列沒有框了） */
+.pr.is-user .pr-photo {
+  outline: 1.5px dashed var(--ink-3);
+  outline-offset: -1.5px;
 }
 
 .pr-user-by {
@@ -2829,7 +2857,7 @@ button.ll-main {
 /* 名稱列的「地圖 ↗」（T74b）：樣式同交通卡的「map ↗」 */
 .pd-maps {
   flex: 0 0 auto;
-  margin-left: 4px;
+  margin-left: auto;
   color: var(--indigo);
   text-decoration: none;
   font-weight: 700;
@@ -4181,59 +4209,89 @@ button.icon-round:has(.discuss-n) {
   text-decoration: underline;
 }
 
+/* 「適合我們嗎」（T82 §36.T82）：四列，每列 主詞｜結論膠囊｜理由，列之間細線 */
 .pd-fit {
+  margin: 4px 0 12px;
+}
+
+.pd-fit-h {
+  margin: 12px 0 4px;
+  font-family: var(--font-round);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.pd-fit-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 6px;
+  grid-template-columns: 3.2em auto minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
   width: 100%;
-  margin: 0 0 12px;
-  padding: 0;
+  padding: 9px 0;
   border: 0;
+  border-bottom: 1px solid var(--line);
   background: none;
   font: inherit;
+  font-size: 0.875rem;
   color: inherit;
-  text-align: center;
+  text-align: left;
+}
+
+.pd-fit-row:last-child {
+  border-bottom: 0;
+}
+
+button.pd-fit-row {
   cursor: pointer;
 }
 
-.pd-fit-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-  min-width: 0;
-  padding: 6px 4px 7px;
-  border-radius: 14px;
-  background: var(--wash);
-}
-
-.pd-fit-mark {
+.pd-fit-label {
   font-family: var(--font-round);
-  font-size: 1.15rem;
-  line-height: 1.2;
-  color: var(--ink-3);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
-.pd-fit-cell.tone-good .pd-fit-mark {
+.pd-fit-vd {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.6;
+  white-space: nowrap;
+  background: var(--wash);
+  color: var(--ink);
+}
+
+.pd-fit-vd.good {
+  background: var(--good-bg);
   color: var(--good);
 }
 
-.pd-fit-cell.tone-mid .pd-fit-mark {
+.pd-fit-vd.warn {
+  background: var(--mustard-wash);
   color: var(--mustard-ink);
 }
 
-.pd-fit-cell.tone-warn .pd-fit-mark {
-  color: var(--warn);
+.pd-fit-vd.bad {
+  background: var(--bad-bg);
+  color: var(--bad);
 }
 
-.pd-fit-label {
-  font-size: 0.8125rem;
-  font-weight: 700;
+.pd-fit-vd.none {
+  padding: 0 7px;
+  border: 1px dashed var(--ink-3);
+  background: none;
+  color: var(--ink-2);
 }
 
 .pd-fit-why {
-  font-size: 0.75rem;
-  line-height: 1.35;
+  min-width: 0;
+  line-height: 1.55;
   color: var(--ink-2);
   overflow-wrap: anywhere;
   display: -webkit-box;
@@ -4241,10 +4299,22 @@ button.icon-round:has(.discuss-n) {
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
+  position: relative;
 }
 
-.pd-fit.open .pd-fit-why {
+.pd-fit-why.full {
   display: block;
+}
+
+/* 「全文」壓在第二行的尾巴 */
+.pd-fit-more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding-left: 1.5em;
+  background: linear-gradient(to right, transparent, var(--paper) 1.2em);
+  color: var(--indigo);
+  font-weight: 700;
 }
 
 .pd-quick {
@@ -5112,11 +5182,6 @@ button.ui-sk-stay:disabled {
   --t-stay-wash: #f0eaf7;
 }
 
-.pr.is-user {
-  border-color: transparent;
-  box-shadow: none;
-}
-
 /* ---------- 主題列（ThemeRow）：三格「玩／吃／住」 ---------- */
 .tr {
   display: grid;
@@ -5367,7 +5432,7 @@ button.ui-sk-stay:disabled {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 }
 
 .sec-next {
@@ -5580,7 +5645,7 @@ button.ui-sk-stay:disabled {
   width: auto;
 }
 
-.wl-v2 .wl-right .wl-add {
+.wl-v2 .pr-right .wl-add {
   width: 38px;
   height: 38px;
 }
@@ -5603,103 +5668,112 @@ button.ui-sk-stay:disabled {
   padding: 0 14px 28px;
 }
 
-/* ---------- 詳情（§35.9）：♡ 我想去、誰想去那行、加到某天的小字、四格的字和圖例 ---------- */
-.pd-love {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: var(--tap);
-  padding: 0 16px;
-  border: 1px solid var(--line);
+/* ---------- 詳情照片下面那排（T82 §36.T82，Instagram 式）：愛心、留言、👎 沒有框（點擊 44、圖示 28），最右「加到某天」 ---------- */
+.pd-ibtn {
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  padding: 0;
+  border: 0;
   border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink-2);
-  font: inherit;
-  font-weight: 700;
+  background: none;
+  color: var(--ink);
   cursor: pointer;
 }
 
-.pd-love.on {
-  border-color: var(--love-line);
-  background: var(--love-wash);
-  color: var(--love);
+.pd-ibtn svg {
+  width: 28px;
+  height: 28px;
 }
 
-.pd-add {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 2px;
+.pd-ibtn:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: -2px;
 }
 
-.pd-add-note {
+.pd-ibtn-n {
+  position: absolute;
+  top: 3px;
+  right: 1px;
+  font-family: var(--font-num);
   font-size: 0.6875rem;
-  line-height: 1.3;
+  font-weight: 700;
+  line-height: 1;
   color: var(--ink-2);
-  text-align: center;
 }
 
+/* 誰想去：按鈕那排下面一行，沒人按整行不出現 */
 .pd-who-line {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 6px;
-  margin: 0 0 8px;
-  font-size: 0.8125rem;
-  color: var(--ink-2);
+  min-width: 0;
+  margin: 0 0 2px;
+  font-size: 0.84375rem;
+  color: var(--ink);
 }
 
-.pd-who-line .avatar {
-  width: 20px;
-  height: 20px;
-  font-size: 11px;
+/* 點兩下照片：中間跳出白色大愛心（96 px，淡入放大再淡出，約 0.9 秒） */
+.pd-bigheart {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 96px;
+  height: 96px;
+  margin: -48px 0 0 -48px;
+  color: var(--paper);
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px var(--shade-3));
+  animation: pd-bigheart 0.9s ease-out;
 }
 
-.pd-who-me {
-  color: var(--ink-2);
+.pd-bigheart svg {
+  width: 96px;
+  height: 96px;
+  stroke: none;
 }
 
-.pd-who-me::first-line {
-  color: inherit;
+@keyframes pd-bigheart {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  15% {
+    opacity: 0.95;
+    transform: scale(1.15);
+  }
+  30% {
+    transform: scale(0.95);
+  }
+  45% {
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
 }
 
-.pd-fit-word {
-  font-size: 0.75rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
+@media (prefers-reduced-motion: reduce) {
+  .pd-bigheart {
+    animation: pd-bigheart-still 0.9s step-end;
+  }
 
-.pd-fit-cell.tone-good .pd-fit-word {
-  color: var(--good);
-}
-
-.pd-fit-cell.tone-mid .pd-fit-word {
-  color: var(--mustard-ink);
-}
-
-.pd-fit-cell.tone-warn .pd-fit-word {
-  color: var(--bad);
-}
-
-.pd-fit-cell.tone-none {
-  border: 1px dashed var(--ink-4);
-  background: var(--paper);
-}
-
-.pd-fit-cell.tone-none .pd-fit-mark,
-.pd-fit-cell.tone-none .pd-fit-word {
-  color: var(--ink-3);
-}
-
-.pd-fit .pd-fit-label {
-  color: var(--ink-2);
-  font-weight: 400;
-  font-size: 0.72rem;
-}
-
-.pd-fit-legend {
-  margin: -6px 0 10px;
-  font-size: 0.6875rem;
-  color: var(--ink-3);
+  @keyframes pd-bigheart-still {
+    0% {
+      opacity: 0.95;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 }
 
 /* 附近：「列出 3 個，共 N 個」「更多 ›」「附近沒有住宿（0 個）」 */

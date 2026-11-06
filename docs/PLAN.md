@@ -170,7 +170,7 @@
 | T78 | 探索改版（網頁接線）：`Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`appStore` 的主題，地圖連動（指到、選中、點地圖展開區段捲到那列）、原地展開、右欄抽屜；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ✅ |
 | T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ✅ |
 | T81 | 第二十輪小修＋書架＋概覽：整趟拿掉「第 N 版」、問 AI／討論靠右；擠的標題列問 AI 變圖示鈕；吃的面板拿掉「分組去」；書架拿左邊色條、數字改類型色膠囊、黏頂標題白底細線；概覽照片 2:1、子地區改文字列移到主題列上面、拿掉代表地點、簡介字放大；不跑完整 e2e | S | T79 | 4 | | ✅ |
-| T82 | 列與愛心（Instagram 式）：照片清單的列不用卡片框、等級改第二行開頭方章、拿類別圓章、狀態改彩色字、底行「♡ 誰想去 留言」；詳情改「照片 → 愛心那排 → 誰想去 → 名字」、點兩下照片加想去、愛心彈跳；四格改四列；地圖連結靠右；不跑完整 e2e | M | T81 | 4 | | ⬜ |
+| T82 | 列與愛心（Instagram 式）：照片清單的列不用卡片框、等級改第二行開頭方章、拿類別圓章、狀態改彩色字、底行「♡ 誰想去 留言」；詳情改「照片 → 愛心那排 → 誰想去 → 名字」、點兩下照片加想去、愛心彈跳；四格改四列；地圖連結靠右；不跑完整 e2e | M | T81 | 4 | | ✅ |
 | T83 | 網頁點列直接開詳情彈窗：拿掉探索、想去、搜尋、AI 結果集的原地展開，選中的列淡藍底＋左邊靛藍線，彈窗開著點別列換內容；不跑完整 e2e | S | T82 | 4 | | ⬜ |
 | T84 | 行程卡的類別：右上角類型色四分之一圓（46 px、白字 景／食／宿），網頁、手機；不跑完整 e2e | S | T79 | 4 | | ✅ |
 | T80 | e2e 體檢與完整 e2e：先逐支檢查 T75～T79、T81～T84 動到的 spec 哪些斷言過時並修正，再跑完整三組（網頁、手機 390、360）和 `e2e:worker`，程式真的壞的修掉 | M | T79、T81～T84 | 4 | | ⬜ |
@@ -2015,7 +2015,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 手機往下捲後黏在頂端那條（‹ 名字 ♡）的愛心**留著**，和按鈕那排同步。
 - **四格改四列**（`FitGrid`）：小標「適合我們嗎」，下面四列，每列三欄：**主詞**（長輩／小孩／2 月／15 人，圓體 15 px 粗，約 3.2em）、**結論膠囊**（符號＋字：◎ 很適合綠底、○ 可以灰底、△ 要注意芥子黃底、✕ 不適合紅底、— 沒資料虛線框）、**理由**（`--ink-2`，最多兩行，超過出現「全文」點了那列展開）。列之間細線；拿掉下面那行圖例。結論的規則照 §35.9。
 - **驗證**：`npm test`（`rowHighlights` 的測試跟著改）、`typecheck`、`build`；自己截網頁、手機的探索列、想去列、詳情（沒人按／別人按／你按了、點兩下照片），和草圖比。e2e 自己決定、只跑受影響的（`detail-popup`、`t44b`、`mobile-t44b`、`t53` 類想去）。
-- **完成**：列出改掉的 testid（例如名字旁的愛心、「我想去」鈕、`fit-*`）給 T80。
+- **完成（2026-11-06）**：寫進 interaction-design §36.T82。改了 `PlaceRow.tsx`（`WhoLine` 改成匯出、列和詳情共用）、`VoteHeart.tsx`（尺寸 `row`／`bar`／`md`、彈跳、`useLiked`、`usePop`）、`TierMark.tsx`（方章，`size`）、`rowHighlights.ts`（tone 改 `plan`／`indigo`／`good`／`warn`／`bad`／`muted`，已排的字改「2/3 已排」，`MARK_LEGEND` 拿掉、加 `VERDICT_CLASS`）、`whoLine.ts`（`detailWhoText` 拿掉，`whoText` 改成新的字）、`WishList.tsx`、`PlaceDetail.tsx`（詳情的版面其實在這裡，`PlaceDetailPage` 不用改）、`DetailPanel.tsx`（`FitGrid`）、`ui.css`、`styles.css`、`mobile.css`。
+  - **自己決定的**：① 照片圓角用 `--radius-inner`（13 px）代替 12；等級方章的 5 px 加了 token `--radius-seal`，`style.test` 允許清單加它。② `sharedStore.vote` 改成先改畫面（「誰想去」才能立刻變），失敗改回去。③ 網頁想去列的日曆鈕放到最底一行最右。④ 留言數在想去列也畫（最新留言那行照舊）。⑤ 點兩下的判斷自己算間隔（280 ms），手機、網頁同一套。⑥ 手機 `FeedVotes`（沒人用）刪掉。
+  - **測試**：`npm test`（`t76`、`placeSummary` 跟著改）、`typecheck`、`build` 通過；截了網頁 1366、手機 390 的探索列、想去列、詳情（沒人按／別人按／你按了、點兩下照片、適合我們嗎），截圖在 `data/cache/work/t82-shots/`、腳本 `data/cache/work/r13/t82shots.mjs`（不進 git）。**e2e 沒跑**，留給 T80。
+  - **給 T80 的 testid／斷言變化**：`detail-like` 從有字的 `button`「我想去」變成沒字的 `role=button`（VoteHeart，`aria-pressed`）；網頁詳情名字旁的 `card-like` 拿掉；列的 `card-like` 從右上角移到 `.pr-foot`；`detail-who` 沒人按時不存在，字改「你和阿姨 想去」「阿姨 想去，你還沒按」（列的 `row-who` 也是）；`detail-fit` 從 `button` 變 `section`（`aria-expanded` 移到放不下的那一列 `detail-fit-*`，加 `data-mark`），`.pd-fit-cell`、`.pd-fit-word`、`detail-fit-legend` 拿掉；`.pd-add-note`（給主辦的建議）、`.pd-love`、`.pr-seal`、`.wl-right` 拿掉；`m-thumb-fallback` 變成灰底的字；`place-caps` 裡已排的字從「已排 2/5」改「2/5 已排」、不再是膠囊底色；新的 testid `row-comments`、`detail-comment`、`detail-bigheart`。點照片開大圖要等 280 ms。
 
 ### T83 網頁點列直接開詳情彈窗 〔S〕（第二十輪，2026-11-06 👤 決定）
 
