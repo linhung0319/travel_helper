@@ -6,7 +6,7 @@ import { askAiPrompts } from '../src/shared/askAiPrompts.ts';
 import { dayLabel, isRedDay, tripDates } from '../src/lib/trip.ts';
 import { dayGridCells } from '../src/shared/dayGrid.ts';
 import { placePopover } from '../src/lib/popover.ts';
-import { COMMON_GROUPS, FILTER_GROUPS, FILTER_SECTIONS, SECTION_ORDER, appliedChips, panelLayout, sectionApplied, sectionSummary, sheetTitle, type SectionType } from '../src/shared/filterOptions.ts';
+import { FILTER_GROUPS, TYPE_GROUP, appliedChips, listPanel, sheetTitle } from '../src/shared/filterOptions.ts';
 import { EMPTY_FILTER } from '../src/lib/filter.ts';
 import type { Area } from '../src/data/types.ts';
 
@@ -79,47 +79,17 @@ const AREAS = [
   { id: 'toba', name: { ja: '鳥羽', zh: '鳥羽' }, tripOrder: 2, center: [136.8, 34.4], bbox: [136.7, 34.3, 136.9, 34.5] },
 ] as unknown as Area[];
 
-test('篩選面板照類型分段（T67）：每類的組、第一題在最上面；共用的放最下面；想去只有想去分頁有；地區不在面板裡', () => {
-  const ids = (t: SectionType) => FILTER_SECTIONS[t].map((g) => g.id);
-  assert.deepEqual(ids('restaurant'), ['group', 'context', 'kids', 'reach']);
-  assert.deepEqual(ids('lodging'), ['lodging', 'dinner', 'lodging-suits', 'amenity']);
-  assert.deepEqual(ids('spot'), ['suits', 'weather', 'spot-reach']);
-  assert.deepEqual(COMMON_GROUPS.map((g) => g.id), ['tier', 'map', 'wish']);
+test('篩選的組（T75、T79）：ID 不重複、地區不在面板裡；沒有主題時是類型一排晶片＋選了的那幾類的組', () => {
   // ID 不重複（data-group、testid 用）
   assert.equal(new Set(FILTER_GROUPS.map((g) => g.id)).size, FILTER_GROUPS.length);
   assert.ok(!FILTER_GROUPS.some((g) => g.key === 'areas' || g.key === 'regions'));
-  const opts = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.options(AREAS, 'explore').map((o) => o.label);
-  const title = (id: string) => FILTER_GROUPS.find((g) => g.id === id)!.title;
-  assert.deepEqual([title('group'), title('context'), title('kids'), title('reach')], ['誰吃', '哪一餐', '帶小孩', '怎麼去']);
-  assert.deepEqual(opts('group'), ['全員 15 人', '分組 4～6 人']);
-  assert.deepEqual(opts('context'), ['午餐', '晚餐', '小吃咖啡']);
-  assert.deepEqual(opts('reach'), ['車站旁', '不用搭車']);
-  assert.deepEqual([title('lodging'), title('dinner'), title('lodging-suits'), title('amenity')], ['住法', '晚餐', '適合', '其他']);
-  assert.deepEqual(opts('lodging'), ['包棟・全團一棟', '包棟・要分住', '旅館飯店', '民宿']);
-  assert.deepEqual(opts('dinner'), ['一泊二食', '不含，走路有店', '不含，要開車找']);
-  assert.deepEqual(opts('lodging-suits'), ['長輩', '小孩']);
-  assert.deepEqual(opts('amenity'), ['溫泉', '車站走路到']);
-  assert.deepEqual(opts('suits'), ['長輩', '小孩', '2 月']);
-  assert.deepEqual(opts('weather'), ['下雨也行']);
-  assert.deepEqual(opts('spot-reach'), ['不用搭車']);
-  const wish = COMMON_GROUPS.find((g) => g.id === 'wish')!;
-  assert.deepEqual(wish.options([], 'explore'), []);
-  assert.deepEqual(wish.options([], 'wish').map((o) => o.value), ['mine']);
-  assert.equal(COMMON_GROUPS.find((g) => g.id === 'map')!.desktopOnly, true);
-});
-
-test('panelLayout（T67）：選了類型只展開那幾類；沒選類型三類都收著', () => {
-  assert.deepEqual(panelLayout([]), { open: [], collapsed: ['spot', 'restaurant', 'lodging'] });
-  assert.deepEqual(panelLayout(['restaurant']), { open: ['restaurant'], collapsed: [] });
-  assert.deepEqual(panelLayout(['lodging', 'spot']), { open: ['spot', 'lodging'], collapsed: [] });
-  assert.equal(sectionSummary('restaurant'), '誰吃 · 哪一餐 · 帶小孩 · 怎麼去');
-  // 收著時標套了幾個條件；適合是景點、住宿共用的欄位，兩邊都算
-  const f = { ...EMPTY_FILTER, who: ['all' as const], contexts: ['lunch' as const], suits: ['elderly' as const] };
-  assert.deepEqual(SECTION_ORDER.map((t) => sectionApplied(t, f)), [1, 2, 1]);
-  // 帶小孩在選了全員 15 人時變淡
-  const kids = FILTER_SECTIONS.restaurant.find((g) => g.id === 'kids')!;
-  assert.equal(kids.dimmed!(f), true);
-  assert.equal(kids.dimmed!(EMPTY_FILTER), false);
+  const ids = (types: string[], source: 'explore' | 'wish' = 'explore') => listPanel(types, source).map((g) => g.id);
+  assert.deepEqual(ids([]), ['type', 'map']);
+  assert.deepEqual(ids(['restaurant']), ['type', 'group', 'context', 'kids', 'reach', 'restaurant-tier', 'map']);
+  // 同一個欄位只畫第一次出現的組（景點的適合、怎麼去在前）
+  assert.deepEqual(ids(['lodging', 'spot']), ['type', 'suits', 'spot-reach', 'dinner', 'amenity', 'lodging-tier', 'map']);
+  assert.deepEqual(ids([], 'wish'), ['wish', 'type', 'map']);
+  assert.deepEqual(TYPE_GROUP.options(AREAS, 'explore').map((o) => o.label), ['景點', '餐廳', '住宿']);
   assert.equal(sheetTitle('志摩・賢島'), '篩選 · 志摩・賢島');
   assert.equal(sheetTitle(null), '篩選 · 全部');
 });

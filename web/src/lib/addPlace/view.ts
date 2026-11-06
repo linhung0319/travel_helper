@@ -47,7 +47,7 @@ export function userSubtitle(p: Place, members: Member[]): string {
   return `${memberName(members, p.user?.author)} 加的`;
 }
 
-/** 小區域（沒有就地區）的文字（第二行、照片牆下面那行用）。評分（★）只在詳情（T44b） */
+/** 小區域（沒有就地區）的文字（列的第二行用）。評分（★）只在詳情（T44b） */
 export function placeMetaText(place: Place, areas: Area[]): string {
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);

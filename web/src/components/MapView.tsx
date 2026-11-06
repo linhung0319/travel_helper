@@ -18,7 +18,7 @@ import { areaColor, initialExtent, MAP_MIN_ZOOM, mapMaxBounds } from '../lib/are
 import { nightsPerArea, nightsPerAreaDiff } from '../lib/tripSkeleton.ts';
 import { areaFocusShape, DETAIL_ZOOM, isMinorOnMap, REGION_ZOOM_MAX, regionShapes, shapeLabelAt } from '../lib/mapLayers.ts';
 import { displayName } from '../data/normalize.ts';
-import { currentArea, exploreStage } from '../lib/shelves.ts';
+import { currentArea, exploreLayer } from '../lib/shelves.ts';
 import { pickArea, pickMapRegion, showAllAreas } from '../exploreArea.ts';
 import { useOverview } from '../shared/overviewStore.ts';
 import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
@@ -88,7 +88,7 @@ function featureCollection(places: Place[], marks: Map<string, string>, detailed
   // 想去分頁只畫想去的點
   const shown = liked ? places.filter((p) => liked.has(p.id)) : places;
   // 探索的分層（T43 §21）：縮遠只畫 S、A 級景點（選的那一區、概覽框著的那一區、清單裡符合的照樣畫）
-  const layer = { explore: mode === 'explore', detailed, area: currentArea(filter) ?? overviewArea, listing: exploreStage(filter, query, !!aiResult) === 'list' };
+  const layer = { explore: mode === 'explore', detailed, area: currentArea(filter) ?? overviewArea, listing: exploreLayer(filter, query, !!aiResult) === 'list' };
   return {
     type: 'FeatureCollection',
     features: shown.map((p) => {
@@ -234,7 +234,7 @@ export function MapView() {
   const marks = useMemo(() => (mode === 'wish' ? new Map<string, string>() : itineraryMarks(plan, day, legOpen, tripFocusDay)), [plan, day, legOpen, tripFocusDay, mode]);
   // 探索的概覽（T63 §28，只有網頁）：點了卡片的子地區一行，地圖框著那一區或子地區，畫它的範圍；離開概覽就不算
   const overviewPick = useOverview((s) => s.focus);
-  const overviewFocus = desktop && mode === 'explore' && exploreStage(filter, query, !!aiResult) === 'overview' ? overviewPick : null;
+  const overviewFocus = desktop && mode === 'explore' && exploreLayer(filter, query, !!aiResult) === 'overview' ? overviewPick : null;
 
   const cancelHide = () => {
     if (hideTimer.current) window.clearTimeout(hideTimer.current);

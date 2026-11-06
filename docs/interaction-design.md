@@ -810,6 +810,8 @@
 
 ## 20. 探索的概覽、地區列、書架（T42，2026-11-03）
 
+> **T75～T79 起以 §35 為準，這節只留歷史。**
+
 地區這一層（T40～T47）的探索部分；畫面以 [地區與骨架定案稿](https://claude.ai/artifact/4F9V7uSoLKxaw5famZrXpw) 為準。
 
 - **地區列取代類型列**：探索、想去的篩選列下面那一列，從「全部／景點／餐廳／住宿」換成地區，照行程順序（`tripOrder`）：探索是「概覽、志摩、鳥羽、二見、伊勢、大阪、關西機場周邊」；想去的第一顆叫「全部」（想去沒有概覽，選它就是全部的想去）。手機、網頁一樣；想去的「自己加 N」接在地區後面（選它時類型回到全部，§17.9）。T50 起地區列整排都是地區，照片牆／清單切換搬到「N 個地點」那列的右邊，而且只在照片牆、清單那層出現（概覽、書架沒有；想去一樣）。
@@ -892,6 +894,8 @@
 
 ## 25. 想去改成三排書架（T53，2026-11-04）
 
+> **T75～T79 起以 §35 為準，這節只留歷史。**
+
 草圖 #3（[第十一輪改版草圖](https://claude.ai/artifact/UedgRXv8grQNg8L6zd8hWu)）。取代 §5.3、§13.7 的三段可收合清單（段落標題黏住、點了收合、收合狀態記住）；和 §17.4 衝突的地方以這節為準。畫面是 `shared/ui/WishList.tsx`（網頁右欄、手機想去分頁同一份），分段的計算照舊在 `shared/wishSections.ts`。
 
 - **三排書架**，同探索選了一區的樣子（§20、T50 的 `ShelfCard`）：還沒排（小字「想去多的排前面」）、已是候選（「照日期」）、已排進行程（「照日期」）。每排先放 3 張小卡，右邊「全部 N ›」。
@@ -906,6 +910,8 @@
 - 地區列、「自己加 N」照舊。
 
 ## 26. 探索的概覽改版：地區照片、住幾晚、四格書架數字、一行子地區（T52，2026-11-04）
+
+> **T75～T79 起以 §35 為準，這節只留歷史。**
 
 草圖 #9（[第十一輪改版草圖](https://claude.ai/artifact/UedgRXv8grQNg8L6zd8hWu)）。取代 §20「概覽」那條的卡片樣子；和 §20 衝突的地方以這節為準。畫面是 `shared/ui/ExploreHome.tsx` 的 `ExploreOverview`（網頁右欄、手機探索同一份）。
 
@@ -932,6 +938,8 @@
 - **插畫配色**（參考 wave.png，那張有圖庫浮水印，只當參考、不放進網站）：天空從上面的杏橘到地平線的粉紅、紫紅；雲改成一條一條的暗橘、紅、紫紅雲帶，上緣鑲金邊；浪多一些水花白點和淺藍的層次。
 
 ## 28. 探索的概覽：子地區在卡片裡換內容、地圖跟著框（T63，2026-11-04）
+
+> **T75～T79 起以 §35 為準，這節只留歷史。**
 
 草圖 #2（[第十二輪改版草圖](https://claude.ai/artifact/XEmXL9iA745GwoqKUTYuMo)，第四版）。和 §20、§21、§26 衝突的地方以這節為準。畫面是 `shared/ui/ExploreHome.tsx` 的 `ExploreOverview`（網頁右欄、手機探索同一份）；每張卡選了哪個子地區記在 `shared/overviewStore.ts`，卡片內容的計算在 `lib/overview.ts`。
 
@@ -965,6 +973,8 @@
 
 ## 30. 探索的篩選：「現在看」那一列、0 個時的下一步、問 AI 帶條件（T64，2026-11-04）
 
+> **T75～T79 起以 §35 為準，這節只留歷史。**
+
 草圖 #4（[第十二輪改版草圖](https://claude.ai/artifact/XEmXL9iA745GwoqKUTYuMo)）。和 §20、§26 衝突的地方（「那排沒有東西就不顯示」「‹ 一定要去 · 5 個地點」「篩選上的數字」）以這節為準。手機、網頁一樣；畫面在 `shared/ui/FilterBar.tsx`（條件列）、`shared/ui/ExploreHome.tsx`（`NextSteps`），純邏輯在 `lib/listConditions.ts`、`lib/shelves.ts`。
 
 - **返回那一列寫完整**：「‹ 可坐 15 人 · 志摩・賢島 · 6 個地點」，沒選子地區寫「志摩」。標題是書架名的條件：書架的那幾個欄位剛好是書架的值，其他欄位（自己加的、搜尋）不管（`shelfOf`）；拿掉書架帶來的條件、或同一欄多選（放寬）就寫「‹ 自己篩選」。點了照舊回到那區的書架（子地區留著）。
@@ -992,6 +1002,8 @@
 
 ## 32. 書架兩級退、篩選面板照類型分段（T66～T68，2026-11-04）
 
+> **T75～T79 起以 §35 為準，這節只留歷史。**
+
 草圖：[書架與篩選診斷](https://claude.ai/artifact/LPRze5GsG58i5APKDjnScH)（第二版）。從「幫 15 個人挑地方的家人」在意什麼出發：餐廳第一題是「誰吃」（全員 15 人／分組 4～6 人），住宿是「住得下、晚餐怎麼辦」，景點是「值不值得、長輩小孩行不行」。和 §5、§20、§30 衝突的地方以這節為準。手機、網頁一樣。
 
 - **書架兩級**（👤 定）：每排書架分第一級、第二級，第一級一個都沒有才退到第二級，兩級都沒有才是 0。每一級裡照推薦順序排（同現在）。標題旁的小字寫現在看到的是哪一級：
@@ -1013,6 +1025,8 @@
 - **資料的規則**（不是畫面）：旅館、飯店 `totalRooms` ≥ 5 算住得下全團，不補 `maxGuests`；包棟、民宿沒有 `maxGuests` 的 11 間要補；景點 `elderFit` 沒評的 31 個、`kidsFit` 20 個、`winterFit` 5 個要補評；餐廳 `kids.allowed` 不明的當可以。
 
 ## 33. 探索、想去：「看哪裡」和「看什麼」分開（T69，2026-11-04）
+
+> **T75～T79 起以 §35 為準，這節只留歷史。**
 
 草圖：[探索篩選列改版](https://claude.ai/artifact/PssdQYaByL2h82xeDRxyzy)（**以第三版為準**，裡面有可以點的原型）。👤 的用法是先選地區（或地區＋子地區），再帶「一定要去」或景、食、宿的條件；書架是「篩選懶人包」。選好篩選後最常做的是換不同的地區、子地區看同一個篩選。和 §20、§30、§32 衝突的地方以這節為準。手機、網頁一樣。
 
@@ -1113,7 +1127,7 @@
 
 來源：2026-11-06 的可用性走訪（`docs/ux-review/report.md`）→ 根本原因歸納（`design-lab/root-causes.md`）→ A、B、C 三個拋棄式原型 → 👤 看過後定出 D 版，再修四輪（`design-lab/d.html`，**以最後一版為準**；比較頁 `design-lab/index.html`）。
 
-**進度**：35.4、35.5 的邏輯 T75 做完（2026-11-06）：區段在 `lib/shelves.ts`（`SECTIONS`、`sectionCounts`、`sectionPlaces`、`themeCounts`、`scopeCountsByTheme`、`exploreLayer`），面板在 `shared/filterOptions.ts`（`themePanel`、`themeFilter`、`themeApplied`），0 個在 `listConditions.sectionEmptyHelp`，想去三段的頭在 `wishSections.WISH_SECTION_HEADS`；`who` 拆出 `together`（fit15 yes）、`split`（fit15 split），`tiers: [B]` 一律收得到沒評等級的。共用畫面 T76 做完（2026-11-06）：`ThemeRow`、`Section`（區段、黏頂）、新的 `PlaceRow`、`FilterBar` 的 `stage`、`FilterConds`、`FilterSheet` 的 `theme`、`AreaThemeHome`、`WishSectionList`、詳情。手機 T77 做完（2026-11-06，`mobile/ExploreFeed.tsx`、`FeedFilters.tsx`、`WishlistPage.tsx`、`PlaceDetailPage.tsx`、`mobileStore.ts`）。網頁 T78 做完（2026-11-06，`components/Explore.tsx`、`exploreArea.ts` 的 `setTheme`、`overviewTheme`、`appStore.sectionsOpen`）。
+**進度**：35.4、35.5 的邏輯 T75 做完（2026-11-06）：區段在 `lib/shelves.ts`（`SECTIONS`、`sectionCounts`、`sectionPlaces`、`themeCounts`、`scopeCountsByTheme`、`exploreLayer`），面板在 `shared/filterOptions.ts`（`themePanel`、`themeFilter`、`themeApplied`），0 個在 `listConditions.sectionEmptyHelp`，想去三段的頭在 `wishSections.WISH_SECTION_HEADS`；`who` 拆出 `together`（fit15 yes）、`split`（fit15 split），`tiers: [B]` 一律收得到沒評等級的。共用畫面 T76 做完（2026-11-06）：`ThemeRow`、`Section`（區段、黏頂）、新的 `PlaceRow`、`FilterBar` 的 `stage`、`FilterConds`、`FilterSheet` 的 `theme`、`AreaThemeHome`、`WishSectionList`、詳情。手機 T77 做完（2026-11-06，`mobile/ExploreFeed.tsx`、`FeedFilters.tsx`、`WishlistPage.tsx`、`PlaceDetailPage.tsx`、`mobileStore.ts`）。網頁 T78 做完（2026-11-06，`components/Explore.tsx`、`exploreArea.ts` 的 `setTheme`、`overviewTheme`、`appStore.sectionsOpen`）。收尾 T79 做完（2026-11-06）：舊的書架小卡（`ShelfCard`、`AreaHome`）、照片牆（`PlaceTile`、`PlaceWall`）、舊篩選列（排序、照片牆切換、淡藍帶）、面板的類型三塊大鈕、`shelvesLegacy.ts`（`SHELVES`、兩級退、`scopeCounts`、舊的 `exploreStage`）、`wishPrefs.ts`、手機 `feed.view` 都刪了；沒有主題的面板（搜尋、AI 結果集）改成一排類型晶片＋選了的那幾類的組（`filterOptions.listPanel`）；整趟「未選住宿」的捷徑手機也改成進那區的「住」。**§35 全部做完**；👤 真機驗收（`docs/ux-review/report.md` §六第 3 點）、完整 e2e（T80）另外做。
 
 **D 版只是示意 UI、UX 要變成什麼樣**：版面、層級、每一層的長相、文字、行為。網頁版、手機版各自的程式邏輯（地圖連動、彈窗還是整頁、分批載入、只看地圖畫面裡的、localStorage 的偏好、AI 的結果集、搜尋、自己加地點的建議…）照舊，D 版沒畫到的地方照現在的做法。和 §20、§25、§26、§28、§30、§32、§33 衝突的地方以這節為準；沒衝突的照舊。手機、網頁一樣。
 

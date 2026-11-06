@@ -168,7 +168,7 @@
 | T76 | 探索改版（共用畫面）：主題列、收合的書架區段（黏頂、0 個）、照片牆和清單合成一種列、工具列只剩搜尋＋篩選（概覽：問 AI、加地點）、條件列、篩選面板改主題分組和「只看我按的」、概覽卡「照片 → 玩吃住 → 文字」、想去的三排改區段、詳情的返回寫目的地、想去的提示手機也有 | M | T75 | 4 | 🌐 少量 | ✅ |
 | T77 | 探索改版（手機接線）：`ExploreFeed`、`FeedFilters`、`WishlistPage`、`mobileStore` 的主題和展開狀態、捲動位置記憶、詳情返回字；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ✅ |
 | T78 | 探索改版（網頁接線）：`Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`appStore` 的主題，地圖連動（指到、選中、點地圖展開區段捲到那列）、原地展開、右欄抽屜；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ✅ |
-| T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ⬜ |
+| T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ✅ |
 | T80 | e2e 體檢與完整 e2e：先逐支檢查 T75～T79 動到的 spec 哪些斷言過時並修正，再跑完整三組（網頁、手機 390、360）和 `e2e:worker`，程式真的壞的修掉 | M | T79 | 4 | | ⬜ |
 
 ---
@@ -1946,6 +1946,10 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **文件**：interaction-design §20、§25、§26、§28、§30、§32、§33 開頭加一句「T75～T79 起以 §35 為準，這節只留歷史」；§35 標成已做；architecture 的探索、想去段落更新；`web/src/components/HowToDialog.tsx`「怎麼用」和 `worker/src/bot.ts` LINE 說明裡提到書架、「全部 N ›」、照片牆的字改成區段的說法；CONVENTIONS 不用動。
 - **AI**：`ai/prompts.ts` 推薦問題如果引用書架名跟著改；`npm run ai:eval` 只跑幾個代表題（照「AI 測試不打 API」，先假 AI；真模型要不要跑 👤 決定）。
 - **👤 真機驗收**：照 `docs/ux-review/report.md` §六第 3 點，讓母親在真手機再走 1a（志摩有什麼）和 1c（標一個想去的），只給任務不教；說出的數字接近 24、愛心按一次就確定才算過。結果記回 `docs/ux-review/`。
+- **完成（2026-11-06）**：程式和文件做完；**👤 真機驗收還沒做**（步驟和要填的地方在 `docs/ux-review/report.md` §七）。
+  - **刪掉的**：`ShelfCard`、`AreaHome`（ExploreHome.tsx）；`PlaceTile.tsx`、`PlaceWall.tsx`；`FilterBar` 的 `LegacyFilterBar`、排序選單、照片牆切換、淡藍帶、`back`／`showView`／`extraCond`，`FilterModel` 的 `sort`／`view`、`ai.sortByAi`（AI 結果集固定照 AI 的順序，`useAiPicked` 不再有排序狀態），`stage` 改成必給；`FilterSheet` 的 `TypeTiles`；`WishList.tsx` 的舊三排（`WishList`、`WishItem`、`useWishBack`）；`lib/shelvesLegacy.ts` 和 `shelves.ts` 的轉出；`listConditions` 的 `pureShelf`、`shelfEmptyHelp`、`firstQuestionSwap`、條件晶片的 `preset`（藍底）和分布小字（`distNote`）；`filterOptions` 的 `SECTION_ORDER`、`FILTER_SECTIONS`、`COMMON_GROUPS`、`panelLayout`、`sectionSummary`、`sectionApplied`、組的 `dimmed`；`filter.ts` 的 `WHO_PANEL`、`STAY_PANEL`；`shared/wishPrefs.ts`；`placeLists` 的 `useWishUserChip`、`useScopeCounts`、`useSectionPool`；`wishSections` 的 `PAGE_FIRST`、`PAGE_MORE`；手機 `Feed.view` 和它的 localStorage；`TripSkeleton` 的 `scrollToShelf`；這些元件專用的 CSS（`.xs-*`、`.pt-*`、`.pw-*`、`.fb-lens*`、`.fb-cond*`、`.fb-sort`、`.fb-view`、`.fs-tile*`、`.fs-section*`、`.wl-shelves`… 用 postcss 逐條比對過，只拿掉含這些 class 的選擇器）。`lib/overview.ts` 的四格數字 T63 就拿掉了。
+  - **自己決定的**：① 沒有主題的篩選面板（概覽搜尋、AI 結果集）原本還是舊的類型三塊大鈕，改成 `filterOptions.listPanel`：一排類型晶片（testid 照舊 `filter-opt-type-*`）＋選了的那幾類的組（同一個欄位只畫一次）＋地圖；有主題時照舊 `themePanel`。② 地圖分層的 `listing` 改用 `exploreLayer`（舊的 `exploreStage` 在地區頁有主題時會當成清單）：選了一區時本來就畫那區全部的點，結果只差在概覽有主題沒條件時，縮遠不再多畫那一類的小點。③ 概覽離開篩選的復原那句書架名拿掉，一律「自己篩選 · 鳥羽」（搜尋照舊「「海女」」）。④ 手機整趟「未選住宿」的捷徑原本捲到舊的「住在這裡」那排（已經找不到），改成和網頁一樣進那區的「住」（`setFeedTheme(lodging)`，條件照換主題的規則留著）。⑤ 「怎麼用」和 LINE 說明本來就沒有寫書架、「全部 N ›」、照片牆；第一點改成「在「探索」選地區和玩、吃、住，喜歡的按 ♡ 我想去」（§35.9 的按鈕字）。⑥ AI 的推薦問題沒有引用書架名（T75 已改 `LODGING_FOLLOWUPS`），不用動；用 `aiHarness`（假 AI）看了 `set_filter`（志摩住宿包棟、鳥羽 B 級）、`search_places`（志摩 S、A 級＝5，和區段一樣），回傳都對；提示這張沒改，**真模型的 `ai:eval` 沒跑**（要不要跑 👤 決定）。
+  - **測試**：`shelves.test.ts` 只留住法、天氣、`currentArea`、`listScreenLabel`（舊書架的拿掉）；`wishPrefs.test.ts` 刪掉；`listConditions.test.ts` 拿掉書架的 0 個、分布小字、第一題放寬；`shared.test.ts` 的面板測試改成 `listPanel`；`placeLayers.test.ts` 多比對區段的條件（清單層和完整資料篩出來一樣）。`npm test` 1118 過、`typecheck`、`build` 通過。**e2e 沒跑**（照第十九輪的原則，T80 做）；T80 要知道：`filter-opt-type-*` 在沒有主題的面板變成晶片、`data-preset`／`cond-note` 沒了、`sort-open`／`view-*`／`lens`／`back-to-area`／`shelf`／`shelf-card`／`wish-shelf*`／`wish-more-*`／`wish-type-user` 都沒了、`sk-stay-shelf` 在手機改成進「住」。
 
 ### T80 e2e 體檢與完整 e2e 〔M〕（第十九輪，2026-11-06 👤 決定）
 

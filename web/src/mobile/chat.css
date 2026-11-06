@@ -682,24 +682,6 @@
   font-size: 0.875rem;
 }
 
-.m-app .fb-listhead {
-  gap: 8px;
-  padding-top: 0;
-  font-size: 0.875rem;
-  min-height: var(--tap);
-}
-
-.m-app .fb-listhead [data-testid='list-count'] {
-  margin-right: auto;
-}
-
-.m-app .fb-ask {
-  min-height: var(--tap);
-  padding: 0 10px;
-  font-size: 0.9375rem;
-  font-weight: 700;
-}
-
 .m-app .ai-note,
 .m-app .ai-letter {
   font-size: 0.875rem;

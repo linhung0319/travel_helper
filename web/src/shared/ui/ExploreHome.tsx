@@ -1,24 +1,17 @@
-// 探索的概覽、選了一區之後的頂端和書架（T42，interaction-design §20）。手機、網頁共用；開詳情、換地區這些動作由呼叫的畫面給。
-// 概覽（T52 §26、T63 §28）：一區一張卡（那區的代表照片、區名和日文名、住幾晚、子地區一行、簡介、二月注意第一則、代表的點），
-// 點子地區在卡片裡換成那個子地區的簡介、二月注意、代表點（overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）；
-// 代表的點是文字加類型圓章，點了開詳情；「看志摩 ›」「看賢島 ›」進那一區（選了子地區時再選好那個子地區）。
-// 選了一區（T50）：「2 月注意（N）」收合；下面幾排書架（lib/shelves.ts），每排 3 張小卡（右上角類型圓章）、「全部 ›」套那組條件。
-// 書架兩級（T66，§32）：第一級 0 個退到第二級，標題旁的小字換成芥子黃的那句；小卡第二行寫這排在意的事（15 人坐不坐得下、住法和餐食）。
-// 兩級都 0 個的那排不藏（T64）：標題照樣在，下面虛線框寫「賢島沒有 S、A 級的景點」和下一步（NextSteps，lib/listConditions.ts 的 emptyHelp；照片牆、清單篩到 0 個也用）。
+// 探索的概覽、選了一區之後的內容（T42 起，interaction-design §35）。手機、網頁共用；開詳情、換地區這些動作由呼叫的畫面給。
+// 概覽（§35.6，延續 §26、§28）：一區一張卡，由上往下是照片（點了進那區）→ 主題列（點了直接進那區那個主題）→ 子地區一行（點了在卡片裡換內容，
+// overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）→ 一句特色 → 「● 2 月注意 N 則 ›」收合 → 代表地點；住幾晚、作者授權照舊。
+// 選了一區是 AreaThemeHome（§35.4）：「2 月注意」一行收合＋目前主題的區段（Section.tsx；一定要去、其他景點…），
+// 最下面「問 AI 幫我挑」「找不到？自己加一個」兩行小字。0 個的區段、搜尋篩到 0 個用 NextSteps（lib/listConditions.ts）。
 // 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
-// 樣式在 ui.css（.xo-*、.xa-*、.xs-*）。
-//
-// T76（interaction-design §35.6、35.4）：概覽卡由上往下是照片（點了進那區，沒有「看志摩 ›」）→ 主題列（點了直接進那區那個主題）→
-// 子地區一行 → 一句特色 → 「● 2 月注意 N 則 ›」收合 → 代表地點；住幾晚、作者授權照舊。
-// 選了一區的新內容是 AreaThemeHome：「2 月注意」一行收合＋目前主題的區段（Section.tsx；一定要去、其他景點…），
-// 地區頁最下面「問 AI 幫我挑」「找不到？自己加一個」兩行小字。舊的 AreaHome、ShelfCard 留到 T77、T78 接上新的再刪（T79）。
+// 樣式在 ui.css（.xo-*、.xa-*、.xe-*）。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
 import { displayName } from '../../data/normalize.ts';
-import { SECTIONS, sectionCounts, sectionPlaces, shelfRows, themeCounts, type Theme } from '../../lib/shelves.ts';
-import { sectionEmptyHelp, shelfEmptyHelp, type EmptyHelp } from '../../lib/listConditions.ts';
+import { SECTIONS, sectionCounts, sectionPlaces, themeCounts, type Theme } from '../../lib/shelves.ts';
+import { sectionEmptyHelp, type EmptyHelp } from '../../lib/listConditions.ts';
 import { allRegionsLabel, areaSubName, overviewContent } from '../../lib/overview.ts';
 import { overviewStore, useOverview } from '../overviewStore.ts';
 import { areaStayLine } from '../../lib/tripSkeleton.ts';
@@ -26,11 +19,9 @@ import { whenNearViewport } from '../../lib/nearViewport.ts';
 import type { Filter } from '../../lib/filter.ts';
 import type { Area, Bbox, Photo as PhotoData, Place } from '../../data/types.ts';
 import { Icon } from '../../components/Icon.tsx';
-import { Photo } from '../../components/Photo.tsx';
 import { Chip } from './Chip.tsx';
 import { ChipScroller } from './ChipScroller.tsx';
 import { ScopeCount } from './AreaChips.tsx';
-import { TierMark } from './TierMark.tsx';
 import { TypeSeal } from './TypeLabel.tsx';
 import { ThemeRow } from './ThemeRow.tsx';
 import { Section, SectionRows } from './Section.tsx';
@@ -186,11 +177,8 @@ function AreaPhoto({ photo, alt }: { photo: PhotoData | undefined; alt: string }
 }
 
 /**
- * 選了一區的子地區列（T50 起放在篩選列裡、緊接在地區列下面，比地區列小一號；選到的是淡靛藍底）：「全部」加各子地區，一次選一個。
- * 只有一個子地區（或沒有）時不畫。
- */
-/**
- * 子地區列（T50）：書架和照片牆／清單都有（T69：換子地區只換範圍，篩選留著）。counts：有「看什麼」時每個子地區有幾個，「全部」寫整區的；0 個的變虛線、字變淡
+ * 子地區列（T50 起放在篩選列裡、緊接在地區列下面）：「全部」加各子地區，一次選一個；只有一個子地區（或沒有）時不畫。
+ * 換子地區只換範圍，篩選留著（T69）。counts：每個子地區目前主題有幾個（§35.3），「全部」寫整區的；0 個的變虛線、字變淡
  */
 export function RegionChips({ areaId, regionId, onPick, counts }: { areaId: string; regionId: string | null; onPick: (region: string | null) => void; counts?: Map<string, number> | null }) {
   const area = useData((s) => s.areas.find((a) => a.id === areaId));
@@ -217,7 +205,7 @@ export function RegionChips({ areaId, regionId, onPick, counts }: { areaId: stri
 
 /**
  * 0 個的時候（T64）：虛線框裡一句「賢島沒有 S、A 級的景點」，下面 2～3 個下一步（放大範圍、放寬條件、問 AI）。
- * 書架的一排、照片牆、清單篩到 0 個都用這個；onApply 換成那組條件和搜尋，onAsk 把問題放進輸入框（不送出）。
+ * 區段 0 個、搜尋或 AI 結果集篩到 0 個都用這個；onApply 換成那組條件和搜尋，onAsk 把問題放進輸入框（不送出）。
  */
 export function NextSteps({ help, onApply, onAsk, testId = 'empty-help' }: { help: EmptyHelp; onApply: (filter: Filter, query: string) => void; onAsk: (text: string) => void; testId?: string }) {
   return (
@@ -238,103 +226,6 @@ export function NextSteps({ help, onApply, onAsk, testId = 'empty-help' }: { hel
               </button>
             ),
           )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-/** 選了一區：「2 月注意（N）」收合、書架（地區的一句特色只在概覽，T50；子地區列在篩選列裡）。onAsk：0 個那排的「問 AI」 */
-export function AreaHome({ areaId, regionId, surface, onOpen, onShelfAll, onAsk }: { areaId: string; regionId: string | null; surface: HomeSurface; onOpen: (id: string) => void; onShelfAll: (filter: Filter) => void; onAsk: (text: string) => void }) {
-  const areas = useData((s) => s.areas);
-  const places = useData((s) => s.places);
-  const area = areas.find((a) => a.id === areaId);
-  const region = area?.regions?.find((r) => r.id === regionId);
-  const base = useMemo(() => ({ areas: [areaId], regions: regionId ? [regionId] : [] }), [areaId, regionId]);
-  const rows = useMemo(() => shelfRows(places, base, areas), [places, base, areas]);
-  const [febOpen, setFebOpen] = useState(false);
-  if (!area) return null;
-  // 二月注意：選了子地區只看那個子地區的一句
-  const feb = region ? (region.intro?.febNote ? [region.intro.febNote] : []) : (area.intro?.february ?? []).map((f) => f.text);
-  return (
-    <div className={`xa xa-${surface}`} data-testid="area-home" data-area={areaId}>
-      {feb.length > 0 && (
-        <div className="xa-head">
-          <div className={`xa-feb ${febOpen ? 'open' : ''}`}>
-            <button type="button" className="xa-feb-toggle" aria-expanded={febOpen} onClick={() => setFebOpen(!febOpen)} data-testid="area-feb">
-              2 月注意（{feb.length}）<span aria-hidden>{febOpen ? '▴' : '▾'}</span>
-            </button>
-            {febOpen && (
-              <ul className="xa-feb-list">
-                {feb.map((t) => (
-                  <li key={t}>{t}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      )}
-      {rows.map(({ shelf, tier, filter, note, fallback, items, total }) => (
-        <section key={shelf.id} className="xs" data-testid="shelf" data-shelf={shelf.id} data-tier={tier}>
-          <header className="xs-head">
-            <h3 className="xs-title">
-              {shelf.title}
-              <span className={`xs-note${fallback ? ' fallback' : ''}`} data-testid="shelf-note" data-fallback={fallback || undefined}>
-                {note}
-              </span>
-            </h3>
-            {total > 0 && (
-              <button type="button" className="xs-all" onClick={() => onShelfAll(filter)} data-testid="shelf-all">
-                全部 {total} ›
-              </button>
-            )}
-          </header>
-          {total > 0 ? (
-            <div className="xs-row">
-              {items.map((p) => (
-                <ShelfCard key={p.id} place={p} surface={surface} onOpen={onOpen} caption={shelf.caption?.(p)} />
-              ))}
-            </div>
-          ) : (
-            <NextSteps help={shelfEmptyHelp(places, shelf, base, areas)} onApply={(f) => onShelfAll(f)} onAsk={onAsk} testId="shelf-empty" />
-          )}
-        </section>
-      ))}
-    </div>
-  );
-}
-
-/** 書架的小卡：照片、名稱、等級；右上角類型圓章（T50 拿掉愛心，愛心留在照片牆、清單、詳情）。想去的書架（T53）在名稱下面多一行 caption（「2/7 候選」） */
-export function ShelfCard({ place, surface, onOpen, caption }: { place: Place; surface: HomeSurface; onOpen: (id: string) => void; caption?: ReactNode }) {
-  return (
-    <div
-      className={`xs-card type-${place.type}`}
-      role="button"
-      tabIndex={0}
-      aria-label={placeName(place)}
-      data-testid="shelf-card"
-      data-id={place.id}
-      onClick={() => onOpen(place.id)}
-      onKeyDown={(e) => {
-        if (e.target !== e.currentTarget || (e.key !== 'Enter' && e.key !== ' ')) return;
-        e.preventDefault();
-        onOpen(place.id);
-      }}
-      {...hoverProps(surface, place.id)}
-    >
-      <div className="xs-photo">
-        <Photo place={place} width={240} />
-        <span className="xs-seal" data-testid="shelf-seal">
-          <TypeSeal type={place.type} size="lg" label />
-        </span>
-      </div>
-      <div className="xs-name">
-        <span className="xs-name-text">{placeName(place)}</span>
-        <TierMark tier={place.tier} />
-      </div>
-      {caption && (
-        <div className="xs-caption" data-testid="shelf-caption">
-          {caption}
         </div>
       )}
     </div>

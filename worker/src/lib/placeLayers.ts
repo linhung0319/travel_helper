@@ -18,7 +18,7 @@ const LIST_WHOLE = [
   'region',
   'coords',
   'tier',
-  // 住宿的種類：書架「住在這裡」的旅館、飯店（T66）
+  // 住宿的種類：「住」的區段、住法（T66、T75）
   'kind',
   'contexts',
   'tags',

@@ -11,13 +11,13 @@ interface Props {
   /** 畫面要的寬度：Google、楽天、Wikimedia 照這個換小尺寸的網址（lib/photos.ts） */
   width?: number;
   className?: string;
-  /** 替代圖上要不要寫名稱（照片牆要，小卡片已經有名稱了） */
+  /** 替代圖上要不要寫名稱（大照片要，小縮圖已經有名稱了） */
   showName?: boolean;
   /** 只試 photos[index] 這一張（輪播的每一格），不往後換 */
   only?: boolean;
 }
 
-/** 載入過的照片的比例：卡片重新掛上時（照片牆展開的卡換位置）照片先佔好高度，不會縮成一條再撐開，看起來像收合又打開 */
+/** 載入過的照片的比例：卡片重新掛上時（展開的列換位置）照片先佔好高度，不會縮成一條再撐開，看起來像收合又打開 */
 const RATIOS = new Map<string, number>();
 const seen = (url: string) => RATIOS.has(url);
 

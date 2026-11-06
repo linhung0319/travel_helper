@@ -22,7 +22,7 @@ export interface LayerContext {
   detailed: boolean;
   /** 目前選的一區（currentArea）；沒有是 null */
   area: string | null;
-  /** 探索是清單（搜尋、AI 結果集、面板的條件）：符合條件的點照樣畫 */
+  /** 探索是平的清單（exploreLayer 的 list：搜尋、AI 結果集、沒選一區卻有條件）：符合條件的點照樣畫 */
   listing: boolean;
 }
 

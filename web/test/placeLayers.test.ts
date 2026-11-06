@@ -16,6 +16,7 @@ import { closedDaysLabel } from '../src/lib/hours.ts';
 import { ratingOf } from '../src/lib/explore.ts';
 import { EMPTY_FILTER, STAY_VALUES, WHO_VALUES, matchesFilter, matchesWho, placeFit15, placeStayKind, type Filter } from '../src/lib/filter.ts';
 import { FILTER_GROUPS } from '../src/shared/filterOptions.ts';
+import { SECTIONS } from '../src/lib/shelves.ts';
 import { rowHighlights } from '../src/shared/rowHighlights.ts';
 import { noteRows } from '../src/lib/reservations.ts';
 import { searchPlaces, type SearchInput } from '../src/ai/search.ts';
@@ -82,7 +83,7 @@ test('清單畫面的標章、重點、評分、篩選用清單層算出來一�
     assert.deepEqual(rowHighlights(l, status, 9), rowHighlights(f, status, 9), f.id);
     assert.equal(ratingOf(l), ratingOf(f), f.id);
     assert.equal(placeFit15(l), placeFit15(f), f.id);
-    // 書架兩級的條件（T66）：誰吃、住法、小卡第二行
+    // 誰吃、住法（區段、列的第二行）
     assert.equal(placeStayKind(l), placeStayKind(f), f.id);
     assert.deepEqual(STAY_VALUES.map((v) => matchesFilter(l, { ...EMPTY_FILTER, stay: [v] })), STAY_VALUES.map((v) => matchesFilter(f, { ...EMPTY_FILTER, stay: [v] })), f.id);
     // 面板上每一顆條件（T67：晚餐、溫泉、車站走路到、2 月…）
@@ -92,6 +93,11 @@ test('清單畫面的標章、重點、評分、篩選用清單層算出來一�
         const filter: Filter = { ...EMPTY_FILTER, [g.key]: [o.value] };
         assert.equal(matchesFilter(l, filter), matchesFilter(f, filter), `${f.id} ${g.key}:${o.value}`);
       }
+    }
+    // 書架區段的條件（T75：一定要去、下雨也行、全員吃飯…，面板沒有的也算）
+    for (const sec of Object.values(SECTIONS).flat()) {
+      const filter: Filter = { ...EMPTY_FILTER, ...sec.filter };
+      assert.equal(matchesFilter(l, filter), matchesFilter(f, filter), `${f.id} ${sec.id}`);
     }
     assert.deepEqual(WHO_VALUES.map((v) => matchesWho(l, v)), WHO_VALUES.map((v) => matchesWho(f, v)), f.id);
     assert.deepEqual(stayCaption(l), stayCaption(f), f.id);
