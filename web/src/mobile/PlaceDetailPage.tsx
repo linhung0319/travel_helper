@@ -1,5 +1,6 @@
 // 手機版的資料點詳情（第六輪 §3.3，第七輪 §7）：像點進 IG 的帳號，整頁蓋在分頁上面（原本的分頁不卸載，返回時捲動位置不變）。
 // 內容（照片輪播、名稱、動作列、簡介／交通／評論／留言四個分頁）是兩邊共用的 shared/ui/PlaceDetail；這裡只管：整頁的外框、返回（瀏覽器上一頁也一樣，見 mobileStore）、
+// 返回鈕寫目的地（T77，§35.2）：「回到 賢島 › 玩」「回到 想去 › 吃」，附近開的「回到 海樂園」（返回回到那一頁）；分頁沒卸載，退回停在原位。
 // 位置分頁的小地圖（另開的一張不能互動的 MapLibre，標記是選中的數字水滴的樣子）：點了「在地圖上看」切到行程（第七輪 §8.3）——
 // 排在某天＝選那天、選中那張卡；沒排＝整趟、選中這個點。附近的點換成那個點的詳情。
 // 捲過照片後出現白色頂端列（‹、名稱、❤），分頁列接在它下面。
@@ -73,7 +74,7 @@ function MiniMap({ place }: { place: Place }) {
 }
 
 /** 一個點的整頁內容（換點時整個重來：分頁回到簡介、捲回最上面） */
-function DetailContent({ place, from, tab }: { place: Place; from: MobileTab; tab?: DetailTabId }) {
+function DetailContent({ place, from, tab, back }: { place: Place; from: MobileTab; tab?: DetailTabId; back?: string }) {
   // 排在哪天：選那天、切到行程分頁
   const onDay = (date: string) => {
     commands.selectDay(date);
@@ -87,9 +88,10 @@ function DetailContent({ place, from, tab }: { place: Place; from: MobileTab; ta
       initialTab={tab}
       onDay={onDay}
       onAsk={() => askFromDetail(place.id, from)}
-      onPickNearby={(id) => mobileStore.getState().openPlace(id, from)}
+      onPickNearby={(id) => mobileStore.getState().openPlace(id, from, undefined, place.name.zh || place.name.ja, true)}
       locator={<MiniMap place={place} />}
       onBack={() => mobileStore.getState().closePlace()}
+      backLabel={back ?? null}
     />
   );
 }
@@ -103,7 +105,7 @@ export function PlaceDetailPage() {
   return (
     <section className="m-full m-detail" data-testid="m-detail" data-id={detail.placeId} aria-label={`${name} 的詳情`}>
       {place ? (
-        <DetailContent key={place.id} place={place} from={detail.from} tab={detail.tab} />
+        <DetailContent key={place.id} place={place} from={detail.from} tab={detail.tab} back={detail.back} />
       ) : (
         <>
           <button type="button" className="m-back" onClick={() => mobileStore.getState().closePlace()} aria-label="返回" data-testid="m-detail-back">
