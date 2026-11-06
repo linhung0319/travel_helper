@@ -293,7 +293,7 @@ test('T67 篩選的晶片用新名字；AI 的舊欄位 fit15、lodging、suits 
     filterChips({ ...EMPTY_FILTER, who: ['all'], contexts: ['light'], kids: ['ok'], stay: ['fits'], dinner: ['included'], amenity: ['onsen'], suits: ['winter'], reach: ['easy'] }, []).map((c) => c.label),
     ['小吃咖啡', '全員 15 人', '可以帶小孩', '不用搭車', '一間住得下全團', '一泊二食', '適合 2 月', '溫泉'],
   );
-  assert.deepEqual(toFilterPatch({ fit15: ['yes', 'split'], types: ['restaurant'] }), { who: ['all'], types: ['restaurant'] });
+  assert.deepEqual(toFilterPatch({ fit15: ['yes', 'split'], types: ['restaurant'] }), { who: ['together', 'split'], types: ['restaurant'] });
   assert.deepEqual(toFilterPatch({ fit15: ['unknown'] }), { who: ['apart'] });
   assert.deepEqual(toFilterPatch({ lodging: ['wholeRental'] }), { stay: ['whole', 'multi'] });
   assert.deepEqual(toFilterPatch({ lodging: ['wholeRental', 'sleeps15'] }), { stay: ['whole'] });

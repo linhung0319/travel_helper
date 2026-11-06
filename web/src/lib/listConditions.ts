@@ -1,14 +1,16 @@
 // 探索的「現在看」那一列、0 個時的下一步、問 AI 的那句（T64，interaction-design §30）。純函式，沒有畫面；手機、網頁共用。
 // - 條件列：每個條件一顆（藍底的是書架帶來的，白底的是自己在面板加的、搜尋、只看地圖畫面裡的），都可以拿掉；地區、子地區在外面的地區列，不在這裡。
 // - 0 個：一句「賢島沒有 S、A 級的景點」，加上 2～3 個下一步：放大範圍（子地區 → 整區）、放寬條件、問 AI（問題寫好，放進輸入框）。
+// - T75：區段 0 個用 sectionEmptyHelp（檔案最後）；emptyHelp 留給搜尋、AI 結果集的清單（書架那段 pureShelf、shelfEmptyHelp 是舊畫面的，T79 刪）。
 // - 問 AI：把現在的地區、子地區、條件寫成一句（「在志摩・賢島找可容納 15 人的餐廳」）。
 
 import { displayName } from '../data/normalize.ts';
 import type { Area, Place } from '../data/types.ts';
 import { appliedChips } from '../shared/filterOptions.ts';
 import { explorePlaces } from './explore.ts';
-import { TYPE_LABELS, placeFit15, placeStayKind, type Filter, type FilterKey } from './filter.ts';
-import { dist, shelfFilter, shelfKeys, shelfOf, shelfTierOf, type Shelf } from './shelves.ts';
+import { EMPTY_FILTER, TYPE_LABELS, placeFit15, placeStayKind, type Filter, type FilterKey } from './filter.ts';
+import { dist, shelfFilter, shelfKeys, shelfOf, shelfTierOf, type Shelf } from './shelvesLegacy.ts';
+import { THEME_LABELS, sectionPlaces, themeOf, type Section } from './shelves.ts';
 
 /** 條件列的一顆。key 是 Filter 的欄位，另外兩種：query（搜尋）、inView（只看地圖畫面裡的，只有網頁） */
 export interface CondChip {
@@ -200,4 +202,39 @@ function firstQuestionSwap(filter: Filter, where: string): { filter: Filter; lab
 /** 書架的一排兩級都是 0 個時（AreaHome）：同 emptyHelp，條件是那排第一級套在目前地區、子地區上 */
 export function shelfEmptyHelp(places: Place[], shelf: Shelf, base: Pick<Filter, 'areas' | 'regions'>, areas: Area[]): EmptyHelp {
   return emptyHelp(places, shelfFilter(shelf, base), '', areas);
+}
+
+// ---- T75：區段 0 個（interaction-design §35.4） ----
+
+/**
+ * 區段（或整個主題）0 個時寫什麼、給哪幾個下一步（T75，取代 shelfEmptyHelp 的兩級退）：
+ * - 那句：區段是「賢島沒有『一定要去』的景點」；整個主題是「賢島沒有住宿」，有篩選時「賢島沒有符合條件的住宿」。
+ * - 下一步：① 選了子地區時看整區（同樣的區段、篩選，數字是 0 不放）；② 有篩選時清除篩選（數字是 0 不放）；③ 問 AI（區段的那句，整個主題用 listDraft）。
+ * filter 是目前的（含主題、篩選）；section 不給＝整個主題。清除篩選留地區、子地區、主題。
+ */
+export function sectionEmptyHelp(places: Place[], filter: Filter, areas: Area[], section?: Section, query = ''): EmptyHelp {
+  const theme = section?.theme ?? themeOf(filter);
+  const noun = theme ? THEME_LABELS[theme].noun : '地點';
+  const where = placeShort(filter, areas) ?? '這裡';
+  const q = query.trim();
+  const count = (f: Filter) => (section ? sectionPlaces(places, section, f, { query: q }).length : countOf(places, f, q));
+  const area = filter.areas.length === 1 ? areas.find((a) => a.id === filter.areas[0]) : undefined;
+  const cleared: Filter = { ...EMPTY_FILTER, areas: filter.areas, regions: filter.regions, types: filter.types };
+  const hasCond = !!q || appliedChips(filter, areas).some((c) => c.key !== 'types');
+  const steps: NextStep[] = [];
+
+  if (filter.regions.length && area) {
+    const wide = { ...filter, regions: [] };
+    const n = count(wide);
+    if (n > 0) steps.push({ kind: 'widen', label: `看${displayName(area.name, area.id)}全區`, count: n, filter: wide, query: q });
+  }
+  if (hasCond) {
+    const n = count(cleared);
+    if (n > 0) steps.push({ kind: 'relax', label: '清除篩選', count: n, filter: cleared, query: '' });
+  }
+  const draft = section ? section.ask(where) : listDraft(filter, q, areas);
+  if (draft) steps.push({ kind: 'ask', label: `問 AI：${draft}`, draft });
+
+  const message = section ? `${where}沒有「${section.title}」的${noun}` : hasCond ? `${where}沒有符合條件的${noun}` : `${where}沒有${noun}`;
+  return { message, steps };
 }

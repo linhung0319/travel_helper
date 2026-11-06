@@ -95,7 +95,7 @@ test('篩選面板照類型分段（T67）：每類的組、第一題在最上�
   assert.deepEqual(opts('context'), ['午餐', '晚餐', '小吃咖啡']);
   assert.deepEqual(opts('reach'), ['車站旁', '不用搭車']);
   assert.deepEqual([title('lodging'), title('dinner'), title('lodging-suits'), title('amenity')], ['住法', '晚餐', '適合', '其他']);
-  assert.deepEqual(opts('lodging'), ['包棟・一棟住全團', '包棟・要和別處分住', '旅館・飯店', '民宿']);
+  assert.deepEqual(opts('lodging'), ['包棟・全團一棟', '包棟・要分住', '旅館飯店', '民宿']);
   assert.deepEqual(opts('dinner'), ['一泊二食', '不含，走路有店', '不含，要開車找']);
   assert.deepEqual(opts('lodging-suits'), ['長輩', '小孩']);
   assert.deepEqual(opts('amenity'), ['溫泉', '車站走路到']);
@@ -128,7 +128,7 @@ test('appliedChips：含類型，不含地區、子地區（在外面一列）',
   const f = { ...EMPTY_FILTER, types: ['restaurant' as const], areas: ['toba'], regions: ['toba-station'], weather: ['covered' as const], who: ['all' as const], stay: ['whole' as const], dinner: ['included' as const] };
   const chips = appliedChips(f, AREAS);
   assert.deepEqual(chips.map((c) => c.key), ['types', 'who', 'stay', 'dinner', 'weather']);
-  assert.deepEqual(chips.map((c) => c.label).slice(1), ['全員 15 人', '包棟・一棟住全團', '一泊二食', '有遮蔽']);
+  assert.deepEqual(chips.map((c) => c.label).slice(1), ['全員 15 人', '包棟・全團一棟', '一泊二食', '有遮蔽']);
 });
 
 // rowHighlights 的測試在 placeSummary.test.ts（T44b 改成這團的標章）

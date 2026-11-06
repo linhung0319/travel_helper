@@ -4,6 +4,7 @@
 import type { Itinerary } from '@travel-helper/engine/types';
 import type { Candidate } from '../backend/types.ts';
 import { placeDayStatus } from '../lib/wishlist.ts';
+import type { SectionHead } from '../lib/shelves.ts';
 
 export type SectionId = 'unscheduled' | 'candidate' | 'scheduled';
 
@@ -17,7 +18,19 @@ export interface WishGroup {
   ids: string[];
 }
 
-export interface WishSection {
+/**
+ * 三段的標題、說明小字（T75，interaction-design §35.8）：和探索的區段同一個頭（SectionHead），畫面用同一個收合區段元件畫，色條用愛心紅
+ */
+export const WISH_SECTION_HEADS: Record<SectionId, SectionHead & { id: SectionId }> = {
+  unscheduled: { id: 'unscheduled', title: '還沒排', rule: '想去的人多的排前面' },
+  candidate: { id: 'candidate', title: '已是候選', rule: '主辦考慮放某一天，還沒定' },
+  scheduled: { id: 'scheduled', title: '已排進行程', rule: '主辦已經排進那天' },
+};
+
+/** 想去最下面那行說明（§35.8） */
+export const WISH_SECTIONS_NOTE = '「已是候選」是主辦考慮放進那天、還沒定；「已排進行程」是主辦已經排了。';
+
+export interface WishSection extends SectionHead {
   id: SectionId;
   count: number;
   groups: WishGroup[];
@@ -42,7 +55,7 @@ export function wishSections(ids: string[], candidates: Candidate[], it: Itinera
   }
   const grouped = (m: Map<string, string[]>): WishGroup[] => [...m].sort(([a], [b]) => a.localeCompare(b)).map(([date, list]) => ({ date, ids: list }));
   const sortedUnscheduled = unscheduled.map((id, i) => ({ id, i })).sort((a, b) => likes(b.id) - likes(a.id) || a.i - b.i).map((x) => x.id);
-  const section = (id: SectionId, groups: WishGroup[]): WishSection => ({ id, count: groups.reduce((n, g) => n + g.ids.length, 0), groups });
+  const section = (id: SectionId, groups: WishGroup[]): WishSection => ({ ...WISH_SECTION_HEADS[id], count: groups.reduce((n, g) => n + g.ids.length, 0), groups });
   return [
     section('unscheduled', sortedUnscheduled.length ? [{ date: null, ids: sortedUnscheduled }] : []),
     section('candidate', grouped(byDate.candidate)),

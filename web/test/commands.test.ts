@@ -225,7 +225,7 @@ test('setFilter／clearFilter：給的項目取代、其他不動；值從 areas
 
   // T67：舊的 fit15、lodging、suits 的 access 還收，轉成新的欄位
   assert.ok(cmd.setFilter({ fit15: ['yes'], lodging: ['wholeRental', 'sleeps15'], suits: ['elderly', 'access'] } as never).ok);
-  assert.deepEqual(app.getState().filter.who, ['all']);
+  assert.deepEqual(app.getState().filter.who, ['together']);
   assert.deepEqual(app.getState().filter.stay, ['whole']);
   assert.deepEqual(app.getState().filter.suits, ['elderly']);
   assert.deepEqual(app.getState().filter.reach, ['easy']);

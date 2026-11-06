@@ -88,20 +88,20 @@ export function createTools(d: AiDeps): ToolDef[] {
         types: strs('spot、restaurant、lodging、station'),
         areas: strs('區域 ID（get_areas 有）'),
         regions: strs('子地區 ID（get_areas 有）'),
-        tiers: strs('推薦等級 S、A、B'),
+        tiers: strs('推薦等級 S、A、B（B 也包含沒評等級的）'),
         cuisine: strs('料理類型，例如 牡蠣、壽司'),
         near: obj({ place: str('資料點 ID'), coords: { type: 'array', items: num() }, walkMinutes: num('全員步行最多幾分') }),
         inView: bool('只找目前地圖畫面裡的'),
         openAt: obj({ date: str(DATE), time: str('HH:MM') }, ['date', 'time']),
         fit15: strs('yes（能坐 15 人）、split（要分桌）、no、unknown'),
-        who: strs('餐廳：all（全員 15 人能一起吃：fit15 是 yes 或 split 而且收小孩）、sub（分組 4～6 人坐得下）、apart（15 人坐不下或還沒查）'),
+        who: strs('餐廳：together（15 人能坐一起）、split（一家坐得下，要分桌）、apart（15 人坐不下或還沒查）、sub（分組 4～6 人坐得下）、all（全員 15 人能一起吃：together 加 split 而且收小孩）'),
         fitSubgroup: bool('4～6 人分組坐得下'),
         elderly: bool('適合長輩'),
         kids: bool('適合小孩'),
         access: bool('不用搭車（交通評分 accessEase 4 分以上：車站走路就到）'),
         reservable: bool('可以預約'),
         weather: strs('景點的天氣：rain（下雨也行＝室內、有遮蔽都算）、indoor（室內）、covered（有遮蔽：一半在屋頂下，撐傘可以）。餐廳、住宿不受影響'),
-        stay: strs('住宿的住法：whole（包棟一棟住得下全團）、multi（包棟但一棟住不下，要和別處分住）、hotel（旅館飯店）、other（民宿等不能包棟的）、fits（一間住得下全團：包棟一棟或旅館飯店 5 間房以上）、apart（要分開住）'),
+        stay: strs('住宿的住法：whole（包棟・全團一棟）、multi（包棟・要分住：一棟住不下 15 人）、hotel（旅館飯店）、other（民宿：不能包棟的）、fits（一間住得下全團：包棟一棟或旅館飯店 5 間房以上）、apart（要分開住）'),
         dinner: strs('住宿的晚餐：included（一泊二食）、walk（不含，走路有店）、car（不含，要開車找）'),
         winter: bool('適合 2 月（景點的 winterFit 4 分以上）'),
         wholeRental: bool('能包棟（只留住宿）'),
@@ -250,9 +250,10 @@ export function createTools(d: AiDeps): ToolDef[] {
       name: 'set_filter',
       kind: 'stage',
       description:
-        '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types、tiers、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。' +
-        '餐廳（給了只留餐廳）：who（all 全員 15 人能一起吃＝fit15 是 yes 或 split 而且收小孩、sub 分組 4～6 人、apart 15 人坐不下或還沒查）、contexts（lunch 午餐、dinner 晚餐、light 小吃咖啡；transit 車站旁）、kids（ok 可以帶小孩）。' +
-        '住宿（給了只留住宿）：stay（whole 包棟一棟住得下全團、multi 包棟但要和別處分住、hotel 旅館飯店、other 民宿、fits 一間住得下全團＝包棟一棟或旅館飯店 5 間房以上、apart 要分開住）、dinner（included 一泊二食、walk 不含但走路有店、car 不含要開車找）、amenity（onsen 溫泉、stationWalk 車站走路到；給幾個都要符合）。' +
+        '套用探索的篩選（使用者看得到、可以自己取消）。給的那幾項整個取代；clear=true 先全部清掉。項目：areas、regions、types（畫面一次看一類，只給一個：spot 玩、restaurant 吃、lodging 住；給多個只用第一個）、tiers（S、A、B；B 也包含沒評等級的）、votes（any 有人想去、popular 2 人以上想去、mine 我按想去的）。' +
+        '探索每一類分成幾個區段，就是這些條件：玩＝一定要去（tiers S、A）、其他景點（tiers B）、下雨也行（weather rain）；吃＝全員吃飯（who together）、要分桌（who split）、要分組去（who apart）；住＝包棟・全團一棟（stay whole）、包棟・要分住（stay multi）、旅館飯店（stay hotel）、民宿（stay other）。' +
+        '餐廳（給了只留餐廳）：who（together 15 人能坐一起＝fit15 yes、split 一家坐得下但要分桌、apart 15 人坐不下或還沒查、sub 分組 4～6 人坐得下、all 全員 15 人能一起吃＝together 加 split 而且收小孩）、contexts（lunch 午餐、dinner 晚餐、light 小吃咖啡；transit 車站旁）、kids（ok 可以帶小孩）。' +
+        '住宿（給了只留住宿）：stay（whole 包棟・全團一棟、multi 包棟・要分住（一棟住不下 15 人）、hotel 旅館飯店、other 民宿（不能包棟）、fits 一間住得下全團＝包棟一棟或旅館飯店 5 間房以上、apart 要分開住）、dinner（included 一泊二食、walk 不含但走路有店、car 不含要開車找）、amenity（onsen 溫泉、stationWalk 車站走路到；給幾個都要符合）。' +
         '景點、住宿：suits（elderly 適合長輩、kids 適合小孩、winter 適合 2 月（只有景點有），評分 4 分以上；給幾個都要符合）。景點：weather（rain 下雨也行＝室內、有遮蔽都算，indoor 室內、covered 有遮蔽；餐廳、住宿不受影響）。' +
         'reach（station 車站旁、easy 不用搭車＝交通評分 4 分以上，餐廳是車站走路 10 分內）。舊的 fit15、lodging 還收，會轉成 who、stay。例如「想去的鳥羽餐廳」：areas toba、types restaurant、votes any。條件表達不出來、或是你挑過的幾家，改用 show_places。',
       input_schema: obj({ areas: strs(), regions: strs(), types: strs(), contexts: strs(), tiers: strs(), votes: strs(), weather: strs(), who: strs(), kids: strs(), reach: strs(), stay: strs(), dinner: strs(), suits: strs(), amenity: strs(), fit15: strs(), lodging: strs(), clear: bool() }),
@@ -260,7 +261,11 @@ export function createTools(d: AiDeps): ToolDef[] {
         const { clear, ...patch } = input as Record<string, string[]> & { clear?: boolean };
         const err = d.commands.checkFilter(patch as never);
         if (err) return fail(err);
-        return { output: { ok: true }, present: { kind: 'filter', patch: toFilterPatch(patch), clear: !!clear }, card: {} };
+        // 探索、想去一次看一類（T75，主題列）：給了好幾類只用第一個，回傳裡講
+        const types = patch.types;
+        const note = Array.isArray(types) && types.length > 1 ? `畫面一次只看一類，只套用了 ${types[0]}；其他類要另外 set_filter，或用 show_places 一起列` : undefined;
+        if (note) patch.types = [types[0]];
+        return { output: note ? { ok: true, note } : { ok: true }, present: { kind: 'filter', patch: toFilterPatch(patch), clear: !!clear }, card: {} };
       },
     },
     { name: 'clear_view', kind: 'stage', description: '清掉畫面上 AI 的結果集、路線。', input_schema: obj({}), run: () => ({ output: { ok: true }, present: { kind: 'clear' }, card: {} }) },

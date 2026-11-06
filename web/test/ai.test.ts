@@ -1361,6 +1361,6 @@ test('T67 search_places：who、stay、dinner、winter 和探索篩選同一個�
   // set_filter 收到舊的 fit15、lodging：畫面上的是新欄位
   const tool = h.chat.tools.find((t) => t.name === 'set_filter')!;
   const run = await tool.run({ types: ['restaurant'], fit15: ['yes'] });
-  assert.deepEqual((run as { present?: { patch?: unknown } }).present?.patch, { types: ['restaurant'], who: ['all'] });
+  assert.deepEqual((run as { present?: { patch?: unknown } }).present?.patch, { types: ['restaurant'], who: ['together'] });
   h.close();
 });
