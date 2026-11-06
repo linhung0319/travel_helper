@@ -65,7 +65,7 @@ export function wishSections(ids: string[], candidates: Candidate[], it: Itinera
 export function wishWhen(section: SectionId, status: { candidate: string[]; scheduled: string[] }): RowHighlight[] {
   const days = (list: string[]) => list.map(shortDayLabel).join('、');
   const out: RowHighlight[] = [];
-  if (status.scheduled.length) out.push({ label: `${days(status.scheduled)} 排了`, tone: 'good' });
+  if (status.scheduled.length) out.push({ label: `${days(status.scheduled)} 排了`, tone: 'plan' });
   if (status.candidate.length) out.push({ label: `${days(status.candidate)} 候選`, tone: 'indigo' });
   return section === 'candidate' ? out.reverse() : out;
 }

@@ -1,14 +1,14 @@
 // 資料點的詳情。網頁版：DetailPanel（右欄或浮在地圖上），版面是 shared/ui/PlaceDetail（兩邊共用的照片、動作列、四個分頁）。
 // 各分頁裡的區塊抽成可以單獨 import 的元件（PlaceIntro、PlaceFacts、PlaceReviews、NearbySection、LinksSection、SourcesSection），PlaceDetail 排版面。
 import { nightsAt } from '@travel-helper/engine';
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailFrom } from '../store.ts';
 import { commands } from '../appCommands.ts';
 import { useApp, useData } from '../hooks.ts';
 import { displayName } from '../data/normalize.ts';
 import { TYPE_LABELS, CONTEXT_LABELS } from '../lib/filter.ts';
 import { DAY_ROWS, closureOn, formatRanges, hoursLine, rowForDate } from '../lib/hours.ts';
-import { fitCells, priceLine, tipLine } from '../lib/placeSummary.ts';
+import { fitCells, priceLine, tipLine, type FitCell } from '../lib/placeSummary.ts';
 import {
   CONFIDENCE_LABELS,
   FIT15_LABELS,
@@ -34,7 +34,7 @@ import { EditedMark, editedOf } from './EditHistory.tsx';
 import { itemsWithPlace } from '../lib/planView.ts';
 import { askPlace } from './webAi.ts';
 import { PlaceDetail } from '../shared/ui/PlaceDetail.tsx';
-import { MARK_LEGEND, MARK_WORDS } from '../shared/rowHighlights.ts';
+import { MARK_WORDS, VERDICT_CLASS } from '../shared/rowHighlights.ts';
 import { EXTRA_LABELS } from '../../../worker/src/lib/placeLayers.ts';
 
 type Obj = Record<string, unknown>;
@@ -486,32 +486,55 @@ function Tags({ place }: { place: Place }) {
   );
 }
 
+/** 「適合我們嗎」的一列：主詞、結論膠囊、理由（最多兩行，放不下才出現「全文」，點了這列展開） */
+function FitRow({ cell }: { cell: FitCell }) {
+  const why = useRef<HTMLSpanElement>(null);
+  const [long, setLong] = useState(false);
+  const [open, setOpen] = useState(false);
+  useLayoutEffect(() => {
+    const el = why.current;
+    if (el && !open) setLong(el.scrollHeight > el.clientHeight + 1);
+  }, [cell.reason, open]);
+  const mark = cell.mark ?? '—';
+  const body = (
+    <>
+      <span className="pd-fit-label">{cell.label}</span>
+      <span className="pd-fit-vd-wrap">
+        <span className={`pd-fit-vd ${VERDICT_CLASS[mark]}`}>
+          {mark} {MARK_WORDS[mark]}
+        </span>
+      </span>
+      <span className={`pd-fit-why${open ? ' full' : ''}`} ref={why}>
+        {cell.reason ?? '沒有資料'}
+        {long && !open && <span className="pd-fit-more">全文</span>}
+      </span>
+    </>
+  );
+  return long || open ? (
+    <button type="button" className="pd-fit-row" aria-expanded={open} onClick={() => setOpen(!open)} data-testid={`detail-fit-${cell.key}`} data-mark={mark}>
+      {body}
+    </button>
+  ) : (
+    <div className="pd-fit-row" data-testid={`detail-fit-${cell.key}`} data-mark={mark}>
+      {body}
+    </div>
+  );
+}
+
 /**
- * 四格「長輩／小孩／2 月／15 人」（T44b §18.2）：記號＋一句理由；點了展開完整的一句（兩行放不下時）。
- * T76（§35.9）：記號下面寫字（很適合、可以、要注意、不適合、沒資料），沒資料的格子是「—」虛線框；下面一行圖例
+ * 「適合我們嗎」長輩／小孩／2 月／15 人（T44b §18.2）：結論的規則照 §35.9。
+ * T82（§36.T82）四格改四列：主詞（圓體粗字）｜結論膠囊（符號＋字）｜理由；列之間細線，拿掉圖例（每個符號旁邊都有字）
  */
 function FitGrid({ place }: { place: Place }) {
   const cells = fitCells(place);
-  const [open, setOpen] = useState(false);
   if (!cells.length) return null;
   return (
-    <>
-      <button type="button" className={`pd-fit ${open ? 'open' : ''}`} aria-expanded={open} onClick={() => setOpen(!open)} data-testid="detail-fit">
-        {cells.map((c) => (
-          <span key={c.key} className={`pd-fit-cell tone-${c.tone}`} data-testid={`detail-fit-${c.key}`}>
-            <b className="pd-fit-mark" aria-hidden>
-              {c.mark ?? '—'}
-            </b>
-            <span className="pd-fit-word">{MARK_WORDS[c.mark ?? '—']}</span>
-            <span className="pd-fit-label">{c.label}</span>
-            <span className="pd-fit-why">{c.reason ?? '沒有資料'}</span>
-          </span>
-        ))}
-      </button>
-      <p className="pd-fit-legend" data-testid="detail-fit-legend">
-        {MARK_LEGEND}
-      </p>
-    </>
+    <section className="pd-fit" data-testid="detail-fit">
+      <h3 className="pd-fit-h">適合我們嗎</h3>
+      {cells.map((c) => (
+        <FitRow key={c.key} cell={c} />
+      ))}
+    </section>
   );
 }
 

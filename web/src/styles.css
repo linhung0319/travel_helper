@@ -89,6 +89,8 @@
   --radius: 14px;
   /* 卡片裡面貼齊卡片角的東西（行程卡右上的四分之一圓，T84）：卡片圓角減 1px 框 */
   --radius-inner: 13px;
+  /* 等級小方章（T82）：18～22 px 的方章，14 px 太圓、0 太硬 */
+  --radius-seal: 5px;
   --tap: 44px; /* 長輩也要點得到（interaction-design §0） */
   /* 浮動層（標籤彈窗、⋯ 選單，Popover.tsx）：高過地圖、日期列、浮動列、編輯藍條、對話框，只比提示（toast 120）低 */
   --z-popover: 110;
@@ -2845,17 +2847,19 @@ button.edited {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
 .view-list > .ex-items {
   gap: 0;
 }
 
-/* T78（§35.7）：1100～1279 的右欄只有 360 寬，列的照片從 136 縮到 120 */
+/* T78（§35.7）：1100～1279 的右欄只有 360 寬，列的照片縮小（T82：104 → 92） */
 @media (max-width: 1279px) {
   .layout.desktop .side-panel .pr-photo {
-    flex-basis: 120px;
+    flex-basis: 92px;
+    width: 92px;
+    height: 92px;
   }
 }
 

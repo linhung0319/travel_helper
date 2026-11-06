@@ -18,7 +18,6 @@ import { Section, SectionRows } from './Section.tsx';
 import type { Place } from '../../data/types.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
 import { PlaceOpenBody } from './PlaceOpen.tsx';
-import { VoteHeart } from './VoteHeart.tsx';
 
 export type WishSurface = 'desktop' | 'mobile';
 
@@ -189,25 +188,21 @@ function WishRow({ place, status, section, surface, hot, hint, lastComment, onOp
   );
   // 車站不能排進行程（T29c §8.10）：不放日曆鈕、不能左滑
   const canAdd = place.type !== 'station';
-  const right = mobile ? undefined : (
-    <span className="wl-right">
-      <VoteHeart placeId={place.id} />
-      {canAdd && (
-        <button
-          type="button"
-          className="wl-add"
-          aria-label="加到某天"
-          title="加到某天（給主辦的建議）"
-          data-testid="wish-add"
-          onClick={(e) => {
-            e.stopPropagation();
-            setAdding(true);
-          }}
-        >
-          <Icon name="calendar" size={20} />
-        </button>
-      )}
-    </span>
+  // 網頁：最底一行的最右邊是日曆鈕（愛心在那行最前面，T82）
+  const right = mobile || !canAdd ? undefined : (
+    <button
+      type="button"
+      className="wl-add"
+      aria-label="加到某天"
+      title="加到某天（給主辦的建議）"
+      data-testid="wish-add"
+      onClick={(e) => {
+        e.stopPropagation();
+        setAdding(true);
+      }}
+    >
+      <Icon name="calendar" size={20} />
+    </button>
   );
   const row = (
     <PlaceRow

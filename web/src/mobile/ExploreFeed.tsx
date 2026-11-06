@@ -5,7 +5,7 @@
 // 頂端（FeedFilters → shared/ui/FilterBar）：工具列、地區分頁、子地區晶片、主題列整組黏頂。主題就是 feed.type，展開的區段在 mobileStore.feedOpen。
 // 點列 → 整頁詳情（openPlace），返回鈕寫「回到 賢島 › 玩」；詳情蓋在分頁上面、分頁不卸載，退回時捲動位置和展開的區段都不變。
 // 換區、換子地區、換主題捲到頂（FeedFilters 的 scrollPageTop）。清單的計算和網頁版共用 shared/placeLists.ts，不看地圖範圍。探索不放「加到某天」。
-// 這個檔也留著手機其他頁用的 useVoteIndex、placeAreaLabel、FeedVotes。
+// 這個檔也留著手機其他頁用的 useVoteIndex、placeAreaLabel。
 
 import { useDeferredValue, useMemo } from 'react';
 import { useApp, useShared } from '../hooks.ts';
@@ -22,7 +22,6 @@ import { FilterConds } from '../shared/ui/FilterBar.tsx';
 import { useData } from '../hooks.ts';
 import { AddPlaceSuggest, useSuggestOwnsEmpty } from '../shared/ui/AddPlaceSuggest.tsx';
 import { addPlaceStore } from '../addPlaceStore.ts';
-import { VoteHeart } from '../shared/ui/VoteHeart.tsx';
 import { useAiPicked, useExploreList } from '../shared/placeLists.ts';
 import { PlaceRow, useDayStatus } from '../shared/ui/PlaceRow.tsx';
 import type { VoteValue } from '../backend/types.ts';
@@ -55,15 +54,6 @@ export function placeAreaLabel(place: Place, areas: Area[]): string {
   const area = areas.find((a) => a.id === place.area);
   const region = area?.regions?.find((r) => r.id === place.region);
   return [area && displayName(area.name, area.id), region && displayName(region.name, region.id)].filter(Boolean).join('・');
-}
-
-/** 圖片右下角的想去愛心（shared/ui/VoteHeart）：按的是自己的票，再按一次收回；不開詳情 */
-export function FeedVotes({ placeId }: { placeId: string }) {
-  return (
-    <span className="m-votes">
-      <VoteHeart placeId={placeId} size="sm" />
-    </span>
-  );
 }
 
 /** 0 個時的下一步（看全區、清除篩選）：換成那組條件（和搜尋）；主題留著 */

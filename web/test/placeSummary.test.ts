@@ -46,11 +46,12 @@ test('fitBadges：max 1 時先放最差的；車站、自己加的沒有', () =>
   assert.deepEqual(labels(spot({ elderFit: 5 }, {}, { origin: 'user' })), []);
 });
 
-test('rowHighlights：已排、候選在前，剩下的位置放這團的標章', () => {
+test('rowHighlights：已排、候選在前，剩下的位置放這團的標章（T82：顏色照記號，◎ good、△ warn、✕ bad、其他 muted）', () => {
   const p = spot({ elderFit: 5, kidsFit: 2 });
-  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: ['2027-02-05'] }).map((h) => h.label), ['已排 2/5', '主辦考慮放 2/10']);
+  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: ['2027-02-05'] }).map((h) => [h.label, h.tone]), [['2/5 已排', 'plan'], ['主辦考慮放 2/10', 'indigo']]);
   assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: [] }).map((h) => [h.label, h.tone]), [['主辦考慮放 2/10', 'indigo'], ['小孩 △ 要注意', 'warn']]);
   assert.deepEqual(rowHighlights(p, { candidate: [], scheduled: [] }).map((h) => [h.label, h.tone]), [['長輩 ◎ 很適合', 'good'], ['小孩 △ 要注意', 'warn']]);
+  assert.deepEqual(rowHighlights(spot({ elderFit: 4, kidsFit: 5 }, { weather: 'indoor' }), { candidate: [], scheduled: [] }).map((h) => [h.label, h.tone]), [['小孩 ◎ 很適合', 'good'], ['室內', 'muted']]);
   // 15 人、預約不再放在卡片上（移到詳情）
   assert.deepEqual(rowHighlights(placeWith({ group: { fit15: 'yes' }, reservation: { required: true } }), { candidate: [], scheduled: [] }), []);
 });
