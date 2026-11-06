@@ -60,7 +60,15 @@ const surface: ScreenSurface = {
     const m = mobileStore.getState();
     const next: Filter = { ...(clear ? EMPTY_FILTER : feedFilter(m.feed)), ...patch };
     m.setFeed({ ...filterToFeed(next), ...(clear ? { query: '' } : {}) });
+    return feedFilter(mobileStore.getState().feed);
   },
+  exploreFilter: () => feedFilter(mobileStore.getState().feed),
+  // 「復原」（T85 §37）：回到 AI 套用之前的 feed（篩選、搜尋）和展開的區段
+  snapshotFilter: () => {
+    const { feed, feedOpen } = mobileStore.getState();
+    return () => mobileStore.setState({ feed, feedOpen });
+  },
+  openSections: (ids) => mobileStore.setState({ feedOpen: ids }),
   screenFilter: () => {
     const m = mobileStore.getState();
     const tab = contentTab();

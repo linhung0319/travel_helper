@@ -3,7 +3,7 @@
 //   「看什麼」淡藍帶、「‹ 書架」「‹ 三排」T79 刪了（§35.10）。
 // - 地區分頁（typeRow，數字由呼叫的畫面給、永遠寫）、子地區晶片（subRow，RegionChips）、主題列（model.theme＋themeCounts，stage 是 area 時）由上往下，整組黏頂。
 //   網頁：整組黏在右欄上面。手機：整組黏在最上面；螢幕太矮或鍵盤開著時（ui.css 的 .fb-stick）只留工具列，其他的跟著內容捲走。
-// - 條件列不在這裡（會捲走）：呼叫的畫面在內容最上面放 FilterConds。
+// - 條件列不在這裡（會捲走）：呼叫的畫面在內容最上面放 FilterConds；AI 套的篩選給 ai，畫成「✦ AI 幫你套了」（T85 §37）。
 // - 篩選面板（FilterSheet）：有主題只畫目前主題的組，沒有主題（搜尋、AI 結果集）畫類型晶片＋那幾類的組。
 // - 量好黏住的高度寫在捲動容器的 --sec-top（區段標題黏在它下面，Section.tsx）。
 // 資料來自 FilterModel：網頁接 appStore 的 filter，手機接 mobileStore 的 feed／wish，這裡不認得是哪一個 store。
@@ -223,31 +223,72 @@ export function FilterBar({ source, surface, model, count, typeRow, subRow, stag
  * 條件列（T76，§35.5）：有條件時才畫，放在內容最上面（不黏頂，會捲走）：墨色實心膠囊「長輩 ✕」每顆可點掉，右邊小字「符合 N 個」。
  * 主題（類型）、地區、子地區、搜尋不算（都在頂端看得到）；網頁的「只看地圖畫面裡的」算一顆
  */
-export function FilterConds({ model, count }: { model: FilterModel; count: number }) {
+export function FilterConds({ model, count, ai }: { model: FilterModel; count: number; ai?: AiSetActions }) {
   const areas = useData((s) => s.areas);
   const chips = conditionChips(model.filter, '', areas, { inView: model.inView }).filter((c) => c.key !== 'types');
+  const buttons = chips.map((c) => (
+    <button
+      key={`${c.key}:${c.value}`}
+      type="button"
+      className="fc-chip"
+      aria-label={`拿掉「${c.label}」`}
+      title={`拿掉「${c.label}」`}
+      onClick={() => (c.key === 'inView' ? model.setInView(false) : c.key === 'query' ? model.setQuery('') : model.pick(c.key, c.value))}
+      data-testid="cond-chip"
+      data-key={c.key}
+      data-value={c.value}
+    >
+      {c.label}
+      <Icon name="close" size={16} />
+    </button>
+  ));
+  if (ai) return <AiSetRow chips={buttons} count={count} ai={ai} />;
   if (!chips.length) return null;
   return (
     <div className="fc-row" data-testid="cond-row">
-      {chips.map((c) => (
-        <button
-          key={`${c.key}:${c.value}`}
-          type="button"
-          className="fc-chip"
-          aria-label={`拿掉「${c.label}」`}
-          title={`拿掉「${c.label}」`}
-          onClick={() => (c.key === 'inView' ? model.setInView(false) : c.key === 'query' ? model.setQuery('') : model.pick(c.key, c.value))}
-          data-testid="cond-chip"
-          data-key={c.key}
-          data-value={c.value}
-        >
-          {c.label}
-          <Icon name="close" size={16} />
-        </button>
-      ))}
+      {buttons}
       <span className="fc-sum" data-testid="cond-count">
         符合 {count} 個
       </span>
+    </div>
+  );
+}
+
+/** 「AI 幫你套了」的兩個動作：復原（回到 AI 套用之前）、全部收起（只收區段，條件留著；平的清單沒有區段時不給） */
+export interface AiSetActions {
+  onUndo(): void;
+  onCollapse?(): void;
+}
+
+/**
+ * 「✦ AI 幫你套了」（T85 §37）：AI 套的篩選在內容最上面用這一條取代條件列。靛藍淡底；晶片照條件列的樣子（可以一顆顆點掉，
+ * 點了就是使用者自己動了，變回一般的條件列）；下面一行「符合 N 個」，右邊「全部收起」「復原」。沒有晶片（只給了地區、主題）也畫
+ */
+function AiSetRow({ chips, count, ai }: { chips: ReactNode[]; count: number; ai: AiSetActions }) {
+  return (
+    <div className="ai-set" data-testid="ai-filter-bar">
+      <div className="ai-set-top">
+        <span className="ai-set-spark" aria-hidden>
+          ✦
+        </span>
+        AI 幫你套了
+      </div>
+      {chips.length > 0 && <div className="ai-set-chips">{chips}</div>}
+      <div className="ai-set-foot">
+        <span className="ai-set-sum" data-testid="cond-count">
+          符合 {count} 個
+        </span>
+        <span className="ai-set-acts">
+          {ai.onCollapse && (
+            <button type="button" className="ai-set-act" onClick={ai.onCollapse} data-testid="ai-filter-collapse">
+              全部收起
+            </button>
+          )}
+          <button type="button" className="ai-set-act" onClick={ai.onUndo} data-testid="ai-filter-undo">
+            復原
+          </button>
+        </span>
+      </div>
     </div>
   );
 }

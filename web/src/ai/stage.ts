@@ -7,6 +7,7 @@ import type { createCommands, FocusTarget } from '../commands.ts';
 import type { AddPlaceDraft } from '../lib/addPlace/draft.ts';
 import type { AppStore, DaySelection } from '../store.ts';
 import type { Filter } from '../lib/filter.ts';
+import { withTheme } from '../lib/shelves.ts';
 import type { AddedVia } from '../backend/types.ts';
 import type { TravelMode } from '@travel-helper/engine/types';
 
@@ -51,6 +52,8 @@ export interface Stage {
   screenName(): 'trip' | 'explore' | 'wish' | 'detail' | 'chat';
   /** 這個平台現在的篩選（手機的 feed、wish）；null 是看 appStore */
   screenFilter(): Filter | null;
+  /** 探索那份篩選（set_filter 套在這上面；T85 回給 AI 的區段數字用它算） */
+  exploreFilter(): Filter;
   /** 提議採用了（手機：到行程頁） */
   afterAdopt(): void;
   /** 顯示中的提議過期了 */
@@ -69,11 +72,34 @@ export interface ScreenSurface {
   /** 地圖的篩選、搜尋以外，這個平台的畫面狀態（手機的分頁、整頁） */
   screenKey(): string;
   screenName(): ReturnType<Stage['screenName']>;
-  /** AI 套了篩選（已經檢查過）：手機接到自己的 feed；網頁就是 appStore，不用做事 */
-  filterApplied(patch: Partial<Filter>, clear: boolean): void;
+  /** AI 套了篩選（已經檢查過）：手機接到自己的 feed，回傳 feed 套好後的篩選；網頁就是 appStore，不用做事 */
+  filterApplied(patch: Partial<Filter>, clear: boolean): Filter | void;
   screenFilter(): Filter | null;
+  /** 探索那份篩選（手機的 feed）；null 是看 appStore */
+  exploreFilter(): Filter | null;
+  /** AI 要套篩選了：記下這個平台現在的篩選、搜尋、展開的區段，回傳「復原」用的函式（T85 §37） */
+  snapshotFilter(): () => void;
+  /** AI 套了篩選的那一下：探索展開的區段整份換成這些（T85 §37） */
+  openSections(ids: string[]): void;
   afterAdopt(): void;
   proposalStale(): void;
+}
+
+/**
+ * 網頁（appStore 的探索那份）的「復原」：回到 AI 套用之前的篩選、搜尋、展開的區段，地圖飛回那區。
+ * 呼叫時已經在探索分頁（setFilter 先 showList）
+ */
+export function appFilterSnapshot(app: StoreApi<AppStore>, focusArea: (area: string) => void): () => void {
+  const { filter, query, sectionsOpen } = app.getState();
+  const open = sectionsOpen.explore;
+  return () => {
+    const s = app.getState();
+    s.setFilter(filter);
+    s.setQuery(query);
+    s.setSectionsOpen(open, 'explore');
+    const area = filter.areas.length === 1 ? filter.areas[0] : null;
+    if (area) focusArea(area);
+  };
 }
 
 /** 還沒接上平台的預設：照 appStore（網頁版的 mode、詳情） */
@@ -94,6 +120,9 @@ export function appSurface(app: StoreApi<AppStore>): ScreenSurface {
     },
     filterApplied: () => {},
     screenFilter: () => null,
+    exploreFilter: () => null,
+    snapshotFilter: () => appFilterSnapshot(app, () => {}),
+    openSections: (ids) => app.getState().setSectionsOpen(ids, 'explore'),
     afterAdopt: () => {},
     proposalStale: () => {},
   };
@@ -132,11 +161,25 @@ export function createBaseStage({ app, commands, surface, startAddPlace }: Stage
       return errorOf(commands.focus(id));
     },
     moveMap: (target) => errorOf(commands.focus(target)),
+    // T85 §37：先讓使用者看得到探索（網頁切到探索，篩選才套在探索那份）；套好後符合的點畫水滴、
+    // 目前主題數字大於 0 的區段全部打開、內容最上面是「AI 幫你套了」（可以復原）
     setFilter(patch, clear) {
+      surface.showList();
+      const undo = surface.snapshotFilter();
       if (clear) commands.clearFilter();
       const err = errorOf(commands.setFilter(patch));
-      if (!err) surface.filterApplied(patch, clear);
-      return err;
+      if (err) return err;
+      const own = surface.filterApplied(patch, clear);
+      // 選了一區時一定有一個主題（不然探索畫面自己補上，會被當成使用者改了篩選）
+      const now = own ?? app.getState().filter;
+      let fixed = withTheme(now);
+      if (fixed !== now) {
+        commands.setFilter({ types: fixed.types });
+        fixed = surface.filterApplied({ types: fixed.types }, false) ?? app.getState().filter;
+      }
+      const r = commands.showFilterResult(fixed, undo);
+      if (r.ok && r.sections.length) surface.openSections(r.sections);
+      return null;
     },
     addPlace(init) {
       startAddPlace(init);
@@ -150,6 +193,7 @@ export function createBaseStage({ app, commands, surface, startAddPlace }: Stage
     clear() {
       commands.clearResult();
       commands.clearHighlights();
+      commands.clearFilterResult();
     },
     screenKey() {
       const s = app.getState();
@@ -158,6 +202,13 @@ export function createBaseStage({ app, commands, surface, startAddPlace }: Stage
     },
     screenName: () => surface.screenName(),
     screenFilter: () => surface.screenFilter(),
+    exploreFilter: () => {
+      const own = surface.exploreFilter();
+      if (own) return own;
+      // 網頁：在想去分頁時探索那份收在 filterStash（地區跟著走）
+      const s = app.getState();
+      return s.mode === 'wish' ? { ...s.filterStash.explore.filter, areas: s.filter.areas, regions: s.filter.regions } : s.filter;
+    },
     afterAdopt: () => surface.afterAdopt(),
     proposalStale: () => surface.proposalStale(),
   };

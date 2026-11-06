@@ -5454,6 +5454,102 @@ button.ui-sk-stay:disabled {
   color: var(--ink-2);
 }
 
+/* ---------- 「✦ AI 幫你套了」（T85 §37）：AI 套的篩選取代條件列，靛藍淡底 ---------- */
+.ai-set {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0 4px;
+  padding: 10px 12px 4px;
+  border-radius: var(--radius-inner);
+  background: var(--indigo-wash);
+}
+
+.ai-set-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--indigo);
+}
+
+.ai-set-spark {
+  color: var(--mustard);
+}
+
+.ai-set-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.ai-set-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+
+.ai-set-acts {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* 文字鈕：點擊範圍照 --tap（長輩也點得到，§0），字靛藍粗 */
+.ai-set-act {
+  min-height: var(--tap);
+  padding: 0 8px;
+  border: 0;
+  background: none;
+  color: var(--indigo);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ai-set-act:last-child {
+  margin-right: -8px;
+}
+
+.ai-set-act:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: -4px;
+  border-radius: 999px;
+}
+
+/* AI 結果集的列：第二行最前面的書架名小標（T85 §37），那一類的淡底＋類型色字 */
+.pr-shelf {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 5px;
+  border-radius: var(--radius-seal);
+  background: var(--wash);
+  color: var(--ink-2);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.6;
+  vertical-align: 1px;
+}
+
+.pr-shelf[data-kind='spot'] {
+  background: var(--t-spot-wash);
+  color: var(--t-spot);
+}
+
+.pr-shelf[data-kind='restaurant'] {
+  background: var(--t-food-wash);
+  color: var(--t-food);
+}
+
+.pr-shelf[data-kind='lodging'] {
+  background: var(--t-stay-wash);
+  color: var(--t-stay);
+}
+
 /* ---------- 2 月注意（FebNote）：一行灰字加紅點，收合 ---------- */
 .feb-note {
   margin: 6px 0 0;

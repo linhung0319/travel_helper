@@ -89,6 +89,19 @@ export interface AiResult {
   lettered: boolean;
 }
 
+/**
+ * AI 套的篩選（set_filter，T85 §37）：探索內容最上面的「✦ AI 幫你套了」、地圖上符合的點全部畫水滴。
+ * 使用者自己動了篩選（點掉晶片、開面板改、換主題…）就清掉，變回一般的條件列、水滴收掉（shared/aiFilter.ts 的 useAiFilterWatch）
+ */
+export interface AiFilter {
+  /** 符合的點（推薦順序）：地圖上畫水滴 */
+  ids: string[];
+  /** 套好以後那頁的篩選、搜尋（aiFilterKey）；null＝那頁還沒畫出來過，第一次畫出來時記下，之後不一樣就是使用者動過了 */
+  key: string | null;
+  /** 「復原」：回到 AI 套用之前的篩選、搜尋、展開的區段（網頁、手機各自的 store） */
+  undo(): void;
+}
+
 /** 篩選屬於哪一頁：想去自己一份，探索和行程共用一份（行程分頁的地圖不套篩選，時間軸空檔「找附近的…」設的篩選是給探索的） */
 export type FilterOwner = 'explore' | 'wish';
 const ownerOf = (mode: AppState['mode']): FilterOwner => (mode === 'wish' ? 'wish' : 'explore');
@@ -146,8 +159,10 @@ export interface AppState {
   aiResult: AiResult | null;
   /** 出現結果集時收起來的探索篩選、搜尋；清掉結果集時還原 */
   aiResultStash: { filter: Filter; query: string } | null;
-  /** AI 最後給的是結果集還是提議：地圖的水滴只畫最新的那一組 */
-  aiLatest: 'result' | 'proposal' | null;
+  /** AI 套的篩選（T85 §37） */
+  aiFilter: AiFilter | null;
+  /** AI 最後給的是結果集、提議還是篩選：地圖的水滴只畫最新的那一組 */
+  aiLatest: 'result' | 'proposal' | 'filter' | null;
   proposal: Proposal | null;
 }
 
@@ -187,6 +202,10 @@ export interface AppActions {
   setLegRoute(route: Omit<LegRoute, 'id'> | null): void;
   /** 給 null 是清掉、還原收起來的篩選和搜尋；新的結果集取代舊的，收起來的還是最早那份 */
   setAiResult(result: AiResult | null): void;
+  /** AI 套了篩選（null 是清掉）；新的結果集出現時也清掉 */
+  setAiFilter(f: AiFilter | null): void;
+  /** 記下 AI 套好以後那頁的篩選（第一次畫出來時） */
+  setAiFilterKey(key: string): void;
   /** 清掉 AI 的標示、路線（不動結果集、提議、交通的路線、選中） */
   clearHighlights(): void;
   setProposal(proposal: Proposal | null): void;
@@ -224,6 +243,7 @@ export const initialState: AppState = {
   routesVersion: 0,
   aiResult: null,
   aiResultStash: null,
+  aiFilter: null,
   aiLatest: null,
   proposal: null,
 };
@@ -323,10 +343,12 @@ export function createAppStore(init: Partial<AppState> = {}) {
         const live = ownerOf(s.mode) === 'explore';
         const current = live ? { filter: s.filter, query: s.query } : s.filterStash.explore;
         const page = (x: { filter: Filter; query: string }) => (live ? x : { filterStash: { ...s.filterStash, explore: x } });
-        if (aiResult) return { aiResult, aiLatest: 'result', aiResultStash: s.aiResultStash ?? current, ...page({ filter: EMPTY_FILTER, query: '' }) };
+        if (aiResult) return { aiResult, aiLatest: 'result', aiFilter: null, aiResultStash: s.aiResultStash ?? current, ...page({ filter: EMPTY_FILTER, query: '' }) };
         if (!s.aiResult) return s;
         return { aiResult: null, aiResultStash: null, ...(s.aiResultStash ? page(s.aiResultStash) : {}) };
       }),
+    setAiFilter: (aiFilter) => set((s) => (aiFilter ? { aiFilter, aiLatest: 'filter' } : s.aiFilter ? { aiFilter: null } : s)),
+    setAiFilterKey: (key) => set((s) => (s.aiFilter && s.aiFilter.key !== key ? { aiFilter: { ...s.aiFilter, key } } : s)),
     clearHighlights: () => set({ highlights: {}, routes: [] }),
     setProposal: (proposal) => set(proposal ? { proposal, aiLatest: 'proposal' } : { proposal }),
   }));

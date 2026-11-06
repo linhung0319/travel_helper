@@ -36,32 +36,51 @@ export function legStationFeatures(ids: string[], byId: Map<string, Place>): Fea
   );
 }
 
-/** 地圖上 AI 指給你看的一個點：畫成水滴。head 是頭裡的字（A、B、C 或提議的順序），沒有就照平常（行程編號、類型的字）；tone 是 highlight 指令的樣式 */
+/**
+ * 地圖上 AI 指給你看的一個點：畫成水滴。head 是頭裡的字（A、B、C 或提議的順序），沒有就照平常（行程編號、類型的字）；tone 是 highlight 指令的樣式；
+ * glyph：頭裡一律是類型的漢字（AI 套的篩選，T85 §37），不寫行程編號
+ */
 export interface AiDrop {
   id: string;
   head?: string;
   tone?: Exclude<HighlightStyle, 'primary'>;
+  glyph?: boolean;
 }
 
 /**
- * 現在要畫成水滴的點，只有 AI 最新的一組（每次給完整內容，舊的不留）：
+ * 現在要畫成水滴的點，只有 AI 最新的一組（每次給完整內容，舊的不留；§16.4、§37）：
+ * - AI 套的篩選（最後給的是它）：符合的點不論幾個都畫，頭裡是類型的漢字（T85）
  * - 提議（畫面上看得到差異、而且是最後給的）：新增的點，頭裡寫提議的順序
- * - 否則結果集：比較時頭裡寫 A、B、C
+ * - 否則結果集：比較時頭裡寫 A、B、C；沒有結果集時才輪到篩選
  * - 另外加上 highlight 指令標的點
  */
 export function aiDrops(input: {
   aiResult: { ids: string[]; lettered: boolean } | null;
+  /** AI 套的篩選符合的點（使用者自己動了篩選就是 null） */
+  aiFilter?: { ids: string[] } | null;
   highlights: Partial<Record<HighlightStyle, string[]>>;
   /** proposalFeatures 的點；提議沒顯示時是空的 */
   proposalPoints: FeatureCollection<Point>;
-  latest: 'result' | 'proposal' | null;
+  latest: 'result' | 'proposal' | 'filter' | null;
 }): AiDrop[] {
   const { aiResult, highlights, proposalPoints, latest } = input;
+  const aiFilter = input.aiFilter ?? null;
   const out = new Map<string, AiDrop>();
   const added = proposalPoints.features.filter((f) => f.properties?.status === 'added');
-  const showProposal = proposalPoints.features.length > 0 && (latest === 'proposal' || !aiResult);
-  if (showProposal) for (const f of added) out.set(String(f.properties!.id), { id: String(f.properties!.id), head: String(f.properties!.order) });
-  else aiResult?.ids.forEach((id, i) => out.set(id, { id, ...(aiResult.lettered ? { head: String.fromCharCode(65 + i) } : {}) }));
+  const hasProposal = proposalPoints.features.length > 0;
+  const pick =
+    latest === 'filter' && aiFilter
+      ? 'filter'
+      : hasProposal && (latest === 'proposal' || !aiResult)
+        ? 'proposal'
+        : aiResult
+          ? 'result'
+          : aiFilter
+            ? 'filter'
+            : null;
+  if (pick === 'proposal') for (const f of added) out.set(String(f.properties!.id), { id: String(f.properties!.id), head: String(f.properties!.order) });
+  else if (pick === 'result') aiResult!.ids.forEach((id, i) => out.set(id, { id, ...(aiResult!.lettered ? { head: String.fromCharCode(65 + i) } : {}) }));
+  else if (pick === 'filter') for (const id of aiFilter!.ids) out.set(id, { id, glyph: true });
   for (const [style, ids] of Object.entries(highlights) as [HighlightStyle, string[]][]) {
     for (const id of ids ?? []) if (!out.has(id)) out.set(id, { id, ...(style === 'primary' ? {} : { tone: style }) });
   }

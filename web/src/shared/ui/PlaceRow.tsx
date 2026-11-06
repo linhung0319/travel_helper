@@ -2,6 +2,7 @@
 // 不用卡片框（列之間 1 px 細線）；左邊照片 104×104（圓角 12，沒有類別圓章；沒照片是灰底淡淡一個「景／食／宿」）；
 // 右邊名字（最多兩行，只有名字和自己加、已訂這類小標）、第二行最前面等級方章＋子地區（餐廳加價位、住宿是住法那句・每人價）、
 // 狀態一行彩色字（已排、主辦考慮放、長輩 ◎ 很適合、二月休，最多兩項）、貼齊列底的一行：愛心（VoteHeart row）→ 誰想去 → 留言數。
+// AI 結果集（shelf）：第二行最前面多一個書架名小標（T85 §37，「全員吃飯」「一定要去」，那一類的淡底＋類型色字），探索的區段、想去、搜尋不加。
 // caps、foot、right 是想去用的（「2/7 候選」在前、最新留言、網頁的日曆鈕）。
 // 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）；點列直接開詳情彈窗（T83 §36.T83，沒有原地展開），
 // 彈窗開著時對應的那列 selected（淡藍底＋左邊 3 px 靛藍線）。樣式在 ui.css（.pr-）。
@@ -26,6 +27,7 @@ import { Icon } from '../../components/Icon.tsx';
 import { useCommentCount } from '../placeLists.ts';
 import { VoteHeart } from './VoteHeart.tsx';
 import { meFirst, whoText } from '../whoLine.ts';
+import { shelfOf } from '../../lib/shelves.ts';
 
 export interface DayStatus {
   candidate: string[];
@@ -147,15 +149,18 @@ export interface PlaceRowProps {
   aiNote?: string;
   /** AI 比較時的 A、B、C */
   letter?: string;
+  /** AI 結果集：第二行最前面標書架名（T85 §37） */
+  shelf?: boolean;
 }
 
-export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testId, rank, hot, rootProps, selected = false, aiNote, letter }: PlaceRowProps) {
+export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testId, rank, hot, rootProps, selected = false, aiNote, letter, shelf = false }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
   const user = isUserPlace(place);
   const metaText = [rowMeta(place, areas), user ? userSubtitle(place, members) : ''].filter(Boolean).join('・');
   const tier = user ? null : place.tier;
+  const section = shelf ? shelfOf(place) : null;
   return (
     <div
       {...rootProps}
@@ -184,8 +189,13 @@ export function PlaceRow({ place, status, meta, caps, foot, right, onOpen, testI
           <PlaceTags place={place} />
         </span>
         {meta ??
-          ((metaText || tier) && (
+          ((metaText || tier || section) && (
             <span className="pr-meta" data-testid="row-meta">
+              {section && (
+                <span className="pr-shelf" data-kind={section.theme} data-section={section.id} data-testid="row-shelf">
+                  {section.title}
+                </span>
+              )}
               <TierMark tier={tier} />
               {metaText}
             </span>

@@ -731,9 +731,11 @@ export function MapView() {
     const empty: FeatureCollection<GeoJSON.Point> = { type: 'FeatureCollection', features: [] };
     return proposal ? proposalFeatures(proposal, itinerary, dataStore.getState().byId, DATES) : { points: empty, lines: { type: 'FeatureCollection' as const, features: [] } };
   }, [proposal, itinerary]);
-  const drops = useMemo(() => aiDrops({ aiResult, highlights, proposalPoints: proposalShapes.points, latest: aiLatest }), [aiResult, highlights, proposalShapes, aiLatest]);
-  // 水滴頭裡的字：AI 給的（A、B、C、提議的順序）優先，再來是行程的編號
-  const headOf = (id: string) => drops.find((d) => d.id === id)?.head ?? marks.get(id) ?? '';
+  const aiFilter = useApp((s) => s.aiFilter);
+  const drops = useMemo(() => aiDrops({ aiResult, aiFilter, highlights, proposalPoints: proposalShapes.points, latest: aiLatest }), [aiResult, aiFilter, highlights, proposalShapes, aiLatest]);
+  // 水滴頭裡的字：AI 給的（A、B、C、提議的順序）優先，再來是行程的編號；AI 套的篩選一律是類型的漢字（空字串＝類型的字）
+  const dropHead = (d: AiDrop | undefined, id: string) => d?.head ?? (d?.glyph ? '' : (marks.get(id) ?? ''));
+  const headOf = (id: string) => dropHead(drops.find((d) => d.id === id), id);
   const headOfRef = useRef(headOf);
   headOfRef.current = headOf;
 
@@ -849,7 +851,7 @@ export function MapView() {
         fresh.push(el);
       }
       const el = m.getElement();
-      const head = d.head ?? marks.get(d.id) ?? '';
+      const head = dropHead(d, d.id);
       const svg = el.querySelector('.ms-drop');
       const bouncing = svg?.classList.contains('bounce');
       el.dataset.label = head;
