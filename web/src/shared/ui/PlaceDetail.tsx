@@ -4,7 +4,7 @@
 // 這個檔只管版面和投票；分頁裡的各區塊（介紹、團體、附近…）還是 components/DetailPanel 匯出的那些元件。
 // 這個檔和 DetailPanel.tsx 互相 import（這裡用它的區塊、它用這裡的版面），都只在 render 時用，沒有載入順序的問題。
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
 import { appStore, type DetailTabId } from '../../store.ts';
 import { commands } from '../../appCommands.ts';
 import { useApp, useData, useFullPlace, useShared } from '../../hooks.ts';
@@ -25,7 +25,8 @@ import { CopyName } from '../../components/CopyName.tsx';
 import { AddToDay } from '../../components/DayPicker.tsx';
 import { castVote } from '../../components/Votes.tsx';
 import { Comments } from '../../components/Wishlist.tsx';
-import { NameList } from '../../components/common.tsx';
+import { Avatar } from '../../components/common.tsx';
+import { detailWhoText, meFirst } from '../whoLine.ts';
 import { dragPlaceProps } from '../../components/askAi.ts';
 import { LinksSection, NearbySection, PlaceFacts, PlaceIntro, PlaceMore, PlaceReviews, SourcesSection, usesRakuten } from '../../components/DetailPanel.tsx';
 import { useCommentCount } from '../placeLists.ts';
@@ -122,67 +123,40 @@ function useVotesOf(placeId: string) {
 }
 
 /**
- * 照片下面的動作列：❤ 想去（點了投或收回）、後面的數字（點了看是誰想去：網頁是浮出的小視窗，手機直接展開在下面）、👎 N、
- * 主要按鈕「加到某天」；誰想去用 NameList（網頁浮在數字下面，手機直接展開在動作列下面）；編輯中從行程打開多一個「排進這天」（住宿是「設成這晚的住宿」）。
+ * 照片下面的動作列（T76，interaction-design §35.9）：「♡ 我想去」／「♥ 我想去 ✓」（點了投或收回，按了、收回都有提示和「復原」，castVote）、👎 N、
+ * 主要按鈕「加到某天」（下面一行小字「給主辦的建議，不會動到行程」）；編輯中從行程打開多一個「排進這天」（住宿是「設成這晚的住宿」）。
+ * 動作列下面一行誰想去：「你想去，小林、阿姨也想去」「小林、阿姨想去，你還沒按」「還沒有人按想去」（頭像＋人名，取代 §17 的數字和名單小視窗）。
  */
-function ActionRow({ place, desktop, schedule }: { place: Place; desktop: boolean; schedule: boolean }) {
+function ActionRow({ place, schedule }: { place: Place; schedule: boolean }) {
   const { likes, dislikes, mine } = useVotesOf(place.id);
-  const [who, setWho] = useState(false);
-  const wrap = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    if (!who || !desktop) return;
-    const close = (e: PointerEvent) => {
-      if (!wrap.current?.contains(e.target as Node)) setWho(false);
-    };
-    // Esc 只關這個小視窗：捕獲階段先攔下，App 的 Esc（關詳情）收不到
-    const esc = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      e.stopPropagation();
-      setWho(false);
-    };
-    document.addEventListener('pointerdown', close);
-    window.addEventListener('keydown', esc, true);
-    return () => {
-      document.removeEventListener('pointerdown', close);
-      window.removeEventListener('keydown', esc, true);
-    };
-  }, [who, desktop]);
+  const me = useShared((s) => s.me?.id);
+  const members = useShared((s) => s.members);
   const toggle = (value: VoteValue, from?: Element) => void castVote(place.id, mine === value ? null : value, true, from);
   const lodging = place.type === 'lodging';
+  const liked = mine === 'like';
+  const others = likes.filter((id) => id !== me);
   return (
     <>
       <div className="pd-actions" data-testid="detail-actions">
-        <span className="pd-like-wrap" ref={wrap}>
-          <span className={`pd-like ${mine === 'like' ? 'on' : ''}`}>
-            <button type="button" className="pd-like-btn" aria-pressed={mine === 'like'} onClick={(e) => toggle('like', e.currentTarget)} data-testid="detail-like">
-              <Icon name="heart" size={20} filled={mine === 'like'} /> 想去
-            </button>
-            <button
-              type="button"
-              className="pd-like-count"
-              aria-expanded={who}
-              aria-label={likes.length ? `${likes.length} 人想去，看是誰` : '還沒有人想去'}
-              disabled={likes.length === 0}
-              onClick={() => setWho(!who)}
-              data-testid="detail-who"
-            >
-              {likes.length}
-            </button>
-          </span>
-          {who && desktop && likes.length > 0 && <NameList ids={likes} className="pd-who" />}
-        </span>
+        <button type="button" className={`pd-love${liked ? ' on' : ''}`} aria-pressed={liked} onClick={(e) => toggle('like', e.currentTarget)} data-testid="detail-like">
+          <Icon name="heart" size={20} filled={liked} />
+          {liked ? '我想去 ✓' : '我想去'}
+        </button>
         <button
           type="button"
           className={`pd-dislike ${mine === 'dislike' ? 'on' : ''}`}
           aria-pressed={mine === 'dislike'}
+          aria-label={`不想去（${dislikes.length} 人）`}
+          title="不想去"
           onClick={() => toggle('dislike')}
           data-testid="detail-dislike"
         >
-          <Icon name="thumb-down" size={20} filled={mine === 'dislike'} /> {dislikes.length}
+          <Icon name="thumb-down" size={20} filled={mine === 'dislike'} /> {dislikes.length > 0 && dislikes.length}
         </button>
         {place.type !== 'station' && (
           <span className="pd-add" data-testid="detail-add">
             <AddToDay placeId={place.id} />
+            <small className="pd-add-note">給主辦的建議，不會動到行程</small>
           </span>
         )}
         {schedule && (
@@ -191,7 +165,18 @@ function ActionRow({ place, desktop, schedule }: { place: Place; desktop: boolea
           </Button>
         )}
       </div>
-      {who && !desktop && likes.length > 0 && <NameList ids={likes} className="pd-who-inline" />}
+      <p className="pd-who-line" data-testid="detail-who">
+        {meFirst(likes, me).length > 0 && (
+          <span className="pr-avatars">
+            {meFirst(likes, me)
+              .slice(0, 4)
+              .map((id) => (
+                <Avatar key={id} id={id} />
+              ))}
+          </span>
+        )}
+        <span className={liked ? 'pd-who-me' : undefined}>{detailWhoText(others, liked, (id) => memberName(members, id))}</span>
+      </p>
     </>
   );
 }
@@ -306,10 +291,12 @@ export interface PlaceDetailProps {
   locator?: ReactNode;
   /** 手機：頂端列和照片上的「‹」 */
   onBack?(): void;
+  /** 手機：照片上的返回鈕寫目的地（T76 §35.2：「回到 賢島 › 玩」「回到 海樂園」）；沒給只有「‹」 */
+  backLabel?: string | null;
 }
 
 /** 一個點的詳情內容。換點時要整個重來（呼叫的人用 key={place.id}） */
-export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay, onAsk, onPickNearby, locator, onBack }: PlaceDetailProps) {
+export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay, onAsk, onPickNearby, locator, onBack, backLabel }: PlaceDetailProps) {
   // 詳情層還沒到時，名稱、照片、投票、留言照常（清單層就有），分頁裡的內容放骨架
   const { place, loaded, error, retry } = useFullPlace(listPlace);
   const pending = <DetailPending error={error} onRetry={retry} />;
@@ -360,8 +347,9 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
         <div className={`pd-hero ${noPhoto ? 'short' : ''}`} ref={heroRef}>
           <PhotoCarousel place={place} desktop={desktop} onOpen={setViewer} />
           {!desktop && onBack && (
-            <button type="button" className="m-back m-detail-back" onClick={onBack} aria-label="返回" data-testid="m-detail-back">
+            <button type="button" className={`m-back m-detail-back${backLabel ? ' has-label' : ''}`} onClick={onBack} aria-label={backLabel ? `回到 ${backLabel}` : '返回'} data-testid="m-detail-back">
               <Icon name="back" size={24} />
+              {backLabel && <span className="m-detail-back-text">回到 {backLabel}</span>}
             </button>
           )}
         </div>
@@ -406,7 +394,7 @@ export function PlaceDetail({ place: listPlace, surface, from, initialTab, onDay
         {desktop && !isDeletedUserPlace(place) && <VoteHeart placeId={place.id} />}
       </header>
 
-      {!isDeletedUserPlace(place) && <ActionRow place={place} desktop={desktop} schedule={planning && fromTrip && place.type !== 'station'} />}
+      {!isDeletedUserPlace(place) && <ActionRow place={place} schedule={planning && fromTrip && place.type !== 'station'} />}
 
       <div className="pd-tabs" role="tablist" aria-label="詳情分頁">
         {tabs.map((t) => (

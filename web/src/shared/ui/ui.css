@@ -1444,18 +1444,21 @@
   flex: 1;
 }
 
-/* ---------- 清單列（PlaceRow）：固定 88px ---------- */
+/* ---------- 列（PlaceRow，T76 §35.7）：大照片在左 136×112、文字在右；照片牆和清單合成這一種 ---------- */
 .pr {
+  position: relative;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  /* 至少 88px（T69）：三行剛好放得下；萬一多一行是撐高，不會壓到上下列 */
-  min-height: 88px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--line);
-  cursor: pointer;
+  align-items: stretch;
+  gap: 10px;
   min-width: 0;
+  min-height: 112px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 1px 2px var(--shade-1);
+  cursor: pointer;
 }
 
 .pr:hover,
@@ -1463,27 +1466,42 @@
   background: var(--wash);
 }
 
-.pr-thumb {
-  flex: 0 0 auto;
-  width: 64px;
-  height: 64px;
-  border-radius: 14px;
-  overflow: hidden;
+.pr-photo {
+  position: relative;
+  flex: 0 0 136px;
+  min-height: 112px;
   background: var(--wash);
 }
 
-.pr-thumb .photo {
+.pr-photo > .photo,
+.pr-photo > img,
+.pr-photo-fallback {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.pr-thumb-fallback {
+.pr-photo-fallback {
   display: grid;
   place-items: center;
   color: var(--paper);
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+}
+
+.pr-seal {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  display: inline-flex;
+}
+
+.pr-photo .ai-letter {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
 }
 
 .pr-text {
@@ -1491,51 +1509,51 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+  padding: 8px 8px 8px 0;
 }
 
+/* 名稱最多兩行（不再一行省略）；右上角留給愛心 */
 .pr-name {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   min-width: 0;
+  padding-right: 36px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
+  line-height: 1.3;
 }
 
 .pr-name-text {
   min-width: 0;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .pr-name .ui-tier {
   flex: 0 0 auto;
+  margin-top: 2px;
 }
 
 .pr-meta {
-  display: flex;
-  align-items: center;
+  display: block;
   min-width: 0;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   color: var(--ink-2);
   white-space: nowrap;
-}
-
-.pr-meta .ui-type {
-  flex: 0 0 auto;
-}
-
-.pr-meta-text {
-  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .pr-caps {
   display: flex;
-  gap: 6px;
+  flex-wrap: wrap;
+  gap: 4px;
   min-width: 0;
   overflow: hidden;
 }
@@ -1543,10 +1561,10 @@
 .pr-cap {
   flex: 0 1 auto;
   min-width: 0;
-  padding: 1px 8px;
+  padding: 1px 7px;
   border-radius: 999px;
-  font-size: 0.8125rem;
-  line-height: 1.3;
+  font-size: 0.6875rem;
+  line-height: 1.45;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1567,10 +1585,43 @@
 /* 這團的標章（T44b §18.1）：最差的那個 */
 .pr-cap-warn {
   background: var(--warn-bg);
-  color: var(--warn);
+  color: var(--bad);
 }
 
-/* 自己加、已訂、待訂（T69）：名稱後面的小方標，名稱先被省略 */
+/* 誰想去：頭像＋人名，自己在前寫「你」 */
+.pr-who {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.pr-who-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pr-avatars {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.pr-avatars .avatar {
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  border: 1.5px solid var(--paper);
+}
+
+.pr-avatars .avatar + .avatar {
+  margin-left: -5px;
+}
+
+/* 自己加、已訂、待訂（T69）：名稱後面的小方標 */
 .pr-name .ui-place-tags,
 .pt-name .ui-place-tags {
   flex: 0 0 auto;
@@ -1589,23 +1640,28 @@
   font-weight: 600;
 }
 
-/* 自己加的「誰加的」接在第二行（T69） */
-.pr-meta .pr-user-by {
-  display: inline;
-  font-size: inherit;
-}
-
-/* 右邊固定寬：愛心的位置不會被名稱或數字推動 */
+/* 右上角的愛心（想去的網頁列是愛心＋日曆鈕） */
 .pr-right {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 2px;
+  right: 2px;
   display: flex;
   align-items: center;
-  width: 56px;
 }
 
 .pr-right .ui-heart {
-  width: 56px;
-  min-width: 56px;
+  min-width: 38px;
+  min-height: 38px;
+  border-radius: 999px;
+}
+
+/* 舊的清單（還沒接上區段的畫面，T79 刪）：列之間留空 */
+.ex-items,
+.ex-list.view-list > .ex-items,
+.wl-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* ---------- 照片牆（PlaceWall、PlaceTile） ---------- */
@@ -2013,6 +2069,7 @@
 .wl-swipe {
   position: relative;
   overflow: hidden;
+  border-radius: 14px;
 }
 
 .wl-swipe-add {
@@ -3369,8 +3426,14 @@ button.ll-main {
   border-color: var(--ink-3);
 }
 
-.pr.is-user .pr-thumb {
+/* 自己加的列：虛線框（T76 的列是陰影框，換成虛線） */
+.pr.is-user::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   border: 1.5px dashed var(--ink-3);
+  border-radius: 14px;
+  pointer-events: none;
 }
 
 .pr-user-by,
@@ -5788,4 +5851,612 @@ button.ui-sk-stay:disabled {
   border-color: var(--mustard-line);
   background: var(--mustard-wash);
   color: var(--mustard-ink);
+}
+
+/* ==========================================================================
+   T76 探索改版：共用畫面（interaction-design §35）
+   主題列（ThemeRow）、書架區段（Section）、新的篩選列（FilterBar 的 stage）、條件列（FilterConds）、
+   概覽卡、2 月注意一行、地區頁最下面兩行、想去的區段、詳情的動作列和四格圖例
+   ========================================================================== */
+
+:root {
+  /* 主題列選到那格的淡底（景＝抹茶、食＝朱橘、宿＝紫） */
+  --t-spot-wash: #eef4e8;
+  --t-food-wash: #fbece3;
+  --t-stay-wash: #f0eaf7;
+}
+
+.pr.is-user {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* ---------- 主題列（ThemeRow）：三格「玩／吃／住」 ---------- */
+.tr {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.tr-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  min-height: 52px;
+  padding: 0 6px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  cursor: pointer;
+}
+
+.tr-tab:hover {
+  border-color: var(--indigo-line);
+}
+
+.tr-tab .ui-seal {
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+}
+
+.tr-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  line-height: 1.15;
+}
+
+.tr-name {
+  font-family: var(--font-round);
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.tr-sub {
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.tr-n {
+  font-style: normal;
+  font-family: var(--font-num);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tr-tab.on {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
+}
+
+.tr-tab.on[data-type='spot'] {
+  background: var(--t-spot-wash);
+  color: var(--t-spot);
+}
+
+.tr-tab.on[data-type='restaurant'] {
+  background: var(--t-food-wash);
+  color: var(--t-food);
+}
+
+.tr-tab.on[data-type='lodging'] {
+  background: var(--t-stay-wash);
+  color: var(--t-stay);
+}
+
+.tr-tab.on .tr-sub {
+  color: inherit;
+}
+
+/* 篩選列裡（子地區下面）、概覽卡裡（照片下面） */
+.fb-themerow {
+  padding: 4px 0 10px;
+}
+
+.fb-desktop .fb-themerow {
+  padding-bottom: 0;
+}
+
+.xo-themes {
+  padding: 10px 10px 2px;
+}
+
+/* ---------- 書架區段（Section）：一行一個，展開的標題黏在篩選列下面 ---------- */
+.sec {
+  margin: 0;
+}
+
+.sec-h {
+  position: sticky;
+  top: var(--sec-top, 0px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  padding: 6px 2px 6px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sec.open .sec-h {
+  box-shadow: 0 6px 10px -8px var(--shade-2);
+}
+
+.sec-bar {
+  flex: 0 0 auto;
+  width: 4px;
+  height: 26px;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.sec[data-kind='spot'] .sec-bar {
+  background: var(--t-spot);
+}
+
+.sec[data-kind='restaurant'] .sec-bar {
+  background: var(--t-food);
+}
+
+.sec[data-kind='lodging'] .sec-bar {
+  background: var(--t-stay);
+}
+
+.sec[data-kind='wish'] .sec-bar {
+  background: var(--love);
+}
+
+.sec-tt {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sec-t {
+  font-family: var(--font-round);
+  font-size: 1rem;
+  font-weight: 900;
+}
+
+.sec-r {
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sec-n {
+  flex: 0 0 auto;
+  font-family: var(--font-num);
+  font-size: 1.0625rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.sec-n.zero {
+  color: var(--ink-4);
+}
+
+.sec-tg {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--ink-3);
+  transition: transform 0.15s;
+}
+
+.sec.open .sec-tg {
+  transform: rotate(90deg);
+  color: var(--ink);
+}
+
+.sec-body {
+  padding: 8px 0 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.sec-body > .xe {
+  margin: 0;
+}
+
+.sec-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sec-next {
+  height: 1px;
+}
+
+.sec-none {
+  margin: 0;
+  padding: 2px 0;
+  font-size: 0.8125rem;
+  color: var(--ink-3);
+}
+
+/* ---------- 新的篩選列（stage）：篩選圓鈕、地區分頁、子地區晶片 ---------- */
+/* 篩選鈕：有條件時白底、右上一個芥子黃小點 */
+.fb-filter2.on {
+  border-color: var(--indigo-line);
+  background: var(--paper);
+  color: var(--indigo);
+}
+
+.fb-dot {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--mustard);
+  box-shadow: 0 0 0 2px var(--paper);
+}
+
+.fb-mobile .fb-filter2.on {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--band);
+}
+
+.fb-mobile .fb-dot {
+  box-shadow: 0 0 0 2px var(--band);
+}
+
+/* 子地區晶片（§35.3）：選到的墨色實心，0 個虛線 */
+.fb-v2 .fb-subrow .ui-chip.on {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- 條件列（FilterConds）：在內容最上面，會捲走 ---------- */
+.fc-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 0 4px;
+}
+
+.fc-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 30px;
+  padding: 0 6px 0 11px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fc-chip .icon,
+.fc-chip svg {
+  opacity: 0.7;
+}
+
+.fc-sum {
+  margin-left: 4px;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+
+/* ---------- 2 月注意（FebNote）：一行灰字加紅點，收合 ---------- */
+.feb-note {
+  margin: 6px 0 0;
+}
+
+.feb-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.feb-toggle svg {
+  transition: transform 0.15s;
+}
+
+.feb-note.open .feb-toggle svg {
+  transform: rotate(90deg);
+}
+
+.feb-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--warn);
+}
+
+.feb-list {
+  margin: 2px 0 6px;
+  padding-left: 18px;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.feb-list li + li {
+  margin-top: 4px;
+}
+
+/* ---------- 選了一區（AreaThemeHome） ---------- */
+.xa-v2 {
+  min-width: 0;
+}
+
+.xa-mobile.xa-v2 {
+  padding: 0 14px 28px;
+}
+
+.xa-desktop.xa-v2 {
+  padding: 0 0 20px;
+}
+
+.xa-v2 > .xe {
+  margin-top: 12px;
+}
+
+.xa-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 18px;
+  padding: 18px 0 0;
+}
+
+.xa-foot-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--indigo);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.xa-foot-link:hover {
+  text-decoration: underline;
+}
+
+/* ---------- 概覽卡（§35.6）：照片 170px → 主題列 → 子地區 → 特色 15px → 2 月注意 ---------- */
+.xo-cover {
+  aspect-ratio: auto;
+  height: 170px;
+}
+
+.xo-name {
+  font-size: 1.625rem;
+}
+
+.xo-name-ja {
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.xo-summary {
+  color: var(--ink);
+  font-size: 0.9375rem;
+}
+
+.xo-text {
+  padding: 6px 12px 10px;
+}
+
+.xo-text .feb-note {
+  margin-top: 2px;
+}
+
+/* ---------- 想去（WishSectionList） ---------- */
+.wl-v2 .wl-item + .wl-item {
+  margin-top: 0;
+}
+
+.wl-v2 .pr-right {
+  width: auto;
+}
+
+.wl-v2 .wl-right .wl-add {
+  width: 38px;
+  height: 38px;
+}
+
+.wl-v2 .wl-comment {
+  margin-top: 1px;
+}
+
+.wl-note {
+  margin: 12px 0 0;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background: var(--wash);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.wl[data-surface='mobile'].wl-v2 {
+  padding: 0 14px 28px;
+}
+
+/* ---------- 詳情（§35.9）：♡ 我想去、誰想去那行、加到某天的小字、四格的字和圖例 ---------- */
+.pd-love {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pd-love.on {
+  border-color: var(--love-line);
+  background: var(--love-wash);
+  color: var(--love);
+}
+
+.pd-add {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+}
+
+.pd-add-note {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  color: var(--ink-2);
+  text-align: center;
+}
+
+.pd-who-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: 0.8125rem;
+  color: var(--ink-2);
+}
+
+.pd-who-line .avatar {
+  width: 20px;
+  height: 20px;
+  font-size: 11px;
+}
+
+.pd-who-me {
+  color: var(--ink-2);
+}
+
+.pd-who-me::first-line {
+  color: inherit;
+}
+
+.pd-fit-word {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.pd-fit-cell.tone-good .pd-fit-word {
+  color: var(--good);
+}
+
+.pd-fit-cell.tone-mid .pd-fit-word {
+  color: var(--mustard-ink);
+}
+
+.pd-fit-cell.tone-warn .pd-fit-word {
+  color: var(--bad);
+}
+
+.pd-fit-cell.tone-none {
+  border: 1px dashed var(--ink-4);
+  background: var(--paper);
+}
+
+.pd-fit-cell.tone-none .pd-fit-mark,
+.pd-fit-cell.tone-none .pd-fit-word {
+  color: var(--ink-3);
+}
+
+.pd-fit .pd-fit-label {
+  color: var(--ink-2);
+  font-weight: 400;
+  font-size: 0.72rem;
+}
+
+.pd-fit-legend {
+  margin: -6px 0 10px;
+  font-size: 0.6875rem;
+  color: var(--ink-3);
+}
+
+/* 附近：「列出 3 個，共 N 個」「更多 ›」「附近沒有住宿（0 個）」 */
+.nearby-h {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.nearby-n {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+
+.nearby-more {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.nearby-none {
+  margin: 0 0 6px;
+}
+
+/* 手機詳情的返回鈕寫目的地（§35.2）：白底膠囊「‹ 回到 賢島 › 玩」 */
+.m-detail-back.has-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  width: auto;
+  max-width: calc(100% - 24px);
+  padding: 0 14px 0 8px;
+  border-radius: 999px;
+}
+
+.m-detail-back-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  font-weight: 700;
 }

@@ -7,25 +7,34 @@
 // 兩級都 0 個的那排不藏（T64）：標題照樣在，下面虛線框寫「賢島沒有 S、A 級的景點」和下一步（NextSteps，lib/listConditions.ts 的 emptyHelp；照片牆、清單篩到 0 個也用）。
 // 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
 // 樣式在 ui.css（.xo-*、.xa-*、.xs-*）。
+//
+// T76（interaction-design §35.6、35.4）：概覽卡由上往下是照片（點了進那區，沒有「看志摩 ›」）→ 主題列（點了直接進那區那個主題）→
+// 子地區一行 → 一句特色 → 「● 2 月注意 N 則 ›」收合 → 代表地點；住幾晚、作者授權照舊。
+// 選了一區的新內容是 AreaThemeHome：「2 月注意」一行收合＋目前主題的區段（Section.tsx；一定要去、其他景點…），
+// 地區頁最下面「問 AI 幫我挑」「找不到？自己加一個」兩行小字。舊的 AreaHome、ShelfCard 留到 T77、T78 接上新的再刪（T79）。
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData } from '../../hooks.ts';
 import { displayName } from '../../data/normalize.ts';
-import { shelfRows } from '../../lib/shelves.ts';
-import { shelfEmptyHelp, type EmptyHelp } from '../../lib/listConditions.ts';
+import { SECTIONS, sectionCounts, sectionPlaces, shelfRows, themeCounts, type Theme } from '../../lib/shelves.ts';
+import { sectionEmptyHelp, shelfEmptyHelp, type EmptyHelp } from '../../lib/listConditions.ts';
 import { allRegionsLabel, areaSubName, overviewContent } from '../../lib/overview.ts';
 import { overviewStore, useOverview } from '../overviewStore.ts';
 import { areaStayLine } from '../../lib/tripSkeleton.ts';
 import { whenNearViewport } from '../../lib/nearViewport.ts';
 import type { Filter } from '../../lib/filter.ts';
-import type { Area, Photo as PhotoData, Place } from '../../data/types.ts';
+import type { Area, Bbox, Photo as PhotoData, Place } from '../../data/types.ts';
+import { Icon } from '../../components/Icon.tsx';
 import { Photo } from '../../components/Photo.tsx';
 import { Chip } from './Chip.tsx';
 import { ChipScroller } from './ChipScroller.tsx';
 import { ScopeCount } from './AreaChips.tsx';
 import { TierMark } from './TierMark.tsx';
 import { TypeSeal } from './TypeLabel.tsx';
+import { ThemeRow } from './ThemeRow.tsx';
+import { Section, SectionRows } from './Section.tsx';
+import { PlaceRow, useDayStatus } from './PlaceRow.tsx';
 
 export type HomeSurface = 'desktop' | 'mobile';
 
@@ -41,6 +50,8 @@ export interface OverviewActions {
   onPickArea: (area: string) => void;
   onPickRegion: (area: string, region: string) => void;
   onFocus?: (area: string, region: string | null) => void;
+  /** 卡片的主題列（T76）：進那一區（卡片選了子地區時連子地區）再選那個主題；沒給就只進那一區 */
+  onPickTheme?: (area: string, region: string | null, theme: Theme) => void;
 }
 
 /** 概覽：一區一張卡 */
@@ -62,8 +73,9 @@ const creditOf = (p: PhotoData | undefined) => (p ? [p.credit?.replace(/^Wikimed
  * 概覽的一張卡（T52、T63）：上半是那區的代表照片（區名和日文名壓在左下、住幾晚在右上、作者和授權在右下），
  * 下面子地區一行（「志摩全區」加全部的子地區，點了在卡片裡換內容）、簡介、二月注意一則，最後是代表點（有小標題）和「看志摩 ›」。
  */
-function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus }: { area: Area; surface: HomeSurface } & OverviewActions) {
+function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus, onPickTheme }: { area: Area; surface: HomeSurface } & OverviewActions) {
   const byId = useData((s) => s.byId);
+  const places = useData((s) => s.places);
   const itinerary = useData((s) => s.itinerary);
   const picked = useOverview((s) => s.picks[area.id] ?? null);
   const content = overviewContent(area, picked);
@@ -80,6 +92,12 @@ function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus }: 
     overviewStore.getState().pick(area.id, region);
     onFocus?.(area.id, region);
   };
+  // 主題列的數字：那區（卡片選了子地區時是那個子地區）每一類的總數，不看篩選
+  const counts = useMemo(() => themeCounts(places, { areas: [area.id], regions: content.regionId ? [content.regionId] : [] }), [places, area.id, content.regionId]);
+  const pickTheme = (t: Theme) => (onPickTheme ? onPickTheme(area.id, content.regionId, t) : onPick());
+  // 2 月注意：選了子地區是那個子地區的一句，全區是那區全部的
+  const region = content.regionId ? regions.find((r) => r.id === content.regionId) : undefined;
+  const feb = region ? (region.intro?.febNote ? [region.intro.febNote] : []) : (area.intro?.february ?? []).map((x) => x.text);
   return (
     <article className="xo-card" data-testid="overview-card" data-area={area.id} data-region={content.regionId ?? ''}>
       <div className="xo-cover">
@@ -108,6 +126,7 @@ function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus }: 
             </span>
           ))}
       </div>
+      <ThemeRow value={null} counts={counts} onPick={pickTheme} className="xo-themes" testId="overview-themes" />
       {regions.length > 1 && (
         <ChipScroller className="m-chips xo-regions" testId="overview-regions" activeKey={content.regionId ?? 'all'}>
           <Chip on={!content.regionId} onClick={() => pickRegion(null)} testId="overview-region-all">
@@ -126,28 +145,21 @@ function AreaCard({ area, surface, onOpen, onPickArea, onPickRegion, onFocus }: 
             {content.summary}
           </p>
         )}
-        {content.feb && (
-          <p className="xo-feb" data-testid="overview-feb">
-            2 月：{content.feb}
-          </p>
-        )}
+        <FebNote items={feb} testId="overview-feb" />
       </div>
-      <div className="xo-reps">
-        {reps.length > 0 && (
+      {reps.length > 0 && (
+        <div className="xo-reps">
           <h4 className="xo-reps-title" data-testid="overview-reps-title">
             {content.label}的代表地點
           </h4>
-        )}
-        {reps.map((p) => (
-          <button key={p.id} type="button" className="xo-rep" onClick={() => onOpen(p.id)} data-testid="overview-rep" data-id={p.id} {...hoverProps(surface, p.id)}>
-            <TypeSeal type={p.type} size="sm" />
-            {placeName(p)}
-          </button>
-        ))}
-        <button type="button" className="xo-go" onClick={onPick} data-testid="overview-go">
-          看{content.label} ›
-        </button>
-      </div>
+          {reps.map((p) => (
+            <button key={p.id} type="button" className="xo-rep" onClick={() => onOpen(p.id)} data-testid="overview-rep" data-id={p.id} {...hoverProps(surface, p.id)}>
+              <TypeSeal type={p.type} size="sm" />
+              {placeName(p)}
+            </button>
+          ))}
+        </div>
+      )}
     </article>
   );
 }
@@ -327,4 +339,116 @@ export function ShelfCard({ place, surface, onOpen, caption }: { place: Place; s
       )}
     </div>
   );
+}
+
+/**
+ * 「● 2 月注意 N 則 ›」一行灰字加紅點，收合，點了展開全部（T76，§35.4、35.6）：概覽卡、地區頁都用；沒有就不畫
+ */
+export function FebNote({ items, testId = 'area-feb' }: { items: string[]; testId?: string }) {
+  const [open, setOpen] = useState(false);
+  if (!items.length) return null;
+  return (
+    <div className={`feb-note${open ? ' open' : ''}`} data-testid={testId}>
+      <button type="button" className="feb-toggle" aria-expanded={open} onClick={() => setOpen(!open)} data-testid={`${testId}-toggle`}>
+        <i className="feb-dot" aria-hidden />2 月注意 {items.length} 則
+        <Icon name="chevron" size={16} />
+      </button>
+      {open && (
+        <ul className="feb-list">
+          {items.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+export interface AreaThemeHomeProps {
+  areaId: string;
+  regionId: string | null;
+  /** 目前的主題（主題列選的） */
+  theme: Theme;
+  /** 目前的篩選（areas、regions 是這一區；types 會換成 theme） */
+  filter: Filter;
+  /** 搜尋（地區頁通常沒有；有搜尋時是清單層） */
+  query?: string;
+  /** 只看地圖畫面裡的（網頁） */
+  bounds?: Bbox | null;
+  surface: HomeSurface;
+  /** 展開的區段（呼叫的畫面記，換主題、換子地區時清掉，換區帶著） */
+  openIds: readonly string[];
+  onToggle: (sectionId: string) => void;
+  /** 開詳情（手機：整頁；網頁：預設的列點了也開詳情，要原地展開就給 renderRow） */
+  onOpen: (id: string) => void;
+  /** 0 個的下一步：看全區、清除篩選換成那組條件；問 AI 放進輸入框 */
+  onApply: (filter: Filter, query: string) => void;
+  onAsk: (text: string) => void;
+  /** 最下面兩行小字：「問 AI 幫我挑」「找不到？自己加一個」 */
+  onAskAi?: () => void;
+  onAdd?: () => void;
+  /** 一列怎麼畫（網頁：原地展開、地圖的指到）；沒給是 PlaceRow 點了開詳情 */
+  renderRow?: (place: Place, index: number) => ReactNode;
+  /** 捲動容器（分批畫的觀察點用）：手機 '.m-page'、網頁 '.side-body' */
+  scroller: string;
+  /** 區段裡至少畫到第幾個（地圖點到的點要捲到它）：區段 ID → 個數 */
+  minShown?: Partial<Record<string, number>>;
+}
+
+/**
+ * 選了一區（T76，§35.4）：「2 月注意」一行收合（選了子地區不畫）＋目前主題的區段（預設全部收合，可以同時展開多個），
+ * 最下面「問 AI 幫我挑」「找不到？自己加一個」。整個主題 0 個（子地區沒有住宿）時只畫一個虛線框。
+ * 條件列（FilterConds）由呼叫的畫面放在這個上面。區段的數字：沒篩選是真實總數，有篩選是符合的數（lib/shelves.ts 的 sectionCounts）
+ */
+export function AreaThemeHome({ areaId, regionId, theme, filter, query = '', bounds = null, surface, openIds, onToggle, onOpen, onApply, onAsk, onAskAi, onAdd, renderRow, scroller, minShown }: AreaThemeHomeProps) {
+  const areas = useData((s) => s.areas);
+  const places = useData((s) => s.places);
+  const statusOf = useDayStatus();
+  const area = areas.find((a) => a.id === areaId);
+  const region = area?.regions?.find((r) => r.id === regionId);
+  const scoped = useMemo<Filter>(() => ({ ...filter, areas: [areaId], regions: regionId ? [regionId] : [], types: [theme] }), [filter, areaId, regionId, theme]);
+  const opts = useMemo(() => ({ query, bounds }), [query, bounds]);
+  const counts = useMemo(() => sectionCounts(places, theme, scoped, opts), [places, theme, scoped, opts]);
+  const total = useMemo(() => themeCounts(places, scoped)[theme], [places, scoped, theme]);
+  if (!area) return null;
+  const feb = region ? [] : (area.intro?.february ?? []).map((f) => f.text);
+  const row = renderRow ?? ((p: Place, i: number) => <PlaceRow place={p} rank={i + 1} status={statusOf(p.id)} onOpen={() => onOpen(p.id)} testId={surface === 'mobile' ? 'm-feed-item' : 'ex-item'} />);
+  return (
+    <div className={`xa xa-${surface} xa-v2`} data-testid="area-home" data-area={areaId} data-theme={theme}>
+      <FebNote items={feb} />
+      {total === 0 ? (
+        <NextSteps help={sectionEmptyHelp(places, scoped, areas, undefined, query)} onApply={onApply} onAsk={onAsk} testId="theme-empty" />
+      ) : (
+        counts.sections.map(({ section, count }) => {
+          const open = openIds.includes(section.id);
+          return (
+            <Section key={section.id} head={section} kind={theme} count={count} open={open} onToggle={() => onToggle(section.id)}>
+              {open && <SectionBody section={section} count={count} places={places} filter={scoped} query={query} bounds={bounds} areas={areas} onApply={onApply} onAsk={onAsk} row={row} scroller={scroller} minShown={minShown?.[section.id]} />}
+            </Section>
+          );
+        })
+      )}
+      {(onAskAi || onAdd) && (
+        <div className="xa-foot">
+          {onAskAi && (
+            <button type="button" className="xa-foot-link" onClick={onAskAi} data-testid="area-ask-ai">
+              <Icon name="spark" size={16} /> 問 AI 幫我挑
+            </button>
+          )}
+          {onAdd && (
+            <button type="button" className="xa-foot-link" onClick={onAdd} data-testid="area-add-place">
+              <Icon name="plus" size={16} /> 找不到？自己加一個
+            </button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** 展開的區段的內容：列（分批）或 0 個的虛線框和下一步 */
+function SectionBody({ section, count, places, filter, query, bounds, areas, onApply, onAsk, row, scroller, minShown }: { section: (typeof SECTIONS)[Theme][number]; count: number; places: Place[]; filter: Filter; query: string; bounds: Bbox | null; areas: Area[]; onApply: (filter: Filter, query: string) => void; onAsk: (text: string) => void; row: (place: Place, index: number) => ReactNode; scroller: string; minShown?: number }) {
+  const items = useMemo(() => (count ? sectionPlaces(places, section, filter, { query, bounds }) : []), [count, places, section, filter, query, bounds]);
+  if (!items.length) return <NextSteps help={sectionEmptyHelp(places, filter, areas, section, query)} onApply={onApply} onAsk={onAsk} testId="section-empty" />;
+  return <SectionRows items={items} render={row} scroller={scroller} resetOn={[filter, query, bounds]} minShown={minShown} />;
 }

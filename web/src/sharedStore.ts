@@ -596,7 +596,7 @@ export function createShared(getBackend: () => Backend, data: StoreApi<DataState
     reloadMe,
     clearToast: () => set({ toast: null }),
     /** 一般的提示（例如「已帶進聊天」） */
-    notify: (text: string) => toast('ok', text),
+    notify: (text: string, action?: Toast['action']) => toast('ok', text, action),
     notifyError: (text: string) => toast('error', text),
     /** 只出現一次的操作提示 */
     notifyHint: (text: string, action?: Toast['action']) => set({ hint: { seq: ++toastSeq, text, ...(action ? { action } : {}) } }),

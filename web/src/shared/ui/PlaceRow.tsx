@@ -1,23 +1,29 @@
-// 清單列（探索的清單、想去的列共用，兩邊一樣）：至少 88px，永遠三行（T69：以前寫死 88px，多一行標籤就壓到上下列）。
-// 左邊 64px 方形縮圖，中間三行（名稱＋等級＋自己加／已訂／待訂的小方標；類型・地區（自己加的接「誰加的」）；最多兩個重點膠囊），右邊固定一顆 ❤＋數字（right 可換掉）。
-// extra 有給就換掉第二、三行（想去用，這團的標章也在 extra 的第二行，T69 從名稱那行搬下去）。評分（★）在詳情（T44b）。名稱太長就省略，標章、❤ 不會被推走。
-// 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）。樣式在 ui.css。
+// 列（探索的區段、想去、搜尋結果、AI 挑的結果集共用，兩邊一樣）。T76（interaction-design §35.7）照片牆和清單合成這一種：
+// 左邊大照片 136×112（圓角、類型圓章在左上），右邊名稱（最多兩行）＋等級、第二行（景點：子地區；餐廳：子地區・價位第一段；
+// 住宿：住法那句・每人價下限）、重點膠囊（已排、主辦考慮放、長輩 ◎ 很適合、二月休，最多兩顆）、「誰想去」一行（頭像＋人名，自己在前寫「你」）。
+// 右上角愛心只有自己按過才實心紅（VoteHeart；別人按的寫在「誰想去」那行）。
+// extra 有給就換掉第二行以下（舊的想去清單用，T79 刪）；meta、caps、foot 是想去的新列用的（第二行換成「2/7 候選」、最下面加最新留言）。
+// 網頁：滑鼠移上去呼叫 appStore.hover(id)，移開 hover(null)（地圖的「指到」）；原地展開（below）接在列下面（§13.3 的 PlaceOpen）。樣式在 ui.css（.pr-）。
 
 import { useMemo, type HTMLAttributes, type ReactNode } from 'react';
 import { appStore } from '../../store.ts';
 import { useData, useShared } from '../../hooks.ts';
 import { Photo } from '../../components/Photo.tsx';
+import { Avatar } from '../../components/common.tsx';
 import { photoCandidates } from '../../lib/photos.ts';
+import { memberName } from '../../sharedStore.ts';
 import { TypeArt } from './TypeArt.tsx';
 import { placeDayStatus } from '../../lib/wishlist.ts';
 import { isUserPlace, placeMetaText, userSubtitle } from '../../lib/addPlace/view.ts';
 import { PlaceTags } from './PlaceTags.tsx';
-import type { Place } from '../../data/types.ts';
+import type { Area, Place } from '../../data/types.ts';
 import { rowHighlights, type RowHighlight } from '../rowHighlights.ts';
 import { TierMark } from './TierMark.tsx';
 import { stayCaption } from '../../lib/badges.ts';
-import { TypeLabel } from './TypeLabel.tsx';
+import { rowPrice } from '../../lib/placeSummary.ts';
+import { TypeSeal } from './TypeLabel.tsx';
 import { VoteHeart } from './VoteHeart.tsx';
+import { meFirst, whoText } from '../whoLine.ts';
 
 export interface DayStatus {
   candidate: string[];
@@ -47,14 +53,53 @@ export function Highlights({ list, testId = 'place-caps' }: { list: RowHighlight
   );
 }
 
-/** 方形縮圖：有照片用照片（打不開自己換下一張），沒有就是 TypeArt */
-function Square({ place }: { place: Place }) {
-  if (!photoCandidates(place.photos).length) {
-    return <TypeArt type={place.type} className="pr-thumb pr-thumb-fallback" testId="m-thumb-fallback" />;
-  }
+/** 列的第二行（§35.7）：景點是子地區；餐廳是子地區・價位第一段；住宿是住法那句・每人價下限 */
+export function rowMeta(place: Place, areas: Area[]): string {
+  const where = placeMetaText(place, areas);
+  if (place.type === 'lodging') return [stayCaption(place)?.label ?? where, rowPrice(place)].filter(Boolean).join('・');
+  if (place.type === 'restaurant') return [where, rowPrice(place)].filter(Boolean).join('・');
+  return where;
+}
+
+/** 想去這個點的人（不含收回的），照按的順序 */
+function useLikers(placeId: string): string[] {
+  const votes = useShared((s) => s.votes);
+  return useMemo(() => votes.filter((v) => v.placeId === placeId && !v.deletedAt && v.value === 'like').map((v) => v.memberId), [votes, placeId]);
+}
+
+/** 「誰想去」一行：頭像（最多三個）＋人名；沒人按不畫 */
+export function WhoLine({ placeId }: { placeId: string }) {
+  const ids = useLikers(placeId);
+  const me = useShared((s) => s.me?.id);
+  const members = useShared((s) => s.members);
+  if (!ids.length) return null;
   return (
-    <span className="pr-thumb">
-      <Photo place={place} width={200} />
+    <span className="pr-who" data-testid="row-who">
+      <span className="pr-avatars">
+        {meFirst(ids, me)
+          .slice(0, 3)
+          .map((id) => (
+            <Avatar key={id} id={id} />
+          ))}
+      </span>
+      <span className="pr-who-text">{whoText(ids, me, (id) => memberName(members, id))}</span>
+    </span>
+  );
+}
+
+/** 大照片：有照片用照片（打不開自己換下一張），沒有就是 TypeArt；類型圓章在左上 */
+function RowPhoto({ place, letter }: { place: Place; letter?: string }) {
+  return (
+    <span className="pr-photo">
+      {photoCandidates(place.photos).length ? <Photo place={place} width={320} /> : <TypeArt type={place.type} className="pr-photo-fallback" testId="m-thumb-fallback" />}
+      <span className="pr-seal">
+        <TypeSeal type={place.type} size="lg" label />
+      </span>
+      {letter && (
+        <span className="ai-letter" data-testid="ai-letter">
+          {letter}
+        </span>
+      )}
     </span>
   );
 }
@@ -62,9 +107,17 @@ function Square({ place }: { place: Place }) {
 export interface PlaceRowProps {
   place: Place;
   status?: DayStatus;
-  /** 換掉第二、三行 */
+  /** 換掉第二行以下（舊的想去清單，T79 刪） */
   extra?: ReactNode;
-  /** 右邊；預設是 VoteHeart */
+  /** 換掉第二行（想去：「2/7 候選」膠囊） */
+  meta?: ReactNode;
+  /** 換掉重點膠囊 */
+  caps?: RowHighlight[];
+  /** 最下面多一行（想去：最新留言） */
+  foot?: ReactNode;
+  /** 「誰想去」那行；預設畫 */
+  who?: boolean;
+  /** 右上角；預設是 VoteHeart */
   right?: ReactNode;
   onOpen: () => void;
   testId?: string;
@@ -83,13 +136,12 @@ export interface PlaceRowProps {
   letter?: string;
 }
 
-export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceRowProps) {
+export function PlaceRow({ place, status, extra, meta, caps, foot, who = true, right, onOpen, testId, rank, hot, rootProps, open = false, below, aiNote, letter }: PlaceRowProps) {
   const areas = useData((s) => s.areas);
   const name = place.name.zh || place.name.ja;
   const members = useShared((s) => s.members);
   const user = isUserPlace(place);
-  // 住宿第二行接住法那句（T69：「旅館 · 32 間房」「包棟 · 8 人 · 要分住」），清單不用點開就看得到
-  const meta = [placeMetaText(place, areas), stayCaption(place)?.label].filter(Boolean).join(' · ');
+  const metaText = [rowMeta(place, areas), user ? userSubtitle(place, members) : ''].filter(Boolean).join('・');
   const row = (
     <div
       {...rootProps}
@@ -111,35 +163,37 @@ export function PlaceRow({ place, status, extra, right, onOpen, testId, rank, ho
       onMouseEnter={() => appStore.getState().hover(place.id)}
       onMouseLeave={() => appStore.getState().hover(null)}
     >
-      <Square place={place} />
+      <RowPhoto place={place} letter={letter} />
       <span className="pr-text">
         <span className="pr-name">
-          {letter && <b data-testid="ai-letter">{letter}.</b>}
           <span className="pr-name-text">{name}</span>
           {!user && <TierMark tier={place.tier} />}
           <PlaceTags place={place} />
         </span>
         {extra ?? (
           <>
-            <span className="pr-meta">
-              <TypeLabel type={place.type} />
-              {meta && <span className="pr-meta-text">・{meta}</span>}
-              {user && <span className="pr-meta-text pr-user-by">・{userSubtitle(place, members)}</span>}
-            </span>
+            {meta ??
+              (metaText && (
+                <span className="pr-meta" data-testid="row-meta">
+                  {metaText}
+                </span>
+              ))}
             {aiNote ? (
               <span className="ai-note" data-testid="ai-note">
                 ✦ {aiNote}
               </span>
             ) : (
-              <Highlights list={rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
+              <Highlights list={caps ?? rowHighlights(place, status ?? { candidate: [], scheduled: [] })} />
             )}
+            {who && <WhoLine placeId={place.id} />}
+            {foot}
           </>
         )}
       </span>
       <span className="pr-right">{right ?? <VoteHeart placeId={place.id} />}</span>
     </div>
   );
-  // 原地展開（網頁第八輪 §13.3）：列的下面接 below。可以展開的列外面一直包一層，展開、收合時列不會重建（縮圖才不會閃）
+  // 原地展開（網頁第八輪 §13.3）：列的下面接 below。可以展開的列外面一直包一層，展開、收合時列不會重建（照片才不會閃）
   if (below === undefined) return row;
   return (
     <div className={open ? 'pr-open' : 'pr-closed'}>

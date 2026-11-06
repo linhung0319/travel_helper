@@ -5,11 +5,14 @@
 // 地區在篩選列下面一列、子地區在選區後的頂端（T42，interaction-design §20），面板裡沒有。
 // 下面「全部清除」「顯示 N 個」。外框兩種：手機是從下面出來的底部面板（掛到 body，蓋過底部分頁）；
 // 網頁是右欄的抽屜（掛到 .side-panel，蓋住分頁下面的整個右欄，自己捲動，頭和腳固定）。選項和字在 shared/filterOptions.ts。
+// T76（interaction-design §35.5）：給了 theme 就只畫那個主題的組（filterOptions 的 themePanel：書架區段切過的條件不進來，想去最前面「誰想去」），
+// 類型三塊大鈕拿掉；標題「篩選 · 志摩的景點」（想去沒選地區是「想去的景點」），腳「清除」「看 N 個景點」。沒給 theme 的舊畫面照舊（T79 刪）。
 
 import { useEffect, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useData } from '../../hooks.ts';
-import { COMMON_GROUPS, FILTER_SECTIONS, SECTION_ORDER, panelLayout, sectionApplied, sectionSummary, sheetTitle, type FilterGroup, type FilterSource } from '../filterOptions.ts';
+import { COMMON_GROUPS, FILTER_SECTIONS, SECTION_ORDER, panelLayout, sectionApplied, sectionSummary, sheetTitle, themeApplied, themePanel, type FilterGroup, type FilterSource } from '../filterOptions.ts';
+import { THEME_LABELS, scopeName, type Theme } from '../../lib/shelves.ts';
 import { TYPE_LABELS, type FilterKey } from '../../lib/filter.ts';
 import { placeLabel } from '../../lib/listConditions.ts';
 import { TypeSeal } from './TypeLabel.tsx';
@@ -51,7 +54,7 @@ function TypeTiles({ model }: { model: FilterModel }) {
   );
 }
 
-export function FilterSheet({ source, surface, model, count, host, onClose }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; host: HTMLElement | null; onClose(): void }) {
+export function FilterSheet({ source, surface, model, count, host, onClose, theme = null }: { source: FilterSource; surface: FilterSurface; model: FilterModel; count: number; host: HTMLElement | null; onClose(): void; theme?: Theme | null }) {
   const areas = useData((s) => s.areas);
   const { filter } = model;
 
@@ -87,7 +90,9 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
     return items.length ? [groupNode(g.id, g.title, !!g.dimmed?.(filter), items)] : [];
   };
   const { open } = panelLayout(filter.types);
-  const body = [
+  const body = theme
+    ? themePanel(theme, source).flatMap(render)
+    : [
     <TypeTiles key="types" model={model} />,
     ...open.map((t) => (
       <div className="fs-section" key={t} data-section={t} data-testid={`filter-section-${t}`}>
@@ -102,7 +107,10 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
     )),
     ...COMMON_GROUPS.flatMap(render),
   ];
-  const title = sheetTitle(placeLabel(filter, areas));
+  // 想去沒選地區：「篩選 · 想去的景點」；選了：「篩選 · 賢島的景點」（最小那層）
+  const where = theme ? (filter.areas.length === 1 ? scopeName(filter, areas) : source === 'wish' ? '想去' : null) : placeLabel(filter, areas);
+  const title = sheetTitle(where, theme);
+  const applied = theme ? themeApplied(theme, filter, source) > 0 || model.inView : true;
 
   const panel = (
     <div className={`fs-panel fs-${surface}`} role="dialog" aria-label={title} data-testid="filter-sheet" style={surface === 'desktop' && host ? { top: drawerTop(host) } : undefined} onClick={(e) => e.stopPropagation()}>
@@ -114,11 +122,11 @@ export function FilterSheet({ source, surface, model, count, host, onClose }: { 
       </header>
       <div className="fs-body">{body}</div>
       <footer className="fs-foot">
-        <Button kind="secondary" onClick={model.clear} data-testid="filter-clear">
-          全部清除
+        <Button kind="secondary" onClick={model.clear} disabled={!applied} data-testid="filter-clear">
+          {theme ? '清除' : '全部清除'}
         </Button>
         <Button kind="primary" onClick={onClose} data-testid="filter-done">
-          顯示 {count} 個
+          {theme ? `看 ${count} 個${THEME_LABELS[theme].noun}` : `顯示 ${count} 個`}
         </Button>
       </footer>
     </div>

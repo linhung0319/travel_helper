@@ -165,7 +165,7 @@
 | T74a | 提醒精簡（引擎和字）：43 種提醒拿掉 11 種（計程車台數、巴士擠不上、入住前到、等開門、三個和步驟重複的交通補充…）、餐廳兩條合一、三級改兩級（要處理／留意）、全部改字、坐車 60 分算休息；`TaxiInfo`、`busCrowd` 拿掉；AI 工具和推薦問題跟著改 | M | T72 | 4 | | ✅ |
 | T74b | 提醒精簡（畫面）：資料卡紅框只給要處理、點開每條一行；日期列的數字兩邊一致、點開列整天的（手機也能看字）；整趟的紅字長句改成骨架的「累」標和「晚餐未選」；交通卡拿掉台數、灰框不重複步驟；順手：「待訂」改墨色、行程卡名稱拿掉括號、停留時間寫法、詳情名稱列加 Google Maps 連結 | M | T74a | 4 | | ✅ |
 | T75 | 探索改版（純邏輯）：書架改成「主題 × 區段」（玩 3 排、吃 3 排、住 4 排，加起來等於總數）、區段的數量、`who` 拆出能坐一起／要分桌、篩選面板照主題分組（書架切過的不進面板、吃住加等級）、探索的階段少掉清單層、AI 的 `set_filter`／系統提示跟著改 | M | T74b | 4 | | ✅ |
-| T76 | 探索改版（共用畫面）：主題列、收合的書架區段（黏頂、0 個）、照片牆和清單合成一種列、工具列只剩搜尋＋篩選（概覽：問 AI、加地點）、條件列、篩選面板改主題分組和「只看我按的」、概覽卡「照片 → 玩吃住 → 文字」、想去的三排改區段、詳情的返回寫目的地、想去的提示手機也有 | M | T75 | 4 | 🌐 少量 | ⬜ |
+| T76 | 探索改版（共用畫面）：主題列、收合的書架區段（黏頂、0 個）、照片牆和清單合成一種列、工具列只剩搜尋＋篩選（概覽：問 AI、加地點）、條件列、篩選面板改主題分組和「只看我按的」、概覽卡「照片 → 玩吃住 → 文字」、想去的三排改區段、詳情的返回寫目的地、想去的提示手機也有 | M | T75 | 4 | 🌐 少量 | ✅ |
 | T77 | 探索改版（手機接線）：`ExploreFeed`、`FeedFilters`、`WishlistPage`、`mobileStore` 的主題和展開狀態、捲動位置記憶、詳情返回字；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ⬜ |
 | T78 | 探索改版（網頁接線）：`Explore.tsx`、`Wishlist.tsx`、`exploreArea.ts`、`appStore` 的主題，地圖連動（指到、選中、點地圖展開區段捲到那列）、原地展開、右欄抽屜；e2e 自己決定、只跑受影響的 | M | T76 | 4 | 🌐 少量 | ⬜ |
 | T79 | 探索改版（收尾）：刪舊元件、文件標成被 §35 取代、「怎麼用」和 LINE 說明的字、AI 推薦問題和 `ai:eval` 代表題、👤 真機再走 1a、1c；不跑完整 e2e | S | T77、T78 | 4 | | ⬜ |
@@ -1898,6 +1898,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **想去** `WishList.tsx`：三排小卡改成三個區段（同 `Section`），列同一種、第二行候選／已排膠囊、最新留言照舊；「全部 N ›」、`wishPrefs.section`、照片牆拿掉；最下面一行說明。日曆鈕、左滑照舊。
 - **詳情** `PlaceDetail.tsx`：返回鈕的字由呼叫的畫面給（「回到 賢島 › 玩」「回到 海樂園」），動作列「♡ 我想去」／「♥ 我想去 ✓」加下面那行「你想去，小林、阿姨也想去」，「加到某天」下面小字「給主辦的建議，不會動到行程」；按想去、取消的提示手機、網頁都要有（`castVote` 的 toast 加「復原」）；四格「符號＋字」加圖例，沒資料是「—」虛線框；附近「列出 3 個，共 N 個」「更多 ›」「附近沒有住宿（0 個）」。
 - **驗證**：`npm run typecheck`、`npm test`（元件的單元測試如果有）、`npm run build`；用 dev 先在 Storybook 式的臨時頁或直接接到手機版看過主題列、區段、列、面板、概覽卡的長相和 D 版比（截圖留在 `design-lab/shots-t76/`，不進 repo 也可以）。手機、網頁的 e2e 這張不改（T77、T78）。
+- **完成（2026-11-06）**：照卡片做；舊畫面一行都沒改，照跑到 T77、T78 接上。
+  - **新舊並存的方式**：`FilterBar` 給了 `stage`（`exploreLayer` 的結果；想去給 `'area'`）才是新長相（`ThemeFilterBar`），沒給的走 `LegacyFilterBar`（排序、照片牆切換、淡藍帶、`extraCond` 都在這裡，T79 刪）；`FilterSheet` 給了 `theme` 才是主題面板。`AreaHome`、`ShelfCard`、舊的 `WishList`、`PlaceTile`、`PlaceWall` 不動；新的是 `ExploreHome.tsx` 的 **`AreaThemeHome`**（2 月注意一行＋區段＋最下面兩行小字）、`FebNote`，`WishList.tsx` 的 **`WishSectionList`**。**直接改了、舊畫面也跟著變的**：`PlaceRow`（新的列，舊的清單列表也變成卡片式，`ui.css` 給 `.ex-items`、`.wl-items` 補了間距）、`VoteHeart`（不畫數字，`showCount` 留著不用）、概覽卡、詳情、`castVote` 的提示。
+  - **接線要知道的**（T77、T78）：`FilterModel` 多 `theme`／`setTheme`，`FilterBar` 多 `themeCounts`（`themeCounts`）；新長相下 `model.clear` 要留住地區、子地區和主題（types）。地區分頁的數字由呼叫的畫面用 `scopeCountsByTheme` 給 `AreaChips`（永遠給）。條件列是 `FilterBar.tsx` 匯出的 **`FilterConds`**，放在內容最上面。`AreaThemeHome`、`WishSectionList` 的展開狀態（`openIds`、`onToggle`）由 store 記；`scroller` 給 `'.m-page'` 或 `'.side-body'`；網頁要原地展開、地圖指到就給 `renderRow`（`PlaceRow` 的 `open`、`below`、`hot`）；地圖點到的點要畫出來給 `minShown`。概覽卡的主題列點了呼叫 `onPickTheme(area, region, theme)`。詳情的返回字：手機給 `PlaceDetail` 的 `backLabel`（「賢島 › 玩」，畫成「‹ 回到 賢島 › 玩」）；網頁詳情裡再開詳情的返回已改成「回到 海樂園」（`DetailPanel`）。
+  - **黏頂**：區段標題 `position: sticky; top: var(--sec-top)`，`--sec-top` 由新的 `FilterBar` 量黏住的高度寫在捲動容器上（手機矮螢幕 `.fb-stick` 是 contents 時量工具列）。用臨時接線在 dev 量過：手機 390×844 標題停在篩選列正下方（214px），網頁右欄（`scrollbar-gutter: stable`）也停在篩選列下面（266px）。
+  - **和卡片不同、自己決定的**：① 列的第二行要價位，`priceRange` 原本只在詳情層，**加進清單層**（`placeLayers.ts`，`LAYER_VERSION` 5→6，**部署要重匯 D1**）；`lib/placeSummary.ts` 的 `rowPrice`：餐廳取第一段，住宿取「每人 N 円起」，包棟、每間的價不寫。② 重點膠囊的字（`rowHighlights`）：候選寫「主辦考慮放 2/4」，長輩、小孩的記號後面加字（「長輩 ◎ 很適合」）。③ 想去的列把「2/7 候選」「2/5 排了」放在膠囊那行（最多兩顆，先日期再標章），第二行照舊是地點，列比較矮；日期小標拿掉。④ 概覽卡留著子地區那一行（放在主題列下面，選子地區時主題列的數字跟著換），「看志摩 ›」拿掉。⑤ 按想去、收回想去每次都有提示＋「復原」（`sharedStore.notify` 多一個 action），第一次按的愛心飛進分頁照舊，舊的「去看」那則一次性提示拿掉。⑥ 詳情的 👎 數字 0 不寫；附近一律列景點、餐廳、住宿三類（0 個寫「附近沒有住宿（0 個）」），超過 3 個「列出 3 個，共 N 個」＋「更多 ›」原地展開全部。⑦ 四格圖例的字放在 `rowHighlights.ts` 的 `MARK_LEGEND`（樣式測試不准 .tsx 裡出現 ✕ 字元）。
+  - **測試**：新增 `web/test/t76.test.ts`（誰想去的字、詳情那行、想去的日期膠囊、圖例），`placeSummary.test.ts` 加 `rowPrice`、改 `rowHighlights` 的字。`npm test` 1136 過，`typecheck`、`build` 通過。e2e 沒跑（照第十九輪的原則；會壞的是看 ❤ 數字、`detail-who` 名單、一次性提示 `hint`、照片牆的那些，留給 T77、T78、T80）。截圖在 `data/cache/work/t76-shots/`（不進 git）。
 
 ### T77 探索改版：手機接線 〔M〕（第十九輪，2026-11-06 👤 決定）
 

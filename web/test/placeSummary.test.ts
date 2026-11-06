@@ -1,7 +1,7 @@
 // T44b：卡片標章怎麼挑、四格、時間怎麼併、費用估計、小提醒（lib/placeSummary.ts、hours.ts 的 hoursLine）
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { adultYen, childYen, dateSpanLabel, fitBadges, fitCells, priceLine, scoreMark, shortReason, tipLine, tripClosure, yenAmounts } from '../src/lib/placeSummary.ts';
+import { adultYen, childYen, dateSpanLabel, fitBadges, fitCells, priceLine, rowPrice, scoreMark, shortReason, tipLine, tripClosure, yenAmounts } from '../src/lib/placeSummary.ts';
 import { hoursLine } from '../src/lib/hours.ts';
 import { rowHighlights } from '../src/shared/rowHighlights.ts';
 import type { Assessment, Hours, Place } from '../src/data/types.ts';
@@ -48,9 +48,9 @@ test('fitBadges：max 1 時先放最差的；車站、自己加的沒有', () =>
 
 test('rowHighlights：已排、候選在前，剩下的位置放這團的標章', () => {
   const p = spot({ elderFit: 5, kidsFit: 2 });
-  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: ['2027-02-05'] }).map((h) => h.label), ['已排 2/5', '候選 2/10']);
-  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: [] }).map((h) => [h.label, h.tone]), [['候選 2/10', 'indigo'], ['小孩 △', 'warn']]);
-  assert.deepEqual(rowHighlights(p, { candidate: [], scheduled: [] }).map((h) => [h.label, h.tone]), [['長輩 ◎', 'good'], ['小孩 △', 'warn']]);
+  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: ['2027-02-05'] }).map((h) => h.label), ['已排 2/5', '主辦考慮放 2/10']);
+  assert.deepEqual(rowHighlights(p, { candidate: ['2027-02-10'], scheduled: [] }).map((h) => [h.label, h.tone]), [['主辦考慮放 2/10', 'indigo'], ['小孩 △ 要注意', 'warn']]);
+  assert.deepEqual(rowHighlights(p, { candidate: [], scheduled: [] }).map((h) => [h.label, h.tone]), [['長輩 ◎ 很適合', 'good'], ['小孩 △ 要注意', 'warn']]);
   // 15 人、預約不再放在卡片上（移到詳情）
   assert.deepEqual(rowHighlights(placeWith({ group: { fit15: 'yes' }, reservation: { required: true } }), { candidate: [], scheduled: [] }), []);
 });
@@ -162,4 +162,17 @@ test('tipLine：要預約、不能預約，否則缺點的第一句', () => {
   assert.equal(tipLine(placeWith({ reservation: { accepted: 'no' } }, { summary: s })), '不能預約；海獺要排隊');
   assert.equal(tipLine(placeWith({}, { type: 'spot', summary: s })), '海獺要排隊');
   assert.equal(tipLine(placeWith()), null);
+});
+
+test('rowPrice（T76）：餐廳是價位第一段、住宿是每人價下限，包棟不寫', () => {
+  const r = (priceRange: string, type: Place['type'] = 'restaurant') => rowPrice(placeWith({ priceRange }, { type }));
+  assert.equal(r('午 ¥1,000～2,000／晚 ¥3,000～4,000'), '午 ¥1,000～2,000');
+  assert.equal(r('～¥1,000'), '～¥1,000');
+  assert.equal(r('每人約 15,020～19,250 円（依方案，含素泊／附早餐；詳見 prices）', 'lodging'), '每人 15,020 円起');
+  assert.equal(r('一泊二食每人約 15,400～23,100 円（2027-02 平日、4 名 1 室）；團體方案每人 15,400 円起', 'lodging'), '每人 15,400 円起');
+  assert.equal(r('每人 8,000 円起（4 人以上、平日素泊）；附 BBQ', 'lodging'), '每人 8,000 円起');
+  assert.equal(r('每間（棟）約 19,000～30,000 円（詳見 prices）', 'lodging'), null);
+  assert.equal(r('包棟每晚 110,000 円（10 人以內）＋第 11 人起每人 6,600 円', 'lodging'), null);
+  assert.equal(rowPrice(placeWith({}, { type: 'lodging' })), null);
+  assert.equal(r('¥500', 'spot'), null);
 });

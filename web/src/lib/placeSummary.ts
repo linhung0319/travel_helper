@@ -304,6 +304,23 @@ export function priceLine(p: Place): PriceLine | null {
   return { text: head, estimate: `${est}${/～$/.test(head.trim()) || /起/.test(head) ? ' 起' : ''}${night}` };
 }
 
+/**
+ * 列的第二行的價位（T76，interaction-design §35.7）：餐廳是價位第一段（「午 ¥1,000～2,000」），
+ * 住宿是每人價的下限（「每人 15,020 円起」）；包棟、每間這種不是每人的不寫。沒有是 null。只用清單層的 priceRange
+ */
+export function rowPrice(p: Place): string | null {
+  const range = str(p.raw.priceRange);
+  if (!range) return null;
+  const flat = stripParens(range);
+  if (p.type === 'restaurant') return flat.split(/[／/；;]/)[0]?.trim() || null;
+  if (p.type !== 'lodging') return null;
+  const head = flat.split(/[；;]/)[0] ?? '';
+  const at = head.indexOf('每人');
+  if (at < 0 || /包棟|每間|每棟|一棟/.test(head.slice(0, at))) return null;
+  const lo = yenAmounts(head.slice(at))[0];
+  return lo ? `每人 ${lo.toLocaleString('ja-JP')} 円起` : null;
+}
+
 // ---------- 一行小提醒 ----------
 
 /** 只在講評分可不可靠的缺點（「Google 只有 28 則」）不當小提醒 */

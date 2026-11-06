@@ -1113,7 +1113,7 @@
 
 來源：2026-11-06 的可用性走訪（`docs/ux-review/report.md`）→ 根本原因歸納（`design-lab/root-causes.md`）→ A、B、C 三個拋棄式原型 → 👤 看過後定出 D 版，再修四輪（`design-lab/d.html`，**以最後一版為準**；比較頁 `design-lab/index.html`）。
 
-**進度**：35.4、35.5 的邏輯 T75 做完（2026-11-06）：區段在 `lib/shelves.ts`（`SECTIONS`、`sectionCounts`、`sectionPlaces`、`themeCounts`、`scopeCountsByTheme`、`exploreLayer`），面板在 `shared/filterOptions.ts`（`themePanel`、`themeFilter`、`themeApplied`），0 個在 `listConditions.sectionEmptyHelp`，想去三段的頭在 `wishSections.WISH_SECTION_HEADS`；`who` 拆出 `together`（fit15 yes）、`split`（fit15 split），`tiers: [B]` 一律收得到沒評等級的。畫面還沒接（T76～T78）。
+**進度**：35.4、35.5 的邏輯 T75 做完（2026-11-06）：區段在 `lib/shelves.ts`（`SECTIONS`、`sectionCounts`、`sectionPlaces`、`themeCounts`、`scopeCountsByTheme`、`exploreLayer`），面板在 `shared/filterOptions.ts`（`themePanel`、`themeFilter`、`themeApplied`），0 個在 `listConditions.sectionEmptyHelp`，想去三段的頭在 `wishSections.WISH_SECTION_HEADS`；`who` 拆出 `together`（fit15 yes）、`split`（fit15 split），`tiers: [B]` 一律收得到沒評等級的。共用畫面 T76 做完（2026-11-06）：`ThemeRow`、`Section`（區段、黏頂）、新的 `PlaceRow`、`FilterBar` 的 `stage`、`FilterConds`、`FilterSheet` 的 `theme`、`AreaThemeHome`、`WishSectionList`、詳情；手機、網頁還沒接（T77、T78）。
 
 **D 版只是示意 UI、UX 要變成什麼樣**：版面、層級、每一層的長相、文字、行為。網頁版、手機版各自的程式邏輯（地圖連動、彈窗還是整頁、分批載入、只看地圖畫面裡的、localStorage 的偏好、AI 的結果集、搜尋、自己加地點的建議…）照舊，D 版沒畫到的地方照現在的做法。和 §20、§25、§26、§28、§30、§32、§33 衝突的地方以這節為準；沒衝突的照舊。手機、網頁一樣。
 

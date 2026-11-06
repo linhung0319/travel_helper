@@ -211,7 +211,7 @@ T15m 先用假後端把畫面做出來，T15 換成呼叫 Worker 的實作（`ba
 
 ### 資料分層、啟動、靜態檔（T15，2026-11-01）
 
-- **清單層、詳情層**（`worker/src/lib/placeLayers.ts`，匯入腳本和 dev 的 `local.ts` 共用）：`data/`、`schema/` 不動，匯入時算好存進 `places_base.data_list`、`data_detail`，Worker 只接字串。規則只有一條：`{ ...清單, ...詳情 }` 等於原始資料（`extra` 例外，見下面）。改了規則要把 `LAYER_VERSION` 加一，重新匯入時內容沒變的點也會重算。
+- **清單層、詳情層**（`worker/src/lib/placeLayers.ts`，匯入腳本和 dev 的 `local.ts` 共用）：`data/`、`schema/` 不動，匯入時算好存進 `places_base.data_list`、`data_detail`，Worker 只接字串。規則只有一條：`{ ...清單, ...詳情 }` 等於原始資料（`extra` 例外，見下面）。改了規則要把 `LAYER_VERSION` 加一，重新匯入時內容沒變的點也會重算（v6：`priceRange` 進清單層，列的第二行寫價位，T76）。
   - 清單層：`id`、`type`、`name`、`area`、`region`、`coords`、`tier`、`contexts`、`tags`、`cuisine`、`weather`、`ratings`、`hours`、`closures`、`anchors`、`stayMinutes`、`nearestStation`、`meals`、`checkIn`、`operator`、`stationNumber`、`transfers`、`googleName`、`aliases`、`reservation`、`phone`；部分子欄位：`group`（`fit15`、`fitSubgroup`、`confirmed15`、`wholeRental`）、`kids`（`allowed`、`friendly`、`minAge`）、`accessibility`（`stairs`、`walkInsideMinutes`）、`assessment`（`scores`）、`links`（`official`、`googleMaps`）、`photos`（`url`）。
   - 大小（660 筆，gzip／br）：全部 937／841 KB；清單層 229／220 KB；詳情層 767／692 KB。照 `type, id` 排才有這個數字（照 `id` 排詳情層是 860 KB）。
   - `web/test/placeLayers.test.ts`：清單層和完整資料各算一次，引擎、標章、篩選、AI 搜尋、預約清單的結果要一樣；少讀欄位不會報錯，所以靠這個抓。
