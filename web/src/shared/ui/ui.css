@@ -3300,7 +3300,7 @@ button.ll-main {
   gap: 3px;
 }
 
-/* 標題列這種擠的地方：問 AI、討論都是 36 px 圓形圖示鈕（T81，interaction-design §36.1）；討論有數字時變成膠囊。前面加 button 壓過 .text-button、.ui-btn-sm 的 padding */
+/* 標題列這種擠的地方：問 AI、討論都是 36 px 圓形圖示鈕（T81，interaction-design §36.T81）；討論有數字時變成膠囊。前面加 button 壓過 .text-button、.ui-btn-sm 的 padding */
 button.icon-round {
   display: inline-flex;
   align-items: center;
@@ -3316,6 +3316,13 @@ button.icon-round {
 
 button.icon-round:has(.discuss-n) {
   padding: 0 9px 0 7px;
+}
+
+/* 手機的點擊範圍至少 44 px（--tap）：兩顆一樣是 44 的圓 */
+.m-app button.icon-round {
+  min-width: var(--tap);
+  height: var(--tap);
+  min-height: var(--tap);
 }
 
 .discuss-n {
@@ -4951,7 +4958,7 @@ button.ui-sk-stay:disabled {
   padding: 8px 10px 8px;
 }
 
-/* 子地區一排（T63 §28，T81 §36.3 改成文字列、移到照片下面主題列上面）：最前面靛藍的定位圖示，每個子地區是文字；
+/* 子地區一排（T63 §28；§36.T81 改成文字列、移到照片下面主題列上面）：最前面靛藍的定位圖示，每個子地區是文字；
    選到的靛藍粗字＋淡靛藍底（圓角照設計 §2.3 用 999px，草圖的 8px 不在允許的值裡）；右邊淡出，一排橫捲（網頁有 ‹ › 箭頭，§31） */
 .xo-regions {
   display: flex;
@@ -5209,7 +5216,7 @@ button.ui-sk-stay:disabled {
 }
 
 /* ---------- 書架區段（Section）：一行一個，展開的標題黏在篩選列下面 ---------- */
-/* T81（§36.2）：拿掉左邊類型色條，類型色只留在右邊的數字膠囊；黏頂的標題整條白底、下緣細線，黏住時下方很淡的陰影 */
+/* §36.T81：拿掉左邊類型色條，類型色只留在右邊的數字膠囊；黏頂的標題整條白底、下緣細線，黏住時下方很淡的陰影 */
 .sec {
   margin: 0;
   --sec-c: var(--ink-2);
@@ -5536,7 +5543,7 @@ button.ui-sk-stay:disabled {
   text-decoration: underline;
 }
 
-/* ---------- 概覽卡（§35.6，T81 §36.3）：照片 2:1 → 子地區 → 主題列 → 特色 16.5px → 2 月注意 ---------- */
+/* ---------- 概覽卡（§35.6、§36.T81）：照片 2:1 → 子地區 → 主題列 → 特色 16.5px → 2 月注意 ---------- */
 .xo-cover {
   aspect-ratio: 2 / 1;
 }
