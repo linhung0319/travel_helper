@@ -5303,7 +5303,7 @@ button.ui-sk-stay:disabled {
   text-overflow: ellipsis;
 }
 
-/* 數字膠囊：收著是那一類的淡底＋類型色字，展開是實心類型色＋白字；0 淡灰 */
+/* 數字膠囊：收著、展開都是實心類型色＋白字（收著也一眼看得出書架裡有東西，2026-11-08 👤）；0 淡灰 */
 .sec-n {
   flex: 0 0 auto;
   display: inline-grid;
@@ -5313,18 +5313,13 @@ button.ui-sk-stay:disabled {
   height: 26px;
   padding: 0 9px;
   border-radius: 999px;
-  background: var(--sec-wash);
-  color: var(--sec-c);
+  background: var(--sec-c);
+  color: var(--paper);
   font-family: var(--font-round);
   font-size: 0.9375rem;
   font-weight: 900;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-}
-
-.sec.open .sec-n {
-  background: var(--sec-c);
-  color: var(--paper);
 }
 
 .sec .sec-n.zero {

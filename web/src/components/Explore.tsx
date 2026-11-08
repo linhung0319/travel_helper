@@ -339,6 +339,7 @@ export function ExplorePanel({ source = 'explore' }: { source?: ListSource }) {
                 hotId={hotId}
                 scroller={SCROLLER}
                 minShown={minShown}
+                theme={theme}
               />
             )}
           </>

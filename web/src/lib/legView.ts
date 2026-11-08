@@ -95,12 +95,18 @@ export type MissBadge = { text: string; tone: 'hot' | 'muted' | 'bad' };
 /**
  * 錯過的標籤（spec §8.5）：ifMissed 是 null（沒有下一班）→「錯過 無下一班」；
  * 班距型 →「約 N 分一班」（班距不知道就不顯示）；有時刻表 →「錯過 +N 分」，≥ hotMinutes 是 hot。
+ * 班距型只看自己的首末班：發車＋班距超過末班才是「無下一班」。引擎的 ifMissed 是 null 也可能是後面那程
+ * （例如近鐵末班）接不上，那不是這一程沒有下一班，後面那程自己會標「無下一班」。
  * 沒有 ifMissed 欄位（舊資料）不顯示
  */
 export function missBadge(ride: TransitRide, hotMinutes = HOT_MISS_MINUTES): MissBadge | null {
   if (ride.ifMissed === undefined) return null;
+  if (ride.kind === 'headway' && ride.headwayMin != null) {
+    const noNext = ride.depart != null && ride.last != null && toMinutes(ride.depart) + Math.ceil(ride.headwayMin) > toMinutes(ride.last);
+    return noNext ? { text: '錯過 無下一班', tone: 'bad' } : { text: `約 ${ride.headwayMin} 分一班`, tone: 'muted' };
+  }
   if (ride.ifMissed === null) return { text: '錯過 無下一班', tone: 'bad' };
-  if (ride.kind === 'headway') return ride.headwayMin != null ? { text: `約 ${ride.headwayMin} 分一班`, tone: 'muted' } : null;
+  if (ride.kind === 'headway') return null;
   const late = ride.ifMissed.lateMinutes;
   return { text: `錯過 +${late} 分`, tone: late >= hotMinutes ? 'hot' : 'muted' };
 }

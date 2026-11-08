@@ -346,7 +346,10 @@ test('missBadge：照 spec §8.5 的表', () => {
   assert.deepEqual(missBadge({ ...iseRide0, ifMissed: { depart: '08:41', arrive: '09:15', lateMinutes: 30 } }), { text: '錯過 +30 分', tone: 'hot' });
   assert.deepEqual(missBadge(kashikoLeg.rides[0], 20), { text: '錯過 +29 分', tone: 'hot' });
   assert.deepEqual(missBadge(southLeg.rides[1]), { text: '錯過 無下一班', tone: 'bad' });
-  assert.deepEqual(missBadge(southLeg.rides[0]), { text: '錯過 無下一班', tone: 'bad' });
+  // 班距型在首末班之間：ifMissed 是 null（後面近鐵那程接不上）也照班距標，不是「無下一班」
+  assert.deepEqual(missBadge(southLeg.rides[0]), { text: '約 15 分一班', tone: 'muted' });
+  // 班距型發車＋班距超過末班：才是「無下一班」
+  assert.deepEqual(missBadge({ ...southLeg.rides[0], depart: '22:50' }), { text: '錯過 無下一班', tone: 'bad' });
   assert.deepEqual(missBadge(loopLeg.rides[0]), { text: '約 4 分一班', tone: 'muted' });
   // 沒有 ifMissed 欄位（舊資料）：不顯示
   assert.equal(missBadge(bareLeg.rides[0]), null);
@@ -377,7 +380,7 @@ test('compactSteps：第一天南下，轉乘有 note → 另一行 transfer；1
   const s = compactSteps(southLeg, '關西機場', '鵜方', nameOf, 10);
   assert.deepEqual(s, [
     { kind: 'node', time: '14:35', name: '關西機場', wait: 23, walk: null, walkLast: false, board: 0, ticketTight: null },
-    { kind: 'ride', index: 0, mode: 'train', name: '南海 機場急行', depart: null, minutes: 46, badge: { text: '錯過 無下一班', tone: 'bad' } },
+    { kind: 'ride', index: 0, mode: 'train', name: '南海 機場急行', depart: null, minutes: 46, badge: { text: '約 15 分一班', tone: 'muted' } },
     { kind: 'node', time: '15:44', name: 'なんば', wait: null, walk: null, walkLast: false, board: null, ticketTight: null },
     { kind: 'transfer', walk: 16, elevatorWalk: 24, note: NAMBA_NOTE },
     { kind: 'node', time: '16:00', name: '大阪難波', wait: 10, walk: null, walkLast: false, board: 1, ticketTight: null },
