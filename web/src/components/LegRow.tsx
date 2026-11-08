@@ -22,7 +22,7 @@ import { appStore } from '../store.ts';
 import { extentOf } from '../lib/areas.ts';
 import { dataStore } from '../dataStore.ts';
 import { shared } from '../appShared.ts';
-import { useData, usePlan, useShared, useUi } from '../hooks.ts';
+import { useApp, useData, usePlan, useShared, useUi } from '../hooks.ts';
 import { useEditing } from './timelineEdit.ts';
 import { dayPlanOf, engineConfig } from '../planStore.ts';
 import { EDITOR_MODES, editorModeOf, legKeyOf, legMapsUrl, legModeName, legTargetOf, legTitle, showMinutesInput, type EditorMode } from '../lib/planView.ts';
@@ -415,6 +415,12 @@ export function useLegView(entry: TimelineEntry, date: string) {
   // 班次本身放 ref：時間軸重算時陣列換了但站一樣，不用重畫
   const ridesRef = useRef(leg?.rides ?? []);
   ridesRef.current = leg?.rides ?? [];
+  // 頭尾搭計程車到哪站（大眾運輸接計程車）；頭尾那一小段查到道路時（routesVersion 加一）重畫
+  const taxiKey = `${leg?.taxiBefore?.station ?? ''}|${leg?.taxiAfter?.station ?? ''}`;
+  const taxiRef = useRef<Pick<Leg, 'taxiBefore' | 'taxiAfter'> | null>(null);
+  taxiRef.current = leg ? { taxiBefore: leg.taxiBefore, taxiAfter: leg.taxiAfter } : null;
+  // 只有搭車的段落要（步行、車交給 routeResolver，不用跟著重畫）
+  const routesVersion = useApp((s) => (leg?.rides.length && isRide(mode) ? s.routesVersion : 0));
 
   // 點開時地圖只畫這一段（legRoute），每一程上下車的站亮起來；收起來（或換成別段、離開）就清掉
   useEffect(() => {
@@ -425,7 +431,7 @@ export function useLegView(entry: TimelineEntry, date: string) {
     const a = byId.get(fromId);
     const b = byId.get(toId);
     if (!a || !b) return;
-    const geometry = rides.length && isRide(mode) ? itineraryPathOf(a, b, mode, rides) : null;
+    const geometry = rides.length && isRide(mode) ? itineraryPathOf(a, b, mode, rides, taxiRef.current) : null;
     const stations = rideStations(rides).filter((id) => byId.has(id));
     appStore.getState().setLegRoute({
       from: { place: a.id, coords: a.coords },
@@ -443,7 +449,7 @@ export function useLegView(entry: TimelineEntry, date: string) {
     return () => {
       if (appStore.getState().legRoute?.from.place === a.id && appStore.getState().legRoute?.to.place === b.id) appStore.getState().setLegRoute(null);
     };
-  }, [open, fromId, toId, mode, unknown, minutes, ridesKey]);
+  }, [open, fromId, toId, mode, unknown, minutes, ridesKey, taxiKey, routesVersion]);
 
   // 打開時地圖框住兩端；收起來回到原本的範圍（只看打開、收起，交通重算不重新框）
   useEffect(() => {

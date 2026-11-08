@@ -25,7 +25,7 @@ import { TYPE_COLORS, TYPE_INK } from '../lib/typeStyle.ts';
 import { addMapIcons, addRegionPill } from './mapIcons.ts';
 import { markMapLoaded } from '../lib/idle.ts';
 import { clearCurrentMap, hoverPaused, selectedDropHtml, setCurrentMap, STYLE_URL } from './mapRuntime.ts';
-import { dayColor, placeVisual } from '../lib/visual.ts';
+import { placeVisual } from '../lib/visual.ts';
 import { tripDates } from '../lib/trip.ts';
 import { EMPTY_FILTER } from '../lib/filter.ts';
 import { PLACE_TYPES, type Bbox, type Place } from '../data/types.ts';
@@ -38,7 +38,7 @@ import { selectCamera, visibleArea, type ScreenRect } from '../lib/mapCamera.ts'
 import { MapCommandBars } from './MapCommandBars.tsx';
 import { pickPlace } from './mapPick.ts';
 import { shared } from '../appShared.ts';
-import { likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
+import { likedPlaces } from '../lib/wishlist.ts';
 import { closeDiscussion, closeMapPanel, closeTimetable, uiStore } from '../uiStore.ts';
 import { planStore } from '../planStore.ts';
 import { addPlaceStore } from '../addPlaceStore.ts';
@@ -72,19 +72,15 @@ const HOVER_HALO = '#a3a9b8';
 
 const typeColorExpr = ['match', ['get', 'type'], ...PLACE_TYPES.flatMap((t) => [t, TYPE_COLORS[t]]), '#4b5262'];
 
-/** 想去分頁每個點是哪一段（§5.3）：還沒排、已是候選、已排（已排的用那天的顏色） */
-type WishKind = 'unscheduled' | 'candidate' | 'scheduled';
-
 /** marks：行程的編號（0、1、2…，overlays.itineraryMarks：某一天、點開的那段、整趟）；有編號的點畫成類型色的編號圓 */
 function featureCollection(places: Place[], marks: Map<string, string>, detailed: boolean, overviewArea: string | null = null): FeatureCollection {
   const { filter, query, day, mode, aiResult } = appStore.getState();
-  const { days, itinerary } = dataStore.getState();
+  const { days } = dataStore.getState();
   const trip = mode === 'map';
   // 探索、想去時不因為「不在那天」變淡（找的是那天還沒排的點），只看篩選。
   // 行程分頁不套探索的篩選（§8.4）：選了某一天，那天以外的點淡；整趟時沒排進行程的點淡
   const dimDay = trip ? day : 'all';
   const liked = mode === 'wish' ? likedPlaces(shared.store.getState().votes) : null;
-  const candidates = shared.store.getState().candidates;
   // 想去分頁只畫想去的點
   const shown = liked ? places.filter((p) => liked.has(p.id)) : places;
   // 探索的分層（T43 §21）：縮遠只畫 S、A 級景點（選的那一區、概覽框著的那一區、清單裡符合的照樣畫）
@@ -93,13 +89,6 @@ function featureCollection(places: Place[], marks: Map<string, string>, detailed
     type: 'FeatureCollection',
     features: shown.map((p) => {
       const v = placeVisual(p, trip ? EMPTY_FILTER : filter, dimDay, days, trip ? '' : query);
-      let wish: WishKind | '' = '';
-      let wishColor = '';
-      if (liked) {
-        const st = placeDayStatus(p.id, candidates, itinerary);
-        wish = st.scheduled.length ? 'scheduled' : st.candidate.length ? 'candidate' : 'unscheduled';
-        wishColor = st.scheduled.length ? dayColor(DATES, st.scheduled[0]) : '';
-      }
       const dim = v.dim || (trip && day === 'all' && !days.has(p.id));
       return {
         type: 'Feature',
@@ -116,8 +105,6 @@ function featureCollection(places: Place[], marks: Map<string, string>, detailed
           user: p.origin === 'user' ? 1 : 0,
           typeColor: TYPE_COLORS[p.type],
           typeInk: TYPE_INK[p.type],
-          wish,
-          wishColor,
         },
       };
     }),
@@ -125,7 +112,7 @@ function featureCollection(places: Place[], marks: Map<string, string>, detailed
 }
 
 /** 可以點的圖層（點的時候都要查）；選中的點不在這些圖層裡（畫成水滴，點水滴另外接） */
-const PICK_LAYERS = ['places-circle', 'places-icon', 'places-mark', 'wish-dot', 'wish-candidate'];
+const PICK_LAYERS = ['places-circle', 'places-icon', 'places-mark'];
 
 /** 縮遠時收起 minor 的點的圖層（T43）；指到的點照樣畫（概覽的代表點有餐廳） */
 const LAYERED = new Set(['places-circle', 'places-icon', 'places-label']);
@@ -141,10 +128,9 @@ const REGION_LABEL_LAYER = 'region-label';
 /** 各圖層本來的 filter；畫成水滴的點另外排除 */
 const BASE_FILTERS: Record<string, unknown[]> = {
   'itinerary-alt': ['has', 'id'],
-  'places-circle': ['all', ['==', ['get', 'mark'], ''], ['==', ['get', 'wish'], '']],
-  'places-icon': ['all', ['==', ['get', 'mark'], ''], ['==', ['get', 'wish'], '']],
-  'wish-dot': ['any', ['==', ['get', 'wish'], 'unscheduled'], ['==', ['get', 'wish'], 'scheduled']],
-  'wish-candidate': ['==', ['get', 'wish'], 'candidate'],
+  // 想去分頁的點和探索畫得一樣（類別色的點、圖標；還沒排、已是候選、已排不分樣子，2026-11-08 👤）
+  'places-circle': ['==', ['get', 'mark'], ''],
+  'places-icon': ['==', ['get', 'mark'], ''],
   'places-mark': ['!=', ['get', 'mark'], ''],
   'places-mark-text': ['!=', ['get', 'mark'], ''],
   'places-mark-label': ['!=', ['get', 'mark'], ''],
@@ -226,7 +212,6 @@ export function MapView() {
   const days = useData((s) => s.days);
   const plan = usePlan((s) => s.plan);
   const votes = useShared((s) => s.votes);
-  const candidates = useShared((s) => s.candidates);
   // 點開的交通卡（那段的兩端照那段的號碼、其他路線變淡）、整趟點亮的那天
   const legOpen = useUi((s) => s.legOpen);
   const tripFocusDay = useApp((s) => s.tripFocusDay);
@@ -376,29 +361,6 @@ export function MapView() {
           'symbol-sort-key': ['+', ['*', ['get', 'dim'], 10], ['match', ['get', 'tier'], 'S', 0, 'A', 1, 2]],
         },
         paint: { 'icon-opacity': ['case', ['==', ['get', 'dim'], 1], 0.3, 1] },
-      });
-      // 想去分頁（§5.3）：還沒排＝空心墨色圓、已排＝實心的那天的顏色；已是候選＝藍染色虛線圓（圖，mapIcons.ts）
-      map.addLayer({
-        id: 'wish-dot',
-        type: 'circle',
-        source: 'places',
-        filter: BASE_FILTERS['wish-dot'] as never,
-        paint: {
-          'circle-radius': ['interpolate', ['linear'], ['zoom'], 8, 5.5, 14, 8],
-          'circle-color': ['case', ['==', ['get', 'wish'], 'scheduled'], ['get', 'wishColor'], '#ffffff'],
-          'circle-opacity': ['case', ['==', ['get', 'dim'], 1], 0.35, 1],
-          'circle-stroke-color': ['case', ['==', ['get', 'wish'], 'scheduled'], '#ffffff', INK],
-          'circle-stroke-width': ['case', ['==', ['get', 'wish'], 'scheduled'], 1.5, 2.2],
-          'circle-stroke-opacity': ['case', ['==', ['get', 'dim'], 1], 0.35, 1],
-        },
-      });
-      map.addLayer({
-        id: 'wish-candidate',
-        type: 'symbol',
-        source: 'places',
-        filter: BASE_FILTERS['wish-candidate'] as never,
-        layout: { 'icon-image': 'wish-candidate', 'icon-size': ['interpolate', ['linear'], ['zoom'], 8, 0.75, 14, 1.05], 'icon-allow-overlap': true },
-        paint: { 'icon-opacity': ['case', ['==', ['get', 'dim'], 1], 0.35, 1] },
       });
       // 選定那天的點：類型色的圓（和時間軸的編號一樣），寫「宿」「1」「2」…
       map.addLayer({
@@ -721,7 +683,7 @@ export function MapView() {
   useEffect(() => {
     if (!loaded) return;
     (mapRef.current!.getSource('places') as GeoJSONSource).setData(featureCollection(places, marks, detailed, overviewFocus?.area ?? null));
-  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, candidates, itinerary, marks, detailed, aiResult, overviewFocus?.area]);
+  }, [loaded, places, filter, query, day, days, plan, byId, mode, votes, marks, detailed, aiResult, overviewFocus?.area]);
 
   const anchorId = desktop && detailId && detailId !== selectedId ? detailId : null;
 
@@ -960,7 +922,6 @@ export function MapView() {
       big(['match', ['get', 'tier'], 'S', 8.5, 'A', 6, 4.5], 1.4),
     ] as never);
     map.setPaintProperty('places-mark', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 8, big(10, 1.2), 14, big(13, 1.2)] as never);
-    map.setPaintProperty('wish-dot', 'circle-radius', ['interpolate', ['linear'], ['zoom'], 8, big(5.5, 1.3), 14, big(8, 1.3)] as never);
     map.setLayoutProperty('places-icon', 'icon-size', big(['match', ['get', 'tier'], 'S', 1.2, 'A', 0.9, 0.72], 1.2) as never);
   }, [loaded, hoveredId, canHover, selectedId]);
 
@@ -1162,19 +1123,6 @@ export function MapView() {
         <button type="button" className="map-all-areas" onClick={showAllAreas} data-testid="map-all-areas">
           <span aria-hidden>⤢</span> 看全部地區
         </button>
-      )}
-      {mode === 'wish' && (
-        <div className="map-legend" data-testid="map-wish-legend" aria-label="圖例">
-          <span>
-            <i className="lg-dot lg-unscheduled" aria-hidden /> 還沒排
-          </span>
-          <span>
-            <i className="lg-dot lg-candidate" aria-hidden /> 已是候選
-          </span>
-          <span>
-            <i className="lg-dot lg-scheduled" aria-hidden /> 已排
-          </span>
-        </div>
       )}
       {ctx && (
         <div className="map-context" style={{ left: ctx.x, top: ctx.y }} data-testid="map-context">

@@ -13,8 +13,6 @@
   --rail: #d3d8e3; /* 時間軸串起卡片的連線、交通卡的方式圓點框（§13.6） */
   --wash: #f3f5fa;
   --indigo: #24468a;
-  /* 地圖想去圖例「已排」的例子：第一天的顏色（lib/visual.ts DAY_PALETTE[0]） */
-  --day-sample: #1c2840;
   --indigo-wash: #e9eef8;
   --indigo-line: #cdd6ea;
   /* 芥子黃：只代表「選中」和「AI 的提議」（選中的日期、分頁底線、選中的卡；提議的淡底和框） */
@@ -2537,54 +2535,6 @@ button.edited {
 
 .map-all-areas:hover {
   background: var(--indigo-wash);
-}
-
-.map-legend {
-  position: absolute;
-  z-index: 2;
-  left: 10px;
-  bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px 12px;
-  background: var(--paper);
-  border-radius: 14px;
-  box-shadow: 0 1px 4px var(--shade-2);
-  font-size: 13px;
-  color: var(--ink-2);
-  pointer-events: none;
-}
-
-.map-legend span {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.map-legend .lg-dot {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  box-sizing: border-box;
-}
-
-.map-legend .lg-unscheduled {
-  background: var(--paper);
-  border: 2px solid var(--ink);
-}
-
-.map-legend .lg-candidate {
-  background: var(--paper);
-  border: 2px dashed var(--indigo);
-}
-
-/* 已排是那天的顏色：圖例用第一天的顏色當例子（lib/visual.ts 的 DAY_PALETTE[0]） */
-.map-legend .lg-scheduled {
-  background: var(--day-sample);
-  border: 1.5px solid var(--paper);
-  box-shadow: 0 0 0 1px var(--line);
 }
 
 /* ======================================================================

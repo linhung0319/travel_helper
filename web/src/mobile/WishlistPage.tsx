@@ -64,6 +64,7 @@ export function WishlistPage() {
         onOpen={(id) => mobileStore.getState().openPlace(id, 'wish', undefined, backTo)}
         onOpenComments={(id) => mobileStore.getState().openPlace(id, 'wish', 'comments', backTo)}
         scroller=".m-page"
+        theme={theme}
       />
       {pool.length === 0 && <WishEmpty onExplore={() => setTab('explore')} onAsk={askWishEmpty} />}
       {list.length === 0 && pool.length > 0 && (

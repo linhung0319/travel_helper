@@ -64,23 +64,6 @@ function userTypeIcon(type: PlaceType): ImageData {
   return c.getImageData(0, 0, el.width, el.height);
 }
 
-/** 想去分頁「已是候選」的點：白底、藍染色（--indigo）的虛線圓（circle 圖層畫不出虛線，所以畫成圖） */
-const WISH_RING = 22;
-
-function wishRingIcon(): ImageData {
-  const [el, c] = canvas(WISH_RING);
-  const r = WISH_RING / 2;
-  c.fillStyle = '#ffffff';
-  circle(c, r, r, 7.5);
-  c.strokeStyle = '#24468a';
-  c.lineWidth = 2.4;
-  c.setLineDash([3.2, 2.4]);
-  c.beginPath();
-  c.arc(r, r, 7.5, 0, Math.PI * 2);
-  c.stroke();
-  return c.getImageData(0, 0, el.width, el.height);
-}
-
 /** 往右的箭頭（SDF，顏色由圖層的 icon-color 給，跟著那天的顏色） */
 function arrowIcon(): ImageData {
   const [el, c] = canvas(16);
@@ -95,7 +78,7 @@ function arrowIcon(): ImageData {
   return c.getImageData(0, 0, el.width, el.height);
 }
 
-/** 圖片名稱：icon-<類型>（圓形圖標）、icon-user-<類型>（自己加的：虛線框）、wish-candidate（想去的候選）、route-arrow。選中的數字水滴是 DOM 標記（MapView） */
+/** 圖片名稱：icon-<類型>（圓形圖標）、icon-user-<類型>（自己加的：虛線框）、route-arrow。選中的數字水滴是 DOM 標記（MapView） */
 export function addMapIcons(map: MapLibreMap) {
   for (const t of PLACE_TYPES) {
     if (!map.hasImage(`icon-${t}`)) map.addImage(`icon-${t}`, typeIcon(t), { pixelRatio: RATIO });
@@ -111,7 +94,6 @@ export function addMapIcons(map: MapLibreMap) {
       }
     })
     .catch(() => {});
-  if (!map.hasImage('wish-candidate')) map.addImage('wish-candidate', wishRingIcon(), { pixelRatio: RATIO });
   if (!map.hasImage('route-arrow')) map.addImage('route-arrow', arrowIcon(), { pixelRatio: RATIO, sdf: true });
 }
 

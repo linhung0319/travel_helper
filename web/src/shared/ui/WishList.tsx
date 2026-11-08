@@ -15,6 +15,7 @@ import { useLikeCount } from '../placeLists.ts';
 import { rowHighlights } from '../rowHighlights.ts';
 import { WISH_SECTIONS_NOTE, wishSections, wishWhen, type SectionId, type WishSection } from '../wishSections.ts';
 import { Section, SectionRows } from './Section.tsx';
+import type { Theme } from '../../lib/shelves.ts';
 import type { Place } from '../../data/types.ts';
 import { PlaceRow, useDayStatus, type DayStatus } from './PlaceRow.tsx';
 
@@ -249,13 +250,15 @@ export interface WishSectionListProps {
   scroller: string;
   /** 段裡至少畫到第幾個（地圖點到的點要捲到它）：段 ID → 個數 */
   minShown?: Partial<Record<SectionId, number>>;
+  /** 目前的主題：數字膠囊用它的類型色（和探索一樣）；沒給是愛心紅 */
+  theme?: Theme;
 }
 
 /**
  * 想去（T76，§35.8）：還沒排／已是候選／已排進行程三個收合區段，數字永遠寫，0 個的段展開是一行灰字；最下面一行說明。
  * 一個點都沒有時什麼都不畫（空白狀態 §17.4 由呼叫的畫面放）。哪個點在哪一段用 useWishSections（呼叫的畫面要展開它那段時也用）
  */
-export function WishSectionList({ surface, places, openIds, onToggle, onOpen, onOpenComments, selectedId = null, hotId, scroller, minShown }: WishSectionListProps) {
+export function WishSectionList({ surface, places, openIds, onToggle, onOpen, onOpenComments, selectedId = null, hotId, scroller, minShown, theme }: WishSectionListProps) {
   const lastComments = useLastComments();
   const statusOf = useDayStatus();
   const byId = useMemo(() => new Map(places.map((p) => [p.id, p])), [places]);
@@ -269,7 +272,7 @@ export function WishSectionList({ surface, places, openIds, onToggle, onOpen, on
         const open = openIds.includes(sec.id);
         const items = open ? sec.groups.flatMap((g) => g.ids).map((id) => byId.get(id)).filter((p): p is Place => !!p) : [];
         return (
-          <Section key={sec.id} head={sec} kind="wish" count={sec.count} open={open} onToggle={() => onToggle(sec.id)} testId="wish-section">
+          <Section key={sec.id} head={sec} kind={theme ?? 'wish'} count={sec.count} open={open} onToggle={() => onToggle(sec.id)} testId="wish-section">
             {open &&
               (items.length ? (
                 <SectionRows

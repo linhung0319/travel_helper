@@ -185,6 +185,19 @@ test('userPlaceToPlace：鳥羽的座標 → area 是 toba，origin user，沒�
   assert.deepEqual(p.raw, { id: 'user-0123456789ab', type: 'restaurant', name: { ja: '', zh: '珈琲 灯台舎' }, coords: [136.84, 34.48], area: 'toba' });
 });
 
+test('userPlaceToPlace：子地區照 1.5 km 內最近的官方點（離島要對，引擎才知道島上走路、和本土之間搭船）', () => {
+  const base = [
+    { id: 'isl', region: 'toshijima', coords: [136.9, 34.519], origin: 'data' },
+    { id: 'main', region: 'toba-station', coords: [136.843, 34.481], origin: 'data' },
+    { id: 'u2', region: 'kuzaki', coords: [136.9031, 34.519], origin: 'user' },
+  ] as unknown as Place[];
+  const p = userPlaceToPlace(up([136.903, 34.519]), AREAS, base);
+  assert.equal(p.region, 'toshijima'); // 自己加的點不算（u2 更近也不用）
+  assert.equal(p.raw.region, 'toshijima'); // 引擎讀 raw
+  assert.equal(userPlaceToPlace(up([136.87, 34.50]), AREAS, base).region, null); // 都超過 1.5 km
+  assert.equal(userPlaceToPlace(up([136.903, 34.519]), AREAS).region, null);
+});
+
 test('userPlaceToPlace：海上的座標 → area null', () => {
   assert.equal(userPlaceToPlace(up([140, 30]), AREAS).area, null);
 });

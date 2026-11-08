@@ -108,6 +108,12 @@ export function buildEngineData(d: DataState, tt: EngineTimetables, roads?: Road
 /** 只重算有改的那一天（引擎的 PlanCache；EngineData 換了就整份重算） */
 const planCache = createPlanCache();
 
+/** 道路快取有新值時重算時間軸（startPlanner 設定；還沒開始、時刻表還沒載入時什麼都不做） */
+let replanNow: () => void = () => {};
+export function replan() {
+  replanNow();
+}
+
 /** 不管有沒有延後、行程是不是空的，馬上開始讀時刻表（startPlanner 設定） */
 let fetchNow: () => void = () => {};
 
@@ -178,6 +184,7 @@ export function startPlanner(data: StoreApi<DataState>, source: DataSource, road
       .catch((e) => store.setState({ status: 'error', error: e instanceof Error ? e.message : String(e) }));
   };
   fetchNow = fetchTimetables;
+  replanNow = compute;
   // 行程有東西才讀（T47）；行程還是空的就等打開行程（requestPlan）或 AI 要用（ensurePlan）
   const maybeLoad = (s: DataState) => {
     if (s.status === 'ready' && hasContent(s.itinerary)) loadTimetables();

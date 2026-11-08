@@ -2498,25 +2498,24 @@ test('時間軸的卡：滑鼠移上去，卡片自己不加黃框；從地圖�
   await expect(row).toHaveClass(/flash/);
 });
 
-test('想去分頁的地圖：只畫想去的點、三種樣子、左下角圖例；行程分頁沒有篩選膠囊、地圖不套篩選', async ({ page }) => {
+test('想去分頁的地圖：只畫想去的點、和探索一樣的類別色點（沒有圖例）；行程分頁沒有篩選膠囊、地圖不套篩選', async ({ page }) => {
   await ready(page);
   await likeMany(page, 3);
   await page.getByTestId('side-tab-wish').click();
-  await expect(page.getByTestId('map-wish-legend')).toBeVisible();
-  await expect(page.getByTestId('map-wish-legend')).toContainText('還沒排');
   await waitIdle(page);
   const got = await page.evaluate(() => {
     const t = (window as any).__th;
     const fs = t.map.getSource('places').serialize().data.features;
     const liked = new Set(t.shared.store.getState().votes.filter((v: any) => v.value === 'like' && !v.deletedAt).map((v: any) => v.placeId));
-    return { n: fs.length, liked: liked.size, kinds: [...new Set(fs.map((f: any) => f.properties.wish))] };
+    return { n: fs.length, liked: liked.size, layers: ['wish-dot', 'wish-candidate'].filter((id) => t.map.getLayer(id)) };
   });
   expect(got.n).toBe(got.liked);
-  expect(got.kinds.every((k) => ['unscheduled', 'candidate', 'scheduled'].includes(k as string))).toBe(true);
+  // 不再分還沒排、已是候選、已排的樣子：沒有那兩層、沒有圖例
+  expect(got.layers).toEqual([]);
+  await expect(page.getByTestId('map-wish-legend')).toHaveCount(0);
   // 行程分頁：篩選還在，但地圖不套、沒有篩選列
   await page.evaluate(() => (window as any).__th.appStore.getState().setFilter({ tiers: ['S'] }));
   await page.getByTestId('side-tab-day').click();
-  await expect(page.getByTestId('map-wish-legend')).toHaveCount(0);
   await expect(page.getByTestId('filter-bar')).toHaveCount(0);
   await waitIdle(page);
   const b = await findPlaceId(page, 'spot', 'B');

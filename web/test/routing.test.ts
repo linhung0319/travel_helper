@@ -2,7 +2,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore } from 'zustand/vanilla';
-import { createRoadRouter, lineMeters, lineMidpoint, minutesFromMeters, railPath, rideStations, ridesPath, roadKey, routeLabel, routeProfile, type KeyValueStorage } from '../src/lib/routing.ts';
+import { createRoadRouter, lineMeters, lineMidpoint, minutesFromMeters, lineStops, railPath, rideStations, ridesPath, transitEnds, roadKey, routeLabel, routeProfile, type KeyValueStorage } from '../src/lib/routing.ts';
 import { MODE_ICON, MODE_NAME, modeIconHtml, modeIconKey } from '../src/lib/modeIcon.ts';
 import { describeChanges, itineraryFeatures, proposalFeatures, routeFeatures, routeLabels } from '../src/lib/overlays.ts';
 import { createAppStore } from '../src/store.ts';
@@ -102,6 +102,47 @@ test('照班次畫：起點 → 上車站，每一程沿車站，轉乘的兩站
   assert.deepEqual(ridesPath([0, 1], [10, 1], [{ mode: 'bus', from: 's71', to: 's73' }], STATIONS, coordsOf), [[0, 1], [1, 0], [3, 0], [10, 1]]);
   assert.equal(ridesPath([0, 1], [10, 1], [{ mode: 'bus', from: '鳥羽バスセンター', to: '答志' }], STATIONS, coordsOf), null);
   assert.equal(ridesPath([0, 1], [10, 1], [], STATIONS, coordsOf), null);
+});
+
+test('大阪的路線照停靠順序畫：一般線反方向倒過來；環狀線走分鐘少的那邊；站不在路線上照站號', () => {
+  const coordsOf = (id: string) => ({ o: [0, 0], n: [1, 0], s: [2, 0], t: [3, 0], k: [4, 0], m: [5, 0] } as Record<string, [number, number]>)[id] ?? null;
+  // 環狀線：大阪 0 → 西九条 7 → 新今宮 19 → 天王寺 21 → 鶴橋 27 → 森ノ宮 32，一圈 45 分
+  const loop = { id: 'loop', loop: true, loopMin: 45, stops: [{ id: 'o', min: 0 }, { id: 'n', min: 7 }, { id: 's', min: 19 }, { id: 't', min: 21 }, { id: 'k', min: 27 }, { id: 'm', min: 32 }] };
+  const line = { id: 'line', loop: false, stops: [{ id: 'o', min: 0 }, { id: 'n', min: 3 }, { id: 's', min: 36 }] };
+  assert.deepEqual(lineStops(loop, 't', 's'), ['t', 's']); // 天王寺 → 新今宮：一站，不繞一圈
+  assert.deepEqual(lineStops(loop, 'm', 'n'), ['m', 'o', 'n']); // 森ノ宮 → 西九条：經過大阪（20 分）比經過天王寺（25 分）近
+  assert.deepEqual(lineStops(loop, 'o', 't'), ['o', 'n', 's', 't']); // 21 分 vs 24 分
+  assert.deepEqual(lineStops(line, 's', 'o'), ['s', 'n', 'o']);
+  assert.equal(lineStops(line, 'o', 'x'), null);
+  const lines = new Map([['loop', loop]]);
+  assert.deepEqual(ridesPath([9, 9], [8, 8], [{ mode: 'train', from: 'm', to: 'n', routeId: 'loop' }], STATIONS, coordsOf, lines), [[9, 9], [5, 0], [0, 0], [1, 0], [8, 8]]);
+  // 沒給 lines、或 routeId 對不到：照舊（這裡沒有站號 → 直線）
+  assert.deepEqual(ridesPath([9, 9], [8, 8], [{ mode: 'train', from: 'm', to: 'n', routeId: 'loop' }], STATIONS, coordsOf), [[9, 9], [5, 0], [1, 0], [8, 8]]);
+});
+
+test('大眾運輸的頭尾：走路查「點 → 站」（引擎問快取的方向，畫的時候倒過來），計程車照行進方向；點在站上不查', () => {
+  const coordsOf = (id: string) => ({ a: [136.82, 34.33], b: [136.85, 34.33], t: [136.9, 34.3] } as Record<string, [number, number]>)[id] ?? null;
+  const from: [number, number] = [136.8268, 34.3326];
+  const to: [number, number] = [136.86, 34.34];
+  const rides = [{ mode: 'train' as const, from: 'a', to: 'b' }];
+  assert.deepEqual(transitEnds(from, to, rides, null, coordsOf), {
+    first: { profile: 'foot', from, to: [136.82, 34.33], reverse: false },
+    last: { profile: 'foot', from: to, to: [136.85, 34.33], reverse: true },
+  });
+  // 接計程車：查到 taxiBefore／taxiAfter 的那站，方向照行進
+  const taxi = transitEnds(from, to, rides, { taxiAfter: { station: 't' } }, coordsOf);
+  assert.deepEqual(taxi.last, { profile: 'car', from: [136.9, 34.3], to, reverse: false });
+  // 起點就是上車站（不到 30 m）：不查
+  assert.equal(transitEnds([136.82, 34.33], to, rides, null, coordsOf).first, null);
+  // 站找不到：不查
+  assert.deepEqual(transitEnds(from, to, [{ mode: 'bus', from: 'x', to: 'y' }], null, coordsOf), { first: null, last: null });
+});
+
+test('照班次畫：頭尾有道路的路徑就接在第一個上車站前、最後下車站後', () => {
+  const coordsOf = (id: string) => STATIONS.find((x) => x.id === id)?.coords ?? null;
+  const rides = [{ mode: 'train' as const, from: 's71', to: 's73' }];
+  const ends = { first: [[0.5, 0.8], [0.9, 0.2]] as [number, number][], last: [[3.5, 0.5]] as [number, number][] };
+  assert.deepEqual(ridesPath([0, 1], [10, 1], rides, STATIONS, coordsOf, undefined, ends), [[0, 1], [0.5, 0.8], [0.9, 0.2], [1, 0], [2, 0], [3, 0], [3.5, 0.5], [10, 1]]);
 });
 
 test('提議的摘要：回住宿的交通', () => {
