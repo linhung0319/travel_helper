@@ -171,7 +171,15 @@ export function lineStops(line: RouteLine, from: string, to: string): string[] |
  * 轉乘時兩站之間直線（走過去），最後一程下車的站直線到終點。
  * coordsOf 找站的座標；沒有班次、或每一程的站都找不到時回傳 null。
  */
-export function ridesPath(from: LonLat, to: LonLat, rides: RideStops[], stations: RailStation[], coordsOf: (id: string) => LonLat | null, lines?: ReadonlyMap<string, RouteLine>): LonLat[] | null {
+export function ridesPath(
+  from: LonLat,
+  to: LonLat,
+  rides: RideStops[],
+  stations: RailStation[],
+  coordsOf: (id: string) => LonLat | null,
+  lines?: ReadonlyMap<string, RouteLine>,
+  ends?: { first?: LonLat[] | null; last?: LonLat[] | null },
+): LonLat[] | null {
   const out: LonLat[] = [from];
   const push = (c: LonLat) => {
     const last = out[out.length - 1];
@@ -182,12 +190,48 @@ export function ridesPath(from: LonLat, to: LonLat, rides: RideStops[], stations
     const a = coordsOf(r.from);
     const b = coordsOf(r.to);
     if (!a || !b) continue;
+    // 起點走到（或搭計程車到）第一程上車站：有道路的路徑就沿路
+    if (!found) ends?.first?.forEach(push);
     found = true;
     (rideLine(r, stations, coordsOf, lines) ?? [a, b]).forEach(push);
   }
   if (!found) return null;
+  ends?.last?.forEach(push);
   push(to);
   return out.length >= 2 ? out : null;
+}
+
+/** 頭尾那一小段要向 OSRM 查的：profile 和查的方向；reverse 是畫的時候要倒過來（查的是「點 → 站」，畫的是「站 → 點」） */
+export interface EndQuery {
+  profile: 'foot' | 'car';
+  from: LonLat;
+  to: LonLat;
+  reverse: boolean;
+}
+
+/** 頭尾離站不到這麼遠（公尺）就不查（點就在車站上） */
+export const END_MIN_METERS = 30;
+
+/**
+ * 一段大眾運輸的頭尾（起點 → 第一程上車站、最後一程下車站 → 終點）：走路或計程車（taxiBefore／taxiAfter），要查的道路。
+ * 查的方向照引擎問快取的方向，查到的距離引擎才用得到：走路一律「點 → 站」（engine 的 walkMinutes(端點, 站)），
+ * 計程車照行進方向（drive(點, 站)、drive(站, 點)）。站找不到、點就在站上是 null
+ */
+export function transitEnds(
+  from: LonLat,
+  to: LonLat,
+  rides: readonly RideStops[],
+  taxi: { taxiBefore?: { station: string } | null; taxiAfter?: { station: string } | null } | null | undefined,
+  coordsOf: (id: string) => LonLat | null,
+): { first: EndQuery | null; last: EndQuery | null } {
+  if (!rides.length) return { first: null, last: null };
+  const far = (a: LonLat, b: LonLat) => haversineMeters(a, b) >= END_MIN_METERS;
+  const firstStop = coordsOf(taxi?.taxiBefore?.station ?? rides[0].from);
+  const lastStop = coordsOf(taxi?.taxiAfter?.station ?? rides[rides.length - 1].to);
+  const first: EndQuery | null =
+    firstStop && far(from, firstStop) ? { profile: taxi?.taxiBefore ? 'car' : 'foot', from, to: firstStop, reverse: false } : null;
+  const last: EndQuery | null = !lastStop || !far(lastStop, to) ? null : taxi?.taxiAfter ? { profile: 'car', from: lastStop, to, reverse: false } : { profile: 'foot', from: to, to: lastStop, reverse: true };
+  return { first, last };
 }
 
 /** 一程電車經過的站的座標：大阪的路線照停靠順序（站都要找得到），其他照站號（railPath）；連不起來回傳 null */

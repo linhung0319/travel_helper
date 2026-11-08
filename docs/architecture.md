@@ -153,7 +153,8 @@ UI 的天數分頁、篩選標籤的 ✕、「跳到區域」、「這一天」�
 - 電車：依序連經過的車站（同一家、同字首的站號，例如近鐵 M71～M93）；連不起來（JR 沒有站號）畫直線。船、其他：直線。
 - 分鐘：呼叫者給的優先（例如 T14 的 `Leg.minutes`）；沒給時，步行用路徑距離 ÷ 每分 80 m × 全員係數（engine 的 `DEFAULT_CONFIG`，實際路徑不再乘繞路係數），計程車、包車、自駕用 engine 的 `taxiEstimate`；電車、巴士、船看時刻表，不算。
 - 查到的距離也給引擎用：`roadRouter.cachedMeters(profile, from, to)` 是同步的，T15 先查好路徑，再接到 `EngineData.walkMeters`、`driveMeters`（T12 加，計程車、包車用實際開車距離）；第四輪加 `driveMinutes`（OSRM 的開車時間，計程車用它）。`data/cache/routes/` 照 §3.1 不上網站。
-- 地圖上確定的行程線（第三輪）每一天都沿道路／鐵路畫：`itineraryRoutes.ts` 的 `startItineraryRoutes` 把每一天每一段步行、車依序向同一個 `roadRouter`（共用的佇列，1.1 秒一個，有快取）要路徑，選定的那天先、其他天照日期排在後面，選「全部」就照日期；選定的天變了、時間軸重算或別處（drawRoute）查到路徑時重新排（已在快取的不再查，舊的一輪停止往下排），查到就讓 store 的 `routesVersion` 加一，`MapView` 重畫。`createPathOf` 同步取路徑（步行、車看快取，電車用 `railPath`），給 `itineraryFeatures(…, pathOf)`。查不到就維持直線。
+- 地圖上確定的行程線（第三輪）每一天都沿道路／鐵路畫：`itineraryRoutes.ts` 的 `startItineraryRoutes` 把每一天每一段步行、車依序向同一個 `roadRouter`（共用的佇列，1.1 秒一個，有快取）要路徑，選定的那天先、其他天照日期排在後面，選「全部」就照日期；選定的天變了、時間軸重算或別處（drawRoute）查到路徑時重新排（已在快取的不再查，舊的一輪停止往下排），查到就讓 store 的 `routesVersion` 加一，`MapView` 重畫。`createPathOf` 同步取路徑（步行、車看快取；搭車的照班次 `ridesPath`：大阪班距型路線照停靠順序（`lineStops`，環狀線走近的那邊），近鐵照站號 `railPath`，巴士、船的停留所座標照路線檔），給 `itineraryFeatures(…, pathOf)`。查不到就維持直線。大眾運輸的頭尾（點 ↔ 第一程上車站、最後下車站 ↔ 點，接計程車的是 `taxiBefore`／`taxiAfter` 那站）也排進佇列（`transitEnds`）：走路一律查「點 → 站」、計程車照行進方向，和引擎問 `walkMeters`／`driveMeters` 的方向一樣，查到的距離引擎才用得到。查到新路線後隔 0.8 秒呼叫 `planStore.replan()` 重算時間軸（自己加的點沒有 `nearestStation`，走到車站的分鐘由直線估算換成道路距離）。
+- 自己加的點的子地區（`region`）照 1.5 km 內最近的官方點（`userPlaceToPlace` 的 `regionOfCoords`）：引擎靠它判斷離島（島上走路、和本土之間只能搭船）和要不要包車；1.5 km 內沒有官方點是 null。
 
 **`web/src/dataStore.ts`：讀進來的資料**：`status`、`areas`（areas.json，依 `tripOrder`）、`basePlaces`（預設資料）、`places`（套上修改層的，畫面都用這一份）、`byId`、`itinerary`（確定的行程，engine 的 itinerary-v1，從後端讀）、`days`（資料點 → 排在哪幾天、第幾個；順序是 `lib/itinerary.ts` 的 `dayStops`：選定的選項、同一個機場連續的航班算一站、住宿放最後）、`stationNames`。`itinerary`、`places` 由下面的 `sharedStore` 換（存檔、同步、修改紀錄變了）。
 

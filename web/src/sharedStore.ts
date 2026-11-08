@@ -126,7 +126,7 @@ export function rebuildPlaces(data: StoreApi<DataState>, edits: PlaceEdit[], use
   const { basePlaces, areas } = data.getState();
   const merged = mergePlaceEdits(basePlaces, edits);
   const live = livePlaces(merged);
-  const users = userPlaces.map((u) => ({ deleted: !!u.deletedAt, place: userPlaceToPlace(u, areas) }));
+  const users = userPlaces.map((u) => ({ deleted: !!u.deletedAt, place: userPlaceToPlace(u, areas, live) }));
   const places = users.some((u) => !u.deleted) ? [...live, ...users.filter((u) => !u.deleted).map((u) => u.place)] : live;
   data.setState({ places, placeEdits: edits, byId: new Map([...merged, ...users.map((u) => u.place)].map((p) => [p.id, p])) });
 }

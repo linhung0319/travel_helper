@@ -211,7 +211,7 @@ export function itineraryFeatures(
   byId: Map<string, Place>,
   dates: string[],
   day: string,
-  pathOf?: (from: Place, to: Place, mode: Leg['mode'], rides: Leg['rides']) => LonLat[] | null,
+  pathOf?: (from: Place, to: Place, mode: Leg['mode'], rides: Leg['rides'], taxi?: Pick<Leg, 'taxiBefore' | 'taxiAfter'> | null) => LonLat[] | null,
   focusDay: string | null = null,
 ): { lines: FeatureCollection<LineString>; alts: FeatureCollection<Point>; legs: RouteLabel[] } {
   const lines: Feature<LineString>[] = [];
@@ -238,7 +238,7 @@ export function itineraryFeatures(
         const p = byId.get(o.place);
         if (!p) continue;
         const moved = prev && (prev[0] !== p.coords[0] || prev[1] !== p.coords[1]);
-        const seg = moved && prevPlace && pathOf && o.leg ? pathOf(prevPlace, p, o.leg.mode, o.leg.rides) : null;
+        const seg = moved && prevPlace && pathOf && o.leg ? pathOf(prevPlace, p, o.leg.mode, o.leg.rides, o.leg) : null;
         if (prev && moved && day === d.date && o.leg && o.leg.mode !== 'none' && o.leg.minutes > 0) {
           legs.push({
             id: `leg-${d.date}-${legs.length}`,
