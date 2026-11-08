@@ -12,7 +12,8 @@ import type { DataState } from './dataStore.ts';
 import type { PlanState } from './planStore.ts';
 import type { LonLat, Place } from './data/types.ts';
 import { itineraryFeatures } from './lib/overlays.ts';
-import { railPath, ridesPath, routeProfile, type RailStation, type RoadRouter } from './lib/routing.ts';
+import { railPath, ridesPath, routeProfile, type RailStation, type RoadRouter, type RouteLine } from './lib/routing.ts';
+import { currentEngineData } from './planStore.ts';
 import { tripDates } from './lib/trip.ts';
 
 const DATES = tripDates();
@@ -26,8 +27,19 @@ function roadProfile(mode: Leg['mode']): 'foot' | 'car' | null {
   return p === 'foot' || p === 'car' ? p : null;
 }
 
-/** 同步取得一段的路徑：只看快取，沒查到回傳 null */
-export function createPathOf(router: Pick<RoadRouter, 'cachedPath'>, data: StoreApi<DataState>): PathOf {
+/** 大阪班距型路線的停靠順序：照引擎資料（時刻表載入後才有；有班次的段落一定已經載入） */
+const urbanLines = (() => {
+  let memo: { urban: readonly RouteLine[]; map: Map<string, RouteLine> } | null = null;
+  return (): ReadonlyMap<string, RouteLine> | undefined => {
+    const urban = currentEngineData()?.urban;
+    if (!urban) return undefined;
+    if (memo?.urban !== urban) memo = { urban, map: new Map(urban.map((u) => [u.id, u])) };
+    return memo.map;
+  };
+})();
+
+/** 同步取得一段的路徑：只看快取，沒查到回傳 null。lines：大阪路線的停靠順序（測試給；預設照引擎資料） */
+export function createPathOf(router: Pick<RoadRouter, 'cachedPath'>, data: StoreApi<DataState>, lines: () => ReadonlyMap<string, RouteLine> | undefined = urbanLines): PathOf {
   let stationsFor: Place[] | null = null;
   let stations: RailStation[] = [];
   const railStations = () => {
@@ -45,7 +57,7 @@ export function createPathOf(router: Pick<RoadRouter, 'cachedPath'>, data: Store
     // 搭車（電車、巴士、船）有班次時照班次的站畫；站都找不到（例如巴士站只有名字）再照交通方式
     if ((mode === 'train' || mode === 'bus' || mode === 'ferry') && rides?.length) {
       const byId = data.getState().byId;
-      const path = ridesPath(from.coords, to.coords, rides, railStations(), (id) => byId.get(id)?.coords ?? null);
+      const path = ridesPath(from.coords, to.coords, rides, railStations(), (id) => byId.get(id)?.coords ?? null, lines());
       if (path) return path;
     }
     const profile = routeProfile(mode);

@@ -121,19 +121,57 @@ export function railPath(fromId: string, toId: string, stations: RailStation[]):
   return na.n <= nb.n ? between : between.reverse();
 }
 
-/** 一程車：交通方式和上下車的站（引擎的 TransitRide 的子集） */
+/** 一程車：交通方式和上下車的站（引擎的 TransitRide 的子集）；routeId 是大阪班距型路線（data/timetables/urban）的 ID */
 export interface RideStops {
   mode: 'train' | 'bus' | 'ferry';
   from: string;
   to: string;
+  routeId?: string | null;
+}
+
+/** 照順序的停靠站（大阪班距型路線，引擎的 UrbanRoute 的子集）：環狀線 loop 是 true，loopMin 是一圈的分鐘 */
+export interface RouteLine {
+  id: string;
+  loop: boolean;
+  loopMin?: number | null;
+  stops: { id: string; min: number }[];
 }
 
 /**
- * 照班次畫一段交通（地點 → 地點）：起點直線到第一程上車的站，每一程電車沿車站（連不起來、巴士、船直線），
+ * 路線裡 from → to 經過的站（含起訖站）：照路線的停靠順序；反方向倒過來。
+ * 環狀線兩個方向都走得到，取分鐘少的那邊（一樣時照資料的順序）。站不在路線上回傳 null
+ */
+export function lineStops(line: RouteLine, from: string, to: string): string[] | null {
+  const ids = line.stops.map((s) => s.id);
+  const a = ids.indexOf(from);
+  const b = ids.indexOf(to);
+  if (a < 0 || b < 0 || a === b) return null;
+  if (!line.loop) return a < b ? ids.slice(a, b + 1) : ids.slice(b, a + 1).reverse();
+  const n = ids.length;
+  const walk = (step: 1 | -1) => {
+    const out = [ids[a]];
+    for (let i = a; i !== b; ) {
+      i = (i + step + n) % n;
+      out.push(ids[i]);
+    }
+    return out;
+  };
+  const total = line.loopMin ?? null;
+  const ma = line.stops[a].min;
+  const mb = line.stops[b].min;
+  // 照資料順序走的分鐘；沒有一圈的分鐘就比站數
+  const forward = total != null ? (mb - ma + total) % total : (b - a + n) % n;
+  const backward = total != null ? total - forward : n - forward;
+  return forward <= backward ? walk(1) : walk(-1);
+}
+
+/**
+ * 照班次畫一段交通（地點 → 地點）：起點直線到第一程上車的站，每一程電車沿車站（大阪的路線照 lines 的停靠順序、環狀線走近的那邊；
+ * 其他照站號；連不起來、巴士、船直線），
  * 轉乘時兩站之間直線（走過去），最後一程下車的站直線到終點。
  * coordsOf 找站的座標；沒有班次、或每一程的站都找不到時回傳 null。
  */
-export function ridesPath(from: LonLat, to: LonLat, rides: RideStops[], stations: RailStation[], coordsOf: (id: string) => LonLat | null): LonLat[] | null {
+export function ridesPath(from: LonLat, to: LonLat, rides: RideStops[], stations: RailStation[], coordsOf: (id: string) => LonLat | null, lines?: ReadonlyMap<string, RouteLine>): LonLat[] | null {
   const out: LonLat[] = [from];
   const push = (c: LonLat) => {
     const last = out[out.length - 1];
@@ -145,12 +183,24 @@ export function ridesPath(from: LonLat, to: LonLat, rides: RideStops[], stations
     const b = coordsOf(r.to);
     if (!a || !b) continue;
     found = true;
-    const rail = r.mode === 'train' ? railPath(r.from, r.to, stations) : null;
-    (rail && rail.length >= 2 ? rail : [a, b]).forEach(push);
+    (rideLine(r, stations, coordsOf, lines) ?? [a, b]).forEach(push);
   }
   if (!found) return null;
   push(to);
   return out.length >= 2 ? out : null;
+}
+
+/** 一程電車經過的站的座標：大阪的路線照停靠順序（站都要找得到），其他照站號（railPath）；連不起來回傳 null */
+function rideLine(r: RideStops, stations: RailStation[], coordsOf: (id: string) => LonLat | null, lines?: ReadonlyMap<string, RouteLine>): LonLat[] | null {
+  if (r.mode !== 'train') return null;
+  const line = r.routeId ? lines?.get(r.routeId) : undefined;
+  const ids = line ? lineStops(line, r.from, r.to) : null;
+  if (ids) {
+    const coords = ids.map(coordsOf);
+    if (coords.every((c): c is LonLat => c != null)) return coords;
+  }
+  const rail = railPath(r.from, r.to, stations);
+  return rail && rail.length >= 2 ? rail : null;
 }
 
 /** 一段交通要亮起來的車站：每一程上車和下車的站（轉乘的站也算），不重複 */
