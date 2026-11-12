@@ -8,8 +8,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-toji",
     "ratings": {
       "google": 4.5,
       "googleReviews": 20349
@@ -25,8 +24,7 @@
     "category": "博物館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-railway-museum",
     "ratings": {
       "google": 4.6,
       "googleReviews": 20248
@@ -42,8 +40,7 @@
     "category": "水族館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-aquarium",
     "ratings": {
       "google": 4.2,
       "googleReviews": 15173
@@ -59,8 +56,7 @@
     "category": "展望台",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-tower",
     "ratings": {
       "google": 4.2,
       "googleReviews": 18614
@@ -76,8 +72,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-sanjusangendo",
     "ratings": {
       "google": 4.7,
       "googleReviews": 18053
@@ -125,8 +120,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-kiyomizudera",
     "ratings": {
       "google": 4.6,
       "googleReviews": 74439
@@ -142,8 +136,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-yasaka-jinja",
     "ratings": {
       "google": 4.4,
       "googleReviews": 34473
@@ -159,8 +152,7 @@
     "category": "街道",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-sannenzaka",
     "ratings": {
       "google": 4.4,
       "googleReviews": 17351
@@ -236,8 +228,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-fushimi-inari",
     "ratings": {
       "google": 4.6,
       "googleReviews": 93821
@@ -285,8 +276,7 @@
     "category": "名勝",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-togetsukyo",
     "ratings": {
       "google": 4.5,
       "googleReviews": 5735
@@ -302,8 +292,7 @@
     "category": "名勝",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-bamboo-grove",
     "ratings": {
       "google": 4.3,
       "googleReviews": 26661
@@ -319,8 +308,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-tenryuji",
     "ratings": {
       "google": 4.5,
       "googleReviews": 17552
@@ -380,8 +368,7 @@
     "category": "市場",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-nishiki-market",
     "ratings": {
       "google": 4.3,
       "googleReviews": 55532
@@ -397,8 +384,7 @@
     "category": "城",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-nijojo",
     "ratings": {
       "google": 4.4,
       "googleReviews": 43874
@@ -414,8 +400,7 @@
     "category": "宮殿",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-gosho",
     "ratings": {
       "google": 4.5,
       "googleReviews": 2125
@@ -459,8 +444,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-kinkakuji",
     "ratings": {
       "google": 4.6,
       "googleReviews": 71980
@@ -476,8 +460,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-kitano-tenmangu",
     "ratings": {
       "google": 4.5,
       "googleReviews": 17027
@@ -525,8 +508,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-ginkakuji",
     "ratings": {
       "google": 4.5,
       "googleReviews": 18453
@@ -554,8 +536,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-nanzenji",
     "ratings": {
       "google": 4.5,
       "googleReviews": 12881
@@ -571,8 +552,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-heian-jingu",
     "ratings": {
       "google": 4.4,
       "googleReviews": 16601
@@ -588,8 +568,7 @@
     "category": "動物園",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-city-zoo",
     "ratings": {
       "google": 4.2,
       "googleReviews": 7321
@@ -605,8 +584,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-byodoin",
     "ratings": {
       "google": 4.5,
       "googleReviews": 22887
@@ -622,8 +600,7 @@
     "category": "博物館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-nintendo-museum",
     "ratings": {
       "google": 4.5,
       "googleReviews": 5650
@@ -655,8 +632,7 @@
     "category": "主題樂園",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "kyoto-toei-uzumasa",
     "ratings": {
       "google": 4,
       "googleReviews": 11456

@@ -2386,6 +2386,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - 子地區、景點清單定案前先和 👤 確認（T8a、T9a、T27a 的做法）。
 - 寫 `areas.json`（`kyoto` 這一筆）、`data/areas/kyoto/spots.json`、`data/raw/kyoto/`（README、candidates、dossiers、questions、log）、`docs/CONVENTIONS.md`（§1 區域 ID、§2 檔案歸屬、§4「京都的做法」）、PLAN 開頭和 CLAUDE.md 的行程方向。`nearestStation` 等 T87 的車站，T87 還沒 merge 就先填 null、預定 ID 寫在 log，T86d 補。
 - 完成條件：`npm run validate` 通過；👤 看過子地區和景點清單。
+- **完成（2026-11-12）**：`areas.json` 兩區骨架先 merge（`40b2722`，tripOrder 京都、琵琶湖 4，大阪、關西機場周邊挪成 5）。子地區京都 9 個（含可選三個，👤 照建議全收）、琵琶湖 5 個（大津・坂本、雄琴・堅田・志賀、高島、草津・近江八幡、彥根；長濱、湖北太遠不開）。景點京都 24 筆（候選 45）、琵琶湖 14 筆（盤點 29），👤 看過清單；沒收的原因在兩區的 candidates 和 README（桂離宮等要申請、嵯峨野小火車 2 月不開、長濱太遠、竹生島石階等）。白鬚神社的必查項目（近江高島站的預約制共乘計程車「鵜川線」時刻和車資、回程、不可橫越國道和展望台、停留時間、附近午餐）寫在 `data/raw/biwako/README.md`；乘合計程車一台坐幾人查不到（`questions.md`）。讀文 8 個 subagent 多寫一份欄位草稿（`facts/<id>.json` 的 `fields`），主 session 看過再組裝。`nearestStation` 先 null、預定車站 ID 在 `data/raw/kyoto/log/T86a.md`，T86d 補。CONVENTIONS §1、§2、§4「京都、琵琶湖的做法」，PLAN 開頭、CLAUDE.md 的行程方向（暫定）都寫了。要注意的：任務卡寫「嵐山花灯路 12 月舉辦」是舊資料（2021 年已停辦）；**任天堂博物館的抽選要在 2026-12-01 前申請**（2027 年 2 月場次，週二 2/9 休館），要去的話要先決定。
 
 #### T86b 住宿 〔S〕（Chrome）
 - 住不住京都還沒定，**資料先查**（2026-11-12 👤）。

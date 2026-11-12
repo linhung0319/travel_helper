@@ -8,8 +8,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-shirahige-jinja",
     "note": "湖中鳥居；不可橫越國道 161 號"
   },
   {
@@ -21,8 +20,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-miidera",
     "note": null
   },
   {
@@ -34,8 +32,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-ishiyamadera",
     "ratings": {
       "google": 4.3,
       "googleReviews": 5079
@@ -51,8 +48,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-omi-jingu",
     "ratings": {
       "google": 4.3,
       "googleReviews": 4708
@@ -68,8 +64,7 @@
     "category": "神社",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-hiyoshi-taisha",
     "ratings": {
       "google": 4.3,
       "googleReviews": 3224
@@ -85,8 +80,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-enryakuji",
     "ratings": {
       "google": 4.4,
       "googleReviews": 9591
@@ -102,8 +96,7 @@
     "category": "遊船",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-michigan-cruise",
     "note": "冬季只有週末假日運航：旅程中只有 2/11"
   },
   {
@@ -115,8 +108,7 @@
     "category": "寺院",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-ukimido",
     "ratings": {
       "google": 4.2,
       "googleReviews": 2357
@@ -132,8 +124,7 @@
     "category": "山上設施",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-biwako-valley",
     "ratings": {
       "google": 4.2,
       "googleReviews": 1084
@@ -149,8 +140,7 @@
     "category": "博物館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-biwako-museum",
     "ratings": {
       "google": 4.4,
       "googleReviews": 6197
@@ -166,8 +156,7 @@
     "category": "美術館",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-sagawa-museum",
     "ratings": {
       "google": 4.3,
       "googleReviews": 3974
@@ -183,8 +172,7 @@
     "category": "商店・庭園",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-la-collina",
     "ratings": {
       "google": 4.2,
       "googleReviews": 19008
@@ -200,8 +188,7 @@
     "category": "街道",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-hachimanbori",
     "ratings": {
       "google": 4.3,
       "googleReviews": 4251
@@ -217,8 +204,7 @@
     "category": "城",
     "status": "included",
     "reason": null,
-    "pointId": null,
-    "detailPending": true,
+    "pointId": "biwako-hikone-castle",
     "ratings": {
       "google": 4.3,
       "googleReviews": 21371
