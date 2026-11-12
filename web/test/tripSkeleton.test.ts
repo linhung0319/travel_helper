@@ -188,3 +188,10 @@ test('問 AI 推薦帶的晚上（T54）：從這晚起同一區還沒選住宿�
   assert.deepEqual(openLodgingRun(rows, D(4)), []);
   assert.deepEqual(openLodgingRun(rows, D(8)), []);
 });
+
+test('地區的顏色：真的 areas.json（含京都、琵琶湖）每一區都不同色（T88）', async () => {
+  const fs = await import('node:fs');
+  const real = JSON.parse(fs.readFileSync(new URL('../../data/areas.json', import.meta.url), 'utf8')) as typeof AREAS;
+  const colors = real.map((a) => areaColor(real, a.id));
+  assert.equal(new Set(colors).size, real.length, real.map((a, i) => `${a.id} ${colors[i]}`).join('、'));
+});

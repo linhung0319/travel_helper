@@ -133,9 +133,9 @@ test('buildNetwork：轉乘的步行和同站換線', () => {
   assert.equal(net.sameStopChange('metro-hommachi', 'metro-chuo', 'metro-midosuji').transfer, rec);
   assert.equal(net.sameStopChange('jr-nishikujo', 'jr-osaka-loop', 'jr-yumesaki').walk, 1);
   // 轉乘表沒有、一邊是班距型 → urbanTransferDefault；都不是 → minTransfer；同 group → minTransfer
-  assert.deepEqual(net.sameStopChange('metro-namba', 'metro-midosuji', 'kintetsu-namba-osaka'), { walk: 5, transfer: null });
-  assert.deepEqual(net.sameStopChange('toba', 'kintetsu', 'sanco-ise-toba'), { walk: 3, transfer: null });
-  assert.equal(net.sameStopChange('metro-hommachi', 'metro-chuo', 'metro-chuo').walk, DEFAULT_CONFIG.transit.minTransfer);
+  assert.deepEqual(net.sameStopChange('metro-namba', 'metro-midosuji', 'kintetsu-namba-osaka'), { walk: 5, transfer: null, none: false });
+  assert.deepEqual(net.sameStopChange('toba', 'kintetsu', 'sanco-ise-toba'), { walk: 3, transfer: null, none: false });
+  assert.deepEqual(net.sameStopChange('metro-hommachi', 'metro-chuo', 'metro-chuo'), { walk: DEFAULT_CONFIG.transit.minTransfer, transfer: null, none: true });
 });
 
 test('buildNetwork：停靠點 ID、近鐵和路線檔的 route', () => {

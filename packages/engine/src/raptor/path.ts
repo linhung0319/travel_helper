@@ -4,7 +4,7 @@
 import type { EngineConfig } from '../config.ts';
 import type { PathRide } from '../types.ts';
 import { toMinutes } from '../time.ts';
-import { KINTETSU, pickFootpath, type Footpath, type Network } from './network.ts';
+import { changeAt, KINTETSU, pickFootpath, type Footpath, type Network } from './network.ts';
 import { earliestRide, indexOf, laterDeparture, type Access, type Indexed, type Journey, type JourneyRide, type JourneyTransfer } from './search.ts';
 
 export function pathOf(j: Journey): PathRide[] {
@@ -26,11 +26,9 @@ function footpath(net: Network, from: string, to: string, fromGroup: string | nu
 /** 上一程下車到這一程上車：可以上車的時刻、步行；站不同又沒有 footpath 回傳 null */
 function connect(c: Ctx, prev: JourneyRide, p: PathRide): { ready: number; transfer: JourneyTransfer } | null {
   if (prev.to === p.from) {
-    // 同一站換車：同 group 隔 minTransfer，其他照轉乘表（和 search.ts 的 rebuild 一樣）
-    const g = prev.route.group;
-    const ch = c.net.sameStopChange(p.from, g, p.line);
-    const walk = g === p.line ? 0 : Math.ceil(Math.max(c.minTransfer, ch.walk * c.factor));
-    return { ready: prev.arr + Math.max(c.minTransfer, walk), transfer: { walk, transfer: g === p.line ? null : ch.transfer } };
+    // 同一站換車：同 group 隔 minTransfer（stopChangeMin 的站照它），其他照轉乘表（和 search.ts 的 rebuild 一樣）
+    const ch = changeAt(c.net, p.from, prev.route.group, p.line, c.factor, c.minTransfer);
+    return { ready: prev.arr + ch.gap, transfer: { walk: ch.walk, transfer: ch.transfer } };
   }
   const fp = footpath(c.net, prev.to, p.from, prev.route.group, p.line);
   if (!fp) return null;
@@ -38,12 +36,12 @@ function connect(c: Ctx, prev: JourneyRide, p: PathRide): { ready: number; trans
   return { ready: prev.arr + walk, transfer: { walk, transfer: fp.transfer } };
 }
 
-/** ready 以後這一程最早的班；近鐵時刻表不在大阪市內短程搭（同 search.ts） */
+/** ready 以後這一程最早的班；近鐵時刻表不在大阪、京都市內短程搭（同 search.ts） */
 function board(c: Ctx, p: PathRide, ready: number, after?: number): JourneyRide | null {
   if (p.line === KINTETSU) {
     const a = c.ix.idx.get(p.from);
     const b = c.ix.idx.get(p.to);
-    if (a != null && b != null && c.ix.osaka[a] && c.ix.osaka[b]) return null;
+    if (a != null && b != null && c.ix.short[a] && c.ix.short[b]) return null;
   }
   return earliestRide(c.net, c.ix, p.line, p.from, p.to, ready, after);
 }

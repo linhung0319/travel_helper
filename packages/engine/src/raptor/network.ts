@@ -34,6 +34,8 @@ export interface HeadwayRoute {
   kind: 'headway';
   key: string;
   group: string;
+  /** 市巴士（UrbanRoute.mode bus）是 bus，其他（地鐵、JR、私鐵）是 train */
+  mode: 'train' | 'bus';
   routeId: string;
   line: string;
   stops: string[];
@@ -88,12 +90,45 @@ export interface Network {
   routes: NetRoute[];
   routesAt: Map<string, { route: number; index: number }[]>;
   footpaths: Map<string, Footpath[]>;
-  /** 同一站換線（fromGroup → toGroup）的係數 1 分鐘與轉乘資料 */
-  sameStopChange(stop: string, fromGroup: string, toGroup: string): { walk: number; transfer: UrbanTransfer | null };
+  /**
+   * 同站換線（fromGroup → toGroup）的係數 1 分鐘與轉乘資料。
+   * none：不用走（同一組車、或同一個巴士停留所換巴士，沒有另外記錄的）：轉乘步行顯示 0，上車照樣至少隔 minTransfer
+   */
+  sameStopChange(stop: string, fromGroup: string, toGroup: string): StopChange;
+  /** 班距型的近鐵路線（kintetsu-*）停的站：近鐵時刻表型的班次上下車都在這幾站的不算（大阪、京都市內不用特急短程搭，spec §6.2） */
+  kintetsuShort: ReadonlySet<string>;
+}
+
+export interface StopChange {
+  walk: number;
+  transfer: UrbanTransfer | null;
+  none: boolean;
+}
+
+/** 同站換車：轉乘步行（已套係數、進位；不用走的是 0）和下車到能上車隔幾分（至少 minTransfer） */
+export function changeAt(net: Network, stop: string, fromGroup: string, toGroup: string, factor: number, minTransfer: number): { walk: number; gap: number; transfer: UrbanTransfer | null } {
+  const c = net.sameStopChange(stop, fromGroup, toGroup);
+  if (c.none) return { walk: 0, gap: minTransfer, transfer: null };
+  const walk = Math.ceil(Math.max(minTransfer, c.walk * factor));
+  return { walk, gap: walk, transfer: c.transfer };
 }
 
 const EXPRESS = new Set(['特急', 'しまかぜ']);
 export const KINTETSU = 'kintetsu';
+
+/**
+ * 近鐵班次的終點不在 stations.json 的（目標區間外）：線名「特急（往○○）」用的日文名。
+ * 和 web/src/lib/timetable.ts 的 TERMINUS_NAMES、scripts/next-train.mjs 的 OUTSIDE 同一批站
+ */
+export const KINTETSU_TERMINI: Record<string, string> = {
+  'ise-nakagawa': '伊勢中川',
+  shiratsuka: '白塚',
+  nabari: '名張',
+  myojo: '明星',
+  'kintetsu-nagoya': '近鉄名古屋',
+  'kashiharajingu-mae': '橿原神宮前',
+  'kintetsu-nara': '近鉄奈良',
+};
 
 // --- 班距型的等車 -------------------------------------------------------------
 
@@ -174,6 +209,7 @@ export function buildNetwork(data: EngineData, cfg: EngineConfig, date: DateStri
     transit.minTransfer,
     transit.urbanTransferDefault,
     transit.transferMaxMeters,
+    JSON.stringify(transit.stopChangeMin ?? {}),
   ].join('|');
   const byKey = builtFor(data);
   let net = byKey.get(key);
@@ -195,7 +231,7 @@ function build(
   shimakazeOff: Set<string>,
 ): Network {
   const stations = new Map(data.stations.map((s) => [s.id, s]));
-  const stationName = (id: string) => (stations.get(id)?.name.ja as string | undefined) ?? id;
+  const stationName = (id: string) => (stations.get(id)?.name.ja as string | undefined) ?? KINTETSU_TERMINI[id] ?? id;
   const stops = new Map<string, NetStop>();
   const addStation = (id: string) => {
     if (stops.has(id)) return;
@@ -238,11 +274,26 @@ function build(
     routes.push(...timedRoutes(raws, { key: doc.id, group: doc.id, mode: routeMode(doc), routeId: doc.id }));
   }
 
-  // 班距型：每條線兩個方向
+  // 班距型：每條線兩個方向。市巴士（mode bus）的停留所不在 stations.json，名稱、座標照路線檔（T87 §9），
+  // 同一個停留所 ID 在不同系統是同一個停靠點（可以直接換車）；station 是旁邊的車站，走過去當步行轉乘
   const headwayGroups = new Set<string>();
+  const busGroups = new Set<string>();
+  const stationLinks: [string, string][] = [];
+  const kintetsuShort = new Set<string>();
   for (const u of data.urban ?? []) {
     headwayGroups.add(u.id);
-    for (const s of u.stops) addStation(s.id);
+    const bus = u.mode === 'bus';
+    if (bus) busGroups.add(u.id);
+    const kin = !bus && isKintetsuUrban(u);
+    for (const s of u.stops) {
+      if (kin) kintetsuShort.add(s.id);
+      if (!bus || stations.has(s.id)) {
+        addStation(s.id);
+        continue;
+      }
+      if (!stops.has(s.id)) stops.set(s.id, { id: s.id, name: s.name?.ja ?? s.id, coords: isLonLat(s.coords) ? s.coords : null, stationId: null });
+      if (s.station) stationLinks.push([s.id, s.station]);
+    }
     routes.push(...headwayRoutes(u, bd));
   }
 
@@ -255,7 +306,7 @@ function build(
     }),
   );
 
-  const footpaths = buildFootpaths(data, cfg, stops);
+  const footpaths = buildFootpaths(data, cfg, stops, stationLinks);
 
   // 同站換線：轉乘表裡 from === to 的
   const changes = new Map<string, UrbanTransfer[]>();
@@ -266,17 +317,29 @@ function build(
     list.push(t);
   }
   const lineIs = (line: string | null | undefined, g: string) => line == null || line === g;
-  const sameStopChange = (stop: string, fromGroup: string, toGroup: string) => {
-    if (fromGroup === toGroup) return { walk: cfg.transit.minTransfer, transfer: null };
+  const stopChangeMin = cfg.transit.stopChangeMin ?? {};
+  const NONE: StopChange = { walk: cfg.transit.minTransfer, transfer: null, none: true };
+  const sameStopChange = (stop: string, fromGroup: string, toGroup: string): StopChange => {
+    if (fromGroup === toGroup) {
+      const m = stopChangeMin[stop];
+      return m == null ? NONE : { walk: m, transfer: null, none: false };
+    }
     const t = changes.get(stop)?.find(
       (x) => (lineIs(x.fromLine, fromGroup) && lineIs(x.toLine, toGroup)) || (!x.oneWay && lineIs(x.fromLine, toGroup) && lineIs(x.toLine, fromGroup)),
     );
-    if (t) return { walk: t.walkMin ?? cfg.transit.urbanTransferDefault, transfer: t };
-    if (headwayGroups.has(fromGroup) || headwayGroups.has(toGroup)) return { walk: cfg.transit.urbanTransferDefault, transfer: null };
-    return { walk: cfg.transit.minTransfer, transfer: null };
+    if (t) return { walk: t.walkMin ?? cfg.transit.urbanTransferDefault, transfer: t, none: false };
+    // 同一個巴士停留所換另一個系統：不用走
+    if (busGroups.has(fromGroup) && busGroups.has(toGroup)) return NONE;
+    if (headwayGroups.has(fromGroup) || headwayGroups.has(toGroup)) return { walk: cfg.transit.urbanTransferDefault, transfer: null, none: false };
+    return { walk: cfg.transit.minTransfer, transfer: null, none: false };
   };
 
-  return { stops, routes, routesAt, footpaths, sameStopChange };
+  return { stops, routes, routesAt, footpaths, sameStopChange, kintetsuShort };
+}
+
+/** 近鐵的班距型路線（大阪難波線、京都線、奈良線）：ID 是 kintetsu- 開頭或業者是近鐵 */
+function isKintetsuUrban(u: UrbanRoute): boolean {
+  return u.id.startsWith('kintetsu-') || u.operator === '近畿日本鉄道';
 }
 
 function isShimakazeOff(t: KintetsuTrain, off: Set<string>): boolean {
@@ -348,6 +411,7 @@ function headwayRoutes(u: UrbanRoute, bd: 'weekday' | 'saturday' | 'holiday'): H
     kind: 'headway',
     key: `${u.id}:${dir}`,
     group: u.id,
+    mode: u.mode === 'bus' ? 'bus' : 'train',
     routeId: u.id,
     line,
     stops: seq.map((s) => s.id),
@@ -374,10 +438,11 @@ function headwayRoutes(u: UrbanRoute, bd: 'weekday' | 'saturday' | 'holiday'): H
  * 步行轉乘（係數 1 的分鐘）：
  * 1. 轉乘表 from !== to 的（oneWay 只加一個方向，walkMin 是 null 用 urbanTransferDefault）；
  * 2. stations.json 的 transfers 沒在轉乘表的：直線 × detourFactor ÷ 步速；
- * 3. 有座標的停靠點之間 transferMaxMeters 內的：同樣直線估算。
+ * 3. 市巴士停留所的 station（旁邊的車站）：直線估算，超過 transferMaxMeters 也加（沒有座標的用 urbanTransferDefault）；
+ * 4. 有座標的停靠點之間 transferMaxMeters 內的：同樣直線估算。
  * 同一對站同方向，前面的有了就不再加後面的；轉乘表同一對站有好幾筆（不同線）的都留著，搭的時候照線挑（pickFootpath）。
  */
-function buildFootpaths(data: EngineData, cfg: EngineConfig, stops: Map<string, NetStop>): Map<string, Footpath[]> {
+function buildFootpaths(data: EngineData, cfg: EngineConfig, stops: Map<string, NetStop>, stationLinks: readonly [string, string][] = []): Map<string, Footpath[]> {
   const out = new Map<string, Footpath[]>();
   const seen = new Set<string>();
   const add = (from: string, to: string, walk: number, transfer: UrbanTransfer | null, fromLine: string | null = null, toLine: string | null = null) => {
@@ -405,6 +470,15 @@ function buildFootpaths(data: EngineData, cfg: EngineConfig, stops: Map<string, 
       if (!a || !b || has(s.id, to)) continue;
       add(s.id, to, estimate(haversineMeters(a, b)), null);
     }
+  }
+
+  for (const [stop, station] of stationLinks) {
+    if (!stops.has(station)) continue;
+    const a = stops.get(stop)?.coords;
+    const b = stops.get(station)?.coords;
+    const walk = a && b ? estimate(haversineMeters(a, b)) : cfg.transit.urbanTransferDefault;
+    if (!has(stop, station)) add(stop, station, walk, null);
+    if (!has(station, stop)) add(station, stop, walk, null);
   }
 
   // 依緯度排序，只比緯度差在範圍內的

@@ -52,6 +52,7 @@ const stations = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/stations.json'
 const OUTSIDE = {
   'ise-nakagawa': '伊勢中川', shiratsuka: '白塚', nabari: '名張', myojo: '明星',
   'kintetsu-nagoya': '近鉄名古屋', 'osaka-namba': '大阪難波', 'osaka-uehommachi': '大阪上本町', kyoto: '京都',
+  'kashiharajingu-mae': '橿原神宮前', 'kintetsu-nara': '近鉄奈良',
 };
 const nameOf = (id) => stations.find((s) => s.id === id)?.name.ja ?? OUTSIDE[id] ?? id;
 for (const id of [from, to]) {

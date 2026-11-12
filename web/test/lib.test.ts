@@ -90,6 +90,9 @@ test('區域分群：重疊或相近的同一群，遠的另一群；初始範�
   assert.deepEqual(initialExtent([areaA, areaB, far], places), [136.75, 34.35, 136.95, 34.5]);
   // 沒有資料點的區域用 bbox
   assert.deepEqual(areasExtent([far], []), far.bbox);
+  // 在自己區的 bbox 外面的點（換車用的經由站，T88：京都的大和八木在奈良）不算進範圍
+  const via = place('via', { area: 'far-away', coords: [135.3, 33.0] });
+  assert.deepEqual(areasExtent([far], [places[2], via]), [135.3, 34.4, 135.3, 34.4]);
 });
 
 test('地圖能拖到的範圍：所有區域的 bbox 外加一圈邊；沒有區域不限制（T47）', () => {
@@ -195,6 +198,10 @@ test('時刻表：指定時間前 2 班、後 4 班（含同一分鐘），每�
   assert.equal(terminusName('osaka-namba', new Map()), '大阪難波');
   assert.equal(terminusName('kashikojima', new Map([['kashikojima', '賢島']])), '賢島');
   assert.equal(terminusName('somewhere', new Map()), 'somewhere');
+  // 京都、琵琶湖（T88）：湖西線的終點、近鐵往橿原神宮前
+  assert.equal(terminusName('jr-omi-imazu', new Map()), '近江今津');
+  assert.equal(terminusName('jr-tsuruga', new Map()), '敦賀');
+  assert.equal(terminusName('kashiharajingu-mae', new Map()), '橿原神宮前');
 });
 
 test('篩選：空的不篩；各項是「且」，同一項是「或」；標籤的名稱從區域來', () => {

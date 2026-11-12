@@ -13,21 +13,33 @@ const stripParens = (s: string) => s.replace(/（[^（）]*）/g, '').trim();
 /** 是不是近鐵（舊資料沒有 operator：電車、沒有 routeId、不是班距型的就是近鐵） */
 export const isKintetsu = (r: TransitRide) => r.operator === 'kintetsu' || (r.operator == null && r.mode === 'train' && !r.routeId && r.kind !== 'headway');
 
-/** 班距型的業者簡稱（沒列的照原名） */
+/** 班距型的業者簡稱（沒列的照原名；空字串＝線名就夠了，不加業者）。業者名的空白先拿掉（「JR 西日本」） */
 const OPERATOR_SHORT: Record<string, string> = {
   JR西日本: 'JR',
-  'Osaka Metro': '地鐵',
+  'OsakaMetro': '地鐵',
   南海電鉄: '南海',
   近畿日本鉄道: '近鐵',
+  // 京都、琵琶湖（T87）
+  京都市交通局: '地鐵',
+  阪急電鉄: '阪急',
+  京阪電気鉄道: '京阪',
+  '京阪電気鉄道・京都市交通局': '京阪',
+  京福電気鉄道: '嵐電',
+  比叡山鉄道: '',
 };
 
 /** 線名的簡稱（班距型）：業者簡稱已經說了的地名拿掉 */
-const LINE_SHORT: Record<string, string> = { 大阪環狀線: '環狀線' };
+const LINE_SHORT: Record<string, string> = {
+  大阪環狀線: '環狀線',
+  '京都市營地下鐵 烏丸線': '烏丸線',
+  '京都市營地下鐵 東西線': '東西線',
+};
 
 /**
  * 一程的短名稱（膠囊、步驟用；spec §8.2）：
  * 近鐵：「近鐵」＋車種（「特急（往賢島）」→「近鐵特急」）；
- * 班距型：業者簡稱＋線名（「JR西日本」＋「大阪環狀線」→「JR 環狀線」；線名已經帶業者的照線名，例如「南海 機場急行」）；
+ * 班距型：業者簡稱＋線名（「JR西日本」＋「大阪環狀線」→「JR 環狀線」；線名已經帶業者的照線名，例如「南海 機場急行」「京阪本線」）；
+ * 班距型的市巴士：路線名去掉括號（業者名不加，路線名本身就寫了「市巴士」）；
  * 巴士、船、JR：路線名去掉括號（經由、往哪），最後一段是「A～B」區間的拿掉（「鷗巴士 5 號 鳥羽～國崎線（經相差）（往国崎）」→「鷗巴士 5 號」）。
  * nameOfRoute 給了而且查得到路線名時，用路線名代替 line
  */
@@ -36,7 +48,8 @@ export function rideShortName(ride: TransitRide, nameOfRoute?: (routeId: string)
   const name = stripParens(routeName ?? ride.line);
   if (isKintetsu(ride)) return `近鐵${name.split(' ')[0]}`;
   if (ride.kind === 'headway') {
-    const op = ride.operator ? (OPERATOR_SHORT[ride.operator] ?? ride.operator) : null;
+    if (ride.mode === 'bus') return name;
+    const op = ride.operator ? (OPERATOR_SHORT[ride.operator.replace(/\s/g, '')] ?? ride.operator) : null;
     const line = LINE_SHORT[name] ?? name;
     return !op || line.startsWith(op) ? line : `${op} ${line}`;
   }
@@ -301,12 +314,16 @@ export function specAfterPickPath(cur: TravelSpec | null, leg: Leg, index: numbe
 
 /**
  * 車站面板的班距型路線（spec §8.11）：停這一站的每條線一筆。saturday 的 service 是 null 照 holiday（spec §5）；
- * 班距取那天服務的時段裡總時數最長的那個（最常見的；時數一樣取較小的），時段裡 min 是 null 的不算；那天沒資料的欄位都是 null
+ * 班距取那天服務的時段裡總時數最長的那個（最常見的；時數一樣取較小的），時段裡 min 是 null 的不算；那天沒資料的欄位都是 null。
+ * 市巴士（mode bus）：停留所的 station 是這站的也列（停留所不是資料點，沒有自己的面板），線名後面加停留所名，例如「市巴士 206 系統（京都站前）」
  */
 export function urbanLinesAt(stationId: string, urban: UrbanRoute[], dayType: 'weekday' | 'saturday' | 'holiday'): { line: string; headwayMin: number | null; first: string | null; last: string | null }[] {
   return urban
-    .filter((r) => r.stops.some((s) => s.id === stationId))
+    .filter((r) => r.stops.some((s) => s.id === stationId || (r.mode === 'bus' && s.station === stationId)))
     .map((r) => {
+      const stop = r.mode === 'bus' ? r.stops.find((s) => s.id !== stationId && s.station === stationId) : undefined;
+      const name = r.name.zh || r.name.ja;
+      const line = stop?.name ? `${name}（${stop.name.zh || stop.name.ja}）` : name;
       const svc = dayType === 'saturday' ? (r.service.saturday ?? r.service.holiday) : r.service[dayType];
       const hours = new Map<number, number>();
       for (const h of svc?.headway ?? []) {
@@ -314,6 +331,6 @@ export function urbanLinesAt(stationId: string, urban: UrbanRoute[], dayType: 'w
         hours.set(h.min, (hours.get(h.min) ?? 0) + Math.max(0, toMinutes(h.to) - toMinutes(h.from)));
       }
       const best = [...hours.entries()].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0];
-      return { line: r.name.zh || r.name.ja, headwayMin: best ? best[0] : null, first: svc?.first ?? null, last: svc?.last ?? null };
+      return { line, headwayMin: best ? best[0] : null, first: svc?.first ?? null, last: svc?.last ?? null };
     });
 }

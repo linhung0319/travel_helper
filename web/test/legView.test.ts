@@ -238,6 +238,19 @@ test('rideShortName：近鐵寫車種、巴士寫路線簡稱、班距型寫業�
   assert.equal(rideShortName(southLeg.rides[0]), '南海 機場急行');
   assert.equal(rideShortName({ ...loopLeg.rides[0], line: '御堂筋線', operator: 'Osaka Metro', routeId: 'metro-midosuji' }), '地鐵 御堂筋線');
   assert.equal(rideShortName({ ...loopLeg.rides[0], line: '近鐵 難波線（大阪難波～鶴橋）', operator: '近畿日本鉄道' }), '近鐵 難波線');
+  // 京都、琵琶湖（T88）：業者名有空白的（「JR 西日本」）、京都的地鐵、阪急、京阪、嵐電、纜車
+  const kyoto = (line: string, operator: string) => rideShortName({ ...loopLeg.rides[0], line, operator });
+  assert.equal(kyoto('JR 奈良線（京都～宇治）', 'JR 西日本'), 'JR 奈良線');
+  assert.equal(kyoto('JR 新快速（大阪～京都～草津）', 'JR 西日本'), 'JR 新快速');
+  assert.equal(kyoto('京都市營地下鐵 烏丸線', '京都市交通局'), '地鐵 烏丸線');
+  assert.equal(kyoto('阪急京都線（特急・準特急，大阪梅田～京都河原町）', '阪急電鉄'), '阪急京都線');
+  assert.equal(kyoto('京阪本線（普通・準急，中書島～三条）', '京阪電気鉄道'), '京阪本線');
+  assert.equal(kyoto('京阪京津線（地下鐵東西線直通，京都市役所前～琵琶湖濱大津）', '京阪電気鉄道・京都市交通局'), '京阪京津線');
+  assert.equal(kyoto('嵐電 嵐山本線（四条大宮～嵐山）', '京福電気鉄道'), '嵐電 嵐山本線');
+  assert.equal(kyoto('坂本纜車（坂本～延曆寺）', '比叡山鉄道'), '坂本纜車');
+  assert.equal(kyoto('近鐵京都線（急行，京都～大和西大寺）', '近畿日本鉄道'), '近鐵京都線');
+  // 班距型的市巴士：路線名（不加業者）
+  assert.equal(rideShortName({ ...loopLeg.rides[0], mode: 'bus', line: '市巴士 206 系統（京都站前～北大路巴士總站）', operator: '京都市交通局' }), '市巴士 206 系統');
   // 路線檔的名稱有給就用它（不管 line 寫什麼）
   assert.equal(rideShortName({ ...iseRide1, line: '?' }, (id) => (id === 'kamome-5-kuzaki' ? '鷗巴士 5 號 鳥羽～國崎線（經相差）' : null)), '鷗巴士 5 號');
   // 對不上的：line 去掉括號

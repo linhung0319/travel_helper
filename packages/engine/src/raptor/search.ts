@@ -8,7 +8,7 @@ import { isTicketRide, type TicketRideInfo } from '../ticket.ts';
 import type { UrbanTransfer } from '../data.ts';
 import type { TimeString } from '../types.ts';
 import { toMinutes } from '../time.ts';
-import { headwayWait, KINTETSU, lineFits, pickFootpath, type Footpath, type HeadwayRoute, type Network, type NetRoute, type TimedTrip } from './network.ts';
+import { changeAt, headwayWait, KINTETSU, lineFits, pickFootpath, type Footpath, type HeadwayRoute, type Network, type NetRoute, type TimedTrip } from './network.ts';
 
 /** 上下車點和走到那裡的分鐘（已套係數、已進位） */
 export interface Access {
@@ -59,9 +59,6 @@ export interface SearchQuery {
   exclude?: readonly string[];
 }
 
-/** 近鐵時刻表那一程上下車都在這幾站的不算（大阪市內用班距型的近鐵難波線，spec §6.2） */
-export const OSAKA_KINTETSU = ['osaka-namba', 'osaka-uehommachi', 'tsuruhashi'];
-
 // --- 網路的索引 ---------------------------------------------------------------
 
 // 停靠點換成整數，搜尋時用陣列不用 Map；同一個網路只整理一次
@@ -74,7 +71,8 @@ export interface Indexed {
   /** 從這站出發的 footpath、走到這站的 footpath */
   out: { to: number; fp: Footpath }[][];
   into: { from: number; fp: Footpath }[][];
-  osaka: Uint8Array;
+  /** 近鐵時刻表那一程上下車都在這幾站的不算（Network.kintetsuShort：班距型的近鐵路線停的站，大阪、京都市內） */
+  short: Uint8Array;
   /** 'kintetsu' 的時刻表 route */
   kintetsu: Uint8Array;
 }
@@ -104,10 +102,10 @@ export function indexOf(net: Network): Indexed {
     out[a].push({ to: b, fp });
     into[b].push({ from: a, fp });
   }
-  const osaka = new Uint8Array(n());
-  for (const s of OSAKA_KINTETSU) if (idx.has(s)) osaka[idx.get(s) as number] = 1;
+  const short = new Uint8Array(n());
+  for (const s of net.kintetsuShort) if (idx.has(s)) short[idx.get(s) as number] = 1;
   const kintetsu = Uint8Array.from(net.routes, (r) => (r.kind === 'timetable' && r.group === KINTETSU ? 1 : 0));
-  indexed.set(net, (ix = { ids, idx, stops, at, out, into, osaka, kintetsu }));
+  indexed.set(net, (ix = { ids, idx, stops, at, out, into, short, kintetsu }));
   return ix;
 }
 
@@ -215,9 +213,8 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
   const routes = net.routes;
   /** footpath 的步行：係數 1 的分鐘 × 係數，向上取整 */
   const walkOf = (fp: Footpath) => Math.ceil(fp.walk * f);
-  /** 同站換線：同 group 是 minTransfer，其他至少 minTransfer */
-  const change = (p: number, from: string, to: string) =>
-    from === to ? minTransfer : Math.ceil(Math.max(minTransfer, net.sameStopChange(ix.ids[p], from, to).walk * f));
+  /** 同站換線：同 group（沒有 stopChangeMin 的站）是 minTransfer，其他至少 minTransfer */
+  const change = (p: number, from: string, to: string) => changeAt(net, ix.ids[p], from, to, f, minTransfer).gap;
 
   // 第 0 輪：起點，再走一次 footpath（起點的步行不套 minTransfer）
   const rounds: Round[] = [newRound(n)];
@@ -348,7 +345,7 @@ function search(net: Network, q: SearchQuery, cfg: EngineConfig): Journey[] {
         let leave = 0;
         for (let i = start; i < st.length; i++) {
           const p = st[i];
-          if (trip >= 0 && !(kin && ix.osaka[p] && ix.osaka[st[board]])) {
+          if (trip >= 0 && !(kin && ix.short[p] && ix.short[st[board]])) {
             label(p, trips[trip].arr[i], ri, trip, board, i, from, trips[trip].dep[board], 0, leave);
           }
           if (prev.foot[p] === Infinity && prev.ride[p] === Infinity) continue;
@@ -473,8 +470,8 @@ function rebuild(net: Network, ix: Indexed, rounds: Round[], k: number, s: numbe
     if (R.rFrom[stop] === 1) {
       // 同一站換車
       const g = net.routes[P.rRoute[board]].group;
-      const c = net.sameStopChange(ix.ids[board], g, route.group);
-      transfers.unshift(g === route.group ? { walk: 0, transfer: null } : { walk: Math.ceil(Math.max(minTransfer, c.walk * q.factor)), transfer: c.transfer });
+      const c = changeAt(net, ix.ids[board], g, route.group, q.factor, minTransfer);
+      transfers.unshift({ walk: c.walk, transfer: c.transfer });
       stop = board;
     } else if (r > 1) {
       const fp = footTo(net, ix, rounds, r - 1, board, route.group, q.factor, minTransfer).fp as Footpath;
@@ -575,7 +572,7 @@ export function laterDeparture(net: Network, ix: Indexed, j: Journey, t: LaterRu
 function ticketInfo(r: JourneyRide): TicketRideInfo {
   return {
     kind: r.route.kind,
-    mode: r.route.kind === 'timetable' ? r.route.mode : 'train',
+    mode: r.route.mode,
     line: r.trip?.line ?? (r.route.kind === 'headway' ? r.route.line : ''),
     operator: r.route.group === KINTETSU ? KINTETSU : r.route.routeId,
   };

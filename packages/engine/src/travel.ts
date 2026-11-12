@@ -12,7 +12,7 @@ import { directTrains, routeRides, type TrainRide } from './transit.ts';
 import { formatDuration as dur, fromMinutes, toMinutes } from './time.ts';
 import { isTicketRide } from './ticket.ts';
 import type { DateString, EngineWarning, Leg, LegAlternative, LegTransfer, LonLat, PartyProfile, PathRef, TimeString, TransitRide, TravelMode, TravelSpec } from './types.ts';
-import { buildNetwork, KINTETSU, routeFare, type Network } from './raptor/network.ts';
+import { buildNetwork, KINTETSU, KINTETSU_TERMINI, routeFare, type Network } from './raptor/network.ts';
 import { egressSet, nextDeparture, searchJourneys, type Access, type Journey, type JourneyRide, type SearchQuery } from './raptor/search.ts';
 import { evaluatePath, ifMissed, pathOf } from './raptor/path.ts';
 
@@ -105,7 +105,7 @@ interface Candidate {
 const headwayWaitOf = (r: JourneyRide) => Math.ceil(r.headway?.min ?? 0);
 
 function stationName(id: string, data: EngineData): string {
-  return (data.getPlace(id)?.record.name.ja as string | undefined) ?? id;
+  return (data.getPlace(id)?.record.name.ja as string | undefined) ?? KINTETSU_TERMINI[id] ?? id;
 }
 
 /** 近鐵一程的車種和終點，例如「特急（往賢島）」 */
@@ -263,7 +263,7 @@ function byDefault(js: readonly Journey[], cfg: EngineConfig): Journey[] {
 /**
  * departMinutes 從起點出發，RAPTOR 找到的走法（不套等車、班距規則），依 pickDefault 的值排序。
  * missedLast：現在沒有，但這天從 0 點起有（錯過末班車）。
- * only：只搭這種交通方式（舊的 train／bus／ferry；班距型算 train），其他方式的 group 不搭
+ * only：只搭這種交通方式（舊的 train／bus／ferry；班距型的電車算 train、市巴士算 bus），其他方式的 group 不搭
  */
 function raptorCandidates(
   a: Endpoint,
@@ -283,10 +283,10 @@ function raptorCandidates(
   return { cands, missedLast };
 }
 
-/** 網路裡交通方式不是 mode 的 group（班距型算 train） */
+/** 網路裡交通方式不是 mode 的 group（班距型的電車算 train、市巴士算 bus） */
 function groupsNot(net: Network, mode: 'train' | 'bus' | 'ferry'): string[] {
   const out = new Set<string>();
-  for (const r of net.routes) if ((r.kind === 'headway' ? 'train' : r.mode) !== mode) out.add(r.group);
+  for (const r of net.routes) if (r.mode !== mode) out.add(r.group);
   return [...out];
 }
 
@@ -379,17 +379,19 @@ function stopIslands(data: EngineData): Map<string, string> {
   return m;
 }
 
-/** RAPTOR 的一程 → TransitRide。近鐵、班距型的 from／to 是車站 ID；巴士、船、JR 照舊是停留所名稱 */
+/** RAPTOR 的一程 → TransitRide。近鐵、班距型（電車）的 from／to 是車站 ID；巴士（含班距型的市巴士）、船、JR 照舊是停留所名稱 */
 function transitRide(r: JourneyRide, net: Network, data: EngineData): TransitRide {
   const times = { depart: fromMinutes(r.dep), arrive: fromMinutes(r.arr) };
   const route = r.route;
   if (route.kind === 'headway') {
     const u = data.urban?.find((x) => x.id === route.routeId);
+    // 市巴士：停留所不是資料點，給名稱（同時刻表型的巴士）；停留所剛好是車站的照用車站 ID
+    const end = (s: string) => (route.mode === 'bus' && !net.stops.get(s)?.stationId ? (net.stops.get(s)?.name ?? s) : s);
     return {
-      mode: 'train',
+      mode: route.mode,
       line: route.line,
-      from: r.from,
-      to: r.to,
+      from: end(r.from),
+      to: end(r.to),
       ...times,
       tripId: null,
       fareAdult: u?.fares?.adult?.[r.from]?.[r.to] ?? null,
@@ -439,7 +441,7 @@ function journeyCandidate(j: Journey, net: Network, departMinutes: number, ctx: 
   const { data, cfg } = ctx;
   const first = j.rides[0];
   const ferry = j.rides.some((r) => r.route.kind === 'timetable' && r.route.mode === 'ferry');
-  const mode = ferry ? 'ferry' : first.route.kind === 'timetable' ? first.route.mode : 'train';
+  const mode = ferry ? 'ferry' : first.route.mode;
   const access = j.origin.walk;
   const egress = j.target.walk;
   const transfers = j.transfers.map((t) => legTransfer(t.walk, t.transfer, factor));
