@@ -185,5 +185,599 @@
     "ratings": {},
     "links": {},
     "note": "第三方頁面寫「京都市指令保医セ第506号」（不是業者頁）"
+  },
+  {
+    "key": "kyoto-richmond-ekimae",
+    "name": {
+      "ja": "リッチモンドホテルプレミア京都駅前"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-richmond-ekimae",
+    "ratings": {
+      "rakuten": 4.68,
+      "rakutenReviews": 2615,
+      "google": 4.6,
+      "googleReviews": 1604
+    },
+    "links": {},
+    "note": "楽天 No. 171941；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 8,400 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-viscio",
+    "name": {
+      "ja": "ホテルヴィスキオ京都 by GRANVIA"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-viscio",
+    "ratings": {
+      "rakuten": 4.66,
+      "rakutenReviews": 696,
+      "google": 4.5,
+      "googleReviews": 1581
+    },
+    "links": {},
+    "note": "楽天 No. 168654；15 人組合（02-09 5x3；02-10 5x3）；最低每人 9,188 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-hotel-tou",
+    "name": {
+      "ja": "hotel tou nishinotoin kyoto"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-hotel-tou",
+    "ratings": {
+      "rakuten": 4.55,
+      "rakutenReviews": 781,
+      "google": 4.1,
+      "googleReviews": 555
+    },
+    "links": {},
+    "note": "楽天 No. 181326；15 人組合（02-09 8x2、5x3、4x4、3x5；02-10 8x2、5x3、4x4、3x5）；最低每人 6,879 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-nono-shichijo",
+    "name": {
+      "ja": "御宿 野乃京都七条"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-nono-shichijo",
+    "ratings": {
+      "rakuten": 4.43,
+      "rakutenReviews": 1618,
+      "google": 4.5,
+      "googleReviews": 2744
+    },
+    "links": {},
+    "note": "楽天 No. 178613；15 人組合（02-09 8x2、5x3、4x4；02-10 8x2、5x3、4x4）；最低每人 9,800 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-miyako-hachijo",
+    "name": {
+      "ja": "都ホテル 京都八条"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-miyako-hachijo",
+    "ratings": {
+      "rakuten": 4.4,
+      "rakutenReviews": 7593,
+      "google": 4.1,
+      "googleReviews": 8048
+    },
+    "links": {},
+    "note": "楽天 No. 1160；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 6,105 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-century",
+    "name": {
+      "ja": "京都センチュリーホテル"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-century",
+    "ratings": {
+      "rakuten": 4.5,
+      "rakutenReviews": 4842,
+      "google": 4.3,
+      "googleReviews": 2568
+    },
+    "links": {},
+    "note": "楽天 No. 1369；15 人組合（02-09 8x2；02-10 8x2）；最低每人 11,200 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-dusit-thani",
+    "name": {
+      "ja": "デュシタニ 京都"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-dusit-thani",
+    "ratings": {
+      "rakuten": 4.75,
+      "rakutenReviews": 108,
+      "google": 4.5,
+      "googleReviews": 708
+    },
+    "links": {},
+    "note": "楽天 No. 187320；15 人組合（02-09 8x2；02-10 8x2）；最低每人 39,848 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-nikko-princess",
+    "name": {
+      "ja": "ホテル日航プリンセス京都"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-nikko-princess",
+    "ratings": {
+      "rakuten": 4.58,
+      "rakutenReviews": 1885,
+      "google": 4.3,
+      "googleReviews": 2153
+    },
+    "links": {},
+    "note": "楽天 No. 166；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 7,840 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-monterey",
+    "name": {
+      "ja": "ホテルモントレ京都"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-monterey",
+    "ratings": {
+      "rakuten": 4.49,
+      "rakutenReviews": 5442,
+      "google": 4.2,
+      "googleReviews": 3359
+    },
+    "links": {},
+    "note": "楽天 No. 55347；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 7,310 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-watazen",
+    "name": {
+      "ja": "綿善旅館"
+    },
+    "region": "shijo-nijo",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-watazen",
+    "ratings": {
+      "rakuten": 4.58,
+      "rakutenReviews": 405,
+      "google": 4.4,
+      "googleReviews": 325
+    },
+    "links": {},
+    "note": "楽天 No. 17903；15 人組合（02-09 4x4、3x5；02-10 4x4、3x5）；最低每人 12,500 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-daiwa-shijo-karasuma",
+    "name": {
+      "ja": "ダイワロイネットホテル 京都四条烏丸"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-daiwa-shijo-karasuma",
+    "ratings": {
+      "rakuten": 4.46,
+      "rakutenReviews": 2293,
+      "google": 4.1,
+      "googleReviews": 1751
+    },
+    "links": {},
+    "note": "楽天 No. 136213；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 6,175 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-richmond-shijo",
+    "name": {
+      "ja": "リッチモンドホテルプレミア京都四条"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-richmond-shijo",
+    "ratings": {
+      "rakuten": 4.6,
+      "rakutenReviews": 189,
+      "google": 4.6,
+      "googleReviews": 892
+    },
+    "links": {},
+    "note": "楽天 No. 183335；15 人組合（02-09 8x2、5x3、4x4；02-10 8x2、5x3、4x4）；最低每人 11,630 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-forza-kawaramachi",
+    "name": {
+      "ja": "ホテルフォルツァ京都四条河原町"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-forza-kawaramachi",
+    "ratings": {
+      "rakuten": 4.59,
+      "rakutenReviews": 498,
+      "google": 4.5,
+      "googleReviews": 951
+    },
+    "links": {},
+    "note": "楽天 No. 182567；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 8,500 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-good-nature",
+    "name": {
+      "ja": "GOOD NATURE HOTEL KYOTO"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-good-nature",
+    "ratings": {
+      "rakuten": 4.6,
+      "rakutenReviews": 224,
+      "google": 4.5,
+      "googleReviews": 1038
+    },
+    "links": {},
+    "note": "楽天 No. 176768；15 人組合（02-09 8x2、5x3、4x4；02-10 8x2、5x3、4x4）；最低每人 22,969 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-super-hotel-kawaramachi",
+    "name": {
+      "ja": "スーパーホテル京都・四条河原町"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-super-hotel-kawaramachi",
+    "ratings": {
+      "rakuten": 4.34,
+      "rakutenReviews": 3939,
+      "google": 4.2,
+      "googleReviews": 1832
+    },
+    "links": {},
+    "note": "楽天 No. 75325；15 人組合（02-09 8x2、5x3、3x5；02-10 8x2、5x3、3x5）；最低每人 5,970 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-rk-104701",
+    "name": {
+      "ja": "天然温泉 花蛍の湯 ドーミーインPREMIUM京都駅前(ドーミーイン・御宿野乃 ホテルズグループ)"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.47,
+      "rakutenReviews": 5155
+    },
+    "links": {},
+    "note": "楽天 No. 104701；15 人組合（02-09 8x2；02-10 8x2）；最低每人 14,000 円（楽天 2026-11-12）；ドーミーインPREMIUM京都駅前（天然溫泉）"
+  },
+  {
+    "key": "kyoto-rk-153230",
+    "name": {
+      "ja": "ダイワロイネットホテル京都駅前 PREMIER"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.57,
+      "rakutenReviews": 752
+    },
+    "links": {},
+    "note": "楽天 No. 153230；15 人組合（02-09 8x2；02-10 8x2）；最低每人 15,500 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-rk-13758",
+    "name": {
+      "ja": "都和旅館"
+    },
+    "region": "kyoto-station",
+    "category": "ryokan",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.33,
+      "rakutenReviews": 181
+    },
+    "links": {},
+    "note": "楽天 No. 13758；15 人組合（02-09 5x3、4x4、3x5；02-10 4x4、3x5）；最低每人 18,942 円（楽天 2026-11-12）；都和旅館（和室 3～5 人房）"
+  },
+  {
+    "key": "kyoto-rk-108",
+    "name": {
+      "ja": "リーガロイヤルホテル京都"
+    },
+    "region": "kyoto-station",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.25,
+      "rakutenReviews": 7273
+    },
+    "links": {},
+    "note": "楽天 No. 108；15 人組合（02-09 5x3、4x4；02-10 5x3、4x4）；最低每人 7,100 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-rk-160991",
+    "name": {
+      "ja": "ホテル ザ セレスティン京都祇園"
+    },
+    "region": "higashiyama",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.71,
+      "rakutenReviews": 237
+    },
+    "links": {},
+    "note": "楽天 No. 160991；15 人組合（02-09 8x2、5x3；02-10 8x2、5x3）；最低每人 20,246 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-rk-162930",
+    "name": {
+      "ja": "京都グランベルホテル"
+    },
+    "region": "higashiyama",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.8,
+      "rakutenReviews": 306
+    },
+    "links": {},
+    "note": "楽天 No. 162930；15 人組合（02-09 8x2；02-10 8x2）；最低每人 12,300 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-rk-167802",
+    "name": {
+      "ja": "クロスホテル京都(オリックスホテルズ&リゾーツ)"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.44,
+      "rakutenReviews": 448
+    },
+    "links": {},
+    "note": "楽天 No. 167802；15 人組合（02-09 5x3、4x4；02-10 5x3、4x4）；最低每人 8,400 円（楽天 2026-11-12）"
+  },
+  {
+    "key": "kyoto-rk-165176",
+    "name": {
+      "ja": "ホテルインターゲート京都 四条新町"
+    },
+    "region": "shijo-nijo",
+    "category": "hotel",
+    "status": "over-limit",
+    "criteria": [],
+    "reason": "京都飯店 15 間的名額外：👤 2026-11-12 確認清單時選了其他 15 間，這間列為備選",
+    "pointId": null,
+    "ratings": {
+      "rakuten": 4.51,
+      "rakutenReviews": 952
+    },
+    "links": {},
+    "note": "楽天 No. 165176；15 人組合（02-09 8x2、5x3、4x4；02-10 8x2）；最低每人 8,096 円（楽天 2026-11-12）；2/10 只剩 8x2"
+  },
+  {
+    "key": "kyoto-machiya-rk-190325",
+    "name": {
+      "ja": "清水小筑"
+    },
+    "region": "higashiyama",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；最多 14 人，不到 15 人（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 190325；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-200788",
+    "name": {
+      "ja": "AUR Kyoto（民泊）"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列届出番号，兒童收不收沒寫；楽天頁寫最多 15 人，唯一人數夠的（要問番號：楽天的詢問或電話）（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 200788；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-180050",
+    "name": {
+      "ja": "籠／rou"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；一棟最多 10 人，同業者附近的棟沒列（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 180050；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-179244",
+    "name": {
+      "ja": "たわら庵（東館・西館）"
+    },
+    "region": "shijo-nijo",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；兩棟的定員沒寫（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 179244；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-168200",
+    "name": {
+      "ja": "至誠宿 大宮五条"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；3 室合計 10 人；頁面寫段差多，不適合長輩（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 168200；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-167538",
+    "name": {
+      "ja": "京都旅庵 然"
+    },
+    "region": "okazaki",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；人數、業者沒寫（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 167538；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-167539",
+    "name": {
+      "ja": "東山 粟田庵"
+    },
+    "region": "okazaki",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；人數、業者沒寫（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 167539；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-146870",
+    "name": {
+      "ja": "古都庵"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；方案寫 10 名まで（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 146870；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-179672",
+    "name": {
+      "ja": "別邸樹下"
+    },
+    "region": "higashiyama",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列許可番號；人數、業者沒寫（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 179672；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
+  },
+  {
+    "key": "kyoto-machiya-rk-199547",
+    "name": {
+      "ja": "井ノ口 別邸（民泊）"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列届出番号；人數、業者沒寫（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "楽天 No. 199547；楽天 vacant --rooms 1 --adults 10（2027-02-09、02-10）有空房的一棟貸し；region 照楽天頁的住所判斷"
   }
 ]

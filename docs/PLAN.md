@@ -176,7 +176,7 @@
 | T85 | AI 給點時的右欄與地圖：提示改成「適合、推薦」用 show_places、說「全部」才 set_filter；AI 結果集的列加書架名小標；set_filter 套用時打開有結果的區段、條件列換成「AI 幫你套了」；set_filter 符合的點全部畫水滴；不跑完整 e2e | M | T83 | 4 | | ✅ |
 | T80 | e2e 體檢與完整 e2e：先逐支檢查 T75～T79、T81～T85 動到的 spec 哪些斷言過時並修正，再跑完整三組（網頁、手機 390、360）和 `e2e:worker`，程式真的壞的修掉 | M | T79、T81～T85 | 4 | | ✅ |
 | T86a | 👤 京都、琵琶湖（獨立一區，先盤點熱門的點再收，含白鬚神社）：子地區與景點；CONVENTIONS 加「京都的做法」 | M | 👤 §6 京都的子地區 | 3 | 🌐 大量 | ✅ |
-| T86b | 京都：住宿（飯店、町家包棟；住不住還沒定，資料先查）；**第一階段做完，楽天的部分（京都飯店）留著**，見任務卡 | S | T86a | 3 | 🌐 大量 | 🔄 |
+| T86b | 京都：住宿（飯店、町家包棟；住不住還沒定，資料先查） | S | T86a | 3 | 🌐 大量 | ✅ |
 | T86c | 京都：餐廳（候選和詳細資料一起做） | M | T86a | 3 | 🌐 大量 | ✅ |
 | T86d | 京都：收尾、摘要與評分、代表照片、地區介紹和地區照片、本機匯入 | S | T86b、T86c、T87 | 3 | 🌐 少量 | ⬜ |
 | T87 | 京都交通：近鐵 京都 ↔ 伊勢志摩、京都 ↔ 大阪、京都 ↔ 關西機場、JR 湖西線（時刻表）、市區的電車和市巴士（班距型）、大站轉乘、票券 | M | —（和 T86a 同時開始） | 3 | | 🔄 |
@@ -2404,13 +2404,12 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 町家 **0 間**：符合人數的 6 組頁面上都沒有番號（👤 維持原規則），候選和原因在 `data/raw/kyoto/candidates/lodging.json`；沒有一棟住得下 15 人的。
   - 京都市住宿稅（2026-03-01 起的級距）查好，寫在京都兩間的 `extra.taxes` 和 README；大津市住宿稅只有傳聞、入湯稅各館沒寫 → `questions.md`。
   - `nearestStation`（T87 還沒 merge）、`dinnerAccess`（沒有餐廳）都是 null，T86d 補；預定車站寫在 `data/raw/kyoto/log/T86b.md`。
-- **第二階段（楽天能用之後，還沒做）**：👤 先在楽天 Web Service 的應用程式設定把這台電腦的 IP 加進白名單。步驟寫在 `data/raw/kyoto/log/T86b.md` 的最後一節：
-  1. 京都站周邊、四条烏丸・河原町的飯店 10～15 間：`simple`／`party`（`8x2`、`5x3`、`4x4`、`3x5`，2027-02-09、02-10），清單 👤 確認 → Google、讀文、組裝。
-  2. 已收的 7 間旅館補楽天施設番號、`party`、`detail`、兒童價，重跑 `build-lodging.mjs`；價格的 note 寫京都市住宿稅。
-  3. 町家用 `vacant --rooms 1 --adults 10` 再撈楽天上的一棟貸し（頁面有番號的才收）。
-  4. 15 人組合有空房、或包棟的那幾間讀 Google 低分評論（Chrome）。
-  - 第二階段也要用 Chrome，**不要和 T86c 同時跑**；T86c 不需要等它（住宿的資料 T86c 用不到，`dinnerAccess` 由 T86d 重算）。
-  - **接手（可能換一台電腦，2026-11-12 整理）**：第一階段已全部在 master，舊的 `t86b` 分支和 worktree 已刪。從 master 重開：`git worktree add ../travel_helper-t86b -b t86b master`，在新 worktree 跑 `npm install`；工作目錄 `data/raw/kyoto/handoff/t86b-1.tar.gz` 解開到 `data/cache/work/t86b-1/`（指令見同目錄的 README）；`.env` 要有 `RAKUTEN_APPLICATION_ID`、`RAKUTEN_ACCESS_KEY`（不進 git，從原本的電腦抄）；楽天白名單要加**新電腦的 IP**，先用 `node scripts/rakuten.mjs detail 3165` 測通了再開工。T86c 已完成，Chrome 不會撞。T87 的車站已在 master（`jr-ogotoonsen`、`hankyu-arashiyama`、`randen-arashiyama`），7 間旅館的 `nearestStation` 第二階段可以順便填，或照原訂留給 T86d。做完把 `data/raw/kyoto/handoff/t86b-1.tar.gz` 刪掉。
+- **第二階段完成（2026-11-12，換電腦後，分支 `t86b`）**：楽天能用了（新電腦的 IP 在白名單）。過程見 `data/raw/kyoto/log/T86b.md` 的「第二階段」。
+  - **京都飯店 15 間**（👤 確認清單）：京都站周邊 7、四条烏丸・河原町 8；楽天三個中心撈 195 間，照評價、評論數、3～5 人房挑，備選 8 間記成候選 `over-limit`。兩晚都有 15 人組合，讀文 8 個、Google（Chrome）。
+  - 溫泉旅館 7 間補楽天番號、15 人組合、細項評分、一泊二食和兒童價；嵐山 2 間沒有 15 人組合（`nearbyCombos` 互指）。
+  - 町家仍 **0 間**：楽天的一棟貸し 10 間頁面都沒有番號（AUR Kyoto 住得下 15 人，番號、兒童要問 → `questions.md`）。
+  - 15 人組合有空房的 20 間讀了 Google 低分評論；京都市住宿稅寫進每筆價格的 note。
+  - `nearestStation` 22 間都填了（T87 的車站）；`dinnerAccess` 用 T86c 的餐廳先算（京都飯店 14 間），T86d 再重算。交接用的 `data/raw/kyoto/handoff/` 已刪。
 
 #### T86c 餐廳 〔M〕（Chrome）
 - **候選和詳細資料一起做**，照大阪的 G／S 納入標準（CONVENTIONS §4），目標 **35～45 家**（子地區比大阪多一兩個）：
