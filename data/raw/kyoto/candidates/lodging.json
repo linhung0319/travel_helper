@@ -1,0 +1,189 @@
+[
+  {
+    "key": "kyoto-kadensho",
+    "name": {
+      "ja": "嵐山温泉 花伝抄"
+    },
+    "region": "arashiyama",
+    "category": "ryokan",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "2026-12-01～2027-03-20（預定）1 樓改裝全館休館，旅程（2027-02）住不了（官網お知らせ 2026-10-19，https://dormy-hotels.com/resort/hotels/kadensho/news/）",
+    "pointId": null,
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 1914
+    },
+    "links": {},
+    "note": "101 室、有電梯、阪急嵐山站步行約 1 分；嵐山溫泉 1～2 間（👤 2026-11-12）；房型都是 2～3 人、晚餐 2～4 人桌二部制"
+  },
+  {
+    "key": "kyoto-hanaikada",
+    "name": {
+      "ja": "嵐山温泉 彩四季の宿 花筏"
+    },
+    "region": "arashiyama",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-hanaikada",
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 519
+    },
+    "links": {},
+    "note": "15 室、6 人 12 疊和室、有會合場"
+  },
+  {
+    "key": "kyoto-togetsutei",
+    "name": {
+      "ja": "京都嵐山温泉 渡月亭 碧川閣"
+    },
+    "region": "arashiyama",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "kyoto-togetsutei",
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 502
+    },
+    "links": {},
+    "note": "21 室、有接送；花伝抄休館，改收這間（👤 第二個選項）"
+  },
+  {
+    "key": "kyoto-arashiyama-benkei",
+    "name": {
+      "ja": "嵐山温泉 嵐山辨慶"
+    },
+    "region": "arashiyama",
+    "category": "ryokan",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "Google 地圖顯示「臨時休業」（2026-11-12）；房間少",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 257
+    },
+    "links": {},
+    "note": "9 室、沒有電梯"
+  },
+  {
+    "key": "kyoto-machiya-villa-sanjo",
+    "name": {
+      "ja": "THE MACHIYA VILLA 三条しらかわ小路（花・鳥・風・月）"
+    },
+    "region": "higashiyama",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；業者官網（町家レジデンスイン京都）只寫「已取得京都市旅館業許可」，沒列番號；じゃらん頁也沒有（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {
+      "official": "https://www.kyoto-machiya-inn.com/jp/accommodations/the-machiya-villa/"
+    },
+    "note": "同業者相鄰 4 棟：花 8、鳥 6、風 5、月 4 人（合計 23；3 棟組合 18～19 人）；地下鐵東山站步行約 3 分；價格要看官網日曆；60 天以上前預約只收 2 泊以上"
+  },
+  {
+    "key": "kyoto-machiya-shimabara",
+    "name": {
+      "ja": "嶋原 懐傳＋嶋原 わかば"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；同上（町家レジデンスイン京都，官網沒列番號）",
+    "pointId": null,
+    "ratings": {},
+    "links": {
+      "official": "https://www.kyoto-machiya-inn.com/jp/accommodations/kaiden/"
+    },
+    "note": "2 棟 8＋9＝17 人；JR 丹波口站步行約 6 分"
+  },
+  {
+    "key": "kyoto-machiya-sanjusangendo",
+    "name": {
+      "ja": "三十三間堂 宵の竹＋宵椿"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；同上（官網、じゃらん yad382279 都沒列番號；搜尋摘要說 Booking.com 頁有「京都市指令保医セ第149号」，但讀不到原頁，未採用）",
+    "pointId": null,
+    "ratings": {},
+    "links": {
+      "official": "https://www.kyoto-machiya-inn.com/jp/accommodations/yoinotake/"
+    },
+    "note": "2 棟 7＋8＝15 人（剛好）；京阪七条站步行約 8 分；宵椿 和洋寢室 3、浴室＋淋浴間、廁所 2"
+  },
+  {
+    "key": "kyoto-machiya-kakuchi",
+    "name": {
+      "ja": "格致しょうぶ庵＋格致すおう庵"
+    },
+    "region": "shijo-nijo",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；同上（官網沒列番號），而且 2 棟合計 14 人不到 15",
+    "pointId": null,
+    "ratings": {},
+    "links": {
+      "official": "https://www.kyoto-machiya-inn.com/jp/accommodations/shobu/"
+    },
+    "note": "8＋6＝14 人（5 歲以下不佔床不計）；四条站步行約 9 分"
+  },
+  {
+    "key": "kyoto-machiya-seiraku",
+    "name": {
+      "ja": "晴樂＋季楽庵北"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；楽天頁沒列番號；業者、季楽庵北的地址和定員都沒確認",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "合計約 18 人（只在楽天頁看到）；京都站步行約 10 分；楽天 169363"
+  },
+  {
+    "key": "kyoto-machiya-isuke",
+    "name": {
+      "ja": "京いすけ（百足屋町・Otonari・Hokomachi）"
+    },
+    "region": "shijo-nijo",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；官網、利用規約（特商法）、about 頁都沒列番號（2026-11-12）",
+    "pointId": null,
+    "ratings": {},
+    "links": {
+      "official": "https://kyomachiya-isuke.com/"
+    },
+    "note": "同業者 3 棟 4＋5＋7＝最多 16 人，同一町內；地下鐵四条站步行約 5 分；官網寫屋內樓梯很陡、可要求 1 樓床位；入住 15:30～20:30、退房 11:00；人數和位置最合，番號要問業者"
+  },
+  {
+    "key": "kyoto-machiya-rinn-koki",
+    "name": {
+      "ja": "鈴 Premium Machiya Koki"
+    },
+    "region": "kyoto-station",
+    "category": "rental-house",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "町家：照 CONVENTIONS「京都、琵琶湖的做法」只收頁面上有旅館業許可或住宿事業届出番号的；一棟最多 11 人、沒有同業者相鄰棟可以湊 15 人；Rinn 系列寫 12 歲以下不收",
+    "pointId": null,
+    "ratings": {},
+    "links": {},
+    "note": "第三方頁面寫「京都市指令保医セ第506号」（不是業者頁）"
+  }
+]

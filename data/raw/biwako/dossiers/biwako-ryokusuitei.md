@@ -1,0 +1,32 @@
+# biwako-ryokusuitei びわこ緑水亭／琵琶湖綠水亭
+
+- 讀文日期：2026-11-12
+- 來源：
+  1. [official] 客室 https://ryokusuitei.com/room/room.html
+  2. [official] 団体 https://ryokusuitei.com/group/group.html
+  3. [official] 料理 https://ryokusuitei.com/food/Commitment.html
+  4. [official] アクセス https://ryokusuitei.com/access/
+  5. [official] バリアフリー https://ryokusuitei.com/barrierfree.html
+  6. [official] 温泉 https://ryokusuitei.com/onsen/
+  7. [official] 約款 https://ryokusuitei.com/accommodation/
+  8. [official] 首頁／概要 https://ryokusuitei.com/ 、/gaiyou/
+
+## 重點
+- [團體] 全 69 室、收容 345 名、57 間有客室露天風呂；萬葉（和室 2 間 80㎡）8 名、びわの風 和洋室 7 名、月詠スイート 7 名、和室 5 名房多（1）
+- [團體] 団体住宿方案頁「準備中」，無價格；只能電話 077-577-2222 洽詢；大宴会場約 80 名可同時用餐（2）
+- [招牌] 夕食 近江牛しゃぶしゃぶ会席（認證近江牛 A4 以上）；冬季單點本もろこ、わかさぎ、かに（3）
+- [長輩] 電梯 3 台（びわの風棟、萬葉棟）；大浴場入口有段差、露天要走階梯、有扶手；無障礙房 2 間（5）
+- [長輩] 和洋室、和風ツイン等有 Simmons 床（1）
+- [小孩] 小學生以下：同餐寢 70%、兒童餐 50%、只寢具 2,200 円、無餐無寢 3,300 円（7）
+- [交通] JR おごと温泉駅東口 4 番乗り場免費接駁，抵達後打電話，約 7 分；停車場免費 100 台（4）
+- [其他] 泉質アルカリ性単純温泉 pH9.07 美肌湯；入退房 15:00／10:00（湖游 11:00）（6, 8）
+- [價格] 官網未見價格（訂房系統 489ban 讀取失敗）
+- [冬季] 2 月營業／休館官網未寫
+
+## 衝突、待確認
+- 夕食會場（部屋食或宴会場）、15 人能否同間、接駁時刻與一次載客數、入湯稅、貸切風呂、是否能包館：官網未寫
+- 團體取消：15 名以上有部分取消免違約金規定（7）；15 人超過 14 人門檻，取消比率走 15～30 名級距
+- photos 官網未提供 og:image，留空
+
+## 資料量
+- 心得 0 則（Google 評論由主 session 另外補）；部落格心得：未查（深入調查）

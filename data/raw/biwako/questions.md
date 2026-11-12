@@ -13,3 +13,10 @@
 - [ ] biwako-hikone-castle：ひこにゃん 2027 冬季的出場時間；玄宮園「高橋」改建完工了沒
 - [ ] biwako-ishiyamadera：不爬 67 段石段的緩坡路線現在能不能走；「梅つくし」2027 年日期
 - [ ] biwako-ukimido：兒童票、1～2 月的關門時間
+
+## 住宿（T86b）
+- [ ] biwako-*（雄琴 5 間）：住客入湯稅多少（官網都沒寫）；大津市住宿稅 2027 年 2 月有沒有開徵（只看到議員部落格說以 2027 年度為目標）
+- [ ] biwako-yumotokan、biwako-hanakaido、biwako-komorebi、biwako-biwako-grand-hotel：有沒有電梯；15 人能不能同一間吃晚餐；團體方案
+- [ ] biwako-komorebi：有沒有全館包下的方案（候選階段的介紹說有，官網找不到）
+- [ ] biwako-biwako-grand-hotel：電話（官網 077-579-2111，其他資料 077-577-2211）；房數
+- [ ] biwako-ryokusuitei：團體住宿方案（官網寫「準備中」）
