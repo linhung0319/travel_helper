@@ -1,0 +1,164 @@
+[
+  {
+    "key": "biwako-yumotokan",
+    "name": {
+      "ja": "湯元舘"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "biwako-yumotokan",
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 1690
+    },
+    "links": {},
+    "note": "71 室"
+  },
+  {
+    "key": "biwako-ryokusuitei",
+    "name": {
+      "ja": "びわこ緑水亭"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "biwako-ryokusuitei",
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 1628
+    },
+    "links": {},
+    "note": "69 室、おごと温泉站免費接送；楽天 3165"
+  },
+  {
+    "key": "biwako-hanakaido",
+    "name": {
+      "ja": "びわ湖花街道"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "biwako-hanakaido",
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 1008
+    },
+    "links": {},
+    "note": "43 室"
+  },
+  {
+    "key": "biwako-komorebi",
+    "name": {
+      "ja": "湯の宿 木もれび"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "biwako-komorebi",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 459
+    },
+    "links": {},
+    "note": "20 室、官網有全館貸切方案"
+  },
+  {
+    "key": "biwako-biwako-grand-hotel",
+    "name": {
+      "ja": "琵琶湖グランドホテル"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "included",
+    "criteria": [],
+    "reason": null,
+    "pointId": "biwako-biwako-grand-hotel",
+    "ratings": {
+      "google": 3.9,
+      "googleReviews": 2049
+    },
+    "links": {},
+    "note": "184 室、有團體方案；館內高級館「京近江」Google 4.2（75）另列在筆記；Google 3.9 是「評價普通」"
+  },
+  {
+    "key": "biwako-yuzanso",
+    "name": {
+      "ja": "里湯昔話 雄山荘"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "雄琴收 5 間，評分較低（Google 4.0）讓給同規模的グランドホテル（有團體方案）；👤 2026-11-12",
+    "pointId": null,
+    "ratings": {
+      "google": 4,
+      "googleReviews": 1563
+    },
+    "links": {},
+    "note": "101 室"
+  },
+  {
+    "key": "biwako-kotoyu",
+    "name": {
+      "ja": "天然源泉の宿 ことゆう"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "評分、評論數較低，雄琴已收 5 間",
+    "pointId": null,
+    "ratings": {
+      "google": 4,
+      "googleReviews": 277
+    },
+    "links": {},
+    "note": "38 室"
+  },
+  {
+    "key": "biwako-kikunoya",
+    "name": {
+      "ja": "暖灯館 きくのや"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "房間少、雄琴已收 5 間；沒查 Google",
+    "pointId": null,
+    "ratings": {
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "16 室；官網 https://kikunoya.jp/"
+  },
+  {
+    "key": "biwako-ogotoso",
+    "name": {
+      "ja": "湖畔の宿 雄琴荘"
+    },
+    "region": "ogoto-katata",
+    "category": "ryokan",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "房間少、雄琴已收 5 間；沒查 Google",
+    "pointId": null,
+    "ratings": {
+      "google": null,
+      "googleReviews": null
+    },
+    "links": {},
+    "note": "10 室；官網 http://www.ogotoso.com/"
+  }
+]

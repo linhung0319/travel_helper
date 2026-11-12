@@ -17,3 +17,8 @@
 - [ ] kyoto-byodoin：鳳凰堂內部每場人數（35 或 50）
 - [ ] kyoto-togetsukyo：嵐電嵐山站足湯的營業時間（嵐電官網連不上）
 - [ ] kyoto-nishiki-market：週三休的店有多少（2/10 是週三）
+
+## 住宿（T86b）
+- [ ] kyoto-hanaikada：電梯（訂房網站寫有輪椅用電梯，官網沒寫）；宴會場能不能當 15 人的住宿晚餐（晚餐基本是部屋食）；住客入湯稅；小學生收費比例
+- [ ] kyoto-togetsutei：各房最多幾人；JR 嵯峨嵐山站接送現在有沒有（交通頁和問答頁說法不同）；2026-12～2027-03 有沒有休館（同區花伝抄這段期間休館）；秀山閣有沒有電梯；中廣間能不能當住宿晚餐
+- [ ] 町家（候選 kyoto-machiya-isuke、kyoto-machiya-villa-sanjo、kyoto-machiya-sanjusangendo）：向業者要旅館業許可番號；有番號、要改收時再查 2/9、2/10 的價格（官網日曆）

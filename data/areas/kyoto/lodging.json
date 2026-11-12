@@ -1,0 +1,345 @@
+[
+  {
+    "id": "kyoto-hanaikada",
+    "type": "lodging",
+    "name": {
+      "ja": "嵐山温泉 彩四季の宿 花筏",
+      "zh": "嵐山溫泉 花筏"
+    },
+    "area": "kyoto",
+    "region": "arashiyama",
+    "kind": "ryokan",
+    "coords": [
+      135.6771376,
+      35.0113254
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcHiQcDuE9QyZXvM9qjautrkMMfDHtD7QIETah5jElkIgYyRGKNmTfzRkTCTcx9e4dCVYne-3VhCtrBjr6UDqx9ZCxeitg-GOo7enYu3u-mN8R9HtR1SNK4sHiLTVyG_3TkO6h0eQ=w800",
+        "page": "https://maps.google.com/?cid=6552355691614558442",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hanaikada.co.jp/",
+      "instagram": "@hanaikada.kyoto",
+      "googleMaps": "https://maps.google.com/?cid=6552355691614558442"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR 嵯峨嵐山站免費接送，只限住客、最多 9 人、不接受預約，當天打電話（075-861-0228），可能無法接送",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 15,
+      "roomTypes": [
+        "和室 12 畳（1 室）2～5 人",
+        "温泉露天風呂付和室 10 畳 2～4 人",
+        "和室 10 畳 2～4 人",
+        "和室 8 畳、温泉石風呂付和室 8 畳 2～3 人",
+        "はなれ山懐庵 和室＋洋室雙床 最多 4 人（2 室）",
+        "和風ベッドルーム 2 人（不收兒童）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": 9,
+      "nearbyCombos": [],
+      "note": "只有 15 室，最大的房 5 人（1 間），15 人要 5～6 間；沒有團體方案、全館包下；晚餐基本是部屋食，不能 15 人同一間吃（宴會場最多 60 人，能不能當住宿晚餐要問）"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 519,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "和風ベッドルーム（雙床 2 人）、はなれ山懐庵（和室＋洋室雙床）有床；其他是和室鋪布團",
+      "stairs": "展望露天、貸切露天在屋頂，3 樓到屋頂只能走樓梯；內湯在 3 樓",
+      "kids": "有兒童餐（午餐、晚餐 2 種）；收費比例沒寫；和風ベッドルーム不收兒童",
+      "note": "有輪椅用電梯（訂房網站的資料，官網沒寫）；扶手、無障礙官網沒寫"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "075-861-0228",
+      "url": "https://reserve.489ban.net/client/hanaikada/0/plan",
+      "groupNote": "沒有團體洽詢頁，打電話（8:00～21:00）；可以提前 6 個月訂"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6552355691614558442",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「花筏」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/",
+        "retrieved": "2026-11-12",
+        "note": "首頁：15 室、送迎、15:00/10:00"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/facilities/room2.php?id=sec2",
+        "retrieved": "2026-11-12",
+        "note": "一般客室房型與定員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/facilities/room1.php",
+        "retrieved": "2026-11-12",
+        "note": "はなれ山懐庵"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/facilities/?id=sec2",
+        "retrieved": "2026-11-12",
+        "note": "館內設施、宴会場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/cuisine/",
+        "retrieved": "2026-11-12",
+        "note": "部屋食、料理名"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/faq/",
+        "retrieved": "2026-11-12",
+        "note": "送迎、用餐時間、取消"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "車站步行時間、送迎"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanaikada.co.jp/spa/",
+        "retrieved": "2026-11-12",
+        "note": "浴場、泉質、貸切風呂"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jtb.co.jp/kokunai-hotel/htl/6240002/",
+        "retrieved": "2026-11-12",
+        "note": "電梯、價格帶"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "嵐山溫泉（單純泉，弱鹼性），沒有大浴場：3 樓內湯露天、屋頂展望露天 2 處、貸切露天（1 組 40 分 2,200 円，要預約）；部分客房附露天風呂",
+      "dinner": "月替京懷石，晚餐基本是部屋食（17:30～19:30），早餐在食事處",
+      "banquet": "宴會場，少人數～60 人（官網寫是見面、慶事、法事用）",
+      "stationAccess": "阪急嵐山站、嵐電嵐山站步行約 5 分；JR 嵯峨嵐山站車約 5 分（接送）",
+      "price": "訂房網站：大人 2 人 1 室含稅 55,000～110,000 円（每人約 27,500～55,000 円，依日期）",
+      "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅；另有入湯稅",
+      "conflicts": [
+        "JR 嵯峨嵐山站：訂房網站寫步行約 15 分，官網寫車約 5 分"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-togetsutei",
+    "type": "lodging",
+    "name": {
+      "ja": "京都嵐山温泉 渡月亭",
+      "zh": "嵐山溫泉 渡月亭"
+    },
+    "area": "kyoto",
+    "region": "arashiyama",
+    "kind": "ryokan",
+    "coords": [
+      135.6777993,
+      35.0111746
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfSCJ7Yv9A6h3Y4HRBoRUnaNYkiUD7rXnIPWh1HI0kdvc2VUFeID7bQIrnRVTKRQk_ZfoPR5xCc4z3GeEOD_lOiQrs9M0W60zqLLyS7BnHYMGuA1kJHJ0670BCJ47p5pl0lB_hI=w800",
+        "page": "https://maps.google.com/?cid=2856858334438648627",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.togetsutei.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=2856858334438648627"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR 嵯峨嵐山站接送 15:00～19:00，到站聯絡；週六日、假日交通管制或塞車時可能不接（官網問答另寫現在暫停接送，要確認）",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": null,
+    "checkIn": "16:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 21,
+      "roomTypes": [
+        "碧川閣 和室 14 畳＋露天風呂",
+        "碧川閣 和室 12 畳＋次の間 6 畳（半露天風呂）",
+        "秀山閣 和室 8 畳＋次の間 6 畳",
+        "和室 8 畳＋雙床（4 間）",
+        "秀山閣 和室 6～10 畳"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "21 室，和室 8～14 畳＋次の間，各房最多幾人官網沒寫（要問）；有大廣間 135 畳約 120 人、中廣間 50 畳約 40 人（可放桌椅），能不能當住宿晚餐要問"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.2,
+      "googleReviews": 502,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和室＋雙床的房 4 間（法輪の間、秀山閣 3 樓 3 間）；其他鋪布團",
+      "stairs": "碧川閣沒有電梯；大浴場在秀山閣（樓層沒寫），貸切風呂在地下",
+      "kids": "兒童餐 2 種（2,420 円、4,820 円，含稅）；小學生收費比例沒寫",
+      "note": "碧川閣沒有電梯，行動不便要事先聯絡（訂房網站）；秀山閣有沒有電梯官網沒寫"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "075-871-1310",
+      "url": "https://reserve.489ban.net/client/togetsutei/0/plan",
+      "groupNote": "團體洽詢打電話"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2856858334438648627",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「京都嵐山温泉 渡月亭 碧川閣」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/",
+        "retrieved": "2026-11-12",
+        "note": "首頁，無休館公告"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/room/",
+        "retrieved": "2026-11-12",
+        "note": "客室一覽 21 室與畳數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/room/hekisenkaku01.html",
+        "retrieved": "2026-11-12",
+        "note": "鹿王の間、法輪の間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/room/syuzankaku03.html",
+        "retrieved": "2026-11-12",
+        "note": "秀山閣 3 樓三間和室＋床"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/room/syuzankaku01.html",
+        "retrieved": "2026-11-12",
+        "note": "嵐山の間 1 樓"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/floor/",
+        "retrieved": "2026-11-12",
+        "note": "溫泉、貸切風呂、宴會場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/food/",
+        "retrieved": "2026-11-12",
+        "note": "京會席，無晚餐地點"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "接送與交通"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/faq/",
+        "retrieved": "2026-11-12",
+        "note": "接送暫停、兒童餐、貸切風呂"
+      },
+      {
+        "type": "official",
+        "url": "https://www.togetsutei.co.jp/plan/",
+        "retrieved": "2026-11-12",
+        "note": "宴會場與會席價格"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jtb.co.jp/kokunai-hotel/htl/6240001/",
+        "retrieved": "2026-11-12",
+        "note": "21 室、check-in 16:00、碧川閣無電梯"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "嵐山天然溫泉（單純溫泉，弱鹼性），秀山閣大浴場；碧川閣 5 間客房有露天或半露天風呂；貸切風呂「月読ノ湯」4 人、45 分 2,750 円",
+      "dinner": "京會席；晚餐在哪吃（部屋食或食事處）官網沒寫",
+      "banquet": "大廣間 135 畳約 120 人、中廣間 50 畳約 40 人（可放桌椅）",
+      "stationAccess": "JR 嵯峨嵐山站（有接送）；市巴士 28 系統「嵐山公園」步行 1 分；京都站搭計程車約 25～30 分",
+      "price": "訂房網站：2 人 1 室含稅 47,300～290,400 円（含不含餐沒寫）",
+      "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅；另有入湯稅",
+      "conflicts": [
+        "接送：交通頁寫 15:00～19:00 接送，問答頁寫現在暫停",
+        "check-in：官網沒寫，訂房網站寫 16:00"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  }
+]

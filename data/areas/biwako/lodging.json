@@ -1,0 +1,790 @@
+[
+  {
+    "id": "biwako-yumotokan",
+    "type": "lodging",
+    "name": {
+      "ja": "湯元舘",
+      "zh": "湯元館"
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "kind": "ryokan",
+    "coords": [
+      135.8927377,
+      35.0877751
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.yumotokan.co.jp/common/img/ogp.jpg",
+        "page": "https://www.yumotokan.co.jp/room/",
+        "kind": "official",
+        "credit": "湯元舘 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd1vyM8WywmLpGmkZm3M5TByjriNX5np4wDzwA5w_4dTHdHgxW7pNiqh2gLLy8lxd4o5JNqwpMsiSYpe8pexjfWmIZXz5of9cctO_GKa7gS0kyAlAJp8kfq_ectbZRnaU0HxDyV=w800",
+        "page": "https://maps.google.com/?cid=6601559692674941403",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.yumotokan.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=6601559692674941403"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR おごと温泉站、比叡山坂本站等有送迎車（約 5 分），住客 13:30～19:00 打電話叫車（077-579-1111）；一次載幾人沒寫",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": null,
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": null,
+      "roomTypes": [
+        "くつろぎ和室 10 畳＋広縁（布團）",
+        "和室二間ファミリールーム 12.5 畳＋7.5 畳（定員沒寫）",
+        "琴音 ファミリースイート 77 ㎡ 最多 5 人（2 室，露天風呂付）",
+        "和洋室、和室ツイン、セミスイート（有床）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "官網沒有團體方案、全館包下；15 人要分幾間（和室二間、ファミリースイート），能不能同一間吃晚餐要問"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 1690,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "西館的和洋室、和室ツイン、セミスイート、琴音的房間有床（シモンズ）；一般和室鋪布團",
+      "stairs": "官網自己說「不是無障礙的旅館」，館內有段差（官網用照片說明）；露天風呂在 5 樓和最上層",
+      "kids": "訂房系統：6～12 歲和大人同餐、3～5 歲兒童餐；收費比例沒寫",
+      "note": "玄關有斜坡，可以借輪椅（要預約）；電梯官網沒寫"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "077-579-1111",
+      "url": "https://reserve.489ban.net/client/yumotokan/0/plan",
+      "groupNote": "團體怎麼訂官網沒寫，要電話問"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6601559692674941403",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「湯元館」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/",
+        "retrieved": "2026-11-12",
+        "note": "首頁：館介紹、琴音・葭蘆葦、官網直訂更便宜"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/room/st.html",
+        "retrieved": "2026-11-12",
+        "note": "くつろぎ和室 10 畳＋広縁（各房型頁 nishi/washitsu/washitsu_dbl/suite/saraku/st2 同日）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/room/kotone-family.html",
+        "retrieved": "2026-11-12",
+        "note": "琴音ファミリースイート 77.2㎡ 定員5名"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/meal/meal5.html",
+        "retrieved": "2026-11-12",
+        "note": "朝食ビュッフェ山咲楽"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "車站、送迎 13:30～19:00"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/universal/entrance/index.htm",
+        "retrieved": "2026-11-12",
+        "note": "斜坡、輪椅"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yumotokan.co.jp/spa/",
+        "retrieved": "2026-11-12",
+        "note": "大浴場・露天・貸切風呂"
+      },
+      {
+        "type": "official",
+        "url": "https://reserve.489ban.net/client/yumotokan/0/plan",
+        "retrieved": "2026-11-12",
+        "note": "兒童年齡區分與餐點"
+      },
+      {
+        "type": "other",
+        "url": "https://www.yumotokan.co.jp/howto/stay4.html",
+        "retrieved": "2026-11-12",
+        "note": "WebSearch 1 次結果：過ごし方頁 15:00 チェックイン"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "おごと温泉（pH9.0 高鹼性單純溫泉）：眺望大浴場「湖望の湯」、5 樓露天「湯幻逍遥」、最上層檜露天「月心の湯」（男女日替），貸切露天風呂 2 處",
+      "dinner": "京會席、近江牛；晚餐在食事處或個室，16～20 點整點選時段；2～3 月有冬季限定會席（蟹、河豚鍋，舊頁面，今年要再看）",
+      "breakfast": "琴音 3 樓自助餐",
+      "stationAccess": "JR 湖西線 おごと温泉站，車約 5 分（約 1.5 km）；京都站到おごと温泉站約 20 分",
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "biwako-ryokusuitei",
+    "type": "lodging",
+    "name": {
+      "ja": "びわこ緑水亭",
+      "zh": "琵琶湖綠水亭"
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "kind": "ryokan",
+    "coords": [
+      135.894064,
+      35.0874861
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdmHho-uKYc1bA1m66YKQSz3IkMsKJwDTXdnz89ERVYgGcYjh6EccTMibxzxFyXmB8gLuMg6asxJ8EEtOjCOY1dn61Rz2eCNkx4KB_C-RjQVDwLjV1y0JMAId0FebzouTt9iyVo=w800",
+        "page": "https://maps.google.com/?cid=18041228338030064488",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://ryokusuitei.com/",
+      "googleMaps": "https://maps.google.com/?cid=18041228338030064488"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR おごと温泉站東口巴士站 4 號乘車處，免費接駁（綠色車），到站打電話，車程約 7 分；時刻、載客數沒寫",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 69,
+      "roomTypes": [
+        "萬葉 和室 2 間 80 ㎡ 最多 8 人",
+        "月詠スイート 和室 2 間 68 ㎡ 最多 7 人（寢室 3 張床）",
+        "びわの風 和洋室 50 ㎡ 最多 7 人（有床）",
+        "びわの風 和室 50 ㎡ 最多 5 人",
+        "風雅／優雅 和室、和風ツイン 34 ㎡ 最多 5 人"
+      ],
+      "maxGuests": 345,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 人可以 2～3 間（例如萬葉 8＋びわの風和洋室 7）；團體要電話洽詢（團體住宿方案「準備中」）；大宴會場約 80 人，可以全員一起吃"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 1628,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": true,
+      "beds": "びわの風 和洋室、和風ツイン、トリプル、月詠スイート、風雅／優雅 和風ツイン有床（シモンズ）",
+      "stairs": "大浴場入口有段差、露天風呂要走階梯；玄關、大廳、走廊可以推輪椅",
+      "kids": "小學生以下：和大人同餐同寢具 70%，兒童餐＋寢具 50%，只要寢具 2,200 円，不要餐和寢具的幼兒 3,300 円",
+      "note": "輪椅可用的電梯 3 台；無障礙客房 2 間（客房內無段差）；可借輪椅 2 台；大浴場不能坐輪椅入浴"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "077-577-2222",
+      "url": "https://reserve.489ban.net/client/ryokusuitei/0/plan",
+      "groupNote": "團體請電話洽詢（9:00～18:00）"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=18041228338030064488",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「びわこ緑水亭」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/",
+        "retrieved": "2026-11-12",
+        "note": "首頁：全 69 室、接送、チェックイン 15:00／10:00"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/room/room.html",
+        "retrieved": "2026-11-12",
+        "note": "房型、定員、室數"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/group/group.html",
+        "retrieved": "2026-11-12",
+        "note": "団体洽詢、宴会場"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/food/Commitment.html",
+        "retrieved": "2026-11-12",
+        "note": "近江牛しゃぶしゃぶ会席、冬季單點"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/access/",
+        "retrieved": "2026-11-12",
+        "note": "接送、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/barrierfree.html",
+        "retrieved": "2026-11-12",
+        "note": "電梯、段差、扶手"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/onsen/",
+        "retrieved": "2026-11-12",
+        "note": "泉質、大浴場"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/gaiyou/",
+        "retrieved": "2026-11-12",
+        "note": "概要"
+      },
+      {
+        "type": "official",
+        "url": "https://ryokusuitei.com/accommodation/",
+        "retrieved": "2026-11-12",
+        "note": "約款：兒童料金、團體取消"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "鹼性單純溫泉（pH9.07）；大浴場 源氏（男）、湯立（女，露天岩風呂）、桶型三溫暖；57 間客房附露天風呂",
+      "dinner": "近江牛しゃぶしゃぶ會席（A4 以上認證近江牛）；冬季單點：本もろこ天ぷら、わかさぎ天ぷら、蟹",
+      "banquet": "大宴會場約 76 疊，約 80 人可用餐（和膳、桌椅、圓桌）",
+      "breakfast": "自助餐",
+      "parking": "免費 100 台",
+      "stationAccess": "JR 湖西線 おごと温泉站，接駁車約 7 分；京都站到おごと温泉站約 20 分",
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "biwako-hanakaido",
+    "type": "lodging",
+    "name": {
+      "ja": "びわ湖花街道",
+      "zh": "琵琶湖花街道"
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "kind": "ryokan",
+    "coords": [
+      135.8924429,
+      35.088864
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdnu0h8AuzpXXcIce4iqJk50phCP0hGKcfjKkUoxtWuE0wZGb6CzdNzJx1cwRrjHz622CTRhfEgmnVZWiqAC7PQ-cf6MjPRUrlqTwtf6Zq4RvZ1xPCjtCqR7u9PCN24-y1dSFge8IgrVqWF=w800",
+        "page": "https://maps.google.com/?cid=1138852597221722077",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.hanakaido.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=1138852597221722077"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR おごと温泉站（約 5 分）、JR 比叡山坂本站（約 15 分）免費接送，非定時，到站打電話",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": "早到可以在櫃台寄放行李",
+    "checkIn": "15:00",
+    "checkOut": "11:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 43,
+      "roomTypes": [
+        "和洋室 52～61 ㎡ 2～6 人（7 室）",
+        "露天風呂付和洋室 52 ㎡ 2～6 人（2 室）",
+        "5F 温泉露天風呂付和洋室 63 ㎡ 2～6 人（2 室）",
+        "和室 10 畳 2～4 人（15 室）",
+        "和室 8 畳 2～3 人（4 室）",
+        "洋室ツイン 2～3 人（10 室）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "15 人可以 3 間 6 人的和洋室；團體方案、能不能 15 人同一處吃沒寫（晚餐在食事會場，有付費個室）"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.4,
+      "googleReviews": 1008,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "和洋室（2～6 人）、洋室ツイン、無障礙雙床房有床",
+      "stairs": "大浴場樓層、段差官網沒寫",
+      "kids": "小學生：和大人同餐 70%、兒童餐 50%；未就學幼兒不要餐和寢具也收設施費 2,200 円；兒童早餐 2,200 円",
+      "note": "無障礙雙床房 1 間（輪椅空間、浴廁扶手）；貸切風呂可以推輪椅靠近浴池；電梯官網沒寫"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "077-578-1075",
+      "url": "https://reserve.489ban.net/client/hanakaido/0/plan",
+      "groupNote": "團體洽詢沒有專頁，打電話（免付費 0120-051-041，9:00～20:00）"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1138852597221722077",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「びわ湖花街道」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanakaido.co.jp/room/",
+        "retrieved": "2026-11-12",
+        "note": "房型、室數、定員"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanakaido.co.jp/faq/",
+        "retrieved": "2026-11-12",
+        "note": "check-in/out、接送、兒童料金、餐廳"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanakaido.co.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "接送、停車場 47 台"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanakaido.co.jp/cuisine/",
+        "retrieved": "2026-11-12",
+        "note": "料理、冬季限定"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hanakaido.co.jp/hotspring/",
+        "retrieved": "2026-11-12",
+        "note": "大浴場、貸切風呂、泉質"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://reserve.489ban.net/client/hanakaido/0/detail/601329",
+        "retrieved": "2026-11-12",
+        "note": "WebSearch 摘要：個室選項、夕食會場"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "單純溫泉（弱鹼性）；大浴場 2 座（含露天，男女時段輪替）；貸切風呂「び～どろの湯」3～4 人、50 分 3,300 円、當天櫃台申請",
+      "dinner": "晚餐、早餐都在食事會場（不是部屋食）；近江牛しゃぶしゃぶ／すき焼き、冬季限定本鴨鍋、11～2 月ずわい蟹炭焼き；個室加價（和個室 4,400 円、洋個室 2,200 円，看空位）",
+      "stationAccess": "JR 湖西線 おごと温泉站，接送車約 5 分",
+      "taxes": "入湯稅：官網的日歸入浴寫 50 円、小學生免（住客要再確認）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "biwako-komorebi",
+    "type": "lodging",
+    "name": {
+      "ja": "湯の宿 木もれび",
+      "zh": "湯之宿 木漏日"
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "kind": "ryokan",
+    "coords": [
+      135.8927378,
+      35.0884401
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfyQ_06RUUYRPo-v03jZ1Wpx41wUSQkxMzuDXhUsRTKZExorb44j-8eDnU0YiHYcpwkPhWv-zTEXLxsda30yCjCXrhKw0b8cnmBzme5dj0TBaId6FL0kkz-ZzJNwJSa70jn3kdf=w800",
+        "page": "https://maps.google.com/?cid=6954537263574466686",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.komolebi.jp/",
+      "googleMaps": "https://maps.google.com/?cid=6954537263574466686"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR おごと温泉站打電話免費接送（約 5 分），比叡山坂本站也接；早上有從湯元舘正門出發的定時班（8:35～11:15）",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": "入住前、退房後可以寄放行李",
+    "checkIn": "14:00",
+    "checkOut": null,
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": 20,
+      "roomTypes": [
+        "3F 和室（大）46 ㎡ 洋間＋12.5 畳 最多 6 人（1 室）",
+        "2F 和洋室 33～36 ㎡ 4 畳＋雙床 4 人（4 室）",
+        "2F 和室 8 畳 4 人（10 室）",
+        "3F 和室 6～8 畳 3～4 人（3 室）",
+        "2F 和風ツイン 2 人（2 室）"
+      ],
+      "maxGuests": null,
+      "wholeRental": null,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "只有 20 室的小旅館，15 人約 4～5 間；官網找不到全館包下的方案（要問）；宴會場「しゃくなげ」30 畳最多 32 人，團體晚餐可能改在大廣間"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 4.3,
+      "googleReviews": 459,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "2F 和洋室 4 間、和風ツイン 2 間有床（共 6 間）",
+      "stairs": "客房在 2F、3F；電梯、大浴場樓層官網沒寫",
+      "kids": "兒童餐（お子様御膳）1,760 円；小學生收費比例沒寫",
+      "note": "電梯官網沒寫，要問"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "077-579-8585",
+      "url": "https://reserve.489ban.net/client/komolebi/0/plan",
+      "groupNote": "團體、包館要電話問（9～21 時）"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6954537263574466686",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「【琵琶湖畔おごと温泉】湯の宿 木もれび」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/rooms/",
+        "retrieved": "2026-11-12",
+        "note": "5 種房型共 20 室、定員、床"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/meal/",
+        "retrieved": "2026-11-12",
+        "note": "1F 風香；團體可能在大広間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "JR おごと温泉站免費接送"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/facility/",
+        "retrieved": "2026-11-12",
+        "note": "宴会場、卡拉OK"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/spa/",
+        "retrieved": "2026-11-12",
+        "note": "泉質、大浴場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/price/",
+        "retrieved": "2026-11-12",
+        "note": "加點料金、飲み放題"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/point/",
+        "retrieved": "2026-11-12",
+        "note": "+700 円用湯元舘浴場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.komolebi.jp/lg_tw/",
+        "retrieved": "2026-11-12",
+        "note": "check-in 時間、行李寄放"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "鹼性單純溫泉；大浴場 2 座（早晚男女交替）、展望露天、庭園露天；每人加 700 円可以用姊妹館湯元舘的大浴場和貸切露天",
+      "dinner": "1F 餐廳「風香」；團體、旺季可能改在大廣間；近江牛排加點 100 g 2,200 円",
+      "banquet": "「しゃくなげ」30 畳最多 32 人、「もみじ」16 席；飲み放題 10 人以上每人 2,500 円",
+      "stationAccess": "JR 湖西線 おごと温泉站，接送車約 5 分",
+      "checkInNote": "14:00～19:00",
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "biwako-biwako-grand-hotel",
+    "type": "lodging",
+    "name": {
+      "ja": "琵琶湖グランドホテル",
+      "zh": "琵琶湖大飯店"
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "kind": "ryokan",
+    "coords": [
+      135.8973798,
+      35.0877554
+    ],
+    "coordsSource": "google-maps-url",
+    "address": null,
+    "hours": null,
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW2T7LLFYDU8SyU0cOL2Qt4LQx7GrSLrTDGHECpMAsgCG1soazUtZwyLVjHNt4yzH2kshTpy68uABWHCpcOeBdLj3aybxtgVCRZNbL8__g-yQD4bN1JCGYGXi0aLEsJvT1jgw8gIoUHu2ERZvASLY5WU7C0dcpTz9e8Bmh--SqVi6Zx43JbE6rbt=w800",
+        "page": "https://maps.google.com/?cid=5912721437813050324",
+        "kind": "google",
+        "credit": "Google マップ（施設或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.biwakogh.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=5912721437813050324"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "pickup": "JR おごと温泉站免費接送巴士，到站打電話；團體依人數安排，要先洽詢",
+    "meals": "dinner+breakfast",
+    "priceRange": null,
+    "prices": [],
+    "luggage": null,
+    "checkIn": "15:00",
+    "checkOut": "10:00",
+    "rakutenHotelNo": null,
+    "dinnerAccess": null,
+    "group": {
+      "totalRooms": null,
+      "roomTypes": [
+        "東館 和室 44 室（浴廁付）、雙床房 4 室",
+        "西館 和室 96 室（淋浴間、廁所付）",
+        "高級館「京近江」和洋室 5 室（和室＋床、客房露天風呂）"
+      ],
+      "maxGuests": null,
+      "wholeRental": false,
+      "pickupCapacity": null,
+      "nearbyCombos": [],
+      "note": "雄琴最大的旅館，有團體、親戚聚會用的宴席（依人數安排個室），可以全員一起吃；各房型最多幾人官網沒寫；房數各網站說法不一（140～193 室）"
+    },
+    "ratings": {
+      "rakuten": null,
+      "rakutenReviews": null,
+      "jalan": null,
+      "jalanReviews": null,
+      "booking": null,
+      "google": 3.9,
+      "googleReviews": 2049,
+      "note": null
+    },
+    "accessibility": {
+      "elevator": null,
+      "beds": "東館雙床房、京近江的和洋室有床；其他是和室鋪布團",
+      "stairs": null,
+      "kids": "訂房系統：6～12 歲和大人同餐或兒童餐、3～5 歲兒童餐；收費比例沒寫",
+      "note": "電梯、無障礙官網沒寫"
+    },
+    "reservation": {
+      "methods": [
+        "official",
+        "phone"
+      ],
+      "phone": "077-579-2111",
+      "url": "https://reserve.489ban.net/client/biwakogh/0/plan",
+      "groupNote": "團體方案要洽詢（官網有團體、親戚旅行的介紹，沒有價格）"
+    },
+    "bookingLinks": {},
+    "sources": [
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5912721437813050324",
+        "retrieved": "2026-11-12",
+        "note": "Google 地圖「琵琶湖グランドホテル」：星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/",
+        "retrieved": "2026-11-12",
+        "note": "館名、地址、電話、導覽"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/room/",
+        "retrieved": "2026-11-12",
+        "note": "京近江／東館／西館備品"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/room/kyooumi.html",
+        "retrieved": "2026-11-12",
+        "note": "京近江 和洋室5室等"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/cuisine/",
+        "retrieved": "2026-11-12",
+        "note": "會席、個室、朝食バイキング"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "おごと温泉駅免費接送"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/hotspring/",
+        "retrieved": "2026-11-12",
+        "note": "泉質、貸切風呂4個"
+      },
+      {
+        "type": "official",
+        "url": "https://www.biwakogh.co.jp/plan/educational-travel.html",
+        "retrieved": "2026-11-12",
+        "note": "客室數、徒歩15分"
+      },
+      {
+        "type": "official",
+        "url": "https://reserve.489ban.net/client/biwakogh/0/plan",
+        "retrieved": "2026-11-12",
+        "note": "兒童區分、房型分類"
+      },
+      {
+        "type": "booking-site",
+        "url": "https://www.jtb.co.jp/kokunai-hotel/htl/6221014/plan/",
+        "retrieved": "2026-11-12",
+        "note": "WebSearch：check-in 15:00／out 10:00，客室數各網不一"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "onsen": "鹼性單純溫泉；大浴場（湖景露天、庭園岩露天）、貸切風呂 4 處；京近江每間有客房露天風呂",
+      "dinner": "會席（真鯛、近江牛石燒、近江鴨石燒；近江牛也有すき焼き、しゃぶしゃぶ），湖景個室餐廳或依人數安排的宴席",
+      "breakfast": "和洋自助餐",
+      "stationAccess": "JR 湖西線 おごと温泉站，步行約 15 分或接送巴士；京都站到おごと温泉站約 20 分",
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始",
+      "conflicts": [
+        "電話：官網 077-579-2111，其他資料 077-577-2211",
+        "客室數：官網教育旅行頁東西館 140 室，其他網站 150／151／184／193 室",
+        "接送：交通頁寫免費巴士，教育旅行頁寫依人數運行、要洽詢"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  }
+]
