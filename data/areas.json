@@ -1463,7 +1463,7 @@
     },
     "municipality": "泉佐野市",
     "definition": "關西機場（空港島）、りんくうタウン、泉佐野站一帶。只蒐集回程前一晚（2/12）的住宿和晚餐，不蒐集景點。",
-    "tripOrder": 4,
+    "tripOrder": 5,
     "center": [
       135.2948,
       34.4048
@@ -1598,6 +1598,74 @@
     ]
   },
   {
+    "id": "kyoto",
+    "type": "area",
+    "name": {
+      "ja": "京都",
+      "kana": "きょうと",
+      "zh": "京都",
+      "en": "Kyoto"
+    },
+    "municipality": "京都市（宇治收的話含宇治市）",
+    "definition": "京都市內會去的子地區（京都站周邊、東山・清水寺・祇園、伏見稻荷、嵐山、四条河原町・二条城、金閣寺・北野等，T86a 和 👤 定）；只蒐集這些子地區，不蒐集整個京都市。暫定接在伊勢之後、大阪之前，住不住還沒定。",
+    "tripOrder": 4,
+    "center": [
+      135.76,
+      34.99
+    ],
+    "bbox": [
+      135.66,
+      34.88,
+      135.82,
+      35.05
+    ],
+    "stations": [],
+    "notes": "2026-11-12 加入（T86a）。tripOrder 和 biwako 同為 4（京都市區和琵琶湖是同一段的兩個選項，住哪裡由排行程時選），大阪、關西機場周邊往後挪成 5。stations 由 T87 補（T86a 之後不改）。做法見 CONVENTIONS §4「京都的做法」。bbox 先包嵐山到宇治，子地區定案後再調。",
+    "regions": [],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%B8%82",
+        "retrieved": "2026-11-12",
+        "note": "京都市的範圍（bbox 是大致範圍，只用來檢查座標）"
+      }
+    ]
+  },
+  {
+    "id": "biwako",
+    "type": "area",
+    "name": {
+      "ja": "琵琶湖",
+      "kana": "びわこ",
+      "zh": "琵琶湖",
+      "en": "Lake Biwa"
+    },
+    "municipality": "滋賀縣（大津市、高島市 等，照收到的點）",
+    "definition": "滋賀縣琵琶湖周邊、從京都當天來回到得了的點（白鬚神社等；收哪些由 T86a 盤點後定）。不是京都的子地區：在滋賀縣、交通（JR 湖西線、琵琶湖線）和京都市區不同。",
+    "tripOrder": 4,
+    "center": [
+      136,
+      35.15
+    ],
+    "bbox": [
+      135.8,
+      34.95,
+      136.32,
+      35.45
+    ],
+    "stations": [],
+    "notes": "2026-11-12 加入（T86a）。tripOrder 和 kyoto 同為 4。stations 由 T87 補（T86a 之後不改）。規則和京都共用 CONVENTIONS §4「京都的做法」。bbox 先包整個湖，收的點定案後再縮。",
+    "regions": [],
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%90%B5%E7%90%B6%E6%B9%96",
+        "retrieved": "2026-11-12",
+        "note": "琵琶湖周邊的範圍（bbox 是大致範圍，只用來檢查座標）"
+      }
+    ]
+  },
+  {
     "id": "osaka",
     "type": "area",
     "name": {
@@ -1608,7 +1676,7 @@
     },
     "municipality": "大阪市",
     "definition": "大阪市內會去的子地區（難波・道頓堀、大阪城、天王寺・新世界、海遊館・天保山、USJ、梅田）。行程最後 1～2 天；只蒐集這些子地區，不蒐集整個大阪市。",
-    "tripOrder": 4,
+    "tripOrder": 5,
     "center": [
       135.48,
       34.67
