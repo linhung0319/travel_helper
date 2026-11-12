@@ -178,9 +178,9 @@
 | T86a | 👤 京都、琵琶湖（獨立一區，先盤點熱門的點再收，含白鬚神社）：子地區與景點；CONVENTIONS 加「京都的做法」 | M | 👤 §6 京都的子地區 | 3 | 🌐 大量 | ✅ |
 | T86b | 京都：住宿（飯店、町家包棟；住不住還沒定，資料先查） | S | T86a | 3 | 🌐 大量 | ✅ |
 | T86c | 京都：餐廳（候選和詳細資料一起做） | M | T86a | 3 | 🌐 大量 | ✅ |
-| T86d | 京都：收尾、摘要與評分、代表照片、地區介紹和地區照片、本機匯入 | S | T86b、T86c、T87 | 3 | 🌐 少量 | ⬜ |
+| T86d | 京都：收尾、摘要與評分、代表照片、地區介紹和地區照片、本機匯入 | S | T86b、T86c、T87（市巴士除外） | 3 | 🌐 少量 | ⬜ |
 | T87 | 京都交通：近鐵 京都 ↔ 伊勢志摩、京都 ↔ 大阪、京都 ↔ 關西機場、JR 湖西線（時刻表）、市區的電車和市巴士（班距型）、大站轉乘、票券 | M | —（和 T86a 同時開始） | 3 | | 🔄 |
-| T88 | engine、網站：京都的交通接上（近鐵市區短程的規則不只大阪、班距型路線加巴士、站名和線名的顯示）、京都一天和跨區的測試 | S | T87 | 3 | 🌐 少量 | ⬜ |
+| T88 | engine、網站：京都的交通接上（近鐵市區短程的規則不只大阪、班距型路線加巴士、站名和線名的顯示）、京都一天和跨區的測試 | S | T87（市巴士除外） | 3 | 🌐 少量 | ⬜ |
 | T89 | 京都收尾：全站寫死的字（AI 提示、登入頁、下載標題、LINE 說明、CLAUDE.md）、`ai:eval` 代表題、受影響的 e2e、👤 正式環境重匯 D1 和重新部署 | S | T86d、T88 | 4 | 🌐 少量 | ⬜ |
 
 ---
@@ -533,6 +533,7 @@ T87 京都交通 ─────────────────┴──►
 - **T86a 和 T87 同時開始**：T87 的路線先照 T86a 預定的子地區抓，定案後再補。T86b、T86c 都用 Chrome，不同時跑。
 - **T86a、T87 並行時 `areas.json` 怎麼分**：T87 的車站要寫 `area: kyoto`／`biwako`，這兩區要先存在。所以 **T86a 第一步先加兩區的骨架**（`id`、`name`、`municipality`、`definition`、`tripOrder`、`center`、`bbox`、空的 `regions` 和 `stations`、`sources`；validate 通過），單獨一個 commit 先 merge 回 master，再繼續做子地區和景點。T87 先做查資料、筆記、腳本、`timetables/`，等骨架進了 master 再 merge 進自己的分支寫 `stations.json` 和兩區的 `stations`（T86a 之後不碰 `stations` 這個欄位，T87 不碰其他欄位）。CONVENTIONS 兩邊各寫各的小節（T86a：§1 區域 ID、§2 區域那幾列、§4「京都的做法」；T87：§1.5 車站 ID、§2 交通那幾列、§3）。
 - **T88 和 T86b、T86c 可以並行**（只改 `packages/engine`、資料載入、站名顯示）。
+- **T87 的市巴士等 ODPT 審核，不擋 T86d、T88**（2026-11-12 👤）：兩張卡都用 master 上市巴士以外的資料先做，**T86d 和 T88 可以同時開**（碰的檔案不重疊：T86d 是京都、琵琶湖的資料和 `areas.json`，T88 是 `packages/engine`、`web/`、資料載入；只有 T86d 用 Chrome，而且少量）。市巴士進來後各自只補一小段（見兩張卡的「市巴士」那一條），不重開整張卡。T89 照舊等 T86d、T88 都完成；市巴士如果到 T89 開工時還沒進來，T89 照做，市巴士之後跟著 T87 補完再重新部署一次。
 - **測試的原則**（2026-11-12 👤）：不要每做完一小步就跑一次大的測試。做的過程只跑需要的：資料任務跑 `npm run validate`；改了腳本、schema、引擎就跑那幾支單元測試。整包的 `npm test`、`typecheck` 在任務最後、merge 前跑一次；e2e 只有 T88（受影響的幾支）和 T89（完整三組，一次）跑，T86a～T86d、T87 不跑 e2e。
 - **e2e**：T88、T89 只跑受影響的幾支；T89 最後跑一次完整三組（地區多一顆、概覽多一張卡，容易有照順序、照數量寫的斷言）。
 
@@ -551,7 +552,7 @@ T87 京都交通 ─────────────────┴──►
 | 階段 4 原型 | T15m、T16m-a → T16m-b → T16m-c（T15m 可拆成三個子任務，見任務說明）；同時 👤 做 T23，接著 T25 | 2～4 |
 | 階段 4 串接 | T15、T16 並行（需 T15m／T16m-a～c、T24、T25） | 2～3 |
 | 大阪 | T27a（🌐）＋T28 並行；之後 T27b → T27c（🌐，依序），T29 和 T27c 並行；最後 T27d。可以和階段 4 的介面任務同時做 | 2 |
-| 京都 | T86a（🌐）＋T87 並行；之後 T86b → T86c（🌐，依序），T88 和它們並行；T86d；最後 T89 | 2 |
+| 京都 | T86a（🌐）＋T87 並行；之後 T86b → T86c（🌐，依序），T88 和它們並行；T86d 和 T88 並行（T87 的市巴士等 ODPT，不擋）；最後 T89 | 2 |
 | 部署 | T30（👤 資料和 schema 定案後；不和改 `worker/wrangler.jsonc`、migration 的任務同時做） | 1 |
 | 階段 6 | T20 | 1 |
 
@@ -2423,6 +2424,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 
 #### T86d 收尾、摘要與評分、地區介紹、匯入 〔S〕（Chrome 少量）
 - `nearestStation`（T87 的車站，OSRM）、`restaurant-anchors.mjs kyoto`、`lodging-dinner-access.mjs`；不跑 `restaurant-gaps.mjs`。**只有巴士到的點**（金閣寺、清水寺）`nearestStation` 會很遠：`access` 寫巴士站和系統，引擎怎麼用由 T88 決定，這裡照 T87 的格式填。
+- **市巴士（2026-11-12 👤：T87 的市巴士等 ODPT 審核，T86d 不等它）**：只有巴士到的點（金閣寺、銀閣寺、清水寺一帶）的 `access` 照官網、京都観光Navi 寫停留所名和系統（例：「市バス 205 系統『金閣寺道』下車步行 3 分」），停留所 ID（`citybus-`）先不寫，`nearestStation` 照填最近的電車站（會很遠，照實）。這幾筆的 `accessEase` 照 T86d 訂的京都寫法（「只有巴士到」降一級之類）打，不用等巴士資料。README 記一行「市巴士進來後要對的」：停留所名和 T87 的 `stops[].name` 一致、`access` 的分鐘和路線檔的步行合不合。市巴士進來後由 T87 那一輪順便對一次，T86d 不重開。
 - **評分**：先在 `data/raw/toba/assessment-notes.md` 加「京都」一節，打分前訂門檻（試算 A 以上的比例；京都景點的 Google 評論數比大阪更高，門檻要重算，不直接抄大阪的）。照 §5.1 寫 `summary`、`assessment`、`tier`（三個類型各一批）。`localFlavor` 的「在地」換成京都名物；`elderFit` 要反映坡、石階、座敷；`winterFit` 反映戶外、提早關門。`summary`、評分理由照 T44a 的規定不留整理時的筆記和代號（`validate` 會擋）。跑 `assessment-check.mjs kyoto`、`cross-area-check.mjs`（`AREAS` 加 `kyoto`）。
 - **代表照片**：照來源順序自動排，`photo-check.mjs` 打不開的往後排。
 - **地區這一層**（大阪之後才有的，照 T40、T51 的格式）：`areas.json` 的 `kyoto` 和每個子地區寫 `intro`（一句特色、代表的點、二月注意、要不要搭車；`basedOn` 寫資料點 ID）、地區代表照片 1 張（Wikimedia Commons，記作者和授權）。Chrome 只用來看概覽卡、地區列、地圖分層畫出來對不對。
@@ -2452,7 +2454,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **車站 ID**：照 CONVENTIONS「ID 規則」，近鐵不加前綴（`kyoto` 已被 `next-train.mjs` 當成近鐵京都用）、JR `jr-`、地下鐵和市巴士的前綴新訂（大阪的 `metro-` 是 Osaka Metro，京都市營地下鐵用同一個前綴會不會撞名先查，撞就另訂），京阪 `keihan-`、阪急 `hankyu-`、嵐電 `randen-`；寫回 CONVENTIONS §1.5。中文名重複的標業者（`validate` 會擋）。
 - 寫 `data/stations.json`（京都的車站）、`areas.json` 的 `kyoto.stations`、`data/timetables/kintetsu/_travel-times.json`、`data/timetables/urban/`、`data/passes.json`、`data/access/`（京都 ↔ 機場，需要時）、`data/raw/access/kyoto.md`、`schema/`、`scripts/validate.mjs`（補測試）、`docs/CONVENTIONS.md` §1.5、§2、§3。
 - 完成條件：`npm run validate`、`npm test` 通過；筆記寫清楚「沒查到的」和給 T88 的交接（哪些 `walkMin` 是 null、巴士的格式、哪些線假日整段 null）。
-- **狀態（2026-11-12 👤）**：市巴士以外的部分已 merge 回 master，任務維持 🔄；ODPT 審核通過、拿到 token 後再回來做市巴士（格式已定，見 `data/raw/access/kyoto.md` §9），做完才標 ✅。T88 可以先用現有的資料開始，市巴士那段之後補。
+- **狀態（2026-11-12 👤）**：市巴士以外的部分已 merge 回 master，任務維持 🔄；ODPT 審核通過、拿到 token 後再回來做市巴士（格式已定，見 `data/raw/access/kyoto.md` §9），做完才標 ✅。T86d、T88 先用現有的資料做，不等市巴士（見京都那一節的說明）；市巴士進來時這一輪要順便：跑 T88 留下的巴士測試（`it.todo` 那幾題改成真的）、對 T86d 那幾筆景點的停留所名。
 - **接手（可能換一台電腦，2026-11-12 整理）**：市巴士以外全部在 master，舊的 `t87` 分支和 worktree 已刪，沒有留在 git 外面的工作檔。從 master 重開：`git worktree add ../travel_helper-t87 -b t87 master`，在新 worktree 跑 `npm install`；ODPT 的 token 放 `.env`（不進 git，變數名稱開工時定，寫進 `data/raw/access/kyoto.md` §9）；照 §9 做市巴士（GTFS → 班距型 `mode: bus`、`citybus-` 停留所）。如果 T88 已經 merge，市巴士進來後跑 T88 的京都測試看巴士段有沒有算出來。**2027 年 1 月**另外要重跑 `jr-kosei.mjs`、`kyoto-urban.mjs`（JR おでかけネット只查得到約 6 週），可以和市巴士一起做。
 - **完成（2026-11-12，市巴士除外）**：筆記 `data/raw/access/kyoto.md`（沒查到的 §13、給 T88 的交接 §14）。近鐵京都 ↔ 伊勢志摩：`scripts/kintetsu-kyoto.mjs` 補直達特急（平日南下 4、北上 3；土休日 5、4）的京都側停站、往返大阪的特急補大和八木、京都 ↔ 大和八木的特急另加成班次（八木換車）；執行順序 timetable → osaka → kyoto（osaka 那支改成先拿掉京都側）。JR 湖西線時刻表型 `jr/jr-kosei.json`＋6 站（從大阪直通的班次從大阪列起，新快速不停おごと温泉）。班距型 20 條（`scripts/kyoto-urban.mjs`：JR 新快速兩條（到草津、到彥根，都從大阪列起、不在京都拆）、奈良線、嵯峨野線、近鐵京都線普通／急行、奈良線、地下鐵烏丸線／東西線、京阪京津線（交通局全列車 CSV）；阪急、京阪、嵐電、京阪石山坂本線南北、坂本纜車手寫在 `kyoto-urban.manual.mjs`）。轉乘 14 筆（`scripts/kyoto-transfers.mjs`）：**京都站近鐵 ↔ JR 沒有中間改札**，出站再進站、官方 5 分、有全程電梯走法；四条 ↔ 阪急烏丸旅程期間沒有無障礙通路（階段昇降機停用、新電梯 2027-03 才啟用）。車站 70 站（`scripts/kyoto-stations.mjs`；地下鐵前綴 `subway-`、竹田一個 ID、大和西大寺／八木是 `extra.via` 的經由站，validate 放寬範圍；座標用 ja.wikipedia，overpass-api.de 的 robots 禁止 /api/）、`areas.json` 兩區的 `stations`（阪急大阪梅田、京阪淀屋橋加進 `osaka.stations`）。琵琶湖巴士 5 條（江若 4、あかこんバス；佐川美術館改從堅田、近江鐵道巴士三條時刻網站 403 沒做）。`passes.json` 加京都 ↔ 伊勢市・鳥羽・賢島等 6 段（官方表）。schema `urban-route` 加 `mode: bus`（停留所寫在路線裡、`citybus-` 前綴、不進 stations.json），validate 補檢查和測試。**市巴士資料等 ODPT token**（👤 2026-11-12 已註冊、等審核）。JR 票價只有駅探（非官方）；JR おでかけネット只查得到 2026-12-25，**2027 年 1 月要重跑** `jr-kosei.mjs`、`kyoto-urban.mjs`。
 
@@ -2464,6 +2466,11 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
   - 「市內先搭地鐵、環狀線，不和計程車比」（`travel.ts`，spec §6.3）是照大阪寫的：京都有只有巴士到的點，照同一條規則先搭巴士（👤 2026-11-12：坐不下自己會改搭計程車，使用者本來就能在交通卡把方式改成計程車）。用真實的一段（京都站 → 清水寺、京都站 → 金閣寺）確認算出來是巴士、時間合理就好，不另外加規則。
 - **網站**：`web/src/lib/timetable.ts` 的站名對照、方向說明（「往伊勢中川・名古屋・大阪（北上）」）、`legView.ts` 的線名簡稱加京都的；`scripts/next-train.mjs` 跟著。地區配色照 `AREA_PALETTE` 的順序自動給，第 7 區會不會和前面的撞色看一下。地圖的初始範圍（`areas.ts` 用資料點最多的那一群）加了京都後還是伊勢志摩，確認就好。
 - **測試**：伊勢 → 京都（直達特急、八木換車各一）、京都一天的假行程（京都站 → 伏見稻荷 → 清水寺 → 四条 → 京都站，含一段巴士）、京都 ↔ 大阪當天來回、（有收的話）京都 → 關西機場；**不住京都的走法**：伊勢市 → 雄琴溫泉的住宿（近鐵到京都、換 JR，只換一次）、大阪難波的住宿 → 白鬚神社（新快速不在京都站多算換車；近江高島到神社那一段是走路或計程車）、琵琶湖的住宿 → 大阪的住宿；現有測試和 `perf.test.ts` 照樣通過，重算速度含京都的天量一次寫進 commit 訊息。
+- **市巴士還沒進來時怎麼做**（2026-11-12 👤：T87 的市巴士等 ODPT 審核，T88 不等它）：
+  - 現在的資料裡**沒有任何班距型的 `mode: bus`**（琵琶湖的 5 條巴士是時刻表型 `timetables/bus/`，不是班距型）。巴士的引擎支援（停留所不在 `stations.json`、`addStation` 要認路線檔的 `stops[]`、同 ID 停留所換車、等車和係數照 §5.4）照 `data/raw/access/kyoto.md` §9、§14 的格式做，用**單元測試的假路線**（2～3 個 `citybus-` 停留所、一個有 `station` 指到 `jr-kyoto`）測。
+  - 京都一天的假行程先排**不含巴士**的版本（京都站 → 伏見稻荷 → 四条 → 京都站）；清水寺、金閣寺那兩段先確認不會當掉，沒有巴士時算出什麼（計程車、步行或很遠的電車站）照實記在 commit 訊息，真正的斷言寫成 `it.todo`（或 skip 加註「等 T87 市巴士」），市巴士進來時由 T87 那一輪改成真的測試。
+  - dev server 的檢查：車站面板的「巴士班距」等市巴士進來再看；其他照完成條件。
+  - 完成就標 ✅，不因為市巴士留 🔄；剩下的寫在 T87 卡上。
 - 完成條件：`npm test`、`npm run typecheck`、`npm run validate` 通過；dev server 排一天京都，交通卡、班次表、車站面板（巴士的班距）沒有當掉（🌐 少量）；只跑受影響的 e2e。
 
 ### T89 京都收尾：全站的字、AI、正式環境 〔S〕
