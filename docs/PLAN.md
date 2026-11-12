@@ -2419,6 +2419,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - **腳本要改的**（改別人的腳本，commit 訊息說明）：`scripts/lib/tabelog-list.mjs` 的 `PREF` 加京都（A26）；`restaurant-candidates.mjs` 的 `scheme: osaka` 現在把名物清單寫在程式裡，改成從 rules 讀（或加 `scheme: kyoto`），補測試（`scripts/test/restaurant-cand.test.ts`）。
 - 照標準作業流程步驟 8 查食べログ、Google Maps；fit15 是 yes 或 split 的店看コース頁記團體套餐，口コミ、Google 評論也只讀這些店。
 - 寫 `data/areas/kyoto/restaurants.json`、`data/raw/kyoto/`、上面兩支腳本。
+- **結果**（2026-11-12）：京都 49 家（G 14、S 29、抹茶甘味 6）、琵琶湖 16 家（`data/areas/biwako/restaurants.json`）；規則回填 CONVENTIONS「京都、琵琶湖的做法」。`fit15` yes：京都 14、琵琶湖 9；伏見沒有能坐 15 人的店。食べログ列表 35 頁、店家頁 66、コース頁 20、口コミ 31 家、Google 地點 66、Google 評論 31 家；讀文 subagent 65 家。新工具 `scripts/chrome-receiver.mjs`、`chrome-actions.mjs --post`。restaurant-anchors 兩區已跑；住宿 7 間都是一泊二食，`dinnerAccess` 不用算。過程見 `data/raw/kyoto/log/T86c.md`、`data/raw/biwako/log/T86c.md`；留給 T86d：評分、代表照片排序、幾家最近的車站不在 `stations.json`（見 log）。
 
 #### T86d 收尾、摘要與評分、地區介紹、匯入 〔S〕（Chrome 少量）
 - `nearestStation`（T87 的車站，OSRM）、`restaurant-anchors.mjs kyoto`、`lodging-dinner-access.mjs`；不跑 `restaurant-gaps.mjs`。**只有巴士到的點**（金閣寺、清水寺）`nearestStation` 會很遠：`access` 寫巴士站和系統，引擎怎麼用由 T88 決定，這裡照 T87 的格式填。

@@ -68,25 +68,51 @@ export function roomMax(room) {
   return all.length ? Math.max(...all) : null;
 }
 
-// 大阪（CONVENTIONS §4「大阪（都市區）的做法」，T27c 加）：G 全員、S 分組，取代 A～F。
-// S 的「大阪名物和平價」（👤 2026-10-26）：類別第一項是名物，或昼的預算上限 1,999 円以下（沒有昼就看夜）；甜點、咖啡不算。
-// 只看第一項：「フレンチ、シーフード、串揚げ」這種不算串カツ店。
+// G 全員／S 分組（CONVENTIONS §4「大阪（都市區）的做法」，T27c 加；T86c 把名物改成從 rules 讀，京都、琵琶湖共用），取代 A～F。
+// S 的「名物和平價」：名物（rules.meibutsu），或昼的預算上限 1,999 円以下（沒有昼就看夜）；甜點、咖啡不算。
+// rules.meibutsu（沒寫 → 大阪的 OSAKA_RULES）：
+//   first：類別第一項是這些就算。只看第一項：「フレンチ、シーフード、串揚げ」這種不算串カツ店。
+//   any：出現在類別任一項就算（京都的 豆腐料理、棒寿司：いづう 是「日本料理、寿司、棒寿司」）。
+//   budgetMax：{ 類別: 上限 }，這幾類要昼預算上限（沒有昼看夜）在這以下才算（京都的 日本料理：排掉一人 1～4 萬円的料亭）；沒有預算 → 不算。
+//   sameAs：{ 類別: 歸成哪一類 }，S 的同類型上限用（うどんすき 算 うどん；京都的 そば、うどん 算同一類）。
+// rules.sweets（京都的抹茶甘味，👤 2026-11-12）：{ genres: ['甘味処'] }，類別第一項是這些、過 S 的分數門檻 → 也是 S，
+//   但不佔 S 的名額，另外照 caps.sweets 取（沒寫上限的子地區不收）。
 export const OSAKA_MEIBUTSU = ['たこ焼き', 'お好み焼き', 'もんじゃ焼き', '串揚げ', 'ふぐ', 'うどん', 'うどんすき', 'ホルモン', '肉まん'];
-export const isMeibutsu = (genre) => OSAKA_MEIBUTSU.includes(firstGenre(genre));
+export const OSAKA_RULES = { first: OSAKA_MEIBUTSU, sameAs: { うどんすき: 'うどん' } };
+export const genresOf = (genre) => (genre ?? '').split('、').map((g) => g.trim()).filter(Boolean);
 // 列表的預算字樣「1000～1999」「～999」→ 上限（円）；空 → null
 export const budgetMax = (s) => {
   const m = String(s ?? '').replace(/[￥,]/g, '').match(/(\d+)\s*$/);
   return m ? Number(m[1]) : null;
 };
-export function criteriaOsaka(shop, { gScore = 3.1, gReviews = 15, sScore = 3.3, sReviews = 50, cheapMax = 1999 } = {}) {
-  const out = [];
+const budgetOf = (shop) => budgetMax(shop.lunch) ?? budgetMax(shop.dinner);
+// 這家店算哪一類名物（照 sameAs 歸併後的類別名）；不是名物 → null
+export function meibutsuOf(shop, m = OSAKA_RULES) {
+  const list = genresOf(shop.genre);
+  const ok = (g) => {
+    const cap = m.budgetMax?.[g];
+    if (cap == null) return true;
+    const b = budgetOf(shop);
+    return b != null && b <= cap;
+  };
+  const hit = (m.first?.includes(list[0]) && ok(list[0]) ? list[0] : null) ?? list.find((g) => m.any?.includes(g) && ok(g)) ?? null;
+  return hit == null ? null : (m.sameAs?.[hit] ?? hit);
+}
+export const isMeibutsu = (genre) => meibutsuOf({ genre }) != null;
+// 同類型上限用的類別：名物照 meibutsuOf，其他照類別第一項（也套 sameAs）
+export const sameTypeKey = (shop, m = OSAKA_RULES) => meibutsuOf(shop, m) ?? m.sameAs?.[firstGenre(shop.genre)] ?? firstGenre(shop.genre);
+// → { criteria: ['G', 'S'], meibutsu: 類別或 null, sweet: 是不是只靠甘味進來的 }
+export function criteriaGS(shop, { gScore = 3.1, gReviews = 15, sScore = 3.3, sReviews = 50, cheapMax = 1999 } = {}, { meibutsu = OSAKA_RULES, sweets = null } = {}) {
+  const criteria = [];
   const s = shop.score ?? 0;
   const n = shop.reviews ?? 0;
   const max = roomMax(shop.room);
-  if (s >= gScore && n >= gReviews && max != null && max >= 15) out.push('G');
-  const meibutsu = isMeibutsu(shop.genre);
-  const budget = budgetMax(shop.lunch) ?? budgetMax(shop.dinner);
+  if (s >= gScore && n >= gReviews && max != null && max >= 15) criteria.push('G');
+  const kind = meibutsuOf(shop, meibutsu);
+  const budget = budgetOf(shop);
   const cheap = budget != null && budget <= cheapMax && typeOf(shop.genre) !== '咖啡・甜點';
-  if (s >= sScore && n >= sReviews && (meibutsu || cheap)) out.push('S');
-  return out;
+  const sweet = !!sweets?.genres?.includes(firstGenre(shop.genre));
+  if (s >= sScore && n >= sReviews && (kind != null || cheap || sweet)) criteria.push('S');
+  return { criteria, meibutsu: kind, sweet: sweet && kind == null && !cheap };
 }
+export const criteriaOsaka = (shop, th) => criteriaGS(shop, th).criteria;

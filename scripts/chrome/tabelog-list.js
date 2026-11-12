@@ -60,12 +60,13 @@ await (async () => {
   }
   // </parseCard>
 
-  // <toLine> 一店一行：id|店名|類別|分數|口コミ|定休|夜|昼|住所|個室|狀態|area|PR（空欄是空字串；| 換成 ｜）
+  // <toLine> 一店一行：id|店名|類別|分數|口コミ|定休|夜|昼|住所（沒有住所時「駅:最近車站 距離」）|個室|狀態|area|PR（空欄是空字串；| 換成 ｜）
   // 預算「￥3,000～￥3,999」→「3000～3999」，住所拿掉「○○県○○市」
   function toLine(s) {
     const b = (v) => (v ? v.replace(/[￥,]/g, '') : '');
     const clean = (v) => (v == null ? '' : String(v).replace(/\|/g, '｜').replace(/\n/g, ' '));
-    const addr = (s.address ?? '').replace(/^.{2,4}?[都道府県]/, '').replace(/^.{1,6}?市/, '').slice(0, 30);
+    // 都市區的列表卡片沒有住所（大阪、京都）：改放最近車站「駅:京都駅 348m」，rules 的 regions 可以用站名對子地區（T86c）
+    const addr = s.address ? s.address.replace(/^.{2,4}?[都道府県]/, '').replace(/^.{1,6}?市/, '').slice(0, 30) : s.areaText ? `駅:${s.areaText}`.slice(0, 30) : '';
     return [s.id, s.name, s.genre, s.score, s.reviews, s.holiday, b(s.dinner), b(s.lunch), addr, s.room, s.status, s.area, (s.pr ?? '').slice(0, 30)].map(clean).join('|');
   }
   // </toLine>

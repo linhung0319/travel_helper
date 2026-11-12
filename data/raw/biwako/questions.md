@@ -20,3 +20,12 @@
 - [ ] biwako-komorebi：有沒有全館包下的方案（候選階段的介紹說有，官網找不到）
 - [ ] biwako-biwako-grand-hotel：電話（官網 077-579-2111，其他資料 077-577-2211）；房數
 - [ ] biwako-ryokusuitei：團體住宿方案（官網寫「準備中」）
+
+## 餐廳（T86c）
+- [ ] biwako-osakayama-kaneyo：2/11（四・國定假日）本店開不開（本店週四休）
+- [ ] biwako-chikasada：2/11（四・國定假日）開不開（官網寫週四休，食べログ寫週三、週四）
+- [ ] biwako-daikichi-katata：2/9 是第 2 個週二（公休）；有沒有電梯
+- [ ] biwako-tsuruya-kihachi：2027 年 2 月的公休日；15 人團體席都是榻榻米，長輩能不能有椅子
+- [ ] biwako-sennaritei-kyara、biwako-tiffany、biwako-masa-takashima：15 人的房間是椅子還是座敷、在幾樓、有沒有電梯
+- [ ] biwako-morishima-omihachiman：團體價目表（官網 PDF 沒讀到）；10 人以上接送巴士的條件
+- [ ] biwako-matsukiya-honten：電話號碼（官網 077-534-2901、另一頁寫 077-534-1211）

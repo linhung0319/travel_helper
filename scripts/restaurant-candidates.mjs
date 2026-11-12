@@ -21,6 +21,12 @@
 //       G 依口コミ數取；超過 G 上限、但也符合 S 的店進 S 的名額。S 先取名物（OSAKA_MEIBUTSU）再取平價，同一類內依口コミ數；
 //       "sameType": 2 → S 裡同一類型（食べログ類別第一項，うどんすき算うどん）每區最多 2 家（👤 2026-10-26）。超過的標 over-limit。
 //       regions 的元素可以用 "area"（比對食べログ地區代碼，例如 "A270202"）代替 "re"（大阪的列表沒有住所）。
+//   京都、琵琶湖（T86c）：G／S 的規則一樣，"scheme": "gs"（"osaka" 是同一套、名物預設大阪的清單）。名物寫在 rules：
+//       "meibutsu": { "first": [類別第一項…], "any": [任一項…], "budgetMax": { "日本料理": 5999 }, "sameAs": { "つけ麺": "ラーメン" } }
+//       （各欄的意思見 lib/restaurant-cand.mjs 的 meibutsuOf）。
+//       "sweets": { "genres": ["甘味処"] } ＋ "caps": { "sweets": { "uji": 2, "higashiyama": 1 } }：抹茶甘味另外取、不佔 S 的名額，沒寫上限的子地區不收。
+//       食べログ的地區和子地區對不上時（「祇園」含岡崎、「伏見稲荷・伏見桃山」）：tabelog-list.js 在沒有住所的版型把最近車站放進住所欄
+//       （「駅:蹴上駅 300m」），regions 用 "re": "^駅:(蹴上|東山)駅" 排在 "area" 前面。
 //   B（2 種以上來源）由 mentions 的 type 種類自動算（tourism、media、blog-ja 算「日文媒體」一種，blog-zh 一種）。
 //   同類型上限：每個子地區、每個類型 12 家，依 A → F → B → C、同條件內口コミ數排序，超過的標 over-limit。
 
@@ -28,7 +34,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseLines, tabelogUrl } from './lib/tabelog-list.mjs';
-import { typeOf, contextsOf, autoExclusion, criteriaAC, criteriaOsaka, isMeibutsu, firstGenre, roomMax } from './lib/restaurant-cand.mjs';
+import { typeOf, contextsOf, autoExclusion, criteriaAC, criteriaGS, sameTypeKey, OSAKA_RULES, roomMax } from './lib/restaurant-cand.mjs';
 
 const args = process.argv.slice(2);
 const opt = (k) => (args.includes(`--${k}`) ? args[args.indexOf(`--${k}`) + 1] : null);
@@ -75,6 +81,9 @@ const rank = (c) => {
 
 export function build(shops, rules) {
   const out = [];
+  const gs = rules.scheme === 'osaka' || rules.scheme === 'gs';
+  const meibutsu = rules.meibutsu ?? (rules.scheme === 'osaka' ? OSAKA_RULES : {});
+  const meta = new Map(); // 候選 → { meibutsu, sweet, typeKey }（家數上限用，不寫進候選檔）
   for (const s of shops.values()) {
     const own = rules.overrides?.[s.id] ?? {};
     if ((s.score ?? 0) < (rules.minScore ?? 0) && !rules.overrides?.[s.id]) continue;
@@ -85,8 +94,9 @@ export function build(shops, rules) {
     const th = rules.thresholds?.[region] ?? {};
     const inFilter = s.filters.has('room') || s.filters.has('kashikiri');
     const max = roomMax(s.room);
-    const osaka = rules.scheme === 'osaka';
-    const ac = osaka ? criteriaOsaka(s, th) : criteriaAC(s, { ...th, inFilter, big15: max != null && max >= 15 });
+    const osaka = gs;
+    const judged = gs ? criteriaGS(s, th, { meibutsu, sweets: rules.sweets }) : null;
+    const ac = gs ? judged.criteria : criteriaAC(s, { ...th, inFilter, big15: max != null && max >= 15 });
     const mentions = rules.mentions?.[s.id] ?? [];
     const b = !osaka && sourceKinds(mentions).size >= 2 ? ['B'] : [];
     const criteria = [...new Set([...ac, ...b, ...(ov.criteria ?? [])])].sort((x, y) => ORDER.indexOf(x[0]) - ORDER.indexOf(y[0]) || x.localeCompare(y));
@@ -110,7 +120,7 @@ export function build(shops, rules) {
       (s.dinner || s.lunch) && `預算（食べログ列表）：夜 ${s.dinner ?? '-'}／昼 ${s.lunch ?? '-'}`,
       ov.note,
     ].filter(Boolean).join('；');
-    out.push({
+    const cand = {
       key: `tabelog-${s.id}`,
       name: { ja: s.name },
       region,
@@ -124,9 +134,11 @@ export function build(shops, rules) {
       contexts: ov.contexts ?? contextsOf(s),
       mentions,
       note,
-    });
+    };
+    if (gs) meta.set(cand, { meibutsu: judged.meibutsu, sweet: judged.sweet, typeKey: sameTypeKey(s, meibutsu) });
+    out.push(cand);
   }
-  if (rules.scheme === 'osaka') return applyOsakaCaps(out, rules.caps ?? {});
+  if (gs) return applyGsCaps(out, rules.caps ?? {}, meta);
   // 同類型上限（每個子地區、每個類型 12 家）
   const groups = new Map();
   for (const c of out.filter((c) => c.status === 'included')) {
@@ -143,34 +155,39 @@ export function build(shops, rules) {
   return out;
 }
 
-// 大阪的家數上限（見檔案開頭）：G 先取，S 再從剩下的店取
-export function applyOsakaCaps(out, caps) {
-  const capOf = (k, region) => caps[k]?.[region] ?? caps[k]?.default ?? Infinity;
+// G／S 的家數上限（見檔案開頭）：G 先取，S 再從剩下的店取；甘味（meta 的 sweet）另外照 caps.sweets 取
+export function applyGsCaps(out, caps, meta) {
+  const capOf = (k, region, dflt = Infinity) => caps[k]?.[region] ?? caps[k]?.default ?? dflt;
   const reviews = (c) => c.ratings.tabelogReviews ?? 0;
+  const m = (c) => meta.get(c) ?? {};
   const regions = new Set(out.map((c) => c.region));
   for (const region of regions) {
     const inc = out.filter((c) => c.region === region && c.status === 'included');
     const g = inc.filter((c) => c.criteria.includes('G')).sort((a, b) => reviews(b) - reviews(a));
     const gCap = capOf('G', region);
     const gKept = new Set(g.slice(0, gCap));
-    const s = inc
-      .filter((c) => !gKept.has(c) && c.criteria.includes('S'))
-      .sort((a, b) => Number(isMeibutsu(b.category)) - Number(isMeibutsu(a.category)) || reviews(b) - reviews(a));
+    const rest = inc.filter((c) => !gKept.has(c) && c.criteria.includes('S'));
+    const s = rest
+      .filter((c) => !m(c).sweet)
+      .sort((a, b) => Number(m(b).meibutsu != null) - Number(m(a).meibutsu != null) || reviews(b) - reviews(a));
     const sCap = capOf('S', region);
     const sKept = new Set();
     const perType = new Map();
-    const typeKey = (c) => firstGenre(c.category).replace(/^うどんすき$/, 'うどん');
     for (const c of s) {
       if (sKept.size >= sCap) break;
-      const k = typeKey(c);
+      const k = m(c).typeKey;
       if ((perType.get(k) ?? 0) >= (caps.sameType ?? Infinity)) continue;
       perType.set(k, (perType.get(k) ?? 0) + 1);
       sKept.add(c);
     }
+    const sweetCap = capOf('sweets', region, 0);
+    const sweetKept = new Set(rest.filter((c) => m(c).sweet).sort((a, b) => reviews(b) - reviews(a)).slice(0, sweetCap));
     for (const c of inc) {
-      if (gKept.has(c) || sKept.has(c)) continue;
+      if (gKept.has(c) || sKept.has(c) || sweetKept.has(c)) continue;
       c.status = 'over-limit';
-      c.reason = `子地區上限外（${region}：G ${gCap} 家、S ${sCap} 家${caps.sameType ? `、S 同類型 ${caps.sameType} 家` : ''}，依口コミ數）`;
+      c.reason = m(c).sweet && !c.criteria.includes('G')
+        ? `甘味的子地區上限外（${region}：${sweetCap} 家，依口コミ數）`
+        : `子地區上限外（${region}：G ${gCap} 家、S ${sCap} 家${caps.sameType ? `、S 同類型 ${caps.sameType} 家` : ''}，依口コミ數）`;
     }
   }
   return out;

@@ -1,7 +1,7 @@
 // scripts/lib/restaurant-cand.mjs、candidates-add.mjs、restaurant-candidates.mjs 的測試（T9c）。執行：npm test
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { typeOf, contextsOf, autoExclusion, criteriaAC, criteriaOsaka, budgetMax, roomMax } from '../lib/restaurant-cand.mjs';
+import { typeOf, contextsOf, autoExclusion, criteriaAC, criteriaOsaka, criteriaGS, meibutsuOf, budgetMax, roomMax } from '../lib/restaurant-cand.mjs';
 import { addCandidates } from '../lib/candidates-add.mjs';
 import { build, mergeLists, sourceKinds } from '../restaurant-candidates.mjs';
 
@@ -158,6 +158,89 @@ test('build（大阪）：S 同類型上限、名物只看類別第一項', () =
   assert.equal(by['tabelog-3'].status, 'over-limit');
   assert.equal(by['tabelog-4'].status, 'included');
   assert.equal(by['tabelog-5'].status, 'not-included');
+});
+
+// 京都的名物規則（T86c，👤 2026-11-12）：和 rules.json 寫的一樣
+const KYOTO = {
+  first: ['豆腐料理', '日本料理', '京料理', 'そば', 'うどん', 'ラーメン', 'つけ麺', '寿司', 'うなぎ'],
+  any: ['豆腐料理', '棒寿司'],
+  budgetMax: { 日本料理: 5999, 京料理: 5999 },
+  sameAs: { つけ麺: 'ラーメン', そば: 'そば・うどん', うどん: 'そば・うどん', 棒寿司: '寿司', 京料理: '日本料理' },
+};
+
+test('名物從 rules 讀（T86c）：第一項、任一項、預算上限、同類歸併', () => {
+  assert.equal(meibutsuOf({ genre: 'つけ麺、ラーメン' }, KYOTO), 'ラーメン');
+  assert.equal(meibutsuOf({ genre: 'そば、天ぷら' }, KYOTO), 'そば・うどん');
+  // 日本料理：昼預算上限 5,999 円以下才算；沒有昼看夜；沒有預算不算
+  assert.equal(meibutsuOf({ genre: '日本料理', dinner: '10000～14999', lunch: '4000～4999' }, KYOTO), '日本料理');
+  assert.equal(meibutsuOf({ genre: '日本料理', dinner: '30000～39999', lunch: '10000～14999' }, KYOTO), null);
+  assert.equal(meibutsuOf({ genre: '日本料理', dinner: '20000～29999' }, KYOTO), null);
+  assert.equal(meibutsuOf({ genre: '日本料理' }, KYOTO), null);
+  // 第一項的日本料理太貴，但任一項有豆腐料理 → 算豆腐料理
+  assert.equal(meibutsuOf({ genre: '日本料理、豆腐料理', lunch: '8000～9999' }, KYOTO), '豆腐料理');
+  // 任一項：居酒屋裡的棒寿司
+  assert.equal(meibutsuOf({ genre: '居酒屋、寿司、棒寿司' }, KYOTO), '寿司');
+  // 第二項的 ラーメン 不算
+  assert.equal(meibutsuOf({ genre: '中華料理、食堂、ラーメン' }, KYOTO), null);
+  // 沒給規則 → 大阪的清單
+  assert.equal(meibutsuOf({ genre: 'うどんすき' }), 'うどん');
+  assert.equal(meibutsuOf({ genre: 'ラーメン' }), null);
+  // 甘味：過 S 的門檻才算，標 sweet；平價的喫茶店照舊不算
+  const sweets = { genres: ['甘味処'] };
+  assert.deepEqual(criteriaGS({ score: 3.76, reviews: 2279, genre: '甘味処、和菓子、かき氷', lunch: '1000～1999' }, {}, { meibutsu: KYOTO, sweets }), { criteria: ['S'], meibutsu: null, sweet: true });
+  assert.deepEqual(criteriaGS({ score: 3.2, reviews: 2279, genre: '甘味処' }, {}, { meibutsu: KYOTO, sweets }).criteria, []);
+  assert.deepEqual(criteriaGS({ score: 3.73, reviews: 1901, genre: '喫茶店、ケーキ', lunch: '1000～1999' }, {}, { meibutsu: KYOTO, sweets }).criteria, []);
+  assert.deepEqual(criteriaGS({ score: 3.76, reviews: 2279, genre: '甘味処', lunch: '1000～1999' }, {}, { meibutsu: KYOTO }).criteria, []);
+});
+
+test('build（gs，京都）：名物照 rules、車站對子地區排在 area 前、甘味另計不佔 S 名額', () => {
+  const { shops } = mergeLists([{ name: 'gion-rt-1.txt', text: page('祇園', [
+    '1|山元麺蔵|うどん|3.95|2840|||1000～1999|駅:東山駅 600m|||A2601-A260301|',
+    '2|おかる|うどん、そば、食堂|3.59|1432||1000～1999|1000～1999|駅:祇園四条駅 250m|||A2601-A260301|',
+    '3|松葉|そば、食堂|3.49|861|水曜日|1000～1999|1000～1999|駅:祇園四条駅 50m|||A2601-A260301|',
+    '4|権兵衛|うどん、そば|3.5|800||1000～1999|1000～1999|駅:祇園四条駅 300m|||A2601-A260301|',
+    '5|いづう|日本料理、寿司、棒寿司|3.69|700|火曜日|2000～2999|2000～2999|駅:祇園四条駅 300m|||A2601-A260301|',
+    '6|洋食|洋食、オムライス|3.65|1216||1000～1999|1000～1999|駅:祇園四条駅 300m|||A2601-A260301|',
+    '7|徳屋|甘味処、和菓子、かき氷|3.76|2279||1000～1999|1000～1999|駅:祇園四条駅 300m|||A2601-A260301|',
+    '8|鍵善|甘味処、和菓子、カフェ|3.78|1969||1000～1999|1000～1999|駅:祇園四条駅 200m|||A2601-A260301|',
+    '9|料亭|日本料理|3.9|900||30000～39999|10000～14999|駅:祇園四条駅 200m|完全個室有(2〜20人可)||A2601-A260301|',
+  ]) }]);
+  const out = build(shops, {
+    scheme: 'gs',
+    minScore: 3.1,
+    regions: [{ re: '^駅:(東山|蹴上)駅', region: 'okazaki' }, { area: 'A260301', region: 'higashiyama' }],
+    meibutsu: KYOTO,
+    sweets: { genres: ['甘味処'] },
+    caps: { G: { default: 1 }, S: { default: 3 }, sweets: { higashiyama: 1 }, sameType: 2 },
+  });
+  const by = Object.fromEntries(out.map((c) => [c.key, c]));
+  assert.equal(by['tabelog-1'].region, 'okazaki');
+  assert.equal(by['tabelog-1'].status, 'included');
+  assert.equal(by['tabelog-2'].status, 'included'); // そば・うどん 第 1
+  assert.equal(by['tabelog-3'].status, 'included'); // そば・うどん 第 2
+  assert.equal(by['tabelog-4'].status, 'over-limit'); // そば・うどん 第 3（そば、うどん 算同一類）
+  assert.equal(by['tabelog-5'].status, 'included'); // 棒寿司在第三項、日本料理 2,999 円以下
+  assert.equal(by['tabelog-6'].status, 'over-limit'); // 平價，排在名物後、名額滿了
+  assert.equal(by['tabelog-7'].status, 'included'); // 甘味第 1，不佔 S 的 3 家
+  assert.equal(by['tabelog-8'].status, 'over-limit');
+  assert.match(by['tabelog-8'].reason, /甘味/);
+  assert.equal(by['tabelog-9'].status, 'included'); // G：料亭太貴不算名物，但有 20 人個室
+  assert.deepEqual(by['tabelog-9'].criteria, ['G']);
+  assert.equal(by['tabelog-1'].links.tabelog, 'https://tabelog.com/kyoto/A2601/A260301/1/');
+});
+
+test('build（gs）：沒寫 caps.sweets 的子地區不收甘味；沒寫 meibutsu 就只有平價', () => {
+  const { shops } = mergeLists([{ name: 'otsu-rt-1.txt', text: page('大津', [
+    '1|力餅|甘味処|3.67|901||～999|～999||||A2501-A250101|',
+    '2|かねよ|うなぎ|3.5|694||5000～5999|3000～3999||||A2501-A250101|',
+    '3|ラーメン|ラーメン|3.49|641||～999|～999||||A2501-A250101|',
+  ]) }]);
+  const out = build(shops, { scheme: 'gs', minScore: 3.1, regions: [{ area: 'A250101', region: 'otsu' }], sweets: { genres: ['甘味処'] }, caps: { S: { default: 3 } } });
+  const by = Object.fromEntries(out.map((c) => [c.key, c]));
+  assert.equal(by['tabelog-1'].status, 'over-limit');
+  assert.equal(by['tabelog-2'].status, 'not-included');
+  assert.equal(by['tabelog-3'].status, 'included');
+  assert.equal(by['tabelog-3'].links.tabelog, 'https://tabelog.com/shiga/A2501/A250101/3/');
 });
 
 test('candidates add：衝突、取代', () => {

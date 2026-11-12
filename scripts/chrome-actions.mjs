@@ -14,6 +14,10 @@
 //   node scripts/chrome-actions.mjs --tab <tabId> --script tabelog-list [--parts 3] <食べログ列表網址>...
 //       （每頁 navigate → 抽取（回傳第 1 段）→ 再讀第 2～N 段；browser_batch 每個動作只留約 1,000 字，20 家約要 3 段）
 //
+// --post <檔名>：抽取結果不回傳，改成 POST 到本機的 scripts/chrome-receiver.mjs（先在背景開著），直接寫進工作目錄的 <檔名>
+//          （tabelog.jsonl、google.jsonl、reviews.jsonl），回傳只剩一行「saved …」和 warnings（T86c；回傳被截斷時不用再分段讀、手抄）。
+//          key：tabelog-info、tabelog-reviews 用 batch 的 key；google-place 的查詢寫成 "<key>=<店名 地名>"；google-reviews 加 --key <key>。
+//          --port <埠>（預設 8765）。第一次 Chrome 會問這個網站能不能連本機網路，要 👤 按允許。
 // --wait <秒>：navigate 後先等幾秒（google-place、tabelog-info 自己會等，不用加）。
 // --store：程式本體只傳一次（第一頁存進該網站的 localStorage，之後每頁只傳一行 eval），每頁省約 3k 字的 token。
 //          同一網站之後的 batch 加 --stored（不再存）；最後一個 batch 加 --cleanup（結束時 removeItem）。
@@ -25,7 +29,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
-const VALUED = ['--tab', '--script', '--wait', '--batch', '--keywords', '--steps', '--parts'];
+const VALUED = ['--tab', '--script', '--wait', '--batch', '--keywords', '--steps', '--parts', '--post', '--port', '--key'];
 const opt = (k) => (args.includes(`--${k}`) ? args[args.indexOf(`--${k}`) + 1] : null);
 const flag = (k) => args.includes(`--${k}`);
 const tab = Number(opt('tab'));
@@ -56,16 +60,35 @@ const body = isGoogleReviews
 const KEY = `__th_${script}`;
 let stored = flag('stored');
 const store = flag('store');
-const runJs = (step) => {
+// 回傳 { pre, expr }：pre 是 --store 第一頁的 localStorage.setItem(…);，expr 是要 await 的運算式（--post 要把 expr 包起來）
+const runParts = (step) => {
   const call = isGoogleReviews ? `(${'%E%'})(${JSON.stringify(step)})` : '%E%';
-  if (!store && !stored) return isGoogleReviews ? `await ${call.replace('%E%', () => body)};` : js;
+  if (!store && !stored) return { pre: '', expr: call.replace('%E%', () => body) };
   const ev = `eval(localStorage.getItem(${JSON.stringify(KEY)}))`;
   const pre = stored ? '' : `localStorage.setItem(${JSON.stringify(KEY)}, ${JSON.stringify(body)});\n`;
   stored = true;
-  return `${pre}await ${call.replace('%E%', () => ev)};`;
+  return { pre, expr: call.replace('%E%', () => ev) };
 };
-const js1 = (step) => ({ name: 'javascript_tool', input: { action: 'javascript_exec', tabId: tab, text: runJs(step) } });
+const runJs = (step) => {
+  const { pre, expr } = runParts(step);
+  return `${pre}await ${expr};`;
+};
+const postFile = opt('post');
+const port = Number(opt('port') ?? 8765);
+// --post：把抽取的運算式包起來，結果送到本機接收器，只回傳一行（存了幾個字、warnings、Google 的候選名、評論則數）
+const wrapPost = ({ pre, expr }, key, step) => {
+  const q = new URLSearchParams({ key, ...(step ? { step } : {}) }).toString();
+  const url = JSON.stringify(`http://127.0.0.1:${port}/${postFile}?${q}`);
+  return [
+    `${pre}const __r = await ${expr};`,
+    `const __t = await fetch(${url}, { method: 'POST', body: JSON.stringify(__r) }).then((r) => r.text(), (e) => 'POST 失敗：' + e.message);`,
+    "__t + (__r && __r.warnings && __r.warnings.length ? ' 警告：' + __r.warnings.join('；') : '') + (__r && __r.candidates ? ' 候選：' + JSON.stringify(__r.candidates).slice(0, 300) : '') + (__r && Array.isArray(__r.reviews) ? ' 則數：' + __r.reviews.length : '');",
+  ].join('\n');
+};
+const js1 = (step, key, stepName) => ({ name: 'javascript_tool', input: { action: 'javascript_exec', tabId: tab, text: postFile && key ? wrapPost(runParts(step), key, stepName) : runJs(step) } });
 
+// --post 的 key：google-place 是「<key>=<查詢>」；其他是 --key、batch 的 key，或網址裡的店家 ID
+const keyOf = (t) => (google ? (t.match(/^([a-z0-9-]+)=/)?.[1] ?? null) : (opt('key') ?? (/^https?:/.test(t) ? (t.match(/\/(\d{6,})\//)?.[1] ?? null) : t.split(':')[0])));
 const storeUrl = (t) => {
   if (!batch || /^https?:/.test(t)) return { url: t };
   const [key, suffix = ''] = t.split(':');
@@ -73,7 +96,7 @@ const storeUrl = (t) => {
   if (!b?.tabelog) throw new Error(`batch.json 裡沒有 ${key} 的食べログ網址`);
   return { url: b.tabelog + suffix };
 };
-const urlOf = (t) => (google ? `https://www.google.com/maps/search/${encodeURIComponent(t)}?hl=ja` : storeUrl(t).url);
+const urlOf = (t) => (google ? `https://www.google.com/maps/search/${encodeURIComponent(t.replace(/^[a-z0-9-]+=/, ''))}?hl=ja` : storeUrl(t).url);
 
 const actions = [];
 const nav = (url) => {
@@ -85,10 +108,10 @@ if (script === 'tabelog-reviews') {
   for (const t of targets) {
     const base = urlOf(t).replace(/dtlrvwlst\/.*$/, '');
     nav(`${base}dtlrvwlst/`);
-    actions.push(js1());
+    actions.push(js1(undefined, keyOf(t), 'tabelog-latest'));
     for (const k of keywords) {
       nav(`${base}dtlrvwlst/?sw=${encodeURIComponent(k)}`);
-      actions.push(js1());
+      actions.push(js1(undefined, keyOf(t), `tabelog-sw-${k}`));
     }
   }
 } else if (isGoogleReviews) {
@@ -98,18 +121,18 @@ if (script === 'tabelog-reviews') {
   }
   const u = targets[0];
   nav(/[?&]hl=/.test(u) ? u : `${u}${u.includes('?') ? '&' : '?'}hl=ja`);
-  for (const s of (opt('steps') ?? 'open,lowest').split(',')) actions.push(js1(s));
+  for (const s of (opt('steps') ?? 'open,lowest').split(',')) actions.push(js1(s, opt('key'), `google-${s}`));
   for (const k of keywords) {
-    actions.push(js1('search'));
+    actions.push(js1('search', opt('key'), `google-search-open-${k}`));
     actions.push({ name: 'computer', input: { action: 'type', text: k, tabId: tab, action_summary: `在 Google 評論搜尋框輸入「${k}」` } });
     actions.push({ name: 'computer', input: { action: 'key', text: 'Return', tabId: tab, action_summary: '送出評論搜尋' } });
-    actions.push(js1('extract'));
+    actions.push(js1('extract', opt('key'), `google-search-${k}`));
   }
 } else {
   const parts = script === 'tabelog-list' ? Number(opt('parts') ?? 3) : 1;
   for (const t of targets) {
     nav(urlOf(t));
-    actions.push(js1());
+    actions.push(js1(undefined, script === 'tabelog-list' ? null : keyOf(t)));
     // tabelog-list.js 把全文存在 window.__thTabelogList、回傳第 1 段（900 字）；這裡接著讀第 2～N 段
     for (let i = 1; i < parts; i++) {
       actions.push({ name: 'javascript_tool', input: { action: 'javascript_exec', tabId: tab, text: `'[${i + 1}]' + (window.__thTabelogList || '').slice(${900 * i}, ${900 * (i + 1)})` } });
