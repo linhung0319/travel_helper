@@ -1,0 +1,714 @@
+[
+  {
+    "key": "kyoto-toji",
+    "name": {
+      "ja": "東寺（教王護国寺）"
+    },
+    "region": "kyoto-station",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 20349
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-railway-museum",
+    "name": {
+      "ja": "京都鉄道博物館"
+    },
+    "region": "kyoto-station",
+    "category": "博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 20248
+    },
+    "note": "週三休（2027-02-10）"
+  },
+  {
+    "key": "kyoto-aquarium",
+    "name": {
+      "ja": "京都水族館"
+    },
+    "region": "kyoto-station",
+    "category": "水族館",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 15173
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-tower",
+    "name": {
+      "ja": "ニデック京都タワー"
+    },
+    "region": "kyoto-station",
+    "category": "展望台",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 18614
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-sanjusangendo",
+    "name": {
+      "ja": "三十三間堂"
+    },
+    "region": "kyoto-station",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.7,
+      "googleReviews": 18053
+    },
+    "note": "東山区七条，離京都站約 1.5 km，歸京都站周邊"
+  },
+  {
+    "key": "kyoto-higashi-honganji",
+    "name": {
+      "ja": "東本願寺"
+    },
+    "region": "kyoto-station",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "京都站周邊已收 5 筆；離京都站近，排行程時可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 13180
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-nishi-honganji",
+    "name": {
+      "ja": "西本願寺"
+    },
+    "region": "kyoto-station",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "京都站周邊已收 5 筆（Google 評論數比東本願寺少）",
+    "pointId": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 6013
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-kiyomizudera",
+    "name": {
+      "ja": "清水寺"
+    },
+    "region": "higashiyama",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 74439
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-yasaka-jinja",
+    "name": {
+      "ja": "八坂神社"
+    },
+    "region": "higashiyama",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 34473
+    },
+    "note": "花見小路通、祇園白川寫進 extra.nearby"
+  },
+  {
+    "key": "kyoto-sannenzaka",
+    "name": {
+      "ja": "産寧坂・二寧坂"
+    },
+    "region": "higashiyama",
+    "category": "街道",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 17351
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-hanamikoji",
+    "name": {
+      "ja": "花見小路通"
+    },
+    "region": "higashiyama",
+    "category": "街道",
+    "status": "not-included",
+    "reason": "街道、Google 沒有評分；寫進八坂神社的 extra.nearby",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-kodaiji",
+    "name": {
+      "ja": "高台寺"
+    },
+    "region": "higashiyama",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "東山已收 3 筆；和清水寺、八坂神社同一條散步路線，排行程時可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 10382
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-kenninji",
+    "name": {
+      "ja": "建仁寺"
+    },
+    "region": "higashiyama",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "東山已收 3 筆",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 9792
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-chionin",
+    "name": {
+      "ja": "知恩院"
+    },
+    "region": "higashiyama",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "三門前的石階很長（男坂），長輩不適合；東山已收 3 筆",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 8181
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-fushimi-inari",
+    "name": {
+      "ja": "伏見稲荷大社"
+    },
+    "region": "fushimi",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 93821
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-tofukuji",
+    "name": {
+      "ja": "東福寺"
+    },
+    "region": "fushimi",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "2 月不是紅葉季；伏見稻荷附近，排行程時可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 11485
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-gekkeikan",
+    "name": {
+      "ja": "月桂冠大倉記念館"
+    },
+    "region": "fushimi",
+    "category": "博物館",
+    "status": "not-included",
+    "reason": "酒藏見學，小孩不適合；伏見的酒藏一帶不收",
+    "pointId": null,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 4845
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-togetsukyo",
+    "name": {
+      "ja": "渡月橋"
+    },
+    "region": "arashiyama",
+    "category": "名勝",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 5735
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-bamboo-grove",
+    "name": {
+      "ja": "竹林の小径"
+    },
+    "region": "arashiyama",
+    "category": "名勝",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 26661
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-tenryuji",
+    "name": {
+      "ja": "天龍寺"
+    },
+    "region": "arashiyama",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 17552
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-monkey-park",
+    "name": {
+      "ja": "嵐山モンキーパークいわたやま"
+    },
+    "region": "arashiyama",
+    "category": "動物",
+    "status": "not-included",
+    "reason": "入口到山頂廣場要爬山路約 20 分，長輩不適合",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 15255
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-sagano-torokko",
+    "name": {
+      "ja": "嵯峨野トロッコ列車"
+    },
+    "region": "arashiyama",
+    "category": "觀光列車",
+    "status": "not-included",
+    "reason": "2027 年 2 月不開：現行車輛 2026-12-29 退役，新車 2027-03-01 起運行",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-hozugawa",
+    "name": {
+      "ja": "保津川下り"
+    },
+    "region": "arashiyama",
+    "category": "遊船",
+    "status": "not-included",
+    "reason": "2 月有開，但乘船約 2 小時、要先到龜岡上船，一天行程太重；寫在 README",
+    "pointId": null,
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 5874
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-nishiki-market",
+    "name": {
+      "ja": "錦市場"
+    },
+    "region": "shijo-nijo",
+    "category": "市場",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 55532
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-nijojo",
+    "name": {
+      "ja": "元離宮二条城"
+    },
+    "region": "shijo-nijo",
+    "category": "城",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 43874
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-gosho",
+    "name": {
+      "ja": "京都御所"
+    },
+    "region": "shijo-nijo",
+    "category": "宮殿",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 2125
+    },
+    "note": "通年公開、免費、不用預約；Google 評論數少，但是外國旅客訪問地第 9 名（京都観光総合調査 2024）"
+  },
+  {
+    "key": "kyoto-manga-museum",
+    "name": {
+      "ja": "京都国際マンガミュージアム"
+    },
+    "region": "shijo-nijo",
+    "category": "博物館",
+    "status": "not-included",
+    "reason": "四条・二条已收 3 筆；小孩讀日文漫畫有限",
+    "pointId": null,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 6782
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-pontocho",
+    "name": {
+      "ja": "先斗町"
+    },
+    "region": "shijo-nijo",
+    "category": "街道",
+    "status": "not-included",
+    "reason": "晚上的餐廳街，留給 T86c",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-kinkakuji",
+    "name": {
+      "ja": "金閣寺（鹿苑寺）"
+    },
+    "region": "kinkaku-kitano",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 71980
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-kitano-tenmangu",
+    "name": {
+      "ja": "北野天満宮"
+    },
+    "region": "kinkaku-kitano",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 17027
+    },
+    "note": "梅苑 2 月上旬開苑"
+  },
+  {
+    "key": "kyoto-ryoanji",
+    "name": {
+      "ja": "龍安寺"
+    },
+    "region": "kinkaku-kitano",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "石庭要脫鞋坐在方丈的緣側看；金閣寺附近，排行程時可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 11757
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-ninnaji",
+    "name": {
+      "ja": "仁和寺"
+    },
+    "region": "kinkaku-kitano",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "2 月不是御室桜的季節",
+    "pointId": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 8050
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-ginkakuji",
+    "name": {
+      "ja": "銀閣寺（慈照寺）"
+    },
+    "region": "okazaki",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 18453
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-philosophers-path",
+    "name": {
+      "ja": "哲学の道"
+    },
+    "region": "okazaki",
+    "category": "散步道",
+    "status": "not-included",
+    "reason": "散步道、Google 沒有評分；寫進銀閣寺的 extra.nearby",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-nanzenji",
+    "name": {
+      "ja": "南禅寺"
+    },
+    "region": "okazaki",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 12881
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-heian-jingu",
+    "name": {
+      "ja": "平安神宮"
+    },
+    "region": "okazaki",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 16601
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-city-zoo",
+    "name": {
+      "ja": "京都市動物園"
+    },
+    "region": "okazaki",
+    "category": "動物園",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 7321
+    },
+    "note": "國中以下免費、週一休"
+  },
+  {
+    "key": "kyoto-byodoin",
+    "name": {
+      "ja": "平等院"
+    },
+    "region": "uji",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 22887
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-nintendo-museum",
+    "name": {
+      "ja": "ニンテンドーミュージアム"
+    },
+    "region": "uji",
+    "category": "博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 5650
+    },
+    "note": "抽選預約制"
+  },
+  {
+    "key": "kyoto-ujigami-jinja",
+    "name": {
+      "ja": "宇治上神社"
+    },
+    "region": "uji",
+    "category": "神社",
+    "status": "not-included",
+    "reason": "宇治已收 2 筆；平等院附近可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 3225
+    },
+    "note": null
+  },
+  {
+    "key": "kyoto-toei-uzumasa",
+    "name": {
+      "ja": "東映太秦映画村"
+    },
+    "region": "uzumasa",
+    "category": "主題樂園",
+    "status": "included",
+    "reason": null,
+    "pointId": null,
+    "detailPending": true,
+    "ratings": {
+      "google": 4,
+      "googleReviews": 11456
+    },
+    "note": "週二休（2027-02-09）；第 2 期 2027 春開幕前施工中"
+  },
+  {
+    "key": "kyoto-katsura-rikyu",
+    "name": {
+      "ja": "桂離宮"
+    },
+    "region": "arashiyama",
+    "category": "宮殿",
+    "status": "not-included",
+    "reason": "要事先申請，限國中以上、一件最多 4 人，小孩不能同行",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-shugakuin-rikyu",
+    "name": {
+      "ja": "修学院離宮"
+    },
+    "region": "okazaki",
+    "category": "宮殿",
+    "status": "not-included",
+    "reason": "要事先申請，限 18 歲以上、一件最多 4 人",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-sento-gosho",
+    "name": {
+      "ja": "京都仙洞御所"
+    },
+    "region": "shijo-nijo",
+    "category": "宮殿",
+    "status": "not-included",
+    "reason": "要事先申請，限 18 歲以上、一件最多 4 人",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "kyoto-kokedera",
+    "name": {
+      "ja": "西芳寺（苔寺）"
+    },
+    "region": "arashiyama",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "要事先申請；官網寫 5 人以上的團體不接受",
+    "pointId": null,
+    "note": null
+  }
+]
