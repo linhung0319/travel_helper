@@ -7,23 +7,8 @@ import { buildNetwork } from '../src/raptor/network.ts';
 import { realData } from './fixtures.ts';
 
 const cfg = resolveConfig();
-const base = realData();
+const real: EngineData = realData();
 const WHOLE = { size: 15, elders: 5, kids: 4 };
-
-/**
- * T86d 還沒填景點的 nearestStation：伏見稻荷大社的座標在本殿一帶，離 JR 稲荷直線約 770 m（×1.3 ÷ 80 × 1.4 超過單段步行上限），
- * 照 data/raw/kyoto/README.md「JR 稲荷站下車即到」先補 3 分。資料有寫了就用資料的
- */
-const STAND_IN: Record<string, { id: string; minutes: number }> = { 'kyoto-fushimi-inari': { id: 'jr-inari', minutes: 3 } };
-const real: EngineData = {
-  ...base,
-  getPlace: (id) => {
-    const r = base.getPlace(id);
-    const s = STAND_IN[id];
-    if (!r || !s || r.record.nearestStation) return r;
-    return { ...r, record: { ...r.record, nearestStation: { id: s.id, minutes: s.minutes, mode: 'walk' } } };
-  },
-};
 
 const P = (id: string): Endpoint => {
   const r = real.getPlace(id)?.record ?? null;
@@ -77,7 +62,7 @@ test('京都 → 近鐵丹波橋：搭班距型的近鐵京都線，不搭京都
 
 // --- 京都一天（不含巴士） --------------------------------------------------------
 
-test('京都一天（不含巴士）：京都站的住宿 → 伏見稻荷 → 錦市場 → 住宿，都搭電車', () => {
+test('京都一天（不含巴士）：京都站的住宿 → 伏見稻荷 → 錦市場 → 住宿，算得出來、沒有「找不到交通」', () => {
   const date = '2027-02-09';
   let it = createItinerary();
   it = setLodging(it, '2027-02-08', 'kyoto-miyako-hachijo');
@@ -96,12 +81,19 @@ test('京都一天（不含巴士）：京都站的住宿 → 伏見稻荷 → �
       ['lodging', 'kyoto-miyako-hachijo'],
     ],
   );
-  // 京都站 → 稲荷：JR 奈良線（班距型）
-  assert.ok(day.entries[1].travel?.rides.some((r) => r.routeId === 'jr-nara'));
+  // 伏見稻荷的 nearestStation 是 JR 稲荷 11 分（T86d 路線估算到本殿一帶），× 1.4 超過單段步行上限 15 分，
+  // 所以進出伏見稻荷那兩段照規則是計程車；錦市場 → 住宿搭地鐵
   for (const e of day.entries.slice(1)) {
-    assert.ok(e.travel && e.travel.mode === 'train', `${e.placeId} ${e.travel?.mode}`);
+    assert.ok(e.travel && (e.travel.mode === 'train' || e.travel.mode === 'taxi'), `${e.placeId} ${e.travel?.mode}`);
     assert.ok(e.travel.minutes < 60, `${e.placeId} ${e.travel.minutes} 分`);
   }
+  assert.equal(day.entries[3].travel?.mode, 'train');
+});
+
+test('京都站的住宿 → JR 稲荷站：搭 JR 奈良線（班距型）', () => {
+  const { leg } = planLeg(P('kyoto-miyako-hachijo'), P('jr-inari'), ctx({ date: '2027-02-09', depart: hm(9, 30) }));
+  assert.equal(leg.mode, 'train');
+  assert.ok(leg.rides.some((r) => r.routeId === 'jr-nara'), leg.rides.map((r) => r.line).join(','));
 });
 
 // --- 只有巴士到的點（市巴士還沒進來） ---------------------------------------------
