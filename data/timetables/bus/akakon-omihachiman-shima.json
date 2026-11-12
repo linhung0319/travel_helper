@@ -1,0 +1,586 @@
+{
+  "id": "akakon-omihachiman-shima",
+  "mode": "bus",
+  "operator": "近江八幡市（あかこんバス）",
+  "name": {
+    "ja": "あかこんバス ①島・沖島町コース 近江八幡駅北口～元八幡～北之庄",
+    "zh": "近江八幡市社區巴士 Akakon ①島・沖島町路線（近江八幡站北口～元八幡〔八幡堀〕～北之庄〔La Collina〕）"
+  },
+  "validFrom": "2025-08-28",
+  "validTo": null,
+  "retrieved": "2026-11-12",
+  "stops": [
+    {
+      "id": "omihachiman-kitaguchi",
+      "name": "近江八幡駅北口",
+      "coords": [
+        136.102085247881,
+        35.12314
+      ],
+      "near": [
+        {
+          "id": "jr-omi-hachiman",
+          "meters": 67
+        }
+      ]
+    },
+    {
+      "id": "motohachiman-1",
+      "name": "元八幡（往堀切）",
+      "coords": [
+        136.091660430946,
+        35.1394556118351
+      ],
+      "near": [
+        {
+          "id": "biwako-hachimanbori",
+          "meters": 157
+        }
+      ]
+    },
+    {
+      "id": "motohachiman-2",
+      "name": "元八幡（往駅北口）",
+      "coords": [
+        136.091701,
+        35.139462
+      ],
+      "near": [
+        {
+          "id": "biwako-hachimanbori",
+          "meters": 160
+        }
+      ]
+    },
+    {
+      "id": "kitanosho-2",
+      "name": "北之庄（往堀切）",
+      "coords": [
+        136.093493270898,
+        35.1473211420391
+      ],
+      "near": [
+        {
+          "id": "biwako-la-collina",
+          "meters": 260
+        }
+      ]
+    },
+    {
+      "id": "kitanosho-1",
+      "name": "北之庄（往駅北口）",
+      "coords": [
+        136.093535710439,
+        35.147552838995
+      ],
+      "near": [
+        {
+          "id": "biwako-la-collina",
+          "meters": 246
+        }
+      ]
+    }
+  ],
+  "trips": {
+    "weekday": [
+      {
+        "id": "akakon-omihachiman-shima-weekday-1",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "08:40"
+          ],
+          [
+            "motohachiman-1",
+            "08:54",
+            "08:54"
+          ],
+          [
+            "kitanosho-2",
+            "08:59",
+            "08:59"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-2",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "11:20"
+          ],
+          [
+            "motohachiman-1",
+            "11:34",
+            "11:34"
+          ],
+          [
+            "kitanosho-2",
+            "11:39",
+            "11:39"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-3",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "13:20"
+          ],
+          [
+            "motohachiman-1",
+            "13:34",
+            "13:34"
+          ],
+          [
+            "kitanosho-2",
+            "13:39",
+            "13:39"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-4",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "15:20"
+          ],
+          [
+            "motohachiman-1",
+            "15:34",
+            "15:34"
+          ],
+          [
+            "kitanosho-2",
+            "15:39",
+            "15:39"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-5",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "17:35"
+          ],
+          [
+            "motohachiman-1",
+            "17:49",
+            "17:49"
+          ],
+          [
+            "kitanosho-2",
+            "17:51",
+            "17:51"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-6",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "08:10",
+            "08:10"
+          ],
+          [
+            "motohachiman-2",
+            "08:13",
+            "08:13"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "08:35",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-7",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "09:54",
+            "09:54"
+          ],
+          [
+            "motohachiman-2",
+            "10:00",
+            "10:00"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "10:22",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-8",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "12:43",
+            "12:43"
+          ],
+          [
+            "motohachiman-2",
+            "12:49",
+            "12:49"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "13:10",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-9",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "14:43",
+            "14:43"
+          ],
+          [
+            "motohachiman-2",
+            "14:49",
+            "14:49"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "15:10",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-weekday-10",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "16:43",
+            "16:43"
+          ],
+          [
+            "motohachiman-2",
+            "16:49",
+            "16:49"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "17:11",
+            null
+          ]
+        ]
+      }
+    ],
+    "saturday": [
+      {
+        "id": "akakon-omihachiman-shima-saturday-1",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "08:40"
+          ],
+          [
+            "motohachiman-1",
+            "08:54",
+            "08:54"
+          ],
+          [
+            "kitanosho-2",
+            "08:59",
+            "08:59"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-2",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "11:20"
+          ],
+          [
+            "motohachiman-1",
+            "11:34",
+            "11:34"
+          ],
+          [
+            "kitanosho-2",
+            "11:39",
+            "11:39"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-3",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "13:20"
+          ],
+          [
+            "motohachiman-1",
+            "13:34",
+            "13:34"
+          ],
+          [
+            "kitanosho-2",
+            "13:39",
+            "13:39"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-4",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "15:20"
+          ],
+          [
+            "motohachiman-1",
+            "15:34",
+            "15:34"
+          ],
+          [
+            "kitanosho-2",
+            "15:39",
+            "15:39"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-5",
+        "headsign": "堀切",
+        "dir": 1,
+        "stops": [
+          [
+            "omihachiman-kitaguchi",
+            null,
+            "17:35"
+          ],
+          [
+            "motohachiman-1",
+            "17:49",
+            "17:49"
+          ],
+          [
+            "kitanosho-2",
+            "17:51",
+            "17:51"
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-6",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "08:10",
+            "08:10"
+          ],
+          [
+            "motohachiman-2",
+            "08:13",
+            "08:13"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "08:35",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-7",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "09:54",
+            "09:54"
+          ],
+          [
+            "motohachiman-2",
+            "10:00",
+            "10:00"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "10:22",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-8",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "12:43",
+            "12:43"
+          ],
+          [
+            "motohachiman-2",
+            "12:49",
+            "12:49"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "13:10",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-9",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "14:43",
+            "14:43"
+          ],
+          [
+            "motohachiman-2",
+            "14:49",
+            "14:49"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "15:10",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "akakon-omihachiman-shima-saturday-10",
+        "headsign": "近江八幡駅北口",
+        "dir": 0,
+        "stops": [
+          [
+            "kitanosho-1",
+            "16:43",
+            "16:43"
+          ],
+          [
+            "motohachiman-2",
+            "16:49",
+            "16:49"
+          ],
+          [
+            "omihachiman-kitaguchi",
+            "17:11",
+            null
+          ]
+        ]
+      }
+    ],
+    "holiday": []
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "omihachiman-kitaguchi": {
+        "motohachiman-1": 200,
+        "motohachiman-2": 200,
+        "kitanosho-1": 200,
+        "kitanosho-2": 200
+      },
+      "motohachiman-1": {
+        "omihachiman-kitaguchi": 200,
+        "motohachiman-2": 200,
+        "kitanosho-1": 200,
+        "kitanosho-2": 200
+      },
+      "motohachiman-2": {
+        "omihachiman-kitaguchi": 200,
+        "motohachiman-1": 200,
+        "kitanosho-1": 200,
+        "kitanosho-2": 200
+      },
+      "kitanosho-1": {
+        "omihachiman-kitaguchi": 200,
+        "motohachiman-1": 200,
+        "motohachiman-2": 200,
+        "kitanosho-2": 200
+      },
+      "kitanosho-2": {
+        "omihachiman-kitaguchi": 200,
+        "motohachiman-1": 200,
+        "motohachiman-2": 200,
+        "kitanosho-1": 200
+      }
+    },
+    "child": null
+  },
+  "notes": "**這是近江八幡市的社區巴士（あかこんバス），不是近江鐵道的長命寺線**。長命寺線（近江八幡駅北口 6 號乘車處 →「八幡堀（大杉町）八幡山ロープウェー口」約 7 分、「北之庄 ラコリーナ前」約 10 分，README）的時刻查不到：近江鐵道把時刻表放在 NAVITIME transfer-cloud（https://transfer-cloud.navitime.biz/ohmitetudo），curl 被 403 擋，依規則不再用；ジョルダン 302 轉到 jid 驗證頁，沒跟。這條社區巴士是備案：只有星期一～六行駛（GTFS calendar 平日=月～土；國定假日停駛的例外日只列到 2026-01-03，依 2025 年假日都停駛的模式推定 2027-02-11 不行駛，holiday 填空陣列＝推定，要確認）。一天只有往返各 5 班。元八幡停留所離八幡堀（spots.json 座標）約 160 m；北之庄停留所離 La Collina 約 250 m（依兩邊座標直線推算）。近江八幡駅北口→元八幡 14 分、→北之庄 19 分（17:35 班 16 分）；北之庄→元八幡 3～6 分、→近江八幡駅北口 22～28 分（GTFS stop_times）。往駅北口方向繞市區，比長命寺線慢。票價：GTFS fare_attributes 均一 200 円（全線同價）。兒童票、團體能否一次上 15 人（車輛大小）查不到（null）；近江八幡市的あかこんバス頁面（GTFS agency_url）已 404。GTFS feed 期間 2025-08-28～2027-05-31（2025/06/01改正-見える化ver2.6d）。",
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  },
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://api.gtfs-data.jp/v2/organizations/omihachimancity/feeds/akakonbus/files/feed.zip",
+      "retrieved": "2026-11-12",
+      "note": "GTFS-JP「近江八幡市 あかこんバス」（CC BY 4.0），feed 2025-08-28～2027-05-31；stops／stop_times／calendar／fare_attributes"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.omihachiman.lg.jp/soshiki/kotsu/1/1/index.html",
+      "retrieved": "2026-11-12",
+      "note": "GTFS agency_url，2026-11-12 是 404（找不到頁面）"
+    }
+  ]
+}

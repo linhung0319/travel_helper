@@ -1,0 +1,1747 @@
+{
+  "id": "ekojo-shiga-biwako-valley",
+  "mode": "bus",
+  "operator": "江若交通",
+  "name": {
+    "ja": "びわ湖バレイ線 68系統 志賀駅～びわ湖バレイ前（ウインターシーズン）",
+    "zh": "江若巴士 琵琶湖谷線（志賀站～琵琶湖谷前，冬季）"
+  },
+  "validFrom": "2025-12-20",
+  "validTo": null,
+  "retrieved": "2026-11-12",
+  "stops": [
+    {
+      "id": "shiga-eki",
+      "name": "志賀駅",
+      "coords": [
+        135.92465,
+        35.2020361
+      ],
+      "near": [
+        {
+          "id": "jr-shiga",
+          "meters": 0
+        }
+      ]
+    },
+    {
+      "id": "valley-mae",
+      "name": "びわ湖バレイ前",
+      "coords": null,
+      "near": [
+        {
+          "id": "biwako-biwako-valley",
+          "meters": null
+        }
+      ]
+    }
+  ],
+  "trips": {
+    "weekday": [
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-1",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:10"
+          ],
+          [
+            "valley-mae",
+            "08:25",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-2",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:00"
+          ],
+          [
+            "valley-mae",
+            "09:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-3",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:44"
+          ],
+          [
+            "valley-mae",
+            "09:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-4",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "10:26"
+          ],
+          [
+            "valley-mae",
+            "10:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-5",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "11:10"
+          ],
+          [
+            "valley-mae",
+            "11:25",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-6",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "11:46"
+          ],
+          [
+            "valley-mae",
+            "12:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-7",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "12:46"
+          ],
+          [
+            "valley-mae",
+            "13:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-8",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "13:46"
+          ],
+          [
+            "valley-mae",
+            "14:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-9",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "14:46"
+          ],
+          [
+            "valley-mae",
+            "15:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-10",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "15:29"
+          ],
+          [
+            "valley-mae",
+            "15:44",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-11",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:04"
+          ],
+          [
+            "shiga-eki",
+            "10:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-12",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:46"
+          ],
+          [
+            "shiga-eki",
+            "10:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-13",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "11:28"
+          ],
+          [
+            "shiga-eki",
+            "11:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-14",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "12:06"
+          ],
+          [
+            "shiga-eki",
+            "12:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-15",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "13:06"
+          ],
+          [
+            "shiga-eki",
+            "13:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-16",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "14:06"
+          ],
+          [
+            "shiga-eki",
+            "14:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-17",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "15:06"
+          ],
+          [
+            "shiga-eki",
+            "15:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-18",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:05"
+          ],
+          [
+            "shiga-eki",
+            "16:17",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-19",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:47"
+          ],
+          [
+            "shiga-eki",
+            "16:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-weekday-20",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "17:35"
+          ],
+          [
+            "shiga-eki",
+            "17:47",
+            null
+          ]
+        ]
+      }
+    ],
+    "saturday": [
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-1",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "07:39"
+          ],
+          [
+            "valley-mae",
+            "07:54",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-2",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:11"
+          ],
+          [
+            "valley-mae",
+            "08:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-3",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:28"
+          ],
+          [
+            "valley-mae",
+            "08:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-4",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:57"
+          ],
+          [
+            "valley-mae",
+            "09:12",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-5",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:21"
+          ],
+          [
+            "valley-mae",
+            "09:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-6",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:43"
+          ],
+          [
+            "valley-mae",
+            "09:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-7",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:58"
+          ],
+          [
+            "valley-mae",
+            "10:13",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-8",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "10:26"
+          ],
+          [
+            "valley-mae",
+            "10:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-9",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "10:50"
+          ],
+          [
+            "valley-mae",
+            "11:05",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-10",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "11:10"
+          ],
+          [
+            "valley-mae",
+            "11:25",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-11",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "11:43"
+          ],
+          [
+            "valley-mae",
+            "11:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-12",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "12:13"
+          ],
+          [
+            "valley-mae",
+            "12:28",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-13",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "12:46"
+          ],
+          [
+            "valley-mae",
+            "13:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-14",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "13:23"
+          ],
+          [
+            "valley-mae",
+            "13:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-15",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "14:13"
+          ],
+          [
+            "valley-mae",
+            "14:28",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-16",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "14:46"
+          ],
+          [
+            "valley-mae",
+            "15:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-17",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "15:13"
+          ],
+          [
+            "valley-mae",
+            "15:28",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-18",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "09:17"
+          ],
+          [
+            "shiga-eki",
+            "09:29",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-19",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "09:41"
+          ],
+          [
+            "shiga-eki",
+            "09:53",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-20",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:03"
+          ],
+          [
+            "shiga-eki",
+            "10:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-21",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:18"
+          ],
+          [
+            "shiga-eki",
+            "10:30",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-22",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:46"
+          ],
+          [
+            "shiga-eki",
+            "10:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-23",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "11:10"
+          ],
+          [
+            "shiga-eki",
+            "11:22",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-24",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "11:28"
+          ],
+          [
+            "shiga-eki",
+            "11:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-25",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "12:01"
+          ],
+          [
+            "shiga-eki",
+            "12:13",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-26",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "12:31"
+          ],
+          [
+            "shiga-eki",
+            "12:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-27",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "13:04"
+          ],
+          [
+            "shiga-eki",
+            "13:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-28",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "13:43"
+          ],
+          [
+            "shiga-eki",
+            "13:55",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-29",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "14:31"
+          ],
+          [
+            "shiga-eki",
+            "14:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-30",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "14:46"
+          ],
+          [
+            "shiga-eki",
+            "14:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-31",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "15:06"
+          ],
+          [
+            "shiga-eki",
+            "15:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-32",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "15:33"
+          ],
+          [
+            "shiga-eki",
+            "15:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-33",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:02"
+          ],
+          [
+            "shiga-eki",
+            "16:14",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-34",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:15"
+          ],
+          [
+            "shiga-eki",
+            "16:27",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-35",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:34"
+          ],
+          [
+            "shiga-eki",
+            "16:46",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-36",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:49"
+          ],
+          [
+            "shiga-eki",
+            "17:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-37",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "17:17"
+          ],
+          [
+            "shiga-eki",
+            "17:29",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-38",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "17:35"
+          ],
+          [
+            "shiga-eki",
+            "17:47",
+            null
+          ]
+        ]
+      }
+    ],
+    "holiday": [
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-1",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "07:39"
+          ],
+          [
+            "valley-mae",
+            "07:54",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-2",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:11"
+          ],
+          [
+            "valley-mae",
+            "08:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-3",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:28"
+          ],
+          [
+            "valley-mae",
+            "08:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-4",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "08:57"
+          ],
+          [
+            "valley-mae",
+            "09:12",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-5",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:21"
+          ],
+          [
+            "valley-mae",
+            "09:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-6",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:43"
+          ],
+          [
+            "valley-mae",
+            "09:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-7",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "09:58"
+          ],
+          [
+            "valley-mae",
+            "10:13",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-8",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "10:26"
+          ],
+          [
+            "valley-mae",
+            "10:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-9",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "10:50"
+          ],
+          [
+            "valley-mae",
+            "11:05",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-10",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "11:10"
+          ],
+          [
+            "valley-mae",
+            "11:25",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-11",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "11:43"
+          ],
+          [
+            "valley-mae",
+            "11:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-12",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "12:13"
+          ],
+          [
+            "valley-mae",
+            "12:28",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-13",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "12:46"
+          ],
+          [
+            "valley-mae",
+            "13:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-14",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "13:23"
+          ],
+          [
+            "valley-mae",
+            "13:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-15",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "14:13"
+          ],
+          [
+            "valley-mae",
+            "14:28",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-16",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "14:46"
+          ],
+          [
+            "valley-mae",
+            "15:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-17",
+        "headsign": "びわ湖バレイ前",
+        "dir": 0,
+        "stops": [
+          [
+            "shiga-eki",
+            null,
+            "15:13"
+          ],
+          [
+            "valley-mae",
+            "15:28",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-18",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "09:17"
+          ],
+          [
+            "shiga-eki",
+            "09:29",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-19",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "09:41"
+          ],
+          [
+            "shiga-eki",
+            "09:53",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-20",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:03"
+          ],
+          [
+            "shiga-eki",
+            "10:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-21",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:18"
+          ],
+          [
+            "shiga-eki",
+            "10:30",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-22",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "10:46"
+          ],
+          [
+            "shiga-eki",
+            "10:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-23",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "11:10"
+          ],
+          [
+            "shiga-eki",
+            "11:22",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-24",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "11:28"
+          ],
+          [
+            "shiga-eki",
+            "11:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-25",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "12:01"
+          ],
+          [
+            "shiga-eki",
+            "12:13",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-26",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "12:31"
+          ],
+          [
+            "shiga-eki",
+            "12:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-27",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "13:04"
+          ],
+          [
+            "shiga-eki",
+            "13:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-28",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "13:43"
+          ],
+          [
+            "shiga-eki",
+            "13:55",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-29",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "14:31"
+          ],
+          [
+            "shiga-eki",
+            "14:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-30",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "14:46"
+          ],
+          [
+            "shiga-eki",
+            "14:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-31",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "15:06"
+          ],
+          [
+            "shiga-eki",
+            "15:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-32",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "15:33"
+          ],
+          [
+            "shiga-eki",
+            "15:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-33",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:02"
+          ],
+          [
+            "shiga-eki",
+            "16:14",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-34",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:15"
+          ],
+          [
+            "shiga-eki",
+            "16:27",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-35",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:34"
+          ],
+          [
+            "shiga-eki",
+            "16:46",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-36",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "16:49"
+          ],
+          [
+            "shiga-eki",
+            "17:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-37",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "17:17"
+          ],
+          [
+            "shiga-eki",
+            "17:29",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-shiga-biwako-valley-holiday-38",
+        "headsign": "志賀駅",
+        "dir": 1,
+        "stops": [
+          [
+            "valley-mae",
+            null,
+            "17:35"
+          ],
+          [
+            "shiga-eki",
+            "17:47",
+            null
+          ]
+        ]
+      }
+    ]
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "shiga-eki": {
+        "valley-mae": 410
+      },
+      "valley-mae": {
+        "shiga-eki": 410
+      }
+    },
+    "child": {
+      "shiga-eki": {
+        "valley-mae": 210
+      },
+      "valley-mae": {
+        "shiga-eki": 210
+      }
+    }
+  },
+  "notes": "**這是 2025-26 年冬季（2025年12月20日改定、12月～3月）的時刻表，2026-27 冬季（含 2027 年 2 月）的時刻還沒公布**：江若交通 2026-11-09 公告綠季運行到 2026-11-23，冬季「12月下旬」開始，時刻未出。2025-26 冬季是 2025-12-20 開始、2026-03-22 結束。行前（12 月下旬後）要換成新版。直行，不停中途站。只在びわ湖バレイ營業日行駛；天候、天災、設備點檢等びわ湖バレイ停業時巴士也停駛（強風時ロープウェイ停駛也可能停車）。2025-26 冬季 12/20～26 有部分班次停駛（土休日 志賀駅 7:39）；12/27～1/4 走土休日ダイヤ。去程分鐘：志賀駅→びわ湖バレイ前 15 分；回程 12 分（時刻表）。下車後轉びわ湖バレイ ロープウェイ（另付費）。票價：大人單程 410 円、小人 210 円（12 歲未滿），只收現金時不找零（時刻表 PDF 註記）；運賃表 2024年10月1日改定。滑雪板攜帶費 100 円（不滑雪不用）。2027-02-01 江若運賃改定的「據置」名單沒有びわ湖バレイ線，2027-02 起的票價查不到。土休日一張表（週六、假日同），saturday 填 null；2027-02-11（木・祝）走 holiday。停留所座標：志賀駅用旁邊車站的座標（ja.wikipedia，近似）；其他江若的停留所座標沒查到，填 null（near 的公尺數也是 null，步行分鐘見上面的說明）。",
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  },
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/biwako-valley2025.12.20-26.pdf",
+      "retrieved": "2026-11-12",
+      "note": "びわ湖バレイ線時刻表 12月～3月（ウィンターシーズン），2025年12月20日改定"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/info/%e3%81%b3%e3%82%8f%e6%b9%96%e3%83%90%e3%83%ac%e3%82%a4%e7%b7%9a-%e3%82%a6%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%82%b7%e3%83%bc%e3%82%ba%e3%83%b3%e9%81%8b%e8%a1%8c%e9%96%8b%e5%a7%8b%e3%81%8a-2/",
+      "retrieved": "2026-11-12",
+      "note": "2025-12-05 公告：2025-12-20 起冬季運行，12/20～26 部分停駛"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/info/%e3%81%b3%e3%82%8f%e6%b9%96%e3%83%90%e3%83%ac%e3%82%a4%e7%b7%9a%e3%82%a6%e3%82%a3%e3%83%b3%e3%82%bf%e3%83%bc%e3%82%b7%e3%83%bc%e3%82%ba%e3%83%b3%e9%81%8b%e8%a1%8c%e7%b5%82%e4%ba%86%e3%81%ab%e3%81%a4-4/",
+      "retrieved": "2026-11-12",
+      "note": "2026-03-10 公告：冬季運行到 2026-03-22"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/info/2025%e5%b9%b4-%e3%81%b3%e3%82%8f%e6%b9%96%e3%83%90%e3%83%ac%e3%82%a4%e7%b7%9a-%e3%82%b0%e3%83%aa%e3%83%bc%e3%83%b3%e3%82%b7%e3%83%bc%e3%82%ba%e3%83%b3%e3%81%ae%e9%81%8b%e8%a1%8c%e7%b5%82%e4%ba%86-2/",
+      "retrieved": "2026-11-12",
+      "note": "2026-11-09 公告：綠季到 2026-11-23，冬季 12 月下旬開始（時刻未公布）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/valley-g-shiga.pdf",
+      "retrieved": "2026-11-12",
+      "note": "志賀駅発 綠季時刻表（2025年12月20日改正）：大人 410、小人 210（12歳未満）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/valley-u.pdf",
+      "retrieved": "2026-11-12",
+      "note": "運賃表 志賀駅～びわ湖バレイ前 410 円（2024年10月1日改定）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/20270201unkai.pdf",
+      "retrieved": "2026-11-12",
+      "note": "2027年2月1日 運賃改定（申請中）"
+    }
+  ]
+}

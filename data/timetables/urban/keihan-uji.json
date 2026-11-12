@@ -1,0 +1,106 @@
+{
+  "id": "keihan-uji",
+  "mode": "private",
+  "operator": "京阪電気鉄道",
+  "name": {
+    "ja": "京阪宇治線（中書島～宇治）",
+    "zh": "京阪宇治線（中書島～宇治）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "keihan-chushojima",
+      "min": 0,
+      "note": "轉本線（同站）"
+    },
+    {
+      "id": "keihan-uji",
+      "min": 15,
+      "note": "平等院走約 10 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:17",
+      "last": "23:58",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 15
+        },
+        {
+          "from": "06:00",
+          "to": "09:00",
+          "min": 10
+        },
+        {
+          "from": "09:00",
+          "to": "22:00",
+          "min": 12
+        },
+        {
+          "from": "22:00",
+          "to": "24:15",
+          "min": 15
+        }
+      ],
+      "note": "數全列車時刻表（中書島發、宇治發），每小時取較少的一方。首班宇治 05:17，末班中書島 23:58"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:17",
+      "last": "23:58",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "20:00",
+          "min": 12
+        },
+        {
+          "from": "20:00",
+          "to": "24:15",
+          "min": 15
+        }
+      ],
+      "note": "同平日的數法"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "keihan-chushojima": {
+        "keihan-uji": 320
+      }
+    },
+    "child": "大人的半價、10 円未滿進位（160）",
+    "note": "京阪各站運賃表（2025-10-01 改定）；祇園四条 → 宇治 360、淀屋橋 → 宇治 490"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "全部各站停。京都市區到宇治 JR 奈良線比較直接（京都 → 宇治約 18～22 分）。",
+  "validFrom": "2026-08-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/time-fare/pdf/time03-1.pdf",
+      "retrieved": "2026-11-12",
+      "note": "宇治線 全列車時刻表（time03-1～03-4：平日、土休日上下）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/fare/130.pdf",
+      "retrieved": "2026-11-12",
+      "note": "中書島發運賃表"
+    }
+  ]
+}

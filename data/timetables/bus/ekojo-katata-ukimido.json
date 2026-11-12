@@ -1,0 +1,2271 @@
+{
+  "id": "ekojo-katata-ukimido",
+  "mode": "bus",
+  "operator": "江若交通",
+  "name": {
+    "ja": "浜大津線（堅田町内循環）100系統 堅田駅～堅田出町",
+    "zh": "江若巴士 堅田町內循環（堅田站～堅田出町，往浮御堂）"
+  },
+  "validFrom": "2025-03-15",
+  "validTo": null,
+  "retrieved": "2026-11-12",
+  "stops": [
+    {
+      "id": "katata-eki",
+      "name": "堅田駅（2番のりば）",
+      "coords": [
+        135.9150028,
+        35.120825
+      ],
+      "near": [
+        {
+          "id": "jr-katata",
+          "meters": 0
+        }
+      ]
+    },
+    {
+      "id": "katata-demachi",
+      "name": "堅田出町",
+      "coords": null,
+      "near": [
+        {
+          "id": "biwako-ukimido",
+          "meters": null
+        }
+      ]
+    }
+  ],
+  "trips": {
+    "weekday": [
+      {
+        "id": "ekojo-katata-ukimido-weekday-1",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "06:25"
+          ],
+          [
+            "katata-demachi",
+            "06:30",
+            "06:30"
+          ],
+          [
+            "katata-eki",
+            "06:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-2",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "06:45"
+          ],
+          [
+            "katata-demachi",
+            "06:50",
+            "06:50"
+          ],
+          [
+            "katata-eki",
+            "06:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-3",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:05"
+          ],
+          [
+            "katata-demachi",
+            "07:10",
+            "07:10"
+          ],
+          [
+            "katata-eki",
+            "07:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-4",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:25"
+          ],
+          [
+            "katata-demachi",
+            "07:30",
+            "07:30"
+          ],
+          [
+            "katata-eki",
+            "07:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-5",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:45"
+          ],
+          [
+            "katata-demachi",
+            "07:50",
+            "07:50"
+          ],
+          [
+            "katata-eki",
+            "07:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-6",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:05"
+          ],
+          [
+            "katata-demachi",
+            "08:10",
+            "08:10"
+          ],
+          [
+            "katata-eki",
+            "08:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-7",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:25"
+          ],
+          [
+            "katata-demachi",
+            "08:30",
+            "08:30"
+          ],
+          [
+            "katata-eki",
+            "08:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-8",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:46"
+          ],
+          [
+            "katata-demachi",
+            "08:51",
+            "08:51"
+          ],
+          [
+            "katata-eki",
+            "08:57",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-9",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:05"
+          ],
+          [
+            "katata-demachi",
+            "09:10",
+            "09:10"
+          ],
+          [
+            "katata-eki",
+            "09:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-10",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:26"
+          ],
+          [
+            "katata-demachi",
+            "09:31",
+            "09:31"
+          ],
+          [
+            "katata-eki",
+            "09:37",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-11",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:46"
+          ],
+          [
+            "katata-demachi",
+            "09:51",
+            "09:51"
+          ],
+          [
+            "katata-eki",
+            "09:57",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-12",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:25"
+          ],
+          [
+            "katata-demachi",
+            "10:30",
+            "10:30"
+          ],
+          [
+            "katata-eki",
+            "10:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-13",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:46"
+          ],
+          [
+            "katata-demachi",
+            "10:51",
+            "10:51"
+          ],
+          [
+            "katata-eki",
+            "10:57",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-14",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:05"
+          ],
+          [
+            "katata-demachi",
+            "11:10",
+            "11:10"
+          ],
+          [
+            "katata-eki",
+            "11:16",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-15",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:25"
+          ],
+          [
+            "katata-demachi",
+            "11:30",
+            "11:30"
+          ],
+          [
+            "katata-eki",
+            "11:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-16",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:46"
+          ],
+          [
+            "katata-demachi",
+            "11:51",
+            "11:51"
+          ],
+          [
+            "katata-eki",
+            "11:57",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-17",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "12:10"
+          ],
+          [
+            "katata-demachi",
+            "12:15",
+            "12:15"
+          ],
+          [
+            "katata-eki",
+            "12:21",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-18",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:10"
+          ],
+          [
+            "katata-demachi",
+            "13:15",
+            "13:15"
+          ],
+          [
+            "katata-eki",
+            "13:21",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-19",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:30"
+          ],
+          [
+            "katata-demachi",
+            "13:35",
+            "13:35"
+          ],
+          [
+            "katata-eki",
+            "13:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-20",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:50"
+          ],
+          [
+            "katata-demachi",
+            "13:55",
+            "13:55"
+          ],
+          [
+            "katata-eki",
+            "14:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-21",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:10"
+          ],
+          [
+            "katata-demachi",
+            "14:15",
+            "14:15"
+          ],
+          [
+            "katata-eki",
+            "14:21",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-22",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:30"
+          ],
+          [
+            "katata-demachi",
+            "14:35",
+            "14:35"
+          ],
+          [
+            "katata-eki",
+            "14:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-23",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:10"
+          ],
+          [
+            "katata-demachi",
+            "15:15",
+            "15:15"
+          ],
+          [
+            "katata-eki",
+            "15:21",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-24",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:30"
+          ],
+          [
+            "katata-demachi",
+            "15:35",
+            "15:35"
+          ],
+          [
+            "katata-eki",
+            "15:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-25",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:50"
+          ],
+          [
+            "katata-demachi",
+            "15:55",
+            "15:55"
+          ],
+          [
+            "katata-eki",
+            "16:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-26",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:10"
+          ],
+          [
+            "katata-demachi",
+            "16:15",
+            "16:15"
+          ],
+          [
+            "katata-eki",
+            "16:21",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-27",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:30"
+          ],
+          [
+            "katata-demachi",
+            "16:35",
+            "16:35"
+          ],
+          [
+            "katata-eki",
+            "16:41",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-28",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:50"
+          ],
+          [
+            "katata-demachi",
+            "16:55",
+            "16:55"
+          ],
+          [
+            "katata-eki",
+            "17:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-29",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:10"
+          ],
+          [
+            "katata-demachi",
+            "17:16",
+            "17:16"
+          ],
+          [
+            "katata-eki",
+            "17:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-30",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:30"
+          ],
+          [
+            "katata-demachi",
+            "17:36",
+            "17:36"
+          ],
+          [
+            "katata-eki",
+            "17:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-31",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:50"
+          ],
+          [
+            "katata-demachi",
+            "17:56",
+            "17:56"
+          ],
+          [
+            "katata-eki",
+            "18:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-32",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:10"
+          ],
+          [
+            "katata-demachi",
+            "18:16",
+            "18:16"
+          ],
+          [
+            "katata-eki",
+            "18:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-33",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:30"
+          ],
+          [
+            "katata-demachi",
+            "18:36",
+            "18:36"
+          ],
+          [
+            "katata-eki",
+            "18:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-34",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:50"
+          ],
+          [
+            "katata-demachi",
+            "18:55",
+            "18:55"
+          ],
+          [
+            "katata-eki",
+            "19:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-35",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "19:10"
+          ],
+          [
+            "katata-demachi",
+            "19:15",
+            "19:15"
+          ],
+          [
+            "katata-eki",
+            "19:21",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-weekday-36",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "19:30"
+          ],
+          [
+            "katata-demachi",
+            "19:35",
+            "19:35"
+          ],
+          [
+            "katata-eki",
+            "19:41",
+            null
+          ]
+        ]
+      }
+    ],
+    "saturday": [
+      {
+        "id": "ekojo-katata-ukimido-holiday-1",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:25"
+          ],
+          [
+            "katata-demachi",
+            "07:30",
+            "07:30"
+          ],
+          [
+            "katata-eki",
+            "07:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-2",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:45"
+          ],
+          [
+            "katata-demachi",
+            "07:50",
+            "07:50"
+          ],
+          [
+            "katata-eki",
+            "07:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-3",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:05"
+          ],
+          [
+            "katata-demachi",
+            "08:10",
+            "08:10"
+          ],
+          [
+            "katata-eki",
+            "08:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-4",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:25"
+          ],
+          [
+            "katata-demachi",
+            "08:30",
+            "08:30"
+          ],
+          [
+            "katata-eki",
+            "08:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-5",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:46"
+          ],
+          [
+            "katata-demachi",
+            "08:51",
+            "08:51"
+          ],
+          [
+            "katata-eki",
+            "08:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-6",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:05"
+          ],
+          [
+            "katata-demachi",
+            "09:10",
+            "09:10"
+          ],
+          [
+            "katata-eki",
+            "09:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-7",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:26"
+          ],
+          [
+            "katata-demachi",
+            "09:31",
+            "09:31"
+          ],
+          [
+            "katata-eki",
+            "09:39",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-8",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:46"
+          ],
+          [
+            "katata-demachi",
+            "09:51",
+            "09:51"
+          ],
+          [
+            "katata-eki",
+            "09:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-9",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:25"
+          ],
+          [
+            "katata-demachi",
+            "10:30",
+            "10:30"
+          ],
+          [
+            "katata-eki",
+            "10:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-10",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:46"
+          ],
+          [
+            "katata-demachi",
+            "10:51",
+            "10:51"
+          ],
+          [
+            "katata-eki",
+            "10:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-11",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:05"
+          ],
+          [
+            "katata-demachi",
+            "11:10",
+            "11:10"
+          ],
+          [
+            "katata-eki",
+            "11:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-12",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:26"
+          ],
+          [
+            "katata-demachi",
+            "11:31",
+            "11:31"
+          ],
+          [
+            "katata-eki",
+            "11:39",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-13",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:46"
+          ],
+          [
+            "katata-demachi",
+            "11:51",
+            "11:51"
+          ],
+          [
+            "katata-eki",
+            "11:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-14",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "12:10"
+          ],
+          [
+            "katata-demachi",
+            "12:15",
+            "12:15"
+          ],
+          [
+            "katata-eki",
+            "12:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-15",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:10"
+          ],
+          [
+            "katata-demachi",
+            "13:15",
+            "13:15"
+          ],
+          [
+            "katata-eki",
+            "13:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-16",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:30"
+          ],
+          [
+            "katata-demachi",
+            "13:35",
+            "13:35"
+          ],
+          [
+            "katata-eki",
+            "13:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-17",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:50"
+          ],
+          [
+            "katata-demachi",
+            "13:55",
+            "13:55"
+          ],
+          [
+            "katata-eki",
+            "14:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-18",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:10"
+          ],
+          [
+            "katata-demachi",
+            "14:15",
+            "14:15"
+          ],
+          [
+            "katata-eki",
+            "14:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-19",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:50"
+          ],
+          [
+            "katata-demachi",
+            "14:55",
+            "14:55"
+          ],
+          [
+            "katata-eki",
+            "15:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-20",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:10"
+          ],
+          [
+            "katata-demachi",
+            "15:15",
+            "15:15"
+          ],
+          [
+            "katata-eki",
+            "15:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-21",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:30"
+          ],
+          [
+            "katata-demachi",
+            "15:35",
+            "15:35"
+          ],
+          [
+            "katata-eki",
+            "15:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-22",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:50"
+          ],
+          [
+            "katata-demachi",
+            "15:55",
+            "15:55"
+          ],
+          [
+            "katata-eki",
+            "16:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-23",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:10"
+          ],
+          [
+            "katata-demachi",
+            "16:15",
+            "16:15"
+          ],
+          [
+            "katata-eki",
+            "16:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-24",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:30"
+          ],
+          [
+            "katata-demachi",
+            "16:35",
+            "16:35"
+          ],
+          [
+            "katata-eki",
+            "16:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-25",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:50"
+          ],
+          [
+            "katata-demachi",
+            "16:55",
+            "16:55"
+          ],
+          [
+            "katata-eki",
+            "17:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-26",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:10"
+          ],
+          [
+            "katata-demachi",
+            "17:15",
+            "17:15"
+          ],
+          [
+            "katata-eki",
+            "17:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-27",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:30"
+          ],
+          [
+            "katata-demachi",
+            "17:35",
+            "17:35"
+          ],
+          [
+            "katata-eki",
+            "17:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-28",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:50"
+          ],
+          [
+            "katata-demachi",
+            "17:55",
+            "17:55"
+          ],
+          [
+            "katata-eki",
+            "18:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-29",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:30"
+          ],
+          [
+            "katata-demachi",
+            "18:35",
+            "18:35"
+          ],
+          [
+            "katata-eki",
+            "18:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-30",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:50"
+          ],
+          [
+            "katata-demachi",
+            "18:55",
+            "18:55"
+          ],
+          [
+            "katata-eki",
+            "19:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-31",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "19:15"
+          ],
+          [
+            "katata-demachi",
+            "19:20",
+            "19:20"
+          ],
+          [
+            "katata-eki",
+            "19:28",
+            null
+          ]
+        ]
+      }
+    ],
+    "holiday": [
+      {
+        "id": "ekojo-katata-ukimido-holiday-1",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:25"
+          ],
+          [
+            "katata-demachi",
+            "07:30",
+            "07:30"
+          ],
+          [
+            "katata-eki",
+            "07:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-2",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:45"
+          ],
+          [
+            "katata-demachi",
+            "07:50",
+            "07:50"
+          ],
+          [
+            "katata-eki",
+            "07:58",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-3",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:05"
+          ],
+          [
+            "katata-demachi",
+            "08:10",
+            "08:10"
+          ],
+          [
+            "katata-eki",
+            "08:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-4",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:25"
+          ],
+          [
+            "katata-demachi",
+            "08:30",
+            "08:30"
+          ],
+          [
+            "katata-eki",
+            "08:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-5",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:46"
+          ],
+          [
+            "katata-demachi",
+            "08:51",
+            "08:51"
+          ],
+          [
+            "katata-eki",
+            "08:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-6",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:05"
+          ],
+          [
+            "katata-demachi",
+            "09:10",
+            "09:10"
+          ],
+          [
+            "katata-eki",
+            "09:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-7",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:26"
+          ],
+          [
+            "katata-demachi",
+            "09:31",
+            "09:31"
+          ],
+          [
+            "katata-eki",
+            "09:39",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-8",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:46"
+          ],
+          [
+            "katata-demachi",
+            "09:51",
+            "09:51"
+          ],
+          [
+            "katata-eki",
+            "09:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-9",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:25"
+          ],
+          [
+            "katata-demachi",
+            "10:30",
+            "10:30"
+          ],
+          [
+            "katata-eki",
+            "10:38",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-10",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:46"
+          ],
+          [
+            "katata-demachi",
+            "10:51",
+            "10:51"
+          ],
+          [
+            "katata-eki",
+            "10:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-11",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:05"
+          ],
+          [
+            "katata-demachi",
+            "11:10",
+            "11:10"
+          ],
+          [
+            "katata-eki",
+            "11:18",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-12",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:26"
+          ],
+          [
+            "katata-demachi",
+            "11:31",
+            "11:31"
+          ],
+          [
+            "katata-eki",
+            "11:39",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-13",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "11:46"
+          ],
+          [
+            "katata-demachi",
+            "11:51",
+            "11:51"
+          ],
+          [
+            "katata-eki",
+            "11:59",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-14",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "12:10"
+          ],
+          [
+            "katata-demachi",
+            "12:15",
+            "12:15"
+          ],
+          [
+            "katata-eki",
+            "12:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-15",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:10"
+          ],
+          [
+            "katata-demachi",
+            "13:15",
+            "13:15"
+          ],
+          [
+            "katata-eki",
+            "13:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-16",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:30"
+          ],
+          [
+            "katata-demachi",
+            "13:35",
+            "13:35"
+          ],
+          [
+            "katata-eki",
+            "13:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-17",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "13:50"
+          ],
+          [
+            "katata-demachi",
+            "13:55",
+            "13:55"
+          ],
+          [
+            "katata-eki",
+            "14:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-18",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:10"
+          ],
+          [
+            "katata-demachi",
+            "14:15",
+            "14:15"
+          ],
+          [
+            "katata-eki",
+            "14:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-19",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:50"
+          ],
+          [
+            "katata-demachi",
+            "14:55",
+            "14:55"
+          ],
+          [
+            "katata-eki",
+            "15:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-20",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:10"
+          ],
+          [
+            "katata-demachi",
+            "15:15",
+            "15:15"
+          ],
+          [
+            "katata-eki",
+            "15:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-21",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:30"
+          ],
+          [
+            "katata-demachi",
+            "15:35",
+            "15:35"
+          ],
+          [
+            "katata-eki",
+            "15:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-22",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "15:50"
+          ],
+          [
+            "katata-demachi",
+            "15:55",
+            "15:55"
+          ],
+          [
+            "katata-eki",
+            "16:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-23",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:10"
+          ],
+          [
+            "katata-demachi",
+            "16:15",
+            "16:15"
+          ],
+          [
+            "katata-eki",
+            "16:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-24",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:30"
+          ],
+          [
+            "katata-demachi",
+            "16:35",
+            "16:35"
+          ],
+          [
+            "katata-eki",
+            "16:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-25",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:50"
+          ],
+          [
+            "katata-demachi",
+            "16:55",
+            "16:55"
+          ],
+          [
+            "katata-eki",
+            "17:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-26",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:10"
+          ],
+          [
+            "katata-demachi",
+            "17:15",
+            "17:15"
+          ],
+          [
+            "katata-eki",
+            "17:23",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-27",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:30"
+          ],
+          [
+            "katata-demachi",
+            "17:35",
+            "17:35"
+          ],
+          [
+            "katata-eki",
+            "17:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-28",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "17:50"
+          ],
+          [
+            "katata-demachi",
+            "17:55",
+            "17:55"
+          ],
+          [
+            "katata-eki",
+            "18:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-29",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:30"
+          ],
+          [
+            "katata-demachi",
+            "18:35",
+            "18:35"
+          ],
+          [
+            "katata-eki",
+            "18:43",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-30",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:50"
+          ],
+          [
+            "katata-demachi",
+            "18:55",
+            "18:55"
+          ],
+          [
+            "katata-eki",
+            "19:03",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-ukimido-holiday-31",
+        "headsign": "堅田駅（堅田町内循環・新川経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "19:15"
+          ],
+          [
+            "katata-demachi",
+            "19:20",
+            "19:20"
+          ],
+          [
+            "katata-eki",
+            "19:28",
+            null
+          ]
+        ]
+      }
+    ]
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "katata-eki": {
+        "katata-demachi": 210
+      },
+      "katata-demachi": {
+        "katata-eki": 210
+      }
+    },
+    "child": {
+      "katata-eki": {
+        "katata-demachi": 110
+      },
+      "katata-demachi": {
+        "katata-eki": 110
+      }
+    }
+  },
+  "notes": "單向循環：堅田駅 → 本堅田三丁目 → 末広町 → 堅田本町 → 堅田出町 → 仰木道 → 新川 → 堅田駅。去浮御堂和回堅田駅都搭同一班循環車（同一 trip 的第一段是去程、第二段是回程）。每個 trip 的第一個和最後一個停留所都是 katata-eki。堅田出町 → 浮御堂 徒步 5 分（江若交通 主要駅発時刻表頁）；びわこビジターズビューロー寫 7 分（README）。時刻：路線時刻表 PDF「2025年3月15日改正」，和停留所時刻表（堅田出町 1番，2026-11-12 讀）的堅田出町時刻一致。2027 年 2 月是否改正查不到；行前要再確認。土休日 PDF 是「土休日」一張表（週六和假日同時刻），所以 saturday 填 null；2027-02-11（木・祝）走 holiday。年末年始、お盆走土休日ダイヤ。票價：運賃表「2021年4月1日改定」均一 210 円。江若交通申請 2027-02-01 起運賃改定（平均 22.98%），公告只列出部分區間（浜大津線的大津駅～三保ケ崎、大津駅～際川等），堅田町内循環沒有列出、也不在「據置」名單，2027-02 起的票價查不到（null 待確認）。兒童票：江若交通「小児（6歳以上・小学生）大人運賃の半額（10円単位に切り上げ）」，110 円是依此規則推算（運賃表本身只寫大人）。幼兒：大人或小兒 1 人可免費帶 2 名。搭乘：後門上車取整理券，下車付現（不找零要先換錢）或 IC 卡（ICOCA 等）；スルッとKANSAI 不能用。停留所座標：堅田駅（2番のりば）用旁邊車站的座標（ja.wikipedia，近似）；其他江若的停留所座標沒查到，填 null（near 的公尺數也是 null，步行分鐘見上面的說明）。",
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  },
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/cyou.pdf",
+      "retrieved": "2026-11-12",
+      "note": "浜大津線（堅田町内循環）時刻表 平日・土休日，2025年3月15日改正"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/timetable/Zikoku/00264_01/",
+      "retrieved": "2026-11-12",
+      "note": "停留所時刻表 堅田出町(1番)"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/katata2.pdf",
+      "retrieved": "2026-11-12",
+      "note": "堅田駅②のりば時刻表（100 系統：浮御堂へは堅田出町下車）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/cyo-u20220312.pdf",
+      "retrieved": "2026-11-12",
+      "note": "運賃表 浜大津線 堅田町内 210 円（2021年4月1日改定）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/bus/main_timetable-2/",
+      "retrieved": "2026-11-12",
+      "note": "主要駅発時刻表：浮御堂へのアクセス「堅田出町」バス停から徒歩5分"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/bus/ticket/",
+      "retrieved": "2026-11-12",
+      "note": "運賃区分：小児は大人運賃の半額（10円単位に切り上げ）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/20270201unkai.pdf",
+      "retrieved": "2026-11-12",
+      "note": "2027年2月1日 運賃改定（上限運賃変更認可申請，2026-10-23）"
+    }
+  ]
+}

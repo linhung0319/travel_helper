@@ -1,0 +1,294 @@
+{
+  "id": "jr-nara",
+  "mode": "jr",
+  "operator": "JR 西日本",
+  "name": {
+    "ja": "JR奈良線（京都～宇治）",
+    "zh": "JR 奈良線（京都～宇治）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "jr-kyoto",
+      "min": 0,
+      "note": "奈良線在 8～10 號月台（京都站南側、近鐵那一邊）"
+    },
+    {
+      "id": "jr-tofukuji",
+      "min": 2,
+      "note": "轉京阪本線"
+    },
+    {
+      "id": "jr-inari",
+      "min": 5,
+      "note": "伏見稻荷大社正門前"
+    },
+    {
+      "id": "jr-uji",
+      "min": 22,
+      "note": null
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:40",
+      "last": "23:46",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 10
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 12
+        },
+        {
+          "from": "10:00",
+          "to": "18:00",
+          "min": 10
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 10
+        },
+        {
+          "from": "20:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數普通、区間快速、みやこ路快速（三種都停京都、東福寺、稲荷、宇治）：往外看京都站發車、往回看稲荷站往京都的發車；平日：往外 101 班（首 05:33、末 23:46）、往回 98 班（首 05:40、末 24:04）；用 2026-12-22 的時刻表推算"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:40",
+      "last": "23:46",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 15
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 12
+        },
+        {
+          "from": "09:00",
+          "to": "16:00",
+          "min": 10
+        },
+        {
+          "from": "16:00",
+          "to": "17:00",
+          "min": 12
+        },
+        {
+          "from": "17:00",
+          "to": "18:00",
+          "min": 10
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 10
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 20
+        },
+        {
+          "from": "22:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數普通、区間快速、みやこ路快速（三種都停京都、東福寺、稲荷、宇治）：往外看京都站發車、往回看稲荷站往京都的發車；土休日：往外 93 班（首 05:33、末 23:46）、往回 93 班（首 05:40、末 24:04）；用 2026-12-27 的時刻表推算"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "jr-kyoto": {
+        "jr-tofukuji": 150,
+        "jr-inari": 150,
+        "jr-uji": 240
+      }
+    },
+    "child": "兒童半價，10 円未滿捨去（JR 西日本 旅客営業規則第 74 條）",
+    "note": "IC 卡同價"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "普通、区間快速、みやこ路快速都停稲荷（伏見稻荷）和宇治；站間分鐘用普通（較慢、保守），みやこ路快速京都 → 宇治約 18 分、普通約 22 分。伏見稻荷參拜旺季（新年～2 月初）稲荷站很擠。JR 不能用 KINTETSU RAIL PASS，車資另付；ICOCA 可用。時刻表 2026-03-14 改正，2027-03 可能改點，2 月應該還是這一版。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784064001?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 奈良線 宇治・奈良方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784064001?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 奈良線 宇治・奈良方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/3021064002?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 稲荷 奈良線 京都方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/3021064002?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 稲荷 奈良線 京都方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/train-timetable/12771?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 12:15 發的那一班的停站時刻"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5651",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 東福寺 150"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-4913",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 稲荷 150"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-4944",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 宇治 240"
+    },
+    {
+      "type": "official",
+      "url": "https://www.jr-odekake.net/ticket/guide/assets/pdf/stipulation/2026/covenant2-03.pdf",
+      "retrieved": "2026-11-12",
+      "note": "JR 西日本 旅客営業規則（2026-10-01 現行）第 73、74 條：兒童票"
+    }
+  ],
+  "extra": {
+    "dayTypeBasis": [
+      [
+        "2027-02-02",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-03",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-04",
+        "weekday",
+        "2026-12-24"
+      ],
+      [
+        "2027-02-05",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-06",
+        "saturday",
+        "2026-12-26"
+      ],
+      [
+        "2027-02-07",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-08",
+        "weekday",
+        "2026-12-28"
+      ],
+      [
+        "2027-02-09",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-10",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-11",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-12",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-13",
+        "saturday",
+        "2026-12-26"
+      ]
+    ]
+  }
+}

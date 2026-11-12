@@ -1,0 +1,112 @@
+{
+  "id": "randen-kitano",
+  "mode": "private",
+  "operator": "京福電気鉄道",
+  "name": {
+    "ja": "嵐電 北野線（帷子ノ辻～北野白梅町）",
+    "zh": "嵐電 北野線（帷子ノ辻～北野白梅町）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "randen-katabiranotsuji",
+      "min": 0,
+      "note": "轉嵐山本線（轉乘時間不含）"
+    },
+    {
+      "id": "randen-kitano-hakubaicho",
+      "min": 12,
+      "note": "北野天滿宮走約 5 分；金閣寺要再搭巴士"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:03",
+      "last": "23:25",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 8.5
+        },
+        {
+          "from": "09:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 20
+        },
+        {
+          "from": "22:00",
+          "to": "23:40",
+          "min": 30
+        }
+      ],
+      "note": "數帷子ノ辻（北野白梅町方面）、北野白梅町發兩張站別時刻表（圖片），每小時取較少的一方"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "06:03",
+      "last": "23:25",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 20
+        },
+        {
+          "from": "22:00",
+          "to": "23:40",
+          "min": 30
+        }
+      ],
+      "note": "同平日的數法"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {},
+    "child": "全線均一 120 円（見 randen-arashiyama）",
+    "note": "全線均一 大人 250 円"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "四条大宮 23:00 以後、嵐山 23:32 以後的本線車在帷子ノ辻接不到北野線（官網註記）。",
+  "validFrom": null,
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.keifuku.co.jp/randen_timetable.php",
+      "retrieved": "2026-11-12",
+      "note": "時刻表圖片 a8_jikoku5b.png、a8_jikoku6b.png、b9_jikoku1b.png、b9_jikoku2b.png"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keifuku.co.jp/cms/randen_ticket/",
+      "retrieved": "2026-11-12",
+      "note": "票價"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "sakamoto-cable",
+  "mode": "private",
+  "operator": "比叡山鉄道",
+  "name": {
+    "ja": "坂本ケーブル（ケーブル坂本～ケーブル延暦寺）",
+    "zh": "坂本纜車（坂本～延曆寺）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "sakamoto-cable-sakamoto",
+      "min": 0,
+      "note": "京阪坂本比叡山口走約 15 分（江若巴士約 3 分）；JR 比叡山坂本走約 25 分（巴士約 7 分）"
+    },
+    {
+      "id": "sakamoto-cable-enryakuji",
+      "min": 11,
+      "note": "延曆寺東塔走約 10 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "08:30",
+      "last": "17:00",
+      "headway": [
+        {
+          "from": "08:30",
+          "to": "17:30",
+          "min": 30
+        }
+      ],
+      "note": "12～2 月：上下同時發車，08:30，之後 09:00～17:00 每 :00、:30；末班上下都是 17:00（官網時刻表）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "08:30",
+      "last": "17:00",
+      "headway": [
+        {
+          "from": "08:30",
+          "to": "17:30",
+          "min": 30
+        }
+      ],
+      "note": "同平日"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "sakamoto-cable-sakamoto": {
+        "sakamoto-cable-enryakuji": 960
+      }
+    },
+    "child": {
+      "sakamoto-cable-sakamoto": {
+        "sakamoto-cable-enryakuji": 480
+      }
+    },
+    "note": "2026-04-01 改定；來回 1,830／920。團體 8 人以上 9 折、25 人以上 85 折（15 人是 9 折；買團體票時幼兒也要付兒童票）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "冬季比叡山只能從坂本纜車上山（京都側纜車、山上巴士都停駛）。每年 2 月下旬～3 月初點檢停駛（2026 年是 2/24～3/1），2027 年的日期還沒公布，2/9～2/12 應該在停駛期前，出發前確認。",
+  "validFrom": null,
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://sakamoto-cable.jp/guide/",
+      "retrieved": "2026-11-12",
+      "note": "時刻、票價、團體折扣"
+    },
+    {
+      "type": "official",
+      "url": "https://sakamoto-cable.jp/access/",
+      "retrieved": "2026-11-12",
+      "note": "車站到纜車坂本站"
+    },
+    {
+      "type": "official",
+      "url": "https://sakamoto-cable.jp/sakamoto/wp-content/uploads/2026/03/880028b570c4ac3fd0abac12549e3f29.pdf",
+      "retrieved": "2026-11-12",
+      "note": "運賃改定新聞稿（2026-03-18）"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "id": "kintetsu-kyoto-local",
+  "mode": "private",
+  "operator": "近畿日本鉄道",
+  "name": {
+    "ja": "近鉄京都線（普通，京都～小倉）",
+    "zh": "近鐵京都線（普通，京都～小倉）"
+  },
+  "serviceType": "普通",
+  "stops": [
+    {
+      "id": "kyoto",
+      "min": 0,
+      "note": "近鐵京都站在 JR 京都站南側（八条口那一邊）2F"
+    },
+    {
+      "id": "toji",
+      "min": 2,
+      "note": null
+    },
+    {
+      "id": "takeda",
+      "min": 7,
+      "note": "和地下鐵烏丸線直通、同一個車站"
+    },
+    {
+      "id": "kintetsu-tambabashi",
+      "min": 12,
+      "note": "轉京阪丹波橋"
+    },
+    {
+      "id": "momoyamagoryo-mae",
+      "min": 13,
+      "note": "伏見（酒藏、寺田屋）一帶"
+    },
+    {
+      "id": "ogura",
+      "min": 22,
+      "note": "任天堂博物館（宇治市小倉，和北九州的小倉無關）"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:20",
+      "last": "23:43",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 20
+        },
+        {
+          "from": "06:00",
+          "to": "17:00",
+          "min": 15
+        },
+        {
+          "from": "17:00",
+          "to": "18:00",
+          "min": 20
+        },
+        {
+          "from": "18:00",
+          "to": "20:00",
+          "min": 15
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 20
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數普通：往外看近鉄京都發車、往回看近鉄丹波橋往京都的普通（往国際会館的普通在竹田轉進地下鐵、不到東寺、京都，不算）；平日：往外 77 班（首 05:12、末 24:00）、往回 75 班（首 05:20、末 23:43）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:20",
+      "last": "23:43",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 20
+        },
+        {
+          "from": "06:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 12
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 20
+        },
+        {
+          "from": "11:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數普通：往外看近鉄京都發車、往回看近鉄丹波橋往京都的普通（往国際会館的普通在竹田轉進地下鐵、不到東寺、京都，不算）；土休日：往外 74 班（首 05:12、末 24:00）、往回 77 班（首 05:20、末 23:43）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "kyoto": {
+        "toji": 180,
+        "takeda": 240,
+        "kintetsu-tambabashi": 240,
+        "momoyamagoryo-mae": 300,
+        "ogura": 360
+      }
+    },
+    "child": "兒童半價，10 円未滿進位（近鐵 旅客営業規則第 60 條）",
+    "note": "京都 ↔ 近鐵丹波橋是官方表；東寺、竹田、桃山御陵前、小倉是駅探（非官方）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": true
+  },
+  "notes": "急行不停東寺；從京都到丹波橋、桃山御陵前急行比較快，見 kintetsu-kyoto-express。KINTETSU RAIL PASS 可用（竹田以北直通地下鐵烏丸線的區間不行）。時刻表 2026-03-14 現在。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-0&d=1&dw=0",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 近鉄京都 京都線 近鉄奈良・天理・橿原神宮前・賢島方面（weekday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-0&d=1&dw=1",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 近鉄京都 京都線 近鉄奈良・天理・橿原神宮前・賢島方面（holiday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-6&d=1&dw=0",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 近鉄丹波橋 京都線 京都方面（weekday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-6&d=1&dw=1",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 近鉄丹波橋 京都線 京都方面（holiday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T7?sf=5198&tx=1-1712&dw=0&time=1200",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 12:01 發的那一班的停站時刻"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_d.pdf",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 運賃特急料金表 京都⇔近鉄奈良・橿原神宮前（括號內是普通運賃）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5649",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：近鐵 京都 ↔ 東寺 180"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5548",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：近鐵 京都 ↔ 竹田 240（地下鐵經由是 260）"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-6082",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：近鐵 京都 ↔ 桃山御陵前 300"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5035",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：近鐵 京都 ↔ 小倉 360"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/gyoumu/kippu/pdf/10_kisoku_2-03-01.pdf",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 旅客営業規則第 59、60 條：兒童票"
+    }
+  ]
+}

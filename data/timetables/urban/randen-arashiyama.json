@@ -1,0 +1,132 @@
+{
+  "id": "randen-arashiyama",
+  "mode": "private",
+  "operator": "京福電気鉄道",
+  "name": {
+    "ja": "嵐電 嵐山本線（四条大宮～嵐山）",
+    "zh": "嵐電 嵐山本線（四条大宮～嵐山）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "randen-shijo-omiya",
+      "min": 0,
+      "note": "阪急大宮站旁"
+    },
+    {
+      "id": "randen-tenjingawa",
+      "min": 10,
+      "note": "轉地下鐵東西線太秦天神川"
+    },
+    {
+      "id": "randen-uzumasa-koryuji",
+      "min": 13,
+      "note": "東映太秦映畫村"
+    },
+    {
+      "id": "randen-katabiranotsuji",
+      "min": 16,
+      "note": "轉北野線"
+    },
+    {
+      "id": "randen-arashiyama",
+      "min": 24,
+      "note": "天龍寺、渡月橋"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:10",
+      "last": "23:17",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 20
+        },
+        {
+          "from": "07:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 12
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "23:40",
+          "min": 20
+        }
+      ],
+      "note": "數四条大宮發、嵐山發兩張站別時刻表（官網是圖片，看圖數的），每小時取較少的一方。首班四条大宮 06:10，末班嵐山往四条大宮 23:17（之後的只到西院）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "06:10",
+      "last": "23:17",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 12
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "23:40",
+          "min": 20
+        }
+      ],
+      "note": "同平日的數法"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {},
+    "child": "全線均一 120 円（官網寫 120；照半價進位應是 130，出發前確認）",
+    "note": "全線均一 大人 250 円（嵐山本線、北野線之間轉乘也是同一張）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "路面電車，平常 1 輛（白天部分時段 2 輛），15 人會很擠。全線均一 250 円，下車時付。舊網域 randen.keifuku.co.jp 已經不在，官網是 www.keifuku.co.jp。",
+  "validFrom": null,
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.keifuku.co.jp/randen_timetable.php",
+      "retrieved": "2026-11-12",
+      "note": "各站所要時間、時刻表（圖片 a1_t1b.png、a1_t2b.png、a13_jikoku1b.png、a13_jikoku2b.png）；時刻表沒寫改正日"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keifuku.co.jp/cms/randen_ticket/",
+      "retrieved": "2026-11-12",
+      "note": "票價、嵐電1日フリーきっぷ 700／350"
+    }
+  ]
+}

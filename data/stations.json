@@ -4475,5 +4475,4652 @@
       }
     ],
     "verified": false
+  },
+  {
+    "id": "kyoto",
+    "type": "station",
+    "name": {
+      "ja": "京都",
+      "kana": "きょうと",
+      "zh": "京都（近鐵）",
+      "en": "Kyoto"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7575139,
+      34.9846722
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区東塩小路釜殿町31-1",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station05005.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "B01",
+    "lines": [
+      "京都線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [
+      "jr-kyoto",
+      "subway-kyoto"
+    ],
+    "coinLockers": "有（大 10、中 12、小 23）",
+    "accessibility": "高架頭端式月台（4 面 4 線），從月台前方直接走到近鉄改札口（一處），不用上下樓（KT、KTP、WP）。剪票口外往 1F 八条口有電梯（KT）。轉乘都有「段差なし」路線：→ JR 在來線西口改札：出剪票口左轉約 30 m、搭樓梯右邊的電梯上一層、直走約 50 m（約 5 分）；→ JR 新幹線中央口約 4 分；→ 地下鐵烏丸線：出剪票口右轉約 30 m、樓梯右側通道 20 m 搭電梯下到地面（八条西口）、過斑馬線、沿建築往前約 100 m、再搭電梯到地下通道、走約 50 m 到地下鐵改札（約 8 分，共兩台電梯和一個路口）（KTP）。剪票口內有多功能廁所（KT、RK）。輪椅使用者不需事先聯絡，到剪票口找站員（RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/kyoto.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/pdf/Kyoto_BF_02.pdf",
+        "retrieved": "2026-11-12",
+        "note": "KTP：京都駅 → JR 在來線西改札口 段差なし路線（2026-01-20 現在）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/pdf/Kyoto_BF_03.pdf",
+        "retrieved": "2026-11-12",
+        "note": "KTP：京都駅 → 地下鐵烏丸線 段差なし路線（2026-01-20 現在）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-11-12",
+        "note": "KTC：主な駅のコインロッカー（個數）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%AC%E9%83%BD/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「京都駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "toji",
+    "type": "station",
+    "name": {
+      "ja": "東寺",
+      "kana": "とうじ",
+      "zh": "東寺",
+      "en": "Toji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7526333,
+      34.9798861
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市南区西九条蔵王町39",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station05006.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "B02",
+    "lines": [
+      "京都線"
+    ],
+    "passCovered": true,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "有（構內圖有置物櫃圖示，個數不明）",
+    "accessibility": "高架站：剪票口 1F（一處）、月台 2F（相對式 2 面），兩邊月台各有電梯（KT、WP）。終日無人，剪票口旁有對講機；需要協助最好前一天以前聯絡京都駅（RK）。剪票口內有多功能廁所（KT、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/toji.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%9D%B1%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「東寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "takeda",
+    "type": "station",
+    "name": {
+      "ja": "竹田",
+      "kana": "たけだ",
+      "zh": "竹田",
+      "en": "Takeda"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7561139,
+      34.9568944
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区竹田桶ノ井町",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station05009.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "K15/B05",
+    "lines": [
+      "京都線",
+      "京都市営地下鉄 烏丸線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（構內圖有置物櫃圖示，在北改札口一帶）",
+    "accessibility": "橋上站：月台 1F（2 面 4 線，近鐵和地下鐵共用）、剪票口 2F。無障礙路線只走北改札口：月台北端電梯 ↔ 北改札口（2F）↔ 東側電梯到地面（東口巴士總站）或西側電梯到地面（西口巴士總站）（KS、KT）。南改札口只有樓梯、手扶梯，尖峰以外無人（KS、KT）。多功能廁所在北改札口內右側；南改札口內只有一般廁所（KS）。由京都市交通局管理（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/takeda.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009853.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%AB%B9%E7%94%B0%EF%BC%88%E4%BA%AC%E9%83%BD%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%AB%B9%E7%94%B0%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%AB%B9%E7%94%B0%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「竹田駅 (京都府)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "kintetsu-tambabashi",
+    "type": "station",
+    "name": {
+      "ja": "近鉄丹波橋",
+      "kana": "きんてつたんばばし",
+      "zh": "近鐵丹波橋",
+      "en": "Kintetsu-Tambabashi"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7663556,
+      34.938425
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区桃山筒井伊賀東町45",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station05011.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "B07",
+    "lines": [
+      "京都線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [
+      "keihan-tambabashi"
+    ],
+    "coinLockers": "有（中 3、小 15）",
+    "accessibility": "橋上站：剪票口 2F、月台 1F，兩邊月台各有電梯（KT）。往京阪丹波橋走 2F 連絡通路，京阪側有電梯下到 1F，標準約 5 分（KT）。公共通路到月台另有可直接進出的斜坡，用旁邊對講機叫站員（RK）。上行月台電梯是直角型（進出不同側）（RK）。剪票口內有多功能廁所（KT、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/tambabashi.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-11-12",
+        "note": "KTC：主な駅のコインロッカー（個數）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%BF%91%E9%89%84%E4%B8%B9%E6%B3%A2%E6%A9%8B/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E4%B8%B9%E6%B3%A2%E6%A9%8B%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E9%89%84%E4%B8%B9%E6%B3%A2%E6%A9%8B%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「近鉄丹波橋駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "momoyamagoryo-mae",
+    "type": "station",
+    "name": {
+      "ja": "桃山御陵前",
+      "kana": "ももやまごりょうまえ",
+      "zh": "桃山御陵前",
+      "en": "Momoyamagoryomae"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7654694,
+      34.9333528
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区観音寺町29",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station05012.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "B08",
+    "lines": [
+      "京都線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（構內圖有置物櫃圖示，個數不明）",
+    "accessibility": "高架站：剪票口 1F（一處，面大手筋）、月台 2F，兩邊月台各有電梯（KT、WP）。清晨、傍晚到末班無站員，用對講機；需要協助最好前一天聯絡京都駅（RK）。剪票口內有多功能廁所（KT、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/momoyamagoryomae.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%A1%83%E5%B1%B1%E5%BE%A1%E9%99%B5%E5%89%8D/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%A1%83%E5%B1%B1%E5%BE%A1%E9%99%B5%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%A1%83%E5%B1%B1%E5%BE%A1%E9%99%B5%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「桃山御陵前駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "ogura",
+    "type": "station",
+    "name": {
+      "ja": "小倉",
+      "kana": "おぐら",
+      "zh": "小倉（近鐵）",
+      "en": "Ogura"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7817583,
+      34.8932333
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府宇治市小倉町神楽田35-4",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station05014.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "B10",
+    "lines": [
+      "京都線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（構內圖有置物櫃圖示，個數不明）",
+    "accessibility": "地面站，兩邊月台各有自己的剪票口（東口、西口），站內不能互通；要換邊得出站走剪票口外的行人地下道（WP、KT）。兩邊剪票口到月台都是斜坡、同平面（KT 圖示）。東口 2021 年起無人、西口 2024-01 起只有部分時段有站員（WP）。剪票口內有多功能廁所（KT、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/ogura.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%B0%8F%E5%80%89%EF%BC%88%E4%BA%AC%E9%83%BD%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B0%8F%E5%80%89%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B0%8F%E5%80%89%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「小倉駅 (京都府)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "yamato-saidaiji",
+    "type": "station",
+    "name": {
+      "ja": "大和西大寺",
+      "kana": "やまとさいだいじ",
+      "zh": "大和西大寺",
+      "en": "Yamato-Saidaiji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7827333,
+      34.6937833
+    ],
+    "coordsSource": "wikipedia",
+    "address": "奈良県奈良市西大寺国見町1丁目1-1",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station03021.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "A26/B26",
+    "lines": [
+      "京都線",
+      "奈良線",
+      "橿原線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（特大 1、大 14、中 18、小 49）",
+    "accessibility": "橋上站：剪票口在 2F，有中央改札口（南北自由通路）和南改札口兩處；月台在下層（1～4 番 1F，5・6 番較低一層）（KT、WP）。北口、南口都有電梯上 2F（RK、KT）；剪票口內每個月台都有電梯（KT）。月台間轉乘標準 2～4 分（KT）。1・2 番月台電梯是前進進、後退出（RK）。剪票口內有多功能廁所（南改札口一帶）（KT、RK）。輪椅使用者到剪票口找站員，不需事先聯絡（RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/saidaiji.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-11-12",
+        "note": "KTC：主な駅のコインロッカー（個數）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A7%E5%92%8C%E8%A5%BF%E5%A4%A7%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E8%A5%BF%E5%A4%A7%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E8%A5%BF%E5%A4%A7%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「大和西大寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "via": true,
+      "note": "換車用的經由站（在奈良縣），不是京都的景點區域；只為了近鐵京都 ↔ 伊勢志摩（大和八木）、京都 ↔ 大阪（大和西大寺）的換車放進來，area 掛在 kyoto。validate 對 extra.via 的車站放寬座標範圍"
+    }
+  },
+  {
+    "id": "yamato-yagi",
+    "type": "station",
+    "name": {
+      "ja": "大和八木",
+      "kana": "やまとやぎ",
+      "zh": "大和八木",
+      "en": "Yamato-Yagi"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7919778,
+      34.5130972
+    ],
+    "coordsSource": "wikipedia",
+    "address": "奈良県橿原市内膳町5丁目1-2",
+    "links": {
+      "official": "https://www.kintetsu.co.jp/station/station_info/station02030.html"
+    },
+    "operator": "kintetsu",
+    "stationNumber": "B39/D39",
+    "lines": [
+      "大阪線",
+      "橿原線"
+    ],
+    "passCovered": true,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（大 4、中 15、小 34）",
+    "accessibility": "兩層立體交叉：剪票口（只有一處）和橿原線月台（5・6 番）在 1F，大阪線月台（1～4 番）在 2F（WP、KT）。5 番月台和剪票口同平面；大阪線兩座島式月台和 6 番月台都有電梯接剪票口一帶（WP、KT）。大阪線 ↔ 橿原線轉乘標準 4 分（KT）。大阪線月台電梯是直角型（進出不同側）（RK）；RK（2019）寫「ハンドル形電動車いす」不能在兩線間轉乘，一般輪椅、行李箱沒寫限制。剪票口內有多功能廁所（KT、RK）。輪椅使用者到剪票口找站員（RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/yagi.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：構內圖（月台、剪票口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/gyoumu/coinlocker/",
+        "retrieved": "2026-11-12",
+        "note": "KTC：主な駅のコインロッカー（個數）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A7%E5%92%8C%E5%85%AB%E6%9C%A8/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E5%85%AB%E6%9C%A8%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%92%8C%E5%85%AB%E6%9C%A8%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「大和八木駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "via": true,
+      "note": "換車用的經由站（在奈良縣），不是京都的景點區域；只為了近鐵京都 ↔ 伊勢志摩（大和八木）、京都 ↔ 大阪（大和西大寺）的換車放進來，area 掛在 kyoto。validate 對 extra.via 的車站放寬座標範圍"
+    }
+  },
+  {
+    "id": "jr-kyoto",
+    "type": "station",
+    "name": {
+      "ja": "京都",
+      "kana": "きょうと",
+      "zh": "京都（JR）",
+      "en": "Kyoto"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7577556,
+      34.9854583
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区烏丸通塩小路下ル東塩小路町",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610116"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A31/JR-B31/JR-E01/JR-D01",
+    "lines": [
+      "JR京都線",
+      "琵琶湖線",
+      "湖西線",
+      "嵯峨野線",
+      "奈良線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "kyoto",
+      "subway-kyoto"
+    ],
+    "coinLockers": "有",
+    "accessibility": "剪票口：中央口（1F，烏丸口）、西口（2F）、地下東口（B1）、八条東口（1F）。JR 無障礙頁列出每個剪票口都能無段差到烏丸口或八条口，每個月台（0～14、30～33 番）都有電梯、上下手扶梯（JRB）；月台之間靠西側橋上站房與東側地下通道連接，橋上站房到各月台都有電梯（WP）。RK（2019）註記輪椅不要走地下東口、八条東口。往近鐵：JR 西口改札出來直走約 50 m、搭電梯下一層、再走約 30 m 到近鐵改札口（KTP 路線反向）。往地下鐵：烏丸口地面搭地下鐵 5 號出口電梯到中央 1 改札口（KS）。中央口改札外、西・地下東・八条東改札內都有廁所，多功能廁所在各改札和 0 番月台（WP）。みどりの窓口 6:30～21:00（JR）。新幹線（JR 東海）另有八条口的新幹線改札，本筆只記 JR 西日本",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610116",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610116",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%AC%E9%83%BD/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/pdf/Kyoto_BF_02.pdf",
+        "retrieved": "2026-11-12",
+        "note": "KTP：近鐵 ↔ JR 西口段差なし路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009812.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：地下鐵京都駅 5 號出口電梯"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「京都駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-umekoji-kyotonishi",
+    "type": "station",
+    "name": {
+      "ja": "梅小路京都西",
+      "kana": "うめこうじきょうとにし",
+      "zh": "梅小路京都西",
+      "en": "Umekoji-Kyotonishi"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.743167,
+      34.988778
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区観喜寺町3番地",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610708"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-E02",
+    "lines": [
+      "嵯峨野線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "剪票口 1F，到出口不用電梯；1・2 番月台（高架、相對式）都有電梯、上下手扶梯（JRB、WP）。站員現場 10:00～12:00、13:00～17:00，其他時間用對講機（JR）。輪椅搭車：往龜岡方向用後 4 節、往京都方向用前 4 節，站員會引導（RK）。剪票口內有多功能廁所，剪票口外沒有（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610708",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610708",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%A2%85%E5%B0%8F%E8%B7%AF%E4%BA%AC%E9%83%BD%E8%A5%BF/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%A2%85%E5%B0%8F%E8%B7%AF%E4%BA%AC%E9%83%BD%E8%A5%BF%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%A2%85%E5%B0%8F%E8%B7%AF%E4%BA%AC%E9%83%BD%E8%A5%BF%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「梅小路京都西駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-nijo",
+    "type": "station",
+    "name": {
+      "ja": "二条",
+      "kana": "にじょう",
+      "zh": "二条（JR）",
+      "en": "Nijo"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.741694,
+      35.010975
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市中京区西ノ京東栂尾町3番地",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610702"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-E04",
+    "lines": [
+      "嵯峨野線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "subway-nijo"
+    ],
+    "coinLockers": "有",
+    "accessibility": "剪票口 1F，到出口不用電梯；島式月台有電梯和上行手扶梯（沒有下行）（JRB、WP）。剪票口內有多功能廁所，剪票口外沒有（JRB）。有みどりの窓口 8:00～20:00（JR）。旁邊是地下鐵東西線二条駅",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610702",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610702",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%8C%E6%9D%A1%EF%BC%88%E4%BA%AC%E9%83%BD%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「二条駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-saga-arashiyama",
+    "type": "station",
+    "name": {
+      "ja": "嵯峨嵐山",
+      "kana": "さがあらしやま",
+      "zh": "嵯峨嵐山",
+      "en": "Saga-Arashiyama"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.6813083,
+      35.0187417
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市右京区嵯峨天竜寺車道町11番地1",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610704"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-E08",
+    "lines": [
+      "嵯峨野線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F，北口、南口都有電梯和上行手扶梯（沒有下行）；1～4 番月台都有電梯和上行手扶梯（JRB）。站員現場 6:30～19:30、23:00～末班，其他時間對講機（JR）。剪票口內外都有多功能廁所（JRB）。旁邊是嵯峨野觀光鐵道トロッコ嵯峨駅（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610704",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610704",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%AF%E5%B3%A8%E5%B5%90%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「嵯峨嵐山駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-tofukuji",
+    "type": "station",
+    "name": {
+      "ja": "東福寺",
+      "kana": "とうふくじ",
+      "zh": "東福寺（JR）",
+      "en": "Tofukuji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.769917,
+      34.980917
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区本町12丁目224番地",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0621614"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-D02",
+    "lines": [
+      "奈良線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "keihan-tofukuji"
+    ],
+    "coinLockers": "無",
+    "accessibility": "橋上站：剪票口 2F，出口到剪票口有電梯（沒有手扶梯）；1・2 番月台各有電梯（沒有手扶梯）（JRB）。站員 6:30～6:50、7:10～21:00、21:50～末班；往京阪的乗換口無人（JR）。月台形狀關係，輪椅由站員引導（RK）。剪票口內有多功能廁所（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0621614",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0621614",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%9D%B1%E7%A6%8F%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E7%A6%8F%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E7%A6%8F%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「東福寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-inari",
+    "type": "station",
+    "name": {
+      "ja": "稲荷",
+      "kana": "いなり",
+      "zh": "稻荷",
+      "en": "Inari"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.77085,
+      34.966833
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区深草稲荷御前町",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0621613"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-D03",
+    "lines": [
+      "奈良線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "地面站：剪票口 1F，到出口不用電梯（JRB）。站房在 2 番月台側，1 番月台走天橋，天橋有電梯（2008 年起）（WP、JRB）。電梯是直角型（RK）。月台在彎道上（WP）。站員 7:00～20:30、23:00～末班（JR）。剪票口內有多功能廁所（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0621613",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0621613",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%A8%B2%E8%8D%B7/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%A8%B2%E8%8D%B7%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%A8%B2%E8%8D%B7%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「稲荷駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-uji",
+    "type": "station",
+    "name": {
+      "ja": "宇治",
+      "kana": "うじ",
+      "zh": "宇治（JR）",
+      "en": "Uji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.8006083,
+      34.8904028
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府宇治市宇治宇文字16番地",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0621609"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-D09",
+    "lines": [
+      "奈良線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F，南口、北口都有電梯和上行手扶梯；1～4 番月台都有電梯和上行手扶梯（JRB）。有みどりの窓口 8:00～20:00（JR）。剪票口內有多功能廁所，剪票口外沒有（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0621609",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0621609",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%AE%87%E6%B2%BB%EF%BC%88%EF%BC%AA%EF%BC%B2%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%87%E6%B2%BB%E9%A7%85_(JR%E8%A5%BF%E6%97%A5%E6%9C%AC)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%87%E6%B2%BB%E9%A7%85_(JR%E8%A5%BF%E6%97%A5%E6%9C%AC)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「宇治駅 (JR西日本)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-yamashina",
+    "type": "station",
+    "name": {
+      "ja": "山科",
+      "kana": "やましな",
+      "zh": "山科（JR）",
+      "en": "Yamashina"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.8170833,
+      34.9923361
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市山科区安朱北屋敷町",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610115"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A30/JR-B30",
+    "lines": [
+      "琵琶湖線",
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "subway-yamashina"
+    ],
+    "coinLockers": "有",
+    "accessibility": "剪票口 1F，到出口不用電梯（JRB）。1・2 番月台有電梯、上下手扶梯；3・4 番月台有電梯和上行手扶梯，下行手扶梯因改良工程停用（JRB）。剪票口內有多功能廁所，剪票口外沒有（JRB）。往地下鐵東西線山科駅：地下鐵 1 號出口（接 JR 山科駅）有電梯到地下鐵改札（RK 地下鐵欄）。有みどりの窓口 8:00～20:00（JR）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610115",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610115",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%B1%B1%E7%A7%91/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B1%B1%E7%A7%91%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B1%B1%E7%A7%91%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「山科駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "hankyu-osaka-umeda",
+    "type": "station",
+    "name": {
+      "ja": "大阪梅田",
+      "kana": "おおさかうめだ",
+      "zh": "大阪梅田（阪急）",
+      "en": "Osaka-umeda"
+    },
+    "area": "osaka",
+    "coords": [
+      135.4983111,
+      34.7055139
+    ],
+    "coordsSource": "wikipedia",
+    "address": "大阪府大阪市北区芝田1-1-2",
+    "links": {
+      "official": "https://www.hankyu.co.jp/station/umeda.html"
+    },
+    "operator": "other",
+    "stationNumber": "HK01",
+    "lines": [
+      "阪急 京都線",
+      "阪急 神戸線",
+      "阪急 宝塚線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（構內圖有多處置物櫃圖示）",
+    "accessibility": "高架頭端站：月台和 3 階改札口在 3F，另有 2 階中央改札口、茶屋町口改札口（WP、HKM）。京都線是 1～3 號線（HKM）。地面到 3F 用改札外的電梯（1F↔3F，或梅田ターミナルビル低層用電梯）；剪票口內有 2F 大廳 ↔ 京都線 1 號線一帶的電梯；每座月台都有手扶梯（WP、HKM、RK）。輪椅在 3F 改札兩側的服務台找站員；京都線 1 號線搭乘請在大阪側 1～6 節之間（RK）。1 號線乘車月台京都河原町側第 2 節附近較窄（RK）。剪票口內外都有多功能廁所（RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/umeda.html",
+        "retrieved": "2026-11-12",
+        "note": "HK：改札窓口營業時間、駅係員不在時間、バリアフリー施設"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/umeda_map.html",
+        "retrieved": "2026-11-12",
+        "note": "HKM：駅構內圖（出口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A7%E9%98%AA%E6%A2%85%E7%94%B0%EF%BC%BB%E9%98%AA%E6%80%A5%EF%BC%BD/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E6%A2%85%E7%94%B0%E9%A7%85_(%E9%98%AA%E6%80%A5)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%98%AA%E6%A2%85%E7%94%B0%E9%A7%85_(%E9%98%AA%E6%80%A5)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「大阪梅田駅 (阪急)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "hankyu-katsura",
+    "type": "station",
+    "name": {
+      "ja": "桂",
+      "kana": "かつら",
+      "zh": "桂",
+      "en": "Katsura"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.703275,
+      34.9793722
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市西京区川島北裏町97-2",
+    "links": {
+      "official": "https://www.hankyu.co.jp/station/katsura.html"
+    },
+    "operator": "other",
+    "stationNumber": "HK81",
+    "lines": [
+      "阪急 京都線",
+      "阪急 嵐山線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（構內圖有置物櫃圖示）",
+    "accessibility": "橋上站：剪票口 3F（一處）。東出口 1F ↔ 3F 剪票口有電梯；剪票口內每座月台（京都線 2 座、嵐山線 1 座）都有電梯（HKM、RK）。月台電梯是 11 人座直角型（RK）。月台部分地方較窄（RK）。剪票口內有多功能廁所（HKM、RK）。京都線 ↔ 嵐山線轉乘要經過 3F 剪票口層（HKM）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/katsura.html",
+        "retrieved": "2026-11-12",
+        "note": "HK：改札窓口營業時間、駅係員不在時間、バリアフリー施設"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/katsura_map.html",
+        "retrieved": "2026-11-12",
+        "note": "HKM：駅構內圖（出口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%A1%82/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%A1%82%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%A1%82%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「桂駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "hankyu-karasuma",
+    "type": "station",
+    "name": {
+      "ja": "烏丸",
+      "kana": "からすま",
+      "zh": "烏丸",
+      "en": "Karasuma"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7591083,
+      35.003667
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区四条通烏丸東入ル長刀鉾町17番地先",
+    "links": {
+      "official": "https://www.hankyu.co.jp/station/karasuma.html"
+    },
+    "operator": "other",
+    "stationNumber": "HK85",
+    "lines": [
+      "阪急 京都線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "subway-shijo"
+    ],
+    "coinLockers": "有（構內圖有置物櫃圖示，在西改札口一帶）",
+    "accessibility": "地下站：剪票口 B1、月台 B2（島式）。只有西改札口有電梯到月台；東改札口到月台只有樓梯，且常無人（WP、HKM）。地面到西改札口用四条烏丸東南角 FT スクエア、西南角四条烏丸ビル或西北角ラクエ四条烏丸的電梯（RK、HKM）。多功能廁所在月台大阪梅田側（WP）。往地下鐵四条駅：原本的階段昇降機 2026-11-10 起停用拆除，新電梯預計 2027 年 3 月上旬才啟用，旅行期間（2/2～2/13）連絡通路沒有無障礙路線，要走地面改搭地下鐵 1 號或 4 號出口電梯（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/karasuma.html",
+        "retrieved": "2026-11-12",
+        "note": "HK：改札窓口營業時間、駅係員不在時間、バリアフリー施設"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/karasuma_map.html",
+        "retrieved": "2026-11-12",
+        "note": "HKM：駅構內圖（出口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%83%8F%E4%B8%B8/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%83%8F%E4%B8%B8%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000359396.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：四条駅↔阪急烏丸駅 連絡通路電梯新設工程、階段昇降機停用（2026-10-20 公告）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%83%8F%E4%B8%B8%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「烏丸駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "hankyu-kyoto-kawaramachi",
+    "type": "station",
+    "name": {
+      "ja": "京都河原町",
+      "kana": "きょうとかわらまち",
+      "zh": "京都河原町",
+      "en": "Kyoto-kawaramachi"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.768722,
+      35.00375
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区四条通河原町西入ル真町52番地先",
+    "links": {
+      "official": "https://www.hankyu.co.jp/station/kawaramachi.html"
+    },
+    "operator": "other",
+    "stationNumber": "HK86",
+    "lines": [
+      "阪急 京都線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "keihan-gion-shijo"
+    ],
+    "coinLockers": "有（構內圖有多處置物櫃圖示）",
+    "accessibility": "地下站：剪票口 B1（東改札口、中央改札口）、月台 B2（WP、HKM）。電梯只在東側：地面 3 號出口（コトクロス阪急河原町，四条河原町東北角）電梯 ↔ 東改札口 ↔ 月台（HKM、RK）。東改札口是有人的服務台；中央改札口無人，用對講機（HK）。多功能廁所在月台東端（剪票口內）（WP、HKM）。RK（2019）註記剪票口到月台需要協助",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/kawaramachi.html",
+        "retrieved": "2026-11-12",
+        "note": "HK：改札窓口營業時間、駅係員不在時間、バリアフリー施設"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/kawaramachi_map.html",
+        "retrieved": "2026-11-12",
+        "note": "HKM：駅構內圖（出口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%AC%E9%83%BD%E6%B2%B3%E5%8E%9F%E7%94%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E6%B2%B3%E5%8E%9F%E7%94%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E6%B2%B3%E5%8E%9F%E7%94%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「京都河原町駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "hankyu-arashiyama",
+    "type": "station",
+    "name": {
+      "ja": "嵐山",
+      "kana": "あらしやま",
+      "zh": "嵐山（阪急）",
+      "en": "Arashiyama"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.6815722,
+      35.0102722
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市西京区嵐山東一川町7番地",
+    "links": {
+      "official": "https://www.hankyu.co.jp/station/arashiyama.html"
+    },
+    "operator": "other",
+    "stationNumber": "HK98",
+    "lines": [
+      "阪急 嵐山線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（構內圖有置物櫃圖示）",
+    "accessibility": "地面站，剪票口 1F（一處），到月台是斜坡、不用電梯（HKM、HK）。外側兩座月台另有斜坡通 2F 臨時剪票口（只在旺季開）（WP）。站員不在時間 10:30～11:30、13:40～14:40、18:00～19:00（HK）。剪票口內有多功能廁所（HKM、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/arashiyama.html",
+        "retrieved": "2026-11-12",
+        "note": "HK：改札窓口營業時間、駅係員不在時間、バリアフリー施設"
+      },
+      {
+        "type": "official",
+        "url": "https://www.hankyu.co.jp/station/arashiyama_map.html",
+        "retrieved": "2026-11-12",
+        "note": "HKM：駅構內圖（出口、電梯、廁所、置物櫃圖示）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%B5%90%E5%B1%B1%EF%BC%88%E9%98%AA%E6%80%A5%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%90%E5%B1%B1%E9%A7%85_(%E9%98%AA%E6%80%A5)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%90%E5%B1%B1%E9%A7%85_(%E9%98%AA%E6%80%A5)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「嵐山駅 (阪急)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-yodoyabashi",
+    "type": "station",
+    "name": {
+      "ja": "淀屋橋",
+      "kana": "よどやばし",
+      "zh": "淀屋橋（京阪）",
+      "en": "Yodoyabashi"
+    },
+    "area": "osaka",
+    "coords": [
+      135.5009944,
+      34.69235
+    ],
+    "coordsSource": "wikipedia",
+    "address": "大阪府大阪市中央区北浜3丁目1番25号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/010/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH01",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "地下站（1 面 3 線）（WP）。地面到剪票口用 ⑩ 號出口電梯（始發～24:20），有電梯專用剪票口（無人，用對講機）（RK）。所有剪票口終日無站員，站務室有人（KH）。有電梯、手扶梯、多功能廁所（KH）；RK（2019）寫廁所在剪票口外",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/010/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%B7%80%E5%B1%8B%E6%A9%8B/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B7%80%E5%B1%8B%E6%A9%8B%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B7%80%E5%B1%8B%E6%A9%8B%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「淀屋橋駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-chushojima",
+    "type": "station",
+    "name": {
+      "ja": "中書島",
+      "kana": "ちゅうしょじま",
+      "zh": "中書島",
+      "en": "Chushojima"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7600194,
+      34.9268806
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区葭島矢倉町59番地",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/130/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH28",
+    "lines": [
+      "京阪 本線",
+      "京阪 宇治線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "地面站 3 面 4 線，北改札口（1 番線側）和南改札口（4 番線側）兩處；月台間有天橋和地下道，天橋到各月台有電梯（WP）。輪椅請用北改札口（有人）；南改札口終日無人（RK、KH）。本線 ↔ 宇治線轉乘在站內（WP）。剪票口內有多功能廁所（RK、KH）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/130/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%B8%AD%E6%9B%B8%E5%B3%B6/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%AD%E6%9B%B8%E5%B3%B6%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%AD%E6%9B%B8%E5%B3%B6%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「中書島駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-tambabashi",
+    "type": "station",
+    "name": {
+      "ja": "丹波橋",
+      "kana": "たんばばし",
+      "zh": "丹波橋（京阪）",
+      "en": "Tambabashi"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7654056,
+      34.9386528
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区桃山筒井伊賀西町15番地",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/140/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH30",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "kintetsu-tambabashi"
+    ],
+    "coinLockers": "有",
+    "accessibility": "有電梯的是南改札口（有人）；北改札口終日無人（KH、RK）。站西側有電梯到剪票口（RK）。往近鐵丹波橋走連絡通路，標準約 5 分（KT 近鐵丹波橋）。剪票口內有多功能廁所（RK、KH）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/140/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%B8%B9%E6%B3%A2%E6%A9%8B/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%B9%E6%B3%A2%E6%A9%8B%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/soukatsu/kounai/tambabashi.html",
+        "retrieved": "2026-11-12",
+        "note": "KT：近鐵丹波橋構內圖（往京阪連絡通路）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%B9%E6%B3%A2%E6%A9%8B%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「丹波橋駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-fushimi-inari",
+    "type": "station",
+    "name": {
+      "ja": "伏見稲荷",
+      "kana": "ふしみいなり",
+      "zh": "伏見稻荷（京阪）",
+      "en": "Fushimi-inari"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7693278,
+      34.9687611
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市伏見区深草一ノ坪町33番地",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/151/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH34",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "地面站，上下行月台各有自己的剪票口，站內沒有地下道，不能換邊（WP）。沒有電梯、手扶梯，用斜坡進出（KH、RK）。淀屋橋方向剪票口初發～8:00、18:40～末班無人；三条方向剪票口終日無人（KH）。WP 寫「無人駅（他駅サポート）」。兩邊月台剪票口內都有廁所，多功能廁所只在其中一側（WP、KH）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/151/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BC%8F%E8%A6%8B%E7%A8%B2%E8%8D%B7%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「伏見稲荷駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-tofukuji",
+    "type": "station",
+    "name": {
+      "ja": "東福寺",
+      "kana": "とうふくじ",
+      "zh": "東福寺（京阪）",
+      "en": "Tofukuji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.770167,
+      34.981194
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区本町12丁目224番地",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/153/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH36",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "jr-tofukuji"
+    ],
+    "coinLockers": "有",
+    "accessibility": "有電梯、斜坡，沒有手扶梯（KH）。東改札口有人；西改札口和 JR 乗換口終日無人，用對講機（KH、RK）。剪票口內有多功能廁所（KH、RK）。和 JR 東福寺同一棟（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/153/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%9D%B1%E7%A6%8F%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E7%A6%8F%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E7%A6%8F%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「東福寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-shichijo",
+    "type": "station",
+    "name": {
+      "ja": "七条",
+      "kana": "しちじょう",
+      "zh": "七条",
+      "en": "Shichijo"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7678472,
+      34.9893222
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区七条大橋東詰",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/160/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH37",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "地下站，剪票口和月台都在 B1，上下行各有剪票口，站內不能換邊（改札外有地下連絡通路）（WP）。有電梯、手扶梯（KH）。三条・出町柳方向剪票口終日無人，淀屋橋方向剪票口 21:50～24:00 無人（KH）。兩邊剪票口內都有廁所，有多功能廁所（RK、KH）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/160/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%B8%83%E6%9D%A1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%83%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%83%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「七条駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-kiyomizu-gojo",
+    "type": "station",
+    "name": {
+      "ja": "清水五条",
+      "kana": "きよみずごじょう",
+      "zh": "清水五条",
+      "en": "Kiyomizu-gojo"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.768528,
+      34.9961083
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区五条大橋東詰",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/161/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH38",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "地下站：剪票口 B1（一處）、島式月台 B2。大廳 ↔ 月台有電梯和上下手扶梯；地面 ↔ 大廳有電梯和上行手扶梯（WP、KH）。剪票口 20:00～20:45 無人（KH）。剪票口內有多功能廁所（WP、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/161/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%B8%85%E6%B0%B4%E4%BA%94%E6%9D%A1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B8%85%E6%B0%B4%E4%BA%94%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%B8%85%E6%B0%B4%E4%BA%94%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「清水五条駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-gion-shijo",
+    "type": "station",
+    "name": {
+      "ja": "祇園四条",
+      "kana": "ぎおんしじょう",
+      "zh": "祇園四条",
+      "en": "Gion-shijo"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.772139,
+      35.003972
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区四条大橋東詰",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/162/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH39",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "hankyu-kyoto-kawaramachi"
+    ],
+    "coinLockers": "有（大廳有置物櫃、多機能ロッカー）",
+    "accessibility": "地下站：剪票口 B1、島式月台 B2（兩個方向同一座月台）（WP、KHM）。地面 ↔ 大廳的電梯在 ⑦ 號出口一帶（川端四条路口往東、南座對面的巴士站前）；大廳 ↔ 月台的電梯在剪票口內（WP、KHM、RK）。剪票口終日無站員，用對講機；大廳的鐵道案內所有人（初發～6:10、22:45～末班除外）（KH）。多功能廁所（可オストメイト）在剪票口內（WP、KH）。往阪急京都河原町要過四条大橋（KHM）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/162/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/assets/img/info/station-162.jpg",
+        "retrieved": "2026-11-12",
+        "note": "KHM：駅構內圖（電梯位置）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%A5%87%E5%9C%92%E5%9B%9B%E6%9D%A1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%A5%87%E5%9C%92%E5%9B%9B%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%A5%87%E5%9C%92%E5%9B%9B%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「祇園四条駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-sanjo",
+    "type": "station",
+    "name": {
+      "ja": "三条",
+      "kana": "さんじょう",
+      "zh": "三条（京阪）",
+      "en": "Sanjo"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.772275,
+      35.0091139
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区三条大橋東詰",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/170/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH40",
+    "lines": [
+      "京阪 本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "subway-sanjo-keihan"
+    ],
+    "coinLockers": "有（大廳有置物櫃、多機能ロッカー）",
+    "accessibility": "地下站：剪票口 B1（中央改札口、北改札口）、月台 B2（2 座島式）（WP、KHM）。地面 ↔ 大廳的電梯在南ビル（② 號出口旁）和北ビル（⑨ 號出口旁）（RK、KHM）；中央改札口內有兩座電梯分別到兩座月台（WP、KHM）。剪票口終日無站員、站務室有人（KH）。多功能廁所在中央改札口內；北改札口內的廁所有台階（WP）。往地下鐵東西線三条京阪駅走 B1 剪票口外的連絡通路（WP）；地下鐵側的電梯也可用（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/170/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/assets/img/info/station-170.jpg",
+        "retrieved": "2026-11-12",
+        "note": "KHM：駅構內圖（電梯位置）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%B8%89%E6%9D%A1%EF%BC%88%E4%BA%AC%E9%83%BD%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E6%9D%A1%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E6%9D%A1%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「三条駅 (京都府)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-uji",
+    "type": "station",
+    "name": {
+      "ja": "宇治",
+      "kana": "うじ",
+      "zh": "宇治（京阪）",
+      "en": "Uji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.8063361,
+      34.894583
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府宇治市宇治乙方18番地の5号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/310/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "KH77",
+    "lines": [
+      "京阪 宇治線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "頭端式月台，剪票口在月台端（一處），大廳在半地下（WP）。站前廣場可用京阪宇治ビル的電梯或斜坡到出入口（RK）。有電梯、手扶梯、斜坡（KH）。白天有多段無人時間（8:00～8:50、11:00～12:35、14:10～15:10、18:00～19:35 等）（KH）。剪票口內有多功能廁所（RK、KH）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/310/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%AE%87%E6%B2%BB%EF%BC%88%E4%BA%AC%E9%98%AA%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%87%E6%B2%BB%E9%A7%85_(%E4%BA%AC%E9%98%AA)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%87%E6%B2%BB%E9%A7%85_(%E4%BA%AC%E9%98%AA)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「宇治駅 (京阪)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "randen-shijo-omiya",
+    "type": "station",
+    "name": {
+      "ja": "四条大宮",
+      "kana": "しじょうおおみや",
+      "zh": "四条大宮",
+      "en": "Shijo-Omiya"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7484083,
+      35.0033528
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区四条大宮町4-4",
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": "A1",
+    "lines": [
+      "嵐電 嵐山本線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "起點站（地面，3 面 2 線）（WP）。RK：地面到剪票口、剪票口到月台都有可移動路線；不需事先聯絡，找站員或乘務員。剪票口內有多功能廁所（RK）。嵐電官網 randen.keifuku.co.jp 連不上（DNS 解析失敗），改用 RK、WP",
+    "sources": [
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%9B%9B%E6%9D%A1%E5%A4%A7%E5%AE%AE/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%9B%9B%E6%9D%A1%E5%A4%A7%E5%AE%AE%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%9B%9B%E6%9D%A1%E5%A4%A7%E5%AE%AE%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「四条大宮駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "randen-tenjingawa",
+    "type": "station",
+    "name": {
+      "ja": "嵐電天神川",
+      "kana": null,
+      "zh": "嵐電天神川",
+      "en": null
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7150472,
+      35.0102167
+    ],
+    "coordsSource": "wikipedia",
+    "address": null,
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": null,
+    "lines": [
+      "嵐電 嵐山本線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [
+      "subway-uzumasa-tenjingawa"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%90%E9%9B%BB%E5%A4%A9%E7%A5%9E%E5%B7%9D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「嵐電天神川駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "randen-uzumasa-koryuji",
+    "type": "station",
+    "name": {
+      "ja": "太秦広隆寺",
+      "kana": "うずまさこうりゅうじ",
+      "zh": "太秦廣隆寺",
+      "en": "Uzumasa-Koryuji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7082472,
+      35.0134944
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市右京区太秦組石町10",
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": "A7",
+    "lines": [
+      "嵐電 嵐山本線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "路面停留場（2 面 2 線）（WP）。RK：地面到月台有可移動路線，搭車時跟乘務員說。沒有廁所（RK）。嵐電官網 randen.keifuku.co.jp 連不上（DNS 解析失敗），改用 RK、WP",
+    "sources": [
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%AA%E7%A7%A6%E5%BA%83%E9%9A%86%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%AA%E7%A7%A6%E5%BA%83%E9%9A%86%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%AA%E7%A7%A6%E5%BA%83%E9%9A%86%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「太秦広隆寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "randen-katabiranotsuji",
+    "type": "station",
+    "name": {
+      "ja": "帷子ノ辻",
+      "kana": "かたびらのつじ",
+      "zh": "帷子之辻",
+      "en": "Katabiranotsuji"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7001639,
+      35.0151306
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市右京区太秦帷子ノ辻町30-3",
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": "A8",
+    "lines": [
+      "嵐電 嵐山本線",
+      "嵐電 北野線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "嵐山本線和北野線的轉乘站（地面，2 面 4 線）（WP）。RK：地面到剪票口、剪票口到月台、月台間都有可移動路線；找站員或乘務員。多功能廁所在剪票口外（RK）。北野線的站號 WP 資訊框沒寫。嵐電官網 randen.keifuku.co.jp 連不上（DNS 解析失敗），改用 RK、WP",
+    "sources": [
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%B8%B7%E5%AD%90%E3%83%8E%E8%BE%BB/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B8%B7%E5%AD%90%E3%83%8E%E8%BE%BB%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B8%B7%E5%AD%90%E3%83%8E%E8%BE%BB%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「帷子ノ辻駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "randen-arashiyama",
+    "type": "station",
+    "name": {
+      "ja": "嵐山",
+      "kana": "あらしやま",
+      "zh": "嵐山（嵐電）",
+      "en": "Arashiyama"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.677694,
+      35.0152139
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市右京区嵯峨天龍寺造路町20-2",
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": "A13",
+    "lines": [
+      "嵐電 嵐山本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "終點站（地面，3 面 3 線）（WP）。RK：地面到月台、月台間都有可移動路線；找インフォメーションスタッフ或乘務員。多功能廁所在剪票口外（RK）。嵐電官網 randen.keifuku.co.jp 連不上（DNS 解析失敗），改用 RK、WP",
+    "sources": [
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%B5%90%E5%B1%B1%EF%BC%88%E4%BA%AC%E7%A6%8F%E9%9B%BB%E6%B0%97%E9%89%84%E9%81%93%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%90%E5%B1%B1%E9%A7%85_(%E4%BA%AC%E7%A6%8F%E9%9B%BB%E6%B0%97%E9%89%84%E9%81%93)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B5%90%E5%B1%B1%E9%A7%85_(%E4%BA%AC%E7%A6%8F%E9%9B%BB%E6%B0%97%E9%89%84%E9%81%93)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「嵐山駅 (京福電気鉄道)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "randen-kitano-hakubaicho",
+    "type": "station",
+    "name": {
+      "ja": "北野白梅町",
+      "kana": "きたのはくばいちょう",
+      "zh": "北野白梅町",
+      "en": "Kitano-Hakubaicho"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7308472,
+      35.0274083
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市北区北野白梅町15-2",
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": "B9",
+    "lines": [
+      "嵐電 北野線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "終點站（地面，2 面 1 線）（WP）。RK：地面到月台有可移動路線；找站員或乘務員。剪票口內有多功能廁所（RK）。嵐電官網 randen.keifuku.co.jp 連不上（DNS 解析失敗），改用 RK、WP",
+    "sources": [
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%8C%97%E9%87%8E%E7%99%BD%E6%A2%85%E7%94%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8C%97%E9%87%8E%E7%99%BD%E6%A2%85%E7%94%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%8C%97%E9%87%8E%E7%99%BD%E6%A2%85%E7%94%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「北野白梅町駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-kyoto",
+    "type": "station",
+    "name": {
+      "ja": "京都",
+      "kana": "きょうと",
+      "zh": "京都（地下鐵）",
+      "en": "Kyoto"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7601222,
+      34.9855472
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区東塩小路町地先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009812.html"
+    },
+    "operator": "other",
+    "stationNumber": "K11",
+    "lines": [
+      "京都市営地下鉄 烏丸線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "kyoto",
+      "jr-kyoto"
+    ],
+    "coinLockers": null,
+    "accessibility": "地下站（島式 1 面 2 線）（WP）。剪票口由北到南：北、中央 1、中央 2、南；到月台的電梯在中央 1 改札口和南改札口內（KS）。無障礙路線：月台北側電梯 ↔ 中央 1 改札口 ↔ 5 號出口電梯 ↔ 地面（JR 京都駅正面東側）；或月台南側電梯 ↔ 南改札口 ↔ 八条口連絡通路電梯（八条通南北側）；ポルタ地下街也有電梯到地面（KS）。中央 2 改札口無人，南改札口尖峰以外無人（KS）。多功能廁所在中央 1 改札口前券賣機旁通道裡（剪票口外）；一般廁所在月台南端（KS、RK）。月台有可動式柵欄（KS）。往近鐵見近鐵京都駅的路線（KTP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009812.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%AC%E9%83%BD/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/station/station_info/pdf/Kyoto_BF_03.pdf",
+        "retrieved": "2026-11-12",
+        "note": "KTP：近鐵 ↔ 地下鐵 段差なし路線"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「京都駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-shijo",
+    "type": "station",
+    "name": {
+      "ja": "四条",
+      "kana": "しじょう",
+      "zh": "四条（地下鐵）",
+      "en": "Shijo"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.759667,
+      35.002389
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市下京区二帖半敷町地先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009769.html"
+    },
+    "operator": "other",
+    "stationNumber": "K09",
+    "lines": [
+      "京都市営地下鉄 烏丸線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "hankyu-karasuma"
+    ],
+    "coinLockers": null,
+    "accessibility": "地下站（島式）。無障礙路線：月台南端電梯 ↔ 南改札口 ↔ 4 號出口電梯（烏丸通西側）或 1 號出口電梯（烏丸通東側）（KS）。南改札口早上尖峰以外無人、中改札口（コトチカ，只能進站）無人（KS）。往阪急烏丸：原本連絡通路的階段昇降機 2026-11-10 起停用拆除，新電梯預計 2027 年 3 月上旬啟用，旅行期間沒有站內無障礙轉乘，帶長輩、行李要改走地面（1／4 號出口電梯 ↔ 阪急西改札口方向大樓的電梯）（KS、RK）。多功能廁所在南改札口內（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009769.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000359396.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：四条駅↔阪急烏丸駅 連絡通路電梯新設工程、階段昇降機停用（2026-10-20 公告）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%9B%9B%E6%9D%A1%EF%BC%88%E4%BA%AC%E9%83%BD%E5%B8%82%E5%96%B6%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%9B%9B%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%9B%9B%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「四条駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-karasuma-oike",
+    "type": "station",
+    "name": {
+      "ja": "烏丸御池",
+      "kana": "からすまおいけ",
+      "zh": "烏丸御池",
+      "en": "Karasuma Oike"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.759639,
+      35.0105167
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市中京区虎屋町地先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009448.html"
+    },
+    "operator": "other",
+    "stationNumber": "K08/T13",
+    "lines": [
+      "京都市営地下鉄 烏丸線",
+      "京都市営地下鉄 東西線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "烏丸線 ↔ 東西線轉乘站。到月台的電梯都在北改札口內：左邊一座通烏丸線往竹田方向月台＋東西線月台，右邊一座通烏丸線往國際會館方向月台＋東西線月台（KS）。地面電梯：御池通南側 3-2 號出口（到北改札口）、5 號出口北側新風館內（到南改札口，再走到北改札口）（KS）。南改札口尖峰以外無人（KS）。多功能廁所在北改札口內（KS）。北改札口外有市巴士・地下鐵案內所（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009448.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%83%8F%E4%B8%B8%E5%BE%A1%E6%B1%A0/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%83%8F%E4%B8%B8%E5%BE%A1%E6%B1%A0%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%83%8F%E4%B8%B8%E5%BE%A1%E6%B1%A0%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「烏丸御池駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-imadegawa",
+    "type": "station",
+    "name": {
+      "ja": "今出川",
+      "kana": "いまでがわ",
+      "zh": "今出川",
+      "en": "Imadegawa"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7593861,
+      35.030167
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市上京区岡松町地先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009419.html"
+    },
+    "operator": "other",
+    "stationNumber": "K06",
+    "lines": [
+      "京都市営地下鉄 烏丸線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "無障礙路線：月台中央電梯 ↔ 南改札口 ↔ 3 號出口電梯（烏丸今出川路口東北角）（KS）。剪票口無人，南改札口只在尖峰（7:30～8:30、17:30～18:30）有人，用對講機（KS、WP）。多功能廁所在剪票口外南側（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009419.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BB%8A%E5%87%BA%E5%B7%9D/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BB%8A%E5%87%BA%E5%B7%9D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BB%8A%E5%87%BA%E5%B7%9D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「今出川駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-uzumasa-tenjingawa",
+    "type": "station",
+    "name": {
+      "ja": "太秦天神川",
+      "kana": "うずまさてんじんがわ",
+      "zh": "太秦天神川",
+      "en": "Uzumasa-Tenjingawa"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7155583,
+      35.0108083
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市右京区太秦下刑部町地先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000028930.html"
+    },
+    "operator": "other",
+    "stationNumber": "T17",
+    "lines": [
+      "京都市営地下鉄 東西線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [
+      "randen-tenjingawa"
+    ],
+    "coinLockers": null,
+    "accessibility": "大廳 B1、月台 B3（島式，有月台門）（WP）。所有出入口（1～4 號）都有電梯；月台中央電梯 ↔ 剪票口（KS）。3 號出口另有上下手扶梯（KS）。多功能廁所在剪票口內右側深處（KS）。往嵐電嵐山本線嵐電天神川站在地面",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000028930.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%AA%E7%A7%A6%E5%A4%A9%E7%A5%9E%E5%B7%9D/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%AA%E7%A7%A6%E5%A4%A9%E7%A5%9E%E5%B7%9D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%AA%E7%A7%A6%E5%A4%A9%E7%A5%9E%E5%B7%9D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「太秦天神川駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-nijo",
+    "type": "station",
+    "name": {
+      "ja": "二条",
+      "kana": null,
+      "zh": "二条（地下鐵）",
+      "en": null
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7413139,
+      35.0118778
+    ],
+    "coordsSource": "wikipedia",
+    "address": null,
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": null,
+    "lines": [
+      "京都市営地下鉄 東西線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [
+      "jr-nijo"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E6%9D%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「二条駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-nijojo-mae",
+    "type": "station",
+    "name": {
+      "ja": "二条城前",
+      "kana": "にじょうじょうまえ",
+      "zh": "二条城前",
+      "en": "Nijojo-mae"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.750475,
+      35.0118917
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市中京区二条城町541先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009992.html"
+    },
+    "operator": "other",
+    "stationNumber": "T14",
+    "lines": [
+      "京都市営地下鉄 東西線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "無障礙路線：月台中央電梯 ↔ 剪票口 ↔ 1 號出口電梯（押小路通南側）（KS）。月台有月台門；京阪車只有 4 節，停在月台前段（KS）。輪椅用廁所（男女各一）在剪票口外右側深處（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009992.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%8C%E6%9D%A1%E5%9F%8E%E5%89%8D/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E6%9D%A1%E5%9F%8E%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E6%9D%A1%E5%9F%8E%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「二条城前駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-kyoto-shiyakusho-mae",
+    "type": "station",
+    "name": {
+      "ja": "京都市役所前",
+      "kana": "きょうとしやくしょまえ",
+      "zh": "京都市役所前",
+      "en": "Kyoto Shiyakusho-mae"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7688278,
+      35.0110028
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市中京区下丸屋町392-1先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009988.html"
+    },
+    "operator": "other",
+    "stationNumber": "T12",
+    "lines": [
+      "京都市営地下鉄 東西線",
+      "京阪 京津線（直通）"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "剪票口一處（接地下街ゼスト御池東端）（WP）。無障礙路線：月台東端電梯 ↔ 剪票口 ↔ 3 號出口電梯（河原町御池路口東北、ホテルオークラ京都內）或ゼスト御池的電梯（KS）。剪票口尖峰以外無人，用對講機（KS）。多功能廁所在剪票口外左前方（KS）。京阪車 4 節停月台前段（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009988.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%AC%E9%83%BD%E5%B8%82%E5%BD%B9%E6%89%80%E5%89%8D/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%B8%82%E5%BD%B9%E6%89%80%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%B8%82%E5%BD%B9%E6%89%80%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「京都市役所前駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-sanjo-keihan",
+    "type": "station",
+    "name": {
+      "ja": "三条京阪",
+      "kana": "さんじょうけいはん",
+      "zh": "三条京阪",
+      "en": "Sanjo Keihan"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.77375,
+      35.009278
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区大橋町85-1先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009980.html"
+    },
+    "operator": "other",
+    "stationNumber": "T11",
+    "lines": [
+      "京都市営地下鉄 東西線",
+      "京阪 京津線（直通）"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [
+      "keihan-sanjo"
+    ],
+    "coinLockers": null,
+    "accessibility": "無障礙路線：月台中央電梯 ↔ 剪票口 ↔ 2 號出口電梯（三条通南側）（KS）。剪票口尖峰以外無人，用對講機（KS、WP）。和京阪三条駅以地下通路相連（剪票口外）（KS、WP）。多功能廁所在剪票口內右側深處（KS）。京阪車 4 節停月台前段（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009980.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%B8%89%E6%9D%A1%E4%BA%AC%E9%98%AA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E6%9D%A1%E4%BA%AC%E9%98%AA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E6%9D%A1%E4%BA%AC%E9%98%AA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「三条京阪駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-higashiyama",
+    "type": "station",
+    "name": {
+      "ja": "東山",
+      "kana": "ひがしやま",
+      "zh": "東山",
+      "en": "Higashiyama"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7797083,
+      35.0094194
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区大井手町98-1先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009969.html"
+    },
+    "operator": "other",
+    "stationNumber": "T10",
+    "lines": [
+      "京都市営地下鉄 東西線",
+      "京阪 京津線（直通）"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "無障礙路線：月台中央電梯 ↔ 剪票口 ↔ 2 號出口電梯（三条通南側）（KS）。多功能廁所在剪票口內左側深處；剪票口內有嬰兒照護室（KS）。京阪車 4 節停月台前段（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009969.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%9D%B1%E5%B1%B1%EF%BC%88%E4%BA%AC%E9%83%BD%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E5%B1%B1%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%9D%B1%E5%B1%B1%E9%A7%85_(%E4%BA%AC%E9%83%BD%E5%BA%9C)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「東山駅 (京都府)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-keage",
+    "type": "station",
+    "name": {
+      "ja": "蹴上",
+      "kana": "けあげ",
+      "zh": "蹴上",
+      "en": "Keage"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.7902278,
+      35.0080361
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市東山区東小物座町339先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009957.html"
+    },
+    "operator": "other",
+    "stationNumber": "T09",
+    "lines": [
+      "京都市営地下鉄 東西線",
+      "京阪 京津線（直通）"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "無障礙路線：月台北端電梯 ↔ 剪票口 ↔ 2 號出口電梯（三条通西側）；1 號出口（三条通東側）只有上下手扶梯（KS）。輪椅用廁所（男女各一）在剪票口內右側（KS）。京阪車 4 節停月台前段（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009957.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%B9%B4%E4%B8%8A/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%B9%B4%E4%B8%8A%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%B9%B4%E4%B8%8A%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「蹴上駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-misasagi",
+    "type": "station",
+    "name": {
+      "ja": "御陵",
+      "kana": "みささぎ",
+      "zh": "御陵",
+      "en": "Misasagi"
+    },
+    "area": "kyoto",
+    "coords": [
+      135.8016222,
+      34.9961222
+    ],
+    "coordsSource": "wikipedia",
+    "address": "京都府京都市山科区御陵原西町17-4先",
+    "links": {
+      "official": "https://www.city.kyoto.lg.jp/kotsu/page/0000009946.html"
+    },
+    "operator": "other",
+    "stationNumber": "T08",
+    "lines": [
+      "京都市営地下鉄 東西線",
+      "京阪 京津線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [],
+    "coinLockers": null,
+    "accessibility": "地下鐵東西線和京阪京津線的共用站（交通局管理），京津線列車直通地下鐵（WP）。往二条方向月台在 B2，往六地藏・びわ湖浜大津方向月台在 B3（KS）。無障礙路線：月台西側電梯 ↔ 剪票口 ↔ 3 號出口電梯（三条通南側）（KS）。輪椅用廁所（男女各一）在剪票口內左側（KS）。京阪車 4 節停月台前段（KS）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000009946.html",
+        "retrieved": "2026-11-12",
+        "note": "KS：京都市交通局 駅施設（電梯、廁所、車いすルート、改札有無人）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%BE%A1%E9%99%B5/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BE%A1%E9%99%B5%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BE%A1%E9%99%B5%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「御陵駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "subway-yamashina",
+    "type": "station",
+    "name": {
+      "ja": "山科",
+      "kana": null,
+      "zh": "山科（地下鐵）",
+      "en": null
+    },
+    "area": "kyoto",
+    "coords": [
+      135.8173417,
+      34.9912194
+    ],
+    "coordsSource": "wikipedia",
+    "address": null,
+    "links": {
+      "official": null
+    },
+    "operator": "other",
+    "stationNumber": null,
+    "lines": [
+      "京都市営地下鉄 東西線"
+    ],
+    "passCovered": false,
+    "staffed": null,
+    "transfers": [
+      "jr-yamashina"
+    ],
+    "coinLockers": null,
+    "accessibility": null,
+    "sources": [
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%B1%B1%E7%A7%91%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「山科駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-otsu",
+    "type": "station",
+    "name": {
+      "ja": "大津",
+      "kana": "おおつ",
+      "zh": "大津",
+      "en": "Otsu"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8648972,
+      35.002972
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市春日町1番-3",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610114"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A29",
+    "lines": [
+      "琵琶湖線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "北口改札（びわこ口）在 1F，到出口不用電梯；南口改札在 B1，有電梯和上行手扶梯（JRB）。地下通道到 1～4 番月台各有電梯（無手扶梯）（JRB、WP）。南口改札終日無站員（JR）；RK 建議事先聯絡。剪票口內外都有多功能廁所（JRB）。有みどりの窓口 8:00～20:00（JR）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610114",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610114",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A7%E6%B4%A5/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「大津駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-ishiyama",
+    "type": "station",
+    "name": {
+      "ja": "石山",
+      "kana": "いしやま",
+      "zh": "石山（JR）",
+      "en": "Ishiyama"
+    },
+    "area": "biwako",
+    "coords": [
+      135.9002472,
+      34.9799389
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市粟津町3番-1",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610112"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A27",
+    "lines": [
+      "琵琶湖線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "keihan-ishiyama"
+    ],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F，北出口、南出口都有電梯和上下手扶梯；1～4 番月台都有電梯和上下手扶梯（JRB）。電梯是直角型（RK）。站員現場 4:50～13:00、14:00～末班（JR）。剪票口內外都有多功能廁所（JRB）。旁邊是京阪石山駅",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610112",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610112",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%9F%B3%E5%B1%B1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%9F%B3%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%9F%B3%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「石山駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-kusatsu",
+    "type": "station",
+    "name": {
+      "ja": "草津",
+      "kana": "くさつ",
+      "zh": "草津",
+      "en": "Kusatsu"
+    },
+    "area": "biwako",
+    "coords": [
+      135.9616361,
+      35.0224
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県草津市渋川1丁目1-16",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610110"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A24",
+    "lines": [
+      "琵琶湖線",
+      "草津線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F；西出口有電梯和上下手扶梯，東出口只有電梯；1～6 番月台都有電梯和上下手扶梯（JRB）。剪票口內外都有多功能廁所（JRB）。有みどりの窓口 8:00～20:00（JR）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610110",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610110",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%8D%89%E6%B4%A5%EF%BC%88%E6%BB%8B%E8%B3%80%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%8D%89%E6%B4%A5%E9%A7%85_(%E6%BB%8B%E8%B3%80%E7%9C%8C)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%8D%89%E6%B4%A5%E9%A7%85_(%E6%BB%8B%E8%B3%80%E7%9C%8C)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「草津駅 (滋賀県)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-moriyama",
+    "type": "station",
+    "name": {
+      "ja": "守山",
+      "kana": "もりやま",
+      "zh": "守山",
+      "en": "Moriyama"
+    },
+    "area": "biwako",
+    "coords": [
+      135.9956778,
+      35.0504194
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県守山市梅田町1-1",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610109"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A22",
+    "lines": [
+      "琵琶湖線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F，西出口、東出口都有電梯和上下手扶梯；1・2 番月台只有電梯（JRB）。始發～6:30 無站員；另一個「セブンイレブン口」剪票口無人（JR）。剪票口內外都有多功能廁所（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610109",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610109",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%AE%88%E5%B1%B1%EF%BC%88%E6%BB%8B%E8%B3%80%EF%BC%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%88%E5%B1%B1%E9%A7%85_(%E6%BB%8B%E8%B3%80%E7%9C%8C)",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%AE%88%E5%B1%B1%E9%A7%85_(%E6%BB%8B%E8%B3%80%E7%9C%8C)",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「守山駅 (滋賀県)」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-omi-hachiman",
+    "type": "station",
+    "name": {
+      "ja": "近江八幡",
+      "kana": "おうみはちまん",
+      "zh": "近江八幡",
+      "en": "Omihachiman"
+    },
+    "area": "biwako",
+    "coords": [
+      136.1027528,
+      35.1228778
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県近江八幡市鷹飼町",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610106"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A19",
+    "lines": [
+      "琵琶湖線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F，北出口、南出口都有電梯和上行手扶梯；1～3 番月台都有電梯和上下手扶梯（JRB、WP）。12:00～16:00 剪票口無站員（JR）。剪票口內外都有多功能廁所（JRB）。近江鐵道近江八幡駅要先出 JR 剪票口再進站（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610106",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610106",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%BF%91%E6%B1%9F%E5%85%AB%E5%B9%A1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E5%85%AB%E5%B9%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E5%85%AB%E5%B9%A1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「近江八幡駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-hikone",
+    "type": "station",
+    "name": {
+      "ja": "彦根",
+      "kana": "ひこね",
+      "zh": "彥根",
+      "en": "Hikone"
+    },
+    "area": "biwako",
+    "coords": [
+      136.2633556,
+      35.2722056
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県彦根市古沢町40-2",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0610101"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-A13",
+    "lines": [
+      "琵琶湖線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F；西出口有電梯和上下手扶梯，東出口有電梯和上行手扶梯；1・2 番月台只有電梯（JRB）。站員 4:40～5:25、5:35～23:00（JR）。剪票口內有多功能廁所，剪票口外沒有（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0610101",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0610101",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%BD%A6%E6%A0%B9/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BD%A6%E6%A0%B9%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BD%A6%E6%A0%B9%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「彦根駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-otsukyo",
+    "type": "station",
+    "name": {
+      "ja": "大津京",
+      "kana": "おおつきょう",
+      "zh": "大津京",
+      "en": "Otsukyo"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8569917,
+      35.0241278
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市皇子が丘2丁目8-1",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0611201"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-B29",
+    "lines": [
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "剪票口 2F，出口有電梯和上行手扶梯；1～4 番月台只有電梯（JRB）。往敦賀方向月台的電梯是直角型（RK）。站員只在部分時段（6:20～8:30、10:00～11:00、16:30～17:30、18:00～20:00 等），其他用對講機（JR）。剪票口內有多功能廁所（JRB）。旁邊是京阪大津京駅（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0611201",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0611201",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A4%A7%E6%B4%A5%E4%BA%AC/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E4%BA%AC%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%B4%A5%E4%BA%AC%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「大津京駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-hieizan-sakamoto",
+    "type": "station",
+    "name": {
+      "ja": "比叡山坂本",
+      "kana": "ひえいざんさかもと",
+      "zh": "比叡山坂本",
+      "en": "Hieizan-Sakamoto"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8782667,
+      35.0704611
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市坂本3丁目31番-47",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0611203"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-B27",
+    "lines": [
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "高架站，剪票口在地面（1F），到出口不用電梯；島式月台（1・2 番）有電梯，沒有手扶梯（JRB、WP）。站員只在部分時段（6:30～8:00、15:30～17:00、18:00～20:00 等），其他用對講機（JR）。剪票口內外都有多功能廁所（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0611203",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0611203",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%9D%82%E6%9C%AC/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%9D%82%E6%9C%AC%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%9D%82%E6%9C%AC%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「比叡山坂本駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-ogotoonsen",
+    "type": "station",
+    "name": {
+      "ja": "おごと温泉",
+      "kana": "おごとおんせん",
+      "zh": "雄琴溫泉",
+      "en": "Ogotoonsen"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8949222,
+      35.0971361
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市雄琴北1丁目3-12",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0611204"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-B26",
+    "lines": [
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "高架站，剪票口在地面（1F，入口有斜坡）；1～4 番月台都有電梯，沒有手扶梯（JRB、WP）。電梯是直角型（RK）。站員只在部分時段（6:30～8:00、16:00～17:00、18:00～20:00 等），其他用對講機（JR）。剪票口內有多功能廁所，剪票口外沒有（JRB）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0611204",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0611204",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E3%81%8A%E3%81%94%E3%81%A8%E6%B8%A9%E6%B3%89/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%81%8A%E3%81%94%E3%81%A8%E6%B8%A9%E6%B3%89%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%81%8A%E3%81%94%E3%81%A8%E6%B8%A9%E6%B3%89%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「おごと温泉駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-katata",
+    "type": "station",
+    "name": {
+      "ja": "堅田",
+      "kana": "かたた",
+      "zh": "堅田",
+      "en": "Katata"
+    },
+    "area": "biwako",
+    "coords": [
+      135.9150028,
+      35.120825
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市真野1丁目1番70",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0611205"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-B25",
+    "lines": [
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "高架站，剪票口在地面（1F，一處），到出口不用電梯（JRB）。兩座月台（1～4 番）各有一座電梯和一座樓梯通剪票口，沒有手扶梯（JRB、WP）。站員現場 5:10～0:40（JR）。剪票口內有多功能廁所，剪票口外沒有（JRB、WP）。有みどりの窓口 8:00～20:00（JR）。湖西線的管理站（直營）（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0611205",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0611205",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%A0%85%E7%94%B0/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A0%85%E7%94%B0%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%A0%85%E7%94%B0%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「堅田駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-shiga",
+    "type": "station",
+    "name": {
+      "ja": "志賀",
+      "kana": "しが",
+      "zh": "志賀",
+      "en": "Shiga"
+    },
+    "area": "biwako",
+    "coords": [
+      135.92465,
+      35.2020361
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市木戸字前田107",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0611208"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-B21",
+    "lines": [
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "無",
+    "accessibility": "無人站（堅田站管理）（WP）。高架站，剪票口在地面一處，WP 只寫「剪票口到各月台各一座樓梯」；JR 無障礙頁沒有資料、RK 也沒有輪椅資訊，電梯有無未確認。JR 頁沒有列廁所；RK（2019）寫剪票口內外都沒有廁所。沒有みどりの窓口、みどりの券売機（JR）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0611208",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0611208",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%BF%97%E8%B3%80/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E8%B3%80%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%BF%97%E8%B3%80%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「志賀駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "jr-omi-takashima",
+    "type": "station",
+    "name": {
+      "ja": "近江高島",
+      "kana": "おうみたかしま",
+      "zh": "近江高島",
+      "en": "Omi-Takashima"
+    },
+    "area": "biwako",
+    "coords": [
+      136.0103833,
+      35.2926306
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県高島市勝野大門2245-5",
+    "links": {
+      "official": "https://eki.jr-odekake.net/top?id=0611212"
+    },
+    "operator": "jr",
+    "stationNumber": "JR-B17",
+    "lines": [
+      "湖西線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "無",
+    "accessibility": "無人站（堅田站管理）（WP）。高架站，剪票口在地面（1F），到出口不用電梯；1・2 番月台各有電梯，沒有手扶梯（JRB）。沒有自動剪票機，IC 卡要在剪票口的專用讀卡機感應（WP）。剪票口內有多功能廁所，剪票口外沒有（JRB）。沒有みどりの窓口（JR）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/top?id=0611212",
+        "retrieved": "2026-11-12",
+        "note": "JR：駅情報（讀音、英文、有人時間、みどりの窓口、コインロッカー、地址）"
+      },
+      {
+        "type": "official",
+        "url": "https://eki.jr-odekake.net/barrierfree?id=0611212",
+        "retrieved": "2026-11-12",
+        "note": "JRB：バリアフリー情報（剪票口↔出口、剪票口↔月台的電梯／手扶梯、廁所）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%BF%91%E6%B1%9F%E9%AB%98%E5%B3%B6/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E9%AB%98%E5%B3%B6%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E9%AB%98%E5%B3%B6%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「近江高島駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-biwako-hamaotsu",
+    "type": "station",
+    "name": {
+      "ja": "びわ湖浜大津",
+      "kana": "びわこはまおおつ",
+      "zh": "琵琶湖濱大津",
+      "en": "Biwako-hamaotsu"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8638389,
+      35.0113556
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市浜大津1丁目3番8号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/611/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "OT12",
+    "lines": [
+      "京阪 石山坂本線",
+      "京阪 京津線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "橋上站：剪票口 2F（一處）、島式月台 1F；剪票口內有電梯和上行手扶梯到月台（KHM、WP）。2F 往計程車乘車處方向和往巴士總站／大津港方向各有電梯下到地面（KHM）。京津線和石山坂本線在同一座月台轉乘（RK）。沒有無人時段（KH）。剪票口內有多功能廁所（KHM、KH）；KH 寫沒有オストメイト設備",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/611/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/assets/img/info/station-611.jpg",
+        "retrieved": "2026-11-12",
+        "note": "KHM：駅構內圖（電梯位置）"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E3%81%B3%E3%82%8F%E6%B9%96%E6%B5%9C%E5%A4%A7%E6%B4%A5/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%81%B3%E3%82%8F%E6%B9%96%E6%B5%9C%E5%A4%A7%E6%B4%A5%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%81%B3%E3%82%8F%E6%B9%96%E6%B5%9C%E5%A4%A7%E6%B4%A5%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「びわ湖浜大津駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-miidera",
+    "type": "station",
+    "name": {
+      "ja": "三井寺",
+      "kana": "みいでら",
+      "zh": "三井寺（京阪）",
+      "en": "Miidera"
+    },
+    "area": "biwako",
+    "coords": [
+      135.859525,
+      35.0130194
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市浜大津3丁目6番12号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/612/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "OT13",
+    "lines": [
+      "京阪 石山坂本線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "終日無人（KH、WP）。沒有電梯、手扶梯、斜坡，沒有廁所（KH）；RK（2019）輪椅資訊寫「請洽詢」。上下行月台各有站房（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/612/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%B8%89%E4%BA%95%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E4%BA%95%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E4%BA%95%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「三井寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-omi-jingu-mae",
+    "type": "station",
+    "name": {
+      "ja": "近江神宮前",
+      "kana": "おうみじんぐうまえ",
+      "zh": "近江神宮前",
+      "en": "Omi-jingu-mae"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8558389,
+      35.028075
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市錦織2丁目7番16号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/615/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "OT16",
+    "lines": [
+      "京阪 石山坂本線"
+    ],
+    "passCovered": false,
+    "staffed": false,
+    "transfers": [],
+    "coinLockers": "無",
+    "accessibility": "終日無人（KH）。沒有電梯、手扶梯，有斜坡（KH）；RK 寫地面到剪票口、剪票口到月台都有可移動路線。有多功能廁所，RK 寫在剪票口外（KH、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/615/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E8%BF%91%E6%B1%9F%E7%A5%9E%E5%AE%AE%E5%89%8D/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E7%A5%9E%E5%AE%AE%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E7%A5%9E%E5%AE%AE%E5%89%8D%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「近江神宮前駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-sakamoto-hieizanguchi",
+    "type": "station",
+    "name": {
+      "ja": "坂本比叡山口",
+      "kana": "さかもとひえいざんぐち",
+      "zh": "坂本比叡山口",
+      "en": "Sakamoto-hieizanguchi"
+    },
+    "area": "biwako",
+    "coords": [
+      135.871278,
+      35.070778
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市坂本4丁目12番35号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/620/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "OT21",
+    "lines": [
+      "京阪 石山坂本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "終點站。沒有電梯、手扶梯、斜坡（KH），RK 寫月台和地面直接相連（ホーム直結）、剪票口到月台有可移動路線。無人時間：初發～7:10、10:20～15:10、17:40～末班（KH）。剪票口內有多功能廁所（KH、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/620/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E5%9D%82%E6%9C%AC%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%8F%A3/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%9D%82%E6%9C%AC%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%8F%A3%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E5%9D%82%E6%9C%AC%E6%AF%94%E5%8F%A1%E5%B1%B1%E5%8F%A3%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「坂本比叡山口駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-ishiyamadera",
+    "type": "station",
+    "name": {
+      "ja": "石山寺",
+      "kana": "いしやまでら",
+      "zh": "石山寺（京阪）",
+      "en": "Ishiyamadera"
+    },
+    "area": "biwako",
+    "coords": [
+      135.9033806,
+      34.9670694
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市螢谷5番13号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/600/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "OT01",
+    "lines": [
+      "京阪 石山坂本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有",
+    "accessibility": "終點站。沒有電梯、手扶梯，有斜坡（KH）；RK 寫地面到月台有可移動路線。無人時間：平日初發～7:10、9:00～17:10、18:00～末班，週末 8:30～14:20 以外大多無人（KH）。剪票口內有多功能廁所（KH、RK）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/600/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E7%9F%B3%E5%B1%B1%E5%AF%BA/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%9F%B3%E5%B1%B1%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%9F%B3%E5%B1%B1%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「石山寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "keihan-ishiyama",
+    "type": "station",
+    "name": {
+      "ja": "京阪石山",
+      "kana": "けいはんいしやま",
+      "zh": "京阪石山",
+      "en": "Keihan-ishiyama"
+    },
+    "area": "biwako",
+    "coords": [
+      135.8996528,
+      34.979639
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市粟津町2番28号",
+    "links": {
+      "official": "https://www.keihan.co.jp/traffic/station/602/info.html"
+    },
+    "operator": "other",
+    "stationNumber": "OT03",
+    "lines": [
+      "京阪 石山坂本線"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [
+      "jr-ishiyama"
+    ],
+    "coinLockers": "有",
+    "accessibility": "橋上站（島式 1 面 2 線）（WP）。有電梯、手扶梯（KH）。初發～6:50、20:50～末班無人（KH）。有多功能廁所，RK 寫在剪票口外（KH、RK）。旁邊是 JR 石山駅（WP）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/traffic/station/602/info.html",
+        "retrieved": "2026-11-12",
+        "note": "KH：地址、駅設備・サービス（電梯、廁所、置物櫃）、駅係員不在時間"
+      },
+      {
+        "type": "other",
+        "url": "https://www.ecomo-rakuraku.jp/ja/station/%E4%BA%AC%E9%98%AA%E7%9F%B3%E5%B1%B1/",
+        "retrieved": "2026-11-12",
+        "note": "RK：地址、輪椅移動、廁所（頁面註記 2019.04.01 現在）"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E7%9F%B3%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%98%AA%E7%9F%B3%E5%B1%B1%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「京阪石山駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "sakamoto-cable-sakamoto",
+    "type": "station",
+    "name": {
+      "ja": "ケーブル坂本",
+      "kana": "けーぶるさかもと",
+      "zh": "坂本纜車 坂本站",
+      "en": "Cable Sakamoto"
+    },
+    "area": "biwako",
+    "coords": [
+      135.863972,
+      35.069667
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市坂本本町",
+    "links": {
+      "official": "https://sakamoto-cable.jp/access/"
+    },
+    "operator": "other",
+    "stationNumber": null,
+    "lines": [
+      "比叡山坂本ケーブル"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（貸ロッカー；另可在窗口寄放行李）",
+    "accessibility": "山下站。月台在軌道兩側，月台不是斜坡而是緩的階梯狀（坡度 160‰）（WP）；長輩、行李上下車要走台階。官網沒有無障礙、電梯資訊；有站務窗口可寄放隨身行李（SC）。比叡山鐵道的公司地址是大津市坂本本町4244（SC）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://sakamoto-cable.jp/service/",
+        "retrieved": "2026-11-12",
+        "note": "SC：貸ロッカー、窗口寄放行李"
+      },
+      {
+        "type": "official",
+        "url": "https://sakamoto-cable.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "SC：所在地（公司）、交通"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%9D%82%E6%9C%AC%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%9D%82%E6%9C%AC%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「ケーブル坂本駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
+  },
+  {
+    "id": "sakamoto-cable-enryakuji",
+    "type": "station",
+    "name": {
+      "ja": "ケーブル延暦寺",
+      "kana": "けーぶるえんりゃくじ",
+      "zh": "坂本纜車 延曆寺站",
+      "en": "Cable Enryakuji"
+    },
+    "area": "biwako",
+    "coords": [
+      135.84389,
+      35.066528
+    ],
+    "coordsSource": "wikipedia",
+    "address": "滋賀県大津市坂本本町",
+    "links": {
+      "official": "https://sakamoto-cable.jp/access/"
+    },
+    "operator": "other",
+    "stationNumber": null,
+    "lines": [
+      "比叡山坂本ケーブル"
+    ],
+    "passCovered": false,
+    "staffed": true,
+    "transfers": [],
+    "coinLockers": "有（貸ロッカー；另可在窗口寄放行李）",
+    "accessibility": "山上站。月台在軌道兩側，是階梯狀（山上站常見構造）（WP）；長輩、行李上下車要走台階。站房 2F 有免費畫廊（SC）。官網沒有無障礙、電梯資訊；有站務窗口可寄放隨身行李（SC）。比叡山鐵道的公司地址是大津市坂本本町4244（SC）",
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://sakamoto-cable.jp/service/",
+        "retrieved": "2026-11-12",
+        "note": "SC：貸ロッカー、窗口寄放行李、站房 2F 畫廊"
+      },
+      {
+        "type": "official",
+        "url": "https://sakamoto-cable.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "SC：所在地（公司）、交通"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%BB%B6%E6%9A%A6%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "WP：讀音、英文、站號、站體構造"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/%E3%82%B1%E3%83%BC%E3%83%96%E3%83%AB%E5%BB%B6%E6%9A%A6%E5%AF%BA%E9%A7%85",
+        "retrieved": "2026-11-12",
+        "note": "座標（條目「ケーブル延暦寺駅」）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kintetsu.co.jp/foreign/english/ticket/krp_5day.html",
+        "note": "KINTETSU RAIL PASS 5day：近鐵全線可搭（特急另外買特急券），不含 JR、地下鐵、京阪、阪急、嵐電",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "verified": false
   }
 ]

@@ -1,0 +1,251 @@
+{
+  "id": "subway-tozai",
+  "mode": "metro",
+  "operator": "京都市交通局",
+  "name": {
+    "ja": "京都市営地下鉄 東西線",
+    "zh": "京都市營地下鐵 東西線"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "subway-uzumasa-tenjingawa",
+      "min": 0,
+      "note": "轉嵐電嵐電天神川；東映太秦映畫村"
+    },
+    {
+      "id": "subway-nijo",
+      "min": 4,
+      "note": "轉 JR 嵯峨野線"
+    },
+    {
+      "id": "subway-nijojo-mae",
+      "min": 6,
+      "note": "二条城"
+    },
+    {
+      "id": "subway-karasuma-oike",
+      "min": 8,
+      "note": "轉烏丸線"
+    },
+    {
+      "id": "subway-kyoto-shiyakusho-mae",
+      "min": 10,
+      "note": null
+    },
+    {
+      "id": "subway-sanjo-keihan",
+      "min": 12,
+      "note": "轉京阪三条"
+    },
+    {
+      "id": "subway-higashiyama",
+      "min": 13,
+      "note": "平安神宮"
+    },
+    {
+      "id": "subway-keage",
+      "min": 15,
+      "note": "南禪寺、京都市動物園"
+    },
+    {
+      "id": "subway-yamashina",
+      "min": 21,
+      "note": "轉 JR 山科（琵琶湖線、湖西線）"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:39",
+      "last": "23:55",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 30
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 12
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 10
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 5.5
+        },
+        {
+          "from": "09:00",
+          "to": "20:00",
+          "min": 7.5
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 12
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 15
+        }
+      ],
+      "note": "班距只數經過山科的車（六地蔵～太秦天神川）；京阪京津線直通的車在御陵分岔、不經山科，另見 keihan-keishin。太秦天神川～蹴上之間兩種都停，實際上更密；平日：往外 134 班（首 05:28、末 23:55）、往回 134 班（首 05:39、末 23:55）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:39",
+      "last": "23:55",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 30
+        },
+        {
+          "from": "06:00",
+          "to": "08:00",
+          "min": 12
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 8.5
+        },
+        {
+          "from": "09:00",
+          "to": "18:00",
+          "min": 7.5
+        },
+        {
+          "from": "18:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 12
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 15
+        }
+      ],
+      "note": "班距只數經過山科的車（六地蔵～太秦天神川）；京阪京津線直通的車在御陵分岔、不經山科，另見 keihan-keishin。太秦天神川～蹴上之間兩種都停，實際上更密；土休日：往外 124 班（首 05:28、末 23:55）、往回 124 班（首 05:39、末 23:55）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "subway-kyoto": {
+        "subway-shijo": 220,
+        "subway-karasuma-oike": 220,
+        "subway-imadegawa": 260,
+        "takeda": 260,
+        "subway-higashiyama": 260,
+        "subway-keage": 260,
+        "subway-sanjo-keihan": 260,
+        "subway-kyoto-shiyakusho-mae": 260,
+        "subway-nijo": 260,
+        "subway-uzumasa-tenjingawa": 260
+      },
+      "subway-shijo": {
+        "subway-karasuma-oike": 220,
+        "subway-imadegawa": 260,
+        "subway-sanjo-keihan": 220,
+        "subway-higashiyama": 220
+      },
+      "subway-karasuma-oike": {
+        "subway-imadegawa": 220,
+        "subway-kyoto-shiyakusho-mae": 220,
+        "subway-sanjo-keihan": 220,
+        "subway-higashiyama": 220,
+        "subway-keage": 220,
+        "subway-nijo": 220,
+        "subway-uzumasa-tenjingawa": 260,
+        "subway-yamashina": 260
+      },
+      "subway-nijo": {
+        "subway-sanjo-keihan": 220,
+        "subway-higashiyama": 260,
+        "subway-keage": 260
+      },
+      "subway-sanjo-keihan": {
+        "subway-higashiyama": 220,
+        "subway-keage": 220,
+        "subway-yamashina": 260
+      },
+      "subway-uzumasa-tenjingawa": {
+        "subway-nijo": 220,
+        "subway-keage": 260,
+        "subway-yamashina": 290
+      }
+    },
+    "child": "1 區 110、2 區 130、3 區 150（交通局運賃表）",
+    "note": "區數制：1 區 220、2 區 260、3 區 290、4 區 330、5 區 360（大人）；烏丸線、東西線之間轉乘照全程區數算（例：京都 → 東山 2 區 260）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "時刻表「令和7年02月22日現在」。地下鉄1日券 大人 800／兒童 400、地下鉄・バス1日券 1,100／550（見 data/raw/access/kyoto.md 的票券比較）。KINTETSU RAIL PASS 不能用（竹田以北是地下鐵）。交通系 IC 卡可用。",
+  "validFrom": "2025-02-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010101_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（weekday、上り 六地蔵・びわ湖浜大津方面）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010100_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（weekday、下り 太秦天神川方面）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010201_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（holiday、上り 六地蔵・びわ湖浜大津方面）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010200_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（holiday、下り 太秦天神川方面）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010101_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 11:00 發的那一班的停站時刻"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000240757.html",
+      "retrieved": "2026-11-12",
+      "note": "地下鐵區別運賃（2026-11-10 更新）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000163781.html",
+      "retrieved": "2026-11-12",
+      "note": "站間區數表"
+    }
+  ]
+}

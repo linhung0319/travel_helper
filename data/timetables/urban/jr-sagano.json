@@ -1,0 +1,294 @@
+{
+  "id": "jr-sagano",
+  "mode": "jr",
+  "operator": "JR 西日本",
+  "name": {
+    "ja": "JR嵯峨野線（京都～嵯峨嵐山）",
+    "zh": "JR 嵯峨野線（京都～嵯峨嵐山）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "jr-kyoto",
+      "min": 0,
+      "note": "嵯峨野線在 31～33 號月台（京都站西側，從中央口走約 5 分）"
+    },
+    {
+      "id": "jr-umekoji-kyotonishi",
+      "min": 3,
+      "note": "京都鐵道博物館、京都水族館"
+    },
+    {
+      "id": "jr-nijo",
+      "min": 7,
+      "note": "轉地下鐵東西線"
+    },
+    {
+      "id": "jr-saga-arashiyama",
+      "min": 17,
+      "note": null
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:31",
+      "last": "23:12",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 12
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 20
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 30
+        },
+        {
+          "from": "11:00",
+          "to": "16:00",
+          "min": 20
+        },
+        {
+          "from": "16:00",
+          "to": "19:00",
+          "min": 15
+        },
+        {
+          "from": "19:00",
+          "to": "21:00",
+          "min": 20
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 30
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 60
+        }
+      ],
+      "note": "班距只數普通（快速不停梅小路京都西，特急要另買特急券）：往外看京都站發車、往回看亀岡站往京都的發車（嵯峨嵐山始發的少數班次沒算，所以偏保守）；平日：往外 69 班（首 05:31、末 23:46）、往回 60 班（首 05:00、末 23:12）；用 2026-12-22 的時刻表推算"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:31",
+      "last": "23:12",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 20
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 20
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 30
+        },
+        {
+          "from": "11:00",
+          "to": "16:00",
+          "min": 20
+        },
+        {
+          "from": "16:00",
+          "to": "18:00",
+          "min": 15
+        },
+        {
+          "from": "18:00",
+          "to": "21:00",
+          "min": 20
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 30
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 60
+        }
+      ],
+      "note": "班距只數普通（快速不停梅小路京都西，特急要另買特急券）：往外看京都站發車、往回看亀岡站往京都的發車（嵯峨嵐山始發的少數班次沒算，所以偏保守）；土休日：往外 66 班（首 05:31、末 23:46）、往回 58 班（首 05:00、末 23:12）；用 2026-12-27 的時刻表推算"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "jr-kyoto": {
+        "jr-umekoji-kyotonishi": 150,
+        "jr-nijo": 180,
+        "jr-saga-arashiyama": 240
+      }
+    },
+    "child": "兒童半價，10 円未滿捨去（JR 西日本 旅客営業規則第 74 條）",
+    "note": "IC 卡同價"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "另有快速（停二条、嵯峨嵐山，不停梅小路京都西）白天每小時約 1 班，班距沒有算進來。嵯峨野觀光小火車（トロッコ嵯峨）是另一家公司（嵯峨野観光鉄道），冬季（12/30～2 月底）停駛。JR 不能用 KINTETSU RAIL PASS，車資另付；ICOCA 可用。時刻表 2026-03-14 改正，2027-03 可能改點，2 月應該還是這一版。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784055001?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 嵯峨野線 亀岡・園部・福知山方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784055001?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 嵯峨野線 亀岡・園部・福知山方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/3191055002?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 亀岡 嵯峨野線 京都方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/3191055002?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 亀岡 嵯峨野線 京都方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/train-timetable/5271?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 12:11 發的那一班的停站時刻"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-9892",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 梅小路京都西 150"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5774",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 二条 180"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5320",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 嵯峨嵐山 240"
+    },
+    {
+      "type": "official",
+      "url": "https://www.jr-odekake.net/ticket/guide/assets/pdf/stipulation/2026/covenant2-03.pdf",
+      "retrieved": "2026-11-12",
+      "note": "JR 西日本 旅客営業規則（2026-10-01 現行）第 73、74 條：兒童票"
+    }
+  ],
+  "extra": {
+    "dayTypeBasis": [
+      [
+        "2027-02-02",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-03",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-04",
+        "weekday",
+        "2026-12-24"
+      ],
+      [
+        "2027-02-05",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-06",
+        "saturday",
+        "2026-12-26"
+      ],
+      [
+        "2027-02-07",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-08",
+        "weekday",
+        "2026-12-28"
+      ],
+      [
+        "2027-02-09",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-10",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-11",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-12",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-13",
+        "saturday",
+        "2026-12-26"
+      ]
+    ]
+  }
+}

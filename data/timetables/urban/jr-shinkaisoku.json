@@ -1,0 +1,294 @@
+{
+  "id": "jr-shinkaisoku",
+  "mode": "jr",
+  "operator": "JR 西日本",
+  "name": {
+    "ja": "JR新快速（大阪～京都～草津）",
+    "zh": "JR 新快速（大阪～京都～草津）"
+  },
+  "serviceType": "新快速",
+  "stops": [
+    {
+      "id": "jr-osaka",
+      "min": 0,
+      "note": "大阪站 新快速多在 7～10 號月台（見 _transfers）"
+    },
+    {
+      "id": "jr-kyoto",
+      "min": 29,
+      "note": null
+    },
+    {
+      "id": "jr-yamashina",
+      "min": 35,
+      "note": "琵琶湖線、湖西線分岔；轉地下鐵東西線"
+    },
+    {
+      "id": "jr-otsu",
+      "min": 39,
+      "note": "轉京阪石山坂本線要走到京阪びわ湖浜大津（約 10 分）"
+    },
+    {
+      "id": "jr-ishiyama",
+      "min": 43,
+      "note": "轉京阪石山（石山寺）"
+    },
+    {
+      "id": "jr-kusatsu",
+      "min": 50,
+      "note": "琵琶湖博物館的巴士"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "07:03",
+      "last": "23:29",
+      "headway": [
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 12
+        },
+        {
+          "from": "08:00",
+          "to": "10:00",
+          "min": 15
+        },
+        {
+          "from": "10:00",
+          "to": "16:00",
+          "min": 20
+        },
+        {
+          "from": "16:00",
+          "to": "21:00",
+          "min": 15
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 20
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數京都站的新快速：往米原方向（琵琶湖線）和往大阪方向各一張，取較少的一方。往大阪方向也含從湖西線來的新快速，所以取較少的一方是琵琶湖線那一側的班數；平日：往外 65 班（首 07:03、末 24:11）、往回 68 班（首 06:33、末 23:29）；用 2026-12-22 的時刻表推算"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "07:45",
+      "last": "23:29",
+      "headway": [
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 60
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 20
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 30
+        },
+        {
+          "from": "10:00",
+          "to": "16:00",
+          "min": 20
+        },
+        {
+          "from": "16:00",
+          "to": "20:00",
+          "min": 15
+        },
+        {
+          "from": "20:00",
+          "to": "23:00",
+          "min": 20
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數京都站的新快速：往米原方向（琵琶湖線）和往大阪方向各一張，取較少的一方。往大阪方向也含從湖西線來的新快速，所以取較少的一方是琵琶湖線那一側的班數；土休日：往外 54 班（首 07:45、末 23:51）、往回 66 班（首 07:14、末 23:29）；用 2026-12-27 的時刻表推算"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "jr-kyoto": {
+        "jr-osaka": 580,
+        "jr-yamashina": 180,
+        "jr-otsu": 200,
+        "jr-ishiyama": 240,
+        "jr-kusatsu": 410
+      },
+      "jr-osaka": {
+        "jr-otsu": 960,
+        "jr-kusatsu": 1120
+      }
+    },
+    "child": "兒童半價，10 円未滿捨去（JR 西日本 旅客営業規則第 74 條）",
+    "note": "IC 卡同價"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "同一班新快速穿過京都站（姫路・大阪 ↔ 京都 ↔ 米原・長浜・敦賀），存成一條：拆成大阪 ↔ 京都、京都 ↔ 琵琶湖兩條會在京都多算一次換車。往湖西線的新快速（大阪 → 京都 → 山科 → 堅田 → 近江今津・敦賀）在 jr-kosei（時刻表型），這裡只算琵琶湖線那一側。這一條數所有往琵琶湖線的新快速（含只到草津、野洲的）；過了野洲往近江八幡、彥根的車比較少，另一條 jr-shinkaisoku-maibara。有付費座位 Aシート（A）、うれしート（う）的車廂，一般車廂不用另外付費。JR 不能用 KINTETSU RAIL PASS，車資另付；ICOCA 可用。時刻表 2026-03-14 改正，2027-03 可能改點，2 月應該還是這一版。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784013001?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 琵琶湖線 山科・草津・米原方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784013001?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 琵琶湖線 山科・草津・米原方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784011001?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 JR京都線 新大阪・大阪・三ノ宮方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784011001?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 JR京都線 新大阪・大阪・三ノ宮方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/train-timetable/173041?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 12:00 發的那一班的停站時刻"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5006",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 大阪 580"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-6112",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 山科 180"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5021",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 大津 200"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-4881",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 石山 240"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5221",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 草津 410"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5006/st-5021",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：大阪 ↔ 大津 960"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5006/st-5221",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：大阪 ↔ 草津 1,120"
+    },
+    {
+      "type": "official",
+      "url": "https://www.jr-odekake.net/ticket/guide/assets/pdf/stipulation/2026/covenant2-03.pdf",
+      "retrieved": "2026-11-12",
+      "note": "JR 西日本 旅客営業規則（2026-10-01 現行）第 73、74 條：兒童票"
+    }
+  ],
+  "extra": {
+    "dayTypeBasis": [
+      [
+        "2027-02-02",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-03",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-04",
+        "weekday",
+        "2026-12-24"
+      ],
+      [
+        "2027-02-05",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-06",
+        "saturday",
+        "2026-12-26"
+      ],
+      [
+        "2027-02-07",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-08",
+        "weekday",
+        "2026-12-28"
+      ],
+      [
+        "2027-02-09",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-10",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-11",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-12",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-13",
+        "saturday",
+        "2026-12-26"
+      ]
+    ]
+  }
+}

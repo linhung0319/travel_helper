@@ -1,0 +1,118 @@
+{
+  "id": "keihan-ishiyama-sakamoto-south",
+  "mode": "private",
+  "operator": "京阪電気鉄道",
+  "name": {
+    "ja": "京阪石山坂本線（びわ湖浜大津～石山寺）",
+    "zh": "京阪石山坂本線（琵琶湖濱大津～石山寺）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "keihan-biwako-hamaotsu",
+      "min": 0,
+      "note": "轉京津線（往京都市役所前）"
+    },
+    {
+      "id": "keihan-ishiyama",
+      "min": 12,
+      "note": "轉 JR 石山（步行、電梯沒查）"
+    },
+    {
+      "id": "keihan-ishiyamadera",
+      "min": 16,
+      "note": "石山寺走約 10 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:30",
+      "last": "23:21",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "07:00",
+          "min": 20
+        },
+        {
+          "from": "07:00",
+          "to": "19:00",
+          "min": 10
+        },
+        {
+          "from": "19:00",
+          "to": "23:30",
+          "min": 20
+        }
+      ],
+      "note": "數びわ湖浜大津的站別時刻表（石山寺方面）：10～14 時每 10 分、早晚尖峰 7～8 分、19 時起 10～20 分；早上 7 時前沒逐時數，和 19 時後都取 20（保守）。分鐘是對照兩站時刻表推算的（石山寺那一段較粗）。首班取石山寺發 05:30（較晚）、末班取浜大津發 23:21"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:30",
+      "last": "23:21",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "09:00",
+          "min": 12
+        },
+        {
+          "from": "09:00",
+          "to": "16:00",
+          "min": 10
+        },
+        {
+          "from": "16:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "23:30",
+          "min": 20
+        }
+      ],
+      "note": "同平日的數法：9～16 時每 10 分、早晚 10～12 分、19 時起約 15～20 分（取 20）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "keihan-biwako-hamaotsu": {
+        "keihan-ishiyama": 280,
+        "keihan-ishiyamadera": 280
+      }
+    },
+    "child": "大人的半價、10 円未滿進位（推算：280 → 140）",
+    "note": "京阪運賃表（びわ湖浜大津發，2025-10-01 改定）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "石山坂本線的車多數從石山寺直通坂本比叡山口，這裡在びわ湖浜大津拆成南北兩條（兩段班距不同：南段白天 10 分、北段到坂本 20 分），搭直通車的話在浜大津其實不用換車。2 輛編成的路面電車。",
+  "validFrom": "2026-08-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/time/61111.pdf",
+      "retrieved": "2026-11-12",
+      "note": "びわ湖浜大津 石山寺方面 平日（土休日 61112）；京阪石山 60211、京阪膳所 60811 對照算分鐘"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/time/60021.pdf",
+      "retrieved": "2026-11-12",
+      "note": "石山寺 浜大津方面"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/fare/611.pdf",
+      "retrieved": "2026-11-12",
+      "note": "びわ湖浜大津發運賃表"
+    }
+  ]
+}
