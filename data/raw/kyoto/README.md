@@ -30,6 +30,7 @@
 | `candidates/restaurants.json` | 餐廳候選 267 筆（included 49、over-limit 139、not-included 77、excluded 2） |
 | `dossiers/` | 讀文筆記：景點 24 份（官網、京都観光Navi 的搜尋摘要；不讀口コミ、Google 評論）、住宿 17 份（官網；15 人組合有空房的 15 間加讀 Google 低分評論）、餐廳 49 份（官網；全員可訂的店加讀食べログ口コミ、Google 評論） |
 | `questions.md` | 要打電話或出發前確認的事 |
+| `archive/` | 保存的工作目錄（`t86b-1.tar.gz`：住宿的 judgement、楽天、讀文），要重跑 `build-lodging.mjs` 時解開；怎麼用、重跑後要補回什麼見 `archive/README.md` |
 | `log/T86a.md` | T86a 的過程、`nearestStation` 的預定車站 ID |
 | `log/T86b.md` | T86b 的過程（第一階段：楽天查不了、町家查證、溫泉、住宿稅；第二階段：楽天、飯店 15 間、Google 評論、一棟貸し）；琵琶湖的住宿也記在這裡 |
 | `log/T86c.md` | T86c 的過程（食べログ地區代碼、Chrome 接收器、讀文、組裝、不在車站清單的最近車站）；琵琶湖的共同部分也在這裡 |
