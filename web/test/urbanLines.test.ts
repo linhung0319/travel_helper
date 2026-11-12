@@ -55,3 +55,26 @@ test('urbanLinesAt：沒停的站回 []；那天沒有資料或班距是 null �
   const none = [route({ weekday: { first: null, last: null, headway: null }, saturday: null, holiday: hol })];
   assert.deepEqual(urbanLinesAt('t', none, 'weekday'), [{ line: 'X 線', headwayMin: null, first: null, last: null }]);
 });
+
+test('urbanLinesAt：市巴士停留所的 station 是這站的也列，線名加停留所名（T88）', () => {
+  const svc = { first: '06:00', last: '22:00', headway: [{ from: '06:00', to: '22:00', min: 8 }] };
+  const bus: UrbanRoute = {
+    id: 'citybus-206',
+    mode: 'bus',
+    name: { ja: '市バス 206 系統', zh: '市巴士 206 系統' },
+    stops: [
+      { id: 'citybus-kyoto-ekimae', min: 0, name: { ja: '京都駅前', zh: '京都站前' }, coords: [135.759, 34.986], station: 'jr-kyoto' },
+      { id: 'citybus-gojozaka', min: 8, name: { ja: '五条坂', zh: '五條坂' }, coords: [135.778, 34.995], station: null },
+    ],
+    loop: false,
+    loopMin: null,
+    service: { weekday: svc, saturday: null, holiday: svc },
+  };
+  assert.deepEqual(urbanLinesAt('jr-kyoto', [bus], 'weekday'), [{ line: '市巴士 206 系統（京都站前）', headwayMin: 8, first: '06:00', last: '22:00' }]);
+  assert.deepEqual(urbanLinesAt('jr-osaka', [bus], 'weekday'), []);
+});
+
+test('urbanLinesAt：京都站（JR）有奈良線、嵯峨野線、新快速（T88）', () => {
+  const lines = urbanLinesAt('jr-kyoto', realUrban(), 'weekday').map((l) => l.line);
+  for (const l of ['奈良線', '嵯峨野線', '新快速']) assert.ok(lines.some((x) => x.includes(l)), `${l}：${lines.join('、')}`);
+});

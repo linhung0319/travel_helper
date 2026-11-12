@@ -18,9 +18,12 @@ export interface DirectionDepartures {
 // 方向鍵是時刻表格式的固定值（CONVENTIONS §3「時刻表」、timetables/README.md），不是區域
 const DIRECTION_LABELS: Record<string, string> = {
   'for-kashikojima': '往鳥羽・賢島（南下）',
-  'for-ise-nakagawa': '往伊勢中川・名古屋・大阪（北上）',
+  'for-ise-nakagawa': '往伊勢中川・名古屋・大阪・京都（北上）',
   'for-toba': '往鳥羽',
   'for-taki': '往多氣・松阪・名古屋',
+  // JR 湖西線（T87）
+  'for-omi-imazu': '往堅田・近江今津・敦賀（北上）',
+  'for-kyoto': '往京都・大阪（南下）',
 };
 
 export function directionLabel(direction: string): string {
@@ -59,6 +62,28 @@ const TERMINUS_NAMES: Record<string, string> = {
   'osaka-uehommachi': '大阪上本町',
   'osaka-namba': '大阪難波',
   kyoto: '京都',
+  'kashiharajingu-mae': '橿原神宮前',
+  'kintetsu-nara': '近鐵奈良',
+  // JR 湖西線、琵琶湖線的終點（jr-kosei.mjs 的 END_ID；區間外的站）
+  'jr-omi-imazu': '近江今津',
+  'jr-omi-maiko': '近江舞子',
+  'jr-omi-shiozu': '近江鹽津',
+  'jr-tsuruga': '敦賀',
+  'jr-nagahara': '永原',
+  'jr-maibara': '米原',
+  'jr-nagahama': '長濱',
+  'jr-yasu': '野洲',
+  'jr-kusatsu': '草津',
+  'jr-takatsuki': '高槻',
+  'jr-shin-osaka': '新大阪',
+  'jr-amagasaki': '尼崎',
+  'jr-takarazuka': '寶塚',
+  'jr-nishi-akashi': '西明石',
+  'jr-kakogawa': '加古川',
+  'jr-himeji': '姬路',
+  'jr-aboshi': '網干',
+  'jr-kamigori': '上郡',
+  'jr-banshu-ako': '播州赤穗',
   'jr-nagoya': '名古屋',
   'jr-kameyama': '龜山',
   'jr-matsusaka': '松阪',

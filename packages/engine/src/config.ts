@@ -42,6 +42,12 @@ export interface EngineConfig {
     urbanTransferDefault: number;
     /** 停留所、車站之間可以當成步行轉乘的直線距離（公尺） */
     transferMaxMeters: number;
+    /**
+     * 同一個車站 ID、同一組車（group）換車要走的分鐘（係數 1）：_transfers.json 寫不出來的（同站換線要不同的 fromLine）。
+     * 例如大和八木：京都線・橿原線（1F）↔ 大阪線（2F）都是近鐵時刻表型，近鐵官方 4 分（data/raw/access/kyoto.md §2、§14）。
+     * 沒寫的站照 minTransfer、轉乘步行顯示 0
+     */
+    stopChangeMin: Record<string, number>;
     /** 挑預設走法時，每多一程加的分鐘（只用來挑，不加到時間上） */
     transferPenalty: number;
     /** 自動選的時候，搭 2 程以上的走法比計程車晚超過這個分鐘到就不搭（計程車叫得到時）；只搭 1 程的不比 */
@@ -133,6 +139,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     maxAlternatives: 3,
     urbanTransferDefault: 5,
     transferMaxMeters: 300,
+    stopChangeMin: { 'yamato-yagi': 4 },
     transferPenalty: 10,
     transitMaxLateVsTaxi: 30,
     ticketMargin: 10,

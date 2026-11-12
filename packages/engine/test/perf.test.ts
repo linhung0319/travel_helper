@@ -127,3 +127,71 @@ test('效能：網站的方式（同一個 EngineData＋PlanCache），動一張
   // 界線放寬（測試平行跑會互搶 CPU）；整份重算（新的 EngineData）約 100～200 ms
   assert.ok(max < 100, `動一張卡後重算 ${max.toFixed(0)} ms`);
 });
+
+// 京都（T88）：伊勢志摩 7 天＋京都 2 天＋大阪 2 天＋回程那天，京都每天 7 個景點＋回住宿 8 段（班距型、近鐵京都線、計程車都有）；
+// 2/8 晚上起住京都（那天最後一段是賢島 → 京都的住宿：近鐵直達或八木換車），2/10 晚上起住大阪
+const KYOTO = [
+  ['kyoto-fushimi-inari', 'kyoto-toji', 'kyoto-sanjusangendo', 'kyoto-kiyomizudera', 'kyoto-yasaka-jinja', 'kyoto-nishiki-market', 'kyoto-nijojo'],
+  ['kyoto-kinkakuji', 'kyoto-kitano-tenmangu', 'kyoto-togetsukyo', 'kyoto-tenryuji', 'kyoto-gosho', 'kyoto-heian-jingu', 'kyoto-kyoto-tower'],
+];
+const KYOTO_LODGING = 'kyoto-miyako-hachijo';
+
+function twelveDaysKyoto(): Itinerary {
+  let it = createItinerary();
+  for (let d = 2; d <= 8; d++) {
+    const date = `2027-02-0${d}`;
+    for (const p of SEQ) it = addItem(it, date, { type: 'visit', options: [{ place: p, stayMinutes: 20 }] }).itinerary;
+  }
+  it = setLodging(it, '2027-02-08', KYOTO_LODGING);
+  KYOTO.forEach((places, i) => {
+    const date = `2027-02-${String(9 + i).padStart(2, '0')}`;
+    it = setLodging(it, date, i === 1 ? OSAKA_LODGING : KYOTO_LODGING);
+    for (const p of places) it = addItem(it, date, { type: 'visit', options: [{ place: p.replace('kyoto-kyoto-tower', 'kyoto-tower'), stayMinutes: 30 }] }).itinerary;
+  });
+  OSAKA.forEach((places, i) => {
+    const date = `2027-02-${11 + i}`;
+    it = setLodging(it, date, OSAKA_LODGING);
+    for (const p of places) it = addItem(it, date, { type: 'visit', options: [{ place: p, stayMinutes: 30 }] }).itinerary;
+  });
+  return it;
+}
+
+test('效能：12 天裡有 2 天京都、2 天大阪，每天 8 段', () => {
+  const real = realData();
+  const data = { ...real, stations: [...real.stations] };
+  const it = twelveDaysKyoto();
+  let t = performance.now();
+  const plan = planItinerary(it, data);
+  const first = performance.now() - t;
+  const kyoto = plan.days.filter((d) => d.date === '2027-02-09' || d.date === '2027-02-10');
+  for (const d of kyoto) {
+    const legs = d.entries.map((e) => e.travel).filter((l) => l);
+    assert.equal(legs.length, 8, `${d.date} ${legs.length} 段`);
+    assert.ok(legs.every((l) => l?.mode !== 'unknown'), `${d.date} ${legs.map((l) => l?.mode).join(',')}`);
+  }
+  const edited = addItem(it, '2027-02-09', { type: 'visit', options: [{ place: 'kyoto-sannenzaka', stayMinutes: 30 }] }, { index: 4 }).itinerary;
+  t = performance.now();
+  planItinerary(edited, data);
+  const again = performance.now() - t;
+  const edited2 = addItem(edited, '2027-02-10', { type: 'visit', options: [{ place: 'kyoto-nishiki-market', stayMinutes: 30 }] }, { index: 2 }).itinerary;
+  t = performance.now();
+  planItinerary(edited2, { ...data, getPlace: (id) => data.getPlace(id) });
+  const fresh = performance.now() - t;
+  // 網站的方式：同一個 EngineData＋PlanCache，動京都那天一張卡
+  const cfg = resolveConfig();
+  const cache = createPlanCache();
+  planItinerary(edited2, data, cfg, cache);
+  const edited3 = addItem(edited2, '2027-02-09', { type: 'visit', options: [{ place: 'kyoto-tower', stayMinutes: 30 }] }, { index: 1 }).itinerary;
+  t = performance.now();
+  planItinerary(edited3, data, cfg, cache);
+  const oneDay = performance.now() - t;
+  const modes = kyoto.flatMap((d) => d.entries.map((e) => e.travel?.mode).filter(Boolean));
+  console.log(
+    `12 天（含京都 2 天、大阪 2 天）規劃：第一次 ${first.toFixed(0)} ms，編輯後重算 ${again.toFixed(0)} ms，新的 EngineData 重算 ${fresh.toFixed(0)} ms，` +
+      `網站的方式動京都一張卡 ${oneDay.toFixed(1)} ms；京都兩天的交通 ${modes.join(',')}`,
+  );
+  assert.ok(first < 4000, `第一次規劃 ${first.toFixed(0)} ms`);
+  assert.ok(again < 800, `編輯後重算 ${again.toFixed(0)} ms`);
+  assert.ok(fresh < 800, `新的 EngineData 重算 ${fresh.toFixed(0)} ms`);
+  assert.ok(oneDay < 100, `動一張卡後重算 ${oneDay.toFixed(0)} ms`);
+});

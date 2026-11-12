@@ -56,7 +56,8 @@ function net(routes: TimedRoute[]): Network {
     routes,
     routesAt: new Map(),
     footpaths: new Map(),
-    sameStopChange: () => ({ walk: 0, transfer: null }),
+    sameStopChange: () => ({ walk: 0, transfer: null, none: false }),
+    kintetsuShort: new Set(),
   } as Network;
 }
 const ride = (r: TimedRoute, t: TimedTrip): JourneyRide => ({ route: r, trip: t, from: r.stops[0], to: r.stops[1], dep: t.dep[0], arr: t.arr[1], headway: null });

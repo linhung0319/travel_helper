@@ -57,10 +57,16 @@ export function unionBbox(boxes: Bbox[]): Bbox | null {
 /**
  * 某幾個區域在地圖上的範圍：用資料點的分布（areas.json 的 bbox 是行政界、含很大一片海，只用來檢查座標），
  * 沒有資料點時才用 bbox。
+ * 在自己區的 bbox 外面的點不算：換車用的經由站（stations.json 的 extra.via，例如京都的大和八木、大和西大寺在奈良縣，
+ * validate 只對它們放寬 bbox；extra 不進清單層，所以用 bbox 判斷），不然框「京都」會一路框到奈良
  */
 export function areasExtent(areas: Area[], places: Place[]): Bbox | null {
-  const ids = new Set(areas.map((a) => a.id));
-  return extentOf(places.filter((p) => p.area && ids.has(p.area)).map((p) => p.coords)) ?? unionBbox(areas.map((a) => a.bbox));
+  const byId = new Map(areas.map((a) => [a.id, a]));
+  const inside = (p: Place) => {
+    const a = p.area ? byId.get(p.area) : undefined;
+    return !!a && inBbox(p.coords, a.bbox);
+  };
+  return extentOf(places.filter(inside).map((p) => p.coords)) ?? unionBbox(areas.map((a) => a.bbox));
 }
 
 /** 初始範圍：資料點最多的那一群區域 */
@@ -96,6 +102,9 @@ const AREA_PALETTE: [string, string][] = [
   ['#a8452f', '#f8e5df'], // 朱
   ['#5d6680', '#eceef3'], // 鼠
   ['#6b4a8a', '#eee6f4'], // 紫
+  // T88：加了京都、琵琶湖共 8 區（含關西機場），6 色會讓琵琶湖撞志摩、大阪撞鳥羽
+  ['#7a5230', '#f2e8de'], // 茶
+  ['#8b2346', '#f6e0e7'], // 臙脂
 ];
 const AREA_NONE: [string, string] = ['#a3a9b8', '#ffffff'];
 
