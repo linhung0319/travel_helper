@@ -774,6 +774,8 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 | `scripts/jalan.mjs` | じゃらん的住宿評分：`list` 地區列表、`yad` 單一旅館、`apply` 寫進 `lodging.json` 的 `ratings.jalan`、`jalanReviews` 和 `sources`（分數變了舊值寫 `extra.conflicts`） |
 | `scripts/apply-patch.mjs` | 回填既有資料點（讀文 facts、口コミ、官網）：只填 null，不同就寫進 `extra.conflicts`；確定要換的用 `overwrite` |
 | `scripts/dossier-merge.mjs` | 口コミ、Google 評論的重點併進讀文筆記：`node scripts/dossier-merge.mjs <area> <工作目錄>/notes [--dry-run]`；`notes/<id>.md` 的格式見 `scripts/lib/dossier-merge.mjs` 開頭（T9d 第 5 批，取代每批複製的 notes-to-json.mjs＋dossier-merge.mjs） |
+| `scripts/chrome-receiver.mjs` | Chrome 抽取結果的本機接收器（T86c）：`node scripts/chrome-receiver.mjs --work <工作目錄>`（背景執行，只聽 127.0.0.1:8765）。頁面上的程式把結果 POST 過來，直接寫進工作目錄的 jsonl（同 key＋step＋path 換掉舊行）、txt、json，不用再分段讀、手抄；GET 讀工作目錄的檔（抽取程式本體放成 .txt，頁面讀進 localStorage）。第一次 Chrome 會問網站能不能連本機網路，要 👤 按允許 |
+| `scripts/chrome-actions.mjs --post <檔名>` | 抽取結果 POST 到接收器，回傳只剩一行「saved …」和警告；`google-place` 的查詢寫成 `<key>=<店名 地名>`，`google-reviews` 加 `--key`（T86c） |
 
 - **工作目錄**：一批一個 `data/cache/work/<任務>-<批>/`（例如 `t9d-1`），不進 git，但 session 結束後還在，下一個 session 可以接著用。放 `batch.json`、`tabelog.jsonl`、`google.jsonl`（Chrome 回傳的 JSON 一家一行，前面加 `"key"`）、`facts/`、`photos.json`、`judgement.json`、讀文用的 `prompt-common.md`。
 - **Claude 只做判斷**：`judgement.json` 裡的 `hours`、`contexts`、`cuisine`、`price`、`access`、`notes`、`febNote`，以及確認草稿的 `group`、`reservation`、`kids`、`seating`。食べログ字樣的轉換、來源和菜單連結的合併、照片的取捨、候選清單的更新都由工具做。
@@ -874,9 +876,16 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
   - **溫泉**：雄琴溫泉（`biwako`）3～5 間，加**嵐山溫泉 1～2 間**（`kyoto` 的 `arashiyama`；一泊二食、和室大房，同雄琴的條件）。湯の花（龜岡）、大原不收。
 - 京都市的住宿稅記在 `prices` 的 note（房價不含）。
 
-**餐廳**（T86c；開工前和 👤 定的規則回填這裡）
-- G／S 照大阪。S 的「京都名物」類別、要不要收抹茶甘味：T86c 開工前定。琵琶湖每個有景點的子地區 2～4 家（當天來回主要是午餐），名物（近江牛、湖魚、鰻魚 等）同時定。
-- 京都的大間多是座敷：`seating` 要分清楚椅子、掘りごたつ、座敷。
+**餐廳**（T86c，規則 2026-11-12 👤 定）
+- G／S 的門檻照大阪（G：食べログ 3.10 以上、口コミ 15 則以上、個室或貸切可容納 15 人以上；S：名物或平價）。規則寫在 `restaurant-candidates.mjs` 的 rules（`"scheme": "gs"`，`meibutsu`、`sweets`、`caps`、`overrides`），每筆的 override 都寫原因。
+- **京都名物**（S）：豆腐料理；日本料理・京料理・おばんざい（含懐石・会席、割烹・小料理，**昼預算上限 5,999 円以下才算**）；そば・うどん；ラーメン・つけ麺；寿司・棒寿司（寿司也要 5,999 円以下）；うなぎ。豆腐料理、棒寿司出現在類別任一項就算，其他只看類別第一項。S 同一類每區最多 2 家。
+- **抹茶甘味**：只收甘味名所 6 家（類別第一項是甘味処，依口コミ數），東山 1、嵐山 1、宇治 2、四条 1、京都站 1，不佔 S 的名額。其他甜點、咖啡照大阪不收。
+- **京都的家數**：G 京都站 3、四条 3、東山 2、嵐山 2、其他子地區各 1；S 京都站、四条 4，其他 3。結果 49 家（G 14、S 29、甘味 6；G、S 都符合的算一次）。
+- **琵琶湖名物**：近江牛（ステーキ、すき焼き、しゃぶしゃぶ、牛料理、鉄板焼き）、うなぎ、湖魚・郷土料理（郷土料理出現在類別任一項就算）、そば、近江ちゃんぽん。G 每區 1 家、S 每區 2 家（大津 3），S 同一類每區 1 家。結果 16 家。
+- 不收：太遠要自駕的（朽木、マキノ、葛川）、不是正餐的和菓子店、立ち食い（沒有座位）、不是當地名物的連鎖拉麵（override 寫原因）。雄琴溫泉的旅館是一泊二食，晚餐不另外找。
+- 京都的大間多是座敷：`seating` 要分清楚椅子（`table`）、掘りごたつ、座敷，15 人那一間是哪一種寫在 `accessibility.note`；沒有來源就寫「沒寫」。G 的店照來源判斷 `fit15`，個室其實坐不下 15 人、或來源互相矛盾的照實改成 `split`／`unknown`（八坂圓堂、蕎麦の実よしむら），`inclusion` 不動。
+- 名額內的店臨時休業、休到何時不明的標 `not-included`，由同區下一家遞補（山崎麺二郎 → 西陣 鳥岩楼，2026-11-12 👤）。
+- 食べログ地區代碼和子地區對不上的（岡崎、銀閣寺一帶分在「祇園」「下鴨」）用車站規則和 override 分。列表用口コミ人数順＋個室篩選。
 
 **評分**（T86d 訂）
 - 門檻在 `data/raw/toba/assessment-notes.md` 另加「京都」「琵琶湖」兩節，打分前試算（京都的 Google 評論數比大阪更高，不抄大阪的）。

@@ -1,0 +1,3754 @@
+[
+  {
+    "key": "tabelog-25000722",
+    "name": {
+      "ja": "近江肉せんなり亭 伽羅"
+    },
+    "region": "hikone",
+    "category": "すき焼き、日本料理、居酒屋",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-sennaritei-kyara",
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 372,
+      "google": 4.3,
+      "googleReviews": 902
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000722/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:彦根市；定休（食べログ列表）：火曜日；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 8000～9999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-25000628",
+    "name": {
+      "ja": "つる亀庵"
+    },
+    "region": "hikone",
+    "category": "そば、天ぷら",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-tsurukamean",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 292,
+      "google": 4.1,
+      "googleReviews": 666
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000628/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:彦根市；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(8人、20〜30人可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25004996",
+    "name": {
+      "ja": "雪月花 彦根"
+    },
+    "region": "hikone",
+    "category": "焼肉、しゃぶしゃぶ、牛料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 262
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25004996/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:彦根市；個室（食べログ列表）：完全個室有(2〜30人可)；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25001468",
+    "name": {
+      "ja": "近江や"
+    },
+    "region": "hikone",
+    "category": "居酒屋、郷土料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 247
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25001468/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:彦根市；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25007205",
+    "name": {
+      "ja": "鮮魚と炉端焼き 魚丸 彦根店"
+    },
+    "region": "hikone",
+    "category": "居酒屋、海鮮、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 106
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25007205/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:彦根市；個室（食べログ列表）：完全個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 5000～5999／昼 -"
+  },
+  {
+    "key": "tabelog-25001286",
+    "name": {
+      "ja": "中国料理 龍鱗 彦根本店"
+    },
+    "region": "hikone",
+    "category": "中華料理、居酒屋、ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 96
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25001286/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:彦根市；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(2〜20人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000694",
+    "name": {
+      "ja": "しる万 本店"
+    },
+    "region": "hikone",
+    "category": "うなぎ、そば、うどん",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 91
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000694/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:彦根市；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(4〜30人可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000428",
+    "name": {
+      "ja": "近江や 蔵"
+    },
+    "region": "hikone",
+    "category": "居酒屋、すき焼き、丼",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 82
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000428/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:彦根市；個室（食べログ列表）：完全個室有(2〜30人可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25008638",
+    "name": {
+      "ja": "せんなり亭 心華房"
+    },
+    "region": "hikone",
+    "category": "鉄板焼き、日本料理、ワインバー",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 69
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25008638/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:彦根市；定休（食べログ列表）：月曜日、火曜日；個室（食べログ列表）：完全個室有(4〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-25003541",
+    "name": {
+      "ja": "日本料理橘菖"
+    },
+    "region": "hikone",
+    "category": "鍋、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 63
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25003541/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:彦根市；個室（食べログ列表）：個室有(4〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000362",
+    "name": {
+      "ja": "ラーメンにっこう"
+    },
+    "region": "hikone",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 1525
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000362/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25004738",
+    "name": {
+      "ja": "クラブハリエ ジュブリルタン"
+    },
+    "region": "hikone",
+    "category": "パン、カフェ、ヨーロッパ料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 890
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25004738/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25009492",
+    "name": {
+      "ja": "麺や 江陽軒"
+    },
+    "region": "hikone",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.7,
+      "tabelogReviews": 663
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25009492/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000361",
+    "name": {
+      "ja": "近江ちゃんぽん亭 彦根駅前本店"
+    },
+    "region": "hikone",
+    "category": "ちゃんぽん、ラーメン、からあげ",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-chanpontei-hikone-ekimae",
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 602,
+      "google": 3.8,
+      "googleReviews": 1487
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000361/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000931",
+    "name": {
+      "ja": "比内地鶏 ほっこりや 夢京橋店"
+    },
+    "region": "hikone",
+    "category": "鳥料理、親子丼、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 574
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000931/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25005617",
+    "name": {
+      "ja": "近江ちゃんぽん亭 本店"
+    },
+    "region": "hikone",
+    "category": "ちゃんぽん、ラーメン、郷土料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 489
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25005617/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25001542",
+    "name": {
+      "ja": "いと重菓舗 本店"
+    },
+    "region": "hikone",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 468
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25001542/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-25000058",
+    "name": {
+      "ja": "たねや 彦根美濠の舎"
+    },
+    "region": "hikone",
+    "category": "和菓子、洋菓子、バームクーヘン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 416
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000058/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000377",
+    "name": {
+      "ja": "ラーメン本気"
+    },
+    "region": "hikone",
+    "category": "ラーメン、ちゃんぽん",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 409
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000377/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25008579",
+    "name": {
+      "ja": "クラブハリエ 彦根美濠の舎"
+    },
+    "region": "hikone",
+    "category": "ケーキ、バームクーヘン、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 308
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25008579/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25001739",
+    "name": {
+      "ja": "まるいし"
+    },
+    "region": "hikone",
+    "category": "ラーメン、ちゃんぽん、うどん",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 249
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25001739/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25003200",
+    "name": {
+      "ja": "八千代 駅前店"
+    },
+    "region": "hikone",
+    "category": "そば、丼、食堂",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 233
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25003200/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25004664",
+    "name": {
+      "ja": "どら焼き虎てつ 本店"
+    },
+    "region": "hikone",
+    "category": "和菓子、どら焼き",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 205
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25004664/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點"
+  },
+  {
+    "key": "tabelog-25009845",
+    "name": {
+      "ja": "十割手打 そば処 百百百百"
+    },
+    "region": "hikone",
+    "category": "そば",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 202
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25009845/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000678",
+    "name": {
+      "ja": "かつ亭 いろは"
+    },
+    "region": "hikone",
+    "category": "とんかつ、食堂",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（hikone：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 199
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000678/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25008620",
+    "name": {
+      "ja": "千成亭 夢京橋店"
+    },
+    "region": "hikone",
+    "category": "コロッケ、牛丼、丼",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 194
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25008620/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25005689",
+    "name": {
+      "ja": "らーめん 与七 堅田店"
+    },
+    "region": "ogoto-katata",
+    "category": "ラーメン、つけ麺、餃子",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-yoshichi-katata",
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 797,
+      "google": 4.1,
+      "googleReviews": 974
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25005689/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:堅田駅 510m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25008105",
+    "name": {
+      "ja": "近江牛一筋 農家レストラン だいきち"
+    },
+    "region": "ogoto-katata",
+    "category": "焼肉、ステーキ、すき焼き",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "biwako-daikichi-katata",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 196,
+      "google": 4.2,
+      "googleReviews": 729
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25008105/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:堅田駅 697m；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000472",
+    "name": {
+      "ja": "美登路"
+    },
+    "region": "ogoto-katata",
+    "category": "そば",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-midoro",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 192,
+      "google": 4.1,
+      "googleReviews": 518
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000472/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:堅田駅 660m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25006230",
+    "name": {
+      "ja": "近江ちゃんぽん亭 堅田店"
+    },
+    "region": "ogoto-katata",
+    "category": "ちゃんぽん、ラーメン、からあげ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 133
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25006230/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:堅田駅 715m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25001336",
+    "name": {
+      "ja": "焼肉 新羅"
+    },
+    "region": "ogoto-katata",
+    "category": "焼肉",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（ogoto-katata：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 105
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25001336/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:堅田駅 440m；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25004796",
+    "name": {
+      "ja": "ひより"
+    },
+    "region": "ogoto-katata",
+    "category": "パスタ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（ogoto-katata：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 80
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25004796/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:堅田駅 643m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000160",
+    "name": {
+      "ja": "ブレッツァ"
+    },
+    "region": "ogoto-katata",
+    "category": "カフェ、イタリアン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 65
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000160/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:堅田駅 563m；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000482",
+    "name": {
+      "ja": "中華料理 宗八"
+    },
+    "region": "ogoto-katata",
+    "category": "中華料理、ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（ogoto-katata：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 60
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000482/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:堅田駅 271m；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25001133",
+    "name": {
+      "ja": "旬菜こはち"
+    },
+    "region": "ogoto-katata",
+    "category": "海鮮、寿司、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 49
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25001133/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：駅:堅田駅 347m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25013223",
+    "name": {
+      "ja": "肉Cafe だいきち牧場"
+    },
+    "region": "ogoto-katata",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 45
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25013223/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:堅田駅 679m；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25005974",
+    "name": {
+      "ja": "御菓子処 嶋屋 本店"
+    },
+    "region": "ogoto-katata",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 43
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25005974/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:堅田駅 759m；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-25005063",
+    "name": {
+      "ja": "パン工房 モグモグ"
+    },
+    "region": "ogoto-katata",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25005063/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:堅田駅 320m；定休（食べログ列表）：火曜日"
+  },
+  {
+    "key": "tabelog-25010639",
+    "name": {
+      "ja": "嬉酔 くわ乃"
+    },
+    "region": "ogoto-katata",
+    "category": "日本料理、うなぎ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 31
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25010639/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:堅田駅 281m；預算（食べログ列表）：夜 6000～7999／昼 -"
+  },
+  {
+    "key": "tabelog-25008854",
+    "name": {
+      "ja": "COZARA"
+    },
+    "region": "ogoto-katata",
+    "category": "イタリアン、パスタ、ピザ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 31
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25008854/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:堅田駅 505m；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000497",
+    "name": {
+      "ja": "焼肉の名門 天壇 草津店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "焼肉",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 149
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000497/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:草津市；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25008315",
+    "name": {
+      "ja": "朧"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "寿司、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 116
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25008315/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：駅:草津市；個室（食べログ列表）：完全個室有(4〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-25003392",
+    "name": {
+      "ja": "オールデイダイニングリバティー (ホテルボストンプラザ草津びわ湖)"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "フレンチ、ビストロ、ダイニングバー",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 109
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25003392/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:草津市；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 6000～7999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25010765",
+    "name": {
+      "ja": "海鮮と創作天ぷら 個室居酒屋 もりした 南草津店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "居酒屋、海鮮、鍋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 102
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25010765/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:草津市；個室（食べログ列表）：個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 -"
+  },
+  {
+    "key": "tabelog-25000206",
+    "name": {
+      "ja": "近江屋"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "居酒屋、すき焼き、焼肉",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 81
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000206/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:草津市；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 5000～5999／昼 -"
+  },
+  {
+    "key": "tabelog-25001153",
+    "name": {
+      "ja": "パン・ドゥ・マルシェ"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 736
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25001153/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 1000～1999／昼 -"
+  },
+  {
+    "key": "tabelog-25003976",
+    "name": {
+      "ja": "幻の中華そば加藤屋 にぼ次朗"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン、丼、油そば・まぜそば",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 474
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25003976/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000145",
+    "name": {
+      "ja": "麺屋 風火 草津元店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 319
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000145/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25008023",
+    "name": {
+      "ja": "らーめん与七 南草津店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 261
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25008023/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25006018",
+    "name": {
+      "ja": "天下ご麺 南草津店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 256
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25006018/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25008811",
+    "name": {
+      "ja": "肉酒場モダンミール 草津店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ダイニングバー、居酒屋、バー",
+    "status": "excluded",
+    "criteria": [
+      "S"
+    ],
+    "reason": "食べログ類別第一項是ダイニングバー → 酒吧排除",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 232
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25008811/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25009070",
+    "name": {
+      "ja": "THE HIDEAWAY FACTORY"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "カフェ、イタリアン、スイーツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 223
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25009070/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25008626",
+    "name": {
+      "ja": "SUNDAY'S BAKE RIVER GARDEN"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "イタリアン、ピザ、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 219
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25008626/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25001041",
+    "name": {
+      "ja": "豚骨ラーメン 銀水"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン、餃子、からあげ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 219
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25001041/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000504",
+    "name": {
+      "ja": "なごやか亭 草津木川店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "回転寿司、寿司、海鮮",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 217
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000504/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25004939",
+    "name": {
+      "ja": "滋味 康月"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 215
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25004939/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；預算（食べログ列表）：夜 10000～14999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-25003933",
+    "name": {
+      "ja": "近江ちゃんぽん亭 草津駅前店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ちゃんぽん、ラーメン、からあげ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.28,
+      "tabelogReviews": 203
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25003933/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25010565",
+    "name": {
+      "ja": "カウズクラウン"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ハンバーガー、ステーキ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 191
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25010565/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000756",
+    "name": {
+      "ja": "クラブハリエ 草津近鉄店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 180
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000756/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-25000017",
+    "name": {
+      "ja": "うばがもちや 本店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "甘味処、和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 163
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000017/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25007370",
+    "name": {
+      "ja": "近江バルnadeshico"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "イタリアン、バル、ステーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 163
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25007370/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；預算（食べログ列表）：夜 3000～3999／昼 -"
+  },
+  {
+    "key": "tabelog-25000228",
+    "name": {
+      "ja": "味鮮"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "台湾料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 161
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25000228/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25009344",
+    "name": {
+      "ja": "煮干らあめん じんべえ"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン、台湾まぜそば、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 159
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25009344/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25001110",
+    "name": {
+      "ja": "boulangerie montagne"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "パン、和菓子、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 156
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2502/A250201/25001110/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000119",
+    "name": {
+      "ja": "特選近江牛レストラン ティファニー"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ステーキ、鉄板焼き、しゃぶしゃぶ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-tiffany",
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 810,
+      "google": 4.2,
+      "googleReviews": 1444
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000119/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:近江八幡市；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 10000～14999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-25000004",
+    "name": {
+      "ja": "近江牛 毛利志満 近江八幡本店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ステーキ、すき焼き、しゃぶしゃぶ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-morishima-omihachiman",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 394,
+      "google": 4.3,
+      "googleReviews": 1513
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000004/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:近江八幡市；定休（食べログ列表）：水曜日；個室（食べログ列表）：完全個室有(2〜30人可)；預算（食べログ列表）：夜 8000～9999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-25001501",
+    "name": {
+      "ja": "近江牛創作料理 久ぼ多屋"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ステーキ、すき焼き、ハンバーグ",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 234
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25001501/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:近江八幡市；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000553",
+    "name": {
+      "ja": "是的菜館"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "中華料理、飲茶・点心、中華粥",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.63,
+      "tabelogReviews": 154
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000553/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:近江八幡市；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000314",
+    "name": {
+      "ja": "ひさご寿し"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "寿司、日本料理、郷土料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 150
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000314/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：駅:近江八幡市；定休（食べログ列表）：火曜日、水曜日；個室（食べログ列表）：個室有(4〜30人、30人以上可)；預算（食べログ列表）：夜 10000～14999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25008267",
+    "name": {
+      "ja": "カメチク"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "焼肉、ホルモン、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.61,
+      "tabelogReviews": 142
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25008267/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:近江八幡市；個室（食べログ列表）：個室有(6人、10〜20人可)；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-25012938",
+    "name": {
+      "ja": "近江牛・和牛専門 寛閑観"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "牛料理、ステーキ、すき焼き",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 105
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25012938/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:近江八幡市；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 6000～7999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25001576",
+    "name": {
+      "ja": "沙羅"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "中華料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 94
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25001576/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:近江八幡市；個室（食べログ列表）：個室有(4〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25010656",
+    "name": {
+      "ja": "TABLE MOTHER"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "フレンチ、イタリアン",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 60
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25010656/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:近江八幡市；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(2〜30人可)；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25003608",
+    "name": {
+      "ja": "旬菜旬魚 煌 近江八幡店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "日本料理、うなぎ、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 56
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25003608/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:近江八幡市；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25010605",
+    "name": {
+      "ja": "近江牛カルビとタンとハラミ 焼肉すだく 近江八幡店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "焼肉、ホルモン、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 54
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25010605/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:近江八幡市；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25006577",
+    "name": {
+      "ja": "新鮮組"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "寿司、海鮮、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 53
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25006577/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：駅:近江八幡市；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25007466",
+    "name": {
+      "ja": "ラ コリーナ近江八幡"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "バームクーヘン、和菓子、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 3208
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25007466/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000112",
+    "name": {
+      "ja": "シャーレ水ヶ浜"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "カフェ、喫茶店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 478
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000112/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：火曜日、水曜日、木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25005680",
+    "name": {
+      "ja": "たねや 日牟禮乃舍"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "甘味処、かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 468
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25005680/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000249",
+    "name": {
+      "ja": "まるたけ 近江 西川"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "牛料理、しゃぶしゃぶ、すき焼き",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 370
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000249/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25006264",
+    "name": {
+      "ja": "バリバリジョニー 竜王店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン、餃子、からあげ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 370
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25006264/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000757",
+    "name": {
+      "ja": "近江かね安"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "すき焼き、食堂",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 330
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000757/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-25000298",
+    "name": {
+      "ja": "炭櫓 近江八幡店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "うなぎ",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-sumiyagura-omihachiman",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 311,
+      "google": 4.4,
+      "googleReviews": 3042
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000298/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000001",
+    "name": {
+      "ja": "とんかつ亭 天乃家"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "とんかつ、ステーキ、コロッケ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 283
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000001/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25004706",
+    "name": {
+      "ja": "近江牛岡喜 三井アウトレットパーク竜王店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ステーキ、牛料理、すき焼き",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 235
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25004706/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25004704",
+    "name": {
+      "ja": "もりもり寿し 竜王店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "回転寿司",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 230
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25004704/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；預算（食べログ列表）：夜 4000～4999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25004695",
+    "name": {
+      "ja": "クアアイナ 三井アウトレットパーク滋賀竜王店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ハンバーガー、サンドイッチ、パンケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 228
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25004695/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25013372",
+    "name": {
+      "ja": "近江牛バーガーSUDAKU"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ハンバーガー、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 223
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25013372/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25012166",
+    "name": {
+      "ja": "バームファクトリー"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "カフェ、バームクーヘン、スイーツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 215
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25012166/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25004022",
+    "name": {
+      "ja": "だるま八"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 196
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25004022/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25001244",
+    "name": {
+      "ja": "たねや 近江八幡店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "和菓子、洋菓子、バームクーヘン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.14,
+      "tabelogReviews": 181
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25001244/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點"
+  },
+  {
+    "key": "tabelog-25006688",
+    "name": {
+      "ja": "千成亭 八幡堀店"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "ステーキ、肉料理、すき焼き",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kusatsu-omihachiman：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 178
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25006688/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25005315",
+    "name": {
+      "ja": "淡海堂"
+    },
+    "region": "takashima",
+    "category": "ケーキ、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 38
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25005315/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:近江高島駅 367m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25003631",
+    "name": {
+      "ja": "三井寺力餅本家"
+    },
+    "region": "otsu",
+    "category": "和菓子、甘味処",
+    "status": "not-included",
+    "criteria": [
+      "G"
+    ],
+    "reason": "和菓子店（力餅），不是正餐；個室 10〜20 人是茶席（Claude 判斷）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 901
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25003631/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:大津市；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000117",
+    "name": {
+      "ja": "逢坂山 かねよ 本店"
+    },
+    "region": "otsu",
+    "category": "うなぎ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-osakayama-kaneyo",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 694,
+      "google": 3.9,
+      "googleReviews": 2854
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000117/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:大津市；定休（食べログ列表）：木曜日；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 5000～5999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25008216",
+    "name": {
+      "ja": "手打ち蕎麦 蕎麦屋すみ蔵"
+    },
+    "region": "otsu",
+    "category": "そば、天ぷら、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 227
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25008216/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:大津市；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000159",
+    "name": {
+      "ja": "セルポワ"
+    },
+    "region": "otsu",
+    "category": "オムライス、イタリアン、創作料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 194
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000159/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:大津市；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000270",
+    "name": {
+      "ja": "あたか飯店 本店"
+    },
+    "region": "otsu",
+    "category": "中華料理、飲茶・点心、餃子",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 187
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000270/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:大津市；個室（食べログ列表）：個室有(2人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25004504",
+    "name": {
+      "ja": "ファミリーれすとらん ひろせ 寿し正"
+    },
+    "region": "otsu",
+    "category": "海鮮、寿司、海鮮丼",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 182
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25004504/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：駅:大津市；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(20〜30人可)；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000243",
+    "name": {
+      "ja": "とっくり"
+    },
+    "region": "otsu",
+    "category": "居酒屋、海鮮、焼肉",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 180
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000243/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:大津市；定休（食べログ列表）：日曜日；個室（食べログ列表）：個室有(2〜30人可)；預算（食べログ列表）：夜 6000～7999／昼 -"
+  },
+  {
+    "key": "tabelog-25004652",
+    "name": {
+      "ja": "ラーゴ"
+    },
+    "region": "otsu",
+    "category": "イタリアン、パスタ、洋食",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 172
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25004652/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:大津市；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 8000～9999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25007213",
+    "name": {
+      "ja": "グリル ストーブ"
+    },
+    "region": "otsu",
+    "category": "洋食、ハンバーグ、オムライス",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 155
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25007213/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:大津市；個室（食べログ列表）：個室有(10〜30人可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000772",
+    "name": {
+      "ja": "比良山荘"
+    },
+    "region": "otsu",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "在葛川坊村（比良山中），要自駕；一人 4 萬円以上",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.45,
+      "tabelogReviews": 850
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000772/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 40000～49999／昼 40000～49999"
+  },
+  {
+    "key": "tabelog-25000032",
+    "name": {
+      "ja": "鶴屋喜八"
+    },
+    "region": "otsu",
+    "category": "そば、甘味処、天丼",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-tsuruya-kihachi",
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 724,
+      "google": 4.2,
+      "googleReviews": 1888
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000032/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25000296",
+    "name": {
+      "ja": "天下ご麺 大津店"
+    },
+    "region": "otsu",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 641
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000296/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000697",
+    "name": {
+      "ja": "ちか定"
+    },
+    "region": "otsu",
+    "category": "うなぎ、海鮮、郷土料理",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-chikasada",
+    "ratings": {
+      "tabelog": 3.73,
+      "tabelogReviews": 542,
+      "google": 4.3,
+      "googleReviews": 1142
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000697/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-25003866",
+    "name": {
+      "ja": "炭火割烹 蔓ききょう"
+    },
+    "region": "otsu",
+    "category": "日本料理、鳥料理、焼肉",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.96,
+      "tabelogReviews": 502
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25003866/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；預算（食べログ列表）：夜 10000～14999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-25004599",
+    "name": {
+      "ja": "近江牛ステーキとがぶ飲みワイン ニクバルモダンミール 大津店"
+    },
+    "region": "otsu",
+    "category": "イタリアン、ステーキ、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 475
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25004599/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000784",
+    "name": {
+      "ja": "近江牛専門店 れすとらん 松喜屋 本店"
+    },
+    "region": "otsu",
+    "category": "ステーキ、すき焼き、牛料理",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-matsukiya-honten",
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 437,
+      "google": 4.4,
+      "googleReviews": 983
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000784/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；預算（食べログ列表）：夜 10000～14999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-25008253",
+    "name": {
+      "ja": "びわ湖テラス"
+    },
+    "region": "otsu",
+    "category": "カフェ、サンドイッチ、ジェラート・アイスクリーム",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 414
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25008253/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25000686",
+    "name": {
+      "ja": "近江牛専門店 近江かど萬"
+    },
+    "region": "otsu",
+    "category": "ステーキ、すき焼き、しゃぶしゃぶ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 393
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000686/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；預算（食べログ列表）：夜 10000～14999／昼 10000～14999"
+  },
+  {
+    "key": "tabelog-25000920",
+    "name": {
+      "ja": "じどりや 穏座"
+    },
+    "region": "otsu",
+    "category": "鳥料理、焼き鳥",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.96,
+      "tabelogReviews": 387
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000920/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；預算（食べログ列表）：夜 8000～9999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-25006293",
+    "name": {
+      "ja": "肉食堂 最後にカツ。"
+    },
+    "region": "otsu",
+    "category": "食堂、ステーキ、豚料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 377
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25006293/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000579",
+    "name": {
+      "ja": "皿そば 渚庵"
+    },
+    "region": "otsu",
+    "category": "そば、寿司、丼",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 350
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000579/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000639",
+    "name": {
+      "ja": "古蝶庵"
+    },
+    "region": "otsu",
+    "category": "うどん、天ぷら、寿司",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 345
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000639/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25004102",
+    "name": {
+      "ja": "う嵐"
+    },
+    "region": "otsu",
+    "category": "うなぎ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.54,
+      "tabelogReviews": 336
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25004102/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；預算（食べログ列表）：夜 15000～19999／昼 15000～19999"
+  },
+  {
+    "key": "tabelog-25000363",
+    "name": {
+      "ja": "ラーメン ととち丸"
+    },
+    "region": "otsu",
+    "category": "ラーメン、餃子",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 330
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000363/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：月曜日、木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25002264",
+    "name": {
+      "ja": "大津サービスエリア 上り線 フードコート"
+    },
+    "region": "otsu",
+    "category": "その他",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 307
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25002264/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 1000～1999／昼 -"
+  },
+  {
+    "key": "tabelog-25003510",
+    "name": {
+      "ja": "草津パーキングエリア(上り線)フードコート"
+    },
+    "region": "otsu",
+    "category": "食堂、ラーメン、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（otsu：G 1 家、S 3 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 294
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25003510/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25004690",
+    "name": {
+      "ja": "お食事一品料理 まさ"
+    },
+    "region": "takashima",
+    "category": "日本料理、海鮮、寿司",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "biwako-masa-takashima",
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 41,
+      "google": 4.3,
+      "googleReviews": 138
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25004690/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:高島市；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 4000～4999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25001199",
+    "name": {
+      "ja": "西庵"
+    },
+    "region": "takashima",
+    "category": "居酒屋、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（takashima：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 32
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25001199/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:高島市；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(6〜20人可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000764",
+    "name": {
+      "ja": "奥琵琶湖マキノ グランドパークホテル レストラン竹生"
+    },
+    "region": "takashima",
+    "category": "洋食、日本料理、パスタ",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（takashima：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.25,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000764/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:高島市；個室（食べログ列表）：完全個室有(10〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25007332",
+    "name": {
+      "ja": "白ひげ蕎麦"
+    },
+    "region": "takashima",
+    "category": "そば",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-shirahige-soba",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 315,
+      "google": 3.5,
+      "googleReviews": 1028
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25007332/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000222",
+    "name": {
+      "ja": "栃生梅竹"
+    },
+    "region": "takashima",
+    "category": "寿司、郷土料理",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "在朽木（栃生），離白鬚神社約 30 km、要自駕",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 291
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000222/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-25003020",
+    "name": {
+      "ja": "白ひげ食堂"
+    },
+    "region": "takashima",
+    "category": "食堂、うどん、おでん",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "biwako-shirahige-shokudo",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 276,
+      "google": 4.4,
+      "googleReviews": 862
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25003020/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25001083",
+    "name": {
+      "ja": "朽木旭屋"
+    },
+    "region": "takashima",
+    "category": "そば、寿司、郷土料理",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "在朽木，離白鬚神社約 25 km、要自駕",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 268
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25001083/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000469",
+    "name": {
+      "ja": "川魚の西友 本店"
+    },
+    "region": "takashima",
+    "category": "海鮮、うなぎ、惣菜・デリ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 242
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000469/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；預算（食べログ列表）：夜 2000～2999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-25000201",
+    "name": {
+      "ja": "くつきそば 永昌庵"
+    },
+    "region": "takashima",
+    "category": "そば",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "在朽木，離白鬚神社約 25 km、要自駕",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 196
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000201/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：日曜日、祝日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25009720",
+    "name": {
+      "ja": "並木カフェ メタセコイア"
+    },
+    "region": "takashima",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 155
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25009720/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 ～999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000582",
+    "name": {
+      "ja": "ビーパス年輪"
+    },
+    "region": "takashima",
+    "category": "カフェ、クレープ・ガレット、ハンバーガー",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 148
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000582/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25009324",
+    "name": {
+      "ja": "パフェ専門店 Lamp"
+    },
+    "region": "takashima",
+    "category": "フルーツパーラー",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 138
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25009324/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25001342",
+    "name": {
+      "ja": "ソラノネ食堂"
+    },
+    "region": "takashima",
+    "category": "オーガニック、カフェ、野菜料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（takashima：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 134
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25001342/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000624",
+    "name": {
+      "ja": "湖里庵"
+    },
+    "region": "takashima",
+    "category": "日本料理、郷土料理",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "在マキノ海津（離白鬚神社約 25 km）；鮒ずし懐石一人 1.5 萬円起",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.31,
+      "tabelogReviews": 126
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000624/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；預算（食べログ列表）：夜 15000～19999／昼 15000～19999"
+  },
+  {
+    "key": "tabelog-25005482",
+    "name": {
+      "ja": "安曇川キッチン"
+    },
+    "region": "takashima",
+    "category": "そば、うどん、ジェラート・アイスクリーム",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（takashima：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 125
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25005482/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25001258",
+    "name": {
+      "ja": "近江ちゃんぽん亭 今津店"
+    },
+    "region": "takashima",
+    "category": "ちゃんぽん、ラーメン、からあげ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.21,
+      "tabelogReviews": 125
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25001258/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-25003509",
+    "name": {
+      "ja": "マキノピックランド センターハウス"
+    },
+    "region": "takashima",
+    "category": "ジェラート・アイスクリーム、うどん、カレーうどん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 119
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25003509/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25010292",
+    "name": {
+      "ja": "メタセコイアGARDEN"
+    },
+    "region": "takashima",
+    "category": "喫茶店、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.1,
+      "tabelogReviews": 116
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25010292/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25003602",
+    "name": {
+      "ja": "道の駅 マキノ追坂峠"
+    },
+    "region": "takashima",
+    "category": "食堂、ジェラート・アイスクリーム、パン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（takashima：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 109
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25003602/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25003501",
+    "name": {
+      "ja": "古道具 海津"
+    },
+    "region": "takashima",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 101
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25003501/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-25005320",
+    "name": {
+      "ja": "とも栄 藤樹街道本店"
+    },
+    "region": "takashima",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 84
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25005320/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點"
+  },
+  {
+    "key": "tabelog-25009856",
+    "name": {
+      "ja": "ルヴァン"
+    },
+    "region": "takashima",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 81
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25009856/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-25000332",
+    "name": {
+      "ja": "箱館そば 鴫野"
+    },
+    "region": "takashima",
+    "category": "そば",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（takashima：G 1 家、S 2 家、S 同類型 1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 79
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25000332/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；預算（食べログ列表）：夜 -／昼 1000～1999"
+  }
+]

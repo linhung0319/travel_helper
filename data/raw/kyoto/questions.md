@@ -22,3 +22,15 @@
 - [ ] kyoto-hanaikada：電梯（訂房網站寫有輪椅用電梯，官網沒寫）；宴會場能不能當 15 人的住宿晚餐（晚餐基本是部屋食）；住客入湯稅；小學生收費比例
 - [ ] kyoto-togetsutei：各房最多幾人；JR 嵯峨嵐山站接送現在有沒有（交通頁和問答頁說法不同）；2026-12～2027-03 有沒有休館（同區花伝抄這段期間休館）；秀山閣有沒有電梯；中廣間能不能當住宿晚餐
 - [ ] 町家（候選 kyoto-machiya-isuke、kyoto-machiya-villa-sanjo、kyoto-machiya-sanjusangendo）：向業者要旅館業許可番號；有番號、要改收時再查 2/9、2/10 的價格（官網日曆）
+
+## 餐廳（T86c）
+- [ ] kyoto-yasaka-endo：15 人能不能同一間（官網最大個室 14 人、套餐只收到 14 人，食べログ寫 30 人以上）；**能不能帶 6～10 歲小孩**（訂位網站寫お子様連れ不可，官網、食べログ沒寫）
+- [ ] kyoto-seikou-udoku：營業星期官網（金土日）和食べログ（月～木）相反，2/9～2/12 哪幾天開
+- [ ] kyoto-rokusei、kyoto-nanzenji-junsei：2/10（三）開不開（食べログ寫週三休，官網寫不定休）；15 人的房間是椅子還是座敷
+- [ ] kyoto-yudofu-takemura、kyoto-sakon：2/11（四・國定假日）開不開（竹むら週四休；佐近「遇國定假日營業、隔天週四休」，2/11 本身是週四）
+- [ ] kyoto-yamamoto-menzo、kyoto-shubaku：2/12（五）開不開（麺蔵是國定假日隔天休；しゅばく 食べログ寫週五休）
+- [ ] kyoto-kyogoku-kaneyo：週二晚上現在還休不休（2/9）；15 人在 2 樓座敷，長輩能不能改 1 樓桌席
+- [ ] kyoto-zezekan-pocchiri、kyoto-mancho、kyoto-roran：15 人的個室是椅子還是座敷、在幾樓、有沒有電梯
+- [ ] kyoto-miyakoyasai-kamo-karasuma：15 人（不包 2 樓）能不能訂、電話還是網路（官網和食べログ說法不同）
+- [ ] kyoto-toriiwaro：現在有沒有晚餐（食べログ寫只有午餐）
+- [ ] kyoto-tsukumo-udon：營業時間（食べログ 7:00～22:00、介紹網站 6:00～23:00）

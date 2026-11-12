@@ -1,0 +1,3805 @@
+[
+  {
+    "id": "biwako-sennaritei-kyara",
+    "type": "restaurant",
+    "name": {
+      "ja": "近江肉せんなり亭 伽羅",
+      "kana": null,
+      "zh": "近江肉千成亭 伽羅",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "hikone",
+    "coords": [
+      136.2518352,
+      35.2719074
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県彦根市本町2-1-7",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "lastEntry": [
+        "14:00",
+        "20:30"
+      ],
+      "note": "週二公休；晚餐 L.O. 20:30（官網）；午餐 L.O. 是推估"
+    },
+    "closedNote": null,
+    "febNote": "2/9（二）公休；2/10～2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://kyara.sennaritei.jp/wp-content/uploads/2024/04/top_img-788x1024.jpg",
+        "page": "https://kyara.sennaritei.jp/",
+        "kind": "official",
+        "credit": "近江肉せんなり亭 伽羅",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://kyara.sennaritei.jp/",
+      "googleMaps": "https://maps.google.com/?cid=2974443577514896989",
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000722/",
+      "instagram": "@kyara_gram"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000722/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2974443577514896989",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://kyara.sennaritei.jp/",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、定休、預約連結"
+      },
+      {
+        "type": "official",
+        "url": "https://kyara.sennaritei.jp/course/",
+        "retrieved": "2026-11-12",
+        "note": "會席、すき焼き價格、7 日前預約、兒童菜單"
+      },
+      {
+        "type": "official",
+        "url": "https://kyara.sennaritei.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "停車場、步行時間"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-hikone",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-hikone-castle",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "午 ¥4,000～4,999／晚 ¥8,000～9,999",
+    "price": {
+      "lunch": [
+        4000,
+        4999
+      ],
+      "dinner": [
+        8000,
+        9999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "近江牛すき焼き（極上肉 9,000 円～）",
+      "金亀会席",
+      "近江牛ステーキ御膳"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000722/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000722/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 372,
+      "google": 4.3,
+      "googleReviews": 902,
+      "note": null
+    },
+    "inclusion": [
+      "G",
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": "近江肉 せんなり亭伽羅",
+    "notes": "彥根的近江牛壽喜燒、會席老店，個室最多 20 人；彥根站步行約 15～20 分（計程車 5 分）。有兒童菜單（要問）。",
+    "group": {
+      "seats": 82,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": "會席 2 人起、要 7 天前預約；另收服務費（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：個室 10～20 人可、予約可；坐得下 15 人"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0749-21-2789",
+      "url": "https://yoyaku.toreta.in/sennaritei-kyara",
+      "language": "日文",
+      "note": "會席要 7 天前預約（官網）；網路可訂（Toreta、TableCheck）",
+      "leadDays": 7
+    },
+    "seating": [
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可（乳児可、未就学児可、小学生可）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "15 人個室是座敷還是掘りごたつ，官網和食べログ都沒寫"
+      ]
+    }
+  },
+  {
+    "id": "biwako-tsurukamean",
+    "type": "restaurant",
+    "name": {
+      "ja": "つる亀庵",
+      "kana": null,
+      "zh": "鶴龜庵（蕎麥）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "hikone",
+    "coords": [
+      136.2566188,
+      35.2734051
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県彦根市立花町1-1",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "19:30"
+        ]
+      ],
+      "lastEntry": [
+        "15:00",
+        "19:30"
+      ],
+      "note": "週三公休；櫻花、紅葉季不定休（官網）"
+    },
+    "closedNote": null,
+    "febNote": "2/10（三）公休；2/9、2/11、2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdpJwyXxNZ5iscJ34YnDaUHQVDc2404q364IksLzWbSMA8OlDxh5K2F8XsXBW1MUmuwMj-7ye4sKD-CiEalYANNhnbBzyYG2iwnjUdJ6PGiolHpOh_yFQMSHGQscI__z4AH18hI=w800",
+        "page": "https://maps.google.com/?cid=7537477624489267677",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.ichien.jp/tsurukian/",
+      "googleMaps": "https://maps.google.com/?cid=7537477624489267677",
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000628/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000628/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7537477624489267677",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "http://www.ichien.jp/tsurukian/",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、定休日、席數、貸切應相談"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-hikone",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-hikone-castle",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "烏龍麵・蕎麥"
+    ],
+    "priceRange": "午 ¥1,000～2,000",
+    "price": {
+      "lunch": [
+        1200,
+        2000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "天ぷらもりそば 約 1,700 円",
+      "ぶっかけ大根おろしそば 1,200 円",
+      "鴨そば 約 1,500 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000628/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 292,
+      "google": 4.1,
+      "googleReviews": 666,
+      "note": null
+    },
+    "inclusion": [
+      "G",
+      "S"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "彥根站西口步行 8 分的手打蕎麥麵店，2 樓座敷可坐 30 人（坐地板、要上樓）；1 樓有桌椅和掘りごたつ。連休午餐要排 30～45 分。",
+    "group": {
+      "seats": 60,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：個室 20～30 人可（2 樓座敷最多 30 人）、予約可；官網寫包場可商量"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0749-26-2615",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約可",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "note": "官網、食べログ都沒寫"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "15 人用的 2 樓座敷要走樓梯、坐地板；1 樓有桌椅和 8 人掘りごたつ半個室 2 桌"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "Google 舊評論寫營業到 16:00，官網寫晚餐到 19:30"
+      ]
+    }
+  },
+  {
+    "id": "biwako-chanpontei-hikone-ekimae",
+    "type": "restaurant",
+    "name": {
+      "ja": "近江ちゃんぽん亭 彦根駅前本店",
+      "kana": null,
+      "zh": "近江強棒亭 彥根站前本店",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "hikone",
+    "coords": [
+      136.2624146,
+      35.2727369
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県彦根市旭町9-6",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "22:30"
+        ]
+      ],
+      "lastEntry": "22:00",
+      "note": "公休沒寫（食べログ）"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf2FPxpIPFUgiiq9ZHTerjn_Sooj4omVwWlMq5TDaM3cvqRJsuFm_YzzrAQmkGn6bFBhdXaffsT2gjGysgubDUz9N1he8WwutuQLG2TzFUeWMSYqaI6Y90JV4nRcOQCZuuqJhEWtg=w800",
+        "page": "https://maps.google.com/?cid=2983655099485087950",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://chanpontei.com/",
+      "googleMaps": "https://maps.google.com/?cid=2983655099485087950",
+      "tabelog": "https://tabelog.com/shiga/A2503/A250303/25000361/",
+      "instagram": "@chanpontei"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000361/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2983655099485087950",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://chanpontei.com/",
+        "retrieved": "2026-11-12",
+        "note": "首頁只有品牌介紹與 IG 連結，無營業時間、席數"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-hikone",
+        "walkMinutes": 2,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-hikone-castle",
+        "walkMinutes": 18,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 619,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": [
+        0,
+        999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "近江ちゃんぽん",
+      "からあげ"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250303/25000361/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 602,
+      "google": 3.8,
+      "googleReviews": 1487,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "近江強棒麵（近江ちゃんぽん）的本店，彥根站西口步行 1 分。不能預約，有兒童餐；4 人桌只有 2 張，分組也要分桌。",
+    "group": {
+      "seats": 32,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：32 席（吧台 5、2 人桌 11、4 人桌 2）、不能預約；15 人只能分桌輪流"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0749-23-1616",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニューあり"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {}
+  },
+  {
+    "id": "biwako-yoshichi-katata",
+    "type": "restaurant",
+    "name": {
+      "ja": "らーめん 与七 堅田店",
+      "kana": null,
+      "zh": "拉麵 與七 堅田店",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "coords": [
+      135.9184777,
+      35.1243623
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市今堅田2-40-25",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "18:00",
+          "23:00"
+        ]
+      ],
+      "lastEntry": [
+        "14:50",
+        "22:50"
+      ],
+      "note": "官網寫無定休；食べログ寫 1/1 和不定休"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://yoshichi.jp/wp-content/uploads/2024/12/toppc102.jpg",
+        "page": "https://yoshichi.jp",
+        "kind": "official",
+        "credit": "らーめん 与七 堅田店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://yoshichi.jp",
+      "googleMaps": "https://maps.google.com/?cid=4600683466144842007",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25005689/",
+      "instagram": "@ramenyoshichi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25005689/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4600683466144842007",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://yoshichi.jp",
+        "retrieved": "2026-11-12",
+        "note": "首頁：營業時間、定休日なし、菜單概要（無價格、無席數）"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-katata",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ukimido",
+        "walkMinutes": 28,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 63,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "其他"
+    ],
+    "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ],
+      "dinner": [
+        0,
+        999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "とんこつらーめん",
+      "魚介とんこつつけ麺",
+      "からあげ定食"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25005689/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 797,
+      "google": 4.1,
+      "googleReviews": 974,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": false,
+    "googleName": "らーめん与七 堅田店",
+    "notes": "堅田站步行約 7 分的豚骨拉麵店，19 席、不能預約；有停車場。",
+    "group": {
+      "seats": 19,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：19 席（吧台 9、2 人桌 3、4 人桌 1）、不能預約"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "077-574-4747",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "公休：官網寫無定休，食べログ寫不定休"
+      ]
+    }
+  },
+  {
+    "id": "biwako-daikichi-katata",
+    "type": "restaurant",
+    "name": {
+      "ja": "近江牛一筋 農家レストラン だいきち",
+      "kana": null,
+      "zh": "近江牛農家餐廳 大吉",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "coords": [
+      135.9220215,
+      35.1230806
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市今堅田2-25-11",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "14:00",
+        "20:00"
+      ],
+      "note": "每週三、第 2・第 3 週二公休（另有不定休）；午餐 90 分、晚餐 120 分兩輪制（官網、食べログ）"
+    },
+    "closedNote": "每週三、每月第 2・第 3 個週二",
+    "febNote": "2/10（三）公休，2/9 是第 2 個週二也休；2/11、2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfVuBfcIfDMtQ1KlrbATvO0sdvOA1C5wDsE5Ywg8COL35s7m8J_v0zDB2iwIAUCSunn3DqNNirJQjMvlLt7ePAf8GGqRQpW9ZbB75xfBNPq58zJ0CisEDqGWpvNaFWLNXB1pZ3_qetCfFcT=w800",
+        "page": "https://maps.google.com/?cid=5217366362730651427",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.omibeef.com/",
+      "googleMaps": "https://maps.google.com/?cid=5217366362730651427",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25008105/",
+      "instagram": "@otsu.daikichi.sta"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25008105/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5217366362730651427",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25008105/party/",
+        "retrieved": "2026-11-12",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.omibeef.com/",
+        "retrieved": "2026-11-12",
+        "note": "首頁：營業時間、定休日；無席數、團體資訊"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-katata",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ukimido",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 65,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "午 ¥2,000～2,999／晚 ¥4,000～4,999（套餐 6,600～11,000）",
+    "price": {
+      "lunch": [
+        2000,
+        3900
+      ],
+      "dinner": [
+        4000,
+        11000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "近江牛霜降りカルビ網焼きランチ 2,980 円",
+      "近江牛三点盛り網焼きランチ 3,850 円",
+      "だいきち吉祥盛合せ 6,600 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25008105/party/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25008105/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25008105/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 196,
+      "google": 4.2,
+      "googleReviews": 729,
+      "note": null
+    },
+    "inclusion": [
+      "G"
+    ],
+    "tabelogOwner": true,
+    "googleName": "農家レストラン だいきち",
+    "notes": "精肉店直營的近江牛燒肉，堅田站步行約 8 分。掘りごたつ個室可坐 10～30 人，最多 40 人；有兒童餐（兒童漢堡排、燒肉重）。",
+    "group": {
+      "seats": 72,
+      "maxReservation": 40,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": "焼肉会席【里山】8,800 円、【高島】11,000 円等（食べログ コース頁，2026-11-12）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：最大予約 40 人、個室 10～30 人以上可、包場 20～50 人、予約可"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "050-5590-8507",
+      "url": null,
+      "language": "日文",
+      "note": "午餐 90 分、晚餐 120 分兩輪制；預約優先，沒訂可能沒位子（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "horigotatsu",
+      "counter",
+      "sofa"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可（乳児可、未就学児可、小学生可）、お子様メニューあり 子供メニューもご用意しております。 お子様ハンバーグ・お子様焼肉重 お子様セットにはジュースがついております。 ステーキカウンター・焼き肉席に関しましても小さなお子様もどなた様もご利用いただけます。"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "餐廳在 1、2 樓，2 樓要走樓梯（電梯沒寫）；可坐輪椅入店（食べログ）；個室是布簾隔開"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "晚餐 L.O.：官網 20:00，舊評論說首頁寫 20:30"
+      ]
+    }
+  },
+  {
+    "id": "biwako-midoro",
+    "type": "restaurant",
+    "name": {
+      "ja": "美登路",
+      "kana": null,
+      "zh": "美登路（蕎麥）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "ogoto-katata",
+    "coords": [
+      135.9136559,
+      35.1149905
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市本堅田3-11-17",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "14:30",
+        "20:30"
+      ],
+      "note": "每週二、每月第 4 個週一公休；賣完就打烊（官網）"
+    },
+    "closedNote": "每週二、每月第 4 個週一",
+    "febNote": "2/9（二）公休；2/10～2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://ximg.retty.me/crop/s1440x1440/-/retty/img_ebisu/restaurant/100000418695/archive/2858705-63352a4d2b7da.png",
+        "page": "https://mitoro.foodre.jp",
+        "kind": "official",
+        "credit": "美登路",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://mitoro.foodre.jp",
+      "googleMaps": "https://maps.google.com/?cid=17714322095153967338",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000472/",
+      "instagram": "@sobadokoro.mitoro"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000472/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17714322095153967338",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://mitoro.foodre.jp",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、公休、40 席、無個室、不接電話預約、兒童菜單、價格"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-katata",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ukimido",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "烏龍麵・蕎麥"
+    ],
+    "priceRange": "午、晚 ¥700～1,400",
+    "price": {
+      "lunch": [
+        700,
+        1400
+      ],
+      "dinner": [
+        700,
+        1400
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "親子丼 1,010 円",
+      "天ぷら（温・冷）1,330 円",
+      "肉なんば 1,110 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000472/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 192,
+      "google": 4.1,
+      "googleReviews": 518,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": false,
+    "googleName": "そば處 美登路",
+    "notes": "堅田的蕎麥麵、丼飯老店，40 席、不能預約，有兒童菜單。有座敷，桌椅有多少沒寫。",
+    "group": {
+      "seats": 40,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：40 席、無個室、不能預約；官網不接電話預約"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "077-572-2548",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニューあり"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "晚餐：官網 L.O. 20:30，食べログ寫到 21:00"
+      ]
+    }
+  },
+  {
+    "id": "biwako-tiffany",
+    "type": "restaurant",
+    "name": {
+      "ja": "特選近江牛レストラン ティファニー",
+      "kana": null,
+      "zh": "特選近江牛餐廳 Tiffany",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "kusatsu-omihachiman",
+    "coords": [
+      136.1008943,
+      35.123905
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県近江八幡市鷹飼町558 カネ吉山本",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "15:00",
+        "20:00"
+      ],
+      "note": "週二公休（遇國定假日營業）（官網、食べログ）"
+    },
+    "closedNote": null,
+    "febNote": "2/9（二）公休；2/10～2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd2rsuk_Rx72PFLNswJvhdumtAXT5hBiZc11pbA-olERLOyS2W9kx939TEMZEcf8UJTsVk8IKhvKrDvB9f6gebxPRYjQGmXx8dwWY3JZOv2BlZTlDa1YLwxrCQ1FMGTiDH68Drl=w800",
+        "page": "https://maps.google.com/?cid=8546243303189252811",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "http://www.oumigyuu.jp/tiffany/",
+      "googleMaps": "https://maps.google.com/?cid=8546243303189252811",
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000119/",
+      "instagram": "@tiffany_oumi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000119/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8546243303189252811",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000119/party/",
+        "retrieved": "2026-11-12",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oumigyuu.jp/tiffany/floor",
+        "retrieved": "2026-11-12",
+        "note": "座席：ホール、吧台 14 席、3 樓座敷、大広間最多 40 人"
+      },
+      {
+        "type": "other",
+        "url": "https://oumigyuu.co.jp/pages/store-information-tiffany",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、週二公休、預約專線"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-omi-hachiman",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-hachimanbori",
+        "walkMinutes": 30,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 332,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "午 ¥3,850～7,700／晚 ¥9,000～",
+    "price": {
+      "lunch": [
+        3850,
+        7700
+      ],
+      "dinner": [
+        9000,
+        14999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "近江牛ステーキランチ 4,950 円",
+      "近江牛ハンバーグランチ 3,850 円（數量限定）",
+      "ティファニー9品 9,000 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000119/party/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000119/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000119/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 811,
+      "google": 4.2,
+      "googleReviews": 1444,
+      "note": null
+    },
+    "inclusion": [
+      "G",
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "近江八幡站北口步行 3 分的近江牛牛排、鐵板燒，3 樓有和室個室和最多 40 人的大廣間；有兒童菜單、可推嬰兒車。",
+    "group": {
+      "seats": 120,
+      "maxReservation": 56,
+      "privateRoom": true,
+      "buyout": "可 （20人～50人可）",
+      "groupMenu": "ランチ近江牛ショートコース 6,900～7,700 円、ティファニー9品 9,000 円等；15 人要電話談（食べログ コース頁，2026-11-12）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：最大予約 56 人、3 樓宴會空間 40 席、包場 20～50 人、予約可"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "050-5595-3365",
+      "url": null,
+      "language": "日文",
+      "note": "預約時間過 30 分沒聯絡會自動取消（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "counter",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可（乳児可、未就学児可、小学生可）、お子様メニューあり、ベビーカー入店可"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "餐廳在精肉店樓上；15 人用的 3 樓大廣間是座敷還是椅子、有沒有電梯沒寫；食べログ寫可坐輪椅入店"
+    },
+    "smoking": "分煙",
+    "extra": {
+      "conflicts": [
+        "大廣間人數：官網最多 40 人，食べログ最大予約 56 人",
+        "晚餐：官網 L.O. 20:00，食べログ寫到 21:00"
+      ]
+    }
+  },
+  {
+    "id": "biwako-morishima-omihachiman",
+    "type": "restaurant",
+    "name": {
+      "ja": "近江牛 毛利志満 近江八幡本店",
+      "kana": null,
+      "zh": "近江牛 毛利志滿 近江八幡本店",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "kusatsu-omihachiman",
+    "coords": [
+      136.1013668,
+      35.0974194
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県近江八幡市東川町866-1",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:30"
+        ]
+      ],
+      "lastEntry": [
+        "14:00",
+        "19:30"
+      ],
+      "note": "週三公休（官網）"
+    },
+    "closedNote": null,
+    "febNote": "2/10（三）公休；2/9、2/11、2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.oumi-usi.co.jp/wp-content/themes/base/images/slide/slide1_pc.jpg",
+        "page": "https://www.oumi-usi.co.jp/",
+        "kind": "official",
+        "credit": "近江牛 毛利志満 近江八幡本店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.oumi-usi.co.jp/",
+      "googleMaps": "https://maps.google.com/?cid=5230276621943467992",
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000004/",
+      "instagram": "@morishima_official"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000004/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5230276621943467992",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oumi-usi.co.jp/hachiman/shop1/",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、週三公休、電話與 TableCheck 預約"
+      },
+      {
+        "type": "official",
+        "url": "https://www.oumi-usi.co.jp/hachiman/agent/",
+        "retrieved": "2026-11-12",
+        "note": "旅行社用團體手冊、價目表 PDF、傳真預約單"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "biwako-hachimanbori",
+        "walkMinutes": 78,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 331,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "午 ¥3,900～7,700／晚 ¥8,000～9,999",
+    "price": {
+      "lunch": [
+        3900,
+        7700
+      ],
+      "dinner": [
+        8000,
+        9999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "近江牛すき焼き",
+      "石焼きステーキ",
+      "焼きしゃぶ膳"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000004/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 394,
+      "google": 4.3,
+      "googleReviews": 1513,
+      "note": null
+    },
+    "inclusion": [
+      "G",
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": "近江牛 毛利志満 近江八幡店",
+    "notes": "近江牛老店的本店，旅行團常用，個室 10～30 人；離近江八幡站要搭巴士（東川站）或計程車約 15 分，10 人以上可以問接送巴士。",
+    "group": {
+      "seats": 150,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （50人以上可）",
+      "groupMenu": "團體價目表在官網旅行社頁（PDF，沒讀到）；10 人以上有接送巴士（食べログ）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：150 席、個室 10～30 人、包場 50 人以上、予約可；官網有團體專頁"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "0748-37-4325",
+      "url": "https://www.tablecheck.com/ja/oumi-usi-morishima",
+      "language": "日文",
+      "note": "取消費：前一天 80%、當天 100%（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可、お子様メニューあり"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "可坐輪椅入店（食べログ）；樓梯、電梯沒寫"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "Google 低分評論集中在 2023～2024 換主廚、菜單改版"
+      ]
+    }
+  },
+  {
+    "id": "biwako-sumiyagura-omihachiman",
+    "type": "restaurant",
+    "name": {
+      "ja": "炭櫓 近江八幡店",
+      "kana": null,
+      "zh": "炭櫓 近江八幡店（鰻魚）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "kusatsu-omihachiman",
+    "coords": [
+      136.1007326,
+      35.1349914
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県近江八幡市音羽町26",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "14:30",
+        "20:00"
+      ],
+      "note": "無定休（有不定休）；鰻魚賣完就打烊（官網）"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdisaFoD981zD7B-Ekv0Zy97PnKUCnVExyLkFDvpivArNCv8JONhQBRABX1zmARo49wXQUlkcKbiJc-KICX7glwbYpwJo5nBlLkGoPzb2xAbZ6aPqfpR0f12-C9rkRInDnwe6y6plhKWGdA=w800",
+        "page": "https://maps.google.com/?cid=5164689059768839029",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://sumiyagura.gorp.jp/",
+      "googleMaps": "https://maps.google.com/?cid=5164689059768839029",
+      "tabelog": "https://tabelog.com/shiga/A2503/A250301/25000298/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000298/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5164689059768839029",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000298/party/",
+        "retrieved": "2026-11-12",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://sumiyagura.gorp.jp/",
+        "retrieved": "2026-11-12",
+        "note": "営業時間、総席数106、貸切6～36名、座敷・掘りごたつ；価格なし"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-omi-hachiman",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-hachimanbori",
+        "walkMinutes": 19,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 333,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "午、晚 ¥2,000～3,999",
+    "price": {
+      "lunch": [
+        2000,
+        3999
+      ],
+      "dinner": [
+        2000,
+        3999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "ひつまぶし",
+      "うなぎづくし御膳",
+      "鰻巻き"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000298/party/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2503/A250301/25000298/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 311,
+      "google": 4.4,
+      "googleReviews": 3042,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": "うなぎ・ひつまぶし 炭櫓",
+    "notes": "近江八幡的炭烤鰻魚名店，全店 106 席，有座敷、掘りごたつ；旺季要排 1～3 小時。離近江八幡站 2.7 km（巴士長命寺線「中村」站步行 11 分）。有兒童菜單。",
+    "group": {
+      "seats": 24,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": "うなぎ豆腐会席 7,480 円、ひつまぶし会席 6,580 円、うなすき鍋会席 7,680 円（4～30 人，食べログ コース頁 2025/07 更新）",
+      "fit15": "split",
+      "fitSubgroup": "yes",
+      "source": "食べログ：網路可訂 24 席（全店 106 席）、予約可、コース 4～30 人；官網寫包場 6～36 人"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "050-5600-0636",
+      "url": null,
+      "language": "日文",
+      "note": "一天的預約數有限，當天約 8 成是現場席（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "zashiki",
+      "horigotatsu",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "食べログ：子供可（乳児可、未就学児可、小学生可）、お子様メニューあり"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "包場：官網 6～36 人可，食べログ寫不可"
+      ]
+    }
+  },
+  {
+    "id": "biwako-osakayama-kaneyo",
+    "type": "restaurant",
+    "name": {
+      "ja": "逢坂山 かねよ 本店",
+      "kana": null,
+      "zh": "逢坂山 金與 本店（鰻魚）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "otsu",
+    "coords": [
+      135.8542005,
+      34.9943234
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市大谷町23-15",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "thu": [],
+      "fri": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "20:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": "19:45",
+      "note": "本店週四公休（同棟的「レストラン」週二休）；國定假日的時間沒寫（食べログ、官網）"
+    },
+    "closedNote": null,
+    "febNote": "2/11（四・國定假日）本店可能公休，要確認；2/9、2/10、2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLcBCbqk0cf05B38nz59K5SPBQSL1wS-nONIj3J8dZGjnyN5SyAkCr2jnePOelrTbXlUPxIsRBeYybn_kz9xDdhFTjGaXONZtZuIcNlVwGc5B6EsoKKB2IfXierER_l0FFN21_ec=w800",
+        "page": "https://maps.google.com/?cid=7646760090583073995",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kaneyo.in",
+      "googleMaps": "https://maps.google.com/?cid=7646760090583073995",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000117/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000117/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7646760090583073995",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000117/party/",
+        "retrieved": "2026-11-12",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaneyo.in",
+        "retrieved": "2026-11-12",
+        "note": "定休日、電話予約のみ、座敷"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaneyo.in/tenpo/index.html",
+        "retrieved": "2026-11-12",
+        "note": "個室20室、椅子席20名、車椅子、送迎"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kaneyo.in/knoshina/index.html",
+        "retrieved": "2026-11-12",
+        "note": "お品書きと価格"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-otsu",
+        "walkMinutes": 24,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-michigan-cruise",
+        "walkMinutes": 36,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-yumotokan",
+        "walkMinutes": 154,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "午 ¥3,000～3,999／晚 ¥5,000～5,999",
+    "price": {
+      "lunch": [
+        3190,
+        6050
+      ],
+      "dinner": [
+        5000,
+        11000
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "きんし丼 3,190 円",
+      "上きんし丼 3,520 円",
+      "特きんし重 3,850 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000117/party/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000117/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000117/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 694,
+      "google": 3.9,
+      "googleReviews": 2854,
+      "note": null
+    },
+    "inclusion": [
+      "G",
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": "逢坂山かねよ 本店",
+    "notes": "大津逢坂山的鰻魚老店，招牌是鰻魚加大片玉子燒的「きんし丼」。京阪大谷站步行 2 分。本店有座敷和椅子席的房間（椅子最多 20 人）。",
+    "group": {
+      "seats": 150,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": "本店 御定食 7,920 円、御定食（上）9,240 円、特別定食 11,000 円；8 人以上可以問接送（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：個室 2～60 人、予約可；官網：椅子席的房間最多 20 人"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "077-524-2222",
+      "url": null,
+      "language": "日文",
+      "note": "本店只接電話預約；同棟的「レストラン」不能預約（官網）",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "兒童套餐 1,650 円、兒童便當（レストラン）1,980 円（官網）"
+    },
+    "accessibility": {
+      "barrierFree": "バリアフリー",
+      "note": "有椅子席的房間（最多 20 人，看得到庭園）；可坐輪椅用餐，要先預約（官網）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "營業時間：官網 11:00～20:00，食べログ平日午晚分開",
+        "席數：官網 100、食べログ 150"
+      ]
+    }
+  },
+  {
+    "id": "biwako-tsuruya-kihachi",
+    "type": "restaurant",
+    "name": {
+      "ja": "鶴屋喜八",
+      "kana": null,
+      "zh": "鶴屋喜八（蕎麥）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "otsu",
+    "coords": [
+      135.8703104,
+      35.070614
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市坂本4-11-40",
+    "hours": {
+      "mon": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "16:00"
+        ]
+      ],
+      "lastEntry": "15:30",
+      "note": "不定期公休，看官網、Instagram 公告（官網）"
+    },
+    "closedNote": null,
+    "febNote": "2027 年的公休日還沒公布；個室只有平日能用，2/11（國定假日）不能用",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLff3lkuw46TVptpssGGm5Y8Nga_-sFzAWWzz8Id7r6CKF7Fz60RqWtbjt-YTVx3Dn6w2jQq5DB80CHr_QEBQeTfLDCv9a2aYmNo3x3NFNJ0IQKmnwKCIbGN0CkNWl2-5P6XILTu3Ejhb_8P=w800",
+        "page": "https://maps.google.com/?cid=288584218804525776",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.tsurukisoba.com",
+      "googleMaps": "https://maps.google.com/?cid=288584218804525776",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000032/",
+      "instagram": "@tsuruyakihachi"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000032/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=288584218804525776",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsurukisoba.com",
+        "retrieved": "2026-11-12",
+        "note": "営業時間、休業日（2026年）、Instagram"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsurukisoba.com/dantai/",
+        "retrieved": "2026-11-12",
+        "note": "団体20～32名、個室と部屋代、3日前予約、畳席"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsurukisoba.com/shop/",
+        "retrieved": "2026-11-12",
+        "note": "駐車場16台、アクセス、離れ個室は有料"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tsurukisoba.com/menu/",
+        "retrieved": "2026-11-12",
+        "note": "お品書き価格"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "keihan-sakamoto-hieizanguchi",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-hiyoshi-taisha",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "烏龍麵・蕎麥"
+    ],
+    "priceRange": "午 ¥1,500～2,999",
+    "price": {
+      "lunch": [
+        1480,
+        2999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "天ざるそば 2,280 円",
+      "鴨せいろ 2,380 円",
+      "ゆばそば 1,480 円"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000032/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000032/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 724,
+      "google": 4.2,
+      "googleReviews": 1888,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "坂本（比叡山腳下）的手打蕎麥麵老店，京阪坂本比叡山口站步行 1 分。15 人可以訂個室或團體席，但都是坐地板；假日不能用個室。開店前常排隊 30 分～1 小時。",
+    "group": {
+      "seats": 100,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "不可",
+      "groupMenu": "團體 20 人起；個室「松の間」最多 16 人（1.5 小時 4,000 円），只限平日 11:30～14:30（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網團體頁：20～32 人、個室最多 16 人；預約席全是榻榻米"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "web"
+      ],
+      "phone": "050-5594-7936",
+      "url": null,
+      "language": "日文",
+      "note": "網路預約（不接電話）；團體要 3 天前，當天不接團體（官網、食べログ）",
+      "leadDays": 3
+    },
+    "seating": [
+      "zashiki",
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可（乳児可、未就学児可、小学生可）、ベビーカー入店可"
+    },
+    "accessibility": {
+      "barrierFree": "車椅子で入店可",
+      "note": "預約席全是榻榻米座敷（不是掘りごたつ），人少可以問椅子席（官網）；食べログ寫可坐輪椅入店"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "離れ個室：店舗頁只寫要付費，團體頁有房間費"
+      ]
+    }
+  },
+  {
+    "id": "biwako-chikasada",
+    "type": "restaurant",
+    "name": {
+      "ja": "ちか定",
+      "kana": null,
+      "zh": "近定（湖魚、鰻魚）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "otsu",
+    "coords": [
+      135.9088252,
+      34.9806707
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市玉野浦7-4",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "14:30"
+        ],
+        [
+          "17:00",
+          "20:00"
+        ]
+      ],
+      "holiday": null,
+      "lastEntry": [
+        "14:00",
+        "19:30"
+      ],
+      "note": "週三、週四公休（官網只寫週四）；賣完就打烊（食べログ）"
+    },
+    "closedNote": null,
+    "febNote": "2/10（三）、2/11（四）公休；2/9、2/12 營業",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://cdn.goope.jp/171834/201224164516-5fe4470ce9b6e.jpg",
+        "page": "https://r.goope.jp/chikasada/",
+        "kind": "official",
+        "credit": "ちか定",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://r.goope.jp/chikasada/",
+      "googleMaps": "https://maps.google.com/?cid=5594718431950646598",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000697/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000697/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=5594718431950646598",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "official",
+        "url": "https://r.goope.jp/chikasada/",
+        "retrieved": "2026-11-12",
+        "note": "首頁幾乎無文字資訊，只有導覽（メニュー、店舗情報、カレンダー）"
+      },
+      {
+        "type": "official",
+        "url": "https://r.goope.jp/chikasada/calendar/5479700",
+        "retrieved": "2026-11-12",
+        "note": "休日 every Thursday、電話"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "jr-ishiyama",
+        "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ishiyamadera",
+        "walkMinutes": 38,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ryokusuitei",
+        "walkMinutes": 207,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "和食・割烹"
+    ],
+    "priceRange": "午、晚 ¥3,000～3,999",
+    "price": {
+      "lunch": [
+        3000,
+        3999
+      ],
+      "dinner": [
+        3000,
+        3999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000697/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.73,
+      "tabelogReviews": 542,
+      "google": 4.3,
+      "googleReviews": 1142,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "瀨田川邊的鰻魚、湖魚鄉土料理店，石山站南口步行約 15 分（過瀨田川大橋）；全是桌椅，不能預約，賣完就打烊。",
+    "group": {
+      "seats": 42,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：42 席全是桌椅、無個室、店內不能預約（來店順）"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "077-545-5224",
+      "url": null,
+      "language": "日文",
+      "note": "店內用餐依來店順序，只有外帶可以預約（食べログ、官網）",
+      "leadDays": null
+    },
+    "seating": [
+      "table"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可、ベビーカー入店可 メニュー価格はホームページでご確認下さい"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "公休：官網寫週四，食べログ寫週三、週四"
+      ]
+    }
+  },
+  {
+    "id": "biwako-matsukiya-honten",
+    "type": "restaurant",
+    "name": {
+      "ja": "近江牛専門店 れすとらん 松喜屋 本店",
+      "kana": null,
+      "zh": "松喜屋 本店（近江牛）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "otsu",
+    "coords": [
+      135.9027886,
+      34.9741598
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県大津市唐橋町14-17",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ],
+        [
+          "17:00",
+          "21:30"
+        ]
+      ],
+      "lastEntry": [
+        "14:00",
+        "20:00"
+      ],
+      "note": "最後入店 14:00、20:00；12/31、1/1 和保養日公休（官網）"
+    },
+    "closedNote": null,
+    "febNote": "2/9～2/12 都營業（2/11 照假日時間，11:00 開）",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://www.matsukiya.net/cms/wp-content/uploads/2026/09/72829841be97f915ab7cc9572fbdf883.jpg",
+        "page": "https://www.matsukiya.net/restaurant/honten.html",
+        "kind": "official",
+        "credit": "近江牛専門店 れすとらん 松喜屋 本店",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.matsukiya.net/restaurant/honten.html",
+      "googleMaps": "https://maps.google.com/?cid=9634259200425426923",
+      "tabelog": "https://tabelog.com/shiga/A2501/A250101/25000784/",
+      "instagram": "@matsukiya_restaurant"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000784/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9634259200425426923",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000784/party/",
+        "retrieved": "2026-11-12",
+        "note": "コース一覧：套餐名稱、價格、人數"
+      },
+      {
+        "type": "official",
+        "url": "https://www.matsukiya.net/restaurant/honten.html",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、定休日、預約、導覽連結"
+      },
+      {
+        "type": "official",
+        "url": "https://www.matsukiya.net/restaurant/honten/tableroom_honten.html",
+        "retrieved": "2026-11-12",
+        "note": "2F 最大 100 人，可隔半個室，脫鞋"
+      },
+      {
+        "type": "official",
+        "url": "https://www.matsukiya.net/info/info_matsukiya/7645.html",
+        "retrieved": "2026-11-12",
+        "note": "宴會方案 5～100 名、取消費用"
+      },
+      {
+        "type": "official",
+        "url": "https://www.matsukiya.net/restaurant/honten/menu_honten.html",
+        "retrieved": "2026-11-12",
+        "note": "午餐菜單價格、兒童餐"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "keihan-ishiyama",
+        "walkMinutes": 11,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ishiyamadera",
+        "walkMinutes": 26,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-ryokusuitei",
+        "walkMinutes": 204,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "燒肉・肉料理"
+    ],
+    "priceRange": "午 ¥5,000～5,999／晚 ¥10,000～14,999",
+    "price": {
+      "lunch": [
+        5500,
+        13750
+      ],
+      "dinner": [
+        10000,
+        14999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "豊臣秀長戦国御膳 6,050 円～",
+      "近江牛ステーキランチ 5,500 円～",
+      "じゅんじゅん（近江牛すき焼き）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000784/party/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000784/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "url": "https://tabelog.com/shiga/A2501/A250101/25000784/dtlmenu/lunch/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 437,
+      "google": 4.4,
+      "googleReviews": 983,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": true,
+    "googleName": "近江牛専門店 れすとらん松喜屋 本店",
+    "notes": "大津瀨田唐橋旁的近江牛專門店，京阪唐橋前站步行 1 分、JR 石山站 8 分。15 人可用 2 樓桌椅樓層（脫鞋），有電梯、兒童餐。",
+    "group": {
+      "seats": 169,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可 （50人以上可）",
+      "groupMenu": "近江牛宴會方案 5～100 人（含 2 小時喝到飽，價格要問）；取消費前一天 50%、當天 100%；8～28 人可以問平日接送巴士（官網）",
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "官網：2 樓大廣間 100 人（可隔成半個室）、宴會 5～100 人；食べログ：3 樓個室最多 8 人"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone",
+        "web"
+      ],
+      "phone": "077-534-2901",
+      "url": "https://www.tablecheck.com/shops/matsukiya-honten/reserve",
+      "language": "日文",
+      "note": "食べログ：予約可 当店の駐車場は台数に限りが有り、特に土・日・祝日は、混雑が予想されますので、公共交通機関でのご来店にご協力いただけますよう、何卒よろしくお願いいたします。 アクセス：JR「石山駅」より徒歩8分 ／ 京阪「唐橋前駅」より徒歩1分",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "counter"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "兒童牛排 2,750 円、兒童漢堡排 1,320 円（官網）"
+    },
+    "accessibility": {
+      "barrierFree": "有電梯、輪椅可入店",
+      "note": "有電梯（食べログ）；2 樓桌席樓層要脫鞋（木地板）；1 樓牛排吧台、3 樓個室加 10% 服務費"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "電話：官網 077-534-2901，2 樓樓層頁摘要寫 077-534-1211"
+      ]
+    }
+  },
+  {
+    "id": "biwako-masa-takashima",
+    "type": "restaurant",
+    "name": {
+      "ja": "お食事一品料理 まさ",
+      "kana": null,
+      "zh": "まさ（安曇川的和食）",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "takashima",
+    "coords": [
+      136.0281682,
+      35.3290074
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県高島市安曇川町西万木8-2",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:30",
+          "13:30"
+        ],
+        [
+          "17:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": [
+        "13:00",
+        "20:30"
+      ],
+      "note": "週一、每月一次週日公休，詳情看店家 Instagram（食べログ）"
+    },
+    "closedNote": null,
+    "febNote": "2/9～2/12 不是固定公休日",
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdvO2bu2QqkN0RQcUZ1rJCmCod95O_xS39hnmLCwgWIY_IHX3xVtonLVMe5sJg8zLYavZQ9L6e3bYZt1V8LynhBXE932yssGf27uRtsb4KJLoBZaLEdlp83IKCXhUDc1uBIL1Nz=w800",
+        "page": "https://maps.google.com/?cid=13057776641346131959",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=13057776641346131959",
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25004690/",
+      "instagram": "@masa_6.21"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2505/A250501/25004690/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ（店舗会員）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13057776641346131959",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "other",
+        "url": "https://autoreserve.com/en/restaurants/vFawjPEhGYKoLQeFmFSx",
+        "retrieved": "2026-11-12",
+        "note": "WebSearch 摘要：營業時間、預算；未直接讀內頁，官網找不到"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "biwako-shirahige-jinja",
+        "walkMinutes": 95,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 433,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "access": "car",
+    "cuisine": [
+      "和食・割烹",
+      "定食・食堂"
+    ],
+    "priceRange": "午 ¥1,000～1,999／晚 ¥4,000～4,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ],
+      "dinner": [
+        4000,
+        4999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "まさ定食",
+      "刺身盛合せ定食",
+      "カキフライ定食 1,500 円（冬季）"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2505/A250501/25004690/dtlmenu/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 41,
+      "google": 4.3,
+      "googleReviews": 138,
+      "note": null
+    },
+    "inclusion": [
+      "G"
+    ],
+    "tabelogOwner": true,
+    "googleName": null,
+    "notes": "安曇川站步行 10 分的定食、和食店，離白鬚神社約 8 km（要搭車）；白鬚神社一帶唯一能坐 15 人、能訂位的午餐。2 樓 3 間 12 人房可打通。",
+    "group": {
+      "seats": 68,
+      "maxReservation": null,
+      "privateRoom": true,
+      "buyout": "可",
+      "groupMenu": null,
+      "fit15": "yes",
+      "fitSubgroup": "yes",
+      "source": "食べログ：2 樓 12 人房 3 間，打通當大廣間最多 40 人、予約可"
+    },
+    "reservation": {
+      "accepted": "yes",
+      "methods": [
+        "phone"
+      ],
+      "phone": "0740-32-2181",
+      "url": null,
+      "language": "日文",
+      "note": "請避免當天取消；1 萬円以上可刷卡（食べログ）",
+      "leadDays": null
+    },
+    "seating": [
+      "counter",
+      "zashiki",
+      "horigotatsu"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": true,
+      "note": "有兒童餐、兒童椅，2 樓有兒童遊戲區；預約時告知（食べログ）"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "15 人要用 2 樓（樓梯、電梯沒寫；2 樓房間是座敷還是椅子沒寫）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {
+      "conflicts": [
+        "L.O.：訂位網站寫午 13:00、晚 20:30，食べログ只寫營業時間"
+      ]
+    }
+  },
+  {
+    "id": "biwako-shirahige-soba",
+    "type": "restaurant",
+    "name": {
+      "ja": "白ひげ蕎麦",
+      "kana": null,
+      "zh": "白鬚蕎麥",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "takashima",
+    "coords": [
+      136.0057974,
+      35.272926
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県高島市鵜川293",
+    "hours": {
+      "mon": [
+        [
+          "11:30",
+          "14:30"
+        ]
+      ],
+      "tue": [
+        [
+          "11:30",
+          "14:30"
+        ]
+      ],
+      "wed": [
+        [
+          "11:30",
+          "14:30"
+        ]
+      ],
+      "thu": [
+        [
+          "11:30",
+          "14:30"
+        ]
+      ],
+      "fri": [
+        [
+          "11:30",
+          "14:30"
+        ]
+      ],
+      "sat": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:00",
+          "15:00"
+        ]
+      ],
+      "note": "公休沒寫（介紹網站、食べログ）"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLff8PxVgtvuDOzyzFYypVH8P4XqtKw9VrLUf-lm_JJz4_uY1mUnX7vL9YmtcGOwy-q7P9MTiQML9dnDaVNOpwJJS2BWN0wWn64Zevn_iIOobGX4uwlr8WewsLmUUoBPGfxZfdp9c6fIGv0=w800",
+        "page": "https://maps.google.com/?cid=17411772847515672084",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://odekake.blog/shirahige-soba/",
+      "googleMaps": "https://maps.google.com/?cid=17411772847515672084",
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25007332/",
+      "instagram": "@shirahige_soba"
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2505/A250501/25007332/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17411772847515672084",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      },
+      {
+        "type": "other",
+        "url": "https://odekake.blog/shirahige-soba/",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、階梯與輪椅、停車場、招牌菜；席數公休價格未載"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "biwako-shirahige-jinja",
+        "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 333,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "烏龍麵・蕎麥"
+    ],
+    "priceRange": "午 ¥1,000～1,999",
+    "price": {
+      "lunch": [
+        1000,
+        1999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [
+      "ぶっかけ白ひげそば",
+      "極上一口鯖ずし"
+    ],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2505/A250501/25007332/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 315,
+      "google": 3.5,
+      "googleReviews": 1028,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": false,
+    "googleName": "白ひげ 十割そば",
+    "notes": "白鬚神社對面山坡上的蕎麥麵店，看得到湖上鳥居；不能預約，只收現金。",
+    "group": {
+      "seats": null,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：席數沒寫、無個室、不能預約"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0740-20-2251",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [
+      "counter",
+      "terrace"
+    ],
+    "kids": {
+      "allowed": "yes",
+      "minAge": null,
+      "kidsMenu": null,
+      "note": "食べログ：子供可"
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": "入口要先上階梯；輪椅可以開車到上方（店旁有輪椅專用車位）"
+    },
+    "smoking": "全席禁煙",
+    "extra": {}
+  },
+  {
+    "id": "biwako-shirahige-shokudo",
+    "type": "restaurant",
+    "name": {
+      "ja": "白ひげ食堂",
+      "kana": null,
+      "zh": "白鬚食堂",
+      "en": null
+    },
+    "area": "biwako",
+    "region": "takashima",
+    "coords": [
+      136.0097566,
+      35.2739828
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "滋賀県高島市鵜川225-5",
+    "hours": {
+      "mon": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "tue": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "wed": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "thu": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "fri": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "sat": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "sun": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "11:15",
+          "14:00"
+        ]
+      ],
+      "note": "公休沒寫（食べログ）"
+    },
+    "closedNote": null,
+    "febNote": null,
+    "closures": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc9pajOUGPswuNiB_2iamdifnKk6hU4rUI9vbdEcQkI5C-3XtnMW1YlyuXSOaXUYAgluDx57192oh2rskKPmfmybF4lJvO_S_k2YeeVMGwCGivAOAURxG22d87CBURqyxZ9MJjiQA=w800",
+        "page": "https://maps.google.com/?cid=17504258544063513543",
+        "kind": "google",
+        "credit": "Google マップ",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "googleMaps": "https://maps.google.com/?cid=17504258544063513543",
+      "tabelog": "https://tabelog.com/shiga/A2505/A250501/25003020/",
+      "instagram": null
+    },
+    "tags": [],
+    "tier": null,
+    "sources": [
+      {
+        "type": "tabelog",
+        "url": "https://tabelog.com/shiga/A2505/A250501/25003020/",
+        "retrieved": "2026-11-12",
+        "note": "店舗情報：分數、席數、預約、個室、貸切、營業時間、お子様連れ"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17504258544063513543",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片"
+      }
+    ],
+    "verified": false,
+    "anchors": [
+      {
+        "id": "biwako-shirahige-jinja",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "biwako-biwako-grand-hotel",
+        "walkMinutes": 337,
+        "walkSource": "osrm"
+      }
+    ],
+    "contexts": [
+      "lunch"
+    ],
+    "access": "walk",
+    "cuisine": [
+      "定食・食堂",
+      "烏龍麵・蕎麥"
+    ],
+    "priceRange": "～¥999",
+    "price": {
+      "lunch": [
+        0,
+        999
+      ]
+    },
+    "stayMinutes": null,
+    "mustTry": [],
+    "menu": [
+      {
+        "url": "https://tabelog.com/shiga/A2505/A250501/25003020/dtlmenu/photo/",
+        "source": "tabelog",
+        "retrieved": "2026-11-12"
+      }
+    ],
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 276,
+      "google": 4.4,
+      "googleReviews": 862,
+      "note": null
+    },
+    "inclusion": [
+      "S"
+    ],
+    "tabelogOwner": false,
+    "googleName": null,
+    "notes": "白鬚神社巴士站旁的小食堂（烏龍麵、關東煮），26 席、不能預約；6 人桌 2 張，適合分組。",
+    "group": {
+      "seats": 26,
+      "maxReservation": null,
+      "privateRoom": false,
+      "buyout": "不可",
+      "groupMenu": null,
+      "fit15": "unknown",
+      "fitSubgroup": "yes",
+      "source": "食べログ：26 席（桌 3 人×2、6 人×2，小上がり 4 人×2）、不能預約"
+    },
+    "reservation": {
+      "accepted": "no",
+      "methods": [],
+      "phone": "0740-36-0434",
+      "url": null,
+      "language": "日文",
+      "note": "食べログ：予約不可",
+      "leadDays": null
+    },
+    "seating": [
+      "table",
+      "zashiki"
+    ],
+    "kids": {
+      "allowed": "unknown",
+      "note": null
+    },
+    "accessibility": {
+      "barrierFree": null,
+      "note": null
+    },
+    "smoking": "全席禁煙",
+    "extra": {}
+  }
+]

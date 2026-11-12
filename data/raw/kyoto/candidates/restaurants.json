@@ -1,0 +1,7124 @@
+[
+  {
+    "key": "tabelog-26000814",
+    "name": {
+      "ja": "嵯峨野"
+    },
+    "region": "arashiyama",
+    "category": "豆腐料理",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-yudofu-sagano",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 350,
+      "google": 4.3,
+      "googleReviews": 1250
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26000814/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 317m；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 -／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26001310",
+    "name": {
+      "ja": "湯どうふ 竹むら"
+    },
+    "region": "arashiyama",
+    "category": "豆腐料理、日本料理",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-yudofu-takemura",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 260,
+      "google": 4.1,
+      "googleReviews": 613
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001310/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 265m；定休（食べログ列表）：木曜日；個室（食べログ列表）：個室有(6〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26001312",
+    "name": {
+      "ja": "京都 吉兆 嵐山本店"
+    },
+    "region": "arashiyama",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4,
+      "tabelogReviews": 237
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001312/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 339m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 60000～79999／昼 60000～79999"
+  },
+  {
+    "key": "tabelog-26000808",
+    "name": {
+      "ja": "平野屋"
+    },
+    "region": "arashiyama",
+    "category": "日本料理、甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 153
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26000808/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都市右京区；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 20000～29999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26005997",
+    "name": {
+      "ja": "ほぁんほぁん 嵯峨嵐山店"
+    },
+    "region": "arashiyama",
+    "category": "中華料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 148
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26005997/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:車折神社駅 576m；個室（食べログ列表）：個室有(8〜30人、30人以上可)；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26001301",
+    "name": {
+      "ja": "京･嵐山錦"
+    },
+    "region": "arashiyama",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 124
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001301/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（阪急）駅 268m；定休（食べログ列表）：火曜日；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 10000～14999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26016688",
+    "name": {
+      "ja": "星のや京都"
+    },
+    "region": "arashiyama",
+    "category": "その他",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.13,
+      "tabelogReviews": 92
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26016688/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:トロッコ嵐山駅 400m；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 20000～29999／昼 -"
+  },
+  {
+    "key": "tabelog-26001010",
+    "name": {
+      "ja": "嵐山熊彦 たん熊北店"
+    },
+    "region": "arashiyama",
+    "category": "日本料理、豆腐料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 74
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001010/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 253m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 20000～29999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26000403",
+    "name": {
+      "ja": "嵐山よしむら"
+    },
+    "region": "arashiyama",
+    "category": "そば、天ぷら",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-arashiyama-yoshimura",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 1054,
+      "google": 4.2,
+      "googleReviews": 2717
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26000403/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:嵐山（京福）駅 184m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000921",
+    "name": {
+      "ja": "うなぎ屋 廣川"
+    },
+    "region": "arashiyama",
+    "category": "うなぎ、どじょう",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-unagi-hirokawa",
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 881,
+      "google": 4.3,
+      "googleReviews": 2213
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26000921/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 197m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 6000～7999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26005251",
+    "name": {
+      "ja": "イクスカフェ 京都嵐山本店"
+    },
+    "region": "arashiyama",
+    "category": "カフェ、甘味処",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 773
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26005251/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 72m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26032681",
+    "name": {
+      "ja": "パンとエスプレッソと嵐山庭園"
+    },
+    "region": "arashiyama",
+    "category": "カフェ、パン、スイーツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 659
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26032681/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 265m；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26035295",
+    "name": {
+      "ja": "儘"
+    },
+    "region": "arashiyama",
+    "category": "ピザ、イタリアン、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 636
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26035295/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:嵐山（阪急）駅 216m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26005250",
+    "name": {
+      "ja": "嵯峨野湯"
+    },
+    "region": "arashiyama",
+    "category": "カフェ、パンケーキ、パスタ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 625
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26005250/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐電嵯峨駅 64m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26025913",
+    "name": {
+      "ja": "アラビカ京都 嵐山"
+    },
+    "region": "arashiyama",
+    "category": "コーヒースタンド",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 590
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26025913/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 226m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26001309",
+    "name": {
+      "ja": "新八茶屋"
+    },
+    "region": "arashiyama",
+    "category": "ジェラート・アイスクリーム、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 565
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001309/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 158m；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26014024",
+    "name": {
+      "ja": "嵯峨とうふ 稲"
+    },
+    "region": "arashiyama",
+    "category": "豆腐料理、日本料理、鍋",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-saga-tofu-ine",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 561,
+      "google": 3.9,
+      "googleReviews": 1530
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26014024/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 81m；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000713",
+    "name": {
+      "ja": "老松 嵐山店"
+    },
+    "region": "arashiyama",
+    "category": "甘味処、和菓子",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-oimatsu-arashiyama",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 500,
+      "google": 4.3,
+      "googleReviews": 709
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26000713/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 247m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26003224",
+    "name": {
+      "ja": "ラーメン専門店 大輝"
+    },
+    "region": "arashiyama",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 379
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26003224/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:松尾大社駅 903m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000967",
+    "name": {
+      "ja": "ぎゃあてい"
+    },
+    "region": "arashiyama",
+    "category": "食堂、日本料理、郷土料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 378
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26000967/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：定食・食堂；地址：駅:嵐山（京福）駅 38m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26002419",
+    "name": {
+      "ja": "古都芋本舗"
+    },
+    "region": "arashiyama",
+    "category": "甘味処、和菓子",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（arashiyama：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 375
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26002419/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 291m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26007108",
+    "name": {
+      "ja": "鯛匠 HANANA"
+    },
+    "region": "arashiyama",
+    "category": "海鮮、日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 372
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26007108/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：海鮮丼；地址：駅:嵐山（京福）駅 332m；預算（食べログ列表）：夜 2000～2999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26003826",
+    "name": {
+      "ja": "松籟庵"
+    },
+    "region": "arashiyama",
+    "category": "日本料理、豆腐料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（arashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 360
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26003826/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:嵐山（京福）駅 706m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 8000～9999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-26005455",
+    "name": {
+      "ja": "京 嵯峨野 竹路庵 本店"
+    },
+    "region": "arashiyama",
+    "category": "和菓子、大福",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 329
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26005455/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 215m；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-26001461",
+    "name": {
+      "ja": "天ぷら 松"
+    },
+    "region": "arashiyama",
+    "category": "天ぷら、日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.78,
+      "tabelogReviews": 316
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001461/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:松尾大社駅 444m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 30000～39999／昼 20000～29999"
+  },
+  {
+    "key": "tabelog-26001306",
+    "name": {
+      "ja": "嵐山さくら餅 稲"
+    },
+    "region": "arashiyama",
+    "category": "甘味処、和菓子、ジェラート・アイスクリーム",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（arashiyama：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 316
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26001306/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 73m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26003914",
+    "name": {
+      "ja": "よーじやカフェ 嵯峨野嵐山店"
+    },
+    "region": "arashiyama",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 306
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260403/26003914/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:嵐山（京福）駅 308m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26026153",
+    "name": {
+      "ja": "ラー麺 陽はまた昇る 伏見稲荷駅前本店"
+    },
+    "region": "fushimi",
+    "category": "ラーメン、からあげ、つけ麺",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-hi-wa-mata-noboru-inari",
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 504,
+      "google": 4.4,
+      "googleReviews": 1192
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26026153/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:伏見稲荷駅 61m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26007559",
+    "name": {
+      "ja": "いなりふたば"
+    },
+    "region": "fushimi",
+    "category": "和菓子、大福",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 415
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26007559/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:伏見稲荷駅 153m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-26003540",
+    "name": {
+      "ja": "祢ざめ家"
+    },
+    "region": "fushimi",
+    "category": "うなぎ、いなり寿司、うどん",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-nezameya",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 405,
+      "google": 3,
+      "googleReviews": 961
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26003540/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:稲荷駅 120m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26002316",
+    "name": {
+      "ja": "六盛"
+    },
+    "region": "okazaki",
+    "category": "日本料理",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-rokusei",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 315,
+      "google": 4.2,
+      "googleReviews": 888
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260302/26002316/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:東山駅 702m；定休（食べログ列表）：月曜日、水曜日；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 6000～7999／昼 3000～3999；岡崎（平安神宮西側）"
+  },
+  {
+    "key": "tabelog-26027215",
+    "name": {
+      "ja": "京都 天ぷら圓堂 岡ざき邸"
+    },
+    "region": "okazaki",
+    "category": "天ぷら、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（okazaki：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.4,
+      "tabelogReviews": 110
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260302/26027215/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:東山駅 746m；個室（食べログ列表）：完全個室有(8〜30人、30人以上可)；預算（食べログ列表）：夜 15000～19999／昼 6000～7999；岡崎"
+  },
+  {
+    "key": "tabelog-26000919",
+    "name": {
+      "ja": "京うどん 生蕎麦 岡北"
+    },
+    "region": "okazaki",
+    "category": "うどん、そば、丼",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-okakita",
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 1684,
+      "google": 4.4,
+      "googleReviews": 1513
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260302/26000919/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:東山駅 733m；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；岡崎（平安神宮西側）；食べログ的地區是「下鴨神社・北白川・銀閣寺」"
+  },
+  {
+    "key": "tabelog-26001800",
+    "name": {
+      "ja": "草喰 なかひがし"
+    },
+    "region": "okazaki",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.28,
+      "tabelogReviews": 811
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260302/26001800/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都市左京区；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 30000～39999／昼 10000～14999；銀閣寺附近"
+  },
+  {
+    "key": "tabelog-26001070",
+    "name": {
+      "ja": "LA VOITURE"
+    },
+    "region": "okazaki",
+    "category": "ケーキ、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 797
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260302/26001070/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:神宮丸太町駅 745m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；岡崎（平安神宮北側）"
+  },
+  {
+    "key": "tabelog-26001803",
+    "name": {
+      "ja": "おめん 銀閣寺本店"
+    },
+    "region": "okazaki",
+    "category": "うどん、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（okazaki：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 596
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260302/26001803/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:京都市左京区；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；銀閣寺參道口"
+  },
+  {
+    "key": "tabelog-26000592",
+    "name": {
+      "ja": "京都祇園 天ぷら八坂圓堂"
+    },
+    "region": "higashiyama",
+    "category": "天ぷら、日本料理",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-yasaka-endo",
+    "ratings": {
+      "tabelog": 3.61,
+      "tabelogReviews": 978,
+      "google": 4.5,
+      "googleReviews": 2094
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000592/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:祇園四条駅 583m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 20000～29999／昼 8000～9999"
+  },
+  {
+    "key": "tabelog-26024464",
+    "name": {
+      "ja": "RIGOLETTO SMOKE GRILL ＆ BAR"
+    },
+    "region": "higashiyama",
+    "category": "イタリアン、ピザ、ワインバー",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-rigoletto-gion",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 966,
+      "google": 4.3,
+      "googleReviews": 1583
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26024464/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:祇園四条駅 405m；個室（食べログ列表）：個室有(8〜20人可)；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26001013",
+    "name": {
+      "ja": "南禅寺 順正"
+    },
+    "region": "okazaki",
+    "category": "豆腐料理、日本料理、しゃぶしゃぶ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-nanzenji-junsei",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 841,
+      "google": 4.1,
+      "googleReviews": 2408
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001013/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:蹴上駅 353m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 5000～5999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26006416",
+    "name": {
+      "ja": "デザートカフェ長楽館"
+    },
+    "region": "higashiyama",
+    "category": "カフェ、ケーキ",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 767
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26006416/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:東山駅 711m；個室（食べログ列表）：個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26024607",
+    "name": {
+      "ja": "祇園ビストロ 丸橋"
+    },
+    "region": "higashiyama",
+    "category": "ビストロ、ハンバーグ",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 749
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26024607/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:祇園四条駅 118m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26001346",
+    "name": {
+      "ja": "菊乃井 本店"
+    },
+    "region": "higashiyama",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.11,
+      "tabelogReviews": 618
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001346/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:東山駅 920m；個室（食べログ列表）：個室有(4〜30人、30人以上可)；預算（食べログ列表）：夜 20000～29999／昼 30000～39999"
+  },
+  {
+    "key": "tabelog-26001422",
+    "name": {
+      "ja": "天壇 祇園本店"
+    },
+    "region": "higashiyama",
+    "category": "焼肉、ホルモン",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 575
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001422/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:祇園四条駅 114m；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 6000～7999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-26001440",
+    "name": {
+      "ja": "菊水"
+    },
+    "region": "higashiyama",
+    "category": "洋食、フレンチ、ビアガーデン",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 471
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001440/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:祇園四条駅 59m；個室（食べログ列表）：個室有(10〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001012",
+    "name": {
+      "ja": "瓢亭 本店"
+    },
+    "region": "okazaki",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（okazaki：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.92,
+      "tabelogReviews": 424
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001012/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:蹴上駅 472m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜30人可)；預算（食べログ列表）：夜 30000～39999／昼 30000～39999"
+  },
+  {
+    "key": "tabelog-26004222",
+    "name": {
+      "ja": "柚子屋旅館・一心居"
+    },
+    "region": "higashiyama",
+    "category": "日本料理、オーベルジュ、鍋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 382
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26004222/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:祇園四条駅 500m；個室（食べログ列表）：個室有(20〜30人可)；預算（食べログ列表）：夜 15000～19999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26002504",
+    "name": {
+      "ja": "山元麺蔵"
+    },
+    "region": "okazaki",
+    "category": "うどん",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-yamamoto-menzo",
+    "ratings": {
+      "tabelog": 3.95,
+      "tabelogReviews": 2840,
+      "google": 4.4,
+      "googleReviews": 2894
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26002504/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:東山駅 729m；預算（食べログ列表）：夜 -／昼 1000～1999；岡崎（平安神宮西側）；食べログ的地區是「祇園」"
+  },
+  {
+    "key": "tabelog-26002075",
+    "name": {
+      "ja": "ぎおん徳屋"
+    },
+    "region": "higashiyama",
+    "category": "甘味処、和菓子、かき氷",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-gion-tokuya",
+    "ratings": {
+      "tabelog": 3.76,
+      "tabelogReviews": 2279,
+      "google": 4.3,
+      "googleReviews": 1809
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26002075/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:祇園四条駅 296m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001887",
+    "name": {
+      "ja": "鍵善良房 四条本店"
+    },
+    "region": "higashiyama",
+    "category": "甘味処、和菓子、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（higashiyama：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.78,
+      "tabelogReviews": 1969
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001887/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:祇園四条駅 262m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000280",
+    "name": {
+      "ja": "ぎをん 小森"
+    },
+    "region": "higashiyama",
+    "category": "甘味処、和菓子、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（higashiyama：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 1608
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000280/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:祇園四条駅 352m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001282",
+    "name": {
+      "ja": "京都祇園 おかる"
+    },
+    "region": "higashiyama",
+    "category": "うどん、そば、食堂",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-gion-okaru",
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 1432,
+      "google": 3.8,
+      "googleReviews": 1582
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001282/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:祇園四条駅 218m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000628",
+    "name": {
+      "ja": "博多長浜ラーメン みよし"
+    },
+    "region": "higashiyama",
+    "category": "ラーメン",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "博多長浜ラーメン，不是京都的名物（Claude 判斷）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 1319
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000628/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:三条駅 167m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000009",
+    "name": {
+      "ja": "グリル 小宝"
+    },
+    "region": "okazaki",
+    "category": "洋食、オムライス",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（okazaki：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 1216
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000009/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:東山駅 864m；定休（食べログ列表）：火曜日、水曜日、木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999；岡崎（平安神宮東側）；食べログ的地區是「祇園」"
+  },
+  {
+    "key": "tabelog-26000585",
+    "name": {
+      "ja": "いづう"
+    },
+    "region": "higashiyama",
+    "category": "日本料理、寿司、棒寿司",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-izuu",
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 1189,
+      "google": 4.2,
+      "googleReviews": 1363
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000585/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:祇園四条駅 277m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26002500",
+    "name": {
+      "ja": "祇園きなな 本店"
+    },
+    "region": "higashiyama",
+    "category": "甘味処、ジェラート・アイスクリーム、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（higashiyama：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 1183
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26002500/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:祇園四条駅 252m；定休（食べログ列表）：火曜日、木曜日、金曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000408",
+    "name": {
+      "ja": "茶寮都路里 祇園本店"
+    },
+    "region": "higashiyama",
+    "category": "甘味処、カフェ、かき氷",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（higashiyama：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 1115
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000408/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:祇園四条駅 233m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000850",
+    "name": {
+      "ja": "侘家古暦堂 祇園花見小路本店"
+    },
+    "region": "higashiyama",
+    "category": "焼き鳥、鳥料理、親子丼",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 1104
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26000850/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:祇園四条駅 314m；預算（食べログ列表）：夜 10000～14999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26031755",
+    "name": {
+      "ja": "Gion Duck Noodles"
+    },
+    "region": "higashiyama",
+    "category": "ラーメン、つけ麺",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-gion-duck-noodles",
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 1025,
+      "google": 4.4,
+      "googleReviews": 2038
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26031755/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:祇園四条駅 452m；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26001384",
+    "name": {
+      "ja": "壹銭洋食 本店"
+    },
+    "region": "higashiyama",
+    "category": "お好み焼き",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1017
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001384/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:祇園四条駅 128m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26014418",
+    "name": {
+      "ja": "京の米料亭 八代目儀兵衛"
+    },
+    "region": "higashiyama",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 994
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26014418/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:祇園四条駅 485m；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26018951",
+    "name": {
+      "ja": "ぎょうざ 歩兵 祇園本店"
+    },
+    "region": "higashiyama",
+    "category": "餃子、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 965
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26018951/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:祇園四条駅 301m；定休（食べログ列表）：日曜日、祝日；預算（食べログ列表）：夜 1000～1999／昼 -"
+  },
+  {
+    "key": "tabelog-26001629",
+    "name": {
+      "ja": "総本家にしんそば 松葉 本店"
+    },
+    "region": "higashiyama",
+    "category": "そば、食堂",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 861
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26001629/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:祇園四条駅 37m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26002550",
+    "name": {
+      "ja": "いづ重"
+    },
+    "region": "higashiyama",
+    "category": "寿司、日本料理、棒寿司",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（higashiyama：G 2 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 834
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260301/26002550/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：壽司；地址：駅:祇園四条駅 473m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26001011",
+    "name": {
+      "ja": "膳處漢ぽっちり"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理、バー",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-zezekan-pocchiri",
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 951,
+      "google": 4.2,
+      "googleReviews": 1040
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26001011/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:烏丸駅 293m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 8000～9999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26001546",
+    "name": {
+      "ja": "権太呂 四条本店"
+    },
+    "region": "shijo-nijo",
+    "category": "うどんすき、そば、うどん",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 657
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26001546/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都河原町駅 294m；個室（食べログ列表）：完全個室有(10〜30人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26030731",
+    "name": {
+      "ja": "ヤキニク甲"
+    },
+    "region": "shijo-nijo",
+    "category": "焼肉、居酒屋、肉バル",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 563
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26030731/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:烏丸駅 452m；個室（食べログ列表）：完全個室有(2〜8人、30人以上可)；預算（食べログ列表）：夜 5000～5999／昼 -"
+  },
+  {
+    "key": "tabelog-26000410",
+    "name": {
+      "ja": "モリタ屋 木屋町店"
+    },
+    "region": "shijo-nijo",
+    "category": "すき焼き、ステーキ、しゃぶしゃぶ",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 540
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000410/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:三条駅 157m；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 -／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26002647",
+    "name": {
+      "ja": "雪梅花 菜根譚"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理、火鍋、鍋",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 503
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26002647/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:烏丸駅 453m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 5000～5999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26002657",
+    "name": {
+      "ja": "創作中華 一之船入"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理、飲茶・点心",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 502
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26002657/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市役所前駅 186m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-26000621",
+    "name": {
+      "ja": "室町 和久傳"
+    },
+    "region": "shijo-nijo",
+    "category": "日本料理、かに",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.18,
+      "tabelogReviews": 487
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000621/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:烏丸御池駅 341m；定休（食べログ列表）：水曜日；個室（食べログ列表）：完全個室有(4〜20人可)；預算（食べログ列表）：夜 20000～29999／昼 15000～19999"
+  },
+  {
+    "key": "tabelog-26000947",
+    "name": {
+      "ja": "京の焼肉処 弘 三条木屋町店"
+    },
+    "region": "shijo-nijo",
+    "category": "焼肉",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 482
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000947/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:三条駅 137m；個室（食べログ列表）：個室有(6〜30人可)；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-26023015",
+    "name": {
+      "ja": "隈本総合飲食店 MAO"
+    },
+    "region": "shijo-nijo",
+    "category": "居酒屋、ビアホール、食堂",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 445
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26023015/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:烏丸駅 200m；個室（食べログ列表）：完全個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26001889",
+    "name": {
+      "ja": "先斗町 魯ビン"
+    },
+    "region": "shijo-nijo",
+    "category": "日本料理、かき、海鮮",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 383
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26001889/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:三条駅 210m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26000412",
+    "name": {
+      "ja": "イノダコーヒ 本店"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店、ケーキ、洋食",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 2260
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000412/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 443m；預算（食べログ列表）：夜 ～999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26003182",
+    "name": {
+      "ja": "麺や高倉二条"
+    },
+    "region": "shijo-nijo",
+    "category": "つけ麺、ラーメン",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-takakura-nijo",
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 1801,
+      "google": 4.1,
+      "googleReviews": 1301
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26003182/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:烏丸御池駅 398m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26029638",
+    "name": {
+      "ja": "麺屋 優光"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 1614
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26029638/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:烏丸御池駅 119m；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26026337",
+    "name": {
+      "ja": "ファイブラン"
+    },
+    "region": "shijo-nijo",
+    "category": "パン、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.75,
+      "tabelogReviews": 1564
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26026337/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 258m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004579",
+    "name": {
+      "ja": "フリップアップ"
+    },
+    "region": "shijo-nijo",
+    "category": "パン、ベーグル、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.76,
+      "tabelogReviews": 1329
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26004579/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 210m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26004652",
+    "name": {
+      "ja": "大極殿本舗 六角店"
+    },
+    "region": "shijo-nijo",
+    "category": "甘味処、和菓子",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-daigokuden-rokkaku",
+    "ratings": {
+      "tabelog": 3.77,
+      "tabelogReviews": 1194,
+      "google": 4.3,
+      "googleReviews": 735
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26004652/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸駅 472m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26019438",
+    "name": {
+      "ja": "喫茶 マドラグ"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店、サンドイッチ、洋食",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 1121
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26019438/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 401m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26017389",
+    "name": {
+      "ja": "グラン・ヴァニーユ"
+    },
+    "region": "shijo-nijo",
+    "category": "ケーキ、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.78,
+      "tabelogReviews": 1078
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26017389/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 287m；定休（食べログ列表）：月曜日、日曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26019937",
+    "name": {
+      "ja": "マリベル 京都本店"
+    },
+    "region": "shijo-nijo",
+    "category": "チョコレート、ジェラート・アイスクリーム、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 991
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26019937/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 478m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000068",
+    "name": {
+      "ja": "松之助 京都本店"
+    },
+    "region": "shijo-nijo",
+    "category": "カフェ、ケーキ、パンケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 982
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000068/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 272m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26027283",
+    "name": {
+      "ja": "アッサンブラージュ カキモト"
+    },
+    "region": "shijo-nijo",
+    "category": "ケーキ、チョコレート、創作料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.82,
+      "tabelogReviews": 961
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26027283/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:神宮丸太町駅 549m；預算（食べログ列表）：夜 15000～19999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26005029",
+    "name": {
+      "ja": "ル・プチメック 御池店"
+    },
+    "region": "shijo-nijo",
+    "category": "パン、洋菓子、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 958
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26005029/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 242m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26026032",
+    "name": {
+      "ja": "名前のないラーメン屋"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 953
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26026032/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:三条駅 191m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26019639",
+    "name": {
+      "ja": "カマル"
+    },
+    "region": "shijo-nijo",
+    "category": "カレー",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 949
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26019639/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:烏丸御池駅 293m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001860",
+    "name": {
+      "ja": "梅園 河原町店"
+    },
+    "region": "shijo-nijo",
+    "category": "甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（shijo-nijo：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 883
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26001860/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:三条駅 328m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26042042",
+    "name": {
+      "ja": "amam dacotan 京都"
+    },
+    "region": "shijo-nijo",
+    "category": "パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 883
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26042042/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸御池駅 383m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000210",
+    "name": {
+      "ja": "ル・プチメック 今出川店"
+    },
+    "region": "shijo-nijo",
+    "category": "パン、洋菓子、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 848
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000210/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都市上京区；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000120",
+    "name": {
+      "ja": "カフェ ビブリオティック ハロー!"
+    },
+    "region": "shijo-nijo",
+    "category": "カフェ、パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 839
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26000120/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都市役所前駅 520m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26014396",
+    "name": {
+      "ja": "広東料理 鳳泉"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 835
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260202/26014396/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市役所前駅 275m；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26003538",
+    "name": {
+      "ja": "手打うどん けんどん屋"
+    },
+    "region": "fushimi",
+    "category": "うどん、丼、カレーうどん",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-kendonya",
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 327,
+      "google": 4.5,
+      "googleReviews": 903
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26003538/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:稲荷駅 291m (伏見稲荷駅 98m)；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26006258",
+    "name": {
+      "ja": "稲福"
+    },
+    "region": "fushimi",
+    "category": "麺類、食堂",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.42,
+      "tabelogReviews": 195
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26006258/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:稲荷駅 160m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26030122",
+    "name": {
+      "ja": "稲荷茶寮"
+    },
+    "region": "fushimi",
+    "category": "甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（fushimi：0 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 180
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26030122/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 318m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26027542",
+    "name": {
+      "ja": "バーミリオンカフェ"
+    },
+    "region": "fushimi",
+    "category": "カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 171
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26027542/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 353m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26003590",
+    "name": {
+      "ja": "日野家"
+    },
+    "region": "fushimi",
+    "category": "焼き鳥、麺類、うなぎ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 141
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26003590/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:稲荷駅 140m；預算（食べログ列表）：夜 1000～1999／昼 -"
+  },
+  {
+    "key": "tabelog-26031729",
+    "name": {
+      "ja": "五穀豊穣のお茶屋ごはん五木茶屋 伏見稲荷店"
+    },
+    "region": "fushimi",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 139
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26031729/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:稲荷駅 314m；預算（食べログ列表）：夜 4000～4999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26009017",
+    "name": {
+      "ja": "懐石カフェ 蛙吉"
+    },
+    "region": "fushimi",
+    "category": "カフェ、日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 126
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26009017/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 239m (伏見稲荷駅 32m)；定休（食べログ列表）：火曜日、日曜日、祝日；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26038881",
+    "name": {
+      "ja": "eight"
+    },
+    "region": "fushimi",
+    "category": "パン、洋菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.56,
+      "tabelogReviews": 122
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26038881/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 235m (伏見稲荷駅 32m)；定休（食べログ列表）：月曜日"
+  },
+  {
+    "key": "tabelog-26024211",
+    "name": {
+      "ja": "手打ち蕎麦・鮨 いまふく"
+    },
+    "region": "fushimi",
+    "category": "そば、麺類",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.64,
+      "tabelogReviews": 119
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26024211/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:稲荷駅 756m (藤森駅 402m)；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 20000～29999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26010611",
+    "name": {
+      "ja": "天えい"
+    },
+    "region": "fushimi",
+    "category": "天ぷら、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 119
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26010611/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:稲荷駅 556m (龍谷大前深草駅 317m)；定休（食べログ列表）：日曜日、祝日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26017539",
+    "name": {
+      "ja": "可乃古"
+    },
+    "region": "fushimi",
+    "category": "そば、うどん、ハンバーグ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 115
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26017539/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:稲荷駅 159m (伏見稲荷駅 153m)；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26007338",
+    "name": {
+      "ja": "宝玉堂"
+    },
+    "region": "fushimi",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 113
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26007338/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 194m (伏見稲荷駅 78m)"
+  },
+  {
+    "key": "tabelog-26037965",
+    "name": {
+      "ja": "まるもち家 伏見稲荷本店"
+    },
+    "region": "fushimi",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 113
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26037965/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 185m (伏見稲荷駅 84m)；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26030573",
+    "name": {
+      "ja": "炭焼鰻 土井活鰻"
+    },
+    "region": "fushimi",
+    "category": "うなぎ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 111
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26030573/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:稲荷駅 388m (伏見稲荷駅 124m)；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26019250",
+    "name": {
+      "ja": "伏見稲荷 参道茶屋"
+    },
+    "region": "fushimi",
+    "category": "甘味処、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（fushimi：0 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 110
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26019250/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:稲荷駅 142m；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26033108",
+    "name": {
+      "ja": "ら～麺処 克享"
+    },
+    "region": "fushimi",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 100
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26033108/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:稲荷駅 251m (龍谷大前深草駅 189m)；定休（食べログ列表）：土曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26040512",
+    "name": {
+      "ja": "サーモンnoodle京都"
+    },
+    "region": "fushimi",
+    "category": "ラーメン、担々麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（fushimi：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 94
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260601/26040512/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:稲荷駅 22m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26002621",
+    "name": {
+      "ja": "蕎麦の実 よしむら"
+    },
+    "region": "shijo-nijo",
+    "category": "そば、居酒屋、カフェ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-sobanomi-yoshimura",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 1320,
+      "google": 4.3,
+      "googleReviews": 2802
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26002621/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:五条（京都市営）駅 122m；個室（食べログ列表）：個室有(4〜20人可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26021609",
+    "name": {
+      "ja": "都野菜 賀茂 烏丸店"
+    },
+    "region": "shijo-nijo",
+    "category": "ビュッフェ、鍋、しゃぶしゃぶ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-miyakoyasai-kamo-karasuma",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 667,
+      "google": 3.9,
+      "googleReviews": 2291
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26021609/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条（京都市営）駅 144m；個室（食べログ列表）：個室有(30人以上可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26034554",
+    "name": {
+      "ja": "Roji-oku"
+    },
+    "region": "shijo-nijo",
+    "category": "ビストロ、バル、洋食",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 624
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26034554/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:四条（京都市営）駅 243m；個室（食べログ列表）：完全個室有(4〜30人、30人以上可)；預算（食べログ列表）：夜 4000～4999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000650",
+    "name": {
+      "ja": "窯焼和牛ステーキと京のおばんざい 市場小路 寺町本店"
+    },
+    "region": "shijo-nijo",
+    "category": "居酒屋、ステーキ、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 586
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000650/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都河原町駅 230m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000745",
+    "name": {
+      "ja": "老香港酒家京都"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理、飲茶・点心",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 584
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000745/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条（京都市営）駅 68m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 15000～19999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26039250",
+    "name": {
+      "ja": "炭炉まん"
+    },
+    "region": "shijo-nijo",
+    "category": "居酒屋、ろばた焼き、串焼き",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 501
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26039250/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:烏丸駅 306m；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 -"
+  },
+  {
+    "key": "tabelog-26000755",
+    "name": {
+      "ja": "志る幸"
+    },
+    "region": "shijo-nijo",
+    "category": "日本料理、弁当",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 464
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000755/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都河原町駅 138m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26028368",
+    "name": {
+      "ja": "焼肉矢澤 京都"
+    },
+    "region": "shijo-nijo",
+    "category": "焼肉、ホルモン、牛料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 451
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26028368/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:四条（京都市営）駅 186m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26025041",
+    "name": {
+      "ja": "ロティー チキン アンド ジャッキー タコス"
+    },
+    "region": "shijo-nijo",
+    "category": "メキシコ料理、居酒屋、バー",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 435
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26025041/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:四条（京都市営）駅 266m；個室（食べログ列表）：完全個室有(4〜30人可)；預算（食べログ列表）：夜 2000～2999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26031586",
+    "name": {
+      "ja": "ベンジャミンステーキハウス 京都"
+    },
+    "region": "shijo-nijo",
+    "category": "ステーキ、ダイニングバー、シーフード",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 416
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26031586/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:烏丸駅 117m；個室（食べログ列表）：完全個室有(4〜20人可)；預算（食べログ列表）：夜 15000～19999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26002804",
+    "name": {
+      "ja": "マルシン飯店"
+    },
+    "region": "okazaki",
+    "category": "中華料理、食堂、ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（okazaki：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 2774
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26002804/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:東山駅 139m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 ～999；東山三条（地下鐵東山站旁）；食べログ的地區是「河原町」"
+  },
+  {
+    "key": "tabelog-26006820",
+    "name": {
+      "ja": "和醸良麺 すがり"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン、つけ麺",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-sugari",
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 2198,
+      "google": 4.1,
+      "googleReviews": 2959
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26006820/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条（京都市営）駅 271m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000900",
+    "name": {
+      "ja": "フランソア喫茶室"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店、ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.73,
+      "tabelogReviews": 1901
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000900/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都河原町駅 156m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000647",
+    "name": {
+      "ja": "スマート珈琲店"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店、洋食、パンケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 1821
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000647/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都市役所前駅 225m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001330",
+    "name": {
+      "ja": "京極かねよ"
+    },
+    "region": "shijo-nijo",
+    "category": "うなぎ、丼、どじょう",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-kyogoku-kaneyo",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1516,
+      "google": 3.8,
+      "googleReviews": 3364
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26001330/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都市役所前駅 381m；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26019002",
+    "name": {
+      "ja": "麺匠 たか松 本店"
+    },
+    "region": "shijo-nijo",
+    "category": "つけ麺、ラーメン、麺類",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.61,
+      "tabelogReviews": 1427
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26019002/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:烏丸駅 293m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26017170",
+    "name": {
+      "ja": "ぎょうざ処 高辻 亮昌 本店"
+    },
+    "region": "shijo-nijo",
+    "category": "餃子",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1315
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26017170/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条（京都市営）駅 479m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26032035",
+    "name": {
+      "ja": "koe donuts 京都店"
+    },
+    "region": "shijo-nijo",
+    "category": "カフェ、ドーナツ、スイーツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 1307
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26032035/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都河原町駅 132m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004637",
+    "name": {
+      "ja": "ワルダー"
+    },
+    "region": "shijo-nijo",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 1233
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26004637/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都河原町駅 439m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26012808",
+    "name": {
+      "ja": "パティスリーエス"
+    },
+    "region": "shijo-nijo",
+    "category": "ケーキ、マカロン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.78,
+      "tabelogReviews": 1227
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26012808/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:四条（京都市営）駅 326m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001559",
+    "name": {
+      "ja": "前田珈琲 室町本店"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店、カフェ、かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 1208
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26001559/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:烏丸駅 294m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26032368",
+    "name": {
+      "ja": "麺屋 猪一"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.71,
+      "tabelogReviews": 1159
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26032368/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都河原町駅 310m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000763",
+    "name": {
+      "ja": "喫茶 ソワレ"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 1152
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000763/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:祇園四条駅 162m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000827",
+    "name": {
+      "ja": "新宿めんや風花"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 1087
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000827/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条（京都市営）駅 317m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26036945",
+    "name": {
+      "ja": "すば"
+    },
+    "region": "shijo-nijo",
+    "category": "立ち食いそば",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "立ち食い（站著吃、沒有座位），長輩小孩分組不適合（Claude 判斷）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1079
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26036945/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:清水五条駅 318m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26029396",
+    "name": {
+      "ja": "スプリングバレーブルワリー 京都"
+    },
+    "region": "shijo-nijo",
+    "category": "ビアバー、ピザ、居酒屋",
+    "status": "excluded",
+    "criteria": [],
+    "reason": "食べログ類別第一項是ビアバー → 酒吧排除",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 1047
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26029396/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都河原町駅 399m；預算（食べログ列表）：夜 5000～5999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26031546",
+    "name": {
+      "ja": "京都四条くをん"
+    },
+    "region": "shijo-nijo",
+    "category": "カレーうどん、うどん",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-shijo-kuon",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1029,
+      "google": 4.5,
+      "googleReviews": 2775
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26031546/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:烏丸駅 340m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000846",
+    "name": {
+      "ja": "東華菜館 本店"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理、餃子",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 991
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26000846/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:祇園四条駅 83m；預算（食べログ列表）：夜 5000～5999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26015938",
+    "name": {
+      "ja": "スパイスチャンバー"
+    },
+    "region": "shijo-nijo",
+    "category": "カレー、インドカレー",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 989
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260201/26015938/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条（京都市営）駅 153m；定休（食べログ列表）：月曜日、日曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26006496",
+    "name": {
+      "ja": "中国料理 楼蘭"
+    },
+    "region": "kinkaku-kitano",
+    "category": "四川料理",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-roran",
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 130,
+      "google": 4.3,
+      "googleReviews": 216
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26006496/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市北区；個室（食べログ列表）：個室有(6〜30人可)；預算（食べログ列表）：夜 6000～7999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26006205",
+    "name": {
+      "ja": "鳥料理と和食 わかどり"
+    },
+    "region": "kinkaku-kitano",
+    "category": "鳥料理、日本料理、焼き鳥",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 116
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26006205/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:京都市北区；個室（食べログ列表）：個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 4000～4999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26017181",
+    "name": {
+      "ja": "伯楽家常菜"
+    },
+    "region": "kinkaku-kitano",
+    "category": "中華料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 108
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26017181/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:北野白梅町駅 175m；定休（食べログ列表）：木曜日；個室（食べログ列表）：個室有(6〜20人可)；預算（食べログ列表）：夜 6000～7999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004447",
+    "name": {
+      "ja": "桜井屋"
+    },
+    "region": "kinkaku-kitano",
+    "category": "豆腐料理、日本料理、甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.34,
+      "tabelogReviews": 72
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26004447/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:北野白梅町駅 556m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001033",
+    "name": {
+      "ja": "紅梅庵"
+    },
+    "region": "kinkaku-kitano",
+    "category": "日本料理、寿司",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 60
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001033/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:北野白梅町駅 628m；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 5000～5999"
+  },
+  {
+    "key": "tabelog-26001518",
+    "name": {
+      "ja": "糸源"
+    },
+    "region": "kinkaku-kitano",
+    "category": "日本料理、寿司、ふぐ",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 55
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001518/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:北野白梅町駅 689m；個室（食べログ列表）：個室有(6〜30人可)；預算（食べログ列表）：夜 6000～7999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26008974",
+    "name": {
+      "ja": "京の料亭 千寿閣"
+    },
+    "region": "kinkaku-kitano",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 48
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26008974/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都市北区；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 10000～14999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26001539",
+    "name": {
+      "ja": "粟餅所・澤屋"
+    },
+    "region": "kinkaku-kitano",
+    "category": "和菓子、甘味処",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.76,
+      "tabelogReviews": 1200
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001539/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:北野白梅町駅 375m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26008681",
+    "name": {
+      "ja": "山崎麺二郎"
+    },
+    "region": "kinkaku-kitano",
+    "category": "ラーメン、つけ麺",
+    "status": "not-included",
+    "criteria": [
+      "S"
+    ],
+    "reason": "Google Maps 顯示「臨時休業」（2026-11-12），休到何時查不到，平常也常臨時休業；由同區下一家 S（西陣 鳥岩楼）遞補",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.69,
+      "tabelogReviews": 951
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26008681/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:円町駅 175m；定休（食べログ列表）：月曜日、火曜日、水曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26001030",
+    "name": {
+      "ja": "西陣 鳥岩楼"
+    },
+    "region": "kinkaku-kitano",
+    "category": "水炊き、鳥料理、親子丼",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-toriiwaro",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 710,
+      "google": 4.4,
+      "googleReviews": 1106
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001030/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市上京区；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26003707",
+    "name": {
+      "ja": "キッチンパパ"
+    },
+    "region": "kinkaku-kitano",
+    "category": "洋食、ハンバーグ、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 529
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26003707/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:京都市上京区；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001035",
+    "name": {
+      "ja": "江畑"
+    },
+    "region": "kinkaku-kitano",
+    "category": "ホルモン、焼肉",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 525
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001035/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:京都市上京区；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 6000～7999／昼 -"
+  },
+  {
+    "key": "tabelog-26001508",
+    "name": {
+      "ja": "とようけ茶屋"
+    },
+    "region": "kinkaku-kitano",
+    "category": "豆腐料理、丼",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-toyouke-chaya",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 521,
+      "google": 4.2,
+      "googleReviews": 821
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001508/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:北野白梅町駅 413m；定休（食べログ列表）：木曜日、金曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26001890",
+    "name": {
+      "ja": "タンポポ"
+    },
+    "region": "kinkaku-kitano",
+    "category": "ラーメン、つけ麺",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-ramen-tanpopo",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 499,
+      "google": 4,
+      "googleReviews": 781
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001890/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市北区；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26018304",
+    "name": {
+      "ja": "京天神 野口"
+    },
+    "region": "kinkaku-kitano",
+    "category": "日本料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.38,
+      "tabelogReviews": 371
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26018304/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:北野白梅町駅 595m；預算（食べログ列表）：夜 20000～29999／昼 -"
+  },
+  {
+    "key": "tabelog-26025402",
+    "name": {
+      "ja": "カステラ ド パウロ"
+    },
+    "region": "kinkaku-kitano",
+    "category": "カフェ、洋菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.61,
+      "tabelogReviews": 354
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26025402/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:北野白梅町駅 473m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000617",
+    "name": {
+      "ja": "ジャンボ"
+    },
+    "region": "kinkaku-kitano",
+    "category": "お好み焼き、焼きそば",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 351
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26000617/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:等持院・立命館大学衣笠キャンパス前駅 208m；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26002560",
+    "name": {
+      "ja": "たわらや"
+    },
+    "region": "kinkaku-kitano",
+    "category": "うどん、丼",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 293
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26002560/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:北野白梅町駅 426m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004886",
+    "name": {
+      "ja": "古の花"
+    },
+    "region": "kinkaku-kitano",
+    "category": "甘味処、かき氷、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（kinkaku-kitano：0 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 264
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26004886/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:北野白梅町駅 470m；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004890",
+    "name": {
+      "ja": "老松 北野店"
+    },
+    "region": "kinkaku-kitano",
+    "category": "和菓子、カフェ、甘味処",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 234
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26004890/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:北野白梅町駅 645m；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26002741",
+    "name": {
+      "ja": "権太呂 金閣寺店"
+    },
+    "region": "kinkaku-kitano",
+    "category": "そば、うどん、うどんすき",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 220
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26002741/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:北野白梅町駅 984m；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26039142",
+    "name": {
+      "ja": "麺屋 練之助"
+    },
+    "region": "kinkaku-kitano",
+    "category": "ラーメン",
+    "status": "excluded",
+    "criteria": [
+      "S"
+    ],
+    "reason": "食べログ標示「移転」",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 210
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26039142/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市北区；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000006",
+    "name": {
+      "ja": "糸仙"
+    },
+    "region": "kinkaku-kitano",
+    "category": "中華料理",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.64,
+      "tabelogReviews": 202
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26000006/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:北野白梅町駅 689m；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-26001505",
+    "name": {
+      "ja": "静香"
+    },
+    "region": "kinkaku-kitano",
+    "category": "喫茶店、パンケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 193
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26001505/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都市上京区；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26036158",
+    "name": {
+      "ja": "TENJIN"
+    },
+    "region": "kinkaku-kitano",
+    "category": "フレンチ、イノベーティブ、洋食",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 191
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26036158/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:京都市北区；預算（食べログ列表）：夜 15000～19999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26038042",
+    "name": {
+      "ja": "なぶら"
+    },
+    "region": "kinkaku-kitano",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kinkaku-kitano：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 177
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26038042/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:北野白梅町駅 765m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26015839",
+    "name": {
+      "ja": "金閣寺不動釜茶所"
+    },
+    "region": "kinkaku-kitano",
+    "category": "甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（kinkaku-kitano：0 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 169
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260501/26015839/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都市北区；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26001972",
+    "name": {
+      "ja": "ザ キッチン サルヴァトーレ クオモ 京都"
+    },
+    "region": "kyoto-station",
+    "category": "イタリアン、ピザ",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-salvatore-cuomo",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 954,
+      "google": 3.7,
+      "googleReviews": 422
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26001972/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:京都駅 145m；個室（食べログ列表）：個室有(8〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26035257",
+    "name": {
+      "ja": "小籠包 包伸一 ツツミシンイチ"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、中華料理、餃子",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-tsutsumi-shinichi",
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 510,
+      "google": 4.2,
+      "googleReviews": 639
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26035257/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 490m；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 -"
+  },
+  {
+    "key": "tabelog-26026012",
+    "name": {
+      "ja": "そば酒房 徳兵衛"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、そば、日本料理",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-tokubei",
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 483,
+      "google": 4.1,
+      "googleReviews": 1352
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26026012/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 162m；個室（食べログ列表）：完全個室有(4〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26031208",
+    "name": {
+      "ja": "瓢斗 京都駅前本店"
+    },
+    "region": "kyoto-station",
+    "category": "しゃぶしゃぶ、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 452
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26031208/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:京都駅 502m；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 8000～9999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26023753",
+    "name": {
+      "ja": "Italian BAR KIMURAYA 京都駅前店"
+    },
+    "region": "kyoto-station",
+    "category": "イタリアン、バル",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 344
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26023753/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:京都駅 267m；個室（食べログ列表）：完全個室有(2〜20人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000784",
+    "name": {
+      "ja": "京料理･本家生ゆば料理 松山閣 松山 JR京都伊勢丹店"
+    },
+    "region": "kyoto-station",
+    "category": "日本料理、豆腐料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 339
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000784/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都駅 160m；個室（食べログ列表）：完全個室有(8〜20人可)；預算（食べログ列表）：夜 6000～7999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26041195",
+    "name": {
+      "ja": "京都駅前酒場 聚楽第"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、海鮮",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 316
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26041195/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 458m；個室（食べログ列表）：個室有(20〜30人可)；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-26041666",
+    "name": {
+      "ja": "個室居酒屋 はんなり邸 京都駅前店"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、郷土料理、海鮮",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 299
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26041666/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 166m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26042617",
+    "name": {
+      "ja": "炉端とおでん 呼炉凪来 京都駅前店"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、おでん、ろばた焼き",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.18,
+      "tabelogReviews": 297
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26042617/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 167m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 2000～2999／昼 -"
+  },
+  {
+    "key": "tabelog-26000873",
+    "name": {
+      "ja": "本家 第一旭 本店"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン、餃子",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-daiichiasahi-honten",
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 7071,
+      "google": 4,
+      "googleReviews": 9452
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000873/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 361m；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000791",
+    "name": {
+      "ja": "新福菜館 本店"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-shinpuku-saikan-honten",
+    "ratings": {
+      "tabelog": 3.59,
+      "tabelogReviews": 4382,
+      "google": 4,
+      "googleReviews": 4726
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000791/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 363m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26036754",
+    "name": {
+      "ja": "貝だし麺 きた田"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.7,
+      "tabelogReviews": 1985
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26036754/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 450m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004660",
+    "name": {
+      "ja": "吟醸らーめん 久保田"
+    },
+    "region": "kyoto-station",
+    "category": "つけ麺、ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.73,
+      "tabelogReviews": 1808
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26004660/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:五条（京都市営）駅 498m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26031063",
+    "name": {
+      "ja": "つくもうどん 塩小路本店"
+    },
+    "region": "kyoto-station",
+    "category": "うどん、居酒屋",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-tsukumo-udon",
+    "ratings": {
+      "tabelog": 3.6,
+      "tabelogReviews": 1675,
+      "google": 4.1,
+      "googleReviews": 1671
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26031063/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner",
+      "transit"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:京都駅 136m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26005903",
+    "name": {
+      "ja": "中村藤吉本店 京都駅店"
+    },
+    "region": "kyoto-station",
+    "category": "甘味処、カフェ、麺類",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-nakamura-tokichi-kyoto-station",
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 1505,
+      "google": 4.4,
+      "googleReviews": 1059
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26005903/"
+    },
+    "contexts": [
+      "snack",
+      "cafe",
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都駅 90m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26034294",
+    "name": {
+      "ja": "山本まんぼ"
+    },
+    "region": "kyoto-station",
+    "category": "お好み焼き、鉄板焼き",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 1470
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26034294/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 464m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26006654",
+    "name": {
+      "ja": "はしたて"
+    },
+    "region": "kyoto-station",
+    "category": "日本料理、丼、麺類",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-hashitate",
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 1306,
+      "google": 4.2,
+      "googleReviews": 717
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26006654/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都駅 78m；預算（食べログ列表）：夜 4000～4999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26000865",
+    "name": {
+      "ja": "京鴨一羽買いと京のおばんざい 市場小路 ジェイアール京都伊勢丹店"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、日本料理、豆腐料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 1179
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000865/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 160m；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26014547",
+    "name": {
+      "ja": "東大 京都店"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 1121
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26014547/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 159m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26006790",
+    "name": {
+      "ja": "宝泉 JR新幹線京都駅店"
+    },
+    "region": "kyoto-station",
+    "category": "甘味処、和菓子",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（kyoto-station：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.77,
+      "tabelogReviews": 1068
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26006790/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都駅 48m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26003008",
+    "name": {
+      "ja": "志津屋 京都駅店"
+    },
+    "region": "kyoto-station",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 999
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26003008/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都駅 82m；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000853",
+    "name": {
+      "ja": "茶寮都路里 京都伊勢丹店"
+    },
+    "region": "kyoto-station",
+    "category": "甘味処、カフェ、かき氷",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（kyoto-station：1 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 984
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000853/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都駅 159m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000863",
+    "name": {
+      "ja": "京都和久傳"
+    },
+    "region": "kyoto-station",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.76,
+      "tabelogReviews": 898
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000863/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都駅 193m；預算（食べログ列表）：夜 10000～14999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26000797",
+    "name": {
+      "ja": "へんこつ"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、牛料理、おでん",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 795
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26000797/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 270m；定休（食べログ列表）：日曜日、祝日；預算（食べログ列表）：夜 2000～2999／昼 -"
+  },
+  {
+    "key": "tabelog-26014448",
+    "name": {
+      "ja": "満月 JR京都伊勢丹店"
+    },
+    "region": "kyoto-station",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 776
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26014448/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:京都駅 144m；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-26002070",
+    "name": {
+      "ja": "こけこっこ"
+    },
+    "region": "kyoto-station",
+    "category": "居酒屋、ステーキ、焼き鳥",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 740
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26002070/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:京都駅 127m；預算（食べログ列表）：夜 5000～5999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26035538",
+    "name": {
+      "ja": "麺匠たか松 京都駅ビル拉麺小路店"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン、つけ麺、麺類",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 737
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26035538/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 111m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26030811",
+    "name": {
+      "ja": "中村商店 京都拉麺小路店"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 706
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260101/26030811/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都駅 114m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26020410",
+    "name": {
+      "ja": "森林食堂"
+    },
+    "region": "shijo-nijo",
+    "category": "カレー",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.86,
+      "tabelogReviews": 630
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26020410/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:二条駅 435m；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 2000～2999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26000493",
+    "name": {
+      "ja": "大市"
+    },
+    "region": "shijo-nijo",
+    "category": "すっぽん、日本料理、鍋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 4.06,
+      "tabelogReviews": 452
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26000493/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市上京区；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(2〜20人可)；預算（食べログ列表）：夜 30000～39999／昼 20000～29999"
+  },
+  {
+    "key": "tabelog-26016287",
+    "name": {
+      "ja": "とり伊"
+    },
+    "region": "shijo-nijo",
+    "category": "水炊き、親子丼、鳥料理",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 348
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26016287/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:大宮駅 158m；定休（食べログ列表）：火曜日；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26017844",
+    "name": {
+      "ja": "京料理 貴与次郎"
+    },
+    "region": "shijo-nijo",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 226
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26017844/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:二条城前駅 465m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 6000～7999"
+  },
+  {
+    "key": "tabelog-26001469",
+    "name": {
+      "ja": "いはら田"
+    },
+    "region": "shijo-nijo",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 201
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26001469/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都市下京区；個室（食べログ列表）：完全個室有(6〜20人可)；預算（食べログ列表）：夜 10000～14999／昼 -"
+  },
+  {
+    "key": "tabelog-26034202",
+    "name": {
+      "ja": "串揚げとおでん コムロテツヤ"
+    },
+    "region": "shijo-nijo",
+    "category": "串揚げ、おでん、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.43,
+      "tabelogReviews": 105
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26034202/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:二条駅 163m；定休（食べログ列表）：日曜日；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 5000～5999／昼 -"
+  },
+  {
+    "key": "tabelog-26001499",
+    "name": {
+      "ja": "京料理 入舟"
+    },
+    "region": "shijo-nijo",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 101
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26001499/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:京都市役所前駅 111m；定休（食べログ列表）：月曜日；個室（食べログ列表）：個室有(4〜20人可)；預算（食べログ列表）：夜 15000～19999／昼 8000～9999"
+  },
+  {
+    "key": "tabelog-26001265",
+    "name": {
+      "ja": "四川料理蜀江"
+    },
+    "region": "shijo-nijo",
+    "category": "四川料理、担々麺、レストラン",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.44,
+      "tabelogReviews": 96
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26001265/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:二条城前駅 242m；個室（食べログ列表）：完全個室有(2〜20人可)；預算（食べログ列表）：夜 8000～9999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26002450",
+    "name": {
+      "ja": "Cozy"
+    },
+    "region": "shijo-nijo",
+    "category": "洋食、ビュッフェ、日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.36,
+      "tabelogReviews": 92
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26002450/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:二条城前駅 245m；個室（食べログ列表）：完全個室有(4〜6人、10〜20人可)；預算（食べログ列表）：夜 6000～7999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26022456",
+    "name": {
+      "ja": "セアブラノ神 壬生本店"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.72,
+      "tabelogReviews": 1614
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26022456/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条大宮駅 375m；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26023737",
+    "name": {
+      "ja": "あいつのラーメン かたぐるま 本店"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン、つけ麺、からあげ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.7,
+      "tabelogReviews": 1460
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26023737/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:丹波口駅 653m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26003237",
+    "name": {
+      "ja": "まるき製パン所"
+    },
+    "region": "shijo-nijo",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.73,
+      "tabelogReviews": 1442
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26003237/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:四条大宮駅 541m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-26017616",
+    "name": {
+      "ja": "拳ラーメン"
+    },
+    "region": "kyoto-station",
+    "category": "ラーメン、つけ麺、汁なし担々麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（kyoto-station：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.7,
+      "tabelogReviews": 1213
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26017616/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:梅小路京都西駅 70m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26003254",
+    "name": {
+      "ja": "大鵬"
+    },
+    "region": "shijo-nijo",
+    "category": "四川料理、中華料理",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 1144
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26003254/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:二条駅 177m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 6000～7999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26037048",
+    "name": {
+      "ja": "麦の夜明け"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン、つけ麺",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.74,
+      "tabelogReviews": 891
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26037048/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市下京区；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26002251",
+    "name": {
+      "ja": "喫茶チロル"
+    },
+    "region": "shijo-nijo",
+    "category": "喫茶店、カレー",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 848
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26002251/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:二条城前駅 264m；定休（食べログ列表）：日曜日、祝日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26016639",
+    "name": {
+      "ja": "魏飯夷堂 三条店"
+    },
+    "region": "shijo-nijo",
+    "category": "中華料理、居酒屋、バル",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 692
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26016639/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:二条城前駅 365m；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26022444",
+    "name": {
+      "ja": "フルーツパーラーヤオイソ"
+    },
+    "region": "shijo-nijo",
+    "category": "フルーツパーラー、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.68,
+      "tabelogReviews": 648
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26022444/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:大宮駅 92m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26028474",
+    "name": {
+      "ja": "ラーメンムギュ VOL.1本店"
+    },
+    "region": "shijo-nijo",
+    "category": "ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 643
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26028474/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:円町駅 157m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26027246",
+    "name": {
+      "ja": "スイーツ カフェ キョウト ケイゾー"
+    },
+    "region": "shijo-nijo",
+    "category": "カフェ、ケーキ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 619
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26027246/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:二条城前駅 368m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26023083",
+    "name": {
+      "ja": "庶民 四条大宮店"
+    },
+    "region": "shijo-nijo",
+    "category": "立ち飲み、居酒屋、海鮮",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 575
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26023083/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:四条大宮駅 70m；定休（食べログ列表）：月曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26009281",
+    "name": {
+      "ja": "餃子の王将 四条大宮店"
+    },
+    "region": "shijo-nijo",
+    "category": "餃子、中華料理、ラーメン",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 545
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26009281/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:大宮駅 83m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26030601",
+    "name": {
+      "ja": "空蝉亭"
+    },
+    "region": "shijo-nijo",
+    "category": "とんかつ、洋食、居酒屋",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.76,
+      "tabelogReviews": 523
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26030601/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:二条城前駅 924m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26026734",
+    "name": {
+      "ja": "ピッツェリア・バール・レ・ナポリ 京都錦"
+    },
+    "region": "shijo-nijo",
+    "category": "イタリアン、ピザ、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 522
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26026734/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:烏丸駅 246m；預算（食べログ列表）：夜 2000～2999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000331",
+    "name": {
+      "ja": "亀屋良長 本店"
+    },
+    "region": "shijo-nijo",
+    "category": "和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 506
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26000331/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:大宮駅 351m；預算（食べログ列表）：夜 ～999／昼 -"
+  },
+  {
+    "key": "tabelog-26032721",
+    "name": {
+      "ja": "京氷菓 つらら"
+    },
+    "region": "shijo-nijo",
+    "category": "かき氷",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 504
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26032721/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:二条駅 500m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26022889",
+    "name": {
+      "ja": "CLAMP COFFEE SARASA"
+    },
+    "region": "shijo-nijo",
+    "category": "カフェ、洋菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 496
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26022889/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:二条駅 362m；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26002690",
+    "name": {
+      "ja": "京都千丸 しゃかりき 本店"
+    },
+    "region": "shijo-nijo",
+    "category": "つけ麺、ラーメン、油そば・まぜそば",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（shijo-nijo：G 3 家、S 4 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.55,
+      "tabelogReviews": 488
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260203/26002690/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:二条駅 831m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000038",
+    "name": {
+      "ja": "辰巳屋"
+    },
+    "region": "uji",
+    "category": "日本料理、鍋",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-uji-tatsumiya",
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 136,
+      "google": 4.3,
+      "googleReviews": 379
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26000038/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:宇治（京阪）駅 738m；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 10000～14999／昼 4000～4999"
+  },
+  {
+    "key": "tabelog-26023486",
+    "name": {
+      "ja": "はなれ 中村製麺"
+    },
+    "region": "uji",
+    "category": "うどん、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uji：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.27,
+      "tabelogReviews": 117
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26023486/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:宇治（ＪＲ）駅 171m；定休（食べログ列表）：月曜日、火曜日；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000728",
+    "name": {
+      "ja": "平等院表参道 竹林"
+    },
+    "region": "uji",
+    "category": "日本料理、創作料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uji：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 83
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26000728/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:宇治（京阪）駅 459m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 10000～14999／昼 8000～9999"
+  },
+  {
+    "key": "tabelog-26021961",
+    "name": {
+      "ja": "薩摩焼肉 黒桜"
+    },
+    "region": "uji",
+    "category": "焼肉、ホルモン、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": "子地區上限外（uji：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.41,
+      "tabelogReviews": 68
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26021961/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:宇治（ＪＲ）駅 831m；定休（食べログ列表）：月曜日；個室（食べログ列表）：完全個室有(2〜30人、30人以上可)；預算（食べログ列表）：夜 4000～4999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000722",
+    "name": {
+      "ja": "中村藤吉本店 宇治本店"
+    },
+    "region": "uji",
+    "category": "甘味処、カフェ、麺類",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-nakamura-tokichi-uji-honten",
+    "ratings": {
+      "tabelog": 3.54,
+      "tabelogReviews": 1681,
+      "google": 4.4,
+      "googleReviews": 5593
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26000722/"
+    },
+    "contexts": [
+      "snack",
+      "cafe",
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（ＪＲ）駅 144m；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26002107",
+    "name": {
+      "ja": "伊藤久右衛門 宇治本店"
+    },
+    "region": "uji",
+    "category": "甘味処、そば、カフェ",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-itohkyuemon-uji-honten",
+    "ratings": {
+      "tabelog": 3.45,
+      "tabelogReviews": 1307,
+      "google": 4.2,
+      "googleReviews": 3678
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26002107/"
+    },
+    "contexts": [
+      "snack",
+      "cafe",
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:三室戸駅 299m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26030760",
+    "name": {
+      "ja": "晴耕雨読"
+    },
+    "region": "uji",
+    "category": "油そば・まぜそば、汁なし担々麺",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-seikou-udoku",
+    "ratings": {
+      "tabelog": 3.83,
+      "tabelogReviews": 657,
+      "google": 4.2,
+      "googleReviews": 405
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26030760/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:宇治（ＪＲ）駅 730m；定休（食べログ列表）：金曜日、土曜日、日曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26002793",
+    "name": {
+      "ja": "中村藤吉本店 平等院店"
+    },
+    "region": "uji",
+    "category": "甘味処",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（uji：2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 640
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26002793/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（京阪）駅 348m；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26006153",
+    "name": {
+      "ja": "モグモグベーカリー"
+    },
+    "region": "uji",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.65,
+      "tabelogReviews": 519
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26006153/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（ＪＲ）駅 259m；定休（食べログ列表）：月曜日、火曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26005593",
+    "name": {
+      "ja": "辻利兵衛本店"
+    },
+    "region": "uji",
+    "category": "カフェ、和菓子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.3,
+      "tabelogReviews": 517
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26005593/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（ＪＲ）駅 293m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004771",
+    "name": {
+      "ja": "しゅばく"
+    },
+    "region": "uji",
+    "category": "そば",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-shubaku",
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 511,
+      "google": 4.3,
+      "googleReviews": 445
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26004771/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：烏龍麵・蕎麥；地址：駅:宇治（京阪）駅 213m；定休（食べログ列表）：月曜日、金曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26004992",
+    "name": {
+      "ja": "京阪宇治駅前 駿河屋"
+    },
+    "region": "uji",
+    "category": "和菓子、甘味処",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 411
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26004992/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（京阪）駅 171m；定休（食べログ列表）：木曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26000727",
+    "name": {
+      "ja": "通圓 宇治本店"
+    },
+    "region": "uji",
+    "category": "甘味処、和菓子、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（uji：2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.58,
+      "tabelogReviews": 393
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26000727/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（京阪）駅 172m；預算（食べログ列表）：夜 1000～1999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26029818",
+    "name": {
+      "ja": "伊藤久右衛門 JR宇治駅前店"
+    },
+    "region": "uji",
+    "category": "甘味処、そば、カフェ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.26,
+      "tabelogReviews": 352
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26029818/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（ＪＲ）駅 100m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26009042",
+    "name": {
+      "ja": "シェ・アガタ"
+    },
+    "region": "uji",
+    "category": "ケーキ、スイーツ、チョコレート",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.66,
+      "tabelogReviews": 335
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26009042/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:三室戸駅 201m；定休（食べログ列表）：火曜日、水曜日、木曜日；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26021628",
+    "name": {
+      "ja": "三国志"
+    },
+    "region": "uji",
+    "category": "担々麺、四川料理、ラーメン",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-sangokushi-uji",
+    "ratings": {
+      "tabelog": 3.52,
+      "tabelogReviews": 307,
+      "google": 4.4,
+      "googleReviews": 435
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26021628/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:三室戸駅 22m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26008183",
+    "name": {
+      "ja": "ますだ茶舗"
+    },
+    "region": "uji",
+    "category": "甘味処、ソフトクリーム",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（uji：2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.49,
+      "tabelogReviews": 300
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26008183/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（京阪）駅 435m；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26033397",
+    "name": {
+      "ja": "アンティカ ピッツェリア ラジネッロ"
+    },
+    "region": "uji",
+    "category": "ピザ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（uji：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 297
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26033397/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:宇治（ＪＲ）駅 367m；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26041890",
+    "name": {
+      "ja": "HATENA BURGER"
+    },
+    "region": "uji",
+    "category": "カフェ、ハンバーガー",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 240
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26041890/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:小倉駅 197m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26008089",
+    "name": {
+      "ja": "地鶏家心"
+    },
+    "region": "uji",
+    "category": "焼き鳥、焼酎バー、居酒屋",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（uji：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.48,
+      "tabelogReviews": 226
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26008089/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:宇治（ＪＲ）駅 244m；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26005964",
+    "name": {
+      "ja": "三星園 上林三入本店"
+    },
+    "region": "uji",
+    "category": "甘味処、かき氷、カフェ",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "甘味的子地區上限外（uji：2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.5,
+      "tabelogReviews": 218
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2607/A260701/26005964/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇治（京阪）駅 394m；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26000838",
+    "name": {
+      "ja": "佐近"
+    },
+    "region": "uzumasa",
+    "category": "創作料理、日本料理、フレンチ",
+    "status": "included",
+    "criteria": [
+      "G"
+    ],
+    "reason": null,
+    "pointId": "kyoto-sakon",
+    "ratings": {
+      "tabelog": 3.32,
+      "tabelogReviews": 165,
+      "google": 4.2,
+      "googleReviews": 182
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26000838/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:御室仁和寺駅 147m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(20〜30人可)；預算（食べログ列表）：夜 6000～7999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26000837",
+    "name": {
+      "ja": "京料理 萬長"
+    },
+    "region": "uzumasa",
+    "category": "日本料理、うなぎ",
+    "status": "included",
+    "criteria": [
+      "G",
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-mancho",
+    "ratings": {
+      "tabelog": 3.39,
+      "tabelogReviews": 58,
+      "google": 4.1,
+      "googleReviews": 110
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26000837/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:妙心寺駅 145m；個室（食べログ列表）：完全個室有(6〜30人可)；預算（食べログ列表）：夜 5000～5999／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26003461",
+    "name": {
+      "ja": "竹とり"
+    },
+    "region": "uzumasa",
+    "category": "居酒屋、焼き鳥、鍋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 51
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26003461/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:花園駅 173m；個室（食べログ列表）：完全個室有(8〜30人可)；預算（食べログ列表）：夜 4000～4999／昼 -"
+  },
+  {
+    "key": "tabelog-26000112",
+    "name": {
+      "ja": "精進料理 阿じろ 本店"
+    },
+    "region": "uzumasa",
+    "category": "日本料理",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.51,
+      "tabelogReviews": 49
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26000112/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:花園駅 392m；定休（食べログ列表）：水曜日；個室（食べログ列表）：個室有(2〜8人、30人以上可)"
+  },
+  {
+    "key": "tabelog-26002519",
+    "name": {
+      "ja": "花ごころ"
+    },
+    "region": "uzumasa",
+    "category": "日本料理、料理旅館",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 46
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26002519/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：和食・割烹；地址：駅:花園駅 479m；個室（食べログ列表）：個室有(6〜30人、30人以上可)；預算（食べログ列表）：夜 3000～3999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26016798",
+    "name": {
+      "ja": "石屋 太秦店"
+    },
+    "region": "uzumasa",
+    "category": "焼肉、ホルモン",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 43
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26016798/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:常盤駅 366m；個室（食べログ列表）：個室有(20〜30人可)；預算（食べログ列表）：夜 3000～3999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26019491",
+    "name": {
+      "ja": "キネマ・キッチン"
+    },
+    "region": "uzumasa",
+    "category": "カフェ、日本料理、バー",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.12,
+      "tabelogReviews": 39
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26019491/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:撮影所前駅 223m；個室（食べログ列表）：個室有(10〜20人可)；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26027891",
+    "name": {
+      "ja": "大衆酒場 天 太秦天神川店"
+    },
+    "region": "uzumasa",
+    "category": "居酒屋、鳥料理、もつ鍋",
+    "status": "over-limit",
+    "criteria": [
+      "G"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.17,
+      "tabelogReviews": 27
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26027891/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：居酒屋；地址：駅:太秦天神川駅 77m；個室（食べログ列表）：完全個室有(10〜20人可)；預算（食べログ列表）：夜 3000～3999／昼 3000～3999"
+  },
+  {
+    "key": "tabelog-26001737",
+    "name": {
+      "ja": "ラーメン 親爺"
+    },
+    "region": "uzumasa",
+    "category": "ラーメン",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-ramen-oyaji",
+    "ratings": {
+      "tabelog": 3.53,
+      "tabelogReviews": 409,
+      "google": 4.2,
+      "googleReviews": 991
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26001737/"
+    },
+    "contexts": [
+      "lunch"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:花園駅 594m；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26040084",
+    "name": {
+      "ja": "らぁ麺や ふぢとら"
+    },
+    "region": "uzumasa",
+    "category": "ラーメン",
+    "status": "included",
+    "criteria": [
+      "S"
+    ],
+    "reason": null,
+    "pointId": "kyoto-fujitora",
+    "ratings": {
+      "tabelog": 3.67,
+      "tabelogReviews": 297,
+      "google": 4.2,
+      "googleReviews": 272
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26040084/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:花園駅 398m；定休（食べログ列表）：火曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26032124",
+    "name": {
+      "ja": "Kew"
+    },
+    "region": "uzumasa",
+    "category": "カフェ、ドーナツ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.62,
+      "tabelogReviews": 262
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26032124/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:龍安寺駅 141m；定休（食べログ列表）：月曜日、火曜日、金曜日；預算（食べログ列表）：夜 -／昼 2000～2999"
+  },
+  {
+    "key": "tabelog-26002224",
+    "name": {
+      "ja": "てんぐ 常盤店"
+    },
+    "region": "uzumasa",
+    "category": "ラーメン、餃子、飲茶・点心",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.47,
+      "tabelogReviews": 243
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26002224/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:常盤駅 237m；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26005945",
+    "name": {
+      "ja": "菜館Wong"
+    },
+    "region": "uzumasa",
+    "category": "中華料理、飲茶・点心",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.57,
+      "tabelogReviews": 219
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26005945/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:帷子ノ辻駅 78m；定休（食べログ列表）：月曜日、日曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26013051",
+    "name": {
+      "ja": "新福菜館 天神川店"
+    },
+    "region": "uzumasa",
+    "category": "ラーメン、餃子",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.15,
+      "tabelogReviews": 197
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26013051/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:嵐電天神川駅 743m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26011811",
+    "name": {
+      "ja": "洋食のチコレ"
+    },
+    "region": "uzumasa",
+    "category": "洋食",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 100
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26011811/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：洋食・義式；地址：駅:蚕ノ社駅 234m；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26005988",
+    "name": {
+      "ja": "スマート珈琲店 太秦店"
+    },
+    "region": "uzumasa",
+    "category": "喫茶店、パンケーキ、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.35,
+      "tabelogReviews": 86
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26005988/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:帷子ノ辻駅 65m；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 -／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26032935",
+    "name": {
+      "ja": "焼肉処 大翔苑"
+    },
+    "region": "uzumasa",
+    "category": "焼肉、ホルモン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.38,
+      "tabelogReviews": 84
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26032935/"
+    },
+    "contexts": [
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：燒肉・肉料理；地址：駅:花園駅 120m；定休（食べログ列表）：火曜日、水曜日；預算（食べログ列表）：夜 6000～7999／昼 -"
+  },
+  {
+    "key": "tabelog-26006300",
+    "name": {
+      "ja": "ラーメンかみのばし大栄"
+    },
+    "region": "uzumasa",
+    "category": "ラーメン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.29,
+      "tabelogReviews": 82
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26006300/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市右京区；定休（食べログ列表）：水曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26024357",
+    "name": {
+      "ja": "キキダウンステアーズベーカリー"
+    },
+    "region": "uzumasa",
+    "category": "パン、サンドイッチ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.37,
+      "tabelogReviews": 80
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26024357/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:宇多野駅 360m；定休（食べログ列表）：月曜日"
+  },
+  {
+    "key": "tabelog-26014933",
+    "name": {
+      "ja": "ぴちぴち金魚"
+    },
+    "region": "uzumasa",
+    "category": "カフェ、パスタ",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 79
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26014933/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:花園駅 52m；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 2000～2999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26035178",
+    "name": {
+      "ja": "京都餃子 テツノイタ"
+    },
+    "region": "uzumasa",
+    "category": "餃子",
+    "status": "over-limit",
+    "criteria": [
+      "S"
+    ],
+    "reason": "子地區上限外（uzumasa：G 1 家、S 3 家、S 同類型 2 家，依口コミ數）",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.46,
+      "tabelogReviews": 71
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26035178/"
+    },
+    "contexts": [
+      "lunch",
+      "dinner"
+    ],
+    "mentions": [],
+    "note": "類型：其他；地址：駅:京都市右京区；定休（食べログ列表）：月曜日、火曜日、水曜日；預算（食べログ列表）：夜 ～999／昼 ～999"
+  },
+  {
+    "key": "tabelog-26021371",
+    "name": {
+      "ja": "タンタシオン・ダンジュ 太子道店"
+    },
+    "region": "uzumasa",
+    "category": "洋菓子、パン",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.31,
+      "tabelogReviews": 68
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26021371/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:花園駅 599m；定休（食べログ列表）：水曜日、木曜日"
+  },
+  {
+    "key": "tabelog-26029634",
+    "name": {
+      "ja": "ハシゴカフェ キョウト"
+    },
+    "region": "uzumasa",
+    "category": "カフェ、喫茶店、カレー",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.2,
+      "tabelogReviews": 67
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26029634/"
+    },
+    "contexts": [
+      "snack",
+      "cafe"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:常盤駅 203m；定休（食べログ列表）：水曜日、木曜日；預算（食べログ列表）：夜 1000～1999／昼 1000～1999"
+  },
+  {
+    "key": "tabelog-26013958",
+    "name": {
+      "ja": "菓子処 京ひみこ"
+    },
+    "region": "uzumasa",
+    "category": "和菓子、甘味処",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.22,
+      "tabelogReviews": 64
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26013958/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:撮影所前駅 282m；定休（食べログ列表）：日曜日；預算（食べログ列表）：夜 -／昼 ～999"
+  },
+  {
+    "key": "tabelog-26004715",
+    "name": {
+      "ja": "うずまさふたば"
+    },
+    "region": "uzumasa",
+    "category": "和菓子、大福",
+    "status": "not-included",
+    "criteria": [],
+    "reason": "未符合 G／S",
+    "pointId": null,
+    "ratings": {
+      "tabelog": 3.33,
+      "tabelogReviews": 61
+    },
+    "links": {
+      "tabelog": "https://tabelog.com/kyoto/A2601/A260402/26004715/"
+    },
+    "contexts": [
+      "snack"
+    ],
+    "mentions": [],
+    "note": "類型：咖啡・甜點；地址：駅:撮影所前駅 90m；定休（食べログ列表）：火曜日"
+  }
+]
