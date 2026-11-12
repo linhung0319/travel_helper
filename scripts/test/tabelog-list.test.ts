@@ -95,6 +95,16 @@ test('壓縮行 → parseLines 讀回（分段接起來、段落標記拿掉）'
   assert.equal(tabelogUrl(shop), 'https://tabelog.com/mie/A2403/A240303/24006418/');
 });
 
+test('壓縮行：沒有住所的版型（大阪、京都）住所欄放最近車站；京都、滋賀的店家網址（T86c）', () => {
+  const s = parseCard({ href: '/kyoto/A2601/A260301/26002504/', name: '山元麺蔵', areaGenre: '東山駅 623m / うどん', score: '3.95', reviews: '2,840', lunch: '￥1,000～￥1,999' });
+  const line = toLine(s);
+  assert.equal(line, '26002504|山元麺蔵|うどん|3.95|2840|||1000～1999|駅:東山駅 623m|||A2601-A260301|');
+  const shop = parseLines(`#P|祇園|1-1/1|0\n${line}\n#END\n`).pages[0].shops[0];
+  assert.equal(shop.address, '駅:東山駅 623m');
+  assert.equal(tabelogUrl(shop), 'https://tabelog.com/kyoto/A2601/A260301/26002504/');
+  assert.equal(tabelogUrl({ id: '25000117', area: 'A2501-A250101' }), 'https://tabelog.com/shiga/A2501/A250101/25000117/');
+});
+
 test('parseLines：沒讀到 #END、件數不合 → complete false、warnings', () => {
   const r = parseLines('[1/2]#P|x|1-2/30|0\n1|a|b|3.1|20||||||||\n');
   assert.equal(r.complete, false);
