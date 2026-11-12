@@ -531,7 +531,9 @@ T87 京都交通 ─────────────────┴──►
   - **網站已經上線**（T30）：大阪是部署前加的，京都要多一步正式環境重匯 D1、重新部署（T89，👤）。
   - **地區那一層是大阪之後才有的**（T40、T51）：地區和子地區的 `intro`、地區照片併進 T86d，不另開任務。
 - **T86a 和 T87 同時開始**：T87 的路線先照 T86a 預定的子地區抓，定案後再補。T86b、T86c 都用 Chrome，不同時跑。
+- **T86a、T87 並行時 `areas.json` 怎麼分**：T87 的車站要寫 `area: kyoto`／`biwako`，這兩區要先存在。所以 **T86a 第一步先加兩區的骨架**（`id`、`name`、`municipality`、`definition`、`tripOrder`、`center`、`bbox`、空的 `regions` 和 `stations`、`sources`；validate 通過），單獨一個 commit 先 merge 回 master，再繼續做子地區和景點。T87 先做查資料、筆記、腳本、`timetables/`，等骨架進了 master 再 merge 進自己的分支寫 `stations.json` 和兩區的 `stations`（T86a 之後不碰 `stations` 這個欄位，T87 不碰其他欄位）。CONVENTIONS 兩邊各寫各的小節（T86a：§1 區域 ID、§2 區域那幾列、§4「京都的做法」；T87：§1.5 車站 ID、§2 交通那幾列、§3）。
 - **T88 和 T86b、T86c 可以並行**（只改 `packages/engine`、資料載入、站名顯示）。
+- **測試的原則**（2026-11-12 👤）：不要每做完一小步就跑一次大的測試。做的過程只跑需要的：資料任務跑 `npm run validate`；改了腳本、schema、引擎就跑那幾支單元測試。整包的 `npm test`、`typecheck` 在任務最後、merge 前跑一次；e2e 只有 T88（受影響的幾支）和 T89（完整三組，一次）跑，T86a～T86d、T87 不跑 e2e。
 - **e2e**：T88、T89 只跑受影響的幾支；T89 最後跑一次完整三組（地區多一顆、概覽多一張卡，容易有照順序、照數量寫的斷言）。
 
 ### 同時可以開幾個 session
