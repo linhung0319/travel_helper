@@ -46,8 +46,10 @@
       "official": "https://www.yumotokan.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=6601559692674941403"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "A",
     "nearestStation": {
       "id": "jr-ogotoonsen",
       "mode": "walk",
@@ -234,8 +236,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "雄琴溫泉約 1200 年歷史的老舖旅館（54 室），有湖景大浴場、5 樓和最上層的露天風呂。晚餐是京會席、近江牛，在食事處或個室吃，16～20 點選時段。楽天 4.52（949 則）、Google 4.4；一泊二食每人約 24,000 円（2/9 楽天 3 間×5 人的最低價，2/10 沒有 15 人組合；小學生 80%）。",
+      "pros": [
+        "楽天 4.52、Google 4.4、楽天餐 4.60；京會席、近江牛",
+        "湖景大浴場、2 處高樓露天、2 處貸切露天，泉質 pH9.0",
+        "10 畳和室可住 5 人，15 人 3 間；有琴音ファミリースイート（5 人、有床）"
+      ],
+      "cons": [
+        "官網自己說不是無障礙旅館，館內有段差；電梯沒寫",
+        "員工態度、服務糾紛的評論約 5 則；催收盤子、份量等料理抱怨 3 則",
+        "2/10 楽天沒有 15 人組合；團體方案、15 人能不能同一處吃要電話問"
+      ],
+      "basedOn": [
+        "https://www.yumotokan.co.jp/",
+        "https://www.yumotokan.co.jp/room/kotone-family.html",
+        "https://www.yumotokan.co.jp/universal/entrance/index.htm",
+        "https://www.yumotokan.co.jp/spa/",
+        "https://travel.rakuten.co.jp/HOTEL/137819/137819.html",
+        "https://maps.google.com/?cid=6601559692674941403"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.52（949 則）、Google 4.4，琵琶湖（伊勢調整版）的 4；5 要楽天 4.6 以上",
+        "meals": "一泊二食，楽天餐 4.60；京會席、近江牛，2～3 月的冬季限定會席要再確認今年有沒有",
+        "groupFit": "54 室、10 畳和室 5 人、ファミリースイート 5 人；沒有團體方案，要電話問（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "電梯沒有來源；官網說館內有段差、不是無障礙旅館，玄關有斜坡、可借輪椅；部分房有床",
+        "accessEase": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的免費接送（13:30～19:00 打電話，約 5 分）；一次載幾人沒寫"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-ryokusuitei",
@@ -284,8 +325,10 @@
       "official": "https://ryokusuitei.com/",
       "googleMaps": "https://maps.google.com/?cid=18041228338030064488"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "S",
     "nearestStation": {
       "id": "jr-ogotoonsen",
       "mode": "walk",
@@ -495,8 +538,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "雄琴溫泉的湖畔旅館（69 室），57 間客房附露天風呂，晚餐是近江牛涮涮鍋會席。萬葉（和室 2 間）8 人、びわの風 和洋室 7 人，15 人 2～3 間就住得下，大宴會場約 80 人可以全員一起吃。楽天 4.65（2,584 則）、Google 4.4；一泊二食每人約 27,015 円（2/9、2/10 楽天 15 人組合的最低價，小學生 70%）。",
+      "pros": [
+        "楽天 4.65（2,584 則）、楽天餐 4.73，雄琴分數最高；近江牛涮涮鍋會席，冬天可加點蟹、湖魚天婦羅",
+        "15 人 2～3 間住得下（萬葉 8 人＋和洋室 7 人），有宴會場可以全員一起吃",
+        "電梯 3 台、無障礙房 2 間、可借輪椅，有床的房多"
+      ],
+      "cons": [
+        "價位高但設施舊、像商務旅館的評論 2～3 則；料理、服務和價格不符 2 則",
+        "大浴場入口有段差、露天要走階梯，大浴場不能坐輪椅入浴",
+        "1 則評論說大浴場發生偷拍事件（約 2025）；接送車一次載幾人沒寫"
+      ],
+      "basedOn": [
+        "https://ryokusuitei.com/room/room.html",
+        "https://ryokusuitei.com/group/group.html",
+        "https://ryokusuitei.com/food/Commitment.html",
+        "https://ryokusuitei.com/barrierfree.html",
+        "https://travel.rakuten.co.jp/HOTEL/3165/3165.html",
+        "https://maps.google.com/?cid=18041228338030064488"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 5,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.65（2,584 則）、Google 4.4，琵琶湖（伊勢調整版）的 5；低分評論有料理・服務 2 則、偷拍事件 1 則，沒有同一主題 3 則以上",
+        "meals": "一泊二食，楽天餐 4.73；近江牛涮涮鍋會席，冬季單點蟹、本もろこ、わかさぎ天婦羅",
+        "groupFit": "官網有團體頁和團體窗口，大宴會場約 80 人可以全員用餐；萬葉 8 人＋和洋室 7 人可以 2 間住下（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "官網寫有電梯 3 台、無障礙房 2 間、可借輪椅，有床的房多；大浴場入口有段差、露天要走階梯",
+        "accessEase": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的免費接送（東口 4 號乘車處，到站打電話，約 7 分）；一次載幾人沒寫"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-hanakaido",
@@ -545,8 +627,10 @@
       "official": "https://www.hanakaido.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=1138852597221722077"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "S",
     "nearestStation": {
       "id": "jr-ogotoonsen",
       "mode": "walk",
@@ -735,8 +819,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "雄琴溫泉的旅館（43 室），晚餐、早餐在食事會場吃，冬天有本鴨鍋、松葉蟹炭烤。和洋室 2～6 人有 11 間，15 人 3 間就住得下。楽天 4.60（712 則）、Google 4.4；一泊二食每人約 27,500 円（2/9、2/10 楽天 15 人組合的最低價，小學生 70%）。",
+      "pros": [
+        "楽天 4.60、楽天餐 4.67；近江牛涮涮鍋或壽喜燒，冬季限定本鴨鍋、松葉蟹炭烤",
+        "6 人的和洋室（有床）11 間，15 人 3 間就住得下",
+        "有無障礙雙床房、可以推輪椅靠近浴池的貸切風呂"
+      ],
+      "cons": [
+        "個室用餐要加價（和個室 4,400 円、洋個室 2,200 円）而且看空位，15 人能不能同一處吃沒寫",
+        "電梯、大浴場樓層官網沒寫；有刺青不能進大浴場",
+        "員工服務差的低分 2 則（4～8 年前）；和室沒有座椅 1 則"
+      ],
+      "basedOn": [
+        "https://www.hanakaido.co.jp/room/",
+        "https://www.hanakaido.co.jp/cuisine/",
+        "https://www.hanakaido.co.jp/faq/",
+        "https://www.hanakaido.co.jp/access/",
+        "https://travel.rakuten.co.jp/HOTEL/8798/8798.html",
+        "https://maps.google.com/?cid=1138852597221722077"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.60（712 則）、Google 4.4，琵琶湖（伊勢調整版）的 5；低分評論多是 4 年以上的舊評論，沒有集中的主題",
+        "meals": "一泊二食，楽天餐 4.67；冬季限定本鴨鍋、松葉蟹炭烤",
+        "groupFit": "43 室、和洋室 2～6 人 11 間，15 人 3 間；沒有團體方案，晚餐在食事會場、個室要加價（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有無障礙雙床房（當成館內可以坐輪椅移動），和洋室、洋室ツイン有床；大浴場樓層沒寫",
+        "accessEase": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的免費接送（到站打電話，約 5 分）；一次載幾人沒寫"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-komorebi",
@@ -785,8 +908,10 @@
       "official": "https://www.komolebi.jp/",
       "googleMaps": "https://maps.google.com/?cid=6954537263574466686"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "jr-ogotoonsen",
       "mode": "walk",
@@ -987,8 +1112,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "雄琴溫泉的小旅館（20 室），湯元舘的姊妹館，晚餐在 1 樓餐廳「風香」。和室（大）6 人 1 間、和洋室 4 人 4 間、和室 4 人 10 間，15 人約 4～5 間。楽天 4.24（494 則）、Google 4.3；一泊二食每人約 10,700 円（2/9、2/10 楽天 15 人組合的最低價），雄琴最便宜。",
+      "pros": [
+        "一泊二食每人約 10,700 円，是雄琴其他旅館的一半以下",
+        "楽天餐 4.51；有 32 人的宴會場，團體晚餐可能改在大廣間",
+        "每人加 700 円可以用姊妹館湯元舘的大浴場、貸切露天"
+      ],
+      "cons": [
+        "建築舊、餐點品質不穩、食物過敏處理失誤的評論（多是 2～9 年前）",
+        "有床的房只有 2 樓 6 間；電梯官網沒寫",
+        "楽天的位置評分 3.77 偏低；全館包下要電話問"
+      ],
+      "basedOn": [
+        "https://www.komolebi.jp/rooms/",
+        "https://www.komolebi.jp/meal/",
+        "https://www.komolebi.jp/facility/",
+        "https://www.komolebi.jp/access/",
+        "https://travel.rakuten.co.jp/HOTEL/137820/137820.html",
+        "https://maps.google.com/?cid=6954537263574466686"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.24（494 則）、Google 4.3，都不到琵琶湖（伊勢調整版）4 的門檻",
+        "meals": "一泊二食，楽天餐 4.51；有評論說餐點品質不穩、過敏處理失誤（多是舊評論）",
+        "groupFit": "20 室、和室（大）6 人、和洋室 4 人、和室 4 人，15 人 4～5 間；宴會場 32 人，沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "電梯沒有來源；有床的和洋室、和風ツイン 6 間在 2 樓",
+        "accessEase": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的免費接送（到站打電話，約 5 分）；一次載幾人沒寫"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-biwako-grand-hotel",
@@ -1037,8 +1201,10 @@
       "official": "https://www.biwakogh.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=5912721437813050324"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "jr-ogotoonsen",
       "mode": "walk",
@@ -1267,7 +1433,46 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "雄琴溫泉最大的旅館（約 140～190 室，各網站說法不一），東館、西館以和室為主，另有高級館「京近江」。有依人數安排的團體宴席，晚餐是真鯛、近江牛、近江鴨的會席。楽天 4.17（870 則）、Google 3.9；一泊二食每人約 16,500 円、附早餐約 12,100 円（2/9、2/10 楽天 3 間×5 人的最低價，西館和室）。",
+      "pros": [
+        "有團體、親戚旅行用的宴席（依人數安排個室），15 人可以全員一起吃",
+        "湖景露天、庭園露天、貸切風呂 4 處",
+        "一泊二食每人約 16,500 円，比雄琴其他大型旅館便宜"
+      ],
+      "cons": [
+        "員工態度、應對差的評論 6 則，料理難吃 3 則（多是 1～3 年前）",
+        "西館房間只有淋浴間，冬天走廊、連絡通道沒有暖氣，從大浴場回房會冷（2026 年 1 月）",
+        "電梯、無障礙官網沒寫；有床的房只有東館雙床房和京近江"
+      ],
+      "basedOn": [
+        "https://www.biwakogh.co.jp/",
+        "https://www.biwakogh.co.jp/room/",
+        "https://www.biwakogh.co.jp/cuisine/",
+        "https://www.biwakogh.co.jp/plan/educational-travel.html",
+        "https://travel.rakuten.co.jp/HOTEL/106122/106122.html",
+        "https://maps.google.com/?cid=5912721437813050324"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 2,
+        "meals": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.17、Google 3.9 是評價普通，加上員工態度 6 則、料理 3 則的低分評論（同大阪 大和屋本店）",
+        "meals": "一泊二食，楽天餐 4.28；料理難吃、出菜慢的評論 4 則",
+        "groupFit": "官網有團體、親戚旅行的介紹和依人數安排的宴席，接送也依人數安排；各房型人數沒寫（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "電梯沒有來源；東館雙床房、京近江有床，其他鋪布團；西館冬天走廊冷",
+        "accessEase": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的免費接送（到站打電話；團體依人數安排，要先問）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   }
 ]

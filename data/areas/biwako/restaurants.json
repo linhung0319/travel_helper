@@ -113,7 +113,7 @@
       "instagram": "@kyara_gram"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -251,6 +251,46 @@
       "conflicts": [
         "15 人個室是座敷還是掘りごたつ，官網和食べログ都沒寫"
       ]
+    },
+    "summary": {
+      "text": "彥根的近江牛壽喜燒、會席老店，彥根城步行約 13 分，JR 彥根站步行約 15～20 分（計程車 5 分）。すき焼き 極上肉 9,000 円起（2 人起）、午餐每人約 4,000～4,999 円；82 席，個室 10～20 人，可電話或網路預約，會席要 7 天前訂。11:30～14:30、17:00～21:30，週二公休。",
+      "pros": [
+        "食べログ 3.60（372 則）、Google 4.3（902 則），彥根的近江牛名店",
+        "個室最多 20 人、可預約，15 人可以同一間（要電話確認）",
+        "子供可，官網有兒童菜單（要問）；全席禁菸"
+      ],
+      "cons": [
+        "週二公休（2/9 休）",
+        "座位是座敷和掘りごたつ，15 人的個室是哪一種沒寫",
+        "午餐開店前就排隊；離彥根站遠，長輩建議搭計程車；另收服務費"
+      ],
+      "basedOn": [
+        "https://kyara.sennaritei.jp/",
+        "https://kyara.sennaritei.jp/course/",
+        "https://kyara.sennaritei.jp/access/",
+        "https://tabelog.com/shiga/A2503/A250303/25000722/",
+        "https://maps.google.com/?cid=2974443577514896989"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.60（372 則）、Google 4.3（902 則），琵琶湖門檻的 4；5 要食べログ 3.70、1,000 則以上；低分評論多在 3～5 年前，不調",
+        "localFlavor": "近江牛壽喜燒、會席的老店",
+        "groupFit": "個室 10～20 人、可預約（15 人要電話確認同一間）",
+        "elderFit": "座敷和掘りごたつ，沒有桌椅的來源；離彥根站步行 15～20 分，建議計程車",
+        "kidsFit": "子供可，官網有兒童菜單（要問）"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -367,7 +407,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -482,6 +522,44 @@
       "conflicts": [
         "Google 舊評論寫營業到 16:00，官網寫晚餐到 19:30"
       ]
+    },
+    "summary": {
+      "text": "彥根站西口步行約 8 分、彥根城護城河旁的手打蕎麥麵店，天ぷらもりそば約 1,700 円、鴨そば約 1,500 円，午餐每人約 1,200～2,000 円。60 席，2 樓座敷最多 30 人、包場可商量（電話預約），1 樓有桌椅和掘りごたつ。11:30～15:00、17:00～19:30，週三公休。",
+      "pros": [
+        "食べログ 3.49（292 則）、Google 4.1（666 則），彥根城順路的蕎麥麵",
+        "2 樓座敷坐得下 15 人，可預約、包場可商量",
+        "離彥根站近，價格平實；全席禁菸"
+      ],
+      "cons": [
+        "15 人用的 2 樓座敷要爬樓梯、坐地板",
+        "週三公休（2/10 休）；連休午餐要排 30～45 分",
+        "能不能帶小孩沒寫；評論有出菜慢、麵偏軟的意見"
+      ],
+      "basedOn": [
+        "http://www.ichien.jp/tsurukian/",
+        "https://tabelog.com/shiga/A2503/A250303/25000628/",
+        "https://maps.google.com/?cid=7537477624489267677"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.1，琵琶湖門檻的 3（4 要食べログ 3.55）；負評主題分散，不調",
+        "localFlavor": "手打蕎麥麵",
+        "groupFit": "2 樓座敷最多 30 人、可預約，包場可商量",
+        "elderFit": "15 人用的 2 樓座敷要爬樓梯、坐地板；分組可坐 1 樓桌椅",
+        "kidsFit": "小孩規定沒有來源，蕎麥、天婦羅是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -572,7 +650,7 @@
       "instagram": "@chanpontei"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -689,7 +767,44 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "近江ちゃんぽん（近江強棒麵）的本店，彥根站西口步行約 1 分，每人 999 円以下，有兒童餐。32 席（吧台 5、2 人桌 11、4 人桌 2），不能預約，15 人只能分組分桌。11:00～22:30，公休沒寫。",
+      "pros": [
+        "近江ちゃんぽん的本店，彥根站出來就到",
+        "每人 999 円以下，有兒童餐；全席禁菸",
+        "營業到 22:30，午晚都能吃"
+      ],
+      "cons": [
+        "不能預約，4 人桌只有 2 張，15 人要分組輪流",
+        "公休沒寫，2/9～2/12 開不開要確認",
+        "Google 3.8，評價普通"
+      ],
+      "basedOn": [
+        "https://tabelog.com/shiga/A2503/A250303/25000361/",
+        "https://maps.google.com/?cid=2983655099485087950"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.46（602 則）、Google 3.8，琵琶湖門檻的 3",
+        "localFlavor": "近江ちゃんぽん的本店（滋賀名物）",
+        "groupFit": "不能預約，4 人桌只有 2 張",
+        "elderFit": "桌椅和吧台，彥根站步行 1 分",
+        "kidsFit": "子供可、有兒童餐"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-yoshichi-katata",
@@ -814,7 +929,7 @@
       "instagram": "@ramenyoshichi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -848,7 +963,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "biwako-biwako-grand-hotel",
+        "id": "biwako-hanakaido",
         "walkMinutes": 63,
         "walkSource": "osrm"
       }
@@ -936,6 +1051,44 @@
       "conflicts": [
         "公休：官網寫無定休，食べログ寫不定休"
       ]
+    },
+    "summary": {
+      "text": "堅田站步行約 7 分的豚骨拉麵店，とんこつらーめん、魚介とんこつつけ麺、からあげ定食，每人 999 円以下。19 席（吧台 9、2 人桌 3、4 人桌 1），不能預約，只適合分組；有停車場。11:00～15:00、18:00～23:00，官網寫無定休。",
+      "pros": [
+        "食べログ 3.66（797 則）、Google 4.1（974 則），堅田一帶分數最高",
+        "便宜，子供可，有炸雞定食",
+        "幾乎每天營業，午晚都開；全席禁菸"
+      ],
+      "cons": [
+        "只有 19 席、不能預約，15 人要分批",
+        "沒有兒童餐；豚骨拉麵和滋賀特產無關",
+        "公休官網寫無、食べログ寫不定休；離浮御堂步行約 28 分"
+      ],
+      "basedOn": [
+        "https://yoshichi.jp",
+        "https://tabelog.com/shiga/A2501/A250101/25005689/",
+        "https://maps.google.com/?cid=4600683466144842007"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.66（797 則）、Google 4.1（974 則），琵琶湖門檻的 4；5 要食べログ 1,000 則以上、Google 4.2",
+        "localFlavor": "豚骨拉麵，和滋賀特產無關",
+        "groupFit": "19 席、不能預約",
+        "elderFit": "桌椅和吧台，堅田站步行約 7 分",
+        "kidsFit": "子供可，有拉麵、炸雞等熟食，沒有兒童餐"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1052,7 +1205,7 @@
       "instagram": "@otsu.daikichi.sta"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1093,7 +1246,7 @@
       },
       {
         "id": "biwako-biwako-grand-hotel",
-        "walkMinutes": 65,
+        "walkMinutes": 66,
         "walkSource": "osrm"
       }
     ],
@@ -1195,6 +1348,45 @@
       "conflicts": [
         "晚餐 L.O.：官網 20:00，舊評論說首頁寫 20:30"
       ]
+    },
+    "summary": {
+      "text": "精肉店直營的近江牛燒肉，堅田站步行約 8～12 分。午餐近江牛網燒 2,980～3,850 円，晚餐套餐 6,600～11,000 円；72 席，掘りごたつ個室 10～30 人，最多可訂 40 人、20～50 人可包場，有兒童漢堡排、燒肉重。11:00～14:30、17:00～21:00，週三和第 2・3 個週二公休；午餐 90 分、晚餐 120 分制。",
+      "pros": [
+        "精肉店直營的近江牛燒肉，Google 4.2（729 則）",
+        "掘りごたつ個室坐得下 15 人，可電話或網路預約",
+        "有兒童餐、可坐輪椅入店；全席禁菸"
+      ],
+      "cons": [
+        "週三、第 2・3 個週二公休（2/9、2/10 都休）",
+        "2 樓要走樓梯、電梯沒寫；個室只用布簾隔開",
+        "午餐 90 分制；評論有服務、最後點餐時間的抱怨"
+      ],
+      "basedOn": [
+        "https://www.omibeef.com/",
+        "https://tabelog.com/shiga/A2501/A250101/25008105/",
+        "https://tabelog.com/shiga/A2501/A250101/25008105/party/",
+        "https://maps.google.com/?cid=5217366362730651427"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（196 則）、Google 4.2，琵琶湖門檻的 3（4 要食べログ 3.55）；負評是服務和預約混在一起、多在 2022～2025，不調",
+        "localFlavor": "近江牛燒肉，精肉店直營",
+        "groupFit": "最大予約 40 人、個室 10～30 人、可包場",
+        "elderFit": "團體個室是掘りごたつ；2 樓要走樓梯、電梯沒寫，1 樓可坐輪椅入店",
+        "kidsFit": "子供可、有兒童漢堡排和兒童燒肉重"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1311,7 +1503,7 @@
       "instagram": "@sobadokoro.mitoro"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1427,6 +1619,44 @@
       "conflicts": [
         "晚餐：官網 L.O. 20:30，食べログ寫到 21:00"
       ]
+    },
+    "summary": {
+      "text": "堅田的蕎麥麵、丼飯老店，堅田站步行約 11 分、浮御堂步行約 15 分。親子丼 1,010 円、天ぷら 1,330 円、肉なんば 1,110 円；40 席、不能預約，有兒童菜單。11:00～15:00、17:00～21:00，週二和第 4 個週一公休，賣完就打烊。",
+      "pros": [
+        "食べログ 3.49、Google 4.1（518 則），浮御堂順路",
+        "便宜（每人 700～1,400 円），有兒童菜單",
+        "午晚都開；全席禁菸"
+      ],
+      "cons": [
+        "不能預約、無個室，15 人只能分組等位",
+        "座位只查到座敷，有沒有桌椅沒寫",
+        "週二公休（2/9 休）；賣完就打烊"
+      ],
+      "basedOn": [
+        "https://mitoro.foodre.jp",
+        "https://tabelog.com/shiga/A2501/A250101/25000472/",
+        "https://maps.google.com/?cid=17714322095153967338"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.1，琵琶湖門檻的 3（4 要食べログ 3.55）",
+        "localFlavor": "蕎麥麵、丼飯",
+        "groupFit": "40 席、不能預約",
+        "elderFit": "座位只查到座敷；不能預約要等位",
+        "kidsFit": "子供可、有兒童菜單"
+      },
+      "confidence": "low",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1543,7 +1773,7 @@
       "instagram": "@tiffany_oumi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1693,6 +1923,46 @@
         "大廣間人數：官網最多 40 人，食べログ最大予約 56 人",
         "晚餐：官網 L.O. 20:00，食べログ寫到 21:00"
       ]
+    },
+    "summary": {
+      "text": "近江八幡站北口步行約 3～4 分、精肉店カネ吉山本樓上的近江牛牛排、鐵板燒。午餐ステーキランチ 4,950 円、漢堡排 3,850 円起，晚餐コース 9,000 円起；120 席，3 樓有和室個室和最多 40 人的大廣間，可預約、20～50 人可包場，有兒童菜單。11:30～15:00、17:00～21:00，週二公休（遇假日營業）。",
+      "pros": [
+        "食べログ 3.66（811 則）、Google 4.2（1,444 則），近江八幡站前的近江牛",
+        "3 樓大廣間坐得下 15 人，可預約",
+        "有兒童菜單、可推嬰兒車、可坐輪椅入店"
+      ],
+      "cons": [
+        "近年評論多說服務生疏、上菜慢（約 5 則，2025～2026）",
+        "週二公休（2/9 休）；大廣間是座敷還是椅子、有沒有電梯沒寫",
+        "分煙，不是全席禁菸；評論有料理和價位不符的意見"
+      ],
+      "basedOn": [
+        "https://www.oumigyuu.jp/tiffany/floor",
+        "https://oumigyuu.co.jp/pages/store-information-tiffany",
+        "https://tabelog.com/shiga/A2503/A250301/25000119/",
+        "https://tabelog.com/shiga/A2503/A250301/25000119/party/",
+        "https://maps.google.com/?cid=8546243303189252811"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.66（811 則）、Google 4.2，照數字 4，低分評論集中在服務（約 5 則，2025～2026），負評往下調一級",
+        "localFlavor": "近江牛牛排、鐵板燒（精肉店樓上）",
+        "groupFit": "最大予約 56 人、3 樓大廣間最多 40 人、可包場",
+        "elderFit": "可坐輪椅入店，但 15 人用的 3 樓大廣間是座敷還是椅子、有沒有電梯沒寫",
+        "kidsFit": "子供可、有兒童菜單、可推嬰兒車"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1809,7 +2079,7 @@
       "instagram": "@morishima_official"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1845,7 +2115,7 @@
       },
       {
         "id": "biwako-biwako-grand-hotel",
-        "walkMinutes": 331,
+        "walkMinutes": 332,
         "walkSource": "osrm"
       }
     ],
@@ -1937,6 +2207,45 @@
       "conflicts": [
         "Google 低分評論集中在 2023～2024 換主廚、菜單改版"
       ]
+    },
+    "summary": {
+      "text": "近江牛老店毛利志満的本店，旅行團常用；午餐 3,900～7,700 円（すき焼き、石焼きステーキ、焼きしゃぶ膳），晚餐每人約 8,000～9,999 円。150 席、個室 10～30 人，可電話或 TableCheck 預約，10 人以上可問接送巴士。離近江八幡站要搭巴士（東川站下車步行 2 分）或計程車約 15 分。11:00～15:00、17:00～20:30，週三公休。",
+      "pros": [
+        "Google 4.3（1,513 則），近江牛的代表老店，常接團體",
+        "個室 10～30 人、可預約，10 人以上可問接送巴士",
+        "有兒童菜單、可坐輪椅入店；全席禁菸"
+      ],
+      "cons": [
+        "離車站遠，要搭巴士或計程車",
+        "週三公休（2/10 休）；取消費前一天 80%、當天 100%",
+        "2023～2024 年換主廚、菜單改版後有品質下降的評論；沒預約可能要等 30 分以上"
+      ],
+      "basedOn": [
+        "https://www.oumi-usi.co.jp/hachiman/shop1/",
+        "https://www.oumi-usi.co.jp/hachiman/agent/",
+        "https://tabelog.com/shiga/A2503/A250301/25000004/",
+        "https://maps.google.com/?cid=5230276621943467992"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.3（1,513 則），琵琶湖門檻的 3（4 要食べログ 3.55）；品質負評集中在 2023～2024 年換主廚前後，近期食べログ多是好評，不調",
+        "localFlavor": "近江牛老店的本店",
+        "groupFit": "個室 10～30 人、包場 50 人以上、可預約，有旅行社用的團體頁",
+        "elderFit": "可坐輪椅入店、有桌席；離車站要搭車，10 人以上可問接送",
+        "kidsFit": "子供可、有兒童菜單"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -2062,7 +2371,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2198,6 +2507,45 @@
       "conflicts": [
         "包場：官網 6～36 人可，食べログ寫不可"
       ]
+    },
+    "summary": {
+      "text": "近江八幡的炭烤鰻魚名店，ひつまぶし（竹 3,680 円）、うなぎづくし御膳、鰻巻き；全店 106 席，有座敷、掘りごたつ、吧台。宴會コース 4～30 人（6,580～7,680 円）可以訂，但每天預約名額少、約 8 成是現場席，旺季要排 1～3 小時。離近江八幡站約 2.7 km（巴士「中村」站步行 11 分），八幡堀步行約 19 分；無定休。",
+      "pros": [
+        "Google 4.4（3,042 則），近江八幡評論最多的鰻魚店",
+        "有宴會コース 4～30 人，官網寫可包場 6～36 人",
+        "有兒童菜單、可坐輪椅入店；全席禁菸"
+      ],
+      "cons": [
+        "現場常排 1～3 小時，預約名額少",
+        "沒有桌椅，座敷、掘りごたつ要脫鞋",
+        "離車站遠，要搭巴士或計程車；15 人包場要電話確認"
+      ],
+      "basedOn": [
+        "https://sumiyagura.gorp.jp/",
+        "https://tabelog.com/shiga/A2503/A250301/25000298/",
+        "https://tabelog.com/shiga/A2503/A250301/25000298/party/",
+        "https://maps.google.com/?cid=5164689059768839029"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.4（3,042 則），琵琶湖門檻的 3（4 要食べログ 3.55）；低分評論主題分散，不調",
+        "localFlavor": "炭烤鰻魚",
+        "groupFit": "網路只開放 24 席，宴會コース 4～30 人、官網寫可包場 6～36 人（15 人要電話）",
+        "elderFit": "座敷、掘りごたつ、吧台，沒有桌椅；現場要排 1～3 小時",
+        "kidsFit": "子供可、有兒童菜單"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -2294,7 +2642,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2449,6 +2797,46 @@
         "營業時間：官網 11:00～20:00，食べログ平日午晚分開",
         "席數：官網 100、食べログ 150"
       ]
+    },
+    "summary": {
+      "text": "大津逢坂山的鰻魚老店，招牌是鰻魚加大片玉子燒的きんし丼（3,190 円起），定食 7,920～11,000 円。京阪大谷站步行約 2 分，庭園裡有 2～40 人的房間，椅子房最多 20 人，可坐輪椅（要先說）；只接電話預約，8 人以上可問接送。週四公休。",
+      "pros": [
+        "大津名物きんし丼的老店，Google 2,854 則",
+        "椅子房最多 20 人、可預約，15 人可以同一間",
+        "有兒童套餐 1,650 円；無障礙"
+      ],
+      "cons": [
+        "週四公休，2/11（四、國定假日）可能休，要確認",
+        "Google 3.9；評論說蛋多、鰻魚只有 2～3 片",
+        "只接電話預約（日文）；離 JR 大津站步行約 24 分"
+      ],
+      "basedOn": [
+        "https://www.kaneyo.in",
+        "https://www.kaneyo.in/tenpo/index.html",
+        "https://www.kaneyo.in/knoshina/index.html",
+        "https://tabelog.com/shiga/A2501/A250101/25000117/",
+        "https://maps.google.com/?cid=7646760090583073995"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（694 則）、Google 3.9（2,854 則），琵琶湖門檻的 3；份量的意見不算品質負評，不調",
+        "localFlavor": "きんし丼是大津的名物，鰻魚老店",
+        "groupFit": "個室 2～60 人、椅子房最多 20 人，電話預約",
+        "elderFit": "椅子房、無障礙，可坐輪椅（要先說）；京阪大谷站步行 2 分",
+        "kidsFit": "子供可、有兒童套餐"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -2539,7 +2927,7 @@
       "instagram": "@tsuruyakihachi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2676,6 +3064,46 @@
       "conflicts": [
         "離れ個室：店舗頁只寫要付費，團體頁有房間費"
       ]
+    },
+    "summary": {
+      "text": "坂本（比叡山腳下）的手打蕎麥麵老店，京阪坂本比叡山口站步行約 1～3 分，日吉大社步行約 11 分。ゆばそば 1,480 円、天ざるそば 2,280 円、鴨せいろ 2,380 円；團體 20～32 人、個室「松の間」最多 16 人（只限平日，1.5 小時 4,000 円），網路預約、團體要 3 天前。11:00～16:00，公休不固定。",
+      "pros": [
+        "食べログ 3.51（724 則）、Google 4.2（1,888 則），坂本的代表蕎麥麵",
+        "車站旁，比叡山、日吉大社順路",
+        "平日可訂 16 人個室；子供可、可推嬰兒車"
+      ],
+      "cons": [
+        "預約席全是榻榻米座敷，長輩要坐地板",
+        "個室只限平日，2/11 不能用；開店前常排 30 分～1 小時",
+        "2027 年公休日還沒公布；沒有兒童餐"
+      ],
+      "basedOn": [
+        "https://www.tsurukisoba.com",
+        "https://www.tsurukisoba.com/dantai/",
+        "https://www.tsurukisoba.com/menu/",
+        "https://tabelog.com/shiga/A2501/A250101/25000032/",
+        "https://maps.google.com/?cid=288584218804525776"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 4,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.51（724 則）、Google 4.2，琵琶湖門檻的 3（4 要食べログ 3.55）；負評主要是排隊，不調",
+        "localFlavor": "手打蕎麥麵老店",
+        "groupFit": "個室最多 16 人只限平日，團體席 20 人起；要 3 天前網路預約",
+        "elderFit": "預約席全是榻榻米座敷；現場要排 30 分～1 小時",
+        "kidsFit": "子供可、可推嬰兒車，蕎麥、天婦羅是熟食，沒有兒童餐"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -2774,7 +3202,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -2897,6 +3325,45 @@
       "conflicts": [
         "公休：官網寫週四，食べログ寫週三、週四"
       ]
+    },
+    "summary": {
+      "text": "瀨田川邊的鰻魚、湖魚鄉土料理店，JR／京阪石山站南口步行約 15 分（過瀨田川大橋）。每人約 3,000～3,999 円；42 席全是桌椅，店內不能預約、賣完就打烊，15 人要分組。11:30～14:30、17:00～20:00，週三、週四公休。",
+      "pros": [
+        "食べログ 3.73（542 則）、Google 4.3（1,142 則），琵琶湖收錄的餐廳裡食べログ分數最高",
+        "吃得到鰻魚和湖魚的鄉土料理",
+        "全是桌椅；子供可、可推嬰兒車"
+      ],
+      "cons": [
+        "不能預約，15 人只能分組排隊",
+        "週三、週四公休（2/10、2/11 休）；賣完就打烊",
+        "離石山站步行約 15 分；招牌菜和價格沒有來源"
+      ],
+      "basedOn": [
+        "https://r.goope.jp/chikasada/",
+        "https://r.goope.jp/chikasada/calendar/5479700",
+        "https://tabelog.com/shiga/A2501/A250101/25000697/",
+        "https://maps.google.com/?cid=5594718431950646598"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.73（542 則）、Google 4.3（1,142 則），琵琶湖門檻的 4；5 要食べログ 1,000 則以上",
+        "localFlavor": "鰻魚和湖魚的鄉土料理",
+        "groupFit": "店內不能預約、無個室",
+        "elderFit": "42 席全是桌椅；離石山站步行約 15 分",
+        "kidsFit": "子供可、可推嬰兒車，鰻魚、湖魚是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -3022,7 +3489,7 @@
       "instagram": "@matsukiya_restaurant"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3181,6 +3648,47 @@
       "conflicts": [
         "電話：官網 077-534-2901，2 樓樓層頁摘要寫 077-534-1211"
       ]
+    },
+    "summary": {
+      "text": "瀨田唐橋旁的近江牛專門店，京阪唐橋前站步行 1 分、JR 石山站步行 8 分，石山寺步行約 26 分。午餐近江牛ステーキランチ 5,500 円起、戦国御膳 6,050 円起；2 樓桌椅樓層最多 100 人（脫鞋），宴會方案 5～100 人，可電話或 TableCheck 預約，有電梯和兒童餐。只有 12/31、1/1 公休。",
+      "pros": [
+        "食べログ 3.59（437 則）、Google 4.4（983 則），大津的近江牛名店",
+        "2 樓坐得下 15 人、有電梯，可預約",
+        "2/9～2/12 都營業；有兒童牛排、漢堡排"
+      ],
+      "cons": [
+        "Google 低分評論集中在服務態度（3 則，2025～2026）",
+        "價位高（午餐每人 5,000 円起）；取消費前一天 50%、當天 100%",
+        "2 樓要脫鞋；停車場少，假日附近塞"
+      ],
+      "basedOn": [
+        "https://www.matsukiya.net/restaurant/honten.html",
+        "https://www.matsukiya.net/restaurant/honten/tableroom_honten.html",
+        "https://www.matsukiya.net/info/info_matsukiya/7645.html",
+        "https://www.matsukiya.net/restaurant/honten/menu_honten.html",
+        "https://tabelog.com/shiga/A2501/A250101/25000784/",
+        "https://maps.google.com/?cid=9634259200425426923"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.59（437 則）、Google 4.4，照數字 4，低分評論集中在服務態度（3 則，2025～2026），負評往下調一級",
+        "localFlavor": "近江牛專門店",
+        "groupFit": "2 樓最多 100 人、宴會方案 5～100 人、可預約",
+        "elderFit": "2 樓是桌椅（要脫鞋）、有電梯、可坐輪椅；京阪唐橋前站步行 1 分",
+        "kidsFit": "子供可、有兒童牛排和漢堡排"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -3297,7 +3805,7 @@
       "instagram": "@masa_6.21"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3326,7 +3834,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "biwako-biwako-grand-hotel",
+        "id": "biwako-hanakaido",
         "walkMinutes": 433,
         "walkSource": "osrm"
       }
@@ -3418,6 +3926,43 @@
       "conflicts": [
         "L.O.：訂位網站寫午 13:00、晚 20:30，食べログ只寫營業時間"
       ]
+    },
+    "summary": {
+      "text": "安曇川站步行約 10 分的定食、和食店，離白鬚神社約 8 km（要搭車），是白鬚神社一帶能坐 15 人、能訂位的午餐。午餐まさ定食、刺身定食每人約 1,000～1,999 円，冬季有炸牡蠣定食 1,500 円；2 樓 12 人房 3 間可打通、最多 40 人，電話預約。午 11:30～13:30、晚 17:00～21:00，週一和每月一次週日公休。",
+      "pros": [
+        "白鬚神社一帶唯一坐得下 15 人、可預約的店",
+        "有兒童餐、兒童椅，2 樓有兒童遊戲區",
+        "午餐便宜（1,000～1,999 円），定食選擇多"
+      ],
+      "cons": [
+        "15 人要用 2 樓，樓梯、電梯和座位形式都沒寫",
+        "離白鬚神社約 8 km、要搭計程車；午餐只到 13:30，常常訂滿",
+        "評論數少；有海鮮不夠新鮮的意見；沒有官網，公休看 Instagram"
+      ],
+      "basedOn": [
+        "https://tabelog.com/shiga/A2505/A250501/25004690/",
+        "https://maps.google.com/?cid=13057776641346131959"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.40（41 則）、Google 4.3（138 則），評論數少，最多 3",
+        "localFlavor": "定食、和食，有小鮎天婦羅",
+        "groupFit": "2 樓 3 間打通最多 40 人、可包場、可預約",
+        "elderFit": "15 人要用 2 樓，樓梯、電梯和座位形式沒寫；1 樓是掘りごたつ、小上がり、吧台",
+        "kidsFit": "子供可、有兒童餐和兒童遊戲區"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -3507,7 +4052,7 @@
       "instagram": "@shirahige_soba"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3536,7 +4081,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "biwako-biwako-grand-hotel",
+        "id": "biwako-hanakaido",
         "walkMinutes": 333,
         "walkSource": "osrm"
       }
@@ -3614,7 +4159,45 @@
       "note": "入口要先上階梯；輪椅可以開車到上方（店旁有輪椅專用車位）"
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "白鬚神社對面山坡上的蕎麥麵店，看得到湖上鳥居；ぶっかけ白ひげそば、一口鯖ずし，每人約 1,000～1,999 円，只收現金。不能預約、無個室，入口要先上階梯（輪椅可開車到上方）。平日 11:30～14:30、週末假日 11:00～15:00，公休沒寫。",
+      "pros": [
+        "白鬚神社步行約 8 分，看得到湖上鳥居",
+        "子供可；全席禁菸",
+        "週末假日開到 15:00"
+      ],
+      "cons": [
+        "Google 3.5（1,028 則），評價偏低",
+        "不能預約、只收現金，15 人要分批",
+        "入口有階梯；公休沒寫，2/9～2/12 開不開要確認"
+      ],
+      "basedOn": [
+        "https://odekake.blog/shirahige-soba/",
+        "https://tabelog.com/shiga/A2505/A250501/25007332/",
+        "https://maps.google.com/?cid=17411772847515672084"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "Google 3.5（1,028 則），3.5 以下",
+        "localFlavor": "蕎麥麵",
+        "groupFit": "不能預約、席數沒寫",
+        "elderFit": "只有吧台和露天座位，入口要上階梯（輪椅可開車到上方）",
+        "kidsFit": "子供可，蕎麥是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-shirahige-shokudo",
@@ -3703,7 +4286,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3726,7 +4309,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "biwako-biwako-grand-hotel",
+        "id": "biwako-hanakaido",
         "walkMinutes": 337,
         "walkSource": "osrm"
       }
@@ -3800,6 +4383,43 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "白鬚神社巴士站旁的小食堂，烏龍麵、關東煮，每人 999 円以下。26 席（3 人桌 2、6 人桌 2、小上がり 4 人 2），不能預約，適合 4～6 人分組。11:15～14:00，公休沒寫。",
+      "pros": [
+        "白鬚神社步行約 3 分，Google 4.4（862 則）",
+        "便宜，6 人桌適合分組",
+        "有桌椅；全席禁菸"
+      ],
+      "cons": [
+        "不能預約、只有 26 席，15 人要分批",
+        "公休、小孩規定都沒寫，2/9～2/12 開不開要確認",
+        "只開午餐 11:15～14:00"
+      ],
+      "basedOn": [
+        "https://tabelog.com/shiga/A2505/A250501/25003020/",
+        "https://maps.google.com/?cid=17504258544063513543"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49、Google 4.4（862 則），琵琶湖門檻的 3（4 要食べログ 3.55）",
+        "localFlavor": "烏龍麵、關東煮的食堂",
+        "groupFit": "26 席、不能預約",
+        "elderFit": "有桌椅（也有小上がり）；巴士站旁",
+        "kidsFit": "小孩規定沒有來源，烏龍麵、關東煮是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   }
 ]

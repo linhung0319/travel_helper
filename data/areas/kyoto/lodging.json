@@ -47,8 +47,10 @@
       "instagram": "@hanaikada.kyoto",
       "googleMaps": "https://maps.google.com/?cid=6552355691614558442"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "randen-arashiyama",
       "mode": "walk",
@@ -241,8 +243,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "嵐山渡月橋附近的溫泉旅館（15 室），晚餐在房間吃月替京懷石，屋頂有展望露天風呂。和室 8～12 畳，最大的房 5 人只有 1 間，15 人要 5～6 間、幾乎包下整館。楽天 4.22（321 則）、Google 4.2；一泊二食每人約 26,400 円（2/9 楽天大人 5 人 1 間的最低價，小學生 70%），另加京都市住宿稅。",
+      "pros": [
+        "嵐電、阪急嵐山站步行約 5～6 分，渡月橋一帶散步方便",
+        "楽天餐 4.59，月替京懷石在房間吃；屋頂展望露天、貸切露天",
+        "JR 嵯峨嵐山站有免費接送（最多 9 人，當天打電話）"
+      ],
+      "cons": [
+        "楽天兩晚都沒有 15 人組合，要打電話問或和隔壁渡月亭分住",
+        "晚餐是房間用餐，15 人不能同一間吃；沒有團體方案",
+        "大多是鋪布團的和室；屋頂露天要從 3 樓走樓梯上去"
+      ],
+      "basedOn": [
+        "https://www.hanaikada.co.jp/",
+        "https://www.hanaikada.co.jp/facilities/room2.php?id=sec2",
+        "https://www.hanaikada.co.jp/cuisine/",
+        "https://www.hanaikada.co.jp/access/",
+        "https://travel.rakuten.co.jp/HOTEL/73923/73923.html",
+        "https://maps.google.com/?cid=6552355691614558442"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 3,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.22（321 則）、Google 4.2，都不到京都（伊勢調整版）4 的門檻；Google 評論沒有讀",
+        "meals": "一泊二食，楽天餐 4.59，月替京懷石在房間吃",
+        "groupFit": "15 室、最大和室 5 人 1 間，15 人要 5～6 間、幾乎包下整館，要電話確認；隔壁渡月亭可以分住（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "訂房網站寫有輪椅用電梯；有床的房只有 3 間，其他鋪布團；屋頂露天要從 3 樓走樓梯",
+        "accessEase": "嵐電、阪急嵐山站約 6 分（路線估算）；JR 嵯峨嵐山站接送最多 9 人、不能預約"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-togetsutei",
@@ -291,8 +332,10 @@
       "official": "https://www.togetsutei.co.jp/",
       "googleMaps": "https://maps.google.com/?cid=2856858334438648627"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "hankyu-arashiyama",
       "mode": "walk",
@@ -485,8 +528,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "嵐山渡月橋旁的百年老舖溫泉旅館（21 室），碧川閣、秀山閣兩棟，晚餐是京會席。和室 8～14 畳加次の間，各房最多幾人官網沒寫；有大廣間（約 120 人）、中廣間（約 40 人）。楽天 4.15（256 則）、Google 4.2；附早餐每人約 28,100 円（2/9 楽天大人 5 人 1 間的最低價），另加京都市住宿稅。",
+      "pros": [
+        "在渡月橋旁，阪急嵐山站步行約 6 分",
+        "有大廣間、中廣間（可放桌椅），15 人有機會一起吃飯",
+        "部分客房有露天或半露天風呂，另有貸切風呂"
+      ],
+      "cons": [
+        "碧川閣沒有電梯，秀山閣有沒有電梯官網沒寫；有床的房多在秀山閣 3 樓",
+        "楽天兩晚都沒有 15 人組合；各房人數要電話問，接送現在有沒有開說法不一",
+        "住宿晚餐在房間還是會場官網沒寫"
+      ],
+      "basedOn": [
+        "https://www.togetsutei.co.jp/room/",
+        "https://www.togetsutei.co.jp/floor/",
+        "https://www.togetsutei.co.jp/access/",
+        "https://www.jtb.co.jp/kokunai-hotel/htl/6240001/",
+        "https://travel.rakuten.co.jp/HOTEL/8838/8838.html",
+        "https://maps.google.com/?cid=2856858334438648627"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.15（256 則）、Google 4.2，都不到京都（伊勢調整版）4 的門檻；Google 評論沒有讀",
+        "meals": "京會席；楽天餐沒有細項、沒有讀到料理的心得",
+        "groupFit": "21 室，但各房人數官網沒寫，要電話確認；有大廣間、中廣間，隔壁花筏可以分住（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "訂房網站寫碧川閣沒有電梯，秀山閣電梯沒有來源；有床的 4 間裡 3 間在秀山閣 3 樓、1 間在碧川閣，其他鋪布團",
+        "accessEase": "阪急嵐山站約 6 分（路線估算）；JR 嵯峨嵐山站接送 15:00～19:00，官網問答又寫暫停"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-richmond-ekimae",
@@ -506,7 +588,7 @@
     "address": "京都府京都市下京区北不動堂町565-3",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有休館公告；東側鄰地 2026/6～2028/3 施工，白天可能有噪音振動。",
     "closures": [],
     "photos": [
       {
@@ -529,7 +611,7 @@
       "googleMaps": "https://maps.google.com/?cid=12508460797612051999"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "nearestStation": {
       "id": "jr-kyoto",
       "mode": "walk",
@@ -690,7 +772,6 @@
     "extra": {
       "breakfast": "朝食付：京おばんざいコンセプトのビュッフェ（食前酒付）、1 樓プレミアラウンジ、6:30～11:00（最終入店 10:30）、大人 3,500 円／小學生 1,800 円／未就學兒免費（官網 dishes）；另有免費下午茶 13:00～17:00、18:00～21:00 免費飲品小點（ソーシャルアワー）",
       "stationAccess": "JR 京都站中央口步行 5 分（頁面標題寫 7 分，衝突）；機場 75 分（はるか）",
-      "febNote": "官網未見休館；東側（京都タワー側）鄰地 2026/6～2028/3 施工，有噪音振動",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [
         "JR 京都站步行 5 分（內文）vs 7 分（標題）"
@@ -721,8 +802,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：ザ キッチン サルヴァトーレ クオモ 京都 6 分、小籠包 包伸一 ツツミシンイチ 7 分、つくもうどん 塩小路本店 9 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "京都站中央口附近的飯店（206 室），全部是床的西式房，スタンダードツイン、コーナーツイン加床可住 3 人，リファプレミアツイン最多 4 人。楽天 4.68（2,615 則）、Google 4.6，楽天評論 300 則以上的京都飯店裡分數最高。素泊每人約 8,400～8,866 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "楽天 4.68（2,615 則）、Google 4.6，楽天評論 300 則以上的京都飯店裡兩邊都最高；楽天餐 4.70",
+        "早餐是京おばんざい自助，另有免費下午茶、晚上免費飲品小點",
+        "3 人房、4 人房查得到，15 人可以 5 間×3 人住在同一處"
+      ],
+      "cons": [
+        "隔音差（門、電梯、走廊的聲音）、浴廁有異味或毛髮的評論各 1～2 則，約 2025～2026",
+        "東側鄰地 2026/6～2028/3 施工，白天可能有噪音振動",
+        "電梯、浴缸、大浴場官網都沒寫；3 人以上要靠加床"
+      ],
+      "basedOn": [
+        "https://richmondhotel.jp/kyoto-ekimae/rooms/",
+        "https://richmondhotel.jp/kyoto-ekimae/dishes/",
+        "https://richmondhotel.jp/kyoto-ekimae/blog/25585/",
+        "https://travel.rakuten.co.jp/HOTEL/171941/171941.html",
+        "https://maps.google.com/?cid=12508460797612051999"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 5,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.68（2,615 則）、Google 4.6，京都（伊勢調整版，Google 4.4 以上）的 5；低分評論是隔音、清潔、櫃台慢，分散在不同主題",
+        "meals": "楽天餐 4.70；素泊時步行 20 分內晚餐店 8 家以上（サルヴァトーレ クオモ 6 分、包伸一 7 分、つくもうどん 9 分）",
+        "groupFit": "206 室、ツイン 3 人、リファプレミアツイン 4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有ユニバーサルツイン（當成館內可以坐輪椅移動）、全室床；電梯本身官網沒寫",
+        "accessEase": "官網：JR 京都站中央口步行 5 分（頁面標題寫 7 分；路線估算 6 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-viscio",
@@ -742,7 +861,7 @@
     "address": "京都府京都市南区東九条上殿田町44-1",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有 2027 年 2 月休館、改裝的公告。",
     "closures": [],
     "photos": [
       {
@@ -772,7 +891,7 @@
       "googleMaps": "https://maps.google.com/?cid=18230812667331888447"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "kyoto",
       "mode": "walk",
@@ -945,7 +1064,6 @@
       "breakfast": "朝食付／素泊：グランヴィア京都主廚監製和洋折衷ビュッフェ（首頁）、6:30～11:00（最終入店 10:30）、184 席、大人 4,500 円／3～12 歲 2,250 円／2 歲以下免費（官網 dining；早餐場地位置頁面未明寫）",
       "onsen": "2 樓大浴場，6:00-10:00、15:00-25:00；男湯乾式桑拿＋水風呂、女湯蒸氣桑拿；溫泉或人工未載（bath 頁）",
       "stationAccess": "JR 京都站八條口往南步行 2 分；機場利木津巴士到八條口；はるか 75 分",
-      "febNote": "官網未見休館資訊",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [],
       "rakutenVacancy": {
@@ -972,8 +1090,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 7 家：はしたて 5 分、つくもうどん 塩小路本店 6 分、そば酒房 徳兵衛 6 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "JR 京都站八條口往南步行約 2 分的飯店（423 室），グランヴィア京都的姊妹館，2 樓有大浴場。トリプル 3 床、ファミリールーム 3～4 人。楽天 4.66（696 則）、Google 4.5，素泊每人約 9,188～11,436 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "楽天 4.66、Google 4.5；楽天餐 4.81 是京都飯店裡最高，グランヴィア主廚監製的自助早餐",
+        "八條口旁，和近鐵京都站同一側，大行李、帶長輩都方便",
+        "2 樓大浴場（含桑拿），有 3 床的トリプル、4 人的ファミリールーム"
+      ],
+      "cons": [
+        "Google 低分約 8 則集中在櫃台態度、入住處理（約 2024～2026）",
+        "早餐大人 4,500 円偏貴；兩晚楽天的 15 人組合只有 5 間×3 人",
+        "添い寝規定、電梯、各房浴缸官網沒寫"
+      ],
+      "basedOn": [
+        "https://www.hotelvischio-kyoto.jp/rooms/",
+        "https://www.hotelvischio-kyoto.jp/dining/",
+        "https://www.hotelvischio-kyoto.jp/bath/",
+        "https://travel.rakuten.co.jp/HOTEL/168654/168654.html",
+        "https://maps.google.com/?cid=18230812667331888447"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.66（696 則）、Google 4.5，照數字是京都（伊勢調整版）的 5，但 Google 低分約 8 則集中在櫃台態度，不符合 5 的「心得沒有明顯負評」（同大阪 ユニバーサルポート）",
+        "meals": "楽天餐 4.81；素泊時步行 20 分內晚餐店 7 家（はしたて 5 分、つくもうどん 6 分、徳兵衛 6 分）",
+        "groupFit": "423 室、トリプル 3 人、ファミリー 3～4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有ユニバーサルツイン（當成館內可以坐輪椅移動）、全室床；大浴場在 2 樓",
+        "accessEase": "官網：JR 京都站八條口步行 2 分（路線估算到近鐵京都站 4 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-hotel-tou",
@@ -1017,7 +1173,7 @@
       "googleMaps": "https://maps.google.com/?cid=3835259933618453925"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-kyoto",
       "mode": "walk",
@@ -1220,8 +1376,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：小籠包 包伸一 ツツミシンイチ 7 分、蕎麦の実 よしむら 12 分、ザ キッチン サルヴァトーレ クオモ 京都 12 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "西本願寺與東本願寺之間的設計飯店（121 室），全部是床，最大的 premium touツイン 可住 5 人，B1 有大浴場。楽天 4.55（781 則），但 Google 只有 4.1。素泊每人約 6,879～7,160 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "有 5 人房（premium touツイン 35㎡）和 4 人房，15 人可以 3 間×5 人",
+        "素泊每人約 7,000 円，京都站一帶價格低的一間；楽天餐 4.64（京粥或京風早餐二選一）",
+        "B1 大浴場，晚上和早上都能泡"
+      ],
+      "cons": [
+        "房間小、放不下行李箱的評論 2 則，1 則說不適合帶小孩（約 2025～2026）",
+        "大浴場窄、洗身處要排隊的評論 3 則；多數房型只有淋浴間",
+        "京都站步行約 10～12 分；小學生起收住宿費"
+      ],
+      "basedOn": [
+        "https://www.hotel-tou.com/rooms/",
+        "https://www.hotel-tou.com/faq/",
+        "https://www.hotel-tou.com/facility/",
+        "https://travel.rakuten.co.jp/HOTEL/181326/181326.html",
+        "https://maps.google.com/?cid=3835259933618453925"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.55（781 則），但 Google 4.1 不到京都（伊勢調整版）4、5 要的 4.4",
+        "meals": "楽天餐 4.64；素泊時步行 20 分內晚餐店 8 家以上（包伸一 7 分、蕎麦の実 よしむら 12 分）",
+        "groupFit": "121 室、premium touツイン 5 人、premium ツイン 4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有アクセシブルツイン（當成館內可以坐輪椅移動）、全室床；多數房只有淋浴間，大浴場在 B1",
+        "accessEase": "官網：JR 京都站約 10 分、地鐵五条站約 8 分（路線估算到 JR 京都站 12 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nono-shichijo",
@@ -1264,8 +1458,10 @@
       "instagram": "@dormyinn.official",
       "googleMaps": "https://maps.google.com/?cid=4570594780403514887"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "keihan-shichijo",
       "mode": "walk",
@@ -1469,8 +1665,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：新福菜館 本店 6 分、本家 第一旭 本店 6 分、小籠包 包伸一 ツツミシンイチ 7 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "Dormy Inn 系的和風飯店（469 室），1 樓有天然溫泉大浴場「蓮花の湯」，晚上免費夜鳴きそば。トリプル、デラックスファミリー可住 4 人（雙床＋大床）。楽天 4.43（1,618 則）、Google 4.5；素泊每人約 9,800～10,100 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "天然溫泉大浴場（半露天、桑拿），冬天觀光回來可以泡湯",
+        "4 人房（トリプル、デラックスファミリー）多，15 人可以 4 間×4 人；3 歲～小學生同床每人 3,000 円",
+        "楽天餐 4.59，自助早餐有湯葉海鮮丼；新福菜館、第一旭 本店步行 6 分"
+      ],
+      "cons": [
+        "大廳、早餐擁擠（外國團客、行李多）的評論 3 則，大浴場要排隊 2 則（約 2026）",
+        "評論說 4 人房實際是 2 大人 2 小孩的大小；全館脫鞋",
+        "2 樓檜風呂要走樓梯；電梯官網沒寫"
+      ],
+      "basedOn": [
+        "https://dormy-hotels.com/dormyinn/hotels/nono_kyoto/",
+        "http://dormy-hotels.com/dormyinn/hotels/nono_kyoto/faq/",
+        "http://dormy-hotels.com/dormyinn/hotels/nono_kyoto/spa/",
+        "https://travel.rakuten.co.jp/HOTEL/178613/178613.html",
+        "https://maps.google.com/?cid=4570594780403514887"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.43（1,618 則）不到京都（伊勢調整版）4 要的 4.5；Google 4.5 很高",
+        "meals": "楽天餐 4.59；素泊時步行 20 分內晚餐店 8 家以上（新福菜館 本店 6 分、第一旭 本店 6 分、包伸一 7 分）",
+        "groupFit": "469 室、トリプル、デラックスファミリー各 4 人；團體只看到 10 人以上的取消規定，沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有ユニバーサルルーム、免費借輪椅（當成館內可以坐輪椅移動）、全室床；官網說不是完全無障礙，2 樓檜風呂要走樓梯",
+        "accessEase": "官網：JR 京都站約 7 分、地鐵京都站 A-5 出口約 4 分（路線估算到京阪七条 7 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-miyako-hachijo",
@@ -1490,7 +1724,7 @@
     "address": "京都府京都市南区西九条院町17",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有 2027 年 2 月休館、改裝的公告。",
     "closures": [],
     "photos": [
       {
@@ -1520,7 +1754,7 @@
       "googleMaps": "https://maps.google.com/?cid=12791359014526167642"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "kyoto",
       "mode": "walk",
@@ -1688,7 +1922,6 @@
       "breakfast": "素泊／朝食付；朝食は本館1F バイキングレストラン「ル・プレジール」の和洋朝食ブッフェ。時間・価格は官網頁面未載（restaurant 頁、https://www.miyakohotels.ne.jp/kyoto-hachijo/restaurant/）。FAQ：朝食は予約不可、満席時は待ち（faq 頁）",
       "dinner": "館内に夕食あり：ロンド（本館1F）、中国料理「四川」（B1F）、和食 うおまん（B1F）、バー「ラグーン」。15人包場・団体の記載なし（restaurant 頁）",
       "stationAccess": "JR・新幹線京都駅（八条口）徒歩2分、近鉄京都駅徒歩2分、地下鉄京都駅徒歩5分（首頁）",
-      "febNote": "官網頁面に2027年2月の休館・改装の記載は見つからず（未確認）",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [],
       "rakutenVacancy": {
@@ -1717,8 +1950,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 7 家：はしたて 5 分、つくもうどん 塩小路本店 8 分、そば酒房 徳兵衛 9 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "JR 京都站八條口正對面的大型飯店（988 室），和近鐵京都站同一側。房型多：トリプル 3 人、和室 2～5 人、デラックスファミリー最多 6 人。楽天 4.40（7,593 則）、Google 4.1；素泊每人約 6,105 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "八條口、近鐵京都站各步行 2 分，搭近鐵進出最方便",
+        "有和室（2～5 人）和最多 6 人的家庭房，15 人能分得比較少間",
+        "素泊每人約 6,100 円，京都站一帶最便宜；館內有中華、和食餐廳"
+      ],
+      "cons": [
+        "房間舊、有舊味、床墊差的評論 3 則（約 2026）；早餐不能預約，客滿要排隊",
+        "評論說家人被分到不同棟（走 5 分）；15 人要先講好同一棟、同樓層",
+        "沒有大浴場；楽天餐 4.36 偏低"
+      ],
+      "basedOn": [
+        "https://www.miyakohotels.ne.jp/kyoto-hachijo/stay/",
+        "https://www.miyakohotels.ne.jp/kyoto-hachijo/faq/",
+        "https://www.miyakohotels.ne.jp/kyoto-hachijo/lzpup1_tivszpnpwjf/",
+        "https://travel.rakuten.co.jp/HOTEL/1160/1160.html",
+        "https://maps.google.com/?cid=12791359014526167642"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.40（7,593 則）、Google 4.1，都不到京都（伊勢調整版）4 的門檻；低分集中在房間老舊（只有老舊不往下調）",
+        "meals": "楽天餐 4.36；素泊時步行 20 分內晚餐店 7 家（はしたて 5 分、つくもうどん 8 分），館內也有餐廳",
+        "groupFit": "988 室、和室 5 人、デラックスファミリー 6 人；團體頁是給旅行社的（包樓層），一般 15 人要電話問（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "官網寫有電梯、有バリアフリールーム（扶手）；多數房有床，也有和室；館區分好幾棟",
+        "accessEase": "官網：JR 京都站八條口、近鐵京都站步行 2 分（路線估算 3 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-century",
@@ -1738,7 +2009,7 @@
     "address": "京都府京都市下京区東塩小路町680",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有 2027 年 2 月休館、改裝的公告。",
     "closures": [],
     "photos": [
       {
@@ -1768,7 +2039,7 @@
       "googleMaps": "https://maps.google.com/?cid=8607810027436163404"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "subway-kyoto",
       "mode": "walk",
@@ -1916,7 +2187,6 @@
       "breakfast": "素泊／朝食付；朝食 7:00～10:00（最終入店9:30）、大人4,500円、7～12歳2,500円、4～6歳1,800円（税サ込）。会場は2F オールデイダイニング「ラジョウ」（faq 頁）。ブッフェかは breakfast 頁で明記なし",
       "dinner": "館内にオールデイダイニング ラジョウ、ラジョウテラス、メインバー エセックス。15人包場・団体の記載なし。レストラン総合受付 075-351-0085",
       "stationAccess": "JR京都駅 中央口（烏丸口）から東へ徒歩約2分（ほか地下鉄5番出口経由2分）；近鉄・新幹線側出口からは約5分（access 頁）",
-      "febNote": "官網頁面に2027年2月の休館・改装の記載は見つからず（未確認）",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [],
       "rakutenVacancy": {
@@ -1943,8 +2213,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：本家 第一旭 本店 3 分、新福菜館 本店 3 分、そば酒房 徳兵衛 5 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "JR 京都站中央口往東的飯店（214 室），京阪集團。デラックスファミリー 3～4 人、デラックスツイン 1～3 人。楽天 4.50（4,842 則）、Google 4.3；素泊每人約 11,200 円（2/9、2/10 楽天 15 人組合的最低價，只有 8 間×2 人有空房），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "官網：JR 京都站中央口步行約 2 分",
+        "楽天 4.50（4,842 則）、楽天餐 4.54，早餐在 2 樓餐廳",
+        "第一旭 本店、新福菜館 步行 3 分，晚餐選擇多"
+      ],
+      "cons": [
+        "房間舊而小（廁所有高低差、浴缸小）的評論 3 則，但多是 1～4 年前",
+        "行李寄送、餐廳接待等服務糾紛約 4 則；食物過敏標示錯誤 1 則",
+        "3～4 人房種類少，楽天上只有雙人房組合；電梯、無障礙房官網沒寫"
+      ],
+      "basedOn": [
+        "https://www.keihanhotels-resorts.co.jp/kyoto-centuryhotel/stay/",
+        "https://www.keihanhotels-resorts.co.jp/kyoto-centuryhotel/faq/",
+        "https://www.keihanhotels-resorts.co.jp/kyoto-centuryhotel/access/",
+        "https://travel.rakuten.co.jp/HOTEL/1369/1369.html",
+        "https://maps.google.com/?cid=8607810027436163404"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.50（4,842 則），但 Google 4.3 不到京都（伊勢調整版）4、5 要的 4.4",
+        "meals": "楽天餐 4.54；素泊時步行 20 分內晚餐店 8 家以上（第一旭 本店 3 分、新福菜館 3 分、徳兵衛 5 分）",
+        "groupFit": "214 室、デラックスファミリー 4 人、デラックスツイン 3 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "全室床；電梯、無障礙房官網沒寫，舊評論說廁所有高低差",
+        "accessEase": "官網：JR 京都站中央口約 2 分（路線估算到地鐵京都站 6 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-dusit-thani",
@@ -1964,7 +2272,7 @@
     "address": "京都府京都市下京区西洞院通正面上ル西洞院町466",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有 2027 年 2 月休館、改裝的公告。",
     "closures": [],
     "photos": [
       {
@@ -1987,7 +2295,7 @@
       "googleMaps": "https://maps.google.com/?cid=6637847254253158794"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "jr-kyoto",
       "mode": "walk",
@@ -2135,7 +2443,6 @@
       "breakfast": "朝食付／素泊は官網未載；早餐成人 JPY 6,325（含稅）、12 歲以下半價 JPY 3,162、學齡前免費（官網 accommodation 頁摘要）。早餐地點官網未明寫（all-day 餐廳 Kati 疑似，未確認）",
       "dinner": "館內有 Ayatana、Den Kyoto、Kati、Kōyō、Dusit Gallery（咖啡／下午茶 10:00-20:00）；Ayatana／Kati／Kōyō 走 TableCheck 訂位；15 人包場或團體官網未載，電話 +81-75-343-7150 洽詢",
       "stationAccess": "京都站步行約 12 分／850 公尺（官網 meetings 日文頁、開業新聞稿）；最近地鐵站官網未載。住址 下京区西本願寺町 466",
-      "febNote": "官網未見 2027 年 2 月休館／改裝資訊",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [],
       "rakutenVacancy": {
@@ -2162,8 +2469,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：小籠包 包伸一 ツツミシンイチ 9 分、蕎麦の実 よしむら 13 分、ザ キッチン サルヴァトーレ クオモ 京都 13 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "西本願寺旁的頂級飯店（147 室），泰國 Dusit 品牌，客房都是 40㎡ 以上，但每間最多 3 人。楽天 4.75（108 則）、Google 4.5；附早餐每人約 39,848～41,113 円（2/9、2/10 楽天 15 人組合的最低價，只有 8 間×2 人有空房），另加京都市住宿稅。",
+      "pros": [
+        "楽天 4.75、楽天餐 4.76，泰式＋和式早餐評價高",
+        "客房 40㎡ 起，有 Accessible Room（浴室無段差）",
+        "館內 5 間餐廳、下午茶，12 歲以下和大人同床免費"
+      ],
+      "cons": [
+        "每人一晚約 4 萬円，京都收錄的飯店裡最貴",
+        "員工態度、入住處理的糾紛約 7 則（多在 1 年內）；房間景觀差 2 則",
+        "每間最多 3 人，15 人至少 5 間；JR 京都站步行約 12 分"
+      ],
+      "basedOn": [
+        "https://www.dusit.com/dusitthani-kyoto/",
+        "https://www.dusit.com/dusitthani-kyoto/accommodation/",
+        "https://www.dusit.com/dusitthani-kyoto/dining/",
+        "https://travel.rakuten.co.jp/HOTEL/187320/187320.html",
+        "https://maps.google.com/?cid=6637847254253158794"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "楽天 4.75、Google 4.5，但楽天只有 108 則，不到 300 則最多 3",
+        "meals": "楽天餐 4.76；館內 5 間餐廳，步行 20 分內晚餐店 8 家以上（包伸一 9 分）",
+        "groupFit": "147 室、所有房型 3 人，15 人要 5 間以上；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有 Accessible Room（當成館內可以坐輪椅移動）、全室床",
+        "accessEase": "官網：京都站步行約 12 分（路線估算 12 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nikko-princess",
@@ -2183,7 +2528,7 @@
     "address": "京都府京都市下京区烏丸高辻東入高橋町630番地",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網首頁有改裝、建物點檢的公告，內容沒讀到；2027 年 2 月的狀況出發前要再查。",
     "closures": [],
     "photos": [
       {
@@ -2213,7 +2558,7 @@
       "googleMaps": "https://maps.google.com/?cid=2247464554824221193"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "subway-shijo",
       "mode": "walk",
@@ -2400,7 +2745,6 @@
       "breakfast": "素泊／朝食付皆有；早餐 7:00-10:00，和食在「日本料理 嵯峨野」，洋食 ブッフェ 在「アンバーコート」（7:00-10:00）；料金官網早餐頁未載，電話 075-342-2111 洽詢",
       "dinner": "館內 6 處：嵯峨野（日本料理）、天ぷら嵯峨野、翡翠園（中華）、鉄板焼 鳳園、アンバーコート、バー Darley；15 人包場官網未確認",
       "stationAccess": "地下鐵烏丸線 四条駅 5 號出口步行約 3 分（電梯請用 4 號出口）；阪急 烏丸駅步行約 5 分；京阪 祇園四条駅步行約 20 分；京都站搭地下鐵約 4 分、車約 5 分",
-      "febNote": "首頁有改裝／建物點檢公告，但本次未讀到內容；2027 年 2 月狀況待確認",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [],
       "rakutenVacancy": {
@@ -2429,8 +2773,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 7 家：都野菜 賀茂 烏丸店 4 分、蕎麦の実 よしむら 8 分、和醸良麺 すがり 10 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "四条烏丸的飯店（216 室），Okura Nikko 集團，館內有日本料理、中華、鐵板燒等 6 處餐廳。トリプル 42～49㎡ 可住 3～4 人。楽天 4.58（1,885 則）、Google 4.3；素泊每人約 7,840～9,380 円、料亭 左阿彌 京懷石的一泊二食約 29,000～31,100 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅。",
+      "pros": [
+        "地鐵四条站步行約 3 分（電梯用 4 號出口）",
+        "官網寫有電梯、斜坡、多目的廁所、輪椅出借，帶長輩安心",
+        "早餐可選和食或洋食自助，楽天餐 4.57；有京懷石晚餐方案"
+      ],
+      "cons": [
+        "浴室發霉、異味、房間舊的評論 6 則，但多是舊評論",
+        "4 人時有 1 張是沙發床；小學生以上算大人費用",
+        "首頁有改裝、建物點檢公告，2027 年 2 月的狀況要再確認"
+      ],
+      "basedOn": [
+        "https://www.princess-kyoto.co.jp/",
+        "https://www.princess-kyoto.co.jp/stay/room/ex_triple42/",
+        "https://www.princess-kyoto.co.jp/faq/",
+        "https://travel.rakuten.co.jp/HOTEL/166/166.html",
+        "https://maps.google.com/?cid=2247464554824221193"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.58（1,885 則），但 Google 4.3 不到京都（伊勢調整版）4、5 要的 4.4；低分多是舊的老舊抱怨",
+        "meals": "楽天餐 4.57；有京懷石一泊二食方案，素泊時步行 20 分內晚餐店 7 家（都野菜 賀茂 4 分、よしむら 8 分）",
+        "groupFit": "216 室、トリプル 3～4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "官網寫有電梯、斜坡、多目的廁所、輪椅出借，全室床",
+        "accessEase": "官網：地鐵四条站 5 號出口約 3 分（路線估算 5 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-monterey",
@@ -2479,8 +2861,10 @@
       "official": "https://www.hotelmonterey.co.jp/kyoto/",
       "googleMaps": "https://maps.google.com/?cid=13942444288259279485"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "subway-karasuma-oike",
       "mode": "walk",
@@ -2662,8 +3046,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 7 家：膳處漢ぽっちり 7 分、京都四条くをん 8 分、和醸良麺 すがり 8 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "烏丸御池的大型飯店（327 室），頂樓有天然溫泉スパ（住客免費），全室有浴缸。トリプル 3 人、ファミリールーム最多 4 人（第 3、4 張是簡易床）。楽天 4.49（5,442 則）、Google 4.2；素泊每人約 7,310 円（2/9、2/10 楽天 15 人組合的最低價，冬季限定的團體方案），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "天然溫泉スパ（露天、桑拿）住客免費，全室有浴缸",
+        "地鐵烏丸御池站步行約 2 分，四条站也只要 5 分",
+        "楽天上有冬季限定的「グループ旅行応援プラン」，素泊每人約 7,300 円"
+      ],
+      "cons": [
+        "スパ週末人多、洗身處和吹風機要排隊的評論 2 則",
+        "員工英語不通、素食沒對應的評論 3 則；房間異味、空調噪音各 1 則",
+        "3 人以上用的是簡易床（スタッキングベッド）；無障礙房官網沒寫"
+      ],
+      "basedOn": [
+        "https://www.hotelmonterey.co.jp/kyoto/stay/",
+        "https://www.hotelmonterey.co.jp/kyoto/stay/room/73.html",
+        "https://www.hotelmonterey.co.jp/kyoto/spa/",
+        "https://travel.rakuten.co.jp/HOTEL/55347/55347.html",
+        "https://maps.google.com/?cid=13942444288259279485"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 4,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.49（5,442 則）、Google 4.2，都不到京都（伊勢調整版）4 的門檻",
+        "meals": "楽天餐 4.50；素泊時步行 20 分內晚餐店 7 家（膳處漢ぽっちり 7 分、くをん 8 分、すがり 8 分）",
+        "groupFit": "327 室、トリプル 3 人、ファミリー 4 人；楽天的團體方案是 3～4 人一間的優惠，不是 15 人團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "官網寫有電梯、全室床、全室浴缸；無障礙房沒寫",
+        "accessEase": "官網：地鐵烏丸御池站 6 號出口步行 2 分（路線估算 4 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-watazen",
@@ -2713,7 +3135,7 @@
       "googleMaps": "https://maps.google.com/?cid=12621776117759888809"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "hankyu-karasuma",
       "mode": "walk",
@@ -2923,8 +3345,47 @@
         "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
       }
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "1830 年創業的全和室旅館（16 室），在四条烏丸附近，和室 10～12 帖可住 5 人，地下 1 樓有大浴場。一泊二食是房間裡吃的會席或京風壽喜燒，每人約 18,550 円、素泊約 12,500 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅。楽天 4.58（405 則）、Google 4.4。",
+      "pros": [
+        "楽天 4.58、楽天餐 4.78，在京都市區住得到一泊二食的老舖旅館",
+        "每間可住 5 人，15 人 3～4 間；首頁寫可以接 5～90 人的團體餐、宴會",
+        "有電梯、斜坡、輪椅用廁所，可以借輪椅、叫介護計程車"
+      ],
+      "cons": [
+        "全部是和室鋪布團，沒有床",
+        "Google 低分多是 2～9 年前的修學旅行團，說餐點冷、員工態度差",
+        "離地鐵四条站、阪急烏丸站步行約 8～10 分；小學生和大人幾乎同價（楽天約 90%）"
+      ],
+      "basedOn": [
+        "https://www.watazen.com/",
+        "https://www.watazen.com/rooms/",
+        "https://www.watazen.com/foods/",
+        "https://www.watazen.com/facilities/",
+        "https://travel.rakuten.co.jp/HOTEL/17903/17903.html",
+        "https://maps.google.com/?cid=12621776117759888809"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 5,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.58（405 則）、Google 4.4，京都（伊勢調整版）的 4；5 要楽天 4.6 以上；料理、員工態度的低分多是 2～9 年前的學校團體，不算近期的集中負評",
+        "meals": "一泊二食，楽天餐 4.78，晚餐在房間吃會席或京風壽喜燒；餐點冷的低分是多年前的學校團體",
+        "groupFit": "16 室、每間 5 人，15 人可以 3～4 間；首頁有 5～90 人的團體餐、宴會，住宿的團體條件沒寫（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "官網寫有電梯、斜坡、輪椅用廁所、可借輪椅，但全部是和室鋪布團；大浴場在地下 1 樓",
+        "accessEase": "官網：地鐵四条站、阪急烏丸站約 8 分（路線估算 10 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-daiwa-shijo-karasuma",
@@ -2974,7 +3435,7 @@
       "googleMaps": "https://maps.google.com/?cid=13891794630206871572"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "subway-shijo",
       "mode": "walk",
@@ -3146,8 +3607,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 7 家：都野菜 賀茂 烏丸店 5 分、蕎麦の実 よしむら 7 分、和醸良麺 すがり 9 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "地鐵四条站 5 號出口旁的商務飯店（233 室），京都站搭烏丸線 2 站。雙人房為主，スーペリアツイン 3 人、フォースルーム 4 床。楽天 4.46（2,293 則）、Google 4.1；素泊每人約 6,175 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "地鐵四条站 5 號出口步行約 1 分，地下通道雨天也不太淋濕",
+        "素泊每人約 6,200 円，四条一帶價格低的一間",
+        "有 4 張床的フォースルーム（55㎡、浴廁分開）"
+      ],
+      "cons": [
+        "廁所、水周有臭味、清潔不足的評論 5 則（約 2024～2026）",
+        "房間偏小、採光少；入住等很久、備品用完等服務抱怨約 5 則",
+        "楽天餐 3.65 偏低；沒有大浴場"
+      ],
+      "basedOn": [
+        "https://www.daiwaroynet.jp/kyoto-shijo/room/",
+        "https://www.daiwaroynet.jp/kyoto-shijo/breakfast/",
+        "https://www.daiwaroynet.jp/kyoto-shijo/access/",
+        "https://travel.rakuten.co.jp/HOTEL/136213/136213.html",
+        "https://maps.google.com/?cid=13891794630206871572"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.46（2,293 則）、Google 4.1，都不到京都（伊勢調整版）4 的門檻；Google 4.1 不在「評價普通」的範圍",
+        "meals": "楽天餐 3.65；素泊時步行 20 分內晚餐店 7 家（都野菜 賀茂 5 分、よしむら 7 分、すがり 9 分）",
+        "groupFit": "233 室、スーペリアツイン 3 人、フォースルーム 4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有ユニバーサルツイン（只接電話訂，當成館內可以坐輪椅移動）、全室床",
+        "accessEase": "官網：地鐵四条站 5 號出口約 1 分（路線估算 2 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-richmond-shijo",
@@ -3190,7 +3689,7 @@
       "googleMaps": "https://maps.google.com/?cid=13630630463949599237"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "hankyu-karasuma",
       "mode": "walk",
@@ -3377,8 +3876,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 5 家：京都四条くをん 5 分、和醸良麺 すがり 6 分、膳處漢ぽっちり 6 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "四条烏丸西邊的飯店（184 室），全客室浴室、洗面台、廁所分開。コンフォートトリプル 3～4 人、モデレートツイン加デイベッド 3 人。楽天 4.60（189 則）、Google 4.6；素泊每人約 11,630 円（2/9、2/10 楽天 15 人組合的最低價，不能變更取消的方案），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "楽天 4.60、Google 4.6，兩邊分數都高",
+        "浴室、洗面台、廁所分開，一家人同房比較方便",
+        "トリプル 3～4 人；3 樓餐廳的早餐用京格子木箱盛裝"
+      ],
+      "cons": [
+        "入住要排隊、櫃台態度差的評論約 4 則；取消規定嚴、不退款的評論 3 則",
+        "楽天的最低價是不能變更、取消的預付方案",
+        "離地鐵四条站、阪急烏丸站約 7 分；電梯、大浴場官網沒寫"
+      ],
+      "basedOn": [
+        "https://richmondhotel.jp/kyoto-shijo/",
+        "https://richmondhotel.jp/kyoto-shijo/rooms/",
+        "https://richmondhotel.jp/kyoto-shijo/guide/",
+        "https://travel.rakuten.co.jp/HOTEL/183335/183335.html",
+        "https://maps.google.com/?cid=13630630463949599237"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "楽天 4.60、Google 4.6，但楽天只有 189 則，不到 300 則最多 3",
+        "meals": "楽天餐沒有細項；素泊時步行 20 分內晚餐店 5 家（くをん 5 分、すがり 6 分、膳處漢ぽっちり 6 分）",
+        "groupFit": "184 室、コンフォートトリプル 3～4 人、モデレートツイン 3 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有ユニバーサルツイン（當成館內可以坐輪椅移動）、全室床",
+        "accessEase": "官網：四条站、阪急烏丸站約 7 分（路線估算到阪急烏丸 6 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-forza-kawaramachi",
@@ -3398,7 +3935,7 @@
     "address": "京都府京都市下京区四条通麩屋町西入立売東町25-1",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有 2027 年 2 月休館、改裝的公告。",
     "closures": [],
     "photos": [
       {
@@ -3422,7 +3959,7 @@
       "googleMaps": "https://maps.google.com/?cid=6936176849887893271"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "nearestStation": {
       "id": "hankyu-kyoto-kawaramachi",
       "mode": "walk",
@@ -3591,7 +4128,6 @@
     "extra": {
       "breakfast": "素泊／朝食付どちらもあり。朝食はブッフェ、B1F 朝食会場、6:30～10:30（L.O. 10:00）、大人 2,800 円、小學生（6～12 歲）1,400 円、未就學（5 歲以下）免費。（breakfast 頁）",
       "stationAccess": "四条通地下道 11 番出口直結。阪急京都河原町駅 徒歩約 4 分、京阪祇園四条駅 徒歩約 8 分、地下鉄烏丸線四条駅 徒歩約 7 分、京都駅からタクシー約 10 分。（top 頁）",
-      "febNote": "2027 年 2 月の休館・改装の記載は見当たらず（未確認）。",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [
         "添い寝対象：家族頁「小学生以下」vs 特徴頁見出し「12歳の小学生まで／小学6年生まで」"
@@ -3622,8 +4158,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：都野菜 賀茂 烏丸店 7 分、京極かねよ 9 分、和醸良麺 すがり 11 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "四条河原町的飯店（192 室），四条通地下道 11 號出口直結。カジュアルトリプル 3 床、ファミリールーム 3～4 人（浴室有洗い場）。楽天 4.59（498 則）、Google 4.5；素泊每人約 8,500 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 400 円。",
+      "pros": [
+        "楽天 4.59、Google 4.5，河原町一帶分數高",
+        "地下道 11 號出口直結，阪急京都河原町站步行約 4 分",
+        "小學生以下添い寝免費；ファミリールーム有洗い場付きの浴室"
+      ],
+      "cons": [
+        "房間很窄、床小、沒有收納的評論約 4 則（約 2025～2026）",
+        "櫃台糾紛、訂房失誤約 5 則，多是 3 年前",
+        "沒有大浴場；楽天上兩晚只有 8 間×2 人、5 間×3 人有空房"
+      ],
+      "basedOn": [
+        "https://www.hotelforza.jp/kyotoshijo/",
+        "https://www.hotelforza.jp/kyotoshijo/rooms/",
+        "https://www.hotelforza.jp/kyotoshijo/rooms/family-room.php",
+        "https://travel.rakuten.co.jp/HOTEL/182567/182567.html",
+        "https://maps.google.com/?cid=6936176849887893271"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 4,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.59（498 則）、Google 4.5，京都（伊勢調整版）的 4；5 要楽天 4.6 以上",
+        "meals": "楽天餐沒有細項；素泊時步行 20 分內晚餐店 8 家以上（都野菜 賀茂 7 分、京極かねよ 9 分）",
+        "groupFit": "192 室、カジュアルトリプル 3 人、ファミリー 3～4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有 Universal Double（只接電話訂，當成館內可以坐輪椅移動）、全室床",
+        "accessEase": "官網：地下道 11 號出口直結、阪急京都河原町站約 4 分（路線估算 4 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-good-nature",
@@ -3643,7 +4217,7 @@
     "address": "京都府京都市下京区河原町通四条下ル2丁目稲荷町318番6",
     "hours": null,
     "closedNote": null,
-    "febNote": null,
+    "febNote": "官網沒有 2027 年 2 月休館、改裝的公告。",
     "closures": [],
     "photos": [
       {
@@ -3667,7 +4241,7 @@
       "googleMaps": "https://maps.google.com/?cid=3426319356668736769"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "nearestStation": {
       "id": "hankyu-kyoto-kawaramachi",
       "mode": "walk",
@@ -3824,7 +4398,6 @@
       "dinner": "館内に 10 軒のレストラン／カフェ／パティスリー（Hyssop 4F、ERUTAN 1F、VELROSIER 2F 中華・予約制、TAKAYAMA 2F・予約制、BUONAGIO 2F 鉄板焼、ROKU 2F ラーメン、PREMIUM ROBATA SANDA 2F 炉端）。15 人包場・團體の可否は記載なし。（eat-drink-2 頁）",
       "onsen": "大浴場・温浴施設なし（jp-spa-wellness 頁）。スパ 13:00～21:00（3F）、ジム 7:00～23:00 宿泊者無料、いずれも 16 歳未満不可。",
       "stationAccess": "阪急京都河原町駅 4 番出口 徒歩 2 分、京阪祇園四条駅 3 番出口 徒歩 5 分。京都駅からタクシー約 10 分（約 1,000 円）、バスで 15～20 分「四条河原町」徒歩 3 分、地下鉄四条→阪急河原町も可。入口は GOOD NATURE STATION 左、エレベーターで 4F フロント。（access-2 頁）",
-      "febNote": "2027 年 2 月の休館・改装の記載は見当たらず（未確認）。",
       "taxes": "京都市住宿稅（2026-03-01 起，每人每晚，照每人素泊房價分級，房價不含）：未滿 6,000 円 200 円；6,000～未滿 20,000 円 400 円；20,000～未滿 50,000 円 1,000 円；50,000～未滿 100,000 円 4,000 円；100,000 円以上 10,000 円。一般兒童不免稅",
       "conflicts": [],
       "rakutenVacancy": {
@@ -3855,8 +4428,46 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：京都祇園 おかる 9 分、京極かねよ 9 分、いづう 10 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "阪急京都河原町站旁的高級設計飯店（141 室），館內有 10 間餐廳、咖啡、甜點店。房型多是 2～3 人，デラックスグランドツイン 最多 4 人。楽天 4.60（224 則）、Google 4.5；素泊每人約 22,969 円（2/9、2/10 楽天 15 人組合的最低價），另加京都市住宿稅每人每晚 1,000 円。",
+      "pros": [
+        "阪急京都河原町站 4 號出口步行 2 分",
+        "館內 10 間餐廳（中華、鐵板燒、爐端燒、拉麵），晚餐不用出門",
+        "楽天 4.60、Google 4.5，兩邊分數都高"
+      ],
+      "cons": [
+        "每人一晚約 23,000 円，京都收錄的飯店裡第二貴",
+        "大廳在 4 樓、電梯慢；房間沒地方攤開行李箱的評論 3 則",
+        "沒有大浴場，spa、健身房 16 歲以下不能用；添い寝規定官網沒寫"
+      ],
+      "basedOn": [
+        "https://goodnaturehotels.com/ja/home-ja/",
+        "https://goodnaturehotels.com/ja/rooms-suites",
+        "https://goodnaturehotels.com/ja/eat-drink-2",
+        "https://travel.rakuten.co.jp/HOTEL/176768/176768.html",
+        "https://maps.google.com/?cid=3426319356668736769"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 4,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.60、Google 4.5，但楽天只有 224 則，不到 300 則最多 3",
+        "meals": "楽天餐沒有細項；館內 10 間餐廳，步行 20 分內晚餐店 8 家以上（おかる 9 分、京極かねよ 9 分、いづう 10 分）",
+        "groupFit": "141 室、スーペリア 2～3 人、グランドツイン 4 人；沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "官網寫要搭電梯到 4 樓櫃台、房型是ツイン或ダブル；評論說電梯很慢",
+        "accessEase": "官網：阪急京都河原町站 4 號出口 2 分（路線估算 2 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-super-hotel-kawaramachi",
@@ -3905,8 +4516,10 @@
       "official": "https://www.superhotel.co.jp/s_hotels/shijyo/",
       "googleMaps": "https://maps.google.com/?cid=5282491952578502820"
     },
-    "tags": [],
-    "tier": null,
+    "tags": [
+      "溫泉"
+    ],
+    "tier": "B",
     "nearestStation": {
       "id": "hankyu-kyoto-kawaramachi",
       "mode": "walk",
@@ -4109,7 +4722,45 @@
       },
       "dinnerAccessNote": "步行 20 分內的晚餐店 8 家以上（只查最近 8 家）：京極かねよ 5 分、京都祇園 おかる 10 分、いづう 11 分 等（選素泊、朝食付方案時）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "四条河原町的平價連鎖飯店（177 室），有天然溫泉「御所の湯」（男女時段輪替）和免費自助早餐。トリプルルーム最多 4 人，其他房 12～14㎡。楽天 4.34（3,939 則）、Google 4.2；附早餐每人約 5,970～6,430 円（2/9、2/10 楽天 15 人組合的最低價），另有附 3,000 円餐券的方案約 9,340～9,800 円。另加京都市住宿稅。",
+      "pros": [
+        "附早餐每人約 6,000 円，京都收錄的飯店裡最便宜",
+        "阪急京都河原町站步行 3 分；天然溫泉、免費早餐",
+        "有附 35 間以上合作店家餐券的晚餐方案"
+      ],
+      "cons": [
+        "房間、浴廁很窄的評論 3 則；只有一個小浴場、男女輪替，常進不去",
+        "隔音差、清潔不足、自助入住流程混亂各 1 則",
+        "添い寝的小孩也算定員；10 間以上另有團體取消規定"
+      ],
+      "basedOn": [
+        "https://www.superhotel.co.jp/s_hotels/shijyo/",
+        "https://www.superhotel.co.jp/s_hotels/shijyo/gallery.html",
+        "https://www.superhotel.co.jp/otoku/family-use/",
+        "https://travel.rakuten.co.jp/HOTEL/75325/75325.html",
+        "https://maps.google.com/?cid=5282491952578502820"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "lodging-v1",
+      "scores": {
+        "recommend": 3,
+        "meals": 3,
+        "groupFit": 4,
+        "elderFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "楽天 4.34（3,939 則）、Google 4.2，都不到京都（伊勢調整版）4 的門檻",
+        "meals": "免費早餐，楽天餐 4.37；有晚餐餐券方案，步行 20 分內晚餐店 8 家以上（京極かねよ 5 分、おかる 10 分）",
+        "groupFit": "177 室、トリプル 4 人、コンパクトツイン 3 人；10 間以上適用團體取消規定，沒有團體方案（楽天 15 人組合的空房只是查詢當天（2026-11-12）的庫存）",
+        "elderFit": "有電梯、全室床，但房間 12～14㎡ 很窄，浴場小、男女輪替",
+        "accessEase": "官網：阪急河原町站步行 3 分（路線估算 2 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   }
 ]

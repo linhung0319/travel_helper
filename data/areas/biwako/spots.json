@@ -49,9 +49,33 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-omi-takashima",
+      "mode": "taxi",
+      "minutes": 5,
+      "note": "近江高島駅 約 2 km、車約 5 分（高島市官網）；站前有沒有排班計程車查不到，叫大津第一交通 高島営業所 0120-524-447"
+    },
+    "access": [
+      {
+        "from": "jr-omi-takashima",
+        "mode": "taxi",
+        "minutes": 5,
+        "note": "近江高島駅 約 2 km、車約 5 分（高島市官網）；站前有沒有排班計程車查不到，叫大津第一交通 高島営業所 0120-524-447"
+      },
+      {
+        "from": "jr-omi-takashima",
+        "mode": "taxi",
+        "minutes": 13,
+        "note": "予約乗合タクシー「鵜川線」到「白鬚神社前」13 分、下車即到；每班始發 30 分前電話預約（0120-524-447），近江高島駅發 7:53～17:26 一天 10 班，回程白鬚神社前發 8:06～17:39（平日、土休日同時刻）"
+      },
+      {
+        "from": "jr-omi-takashima",
+        "mode": "walk",
+        "minutes": 33,
+        "note": "步行約 40 分（walkerplus 等），沿國道 161 號有沒有連續人行道查不到，長輩不建議；路線估算 33 分"
+      }
+    ],
     "admission": "境內自由參拜，免費（御朱印 300 円）。",
     "phone": "0740-36-1555",
     "stayMinutes": 45,
@@ -164,8 +188,47 @@
       "restaurantNote": "白鬚食堂（高島市鵜川 225-5，「白鬚神社前」站旁，0740-36-0434）：烏龍麵、關東煮，26 席、不接受預約、只收現金（食べログ搜尋摘要，未親自瀏覽）；營業時間、公休 null。15 人一次坐不下，要分批或先電話問。白鬚喫茶（鵜川 217）：詳細 null。",
       "observatories": "國土交通省 滋賀國道事務所 2024-03-06 公告：鳥居前湖岸開口處已裝車輛用防護柵（含防墜柵，長約 10 m、高 1.1 m），設「横断やめて！」小型標誌 5 處、「横断危険」路面標示 6 處；公告明寫「湖中の鳥居をご覧になりたい方は、国道 161 号は横断せず、神社境内の展望デッキをご利用ください」。高島市：「国道を渡ることは大変危険ですのでご遠慮ください」。新建湖側觀景台的計畫：查不到（2022 年國道 161 號小松拡幅決定改走神社後方的隧道，是道路計畫，不是觀景台）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "湖西的神社，看點是立在琵琶湖裡的湖中鳥居。境內自由參拜、免費，湖中鳥居從社務所前的展望台看，不要過國道。京都站搭 JR 新快速到近江高島約 35～38 分，車站到神社約 2 km：預約制共乘計程車「鵜川線」13 分（一天 10 班、每班出發 30 分前電話預約）或計程車約 5 分，來回都要預約。",
+      "pros": [
+        "湖中鳥居從境內展望台就看得到，不用過馬路",
+        "免費參拜，停留 30～60 分，共乘計程車剛好一班 60 分",
+        "京都站新快速 35～38 分就到近江高島"
+      ],
+      "cons": [
+        "車站到神社沒有一般巴士，共乘計程車一台坐幾人查不到，15 人可能要叫約 4 台計程車、來回都預約",
+        "國道 161 號緊鄰鳥居、車速快，絕對不能橫越，小孩要牽好",
+        "湖西 2 月會積雪，石段、展望台滑；附近只查到一家 26 席不能預約的食堂"
+      ],
+      "basedOn": [
+        "https://www.city.takashima.lg.jp/soshiki/bunkasports/bunkazaika/1/1/666.html",
+        "https://www.city.takashima.lg.jp/kurashi_tetsuzuki/doro_kotsu_chushajo_churinjo/15726.html",
+        "https://www.city.takashima.lg.jp/material/files/group/62/takashima-heizitsu081001.pdf",
+        "https://www.kkr.mlit.go.jp/shiga/news/2023/oab6ee0000000803-att/4124-1.pdf",
+        "https://www.walkerplus.com/spot/ar0725s05717/data.html",
+        "https://maps.google.com/?cid=13664484576260554187"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.2（6,487 則），琵琶湖門檻的 3（4 要 4.3 以上、5,000 則以上）",
+        "winterFit": "境內和展望台都是戶外；湖西 2 月會積雪，雪天石段、展望台滑",
+        "elderFit": "長輩可以只到本殿和展望台，但參道和後山的石段段數、坡度都查不到，無法判斷",
+        "kidsFit": "一般神社，湖中鳥居拍照有趣，但緊鄰國道要牽好",
+        "accessEase": "近江高島駅計程車約 5 分，或預約制共乘計程車 13 分（一天 10 班）；京都站到近江高島新快速 35～38 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-miidera",
@@ -258,9 +321,27 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-miidera",
+      "mode": "walk",
+      "minutes": 12,
+      "note": "官網：京阪 三井寺駅 步行 10 分（三井寺駅沒有電梯）；路線估算 12 分"
+    },
+    "access": [
+      {
+        "from": "keihan-miidera",
+        "mode": "walk",
+        "minutes": 12,
+        "note": "官網：京阪 三井寺駅 步行 10 分（三井寺駅沒有電梯）；路線估算 12 分"
+      },
+      {
+        "from": "jr-otsu",
+        "mode": "bus",
+        "minutes": null,
+        "note": "京阪バス「三井寺」下車即到（官網；JR 大津京駅也有）"
+      }
+    ],
     "admission": "入山料 大人 800 円、中高生 500 円、小學生 300 円（30 人以上團體價）。",
     "phone": "077-522-2238",
     "stayMinutes": 60,
@@ -347,8 +428,45 @@
         "改價日期 2026-03-01 只見於觀光網站摘要，官網沒寫日期；金額（800／500／300）官網和大津市觀光協會一致。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "長等山山坡上的大寺院，有金堂、「三井の晩鐘」和西國第 14 番的觀音堂。全年 9:00～16:30（16:00 停止受理），大人 800、中高生 500、小學生 300 円，參觀約 50～60 分。京阪三井寺駅步行 10 分，或 JR 大津駅搭京阪巴士「三井寺」下車即到；京都站單程約 30～40 分。",
+      "pros": [
+        "京都站單程約 30～40 分，和石山寺、近江神宮可以排在同一天",
+        "長輩可以只看大門、金堂、三井の晩鐘一帶",
+        "境內有茶房可以休息"
+      ],
+      "cons": [
+        "境內是山坡土路，觀音堂要走石段上去，雪天會滑",
+        "冬天沒有特別延長，16:00 停止受理；三井寺駅沒有電梯",
+        "團體價要 30 人以上，15 人照個人票；小孩沒有特別能玩的"
+      ],
+      "basedOn": [
+        "http://www.shiga-miidera.or.jp/guide/index.htm",
+        "https://otsu.or.jp/cherry-blossoms_green-maple/temple/miidera/",
+        "https://ja.biwako-visitors.jp/spot/detail/84",
+        "https://maps.google.com/?cid=15031231823543743196"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4（3,315 則），琵琶湖門檻的 3（4 要 5,000 則以上）",
+        "winterFit": "堂宇分散在戶外山坡；2 月照常開，雪天土路、石段會滑",
+        "elderFit": "境內是山坡土路，觀音堂要走較緩的石段；長輩可以只看大門、金堂一帶，有茶房休息",
+        "kidsFit": "一般寺院，可以敲三井の晩鐘，沒有兒童設施",
+        "accessEase": "京阪三井寺駅步行 10 分（路線估算 12 分）；京都站單程約 30～40 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-ishiyamadera",
@@ -448,9 +566,27 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "keihan-ishiyamadera",
+      "mode": "walk",
+      "minutes": 14,
+      "note": "びわこビジターズビューロー：京阪 石山寺駅 步行 10 分；路線估算 14 分"
+    },
+    "access": [
+      {
+        "from": "keihan-ishiyamadera",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "びわこビジターズビューロー：京阪 石山寺駅 步行 10 分；路線估算 14 分"
+      },
+      {
+        "from": "jr-ishiyama",
+        "mode": "bus",
+        "minutes": 10,
+        "note": "官網：JR 石山駅 1 號乘車處 江若バス 1・4・14・52・54・55 系統 約 10 分「石山寺山門前」下車"
+      }
+    ],
     "admission": "入山料 大人 600 円、中高生 350 円、小學生 250 円；本堂內陣另收 大人 500 円、小學生 250 円。",
     "phone": "077-537-0013",
     "stayMinutes": 75,
@@ -542,8 +678,47 @@
         "びわこビジターズビューロー寫營業 8:00～16:00；官網閉門 16:30、最後入山 16:00。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "有紫式部、《源氏物語》相關展示的古寺，本堂在石段上方。8:00～16:30（16:00 最後入山），大人 600、小學生 250 円，本堂內陣另收。京阪石山寺駅步行約 10 分，或 JR 石山駅搭巴士約 10 分「石山寺山門前」；京都站單程約 30～35 分。",
+      "pros": [
+        "京都站單程約 30～35 分，京阪、JR 都到得了",
+        "紫式部、源氏物語相關的展示",
+        "梅園約 400 棵，旅程時可能有早開的梅"
+      ],
+      "cons": [
+        "往本堂的大石段 67 段很陡，另有較緩的石段但還是要爬",
+        "「梅つくし」往年是 2 月中旬以後，2027 年日期未公布，旅程時大概只有早開的梅",
+        "團體價要 30 人以上，15 人照個人票；小孩沒有特別能玩的"
+      ],
+      "basedOn": [
+        "https://www.ishiyamadera.or.jp/guide/fee",
+        "https://www.ishiyamadera.or.jp/access",
+        "https://www.ishiyamadera.or.jp/guide/precincts",
+        "https://www.ishiyamadera.or.jp/guide/event/umetsukushi",
+        "https://www.ishiyamadera.or.jp/info/info-flower/info-flower-autumn/1329",
+        "https://maps.google.com/?cid=3747120168255477055"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（5,079 則），達到琵琶湖門檻的 4（4.3 以上、5,000 則以上）",
+        "winterFit": "境內戶外、石段多；梅園往年 2 月中旬以後才是見頃",
+        "elderFit": "到本堂的大石段 67 段很陡、要抓扶手，較緩的石段加蓮如堂到本堂 18 段也要爬；長輩可以只走東大門到志納所的平坦參道",
+        "kidsFit": "一般寺院，沒有兒童設施",
+        "accessEase": "京阪石山寺駅步行約 10 分（路線估算 14 分）；京都站單程約 30～35 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-omi-jingu",
@@ -647,9 +822,27 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-omi-jingu-mae",
+      "mode": "walk",
+      "minutes": 11,
+      "note": "官網：京阪 近江神宮前駅 步行約 9 分（站前沒有計程車）；路線估算 11 分"
+    },
+    "access": [
+      {
+        "from": "keihan-omi-jingu-mae",
+        "mode": "walk",
+        "minutes": 11,
+        "note": "官網：京阪 近江神宮前駅 步行約 9 分（站前沒有計程車）；路線估算 11 分"
+      },
+      {
+        "from": "jr-otsukyo",
+        "mode": "taxi",
+        "minutes": null,
+        "note": "JR 大津京駅搭計程車（官網）；或步行 150 m 轉京阪 大津京駅 搭 1 站"
+      }
+    ],
     "admission": "境內參拜免費；時計館宝物館 大人 300 円、小孩 150 円。",
     "phone": "077-522-3725",
     "stayMinutes": 45,
@@ -729,8 +922,45 @@
         "背景資料寫 JR 大津京駅步行約 15 分；官網交通頁只寫轉京阪或計程車，沒寫步行分數。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大津的神社，也是百人一首競技歌牌的聖地。參拜 6:00～18:00、免費；時計館宝物館（日晷、漏刻等古今時鐘）大人 300、小孩 150 円，週一休。京阪近江神宮前駅步行約 9 分；京都站單程約 30 分。",
+      "pros": [
+        "身障者用車可以開到時計館旁，走斜坡就到外拝殿，有輪椅可用廁所",
+        "時計館的古今時鐘小孩可能有興趣",
+        "2/11 10:00 有紀元節祭（2026 年的行事表）"
+      ],
+      "cons": [
+        "近江神宮前駅前沒有計程車，要從 JR 大津京駅叫",
+        "從車站走約 9 分，一半是境內參道",
+        "境內戶外，時計館很小；石段段數官網沒寫"
+      ],
+      "basedOn": [
+        "https://oumijingu.org/pages/175",
+        "https://oumijingu.org/pages/85/",
+        "http://oumijingu.org/pages/132/",
+        "https://maps.google.com/?cid=5348340799537701405"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（4,708 則），琵琶湖門檻的 3（4 要 5,000 則以上）",
+        "winterFit": "境內戶外，社殿外參拜；2 月照常",
+        "elderFit": "車可以開到時計館旁，走斜坡到外拝殿，有輪椅可用廁所；石段段數官網沒寫",
+        "kidsFit": "時計館的古今時鐘、競技歌牌的聖地",
+        "accessEase": "京阪近江神宮前駅步行約 9 分（路線估算 11 分）；京都站單程約 30 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-hiyoshi-taisha",
@@ -827,9 +1057,27 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-sakamoto-hieizanguchi",
+      "mode": "walk",
+      "minutes": 12,
+      "note": "官網：京阪 坂本比叡山口駅 步行 10 分；路線估算 12 分"
+    },
+    "access": [
+      {
+        "from": "keihan-sakamoto-hieizanguchi",
+        "mode": "walk",
+        "minutes": 12,
+        "note": "官網：京阪 坂本比叡山口駅 步行 10 分；路線估算 12 分"
+      },
+      {
+        "from": "jr-hieizan-sakamoto",
+        "mode": "walk",
+        "minutes": 21,
+        "note": "官網：JR 比叡山坂本駅 步行 20 分（緩上坡），站前有計程車和巴士；路線估算 21 分"
+      }
+    ],
     "admission": "入苑協賛料 大人 500 円、中高生 300 円、小學生以下免費。",
     "phone": null,
     "stayMinutes": 60,
@@ -920,8 +1168,46 @@
       "nearby": "坂本の町並み：大津市坂本伝統的建造物群保存地区（1997 年選定）。延暦寺、日吉大社的門前町，日吉參道兩旁是延暦寺老僧的隱居所「里坊」（現存 50 多處），特色是穴太衆（坂本穴太一帶的石匠集團）用未加工自然石堆的「穴太衆積み」石垣；一般公開的里坊有旧竹林院（費用未確認）。從坂本比叡山口駅到日吉大社的參道就在保存地區內，免費、戶外、往山側緩上坡。",
       "conflicts": []
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "比叡山山腳的神社，境內約 46.8 萬㎡，西本宮、東本宮相隔一段。參拜 9:00～16:00，入苑 大人 500 円、小學生以下免費。京阪坂本比叡山口駅步行 10 分；從 JR 比叡山坂本駅走是緩上坡約 20 分，參道兩旁是穴太衆積み石垣的坂本町並。京都站單程約 35～45 分。",
+      "pros": [
+        "小學生以下免費",
+        "計程車可以開進境內（50 台停車場），長輩不用走上坡",
+        "參道是坂本的石垣町並，可以和延曆寺排同一天"
+      ],
+      "cons": [
+        "16:00 就結束參拜，冬天要早點去",
+        "境內大、砂石路，石段、輪椅資訊官網沒寫",
+        "團體價要 30 人以上，15 人照個人票；小孩沒有特別能玩的"
+      ],
+      "basedOn": [
+        "https://hiyoshitaisha.jp/",
+        "http://hiyoshitaisha.jp/access/",
+        "https://hiyoshitaisha.jp/event/",
+        "https://otsu.or.jp/sengoku/sakamoto.html",
+        "https://maps.google.com/?cid=9301996864800081072"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（3,224 則），琵琶湖門檻的 3（4 要 5,000 則以上）",
+        "winterFit": "境內戶外、砂石路；16:00 結束參拜，雪天要小心",
+        "elderFit": "境內很大、砂石路，西本宮和東本宮相隔一段；計程車可以開進境內，石段官網沒寫",
+        "kidsFit": "一般神社，小學生以下免費，沒有兒童設施",
+        "accessEase": "京阪坂本比叡山口駅步行 10 分（路線估算 12 分）；京都站單程約 35～45 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-enryakuji",
@@ -1014,9 +1300,33 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "sakamoto-cable-enryakuji",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "坂本ケーブル官網：ケーブル延暦寺駅 步行約 10 分到東塔；路線估算 10 分"
+    },
+    "access": [
+      {
+        "from": "sakamoto-cable-enryakuji",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "坂本ケーブル官網：ケーブル延暦寺駅 步行約 10 分到東塔；路線估算 10 分"
+      },
+      {
+        "from": "keihan-sakamoto-hieizanguchi",
+        "mode": "bus",
+        "minutes": 3,
+        "note": "到ケーブル坂本駅 巴士約 3 分（步行約 15 分），再搭纜車 11 分（坂本ケーブル官網）"
+      },
+      {
+        "from": "jr-hieizan-sakamoto",
+        "mode": "bus",
+        "minutes": 7,
+        "note": "江若バス到ケーブル坂本駅 約 7 分（步行約 25 分、計程車約 7 分），再搭纜車 11 分（坂本ケーブル官網）"
+      }
+    ],
     "admission": "東塔・西塔・横川共通巡拝券 大人 1,000 円、中高生 600 円、小學生 300 円；國寶殿另收；坂本ケーブル來回 大人 1,830 円、小孩 920 円。",
     "phone": "077-578-0001",
     "stayMinutes": 120,
@@ -1140,8 +1450,47 @@
         "坂本ケーブル團體折扣：官網 guide 頁寫一般 8 人以上 9 折；背景資料寫 25 人以上才有，以官網為準但要確認。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "比叡山上的寺院，堂宇分散在東塔、西塔、横川；長輩建議只看東塔一區。東塔 9:00～16:00（15:45 停止受理），共通巡拝券 大人 1,000、小學生 300 円。冬天京都側的纜車停駛，只能從坂本搭坂本ケーブル（每 30 分一班、11 分，來回大人 1,830、小孩 920 円），山上站再走約 10 分到東塔。根本中堂大改修，2027 年 2 月內部很可能不能參拜。",
+      "pros": [
+        "坂本ケーブル是日本最長的纜車，小孩會喜歡；8 人以上團體 9 折",
+        "東塔一區約 1.5～2 小時，延暦寺会館有餐廳可休息",
+        "可以和山腳的日吉大社、坂本町並排同一天"
+      ],
+      "cons": [
+        "根本中堂大改修中，內部參拜停止（到 2028 年左右）",
+        "山上冷、可能積雪結冰，降雪時可能提早閉堂；冬季沒有山上巴士，西塔、横川不建議去",
+        "東塔堂宇之間有高石段，纜車車內、月台也是階梯狀"
+      ],
+      "basedOn": [
+        "https://www.hieizan.or.jp/tickets/",
+        "https://www.hieizan.or.jp/access",
+        "https://www.hieizan.or.jp/grounds/toudou.html",
+        "https://www.hieizan.or.jp/renovation/overview.html",
+        "https://sakamoto-cable.jp/guide/",
+        "https://maps.google.com/?cid=10402748892490746261"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 2,
+        "elderFit": 2,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（9,591 則），達到琵琶湖門檻的 4（4.3 以上、5,000 則以上）",
+        "winterFit": "山上比山下冷很多、可能積雪結冰，降雪時可能提早閉堂；冬季只有坂本ケーブル，山上巴士停駛",
+        "elderFit": "只看東塔也要從纜車站走約 10 分，堂宇之間有高石段；纜車車內、月台是階梯狀",
+        "kidsFit": "日本最長的纜車、山上可能有雪；寺院本身是一般寺院",
+        "accessEase": "JR 比叡山坂本駅搭巴士或計程車約 7 分到纜車站，再搭纜車 11 分（每 30 分一班）、走約 10 分；京都站單程約 60～70 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-michigan-cruise",
@@ -1224,9 +1573,27 @@
       "googleMaps": "https://maps.google.com/?cid=16397331949548726387"
     },
     "tags": [],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-biwako-hamaotsu",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "琵琶湖汽船官網：びわ湖浜大津駅 步行約 3 分；路線估算 4 分"
+    },
+    "access": [
+      {
+        "from": "keihan-biwako-hamaotsu",
+        "mode": "walk",
+        "minutes": 4,
+        "note": "琵琶湖汽船官網：びわ湖浜大津駅 步行約 3 分；路線估算 4 分"
+      },
+      {
+        "from": "jr-otsu",
+        "mode": "walk",
+        "minutes": 18,
+        "note": "琵琶湖汽船官網：JR 大津駅 步行約 15 分，或巴士約 5 分「浜大津」下車步行 3 分；路線估算 18 分"
+      }
+    ],
     "admission": "ミシガン90 乗船料 大人（中學生以上）3,400 円、小學生 1,700 円、未就學兒每位大人帶 1 位免費；15 人以上團體 9 折。",
     "phone": "077-524-5000",
     "stayMinutes": 105,
@@ -1312,8 +1679,46 @@
       ],
       "stayNote": "航程 90 分＋提前報到約 15 分。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "琵琶湖汽船的明輪觀光船，4 層甲板、航程後半有音樂表演。冬季（2027/1/4～2/28）只在週六日、假日開ミシガン90（90 分），大津港 11:00、13:00 出航：旅程中只有 2/11（假日）有開。大人 3,400、小學生 1,700 円，15 人以上團體 9 折。京阪びわ湖浜大津駅步行約 3 分；京都站單程約 30～35 分。",
+      "pros": [
+        "坐船看湖，長輩輕鬆；船內 1～3F 有輪椅可用的電梯",
+        "15 人剛好可以用團體 9 折（要以團體預約）",
+        "びわ湖浜大津駅步行約 3 分"
+      ],
+      "cons": [
+        "冬季平日不開，旅程中只有 2/11 能坐",
+        "一天只有 2 班，強風、惡天候會改時刻或停航",
+        "4F 戶外スカイデッキ只有樓梯，冬天湖上風冷，要坐室內船艙"
+      ],
+      "basedOn": [
+        "https://www.biwakokisen.co.jp/cruise/michigan/price_time/",
+        "https://www.biwakokisen.co.jp/cruise/michigan/",
+        "https://www.biwakokisen.co.jp/access/otsu/",
+        "https://tabi-mag.jp/sg0010/",
+        "https://maps.google.com/?cid=16397331949548726387"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 2,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（2,230 則），琵琶湖門檻的 3（4 要 4.3 以上、5,000 則以上）",
+        "winterFit": "冬季平日停航，旅程四天只有 2/11 有開；湖上風冷、強風會停航",
+        "elderFit": "坐船為主，船內 1～3F 有電梯、大津港有無障礙廁所；4F 甲板只有樓梯",
+        "kidsFit": "明輪船、4 層甲板、船上音樂表演",
+        "accessEase": "京阪びわ湖浜大津駅步行約 3 分（路線估算 4 分）；京都站單程約 30～35 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-ukimido",
@@ -1405,9 +1810,27 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-katata",
+      "mode": "walk",
+      "minutes": 22,
+      "note": "堅田駅 步行約 25 分（大津市堅田地圖 PDF）；路線估算 22 分"
+    },
+    "access": [
+      {
+        "from": "jr-katata",
+        "mode": "walk",
+        "minutes": 22,
+        "note": "堅田駅 步行約 25 分（大津市堅田地圖 PDF）；路線估算 22 分"
+      },
+      {
+        "from": "jr-katata",
+        "mode": "bus",
+        "minutes": null,
+        "note": "巴士「出町」下車 步行 7 分（びわこビジターズビューロー；土日有開到浮御堂的巴士）"
+      }
+    ],
     "admission": "拝観料 300 円（兒童票、團體票查不到）。",
     "phone": "077-572-0455",
     "stayMinutes": 30,
@@ -1485,8 +1908,46 @@
       "conflicts": [],
       "stayNote": "寺域小，約 20～30 分（估算）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "堅田的湖上小佛堂，以橋連到湖面。8:00～17:00，拝観料 300 円，寺域小、約 20～30 分。JR 堅田駅步行約 25 分，或搭巴士到「出町」再走 7 分（土日有開到浮御堂的巴士）；京都站單程約 40～50 分。",
+      "pros": [
+        "湖上佛堂的景色獨特，停留短、容易排進行程",
+        "拝観料 300 円便宜",
+        "JR 京都到堅田 22 分"
+      ],
+      "cons": [
+        "堅田駅步行約 25 分，巴士班次沒查到",
+        "湖畔風大、冷，以戶外為主；1～2 月有沒有提早關門查不到",
+        "兒童票、階梯、廁所資訊都查不到"
+      ],
+      "basedOn": [
+        "https://otsu.or.jp/cherry-blossoms_green-maple/temple/ukimido/",
+        "https://www.biwako-visitors.jp/spot/detail/91/",
+        "https://www.gltjp.com/en/directory/item/11903/",
+        "https://www.city.otsu.lg.jp/material/files/group/67/map_03_katata_ver4.pdf",
+        "https://maps.google.com/?cid=10203167288420262745"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.2（2,357 則），琵琶湖門檻的 3（4 要 4.3 以上、5,000 則以上）",
+        "winterFit": "湖上小佛堂，以戶外為主，湖畔風大；2 月沒有特別活動",
+        "elderFit": "寺域小，但階梯、輪椅資訊都查不到，無法判斷",
+        "kidsFit": "一般寺院，範圍小，沒有兒童設施",
+        "accessEase": "JR 堅田駅步行約 25 分（路線估算 22 分），巴士「出町」下車 7 分但班次沒查到；京都站單程約 40～50 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-biwako-valley",
@@ -1579,9 +2040,21 @@
       "展望",
       "親子"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-shiga",
+      "mode": "bus",
+      "minutes": 15,
+      "note": "江若交通「びわ湖バレイ線」約 10～15 分到「びわ湖バレイ前」，再搭ロープウェイ約 5 分（官網）；冬季時刻 2026-11 還沒公布，びわ湖バレイ停業時巴士也停"
+    },
+    "access": [
+      {
+        "from": "jr-shiga",
+        "mode": "bus",
+        "minutes": 15,
+        "note": "江若交通「びわ湖バレイ線」約 10～15 分到「びわ湖バレイ前」，再搭ロープウェイ約 5 分（官網）；冬季時刻 2026-11 還沒公布，びわ湖バレイ停業時巴士也停"
+      }
+    ],
     "admission": "不滑雪買「施設利用券（雪あそび／びわ湖テラス用）」：含ロープウェイ往返、山頂リフト、テラス入場；2025-26 大人 5,000／小學生 2,500／幼兒（3 歲～）1,600 円（窗口 4,800～4,900／2,300～2,400／1,400～1,500，Web 前售較便宜）。",
     "phone": "077-592-1155",
     "stayMinutes": 180,
@@ -1698,8 +2171,47 @@
       ],
       "stayNote": "玩雪＋テラス 約 2～3 小時（估算）；加上京都來回各 60～75 分。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "滑雪場兼展望台，搭ロープウェイ約 5 分上到標高約 1,100 m 的山頂，冬天山頂站前有玩雪區「スノーランド」，搭リフト到びわ湖テラス看湖。不滑雪買施設利用券（2025-26：大人 5,000、小學生 2,500 円，Web 前售較便宜）。JR 志賀駅搭江若巴士約 10～15 分到山腳；2026-27 冬季 12 月下旬開始，巴士時刻、營業時間還沒公布。京都站單程約 60～75 分。",
+      "pros": [
+        "冬天才有的玩雪區，鏟子免費借、雪橇 60 分 500 円，小孩會很喜歡",
+        "ロープウェイ可以直接坐輪椅、推嬰兒車上去，長輩可以在山頂室內咖啡廳休息",
+        "Web 前售比窗口便宜不少，15 人可以先上網買"
+      ],
+      "cons": [
+        "強風、雷時ロープウェイ和巴士都停駛，2026-27 冬季的巴士時刻還沒公布",
+        "山頂比山腳冷 5～7℃，雪地有段差、會滑；荒天改走室內通道要爬數十階",
+        "2/11 假日スノーランド很擠（尤其 11:00～14:00）；外國旅客適用哪一欄票價要問"
+      ],
+      "basedOn": [
+        "https://www.biwako-valley.com/w_season/hours_fare_winter/",
+        "https://www.biwako-valley.com/w_season/snow_land/",
+        "https://www.biwako-valley.com/w_season/ropeway_information/",
+        "https://www.biwako-valley.com/tips/biwako_terrace_winter/index.html",
+        "https://www.biwako-valley.com/all_season/access/",
+        "https://maps.google.com/?cid=11374836610408247937"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 3,
+        "kidsFit": 5,
+        "accessEase": 2
+      },
+      "rationale": {
+        "recommend": "Google 4.2（1,084 則），琵琶湖門檻的 3（4 要 4.3 以上、5,000 則以上）",
+        "winterFit": "冬天才有的玩雪區；但強風時纜車停駛、山頂比山腳冷 5～7℃，2026-27 冬季的時間還沒公布",
+        "elderFit": "纜車可以坐輪椅上去，山頂有室內咖啡廳；雪地有段差、會滑，荒天改走室內通道要爬數十階",
+        "kidsFit": "玩雪區、雪橇，小孩會很喜歡",
+        "accessEase": "JR 志賀駅搭巴士約 10～15 分再搭纜車約 5 分，冬季巴士時刻還沒公布；京都站單程約 60～75 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-biwako-museum",
@@ -1788,9 +2300,21 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "jr-kusatsu",
+      "mode": "bus",
+      "minutes": 25,
+      "note": "官網：JR 草津駅 西口 2 號乘車處 近江鉄道バス「琵琶湖博物館行き」約 25 分，「琵琶湖博物館」下車即到；班次官網沒寫"
+    },
+    "access": [
+      {
+        "from": "jr-kusatsu",
+        "mode": "bus",
+        "minutes": 25,
+        "note": "官網：JR 草津駅 西口 2 號乘車處 近江鉄道バス「琵琶湖博物館行き」約 25 分，「琵琶湖博物館」下車即到；班次官網沒寫"
+      }
+    ],
     "admission": "常設展 大人 840 円、大學生 470 円，高中以下免費；企畫展另收（大人 340 円、小中學生 170 円）。",
     "phone": "077-568-4811",
     "stayMinutes": 150,
@@ -1882,8 +2406,46 @@
       ],
       "stayNote": "水族＋常設 A～C 展示室＋ディスカバリールーム，有小孩約 2～3 小時（估算）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "滋賀縣立的湖泊博物館，有國內最大級的淡水生物水族展示，和親子動手體驗的「ディスカバリールーム」。9:30～17:00（16:00 最後入館），週一休（旅程的 2/9～2/12 都開）。常設展 大人 840 円、高中以下免費。JR 草津駅搭近江鉄道巴士約 25 分「琵琶湖博物館」下車即到；京都站單程約 55～60 分。",
+      "pros": [
+        "高中以下常設展免費，水族展示和動手體驗區小孩會很喜歡",
+        "全在館內，有電梯、坡道，可以借輪椅、嬰兒推車",
+        "巴士站就在門口，2/9～2/12 都開館"
+      ],
+      "cons": [
+        "巴士班次官網沒寫，要查近江鉄道巴士時刻表",
+        "ディスカバリールーム要當天領券、有人數限制，12:00～13:00 關閉",
+        "館內電梯、手扶梯 2026 年底到 2027 年 1 月施工，部分水槽因工事閉鎖，出發前要再查"
+      ],
+      "basedOn": [
+        "https://www.biwahaku.jp/guide/price.html",
+        "https://www.biwahaku.jp/guide/access.html",
+        "https://www.biwahaku.jp/guide/barrierfree.html",
+        "https://www.biwahaku.jp/",
+        "https://maps.google.com/?cid=15927263509491749296"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（6,197 則），達到琵琶湖門檻的 4（4.3 以上、5,000 則以上）",
+        "winterFit": "參觀全在館內，巴士站就在門口；週一休，旅程的 2/9～2/12 都開",
+        "elderFit": "館內平地、有電梯和坡道、可借輪椅，有休息區；館很大，參觀約 2 小時",
+        "kidsFit": "淡水生物水族展示、親子動手體驗區，高中以下免費",
+        "accessEase": "JR 草津駅搭巴士約 25 分、下車即到，班次官網沒寫；京都站單程約 55～60 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-sagawa-museum",
@@ -1976,9 +2538,27 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-katata",
+      "mode": "bus",
+      "minutes": 15,
+      "note": "官網：JR 堅田駅 江若交通バス或計程車 約 15 分（班次、巴士站名沒寫）"
+    },
+    "access": [
+      {
+        "from": "jr-katata",
+        "mode": "bus",
+        "minutes": 15,
+        "note": "官網：JR 堅田駅 江若交通バス或計程車 約 15 分（班次、巴士站名沒寫）"
+      },
+      {
+        "from": "jr-moriyama",
+        "mode": "bus",
+        "minutes": 35,
+        "note": "官網：JR 守山駅 近江鉄道バス或計程車 約 35 分（班次沒寫，官網的時刻表連結是 2023 年的）"
+      }
+    ],
     "admission": "大カプコン展（含常設）：一般 窗口 1,600 円／WEB 1,500 円，高中大學 800／700 円，國中以下免費（小學以下要家長陪同）。",
     "phone": "077-585-7800",
     "stayMinutes": 90,
@@ -2069,8 +2649,46 @@
         "江若交通 2024/3/16 減便資料寫「琵琶湖大橋線（佐川美術館往復の減便）（免許センター往復、土休日0便）」，堅田側班次可能很少，2/11 假日可能沒車，要查最新時刻表"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "美術館，2027 年 2 月正在展「大カプコン展」（到 2/28），有像素畫、動作捕捉的小孩體驗。9:30～17:00（16:30 最後入館），週一休；大人 窗口 1,600／WEB 1,500 円，國中以下免費。JR 堅田駅搭巴士或計程車約 15 分，巴士班次很少；京都站單程約 60～70 分。",
+      "pros": [
+        "旅程正好在大カプコン展期間，小孩有像素畫、動作捕捉體驗，國中以下免費",
+        "參觀全在館內，2/9～2/12 都開",
+        "WEB 預約可以指定入館時段"
+      ],
+      "cons": [
+        "巴士班次少（堅田側減便、假日可能 0 班），可能要搭計程車",
+        "WEB 預約不能改時間，預約時間 1 小時前以後不能退款",
+        "電梯、輪椅出借、巴士站到入口的距離官網都沒寫"
+      ],
+      "basedOn": [
+        "https://www.sagawa-artmuseum.or.jp/use/",
+        "https://www.sagawa-artmuseum.or.jp/use/access.html",
+        "https://www.sagawa-artmuseum.or.jp/plan/2026/10/post-183.html",
+        "https://www.kojak.co.jp/uploads/kaisei20240316.pdf",
+        "https://maps.google.com/?cid=77276851033609248"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 5,
+        "elderFit": null,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.3（3,974 則），琵琶湖門檻的 3（4 要 5,000 則以上）",
+        "winterFit": "參觀全在館內，2 月正好有大カプコン展；週一休，旅程的 2/9～2/12 都開",
+        "elderFit": "電梯、輪椅出借、館內動線官網都沒寫，無法判斷",
+        "kidsFit": "カプコン展有像素畫、動作捕捉的體驗，國中以下免費",
+        "accessEase": "JR 堅田駅搭巴士或計程車約 15 分，巴士班次沒寫而且減便過；京都站單程約 60～70 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-la-collina",
@@ -2169,9 +2787,21 @@
     "tags": [
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-omi-hachiman",
+      "mode": "bus",
+      "minutes": 10,
+      "note": "官網：JR 近江八幡駅 北口 6 號乘車處 近江鉄道バス「長命寺行き」或「長命寺経由休暇村行き」約 10 分，「北之庄 ラコリーナ前」下車；「グランド行き」和標「学」的班次不停"
+    },
+    "access": [
+      {
+        "from": "jr-omi-hachiman",
+        "mode": "bus",
+        "minutes": 10,
+        "note": "官網：JR 近江八幡駅 北口 6 號乘車處 近江鉄道バス「長命寺行き」或「長命寺経由休暇村行き」約 10 分，「北之庄 ラコリーナ前」下車；「グランド行き」和標「学」的班次不停"
+      }
+    ],
     "admission": "免費入場；買和菓子、バームクーヘン、在カフェ吃東西另付。",
     "phone": "0748-33-6666",
     "stayMinutes": 90,
@@ -2256,8 +2886,46 @@
         "定休日：官網沒寫，第三方（るるぶ）寫只有元旦休"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "たねや（和菓子）、クラブハリエ 的園區，草屋根的主店、年輪蛋糕工房、カフェ和田んぼ。免費入場，9:00～18:00。JR 近江八幡駅搭近江鉄道巴士約 10 分「北之庄 ラコリーナ前」下車；京都站單程約 50 分。假日人多，焼きたてバームクーヘン常在 15～16 時左右賣完。",
+      "pros": [
+        "草屋根建築和田んぼ很好拍，可以看年輪蛋糕的製作過程",
+        "平地為主，主店有無障礙步道和電梯",
+        "可以和八幡堀排同一天（同一條巴士線）"
+      ],
+      "cons": [
+        "2/11 假日人多，カフェ要排隊、不接受預約，15 人要分組或外帶",
+        "建築之間要走戶外庭園步道；大雪可能改時間或臨時休業",
+        "巴士班次官網沒寫，有些班次不停"
+      ],
+      "basedOn": [
+        "https://taneya.jp/la_collina/",
+        "https://taneya.jp/la_collina/info/access/",
+        "https://taneya.jp/la_collina/faq/",
+        "https://taneya.jp/la_collina/congestion/",
+        "https://maps.google.com/?cid=17179290743664196562"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.2（19,008 則），琵琶湖門檻的 3（4 要 4.3 以上）",
+        "winterFit": "商店、カフェ在室內，建築之間走戶外步道；大雪可能改時間",
+        "elderFit": "平地為主，主店有無障礙步道和電梯；停車場到主店的步道有段差，不出借輪椅",
+        "kidsFit": "田んぼ、草屋根建築、看年輪蛋糕製作",
+        "accessEase": "JR 近江八幡駅搭巴士約 10 分，班次官網沒寫；京都站單程約 50 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-hachimanbori",
@@ -2308,9 +2976,27 @@
       "googleMaps": "https://maps.google.com/?cid=16446298824965287318"
     },
     "tags": [],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-omi-hachiman",
+      "mode": "bus",
+      "minutes": 7,
+      "note": "近江八幡観光物産協会：JR 近江八幡駅 北口 6 號乘車處 近江鉄道バス「長命寺行」約 7 分，「八幡堀（大杉町）八幡山ロープウェイ口」下車即到"
+    },
+    "access": [
+      {
+        "from": "jr-omi-hachiman",
+        "mode": "bus",
+        "minutes": 7,
+        "note": "近江八幡観光物産協会：JR 近江八幡駅 北口 6 號乘車處 近江鉄道バス「長命寺行」約 7 分，「八幡堀（大杉町）八幡山ロープウェイ口」下車即到"
+      },
+      {
+        "from": "jr-omi-hachiman",
+        "mode": "walk",
+        "minutes": 31,
+        "note": "路線估算"
+      }
+    ],
     "admission": "散步、參拜免費；八幡堀めぐり 大人 1,500 円、小孩 1,000 円。",
     "phone": "0748-32-3151",
     "stayMinutes": 90,
@@ -2414,8 +3100,47 @@
         "預約：和でん FAQ 寫 10 人以上「推薦」事前預約，預約頁寫 10 人以上團體 2 週前「需要」預約"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "近江八幡的舊市街，八幡堀沿岸是石板步道，旁邊是日牟禮八幡宮。散步、參拜免費；八幡堀めぐり（和船，約 35 分）10:00～16:00、大人 1,500、小孩 1,000 円，一艘 12 人，10 人以上要 2 週前預約。JR 近江八幡駅搭近江鉄道巴士約 7 分「八幡堀（大杉町）八幡山ロープウェイ口」下車即到；京都站單程約 50 分。",
+      "pros": [
+        "舊市街平地，長輩小孩都能慢慢逛",
+        "坐和船遊堀，15 人分 2 艘就能一起",
+        "可以和 La Collina 排同一天（同一條巴士線）"
+      ],
+      "cons": [
+        "遊船 10 人以上要 2 週前用官網表單預約，大雨強風停航",
+        "上船要走約 10 段石階、脫鞋坐，輪椅、嬰兒車不能上船",
+        "全程戶外，下雨不適合；附近的八幡山ロープウェー 2/10 以前停駛點檢"
+      ],
+      "basedOn": [
+        "https://www.oumi-waden.com/ship",
+        "https://www.oumi-waden.com/ship_faq/",
+        "https://www.oumi-waden.com/ship_reservation/",
+        "https://www.omi8.com/spot/detail_1030.html",
+        "https://www.ohmitetudo.co.jp/ropeway/",
+        "https://maps.google.com/?cid=16446298824965287318"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.3（4,251 則），琵琶湖門檻的 3（4 要 5,000 則以上）",
+        "winterFit": "戶外街道和露天的船；遊船 2 月照常，冬天有沒有暖桌官網沒寫",
+        "elderFit": "舊市街平地、石板步道；遊船要走約 10 段石階、脫鞋坐，膝蓋不好的可以不坐",
+        "kidsFit": "坐和船、逛舊市街，沒有兒童設施",
+        "accessEase": "JR 近江八幡駅搭巴士約 7 分、下車即到，班次沒查到；京都站單程約 50 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "biwako-hikone-castle",
@@ -2514,9 +3239,27 @@
     "tags": [
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "jr-hikone",
+      "mode": "walk",
+      "minutes": 19,
+      "note": "官網：JR 彦根駅 步行約 15 分到城；路線估算 19 分"
+    },
+    "access": [
+      {
+        "from": "jr-hikone",
+        "mode": "walk",
+        "minutes": 19,
+        "note": "官網：JR 彦根駅 步行約 15 分到城；路線估算 19 分"
+      },
+      {
+        "from": "jr-hikone",
+        "mode": "bus",
+        "minutes": null,
+        "note": "湖国バス「彦根循環線」只在週六日、假日和旺季行駛（2/11 可能有車，時刻沒查到）"
+      }
+    ],
     "admission": "彦根城（含玄宮園）大人 1,000 円、小中學生 300 円；只看玄宮園 400／150 円。",
     "phone": "0749-22-2742",
     "stayMinutes": 120,
@@ -2608,7 +3351,46 @@
         "ひこにゃん時間出自彦根觀光協會「冬こそ彦根城！」頁，頁內折扣期限是平成 30 年，2027 冬季時間出發前要再查（ひこにゃん出陣スケジュール）"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "國寶天守的城，含庭園玄宮園。8:30～17:00（16:30 停止入場）、年中無休，城（含玄宮園）大人 1,000、小中學生 300 円。各門到本丸石階約 140 段、高低差約 50 m，天守內梯子最陡 62 度；長輩可以只買玄宮園的票（400 円）。JR 彦根駅步行約 15 分；京都站搭新快速約 46 分。",
+      "pros": [
+        "國寶天守，冬天落葉後石垣看得清楚，天守可以眺望伊吹山",
+        "吉祥物ひこにゃん有定時登場，小孩會喜歡（2027 冬季時間要再查）",
+        "長輩可以只逛玄宮園（單獨票），各券售處免費借杖"
+      ],
+      "cons": [
+        "石階約 140 段、天守梯子最陡 62 度，杖和傘不能帶進天守",
+        "下雪結冰時大手、黒門山道會封閉，大雪可能整城休止",
+        "天守同時最多 80 人，假日可能排隊；團體價要 30 人以上"
+      ],
+      "basedOn": [
+        "https://hikonecastle.com/",
+        "https://hikonecastle.com/news.html",
+        "https://hikonecastle.com/access.html",
+        "https://www.city.hikone.lg.jp/kakuka/kanko_bunka/8/2_1/3/4586.html",
+        "https://www.hikoneshi.com/winter/",
+        "https://maps.google.com/?cid=17161565663193041968"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 1,
+        "kidsFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.3（21,371 則），達到琵琶湖門檻的 4（4.3 以上、5,000 則以上）",
+        "winterFit": "戶外石階山道為主，冬天落葉後石垣清楚；積雪時部分山道封閉",
+        "elderFit": "各門到本丸石階約 140 段、高低差約 50 m，天守梯子最陡 62 度；長輩可以只逛玄宮園",
+        "kidsFit": "爬城、國寶天守、ひこにゃん定時登場",
+        "accessEase": "JR 彦根駅步行約 15 分（路線估算 19 分）；京都站新快速約 46 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   }
 ]

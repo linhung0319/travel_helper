@@ -1,9 +1,9 @@
 {
-  "generated": "2026-10-26",
+  "generated": "2026-11-12",
   "counts": {
-    "spot": 96,
-    "lodging": 168,
-    "restaurant": 333
+    "spot": 134,
+    "lodging": 190,
+    "restaurant": 398
   },
   "dups": [
     {
@@ -197,6 +197,66 @@
       "B": 31,
       "none": 0,
       "aOrAbove": 24
+    },
+    {
+      "area": "kyoto",
+      "type": "spot",
+      "total": 24,
+      "S": 3,
+      "A": 3,
+      "B": 18,
+      "none": 0,
+      "aOrAbove": 25
+    },
+    {
+      "area": "kyoto",
+      "type": "lodging",
+      "total": 17,
+      "S": 1,
+      "A": 3,
+      "B": 13,
+      "none": 0,
+      "aOrAbove": 24
+    },
+    {
+      "area": "kyoto",
+      "type": "restaurant",
+      "total": 49,
+      "S": 2,
+      "A": 9,
+      "B": 38,
+      "none": 0,
+      "aOrAbove": 22
+    },
+    {
+      "area": "biwako",
+      "type": "spot",
+      "total": 14,
+      "S": 0,
+      "A": 4,
+      "B": 10,
+      "none": 0,
+      "aOrAbove": 29
+    },
+    {
+      "area": "biwako",
+      "type": "lodging",
+      "total": 5,
+      "S": 2,
+      "A": 1,
+      "B": 2,
+      "none": 0,
+      "aOrAbove": 60
+    },
+    {
+      "area": "biwako",
+      "type": "restaurant",
+      "total": 16,
+      "S": 0,
+      "A": 3,
+      "B": 13,
+      "none": 0,
+      "aOrAbove": 19
     }
   ],
   "stations": [
@@ -892,6 +952,776 @@
       "fit15": 0,
       "spots": 1,
       "lodging": 0
+    },
+    {
+      "id": "kyoto",
+      "name": "京都",
+      "area": "kyoto",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "toji",
+      "name": "東寺",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "takeda",
+      "name": "竹田",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "kintetsu-tambabashi",
+      "name": "近鉄丹波橋",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "momoyamagoryo-mae",
+      "name": "桃山御陵前",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "ogura",
+      "name": "小倉",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "yamato-saidaiji",
+      "name": "大和西大寺",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "yamato-yagi",
+      "name": "大和八木",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-kyoto",
+      "name": "京都",
+      "area": "kyoto",
+      "restaurants": 2,
+      "lunch": 1,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 1,
+      "lodging": 3
+    },
+    {
+      "id": "jr-umekoji-kyotonishi",
+      "name": "梅小路京都西",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 2,
+      "lodging": 0
+    },
+    {
+      "id": "jr-nijo",
+      "name": "二条",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-saga-arashiyama",
+      "name": "嵯峨嵐山",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-tofukuji",
+      "name": "東福寺",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-inari",
+      "name": "稲荷",
+      "area": "kyoto",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "jr-uji",
+      "name": "宇治",
+      "area": "kyoto",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-yamashina",
+      "name": "山科",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "hankyu-osaka-umeda",
+      "name": "大阪梅田",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "hankyu-katsura",
+      "name": "桂",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "hankyu-karasuma",
+      "name": "烏丸",
+      "area": "kyoto",
+      "restaurants": 3,
+      "lunch": 3,
+      "dinner": 3,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "hankyu-kyoto-kawaramachi",
+      "name": "京都河原町",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 3
+    },
+    {
+      "id": "hankyu-arashiyama",
+      "name": "嵐山",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "keihan-yodoyabashi",
+      "name": "淀屋橋",
+      "area": "osaka",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-chushojima",
+      "name": "中書島",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-tambabashi",
+      "name": "丹波橋",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-fushimi-inari",
+      "name": "伏見稲荷",
+      "area": "kyoto",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-tofukuji",
+      "name": "東福寺",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-shichijo",
+      "name": "七条",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 1
+    },
+    {
+      "id": "keihan-kiyomizu-gojo",
+      "name": "清水五条",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 2,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-gion-shijo",
+      "name": "祇園四条",
+      "area": "kyoto",
+      "restaurants": 6,
+      "lunch": 5,
+      "dinner": 5,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-sanjo",
+      "name": "三条",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-uji",
+      "name": "宇治",
+      "area": "kyoto",
+      "restaurants": 4,
+      "lunch": 4,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "randen-shijo-omiya",
+      "name": "四条大宮",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "randen-tenjingawa",
+      "name": "嵐電天神川",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "randen-uzumasa-koryuji",
+      "name": "太秦広隆寺",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "randen-katabiranotsuji",
+      "name": "帷子ノ辻",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "randen-arashiyama",
+      "name": "嵐山",
+      "area": "kyoto",
+      "restaurants": 6,
+      "lunch": 5,
+      "dinner": 3,
+      "fit15": 2,
+      "spots": 3,
+      "lodging": 1
+    },
+    {
+      "id": "randen-kitano-hakubaicho",
+      "name": "北野白梅町",
+      "area": "kyoto",
+      "restaurants": 4,
+      "lunch": 4,
+      "dinner": 2,
+      "fit15": 2,
+      "spots": 2,
+      "lodging": 0
+    },
+    {
+      "id": "subway-kyoto",
+      "name": "京都",
+      "area": "kyoto",
+      "restaurants": 4,
+      "lunch": 4,
+      "dinner": 4,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "subway-shijo",
+      "name": "四条",
+      "area": "kyoto",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 2
+    },
+    {
+      "id": "subway-karasuma-oike",
+      "name": "烏丸御池",
+      "area": "kyoto",
+      "restaurants": 2,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 1
+    },
+    {
+      "id": "subway-imadegawa",
+      "name": "今出川",
+      "area": "kyoto",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "subway-uzumasa-tenjingawa",
+      "name": "太秦天神川",
+      "area": "kyoto",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "subway-nijo",
+      "name": "二条",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "subway-nijojo-mae",
+      "name": "二条城前",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "subway-kyoto-shiyakusho-mae",
+      "name": "京都市役所前",
+      "area": "kyoto",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "subway-sanjo-keihan",
+      "name": "三条京阪",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "subway-higashiyama",
+      "name": "東山",
+      "area": "kyoto",
+      "restaurants": 3,
+      "lunch": 3,
+      "dinner": 2,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "subway-keage",
+      "name": "蹴上",
+      "area": "kyoto",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 3,
+      "lodging": 0
+    },
+    {
+      "id": "subway-misasagi",
+      "name": "御陵",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "subway-yamashina",
+      "name": "山科",
+      "area": "kyoto",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-otsu",
+      "name": "大津",
+      "area": "biwako",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-ishiyama",
+      "name": "石山",
+      "area": "biwako",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-kusatsu",
+      "name": "草津",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "jr-moriyama",
+      "name": "守山",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-omi-hachiman",
+      "name": "近江八幡",
+      "area": "biwako",
+      "restaurants": 2,
+      "lunch": 2,
+      "dinner": 2,
+      "fit15": 1,
+      "spots": 2,
+      "lodging": 0
+    },
+    {
+      "id": "jr-hikone",
+      "name": "彦根",
+      "area": "biwako",
+      "restaurants": 3,
+      "lunch": 3,
+      "dinner": 3,
+      "fit15": 2,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "jr-otsukyo",
+      "name": "大津京",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-hieizan-sakamoto",
+      "name": "比叡山坂本",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "jr-ogotoonsen",
+      "name": "おごと温泉",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 5
+    },
+    {
+      "id": "jr-katata",
+      "name": "堅田",
+      "area": "biwako",
+      "restaurants": 3,
+      "lunch": 3,
+      "dinner": 3,
+      "fit15": 1,
+      "spots": 2,
+      "lodging": 0
+    },
+    {
+      "id": "jr-shiga",
+      "name": "志賀",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "jr-omi-takashima",
+      "name": "近江高島",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-biwako-hamaotsu",
+      "name": "びわ湖浜大津",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-miidera",
+      "name": "三井寺",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-omi-jingu-mae",
+      "name": "近江神宮前",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-sakamoto-hieizanguchi",
+      "name": "坂本比叡山口",
+      "area": "biwako",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 0,
+      "fit15": 1,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-ishiyamadera",
+      "name": "石山寺",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
+    },
+    {
+      "id": "keihan-ishiyama",
+      "name": "京阪石山",
+      "area": "biwako",
+      "restaurants": 1,
+      "lunch": 1,
+      "dinner": 1,
+      "fit15": 1,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "sakamoto-cable-sakamoto",
+      "name": "ケーブル坂本",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 0,
+      "lodging": 0
+    },
+    {
+      "id": "sakamoto-cable-enryakuji",
+      "name": "ケーブル延暦寺",
+      "area": "biwako",
+      "restaurants": 0,
+      "lunch": 0,
+      "dinner": 0,
+      "fit15": 0,
+      "spots": 1,
+      "lodging": 0
     }
   ],
   "regions": [
@@ -900,9 +1730,18 @@
       "region": "shima-kashikojima",
       "name": "賢島",
       "needsCar": false,
-      "spot": 6,
+      "spot": 5,
       "lodging": 12,
-      "restaurant": 13
+      "restaurant": 12
+    },
+    {
+      "area": "shima",
+      "region": "mazakijima",
+      "name": "間崎島",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 1
     },
     {
       "area": "shima",
@@ -1104,6 +1943,15 @@
     },
     {
       "area": "toba",
+      "region": "sakatejima",
+      "name": "坂手島",
+      "needsCar": false,
+      "spot": 0,
+      "lodging": 0,
+      "restaurant": 0
+    },
+    {
+      "area": "toba",
       "region": "sugashima",
       "name": "菅島",
       "needsCar": false,
@@ -1229,6 +2077,132 @@
       "restaurant": 3
     },
     {
+      "area": "kyoto",
+      "region": "kyoto-station",
+      "name": "京都駅周辺",
+      "needsCar": false,
+      "spot": 5,
+      "lodging": 7,
+      "restaurant": 8
+    },
+    {
+      "area": "kyoto",
+      "region": "higashiyama",
+      "name": "東山・清水寺・祇園",
+      "needsCar": false,
+      "spot": 3,
+      "lodging": 0,
+      "restaurant": 6
+    },
+    {
+      "area": "kyoto",
+      "region": "fushimi",
+      "name": "伏見稲荷",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 3
+    },
+    {
+      "area": "kyoto",
+      "region": "arashiyama",
+      "name": "嵐山・嵯峨野",
+      "needsCar": false,
+      "spot": 3,
+      "lodging": 2,
+      "restaurant": 6
+    },
+    {
+      "area": "kyoto",
+      "region": "shijo-nijo",
+      "name": "四条河原町・二条城",
+      "needsCar": false,
+      "spot": 3,
+      "lodging": 8,
+      "restaurant": 8
+    },
+    {
+      "area": "kyoto",
+      "region": "kinkaku-kitano",
+      "name": "金閣寺・北野",
+      "needsCar": false,
+      "spot": 2,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "kyoto",
+      "region": "okazaki",
+      "name": "銀閣寺・南禅寺・平安神宮",
+      "needsCar": false,
+      "spot": 4,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "kyoto",
+      "region": "uji",
+      "name": "宇治",
+      "needsCar": false,
+      "spot": 2,
+      "lodging": 0,
+      "restaurant": 6
+    },
+    {
+      "area": "kyoto",
+      "region": "uzumasa",
+      "name": "太秦",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "biwako",
+      "region": "otsu",
+      "name": "大津・坂本",
+      "needsCar": false,
+      "spot": 6,
+      "lodging": 0,
+      "restaurant": 4
+    },
+    {
+      "area": "biwako",
+      "region": "ogoto-katata",
+      "name": "雄琴・堅田・志賀",
+      "needsCar": false,
+      "spot": 2,
+      "lodging": 5,
+      "restaurant": 3
+    },
+    {
+      "area": "biwako",
+      "region": "takashima",
+      "name": "高島",
+      "needsCar": true,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 3
+    },
+    {
+      "area": "biwako",
+      "region": "kusatsu-omihachiman",
+      "name": "草津・近江八幡",
+      "needsCar": false,
+      "spot": 4,
+      "lodging": 0,
+      "restaurant": 3
+    },
+    {
+      "area": "biwako",
+      "region": "hikone",
+      "name": "彦根",
+      "needsCar": false,
+      "spot": 1,
+      "lodging": 0,
+      "restaurant": 3
+    },
+    {
       "area": "osaka",
       "region": "namba",
       "name": "難波・道頓堀",
@@ -1343,6 +2317,18 @@
       "name": "五條家",
       "tier": "A",
       "why": "食べログ 3.66（615 則）、Google 4.5（280 則）→ 大阪門檻的 4"
+    },
+    {
+      "id": "kyoto-shubaku",
+      "name": "しゅばく",
+      "tier": "A",
+      "why": "食べログ 3.67（511 則）、Google 4.3（445 則），京都門檻的 4"
+    },
+    {
+      "id": "kyoto-fujitora",
+      "name": "らぁ麺や ふぢとら",
+      "tier": "A",
+      "why": "食べログ 3.67（297 則）、Google 4.2（272 則），京都門檻的 4"
     }
   ],
   "winterUnsure": [
@@ -1358,49 +2344,42 @@
       "name": "あご湾島めぐりクルーズ（賢島遊覧船組合）",
       "tier": "B",
       "winterFit": 2,
-      "why": "2 月營業沒明寫（不定期運行、天候休）→ 照「2 月很可能休業但日期未確認」打 2"
+      "why": "2 月營業沒明寫（不定期運行、天候休）"
     },
     {
       "id": "shima-kaiyuen",
       "name": "賢島フィッシングパーク 海遊苑",
       "tier": "B",
       "winterFit": 2,
-      "why": "觀光協會說冬天改陶板燒，但 2 月釣り堀營業沒明寫 → 2"
+      "why": "觀光協會說冬天改陶板燒，但 2 月釣り堀營業沒明寫"
     },
     {
       "id": "shima-sushi-benkei",
       "name": "すし べんけい 寿司握り体験",
       "tier": "B",
       "winterFit": 4,
-      "why": "室內體驗；營業日、2 月營業沒有來源，但沒有冬季休業的跡象 → 照室內打 4（T9g：「沒明寫」不再一律 2，同鳥羽 おおさつ かまど）"
+      "why": "室內體驗；營業日、2 月營業沒有來源，但沒有冬季休業的跡象"
     },
     {
       "id": "shima-satoumian",
       "name": "海女小屋体験施設さとうみ庵（海女資料館）",
       "tier": "B",
       "winterFit": 3,
-      "why": "2 月營業沒明寫（觀光三重是 2022～23 年的資料），沒有冬季休業的跡象；海女小屋沒有暖氣 → 3（T9g：「沒明寫」不再一律 2）"
+      "why": "2 月營業沒明寫（觀光三重是 2022～23 年的資料），沒有冬季休業的跡象；海女小屋沒有暖氣"
     },
     {
       "id": "shima-pearl-miki",
       "name": "真珠体験 パール美樹",
       "tier": "B",
       "winterFit": 4,
-      "why": "室內的珍珠體驗；2 月營業沒明寫，但沒有冬季休業的跡象 → 4（T9g：「沒明寫」不再一律 2）"
+      "why": "室內的珍珠體驗；2 月營業沒明寫，但沒有冬季休業的跡象"
     },
     {
       "id": "shima-iwaho-bbq-cruise",
       "name": "あご湾めぐりと船上バーベキュー（いわほ観光汽船）",
       "tier": "B",
       "winterFit": 2,
-      "why": "2 月營業沒明寫（觀光三重只寫年中無休）→ 2"
-    },
-    {
-      "id": "shima-green-adventure",
-      "name": "志摩グリーンアドベンチャー（アトラクションフィールド）",
-      "tier": "B",
-      "winterFit": 3,
-      "why": "戶外設施；營業カレンダー只公布到 2026-10（還沒公布，不是休業的跡象）→ 戶外 3（T9g：「沒明寫」不再一律 2）"
+      "why": "2 月營業沒明寫（觀光三重只寫年中無休）"
     },
     {
       "id": "toba-bay-cruise-irukajima",

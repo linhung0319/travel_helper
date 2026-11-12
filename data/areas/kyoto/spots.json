@@ -96,9 +96,33 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "toji",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "官網：近鐵「東寺」駅 步行 10 分；路線估算 10 分"
+    },
+    "access": [
+      {
+        "from": "toji",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "官網：近鐵「東寺」駅 步行 10 分；路線估算 10 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "walk",
+        "minutes": 21,
+        "note": "官網：JR 京都駅 八条口 步行 15 分；路線估算 21 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス「東寺東門前」「東寺南門前」「九条大宮」「東寺西門前」下車（官網；系統、步行分鐘沒寫）"
+      }
+    ],
     "admission": "金堂・講堂 大人 800 円（五重塔初層公開期間含塔 1,200 円）；高中生 400／700、國中以下 300／500 円。",
     "phone": "075-691-3325",
     "stayMinutes": 60,
@@ -184,8 +208,46 @@
         "二手旅遊網站寫金堂講堂 500 円（舊價），官網為 800 円。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "京都站南邊的寺院，看五重塔外觀和金堂、講堂裡的佛像。2 月 8:00～17:00（16:30 停止受理），金堂・講堂 大人 800 円、中學生以下 300 円（五重塔初層公開時 1,200／500 円）。近鐵東寺駅步行 10 分，從京都站八条口也能走（約 15 分）。",
+      "pros": [
+        "近鐵東寺駅步行 10 分、京都站八条口步行約 15 分，可以排在到京都或離開京都那天",
+        "2027 年若有「京の冬の旅」五重塔初層特別公開，2 月正好在期間內（2026 年是 1/9～3/18）",
+        "計程車可以開進境內停車場，長輩可以坐到門口"
+      ],
+      "cons": [
+        "2027 年冬季特別公開還沒公布，出發前要再查",
+        "團體價要 30 人以上，15 人照個人票",
+        "境內的階梯、要不要脫鞋官網都沒寫；小孩沒有特別能玩的"
+      ],
+      "basedOn": [
+        "https://toji.or.jp/admission/",
+        "https://toji.or.jp/access/",
+        "https://toji.or.jp/faq/",
+        "https://ja.kyoto.travel/specialopening/winter",
+        "https://maps.google.com/?cid=15271193799445412112"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（20,349 則），達到京都門檻的 4（4.5 以上、2 萬則以上）；5 要 4.6 以上、5 萬則",
+        "winterFit": "境內戶外移動，金堂、講堂、五重塔在堂內參觀；2 月照常開，17:00 關門",
+        "elderFit": "官網沒寫階梯、坡道、要不要脫鞋，無法判斷",
+        "kidsFit": "一般寺院，看佛像和五重塔，沒有兒童設施",
+        "accessEase": "近鐵東寺駅步行 10 分（路線估算也是 10 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-railway-museum",
@@ -274,9 +336,33 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "jr-umekoji-kyotonishi",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "JR 梅小路京都西駅 步行約 2 分（搜尋摘要引官網）；路線估算 4 分"
+    },
+    "access": [
+      {
+        "from": "jr-umekoji-kyotonishi",
+        "mode": "walk",
+        "minutes": 4,
+        "note": "JR 梅小路京都西駅 步行約 2 分（搜尋摘要引官網）；路線估算 4 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "walk",
+        "minutes": 26,
+        "note": "JR 京都駅 中央口 步行約 20 分；路線估算 26 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス「梅小路公園・京都鉄道博物館前」下車即到（搜尋摘要引官網）"
+      }
+    ],
     "admission": "到 2027-02-28：一般 1,500、大學高中 1,300、中小學 500、幼兒（3 歲以上）200 円；3/1 起漲價。",
     "phone": "0570-080-462",
     "stayMinutes": 150,
@@ -368,8 +454,46 @@
         "JR 西日本「鉄道ファン」頁（文字化けで判読困難）寫休館日週一、週末到 16:30，和其他來源（週三休、16:30 停止入館）不同，判斷為讀取錯誤或舊資料，不採用。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鐵道博物館，實車展示、扇形車庫、SL スチーム号，小孩可以待半天。10:00～17:00（16:30 停止入館），週三休館：旅程中 2/10（三）休、2/11（假日）開。2 月還是舊票價：大人 1,500、中小學生 500 円（2027-03-01 漲價）。JR 梅小路京都西駅步行約 2 分，京都站也能走（約 20 分）。",
+      "pros": [
+        "展示在室內為主，2 月下雨下雪也能玩，小孩最喜歡的類型",
+        "梅小路京都西駅步行約 2 分，和京都水族館在同一個公園，可以排在同一天",
+        "2 月去還是舊票價，中小學生 500 円"
+      ],
+      "cons": [
+        "每週三休館，旅程中 2/10（三）不能去",
+        "冬季 SL スチーム号有沒有開還沒公布（每月公布時刻表）",
+        "館內電梯、推車能不能進官網讀不到，出發前看官網"
+      ],
+      "basedOn": [
+        "https://www.kyotorailwaymuseum.jp/news/sysimg/01843/link_JKhpN.pdf",
+        "https://www.museum.or.jp/museum/17634",
+        "https://tabiris.com/?p=67423",
+        "https://www.westjr.co.jp/press/article/items/240118_00_press_SL.pdf",
+        "https://maps.google.com/?cid=9916920369112840685"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.6（20,248 則），達到京都門檻的 4（4.5 以上、2 萬則以上）；5 要 5 萬則以上",
+        "winterFit": "主要展示在室內，扇形車庫、SL スチーム号在戶外；週三休，旅程中 2/10 不能去",
+        "elderFit": "館內有無障礙設施、可借輪椅；館內步行長，電梯、休息處官網讀不到",
+        "kidsFit": "實車展示、扇形車庫、SL スチーム号，小孩會很喜歡",
+        "accessEase": "JR 梅小路京都西駅步行約 2 分（路線估算 4 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-aquarium",
@@ -429,9 +553,33 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-umekoji-kyotonishi",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "官網：JR 梅小路京都西駅 步行約 7 分；路線估算 7 分"
+    },
+    "access": [
+      {
+        "from": "jr-umekoji-kyotonishi",
+        "mode": "walk",
+        "minutes": 7,
+        "note": "官網：JR 梅小路京都西駅 步行約 7 分；路線估算 7 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "walk",
+        "minutes": 16,
+        "note": "官網：JR 京都駅 中央口 步行約 15 分；路線估算 16 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "京都駅前 B3 乘車處 市バス 205・208・86 系統（或 C5 33・特33、C2 京阪京都交通）「七条大宮・京都水族館前」下車（官網）"
+      }
+    ],
     "admission": "大人 2,600、高中 2,000、中小學 1,400、幼兒（3 歲以上）900 円。",
     "phone": null,
     "stayMinutes": 120,
@@ -521,8 +669,46 @@
       "stayNote": null,
       "conflicts": []
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "梅小路公園裡的水族館，有海豚表演場、海豹、海狗和京都的淡水生物。大人 2,600、中小學生 1,400、幼兒 900 円，年中無休，入場到閉館前 1 小時；2 月的營業時間要看官網月曆（往年 10:00～18:00）。JR 梅小路京都西駅步行約 7 分，和京都鐵道博物館可以排同一天。",
+      "pros": [
+        "展示在館內，各處有電梯、可免費借輪椅，推車可以推著逛",
+        "有海豚表演，小孩會很喜歡；可以帶便當在表演場長椅吃",
+        "梅小路京都西駅步行 7 分，和鐵道博物館同一個公園"
+      ],
+      "cons": [
+        "2027 年 2 月的營業時間官網月曆還讀不到，出發前要看",
+        "團體價要 20 人以上，15 人照個人票，大人 2,600 円偏貴",
+        "海豚表演場有沒有屋頂官網沒寫，冬天坐著看可能冷"
+      ],
+      "basedOn": [
+        "https://www.kyoto-aquarium.com/about/price/",
+        "https://www.kyoto-aquarium.com/about/access/",
+        "https://www.kyoto-aquarium.com/about/support/",
+        "https://www.kyoto-aquarium.com/about/group/",
+        "https://maps.google.com/?cid=6059551674669155929"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（15,173 則），京都門檻的 3（4 要 4.5 以上、2 萬則以上）",
+        "winterFit": "展示在館內；海豚表演場有沒有屋頂沒寫，2 月的營業時間還沒公布",
+        "elderFit": "各處有電梯、可借輪椅，有休息處和多功能廁所；館內有斜坡、步行約 2 小時",
+        "kidsFit": "水族館、海豚表演",
+        "accessEase": "JR 梅小路京都西駅步行約 7 分（路線估算 7 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-tower",
@@ -623,9 +809,33 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "jr-kyoto",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "官網：JR 京都駅 中央口 步行 2 分；路線估算 5 分"
+    },
+    "access": [
+      {
+        "from": "jr-kyoto",
+        "mode": "walk",
+        "minutes": 5,
+        "note": "官網：JR 京都駅 中央口 步行 2 分；路線估算 5 分"
+      },
+      {
+        "from": "subway-kyoto",
+        "mode": "walk",
+        "minutes": 4,
+        "note": "路線估算"
+      },
+      {
+        "from": "kyoto",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "路線估算"
+      }
+    ],
     "admission": "大人 1,000、高中 800、中小學 700、幼兒（3 歲以上）300 円，3 歲以下免費。",
     "phone": null,
     "stayMinutes": 30,
@@ -705,8 +915,45 @@
         "費用頁團體條件寫「大人・高校生・小中学生が混在する 20 名は対象外」，意思可能是每個區分各自要 20 人，讀不太懂，要團體價前先問。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "京都站正對面的 100 m 展望塔，展望室 360 度看京都市區，10:00～21:00（20:30 最後入場），晚上可以看夜景。大人 1,000、中小學生 700、幼兒 300 円，個人不用預約。JR 京都駅中央口步行 2 分，一般停留 15～30 分。",
+      "pros": [
+        "京都站出站 2 分，到京都當天或等車時就能去",
+        "1F 到展望室全程電梯，輪椅也上得去，長輩不用走",
+        "開到 21:00，晚餐後也能上去看夜景"
+      ],
+      "cons": [
+        "下雨、陰天能見度差，景色打折",
+        "團體價要 20 人以上，15 人照個人票；不能再入場",
+        "推車不能寄放，能不能帶上展望室官網沒寫"
+      ],
+      "basedOn": [
+        "https://www.kyoto-tower.jp/fee/",
+        "https://www.kyoto-tower.jp/faq/",
+        "https://www.kyoto-tower.jp/access/",
+        "https://maps.google.com/?cid=17017157882742292436"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 5,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（18,614 則），京都門檻的 3（4 要 4.5 以上、2 萬則以上）",
+        "winterFit": "展望室在室內，年中無休；下雨能見度差，看景受天氣影響",
+        "elderFit": "京都站 2 分，1F 到展望室全程電梯、輪椅可上，停留 15～30 分",
+        "kidsFit": "360 度展望可以找京都的寺社，停留時間短，沒有兒童設施",
+        "accessEase": "JR 京都駅中央口步行 2 分（路線估算 5 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-sanjusangendo",
@@ -805,9 +1052,27 @@
       "室內",
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-shichijo",
+      "mode": "walk",
+      "minutes": 8,
+      "note": "官網：京阪「七条」駅 2 號出口 步行約 7 分；路線估算 8 分"
+    },
+    "access": [
+      {
+        "from": "keihan-shichijo",
+        "mode": "walk",
+        "minutes": 8,
+        "note": "官網：京阪「七条」駅 2 號出口 步行約 7 分；路線估算 8 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": 10,
+        "note": "市バス 100・206・208 系統「博物館三十三間堂前」下車即到（官網，京都駅出發約 10 分）"
+      }
+    ],
     "admission": "一般 600、中高生 400、小學生 300 円（25 人以上團體 550／350／250）。",
     "phone": "075-561-0467",
     "stayMinutes": 45,
@@ -893,8 +1158,45 @@
         "官網用 WebFetch 讀會出現憑證錯誤，用 curl（系統憑證）可正常讀取，資料取自官網。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "一千零一尊千手觀音並排在約 120 m 長的本堂裡，視覺震撼。2 月 9:00～16:00（15:30 停止受理），一般 600、小學生 300 円，年中無休、不用預約。本堂要脫鞋、站著沿通道看；京都站搭市巴士約 10 分「博物館三十三間堂前」下車即到，京阪七条駅步行約 7 分。",
+      "pros": [
+        "主要看點在本堂內，2 月下雨也能看",
+        "可以借輪椅，境內有無障礙廁所；站著看，不用坐地板",
+        "2/11（假日）14:00～15:00 有初午祭（山伏護摩）"
+      ],
+      "cons": [
+        "冬天 16:00 就關門、15:30 停止受理，要排在上午或中午",
+        "本堂要脫鞋走約 120 m，冬天地板冷，記得穿厚襪",
+        "團體價要 25 人以上，15 人照個人票；小孩可能覺得無聊"
+      ],
+      "basedOn": [
+        "https://www.sanjusangendo.jp/visit/",
+        "https://www.sanjusangendo.jp/news/1717/",
+        "https://www.sanjusangendo.jp/event/",
+        "https://maps.google.com/?cid=12261896522956084872"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.7（18,053 則），星數高但不到京都門檻 4 的 2 萬則",
+        "winterFit": "在本堂內參觀；冬天 16:00 關門（15:30 停止受理）",
+        "elderFit": "站著沿通道看、可借輪椅、有無障礙廁所；要脫鞋走約 120 m，堂內有斜坡",
+        "kidsFit": "千尊佛像很震撼，但只能安靜看，沒有兒童設施",
+        "accessEase": "京阪七条駅步行約 7 分（路線估算 8 分）；京都站市巴士約 10 分、下車即到"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-kiyomizudera",
@@ -994,9 +1296,39 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "S",
+    "nearestStation": {
+      "id": "keihan-kiyomizu-gojo",
+      "mode": "walk",
+      "minutes": 20,
+      "note": "官網：京阪 清水五条駅 步行約 25 分，一路上坡；平常搭市巴士或計程車；路線估算 20 分"
+    },
+    "access": [
+      {
+        "from": "keihan-kiyomizu-gojo",
+        "mode": "walk",
+        "minutes": 20,
+        "note": "官網：京阪 清水五条駅 步行約 25 分，一路上坡；平常搭市巴士或計程車；路線估算 20 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 206・100 系統「五条坂」下車 步行 10 分（上坡）（官網；京都市動物園官網提醒 100 系統目前停駛）"
+      },
+      {
+        "from": "keihan-gion-shijo",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 207 系統或京阪バス「清水道」下車 步行 10 分（上坡）（官網）"
+      },
+      {
+        "from": "keihan-gion-shijo",
+        "mode": "walk",
+        "minutes": 25,
+        "note": "路線估算"
+      }
+    ],
     "admission": "境內大部分免費；轟門內（本堂、舞台）有料：大人 500 円、小中學生 200 円（觀光網站，官網頁面沒寫金額）。",
     "phone": "075-551-1234",
     "stayMinutes": 60,
@@ -1107,8 +1439,47 @@
       ],
       "stayNote": "本堂、舞台、音羽の瀧、子安塔繞一圈約 1 小時（推估，官網沒寫所要時間）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "東山的代表寺院，本堂的「清水の舞台」和音羽の瀧是京都最有名的景色。2 月 6:00～18:00，轟門內（本堂、舞台）大人 500、小中學生 200 円，境內其他地方免費。京都站搭市巴士到「五条坂」，再走上坡約 10 分；京阪清水五条駅步行約 25 分，也是上坡。",
+      "pros": [
+        "Google 評論 7.4 萬則，京都人氣最高的寺院之一；2 月開到 18:00，時間寬裕",
+        "官網有無段差的輪椅路線，長輩可以避開境內的石階繞一圈",
+        "和產寧坂・二寧坂、八坂神社可以串成一條散步路線"
+      ],
+      "cons": [
+        "從巴士站到仁王門一路上坡約 10 分，長輩要慢走",
+        "全程戶外，雪天參道石板和砂利道會滑",
+        "境內禁止隨處拍團體合照，要在指定地點拍；沒有團體折扣"
+      ],
+      "basedOn": [
+        "https://www.kiyomizudera.or.jp/access.php",
+        "https://www.kiyomizudera.or.jp/faq.php",
+        "https://www.kiyomizudera.or.jp/assets/img/map_for_wc.pdf",
+        "https://www.kiyomizudera.or.jp/event/",
+        "https://ja.kyoto.travel/event/single.php?event_id=4608",
+        "https://maps.google.com/?cid=7111013964196361402"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.6（74,439 則），達到京都門檻的 5（4.6 以上、5 萬則以上）",
+        "winterFit": "戶外的寺院，2 月照常 6:00～18:00；雪天石板、砂利道會滑",
+        "elderFit": "巴士站到仁王門要走上坡約 10 分；境內有官網的無段差路線可以避開石階，但有砂利道、坡道",
+        "kidsFit": "舞台眺望、音羽の瀧取水，沒有兒童設施",
+        "accessEase": "只有巴士：京都站市巴士直達「五条坂」，下車上坡走約 10 分；京阪清水五条駅步行約 25 分（路線估算 20 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-yasaka-jinja",
@@ -1165,9 +1536,33 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-gion-shijo",
+      "mode": "walk",
+      "minutes": 9,
+      "note": "官網：京阪「祇園四条」駅 步行約 5 分；路線估算 9 分"
+    },
+    "access": [
+      {
+        "from": "keihan-gion-shijo",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "官網：京阪「祇園四条」駅 步行約 5 分；路線估算 9 分"
+      },
+      {
+        "from": "hankyu-kyoto-kawaramachi",
+        "mode": "walk",
+        "minutes": 13,
+        "note": "官網：阪急「京都河原町」駅 步行約 8 分；路線估算 13 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 100・206 系統「祇園」下車即到（官網）"
+      }
+    ],
     "admission": "免費，24 小時可參拜。",
     "phone": "075-561-6155",
     "stayMinutes": 20,
@@ -1251,8 +1646,45 @@
       "nearby": "花見小路通：四条通往南、到建仁寺一帶的石板路，兩側是茶屋町家（京都市修學旅行路線圖）。祇園白川：四条通北側、白川沿岸的巽橋一帶，屬「祇園新橋」重要傳統建造物群保存地區，石板路、柳樹、茶屋。往南沿ねねの道、二年坂、產寧坂可走到清水寺（京都市修學旅行路線圖的散策路線）。",
       "conflicts": []
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "祇園的神社，西樓門面對四条通，24 小時可以免費參拜。京阪祇園四条駅步行約 5 分，京都站搭市巴士「祇園」下車即到。周邊的花見小路、祇園白川是石板路的茶屋街，往南經ねねの道、二寧坂可以走到清水寺。",
+      "pros": [
+        "免費、24 小時，晚上去祇園吃飯也能順路",
+        "京阪祇園四条駅步行約 5 分",
+        "可以串花見小路、祇園白川和二寧坂・清水寺的散步路線"
+      ],
+      "cons": [
+        "戶外神社，只有舞殿、本殿屋簷下能躲雨",
+        "樓門前、境內的階梯和無障礙資訊官網都沒寫",
+        "2/11 10:00 有紀元祭（境內照常參拜）；小孩沒有特別能玩的"
+      ],
+      "basedOn": [
+        "https://www.yasaka-jinja.or.jp/access/",
+        "https://www.yasaka-jinja.or.jp/event/",
+        "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/pdf/r1392257_056.pdf",
+        "https://maps.google.com/?cid=14374021738854095593"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4（34,473 則），京都門檻的 3（4 要 4.5 以上）",
+        "winterFit": "戶外神社，24 小時可以參拜；冬天沒有特別的看點",
+        "elderFit": "樓門前、境內的階梯段數和坡道官網都沒寫，無法判斷",
+        "kidsFit": "一般神社，沒有兒童設施",
+        "accessEase": "京阪祇園四条駅步行約 5 分（路線估算 9 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-sannenzaka",
@@ -1297,9 +1729,33 @@
     "tags": [
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "keihan-kiyomizu-gojo",
+      "mode": "walk",
+      "minutes": 17,
+      "note": "路線估算"
+    },
+    "access": [
+      {
+        "from": "keihan-kiyomizu-gojo",
+        "mode": "walk",
+        "minutes": 17,
+        "note": "路線估算"
+      },
+      {
+        "from": "keihan-gion-shijo",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 207 系統「清水道」下車，沿清水道往東上坡到產寧坂下（系統照清水寺官網；步行分鐘官方沒寫）"
+      },
+      {
+        "from": "keihan-gion-shijo",
+        "mode": "walk",
+        "minutes": 19,
+        "note": "從八坂神社往南經ねねの道到二寧坂（京都市修學旅行路線圖）；路線估算 19 分"
+      }
+    ],
     "admission": "免費（公共街道）。",
     "phone": null,
     "stayMinutes": 45,
@@ -1390,8 +1846,46 @@
         "石段段數、店家營業時間、廁所位置：官方與京都市資料都沒寫，待現場或出發前再查。"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "從八坂往清水寺的石板坡道，兩旁是町家的土產店、甜點店，是東山最有京都感的街景。公共街道、免費，隨時可以走；店家營業時間各家不同。產寧坂是約 100 m 的陡石板坡，二寧坂也有石段，雨雪會滑；人多路窄，15 人要分組走。",
+      "pros": [
+        "京都代表性的街景，可以和清水寺、八坂神社排成一條路線",
+        "免費，沿路有甜點、小吃，各組可以自己挑",
+        "想避開石階的長輩可以從五条坂・茶わん坂上清水寺"
+      ],
+      "cons": [
+        "產寧坂是陡石板坡、二寧坂有石段，雨雪天會滑，長輩要慢走",
+        "沒有鐵路站，市巴士「清水道」下車後還要上坡走",
+        "路窄人多，15 人不能一起走；廁所位置官方沒寫"
+      ],
+      "basedOn": [
+        "https://www.city.kyoto.lg.jp/tokei/page/0000281761.html",
+        "https://www.city.kyoto.lg.jp/tokei/cmsfiles/contents/0000339/339942/04_kiyomizudera.pdf",
+        "https://shugakuryoko.kyoto.travel/spot/536/",
+        "https://ja.wikipedia.org/wiki/産寧坂",
+        "https://maps.google.com/?cid=11767990651930696711"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 2,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.4（17,351 則），京都門檻的 3（4 要 4.5 以上、2 萬則以上）",
+        "winterFit": "戶外石板街道，下雨只能撐傘或進店；石階雨雪會滑",
+        "elderFit": "產寧坂是約 100 m 的陡石板坡、二寧坂有石段（段數沒寫），輪椅、推車不適合",
+        "kidsFit": "散步和逛土產、小吃，沒有兒童設施",
+        "accessEase": "只有巴士：市巴士「清水道」下車後沿上坡走到坂下；京阪清水五条駅路線估算 17 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-fushimi-inari",
@@ -1442,9 +1936,27 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "S",
+    "nearestStation": {
+      "id": "jr-inari",
+      "mode": "walk",
+      "minutes": 11,
+      "note": "官網：JR 稲荷駅 下車即到（路線估算到本殿一帶的座標）；路線估算 11 分"
+    },
+    "access": [
+      {
+        "from": "jr-inari",
+        "mode": "walk",
+        "minutes": 11,
+        "note": "官網：JR 稲荷駅 下車即到（路線估算到本殿一帶的座標）；路線估算 11 分"
+      },
+      {
+        "from": "keihan-fushimi-inari",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "官網：京阪 伏見稲荷駅 往東步行 5 分；路線估算 14 分"
+      }
+    ],
     "admission": "免費，自由參拜。",
     "phone": "075-641-7331",
     "stayMinutes": 60,
@@ -1562,8 +2074,46 @@
       ],
       "stayNote": "只到奥社奉拝所來回約 1 小時（推估）；全程繞山一圈約 2 小時（京都観光Navi 摘要）"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "從本殿往山上延伸的千本鳥居是京都最有名的景色之一。免費、24 小時可以參拜；JR 稲荷駅出站就是參道，京都站搭 JR 約 5 分。長輩建議走到奥社奉拝所（おもかる石）就折返，再往上是約 2 小時的稻荷山山路石階。",
+      "pros": [
+        "Google 評論 9.4 萬則，京都評論最多的景點；免費、不用預約",
+        "JR 稲荷駅出站即到，京都站 5 分",
+        "長輩走到奥社奉拝所折返就能看到千本鳥居；體力好的小孩、大人可以往山上爬"
+      ],
+      "cons": [
+        "千本鳥居一段有階梯，奥社以後是山路石階，長輩不要上去",
+        "全程戶外，鳥居下也會淋雨；雪天石階會滑",
+        "附近沒有能坐 15 人的餐廳，午餐要回京都站或東山"
+      ],
+      "basedOn": [
+        "https://inari.jp/access/",
+        "https://inari.jp/trip/map01/",
+        "https://ja.kyoto.travel/tourism/single01.php?category_id=7&tourism_id=448",
+        "https://bestcalendar.jp/koyomi/hatsu-uma",
+        "https://maps.google.com/?cid=8870624639634301673"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.6（93,821 則），達到京都門檻的 5（4.6 以上、5 萬則以上）",
+        "winterFit": "戶外神社和山路；初午大祭推算是 2/8，旅程中的 2/9～2/12 沒有大祭典",
+        "elderFit": "本殿到奥社奉拝所約 400 m 的千本鳥居有階梯（段數沒寫），長輩到奥社奉拝所折返；以上的山路石階約 2 小時，不建議",
+        "kidsFit": "千本鳥居、狐狸像、おもかる石，體力好的可以爬山",
+        "accessEase": "JR 稲荷駅出站即到（路線估算到本殿座標 11 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-togetsukyo",
@@ -1614,9 +2164,33 @@
       "googleMaps": "https://maps.google.com/?cid=17011495368415127613"
     },
     "tags": [],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "randen-arashiyama",
+      "mode": "walk",
+      "minutes": 4,
+      "note": "嵐電 嵐山駅 步行約 3～5 分（二手）；路線估算 4 分"
+    },
+    "access": [
+      {
+        "from": "randen-arashiyama",
+        "mode": "walk",
+        "minutes": 4,
+        "note": "嵐電 嵐山駅 步行約 3～5 分（二手）；路線估算 4 分"
+      },
+      {
+        "from": "hankyu-arashiyama",
+        "mode": "walk",
+        "minutes": 8,
+        "note": "阪急 嵐山駅 步行約 10 分（二手）；路線估算 8 分"
+      },
+      {
+        "from": "jr-saga-arashiyama",
+        "mode": "walk",
+        "minutes": 12,
+        "note": "JR 嵯峨嵐山駅 步行約 10～11 分（二手）；路線估算 12 分"
+      }
+    ],
     "admission": "免費，自由通行。",
     "phone": null,
     "stayMinutes": 30,
@@ -1717,8 +2291,46 @@
       "stayNote": "過橋、河岸散步、拍照約 30 分；加足湯再加 20～30 分。",
       "nearby": "足湯：嵐電嵐山駅中央月台「駅の足湯」，250 円附毛巾（二手），全年營業，時間兩說。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "嵐山的代表景色，全長約 155 m 的道路橋。免費、24 小時自由通行，嵐電嵐山駅步行約 3～5 分；過橋、河岸散步約 30 分。嵐電嵐山駅月台有付費足湯。",
+      "pros": [
+        "嵐電嵐山駅步行約 4 分，和天龍寺、竹林小徑排成一條路線",
+        "平的橋、沒有階梯，長輩走得動；計程車、巴士可以到橋頭",
+        "免費，15 人可以一起過橋拍照"
+      ],
+      "cons": [
+        "2 月沒有夜間點燈（嵐山花灯路已經停辦）",
+        "戶外河邊，冬天風冷，雪天橋面可能結冰",
+        "橋上人行道窄，假日人多要分組拍照"
+      ],
+      "basedOn": [
+        "https://ja.kyoto.travel/event/single.php?event_id=5579",
+        "https://aumo.jp/articles/16870",
+        "https://newt.net/jpn/kyoto/mag-91455993606",
+        "https://www.mapple.net/region/a0502010302_g05050000/spot/",
+        "https://maps.google.com/?cid=17011495368415127613"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（5,735 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "戶外的橋和河岸，2 月沒有夜間點燈；雪天可能結冰",
+        "elderFit": "平的道路橋、沒有階梯，走過去 2～3 分；休息座位沒有來源",
+        "kidsFit": "看河、看船，可以泡足湯",
+        "accessEase": "嵐電嵐山駅步行約 3～5 分（路線估算 4 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-bamboo-grove",
@@ -1769,9 +2381,27 @@
       "googleMaps": "https://maps.google.com/?cid=18131488233213033693"
     },
     "tags": [],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "randen-arashiyama",
+      "mode": "walk",
+      "minutes": 11,
+      "note": "嵐電官方：嵐山駅 步行約 8 分；路線估算 11 分"
+    },
+    "access": [
+      {
+        "from": "randen-arashiyama",
+        "mode": "walk",
+        "minutes": 11,
+        "note": "嵐電官方：嵐山駅 步行約 8 分；路線估算 11 分"
+      },
+      {
+        "from": "jr-saga-arashiyama",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "JR 嵯峨嵐山駅 步行約 10 分（二手）；路線估算 14 分"
+      }
+    ],
     "admission": "免費，自由通行。",
     "phone": null,
     "stayMinutes": 30,
@@ -1858,8 +2488,46 @@
       "stayNote": "走一趟約 10～15 分，拍照加起來約 30 分。",
       "fullCourse": "推薦走法：嵐電嵐山駅 → 天龍寺（正門）→ 曹源池庭園 → 百花苑 → 北門出 → 竹林の小径 → 野宮神社 或 往大河内山荘方向。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "野宮神社到大河内山荘之間約 400 m 的竹林散步道，免費、自由通行，走完約 10 分。嵐電嵐山駅步行約 8 分；也可以從天龍寺庭園的北門出來直接接竹林（要天龍寺庭園票，北門 8:30～17:00）。路窄人多，15 人要分組走、約好出口會合。",
+      "pros": [
+        "免費，走完約 10～15 分，和天龍寺、渡月橋排成一條路線",
+        "沒有階梯，長輩小孩都走得完",
+        "冬天人比秋天少"
+      ],
+      "cons": [
+        "路窄、中午人多，15 人要分組、約好出口會合",
+        "戶外步道，沒有屋頂，雨雪天路面濕滑",
+        "路上沒有長椅，坡度沒有來源"
+      ],
+      "basedOn": [
+        "https://www.keifuku.co.jp/cms/%e3%80%90%e6%b2%bf%e7%b7%9a%e3%81%94%e6%a1%88%e5%86%85%e3%80%91%e4%ba%ac%e9%83%bd%e5%b5%90%e5%b1%b1%e3%81%ae%e7%ab%b9%e6%9e%97%e3%82%92%e5%bd%a9%e3%82%8b%e5%a4%9c%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3/",
+        "https://www.tenryuji.com/visit/",
+        "https://rurubu.jp/andmore/spot/80027218",
+        "https://www.gltjp.com/ja/directory/item/12148/",
+        "https://maps.google.com/?cid=18131488233213033693"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（26,661 則），京都門檻的 3（4 要 4.5 以上）",
+        "winterFit": "戶外竹林步道，沒有屋頂；冬天人比秋天少",
+        "elderFit": "約 400 m、沒有階梯，約 10 分走完；沒有長椅，坡度沒有來源",
+        "kidsFit": "散步道，小孩走得完，但沒有兒童設施",
+        "accessEase": "嵐電嵐山駅步行約 8 分（路線估算 11 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-tenryuji",
@@ -1957,9 +2625,33 @@
       "神社寺院",
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "randen-arashiyama",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "官網：嵐電 嵐山駅 下車即到；路線估算 7 分"
+    },
+    "access": [
+      {
+        "from": "randen-arashiyama",
+        "mode": "walk",
+        "minutes": 7,
+        "note": "官網：嵐電 嵐山駅 下車即到；路線估算 7 分"
+      },
+      {
+        "from": "jr-saga-arashiyama",
+        "mode": "walk",
+        "minutes": 13,
+        "note": "官網：JR 嵯峨嵐山駅 步行 13 分；路線估算 13 分"
+      },
+      {
+        "from": "hankyu-arashiyama",
+        "mode": "walk",
+        "minutes": 17,
+        "note": "官網：阪急 嵐山駅 步行 15 分；路線估算 17 分"
+      }
+    ],
     "admission": "庭園 大人 500、小中 300；諸堂再加 300；法堂雲龍図另收 500。",
     "phone": "075-881-1235",
     "stayMinutes": 60,
@@ -2025,8 +2717,44 @@
       "conflicts": [],
       "stayNote": "庭園 30～40 分；加諸堂、雲龍図約 60～75 分。北門出去接竹林。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "嵐山的禪寺，曹源池庭園可以從大方丈的廊下看。庭園 8:30～17:00（16:50 停止受理），大人 500、小中學生 300 円，諸堂再加 300；法堂天花板的「雲龍図」另收 500，只在週六日、假日開，旅程中只有 2/11 看得到。正門就在嵐電嵐山駅前，北門出去直接接竹林小徑。",
+      "pros": [
+        "嵐電嵐山駅前就是正門，計程車可以到門口",
+        "大方丈廊下看庭園，有屋簷，雨天也能看",
+        "北門出去就是竹林小徑，順路串成嵐山散步路線"
+      ],
+      "cons": [
+        "雲龍図只有週末假日開，旅程中只有 2/11（假日）看得到",
+        "往北門要走沿斜坡的園路；諸堂一般要脫鞋（官網沒寫，現場確認）",
+        "官網沒寫團體價，15 人照個人票"
+      ],
+      "basedOn": [
+        "https://www.tenryuji.com/visit/",
+        "https://www.gltjp.com/zh-hant/article/item/20334/",
+        "https://maps.google.com/?cid=14815785984447432896"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（17,552 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "庭園在戶外為主，大方丈有屋簷；2 月照常開，雲龍図只有 2/11 能看",
+        "elderFit": "長輩可以只看曹源池庭園，往北門的百花苑是斜坡園路；階梯、要不要脫鞋官網沒寫",
+        "kidsFit": "一般寺院，雲龍図的龍小孩可能有興趣，但只有 2/11 開",
+        "accessEase": "嵐電嵐山駅下車即到（路線估算 7 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nishiki-market",
@@ -2078,9 +2806,39 @@
     "tags": [
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "hankyu-kyoto-kawaramachi",
+      "mode": "walk",
+      "minutes": 6,
+      "note": "官網：阪急 京都河原町駅 步行約 4 分；路線估算 6 分"
+    },
+    "access": [
+      {
+        "from": "hankyu-kyoto-kawaramachi",
+        "mode": "walk",
+        "minutes": 6,
+        "note": "官網：阪急 京都河原町駅 步行約 4 分；路線估算 6 分"
+      },
+      {
+        "from": "subway-shijo",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "官網：地下鐵 四条駅 步行約 3 分；路線估算 9 分"
+      },
+      {
+        "from": "hankyu-karasuma",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "官網：阪急 烏丸駅 步行約 3 分；路線估算 9 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 5 系統「四条高倉（大丸百貨店前）」下車 步行約 2 分（官網）"
+      }
+    ],
     "admission": "免費（自由通行，各店消費）。",
     "phone": "075-211-3882",
     "stayMinutes": 60,
@@ -2160,8 +2918,46 @@
         "店家數：ruruBu 寫 130 軒あまり，其他媒體寫 126 店或 120 軒以上；官網沒寫"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "四条通北側約 390 m 的有頂棚商店街，一百多家食材店、小吃店。免費、平地，地下鐵四条駅、阪急烏丸駅步行約 3 分。禁止邊走邊吃，要在店前或店內吃完；各店的營業時間、公休不一。",
+      "pros": [
+        "阪急、地下鐵站步行 3～4 分，四条一帶住宿走得到",
+        "有拱廊屋頂的平地，2 月下雨也能逛",
+        "小吃多，小孩、長輩各組可以自己挑"
+      ],
+      "cons": [
+        "寬約 3 m、人多擁擠，15 人要分組；推車、輪椅難走",
+        "媒體說週三休的店多，2/10（三）去可能比較冷清（未經官方確認）",
+        "禁止邊走邊吃；廁所、休息處官網沒寫"
+      ],
+      "basedOn": [
+        "https://www.kyoto-nishiki.or.jp/",
+        "https://www.kyoto-nishiki.or.jp/access/",
+        "https://rurubu.jp/andmore/spot/80026505",
+        "https://allabout.co.jp/gm/gc/397780/",
+        "https://maps.google.com/?cid=13159134450370243740"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 3,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.3（55,532 則），評論數多但星數不到京都門檻 4 的 4.5",
+        "winterFit": "有拱廊屋頂，下雨也能逛；兩端開放、店面朝通道，不暖",
+        "elderFit": "約 390 m 的平地，沒有階梯；人多擁擠，休息處、廁所官網沒寫",
+        "kidsFit": "小吃攤多，可以邊看邊選",
+        "accessEase": "阪急京都河原町駅步行約 4 分（路線估算 6 分）；地下鐵四条駅、阪急烏丸駅約 3 分"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nijojo",
@@ -2258,9 +3054,21 @@
     "tags": [
       "雨天備案"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "subway-nijojo-mae",
+      "mode": "walk",
+      "minutes": 9,
+      "note": "地下鐵 二条城前駅 下車即到（媒體摘要；路線估算是到城內座標，入口是東大手門）；路線估算 9 分"
+    },
+    "access": [
+      {
+        "from": "subway-nijojo-mae",
+        "mode": "walk",
+        "minutes": 9,
+        "note": "地下鐵 二条城前駅 下車即到（媒體摘要；路線估算是到城內座標，入口是東大手門）；路線估算 9 分"
+      }
+    ],
     "admission": "入城＋二の丸御殿 大人 1,300 円；只入城 大人 800、國高中 400、小學生 300 円；未就學免費。",
     "phone": "075-841-0096",
     "stayMinutes": 90,
@@ -2360,8 +3168,47 @@
         "梅林是否另收費：官網沒找到；推定只要入城券，未確認"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "世界遺產的城，主要看點是二の丸御殿（室內）和庭園。8:45～16:00 入城、17:00 閉城，入城＋二の丸御殿 大人 1,300 円，只入城 小學生 300 円；2 月二の丸御殿每天都開。地下鐵二条城前駅下車即到；梅林例年 2 月中旬～3 月上旬，旅程時可能剛開。",
+      "pros": [
+        "地下鐵二条城前駅下車即到，入口是東大手門",
+        "梅林約 88 株，2 月中旬起開，2 月去有梅花可看（旅程時可能才剛開）",
+        "有大休憩所（咖啡、商店、行李寄放），可以借電動輔助輪椅"
+      ],
+      "cons": [
+        "城內全是碎石路，御殿＋庭園約 1 小時，長輩走起來累",
+        "二の丸御殿一般說要脫鞋、冬天地板冷（官網沒寫，待確認）",
+        "16:00 停止入城；團體價要 30 人以上，15 人照個人票"
+      ],
+      "basedOn": [
+        "https://nijo-jocastle.city.kyoto.lg.jp/admission/fee/",
+        "https://nijo-jocastle.city.kyoto.lg.jp/guide/annai/",
+        "https://nijo-jocastle.city.kyoto.lg.jp/service/",
+        "https://nijo-jocastle.city.kyoto.lg.jp/event/soushun2026/",
+        "https://ja.kyoto.travel/flower/ume/single.php?flower_id=1296",
+        "https://maps.google.com/?cid=1183188145859604271"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4（43,874 則），京都門檻的 3（4 要 4.5 以上）",
+        "winterFit": "2 月有梅林（例年 2 月中旬起），二の丸御殿在室內；其他是戶外碎石路，16:00 停止入城",
+        "elderFit": "城內碎石路，御殿＋庭園約 1 小時；有休憩所、可借電動輔助輪椅，段差、坡道官網沒寫",
+        "kidsFit": "歷史建築和庭園，沒有兒童設施",
+        "accessEase": "地下鐵二条城前駅下車即到（路線估算到城內座標 9 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-gosho",
@@ -2448,9 +3295,21 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "subway-imadegawa",
+      "mode": "walk",
+      "minutes": 12,
+      "note": "宮內廳官網：地下鐵 今出川駅 步行 5 分到清所門（路線估算到御所中心）；路線估算 12 分"
+    },
+    "access": [
+      {
+        "from": "subway-imadegawa",
+        "mode": "walk",
+        "minutes": 12,
+        "note": "宮內廳官網：地下鐵 今出川駅 步行 5 分到清所門（路線估算到御所中心）；路線估算 12 分"
+      }
+    ],
     "admission": "免費，不用預約。",
     "phone": null,
     "stayMinutes": 60,
@@ -2529,8 +3388,45 @@
         "市巴士烏丸今出川到御所：kyoto-gosho.kunaicho.go.jp/access 寫步行 7 分，sankan.kunaicho.go.jp 多語頁寫約 5 分"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "舊皇居，免費開放、不用預約，沿參觀路線在戶外看宮殿建築外觀，約 50 分。2 月 9:00 開、15:20 前入場、16:00 前離開，週一休（旅程的 2/9～2/12 都開）。入口是清所門，地下鐵今出川駅步行約 5 分；入場時檢查手荷物。",
+      "pros": [
+        "免費、不用預約，有免費導覽",
+        "地下鐵今出川駅步行約 5 分，可以借輪椅",
+        "旅程的 2/9～2/12 都開（2/11 假日照開）"
+      ],
+      "cons": [
+        "冬天 15:20 就停止入場，要排在上午或中午",
+        "全程戶外碎石路約 50 分，輪椅、推車難推，下雨要撐傘",
+        "團體要事先洽詢；禁止飲食、大型行李，建築只能看外觀"
+      ],
+      "basedOn": [
+        "https://kyoto-gosho.kunaicho.go.jp/visit",
+        "https://sankan.kunaicho.go.jp/multilingual/information.html",
+        "https://kyoto-gosho.kunaicho.go.jp/access",
+        "https://maps.google.com/?cid=8944354417040377478"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（2,125 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "戶外看建築外觀；2 月 15:20 停止入場",
+        "elderFit": "參觀路線約 50 分、全程碎石路；可以借輪椅，休息處沒有來源",
+        "kidsFit": "宮殿建築和庭園，沒有兒童設施",
+        "accessEase": "地下鐵今出川駅步行 5 分到清所門（路線估算到御所中心 12 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-kinkakuji",
@@ -2622,9 +3518,33 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "S",
+    "nearestStation": {
+      "id": "randen-kitano-hakubaicho",
+      "mode": "walk",
+      "minutes": 22,
+      "note": "沒有鐵路站，平常搭市巴士或計程車；這是最近的電車站；路線估算 22 分"
+    },
+    "access": [
+      {
+        "from": "randen-kitano-hakubaicho",
+        "mode": "walk",
+        "minutes": 22,
+        "note": "沒有鐵路站，平常搭市巴士或計程車；這是最近的電車站；路線估算 22 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 205 系統「金閣寺道」下車 步行約 5 分（系統照官網；京都駅烏丸口出發約 40～50 分、步行分鐘是二手）；12・59・M1 系統也到「金閣寺道」"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "taxi",
+        "minutes": null,
+        "note": "計程車可到參道前停車場（官網）"
+      }
+    ],
     "admission": "大人（高中以上）500 円、小中學生 300 円。",
     "phone": "075-461-0013",
     "stayMinutes": 45,
@@ -2714,8 +3634,46 @@
       "conflicts": [],
       "stayNote": "一圈約 30～45 分；人多時更久。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "鏡湖池畔的金閣（舎利殿），是京都最有代表性的景色之一；舎利殿不能入內，沿單向路線繞庭園。全年 9:00～17:00、年中無休，大人 500、小中學生 300 円。沒有鐵路站：京都站搭市巴士 205 系統到「金閣寺道」（約 40～50 分），下車步行約 5 分；計程車可以開到參道前停車場。",
+      "pros": [
+        "Google 評論 7.2 萬則，京都代表景點；金閣小孩也看得懂、印象深",
+        "入口到金閣旁是平路，長輩、輪椅走到金閣旁就能原路折返",
+        "計程車可以開到參道前停車場，15 人分搭計程車很方便"
+      ],
+      "cons": [
+        "境內禁止拍團體合照",
+        "過了金閣是階梯和山路，長輩、推車到金閣旁折返",
+        "全程戶外、沒地方躲雨；雪景日人更多，石階易滑"
+      ],
+      "basedOn": [
+        "https://www.shokoku-ji.jp/kinkakuji/access/",
+        "https://www.shokoku-ji.jp/kinkakuji/faq/",
+        "https://www.shokoku-ji.jp/kinkakuji/guide/",
+        "https://ja.kyoto.travel/feature/traffic/access.php?id=10",
+        "https://maps.google.com/?cid=1073025677330113631"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 5,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.6（71,980 則），達到京都門檻的 5（4.6 以上、5 萬則以上）",
+        "winterFit": "戶外庭園的參拜路線，2 月照常開；下雪時有雪景但不一定看得到，石階易滑",
+        "elderFit": "入口到金閣旁是平路，輪椅、推車到金閣旁原路折返；之後的階梯山路長輩不用走",
+        "kidsFit": "一般寺院，金閣本身小孩看得懂，沒有兒童設施",
+        "accessEase": "只有巴士：京都站市巴士 205 系統直達「金閣寺道」，下車步行約 5 分；計程車可到參道前"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-kitano-tenmangu",
@@ -2826,9 +3784,33 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "randen-kitano-hakubaicho",
+      "mode": "walk",
+      "minutes": 11,
+      "note": "官網：嵐電 北野白梅町駅 步行約 5 分；路線估算 11 分"
+    },
+    "access": [
+      {
+        "from": "randen-kitano-hakubaicho",
+        "mode": "walk",
+        "minutes": 11,
+        "note": "官網：嵐電 北野白梅町駅 步行約 5 分；路線估算 11 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": 35,
+        "note": "市バス 50 系統「北野天満宮前」下車（官網，約 35 分）"
+      },
+      {
+        "from": "subway-imadegawa",
+        "mode": "bus",
+        "minutes": 15,
+        "note": "市バス 51・203 系統「北野天満宮前」下車（官網，約 15 分）"
+      }
+    ],
     "admission": "參拜免費；梅苑「花の庭」2026 年當日 大人 3,000、小人 1,500 円。",
     "phone": "075-461-0005",
     "stayMinutes": 60,
@@ -2906,8 +3888,45 @@
       "conflicts": [],
       "stayNote": "只參拜約 30 分；加梅苑約 60～75 分。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "學問之神的神社，梅苑「花の庭」約 1,500 株梅，例年 2 月上旬開苑（2026 年 2/1 開、大人 3,000、小人 1,500 円），旅程時大概是早開到初開。境內 7:00～17:00、參拜免費。嵐電北野白梅町駅步行約 5 分，京都站搭市巴士 50 系統約 35 分。",
+      "pros": [
+        "2 月京都少數有梅花可看的地方，梅苑有茶屋可以坐",
+        "境內參拜免費，參道平坦",
+        "學問之神，可以帶小孩祈求學業"
+      ],
+      "cons": [
+        "2027 年梅苑的開苑日、票價還沒公布，出發前要再查",
+        "梅苑票價偏貴（2026 年大人 3,000 円），2/9～2/12 梅花可能還不多",
+        "2/25 梅花祭、每月 25 日天神市都在旅程之後"
+      ],
+      "basedOn": [
+        "https://kitanotenmangu.or.jp/guidance/baien/",
+        "https://kitanotenmangu.or.jp/guidance/",
+        "https://kitanotenmangu.or.jp/access/",
+        "https://maps.google.com/?cid=6568217213263605274"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（17,027 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "2 月有梅苑（例年 2 月上旬開苑），戶外；2027 年開苑日還沒公布",
+        "elderFit": "參道平坦（石板、砂利），梅苑有茶屋可坐；計程車可到一の鳥居前",
+        "kidsFit": "一般神社，可以祈求學業，沒有兒童設施",
+        "accessEase": "嵐電北野白梅町駅步行約 5 分（路線估算 11 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-ginkakuji",
@@ -3000,9 +4019,27 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "subway-keage",
+      "mode": "walk",
+      "minutes": 37,
+      "note": "沒有鐵路站，平常搭市巴士或計程車；這是最近的電車站（照實）；路線估算 37 分"
+    },
+    "access": [
+      {
+        "from": "subway-keage",
+        "mode": "walk",
+        "minutes": 37,
+        "note": "沒有鐵路站，平常搭市巴士或計程車；這是最近的電車站（照實）；路線估算 37 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 5・7・32・102・203・204 系統「銀閣寺道」下車 步行約 10 分；EX100・105 系統「銀閣寺前」下車 步行約 5 分（系統名照官網、分鐘是京都観光Navi 搜尋摘要；哪幾系統從京都駅發沒寫，出發前查）"
+      }
+    ],
     "admission": "拝観料 大人（高中以上）1,000 円、小中學生 500 円（2026-04-01 改定）；無團體折扣。",
     "phone": "075-771-5725",
     "stayMinutes": 50,
@@ -3087,8 +4124,46 @@
       "nearby": "哲学の道：從銀閣寺往南沿疏水走到若王子神社（南禅寺方向）的散步道，約 2 km（京都観光Navi；京都市另一篇寫若王子橋附近到銀閣寺約 1.8 km、慢走約 30 分）。南端到地下鐵蹴上站約 15 分。路面平坦但沒有屋頂，2 月沒有花。",
       "stayNote": "庭園加展望所約 40～60 分（估計，官網沒寫）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "銀閣和白砂的銀沙灘、向月台是看點。冬期 9:00～16:30、年中無休，大人 1,000、小中學生 500 円（2026-04 起），沒有團體折扣。沒有鐵路站，市巴士「銀閣寺道」下車步行約 10 分；平地庭園長輩、輪椅都能走，後段展望所是山坡階梯，可以從洗月泉前的迴避路線跳過。",
+      "pros": [
+        "平地部分（參道、銀沙灘、銀閣前）輪椅也能走，展望所一段可以跳過",
+        "展望所可以俯瞰京都市區，體力好的小孩、大人可以上去",
+        "南邊接哲學之道，可以一路散步到南禪寺方向"
+      ],
+      "cons": [
+        "冬期 16:30 就關門",
+        "沒有鐵路站，巴士站下車還要走約 10 分；寺沒有停車場",
+        "全程戶外、沒有團體折扣（大人 1,000 円）"
+      ],
+      "basedOn": [
+        "https://www.shokoku-ji.jp/ginkakuji/access/",
+        "https://www.shokoku-ji.jp/ginkakuji/guide/",
+        "https://www.shokoku-ji.jp/ginkakuji/",
+        "https://ja.kyoto.travel/tourism/single01.php?category_id=8&tourism_id=2684",
+        "https://maps.google.com/?cid=2705196751698570185"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 3
+      },
+      "rationale": {
+        "recommend": "Google 4.5（18,453 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "全程戶外的庭園；冬期 16:30 關門",
+        "elderFit": "總門到銀閣前是平地、輪椅可走；展望所一段是山坡階梯，長輩在洗月泉前走迴避路線",
+        "kidsFit": "一般寺院庭園，展望所可以爬，沒有兒童設施",
+        "accessEase": "只有巴士：市巴士「銀閣寺道」下車步行約 10 分（「銀閣寺前」約 5 分，哪些系統從京都站發沒寫）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nanzenji",
@@ -3181,9 +4256,27 @@
       "神社寺院",
       "長階梯"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "subway-keage",
+      "mode": "walk",
+      "minutes": 12,
+      "note": "官網：地下鐵 蹴上駅 步行 10 分（穿過ねじりまんぽ隧道是近路）；路線估算 12 分"
+    },
+    "access": [
+      {
+        "from": "subway-keage",
+        "mode": "walk",
+        "minutes": 12,
+        "note": "官網：地下鐵 蹴上駅 步行 10 分（穿過ねじりまんぽ隧道是近路）；路線估算 12 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス「東天王町」或「南禅寺・永観堂道」下車 步行 10 分（官網；系統沒寫）"
+      }
+    ],
     "admission": "境內免費；方丈庭園、三門各 大人 600／高中 500／小中 400 円，南禅院 500／450／350 円。",
     "phone": "075-771-0365",
     "stayMinutes": 75,
@@ -3273,8 +4366,47 @@
       "conflicts": [],
       "stayNote": "方丈庭園＋水路閣約 60 分，加三門約 90 分（估計，官網沒寫）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "大寺院，境內免費，紅磚拱橋的水路閣（疏水水道橋）和法堂外觀不用買票。2 月 8:40～16:30（16:10 停止受理），方丈庭園、三門各 大人 600、小中學生 400 円。地下鐵蹴上駅步行約 10 分（穿過ねじりまんぽ隧道），到平安神宮步行約 15 分。",
+      "pros": [
+        "境內、水路閣免費，平地部分長輩也能走",
+        "水路閣的紅磚拱橋小孩可以走到下面看、拍照",
+        "地下鐵蹴上駅步行約 10 分，可以和平安神宮、動物園排在同一天"
+      ],
+      "cons": [
+        "官網說境內階梯、坡道多；三門樓上的樓梯陡，膝蓋不好的不要上",
+        "冬天 16:30 關門（16:10 停止受理）",
+        "團體價要 30 人以上，15 人照個人票；方丈要不要脫鞋官網沒寫"
+      ],
+      "basedOn": [
+        "https://nanzenji.or.jp/about_rinzaishu/visit",
+        "https://nanzenji.or.jp/equipment/sanmon",
+        "https://nanzenji.or.jp/equipment/sosui",
+        "https://www.nanzenji.or.jp/information/20260203",
+        "https://shugakuryoko.kyoto.travel/spot/416/",
+        "https://maps.google.com/?cid=4085672666846396493"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 3,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（12,881 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "境內、三門、水路閣都在戶外；冬天 16:30 關門",
+        "elderFit": "官網說境內階梯、坡道多；平地的參道、水路閣可以走，方丈入口 3 段，三門樓梯陡",
+        "kidsFit": "一般寺院，水路閣的拱橋可以拍照，沒有兒童設施",
+        "accessEase": "地下鐵蹴上駅步行約 10 分（路線估算 12 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-heian-jingu",
@@ -3366,9 +4498,33 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "subway-higashiyama",
+      "mode": "walk",
+      "minutes": 15,
+      "note": "地下鐵 東山駅 步行約 10 分（修学旅行ナビ）；路線估算 15 分"
+    },
+    "access": [
+      {
+        "from": "subway-higashiyama",
+        "mode": "walk",
+        "minutes": 15,
+        "note": "地下鐵 東山駅 步行約 10 分（修学旅行ナビ）；路線估算 15 分"
+      },
+      {
+        "from": "keihan-sanjo",
+        "mode": "walk",
+        "minutes": 23,
+        "note": "京阪 三条駅 步行約 15 分（京阪官網）；路線估算 23 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス「岡崎公園 美術館・平安神宮前」下車即到（修学旅行ナビ；系統沒寫）"
+      }
+    ],
     "admission": "境內參拜免費；神苑 大人 600 円、小中學生 300 円。",
     "phone": "075-761-0221",
     "stayMinutes": 60,
@@ -3455,8 +4611,45 @@
       ],
       "stayNote": "境內 20 分＋神苑 40 分。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "岡崎的神社，境內參拜免費（2 月 6:00～17:00）；神苑 8:30～17:00，大人 600、小中學生 300 円，約 40 分可以看完，池中有踏石。地下鐵東山駅步行約 10 分，京都站搭市巴士「岡崎公園 美術館・平安神宮前」下車即到。",
+      "pros": [
+        "境內免費，到本殿前有斜坡，輪椅也能到",
+        "神苑有可以坐下賞景的地方，楼門內有輪椅用廁所",
+        "和南禪寺、京都市動物園在同一區，步行約 15 分"
+      ],
+      "cons": [
+        "2 月神苑沒有花季（梅、櫻都還沒開）",
+        "戶外為主，社殿只能在外面參拜；神苑的踏石長輩要小心",
+        "官網讀不到，神苑票價來自其他網站，出發前要再查"
+      ],
+      "basedOn": [
+        "https://www.mlit.go.jp/tagengo-db/common/001771849.pdf",
+        "https://www.keihan.co.jp/recommend/hanameguri/detail/14_heianjingu.html",
+        "https://shugakuryoko.kyoto.travel/spot/426/",
+        "https://maps.google.com/?cid=8484457972734838095"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.4（16,601 則），京都門檻的 3（4 要 4.5 以上）",
+        "winterFit": "境內和神苑都是戶外，2 月沒有花季",
+        "elderFit": "到本殿前有斜坡、有輪椅用廁所，神苑有座位；神苑入口 4 段階梯、池中踏石要小心",
+        "kidsFit": "一般神社，神苑的踏石小孩可能喜歡，沒有兒童設施",
+        "accessEase": "地下鐵東山駅步行約 10 分（路線估算 15 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-city-zoo",
@@ -3550,9 +4743,33 @@
     "tags": [
       "親子"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "subway-keage",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "官網：地下鐵 蹴上駅 步行約 7 分（到東入口）；路線估算 10 分"
+    },
+    "access": [
+      {
+        "from": "subway-keage",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "官網：地下鐵 蹴上駅 步行約 7 分（到東入口）；路線估算 10 分"
+      },
+      {
+        "from": "subway-higashiyama",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "官網：地下鐵 東山駅 步行約 10 分（到正面入口）；路線估算 14 分"
+      },
+      {
+        "from": "jr-kyoto",
+        "mode": "bus",
+        "minutes": null,
+        "note": "市バス 5・110 系統「岡崎公園 動物園前」下車 步行約 2 分（官網 2023 年 PDF；100 系統官網寫目前停駛）"
+      }
+    ],
     "admission": "大人 750 円，國中以下免費。",
     "phone": "075-771-0210",
     "stayMinutes": 120,
@@ -3644,8 +4861,46 @@
       ],
       "stayNote": "小孩看動物約 2 小時（估計）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "岡崎公園裡的市立動物園，有可以接觸動物的兒童區「おとぎの国」。2 月 9:00～16:30（16:00 停止入園），週一休（旅程的 2/9～2/12 都開）。大人 750 円、國中以下免費，一般團體不用預約。地下鐵蹴上駅步行約 7 分到東入口。",
+      "pros": [
+        "國中以下免費、大人 750 円，四位小孩最划算的景點之一",
+        "可免費借輪椅和嬰兒車，有多目的廁所 5 處",
+        "蹴上駅步行約 7 分，和南禪寺、平安神宮在同一區"
+      ],
+      "cons": [
+        "動物展示在戶外，雨天要撐傘",
+        "冬天 16:30 關門、16:00 停止入園",
+        "團體價要付費大人 30 人以上，15 人用不到"
+      ],
+      "basedOn": [
+        "https://zoo.city.kyoto.lg.jp/zoo/visitor/access/",
+        "https://zoo.city.kyoto.lg.jp/zoo/visitor/fee/",
+        "https://zoo.city.kyoto.lg.jp/zoo/visitor/accessible/",
+        "https://zoo.city.kyoto.lg.jp/zoo/visitor/group/",
+        "https://maps.google.com/?cid=11861623245059094083"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.2（7,321 則），京都門檻的 3（4 要 4.5 以上、2 萬則以上）",
+        "winterFit": "展示以戶外為主；冬天 16:30 關門，週一休但旅程的 2/9～2/12 都開",
+        "elderFit": "公園平地、可借輪椅、多目的廁所 5 處；坡道、休息處官網沒寫",
+        "kidsFit": "動物園、可以接觸動物的兒童區，國中以下免費",
+        "accessEase": "地下鐵蹴上駅步行約 7 分到東入口（路線估算 10 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-byodoin",
@@ -3744,9 +4999,27 @@
     "tags": [
       "神社寺院"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "A",
+    "nearestStation": {
+      "id": "keihan-uji",
+      "mode": "walk",
+      "minutes": 10,
+      "note": "京阪 宇治駅 步行約 10 分，過宇治橋就是表參道（二手）；路線估算 10 分"
+    },
+    "access": [
+      {
+        "from": "keihan-uji",
+        "mode": "walk",
+        "minutes": 10,
+        "note": "京阪 宇治駅 步行約 10 分，過宇治橋就是表參道（二手）；路線估算 10 分"
+      },
+      {
+        "from": "jr-uji",
+        "mode": "walk",
+        "minutes": 14,
+        "note": "JR 宇治駅 步行約 10 分（二手）；路線估算 14 分"
+      }
+    ],
     "admission": "庭園＋鳳翔館 大人 700／國高中 400／小學生 300 円；鳳凰堂內部另付 300 円（每場 35 人、先到先得）。",
     "phone": "0774-21-2861",
     "stayMinutes": 90,
@@ -3838,8 +5111,46 @@
       ],
       "stayNote": "官網 FAQ 外觀＋鳳翔館 40 分；含內部、表參道約 90～120 分。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "宇治的寺院，鳳凰堂就是 10 円硬幣上的建築。庭園 8:45～17:30（17:15 停止受理），庭園＋鳳翔館 大人 700、小學生 300 円；鳳凰堂內部另付 300 円，每 20 分一場、一場 35 人、當天 9:10 起先到先得。京阪宇治駅步行約 10 分（過宇治橋就是表參道），2 月時間和平常一樣。",
+      "pros": [
+        "鳳翔館（博物館）在室內，可以看雲中供養菩薩像",
+        "京阪、JR 宇治駅步行約 10 分，表參道上有宇治抹茶的店",
+        "入口可以借輪椅；外觀＋鳳翔館約 40 分，排得緊"
+      ],
+      "cons": [
+        "鳳凰堂內部名額先到先得，2/11 假日可能提早額滿，15 人同一場要一早去受理",
+        "庭園是碎石路，鳳凰堂內部有段差、輪椅不能進",
+        "團體價要 25 人以上，15 人照個人票；小孩可能覺得無聊"
+      ],
+      "basedOn": [
+        "https://www.byodoin.or.jp/guide/",
+        "https://www.byodoin.or.jp/guide/access/",
+        "https://www.byodoin.or.jp/faq/public/",
+        "https://www.walkerplus.com/spot/ar0726s05257/map.html",
+        "https://maps.google.com/?cid=6954706348575164324"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 4,
+        "winterFit": 3,
+        "elderFit": 4,
+        "kidsFit": 2,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（22,887 則），達到京都門檻的 4（4.5 以上、2 萬則以上）；5 要 4.6 以上、5 萬則",
+        "winterFit": "庭園在戶外，鳳翔館和鳳凰堂內部在室內；2 月時間和平常一樣",
+        "elderFit": "庭園是碎石路、可借輪椅，外觀＋鳳翔館約 40 分；鳳凰堂內部有段差",
+        "kidsFit": "一般寺院，可以拿 10 円硬幣對照，沒有兒童設施",
+        "accessEase": "京阪宇治駅步行約 10 分（路線估算 10 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nintendo-museum",
@@ -3935,9 +5246,27 @@
       "雨天備案",
       "親子"
     ],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "ogura",
+      "mode": "walk",
+      "minutes": 7,
+      "note": "官網：近鐵 小倉駅 東口 步行 5 分；路線估算 7 分"
+    },
+    "access": [
+      {
+        "from": "ogura",
+        "mode": "walk",
+        "minutes": 7,
+        "note": "官網：近鐵 小倉駅 東口 步行 5 分；路線估算 7 分"
+      },
+      {
+        "from": "jr-uji",
+        "mode": "bus",
+        "minutes": 6,
+        "note": "官網：JR 宇治駅 南出口搭巴士 64 系統 約 6 分；JR 小倉駅（不在車站清單）北出口 步行 8 分。官網謝絕計程車、自用車來館"
+      }
+    ],
     "admission": "全票抽選預約制：大人（18 歲以上）3,300、國高中 2,200、小學生 1,100 円、學齡前免費。",
     "phone": null,
     "stayMinutes": 180,
@@ -4021,8 +5350,46 @@
       "conflicts": [],
       "stayNote": "官網沒寫所需時間；含體驗約 2～3 小時（估計）。"
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "任天堂的博物館，展示歷代產品，也能實際玩用現在技術重現的過去遊戲。10:00～20:00，每週二休：旅程中 2/9（二）休館，2/10～2/12 開。全票抽選預約制：大人 3,300、國高中 2,200、小學生 1,100 円；2027 年 2 月場次現在受理中，2026-12-01 下午公布結果、12/7 前付款。近鐵小倉駅東口步行 5 分。",
+      "pros": [
+        "展示、體驗都在館內，小孩可以實際玩遊戲，2 月下雨也沒關係",
+        "近鐵小倉駅步行 5 分",
+        "開到 20:00，時間寬裕"
+      ],
+      "cons": [
+        "抽選制，要在 2026-12-01 結果公布前申請；一個帳號一天最多 8 張，15 人要用 2 個帳號分開抽，可能一組沒中",
+        "每週二休館，旅程中 2/9（二）不能去；票要本人名義，入館查護照",
+        "謝絕計程車、自用車到館，長輩要從車站走；無障礙資訊沒查到"
+      ],
+      "basedOn": [
+        "https://museum.nintendo.com/",
+        "https://museum.nintendo.com/guide/index.html",
+        "https://museum.nintendo.com/access/index.html",
+        "https://support-jp.nintendo.com/app/answers/detail/a_id/38320/",
+        "https://maps.google.com/?cid=7237248636885019469"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 4,
+        "elderFit": null,
+        "kidsFit": 5,
+        "accessEase": 5
+      },
+      "rationale": {
+        "recommend": "Google 4.5（5,650 則），京都門檻的 3（4 要 2 萬則以上）",
+        "winterFit": "展示、體驗都在館內；週二休，旅程中 2/9 不能去",
+        "elderFit": "館內的電梯、階梯、無障礙資訊這次沒讀到，無法判斷",
+        "kidsFit": "可以實際玩遊戲、做花札，小孩會很喜歡",
+        "accessEase": "近鐵小倉駅東口步行 5 分（路線估算 7 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-toei-uzumasa",
@@ -4113,9 +5480,27 @@
       "googleMaps": "https://maps.google.com/?cid=3150840243035149927"
     },
     "tags": [],
-    "tier": null,
-    "nearestStation": null,
-    "access": [],
+    "tier": "B",
+    "nearestStation": {
+      "id": "randen-uzumasa-koryuji",
+      "mode": "walk",
+      "minutes": 5,
+      "note": "嵐電 太秦広隆寺駅 步行約 13 分（Walker+；路線估算到園區座標）；路線估算 5 分"
+    },
+    "access": [
+      {
+        "from": "randen-uzumasa-koryuji",
+        "mode": "walk",
+        "minutes": 5,
+        "note": "嵐電 太秦広隆寺駅 步行約 13 分（Walker+；路線估算到園區座標）；路線估算 5 分"
+      },
+      {
+        "from": "subway-uzumasa-tenjingawa",
+        "mode": "walk",
+        "minutes": 18,
+        "note": "地下鐵 太秦天神川駅 步行約 12 分（Walker+）；路線估算 18 分"
+      }
+    ],
     "admission": "1DAY 國中以上 2,800 円、3 歲～小學生 1,600 円（到 2027 春第 2 期開幕為止的價格）。",
     "phone": "0570-064-349",
     "stayMinutes": 180,
@@ -4203,7 +5588,44 @@
         "官網因 SSL 憑證錯誤未讀到，時間、票價、定休都來自媒體，出發前要以官網核對"
       ]
     },
-    "summary": null,
-    "assessment": null
+    "summary": {
+      "text": "江戶街景的外景區改成的主題樂園，有侍修練場、忍者表演、殺陣秀。週二休：旅程中 2/9（二）休村，2/10～2/12 營業。1DAY 國中以上 2,800、3 歲～小學生 1,600 円（第 2 期開幕前的價格）。2027 春第 2 期開幕前施工中，只開一半區域；官網讀不到，時間、票價出發前要再核對。",
+      "pros": [
+        "侍修練場、忍者表演、殺陣秀，小孩可以參加的體驗多",
+        "江戶街景很好拍，可以半天到大半天",
+        "嵐電太秦広隆寺駅步行約 13 分"
+      ],
+      "cons": [
+        "每週二休，旅程中 2/9（二）不能去",
+        "第 2 期施工中只開一半區域，2027 年 2 月的營業細節沒查到",
+        "外景街道以戶外為主；無障礙、團體價都沒查到；夜間部分設施 18 禁"
+      ],
+      "basedOn": [
+        "https://travel.watch.impress.co.jp/docs/news/2098754.html",
+        "https://www.walkerplus.com/article/1335483/2.html",
+        "https://www.walkerplus.com/spot/ar0726s04628/data.html",
+        "https://maps.google.com/?cid=3150840243035149927"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "spot-v1",
+      "scores": {
+        "recommend": 3,
+        "winterFit": 3,
+        "elderFit": null,
+        "kidsFit": 3,
+        "accessEase": 4
+      },
+      "rationale": {
+        "recommend": "Google 4.0（11,456 則），京都門檻的 3（4 要 4.5 以上、2 萬則以上）",
+        "winterFit": "外景街道以戶外為主；週二休，旅程中 2/9 不能去，2 月的營業時間沒查到",
+        "elderFit": "村內的階梯、坡道、無障礙資訊都沒查到，無法判斷",
+        "kidsFit": "侍修練場、忍者表演適合小孩，但客群轉向大人，部分設施 18 禁",
+        "accessEase": "嵐電太秦広隆寺駅步行約 13 分（路線估算到園區座標 5 分）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   }
 ]
