@@ -2431,6 +2431,7 @@ T7c → T7d → T7e → T7f → T7g → T8a → T8b → T8c → T8d → T7i → 
 - validate 通過後，本機 D1 匯入 `kyoto`（全部是新 ID，只會新增；`layer_version` 要跟著更新，見 T66 的經驗），重新 build，看概覽多一張卡、地區列多一顆、地圖有京都、篩選的各書架有數字。
 - 更新 `data/raw/kyoto/README.md`（現況、決定、給排行程的人看的限制）。
 - 完成條件：`npm run validate`、`npm test`、`npm run typecheck` 通過；👤 看過門檻和 S、A 級名單。
+- **完成（2026-11-12，分支 `t86d`）**：景點 38 筆補 `nearestStation`、`access`（只有巴士到的 4 筆照官網寫停留所和系統，`citybus-` 等市巴士；「市巴士進來後要對的」在 `data/raw/kyoto/README.md`）。門檻 👤 照建議確認（`data/raw/toba/assessment-notes.md`「京都」「琵琶湖」）：京都 S 景點 3、住宿 1、餐廳 2，A 3、3、9（25%、24%、22%）；琵琶湖沒有 S 景點、餐廳，A 景點 4、住宿 S 2 A 1、餐廳 A 3；白鬚神社照數字是 B。照片 178 張都打得開、順序不用換。兩區、14 個子地區的 `intro`，地區照片 2 張（Wikimedia）。本機 D1 在 worktree 匯入（#6 新增 193、#7 其他區重算分層），Chrome 看過概覽、地區列、地圖。順便修：京都飯店 8 間的 `extra.febNote` 移到 `febNote`；`cross-area-check.mjs` 加兩區；`get_areas` 測試的長度上限 8,000 → 10,000（👤 決定）。不在車站清單的最近車站沒加（留給 T87）；地圖的京都範圍框拉到大和八木（T88）。主目錄的本機 D1 merge 後再匯。過程見 `data/raw/kyoto/log/T86d.md`。
 
 ### T87 京都交通 〔M〕
 - 開工先讀 `data/raw/access/osaka.md`（上次哪些來源能讀、哪些被 robots 擋）、`data/raw/access/kintetsu-osaka.md`、`scripts/kintetsu-osaka.mjs`。伊勢 ↔ 京都、京都 ↔ 大阪都查（住京都和當天來回兩種排法都要能算）。

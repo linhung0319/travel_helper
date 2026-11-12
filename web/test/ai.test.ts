@@ -1252,7 +1252,7 @@ test('T41 get_areas：全部的區照行程順序，有特色、代表的點（�
   assert.deepEqual(Object.keys(shima.regions[0]).sort(), ['id', 'name', 'needsCar']);
   const text = JSON.stringify(r);
   assert.ok(!text.includes('"sources"') && !text.includes('"basedOn"') && !text.includes('"points"'));
-  assert.ok(text.length < 8000, String(text.length));
+  assert.ok(text.length < 10000, String(text.length));
   h.close();
 });
 

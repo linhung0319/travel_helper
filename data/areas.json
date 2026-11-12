@@ -1669,7 +1669,74 @@
       "subway-misasagi",
       "subway-yamashina"
     ],
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Kiyomizu-dera%2C%20Kyoto%2C%20November%202016%20-01.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Kiyomizu-dera%2C_Kyoto%2C_November_2016_-01.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: Martin Falbisoner",
+        "license": "CC BY-SA 4.0"
+      }
+    ],
     "notes": "2026-11-12 加入（T86a）。tripOrder 和 biwako 同為 4（京都市區和琵琶湖是同一段的兩個選項，住哪裡由排行程時選），大阪、關西機場周邊往後挪成 5。stations 由 T87 補（T86a 之後不改）。做法見 CONVENTIONS §4「京都的做法」。子地區 👤 2026-11-12 照建議全收（含可選的三個）。子地區的 center 是大致位置（車站或代表景點）。",
+    "intro": {
+      "summary": "寺社、老街和京都名物集中的古都；京都站、四条一帶住宿方便，清水寺、金閣寺要搭巴士或計程車。",
+      "transport": "京都站周邊、伏見稻荷、嵐山、宇治、四条靠電車和地下鐵；清水寺、金閣寺、銀閣寺沒有電車站，要搭市巴士或計程車。",
+      "highlights": [
+        "kyoto-fushimi-inari",
+        "kyoto-kiyomizudera",
+        "kyoto-kinkakuji",
+        "kyoto-railway-museum",
+        "kyoto-yamamoto-menzo"
+      ],
+      "february": [
+        {
+          "text": "任天堂博物館是抽選預約制，2027 年 2 月場次要在 2026-12-01 結果公布前申請；2/9（二）休館。",
+          "points": [
+            "kyoto-nintendo-museum"
+          ]
+        },
+        {
+          "text": "寺社冬天多半 16:00～17:00 關門（三十三間堂 16:00、銀閣寺、南禪寺 16:30），下午的行程排早一點。",
+          "points": [
+            "kyoto-sanjusangendo",
+            "kyoto-ginkakuji",
+            "kyoto-nanzenji"
+          ]
+        },
+        {
+          "text": "北野天滿宮梅苑、二条城梅林 2 月開始開花，旅程時大概是早開到初開；2027 年的開苑日還沒公布。",
+          "points": [
+            "kyoto-kitano-tenmangu",
+            "kyoto-nijojo"
+          ]
+        },
+        {
+          "text": "週間休館：京都鐵道博物館週三（2/10）、東映太秦映畫村週二（2/9，整修中只開一半）；天龍寺的雲龍圖只有週末假日開（旅程中只有 2/11）。",
+          "points": [
+            "kyoto-railway-museum",
+            "kyoto-toei-uzumasa",
+            "kyoto-tenryuji"
+          ]
+        },
+        {
+          "text": "下雪時清水坂、伏見稻荷的石階、金閣寺的坡路會滑。",
+          "points": [
+            "kyoto-kiyomizudera",
+            "kyoto-fushimi-inari",
+            "kyoto-kinkakuji"
+          ]
+        }
+      ],
+      "basedOn": [
+        "kyoto-fushimi-inari",
+        "kyoto-kiyomizudera",
+        "kyoto-kinkakuji",
+        "kyoto-nintendo-museum",
+        "kyoto-kitano-tenmangu",
+        "kyoto-richmond-ekimae"
+      ]
+    },
     "regions": [
       {
         "id": "kyoto-station",
@@ -1682,7 +1749,23 @@
           34.9858
         ],
         "needsCar": false,
-        "note": "含東寺、梅小路（京都鐵道博物館、京都水族館）、京都塔、三十三間堂（七条）。住宿的據點：近鐵、JR、地下鐵都到"
+        "note": "含東寺、梅小路（京都鐵道博物館、京都水族館）、京都塔、三十三間堂（七条）。住宿的據點：近鐵、JR、地下鐵都到",
+        "intro": {
+          "summary": "近鐵、JR、地下鐵都到的住宿據點，東寺、京都鐵道博物館、水族館、三十三間堂都在附近。",
+          "highlights": [
+            "kyoto-railway-museum",
+            "kyoto-toji",
+            "kyoto-richmond-ekimae"
+          ],
+          "febNote": "京都鐵道博物館週三（2/10）休；三十三間堂冬天 16:00 關門。",
+          "basedOn": [
+            "kyoto-railway-museum",
+            "kyoto-toji",
+            "kyoto-aquarium",
+            "kyoto-sanjusangendo",
+            "kyoto-richmond-ekimae"
+          ]
+        }
       },
       {
         "id": "higashiyama",
@@ -1695,7 +1778,23 @@
           34.999
         ],
         "needsCar": false,
-        "note": "清水寺、八坂神社、產寧坂・二年坂、花見小路。坡多、沒有電車站直達清水寺，靠市巴士或計程車（京阪祇園四条站到八坂神社步行 5 分）"
+        "note": "清水寺、八坂神社、產寧坂・二年坂、花見小路。坡多、沒有電車站直達清水寺，靠市巴士或計程車（京阪祇園四条站到八坂神社步行 5 分）",
+        "intro": {
+          "summary": "清水寺、三年坂、八坂神社和祇園，京都最熱門的一帶；坡和石階多。",
+          "highlights": [
+            "kyoto-kiyomizudera",
+            "kyoto-yasaka-jinja",
+            "kyoto-gion-tokuya"
+          ],
+          "febNote": "清水坂、三年坂的石階下雪結冰會滑。",
+          "basedOn": [
+            "kyoto-kiyomizudera",
+            "kyoto-sannenzaka",
+            "kyoto-yasaka-jinja",
+            "kyoto-gion-tokuya",
+            "kyoto-izuu"
+          ]
+        }
       },
       {
         "id": "fushimi",
@@ -1708,7 +1807,20 @@
           34.9671
         ],
         "needsCar": false,
-        "note": "伏見稻荷大社（JR 稲荷站、京阪伏見稲荷站）。月桂冠等酒藏一帶沒收"
+        "note": "伏見稻荷大社（JR 稲荷站、京阪伏見稲荷站）。月桂冠等酒藏一帶沒收",
+        "intro": {
+          "summary": "千本鳥居的伏見稻荷大社，JR 稲荷站出站就到；長輩可以只走到千本鳥居折返。",
+          "highlights": [
+            "kyoto-fushimi-inari",
+            "kyoto-kendonya"
+          ],
+          "febNote": "初午大祭 2027 年是 2/8（旅程前一天），人潮多；山路石階下雪會滑。",
+          "basedOn": [
+            "kyoto-fushimi-inari",
+            "kyoto-kendonya",
+            "kyoto-hi-wa-mata-noboru-inari"
+          ]
+        }
       },
       {
         "id": "arashiyama",
@@ -1721,7 +1833,23 @@
           35.0145
         ],
         "needsCar": false,
-        "note": "渡月橋、竹林小徑、天龍寺。JR 嵯峨嵐山、阪急嵐山、嵐電嵐山三個站"
+        "note": "渡月橋、竹林小徑、天龍寺。JR 嵯峨嵐山、阪急嵐山、嵐電嵐山三個站",
+        "intro": {
+          "summary": "渡月橋、竹林小徑、天龍寺，湯豆腐和鰻魚的店多；JR、阪急、嵐電三個站都到。",
+          "highlights": [
+            "kyoto-tenryuji",
+            "kyoto-bamboo-grove",
+            "kyoto-unagi-hirokawa"
+          ],
+          "febNote": "天龍寺的雲龍圖只有週末假日開；2 月沒有夜間點燈。",
+          "basedOn": [
+            "kyoto-togetsukyo",
+            "kyoto-bamboo-grove",
+            "kyoto-tenryuji",
+            "kyoto-unagi-hirokawa",
+            "kyoto-yudofu-sagano"
+          ]
+        }
       },
       {
         "id": "shijo-nijo",
@@ -1734,7 +1862,23 @@
           35.0068
         ],
         "needsCar": false,
-        "note": "錦市場、二条城、京都御所。市中心，餐廳多；住宿的據點（四条烏丸・河原町）"
+        "note": "錦市場、二条城、京都御所。市中心，餐廳多；住宿的據點（四条烏丸・河原町）",
+        "intro": {
+          "summary": "市中心的錦市場、二条城、京都御所，餐廳和飯店最多的住宿據點。",
+          "highlights": [
+            "kyoto-nishiki-market",
+            "kyoto-nijojo",
+            "kyoto-daigokuden-rokkaku"
+          ],
+          "febNote": "二条城梅林 2 月中旬開始開；京都御所 2 月 15:20 停止入場。",
+          "basedOn": [
+            "kyoto-nishiki-market",
+            "kyoto-nijojo",
+            "kyoto-gosho",
+            "kyoto-daigokuden-rokkaku",
+            "kyoto-forza-kawaramachi"
+          ]
+        }
       },
       {
         "id": "kinkaku-kitano",
@@ -1747,7 +1891,20 @@
           35.035
         ],
         "needsCar": false,
-        "note": "金閣寺、北野天滿宮。金閣寺只有市巴士到；北野天滿宮也可以從嵐電北野白梅町站走"
+        "note": "金閣寺、北野天滿宮。金閣寺只有市巴士到；北野天滿宮也可以從嵐電北野白梅町站走",
+        "intro": {
+          "summary": "金閣寺和北野天滿宮；金閣寺沒有電車站，從京都站搭市巴士約 40 分。",
+          "highlights": [
+            "kyoto-kinkakuji",
+            "kyoto-kitano-tenmangu"
+          ],
+          "febNote": "北野天滿宮梅苑例年 2 月上旬開苑，2027 年日期還沒公布。",
+          "basedOn": [
+            "kyoto-kinkakuji",
+            "kyoto-kitano-tenmangu",
+            "kyoto-toriiwaro"
+          ]
+        }
       },
       {
         "id": "okazaki",
@@ -1760,7 +1917,23 @@
           35.017
         ],
         "needsCar": false,
-        "note": "可選（👤 2026-11-12 照建議收）：銀閣寺、南禪寺、平安神宮、京都市動物園；哲學之道寫在銀閣寺。銀閣寺只有市巴士到，南禪寺、平安神宮從地下鐵蹴上、東山站走"
+        "note": "可選（👤 2026-11-12 照建議收）：銀閣寺、南禪寺、平安神宮、京都市動物園；哲學之道寫在銀閣寺。銀閣寺只有市巴士到，南禪寺、平安神宮從地下鐵蹴上、東山站走",
+        "intro": {
+          "summary": "銀閣寺、南禪寺、平安神宮和動物園，烏龍麵名店山元麺蔵也在這裡；銀閣寺要搭巴士。",
+          "highlights": [
+            "kyoto-nanzenji",
+            "kyoto-heian-jingu",
+            "kyoto-yamamoto-menzo"
+          ],
+          "febNote": "銀閣寺、南禪寺、動物園 16:30 關門。",
+          "basedOn": [
+            "kyoto-ginkakuji",
+            "kyoto-nanzenji",
+            "kyoto-heian-jingu",
+            "kyoto-city-zoo",
+            "kyoto-yamamoto-menzo"
+          ]
+        }
       },
       {
         "id": "uji",
@@ -1773,7 +1946,22 @@
           34.891
         ],
         "needsCar": false,
-        "note": "可選（👤 2026-11-12 照建議收）：平等院、任天堂博物館（抽選制）。JR 奈良線、京阪宇治線"
+        "note": "可選（👤 2026-11-12 照建議收）：平等院、任天堂博物館（抽選制）。JR 奈良線、京阪宇治線",
+        "intro": {
+          "summary": "平等院和宇治抹茶的老店，任天堂博物館也在宇治（近鐵小倉站）。",
+          "highlights": [
+            "kyoto-byodoin",
+            "kyoto-nintendo-museum",
+            "kyoto-seikou-udoku"
+          ],
+          "febNote": "任天堂博物館是抽選預約制、2/9 休館。",
+          "basedOn": [
+            "kyoto-byodoin",
+            "kyoto-nintendo-museum",
+            "kyoto-seikou-udoku",
+            "kyoto-nakamura-tokichi-uji-honten"
+          ]
+        }
       },
       {
         "id": "uzumasa",
@@ -1786,7 +1974,20 @@
           35.016
         ],
         "needsCar": false,
-        "note": "可選（👤 2026-11-12 照建議收）：東映太秦映畫村（週二休、2027 春第 2 期開幕前施工中）。嵐電、JR 嵯峨野線"
+        "note": "可選（👤 2026-11-12 照建議收）：東映太秦映畫村（週二休、2027 春第 2 期開幕前施工中）。嵐電、JR 嵯峨野線",
+        "intro": {
+          "summary": "東映太秦映畫村，可以看時代劇布景和忍者表演；嵐電太秦広隆寺站步行約 13 分。",
+          "highlights": [
+            "kyoto-toei-uzumasa",
+            "kyoto-fujitora"
+          ],
+          "febNote": "整修中只開一半區域，2/9 休村。",
+          "basedOn": [
+            "kyoto-toei-uzumasa",
+            "kyoto-fujitora",
+            "kyoto-sakon"
+          ]
+        }
       }
     ],
     "sources": [
@@ -1818,7 +2019,7 @@
       135.82,
       34.94,
       136.28,
-      35.3
+      35.34
     ],
     "stations": [
       "jr-otsu",
@@ -1842,7 +2043,64 @@
       "sakamoto-cable-sakamoto",
       "sakamoto-cable-enryakuji"
     ],
-    "notes": "2026-11-12 加入（T86a）。tripOrder 和 kyoto 同為 4。stations 由 T87 補（T86a 之後不改）。規則和京都共用 CONVENTIONS §4「京都的做法」。收哪些點由 T86a 盤點 29 個後照條件收 14 個（👤 2026-11-12 確認）；bbox 只包收到的點。",
+    "photos": [
+      {
+        "url": "https://commons.wikimedia.org/w/index.php?title=Special:FilePath/Shirahige%20Shrine%2020200919%2003.jpg&width=960",
+        "page": "https://commons.wikimedia.org/wiki/File:Shirahige_Shrine_20200919_03.jpg",
+        "kind": "wikimedia",
+        "credit": "Wikimedia: 先従隗始",
+        "license": "CC0"
+      }
+    ],
+    "notes": "2026-11-12 加入（T86a）。tripOrder 和 kyoto 同為 4。stations 由 T87 補（T86a 之後不改）。規則和京都共用 CONVENTIONS §4「京都的做法」。收哪些點由 T86a 盤點 29 個後照條件收 14 個（👤 2026-11-12 確認）；bbox 只包收到的點（T86d 北邊放寬到 35.34，包進高島的餐廳まさ）。",
+    "intro": {
+      "summary": "琵琶湖周邊的寺社、城和湖景，從京都站搭 JR 或京阪 20～50 分，雄琴溫泉可以住一晚。",
+      "transport": "大津、坂本、彥根靠電車加步行；白鬚神社、びわ湖バレイ、琵琶湖博物館、近江八幡要再搭巴士或計程車。",
+      "highlights": [
+        "biwako-hikone-castle",
+        "biwako-enryakuji",
+        "biwako-biwako-museum",
+        "biwako-ryokusuitei",
+        "biwako-chikasada"
+      ],
+      "february": [
+        {
+          "text": "湖西 2 月會積雪：白鬚神社、比叡山、びわ湖バレイ的石段和戶外通道會滑；彥根城下雪時會封閉部分山道。",
+          "points": [
+            "biwako-shirahige-jinja",
+            "biwako-enryakuji",
+            "biwako-biwako-valley",
+            "biwako-hikone-castle"
+          ]
+        },
+        {
+          "text": "比叡山冬天只能搭坂本纜車上山（京都側的纜車、山上接駁巴士停駛）。",
+          "points": [
+            "biwako-enryakuji"
+          ]
+        },
+        {
+          "text": "ミシガン遊船旅程四天裡只有 2/11 有開；びわ湖バレイ線巴士的冬季時刻還沒公布。",
+          "points": [
+            "biwako-michigan-cruise",
+            "biwako-biwako-valley"
+          ]
+        },
+        {
+          "text": "白鬚神社到近江高島站的乘合計程車要在每班 30 分前電話預約。",
+          "points": [
+            "biwako-shirahige-jinja"
+          ]
+        }
+      ],
+      "basedOn": [
+        "biwako-hikone-castle",
+        "biwako-enryakuji",
+        "biwako-shirahige-jinja",
+        "biwako-biwako-museum",
+        "biwako-ryokusuitei"
+      ]
+    },
     "regions": [
       {
         "id": "otsu",
@@ -1855,7 +2113,23 @@
           35.02
         ],
         "needsCar": false,
-        "note": "三井寺、石山寺、近江神宮、密西根號（大津港）、日吉大社、比叡山延曆寺（坂本纜車上山）。京阪石山坂本線、JR"
+        "note": "三井寺、石山寺、近江神宮、密西根號（大津港）、日吉大社、比叡山延曆寺（坂本纜車上山）。京阪石山坂本線、JR",
+        "intro": {
+          "summary": "比叡山延曆寺、三井寺、石山寺和大津港的遊船，從京都搭京阪或 JR 約 20 分。",
+          "highlights": [
+            "biwako-enryakuji",
+            "biwako-ishiyamadera",
+            "biwako-chikasada"
+          ],
+          "febNote": "比叡山冬天只能搭坂本纜車上山，山上結冰。",
+          "basedOn": [
+            "biwako-enryakuji",
+            "biwako-miidera",
+            "biwako-ishiyamadera",
+            "biwako-hiyoshi-taisha",
+            "biwako-chikasada"
+          ]
+        }
       },
       {
         "id": "ogoto-katata",
@@ -1868,7 +2142,23 @@
           35.14
         ],
         "needsCar": false,
-        "note": "浮御堂、びわ湖バレイ（JR 志賀站轉巴士）；雄琴溫泉的住宿（T86b）。JR 湖西線"
+        "note": "浮御堂、びわ湖バレイ（JR 志賀站轉巴士）；雄琴溫泉的住宿（T86b）。JR 湖西線",
+        "intro": {
+          "summary": "雄琴溫泉的旅館、浮御堂和びわ湖バレイ，住琵琶湖時的據點。",
+          "highlights": [
+            "biwako-ryokusuitei",
+            "biwako-ukimido",
+            "biwako-yoshichi-katata"
+          ],
+          "febNote": "びわ湖バレイ 2 月是雪季，山頂比山腳冷 5～7℃。",
+          "basedOn": [
+            "biwako-ryokusuitei",
+            "biwako-hanakaido",
+            "biwako-ukimido",
+            "biwako-biwako-valley",
+            "biwako-yoshichi-katata"
+          ]
+        }
       },
       {
         "id": "takashima",
@@ -1881,7 +2171,20 @@
           35.275
         ],
         "needsCar": true,
-        "note": "白鬚神社。JR 近江高島站約 2 km，長輩要搭計程車或預約制乘合計程車（鵜川線）"
+        "note": "白鬚神社。JR 近江高島站約 2 km，長輩要搭計程車或預約制乘合計程車（鵜川線）",
+        "intro": {
+          "summary": "湖中鳥居的白鬚神社，從近江高島站搭計程車約 5 分；鳥居在國道對面，不能橫越。",
+          "highlights": [
+            "biwako-shirahige-jinja",
+            "biwako-shirahige-shokudo"
+          ],
+          "febNote": "湖西會積雪，石段、展望處要小心滑。",
+          "basedOn": [
+            "biwako-shirahige-jinja",
+            "biwako-shirahige-shokudo",
+            "biwako-masa-takashima"
+          ]
+        }
       },
       {
         "id": "kusatsu-omihachiman",
@@ -1894,7 +2197,23 @@
           35.11
         ],
         "needsCar": false,
-        "note": "琵琶湖博物館（草津站轉巴士）、佐川美術館（守山站轉巴士）、La Collina 近江八幡、八幡堀（近江八幡站轉巴士）。JR 琵琶湖線"
+        "note": "琵琶湖博物館（草津站轉巴士）、佐川美術館（守山站轉巴士）、La Collina 近江八幡、八幡堀（近江八幡站轉巴士）。JR 琵琶湖線",
+        "intro": {
+          "summary": "琵琶湖博物館、佐川美術館、近江八幡的八幡堀和ラ コリーナ，都要從車站轉巴士。",
+          "highlights": [
+            "biwako-biwako-museum",
+            "biwako-la-collina",
+            "biwako-hachimanbori"
+          ],
+          "febNote": "八幡山纜車 2027/1/25～2/10 停駛點檢。",
+          "basedOn": [
+            "biwako-biwako-museum",
+            "biwako-sagawa-museum",
+            "biwako-la-collina",
+            "biwako-hachimanbori",
+            "biwako-tiffany"
+          ]
+        }
       },
       {
         "id": "hikone",
@@ -1907,7 +2226,20 @@
           35.2764
         ],
         "needsCar": false,
-        "note": "彥根城（含玄宮園）。JR 彦根站步行約 15 分；長濱太遠不收"
+        "note": "彥根城（含玄宮園）。JR 彦根站步行約 15 分；長濱太遠不收",
+        "intro": {
+          "summary": "國寶彥根城，JR 彥根站步行約 15 分；京都站搭新快速約 46 分。",
+          "highlights": [
+            "biwako-hikone-castle",
+            "biwako-sennaritei-kyara"
+          ],
+          "febNote": "下雪結冰時大手、黑門的山道會封閉，改走表門。",
+          "basedOn": [
+            "biwako-hikone-castle",
+            "biwako-sennaritei-kyara",
+            "biwako-tsurukamean"
+          ]
+        }
       }
     ],
     "sources": [

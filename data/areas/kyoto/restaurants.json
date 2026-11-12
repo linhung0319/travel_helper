@@ -122,7 +122,7 @@
       "instagram": "@kitchensalvatore"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -159,6 +159,16 @@
       {
         "id": "kyoto-tower",
         "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-century",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-richmond-ekimae",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -258,6 +268,45 @@
       "conflicts": [
         "Google 評論說午餐限 90 分，官網沒寫"
       ]
+    },
+    "summary": {
+      "text": "JR 京都伊勢丹 10 樓的薪窯拿坡里披薩、義大利菜，78 席，個室 10～20 人，最多可訂 20 人、20 人以下可以包場。午餐是前菜、甜點吃到飽加一道主菜的半自助（平日 4,800 円、假日 5,000 円），另收每人 500 円座位費。午 11:00～16:00、晚 17:00～23:00，公休跟著伊勢丹。",
+      "pros": [
+        "個室 10～20 人、20 人以下可包場，15 人可以網路訂套餐",
+        "京都站直結的百貨公司 10 樓，全是桌椅、沙發，看得到京都塔",
+        "半自助午餐有兒童價（3～6 歲 1,000 円、7～12 歲 1,500 円）"
+      ],
+      "cons": [
+        "Google 3.7，低分評論多在講接待粗魯、餐具不乾淨、預約時間被改（約 2024～2025）",
+        "午餐另收座位費，有人覺得偏貴；評論說午餐限 90 分（官網沒寫）",
+        "公休跟著 JR 京都伊勢丹，2/9～2/12 有沒有休館要看百貨公司公告"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26001972/",
+        "https://maps.google.com/?cid=12348645180808612740",
+        "https://tabelog.com/kyoto/A2601/A260101/26001972/party/",
+        "http://www.kitchensalvatore.jp/kyoto/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（954 則）、Google 3.7（422 則）；Google 3.7 而且低分評論集中在服務",
+        "localFlavor": "連鎖的義大利菜、披薩",
+        "groupFit": "最多可訂 20 人、個室 10～20 人、20 人以下可包場",
+        "elderFit": "桌椅、沙發，京都站直結的百貨公司 10 樓（搭電梯），可以預約",
+        "kidsFit": "可以帶小孩，半自助午餐有兒童價"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -348,7 +397,7 @@
       "instagram": "@xiaolongbao_tsutsumishin_ichi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -390,6 +439,16 @@
       {
         "id": "kyoto-aquarium",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-richmond-ekimae",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-hotel-tou",
+        "walkMinutes": 7,
         "walkSource": "osrm"
       }
     ],
@@ -482,6 +541,45 @@
         "公休：官網無休、食べログ不定休",
         "席數：官網 46、食べログ 44"
       ]
+    },
+    "summary": {
+      "text": "京都站步行約 5 分的小籠包、中華居酒屋，44 席，只開晚上（平日 17:00、週末假日 16:00 起）。小籠包 4 個 640 円，歡送迎會套餐 4,500～7,500 円（2～20 人，有的含喝到飽）。最多可訂 20 人、可以包場，但半個室最多 10 人，15 人要訂大桌或包場。",
+      "pros": [
+        "現點現包的薄皮小籠包，還有京都もち豚スペアリブ",
+        "最多可訂 20 人、可包場，套餐 2～20 人可以網路訂",
+        "歡迎帶小孩（未就學、小學生都可），全席禁菸"
+      ],
+      "cons": [
+        "Google 低分評論有老鼠、員工衛生的問題（約 2025～2026）",
+        "沒有午餐；平日沒訂常客滿，另收每人約 400 円お通し、只收現金和 PayPay",
+        "半個室只接電話預約，15 人要包場或拆大桌，要早訂"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26035257/",
+        "https://maps.google.com/?cid=1701831704596169449",
+        "https://tabelog.com/kyoto/A2601/A260101/26035257/party/",
+        "https://www.bignose-osaka.com/brands/tsutsumishin-ichi/shops/kyoto/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（511 則）、Google 4.2（639 則），照數字是 3；Google 低分集中在衛生（老鼠 2 則、員工衛生，約 2025～2026），負評往下調一級",
+        "localFlavor": "中華小籠包，用了京都もち豚，但不是京都名物",
+        "groupFit": "最多可訂 20 人、可包場；半個室最多 10 人，15 人要包場或訂大桌",
+        "elderFit": "桌椅、沙發，京都站步行約 5 分；有 2 樓席，樓梯、電梯沒寫",
+        "kidsFit": "歡迎帶小孩，小籠包、中華是熟食"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -572,7 +670,7 @@
       "instagram": "@panther.86782083"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -621,6 +719,16 @@
       {
         "id": "kyoto-tower",
         "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-century",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-viscio",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -724,6 +832,47 @@
         "席數：官網 220、食べログ 242",
         "午間宴會最低價：官網首頁 4,400 円、FAQ 和食べログ 5,500 円"
       ]
+    },
+    "summary": {
+      "text": "京都站大樓東區 2 樓的蕎麥麵居酒屋，242 席，掘りごたつ個室 6／18／36 人（最多可訂 54 人），個室免費、限 2 小時。九条ねぎそば、生麩田楽，午餐單點約 1,000～2,000 円，午間宴會 5,500 円（15 時前、含喝到飽），宴會套餐要前一天前訂。通常無休，11:00～22:30（週五、週六到 23:00）。",
+      "pros": [
+        "掘りごたつ個室 18、36 人，15 人可以同一間，可以只訂座位",
+        "有兒童菜單、嬰兒椅，可推嬰兒車",
+        "京都站大樓內，2/9～2/12 都營業，從早上 11 點開到晚上"
+      ],
+      "cons": [
+        "Google 低分評論多在講服務態度差、店長在客人面前罵員工（約 2023～2026）",
+        "團體個室容易滿，要早訂；宴會套餐要前一天前",
+        "15 人的個室是掘りごたつ（要脫鞋坐地板、腳放下）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26026012/",
+        "https://maps.google.com/?cid=7666390866871375783",
+        "https://tabelog.com/kyoto/A2601/A260101/26026012/party/",
+        "https://sobasyubo-tokubee.com/",
+        "https://sobasyubo-tokubee.com/jp/shopinfo/",
+        "https://sobasyubo-tokubee.com/jp/faq/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（483 則）、Google 4.1（1,352 則），照數字是 3；Google 低分集中在服務態度（多則，約 2023～2026），負評往下調一級",
+        "localFlavor": "蕎麥麵、生麩田楽的和食居酒屋",
+        "groupFit": "掘りごたつ個室 6／18／36 人，最多可訂 54 人",
+        "elderFit": "15 人的個室是掘りごたつ；另有桌席，京都站大樓 2 樓",
+        "kidsFit": "有兒童菜單、嬰兒椅，可推嬰兒車"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -803,7 +952,7 @@
       "instagram": "@honke_daiichiasahi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -845,6 +994,16 @@
       {
         "id": "kyoto-sanjusangendo",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-century",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-nono-shichijo",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -931,7 +1090,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "京都站步行約 4 分的京都拉麵老店，拉麵 980 円、特製拉麵 1,230 円，早上 6 點開到半夜 1 點。31 席（吧台 3、桌 7 張），不能預約，擠的時候併桌，常排隊。週四公休。",
+      "pros": [
+        "食べログ 3.74（7,071 則），口コミ數很多的京都拉麵老店",
+        "從清晨開到半夜，排行程很好塞",
+        "全是椅子座位，可以帶小孩"
+      ],
+      "cons": [
+        "週四公休：2/11（四、國定假日）休",
+        "不能預約、常排隊，15 人要分組錯開",
+        "Google 4.0，比食べログ的評價低"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26000873/",
+        "https://maps.google.com/?cid=11956261545466959499",
+        "https://www.honke-daiichiasahi.com/shop.html",
+        "http://www.honke-daiichiasahi.com/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.74（7,071 則）、Google 4.0（9,452 則）；Google 不到 4.2，維持 3",
+        "localFlavor": "京都拉麵的老店",
+        "groupFit": "不能預約，31 席會併桌",
+        "elderFit": "吧台、桌席都是椅子，但不能預約、常排隊",
+        "kidsFit": "可以帶小孩，拉麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-shinpuku-saikan-honten",
@@ -1016,7 +1214,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1058,6 +1256,16 @@
       {
         "id": "kyoto-sanjusangendo",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-century",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-nono-shichijo",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -1144,6 +1352,45 @@
         "公休：官網「週三不定休」、食べログ「週三定休」",
         "2025/12 起全品漲 50 円，菜單價格是否已含沒寫"
       ]
+    },
+    "summary": {
+      "text": "第一旭附近的京都拉麵老店，黑醬油的中華そば（並）950 円、焼き飯 600 円，京都站步行約 7 分。51 席（1、2 樓各 4 人桌 6 張），不能預約、會併桌；9:00～20:00 不休息，只收現金。週三不定休，每月公布。",
+      "pros": [
+        "食べログ 3.59（4,382 則），黑醬油湯頭的中華そば",
+        "9:00 開到 20:00 中間不休息，4 人桌多，適合分組",
+        "可以帶小孩，也有焼き飯 600 円"
+      ],
+      "cons": [
+        "週三不定休，2/10（三）可能休，要看當月公告",
+        "不能預約，15 人要分桌；2 樓要走樓梯",
+        "Google 4.0；2025/12 起全品漲 50 円，菜單價格是否已含沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26000791/",
+        "https://maps.google.com/?cid=569084589944505485",
+        "https://shinpukusaikan.net/",
+        "https://shinpukusaikan.net/menu.html"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.59（4,382 則）、Google 4.0（4,726 則）；食べログ 3.59、Google 4.0 都在 A 的門檻下",
+        "localFlavor": "京都拉麵的老店",
+        "groupFit": "不能預約、會併桌",
+        "elderFit": "都是椅子桌席；2 樓要走樓梯",
+        "kidsFit": "可以帶小孩，拉麵、炒飯是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1234,7 +1481,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1265,6 +1512,16 @@
       {
         "id": "kyoto-tower",
         "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-century",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-viscio",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -1349,6 +1606,44 @@
         "營業時間：食べログ 7:00～22:00、介紹網站 6:00～23:00",
         "電話：食べログ 075-343-5505、介紹網站 050-5493-1311"
       ]
+    },
+    "summary": {
+      "text": "京都站地下東口直通的烏龍麵店，35 席（吧台 21、桌 14），每人 1,000 円內。早上 7 點開到 22:00、全年無休，不能預約。歡迎帶小孩、可推嬰兒車，趕車前吃很方便。",
+      "pros": [
+        "京都站內直通，早上 7 點就開、全年無休",
+        "食べログ 3.60（1,675 則），每人 1,000 円內",
+        "歡迎小孩、可推嬰兒車"
+      ],
+      "cons": [
+        "不能預約，15 人要分批",
+        "吧台座位多，桌席只有 14 席；電梯沒寫",
+        "營業時間食べログ和介紹網站不同，要再確認"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26031063/",
+        "https://maps.google.com/?cid=14487329995985695804",
+        "https://ke8w300.gorp.jp/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.60（1,675 則）、Google 4.1（1,671 則）；Google 4.1，維持 3",
+        "localFlavor": "烏龍麵（不是京都特有的名物）",
+        "groupFit": "不能預約，35 席",
+        "elderFit": "吧台、桌席都是椅子，車站內直通",
+        "kidsFit": "歡迎小孩、可推嬰兒車，烏龍麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1439,7 +1734,7 @@
       "instagram": "@nakamura_tokichi_official"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1476,6 +1771,16 @@
       {
         "id": "kyoto-tower",
         "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-miyako-hachijo",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-viscio",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -1551,7 +1856,46 @@
       "note": "JR 西口剪票口前、伊勢丹別館「Eat Paradise」3 樓"
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "宇治老茶舖中村藤吉的京都站店，抹茶甜點、抹茶蕎麥麵，每人約 1,000～1,999 円。在 JR 西口剪票口前伊勢丹 Eat Paradise 3 樓，38 席全是桌席，不能預約。11:00～22:00，公休跟著伊勢丹。",
+      "pros": [
+        "宇治老茶舖的分店，在京都站就吃得到抹茶甜點",
+        "Google 4.4（1,059 則），JR 西口剪票口前",
+        "全是桌椅、可以帶小孩，開到晚上 10 點"
+      ],
+      "cons": [
+        "不能預約，15 人要分桌、排隊",
+        "公休跟著 JR 京都伊勢丹，2/9～2/12 有沒有休要看百貨公司公告",
+        "官網沒有這家咖啡廳的菜單、營業資訊"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26005903/",
+        "https://maps.google.com/?cid=10434647518710591211",
+        "https://www.tokichi.jp/",
+        "https://tokichi.jp/pages/jrkyotoisetan-store-page"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.54（1,505 則）、Google 4.4（1,059 則）；食べログ不到 3.55",
+        "localFlavor": "宇治老茶舖的抹茶甘味（車站分店）",
+        "groupFit": "不能預約，38 席",
+        "elderFit": "全是桌椅，車站直結的百貨公司 3 樓",
+        "kidsFit": "可以帶小孩，甜點、麵類"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-hashitate",
@@ -1641,7 +1985,7 @@
       "instagram": "@wakuden_official"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -1672,6 +2016,16 @@
       {
         "id": "kyoto-tower",
         "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-viscio",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-miyako-hachijo",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       }
     ],
@@ -1755,6 +2109,44 @@
       "conflicts": [
         "營業時間：官網 11:00～21:00，食べログ寫到 22:00"
       ]
+    },
+    "summary": {
+      "text": "京料亭和久傳開的丼、麵、一品料理店，在京都站 JR 西口前伊勢丹 Eat Paradise 3 樓，48 席、無個室。午約 2,000～2,999 円、晚約 4,000～4,999 円；午餐 11:00～15:00 不能預約，17 點以後可以電話預約。無障礙、有兒童餐。",
+      "pros": [
+        "京料亭和久傳的平價店，京都站就吃得到",
+        "無障礙、輪椅可入店，全是桌椅",
+        "有兒童餐、可推嬰兒車"
+      ],
+      "cons": [
+        "午餐不能預約；15 人沒有個室，要分桌",
+        "15:00～17:00 只有茶點；公休跟著伊勢丹，2/11 要看百貨公司公告",
+        "官網沒有菜名和價格"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260101/26006654/",
+        "https://maps.google.com/?cid=15311509851798557776",
+        "https://www.wakuden.jp/ryotei/hashitate/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（1,306 則）、Google 4.2（717 則）；食べログ不到 3.55",
+        "localFlavor": "京料亭和久傳的丼、麵（京料理系）",
+        "groupFit": "17 點以後可以電話預約，但沒有個室，15 人要分桌；午餐不能預約",
+        "elderFit": "無障礙、輪椅可入店，桌椅，車站直結",
+        "kidsFit": "有兒童餐，可推嬰兒車"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -1880,7 +2272,7 @@
       "instagram": "@honten_endo"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -1939,6 +2331,11 @@
       {
         "id": "kyoto-kiyomizudera",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-good-nature",
+        "walkMinutes": 13,
         "walkSource": "osrm"
       }
     ],
@@ -2034,6 +2431,47 @@
         "包場：食べログ 20 人以下可，訂位網站寫不可",
         "個室：食べログ最大 30 人以上，官網最大 14 人、套餐 12～14 人"
       ]
+    },
+    "summary": {
+      "text": "清水寺、高台寺下八坂通上的天婦羅老店，數寄屋造的獨棟，總 180 席。午餐天婦羅套餐「葵」7,700 円、「祇園」11,000 円，另收 13～18% 服務費；晚上 16,000 円起。全年無休，可以網路或電話預約；桌椅個室最多 14 人，15 人能不能同一間要電話問。",
+      "pros": [
+        "食べログ 3.61（978 則）、Google 4.5（2,094 則），京都門檻的 A",
+        "全年無休，2/9～2/12 都營業，網路可以訂",
+        "有椅子吧台、桌椅個室，離清水寺、八坂神社都近"
+      ],
+      "cons": [
+        "套餐只收到 14 人，15 人同一間要問；午餐 7,700 円起加服務費，價格高",
+        "訂位網站寫不能帶小孩，官網沒寫，要電話確認",
+        "Google 低分有服務冷淡、天婦羅偏油（約 2022～2025）；桌椅個室在樓上，電梯沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26000592/",
+        "https://maps.google.com/?cid=3756701658277784162",
+        "https://tabelog.com/kyoto/A2601/A260301/26000592/party/",
+        "https://www.gion-endo.com/",
+        "https://www.gion-endo.com/tables/",
+        "https://tenpuraendoyasakahonten.owst.jp/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 2
+      },
+      "rationale": {
+        "recommend": "食べログ 3.61（978 則）、Google 4.5（2,094 則），京都門檻的 4；5 要食べログ 3.70；低分評論從 2022 年起就有、主題分散，不調",
+        "localFlavor": "天婦羅（一般和食）",
+        "groupFit": "可以預約、有個室，但桌椅個室最多 14 人、套餐只收到 14 人，15 人要電話問",
+        "elderFit": "有椅子吧台、桌椅個室（在樓上），電梯沒寫",
+        "kidsFit": "訂位網站寫不能帶小孩，有帶小孩的心得，要電話確認"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -2124,7 +2562,7 @@
       "instagram": "@rigoletto_kyoto"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2177,6 +2615,16 @@
       },
       {
         "id": "kyoto-sannenzaka",
+        "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-good-nature",
+        "walkMinutes": 13,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-super-hotel-kawaramachi",
         "walkMinutes": 14,
         "walkSource": "osrm"
       }
@@ -2280,6 +2728,47 @@
         "包場：食べログ寫不可，但有整層方案",
         "Google 低分評論多在講接待冷淡（2023～2026）"
       ]
+    },
+    "summary": {
+      "text": "祇園四條站步行約 5 分的燒烤、窯烤披薩大型餐廳，140 席，全是椅子和沙發。午約 2,750～3,850 円、晚約 4,000～4,999 円（17 點後加 10% 服務費）；晚上的派對套餐 6,000～8,000 円接 6～20 人，午餐套餐最多 11 人。11:30 開到 24:00，公休沒寫。",
+      "pros": [
+        "派對套餐 6～20 人（含喝到飽、大盤分食），15 人晚上可以訂",
+        "全是椅子、沙發，可坐輪椅入店",
+        "可以帶小孩（未滿小學生坐 1 樓），披薩、燒烤小孩好吃"
+      ],
+      "cons": [
+        "Google 低分集中在接待冷淡、等很久（約 7 則，2023～2026）",
+        "午餐套餐只接到 11 人；個室最多 10 人，15 人的區域要直接聯絡店家",
+        "公休沒寫，2/9～2/12 要確認；週末午餐限 2 小時"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26024464/",
+        "https://maps.google.com/?cid=5608183037321306132",
+        "https://tabelog.com/kyoto/A2601/A260301/26024464/party/",
+        "https://www.huge.co.jp/restaurant/rigoletto/kyoto",
+        "https://www.huge.co.jp/service/restaurant/rigoletto/rigoletto_smoke/",
+        "https://www.tablecheck.com/ja/rigoletto-kyoto"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 1,
+        "groupFit": 4,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（966 則）、Google 4.3（1,583 則），照數字是 3；Google 低分集中在服務態度（約 7 則，2023～2026），負評往下調一級",
+        "localFlavor": "連鎖的義大利菜、燒烤",
+        "groupFit": "晚上的派對套餐 6～20 人；個室最多 10 人，15 人坐哪一區要電話談",
+        "elderFit": "可坐輪椅入店，全是椅子、沙發；1、2 樓，電梯沒寫",
+        "kidsFit": "可以帶小孩（未滿小學生坐 1 樓），有披薩、燒烤"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -2369,7 +2858,7 @@
       "instagram": "@gion_tokuya"
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "type": "tabelog",
@@ -2399,6 +2888,16 @@
       {
         "id": "kyoto-sannenzaka",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-good-nature",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-super-hotel-kawaramachi",
+        "walkMinutes": 12,
         "walkSource": "osrm"
       }
     ],
@@ -2472,7 +2971,44 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "花見小路上的甘味處，和菓子、刨冰，每人約 1,000～1,999 円。56 席、有座敷，不能預約；12:00～18:00，賣完就結束。不定休，在官網、社群公告。",
+      "pros": [
+        "食べログ 3.76（2,279 則）、Google 4.3（1,809 則），京都門檻的 S",
+        "花見小路上，逛祇園順路",
+        "可以帶小孩，有兒童椅"
+      ],
+      "cons": [
+        "不能預約，熱門要排隊，15 人要分組",
+        "不定休、賣完就結束，2/9～2/12 開不開要看官網、社群",
+        "座位是座敷（坐地板）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26002075/",
+        "https://maps.google.com/?cid=275264795953719361"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.76（2,279 則）、Google 4.3（1,809 則），京都門檻的 5",
+        "localFlavor": "京都的甘味處（和菓子）",
+        "groupFit": "不能預約",
+        "elderFit": "座位是座敷，不能預約",
+        "kidsFit": "可以帶小孩，有兒童椅，甜點"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-gion-okaru",
@@ -2580,7 +3116,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -2610,6 +3146,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 14,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-good-nature",
+        "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-super-hotel-kawaramachi",
+        "walkMinutes": 10,
         "walkSource": "osrm"
       }
     ],
@@ -2683,7 +3229,44 @@
       "note": null
     },
     "smoking": "全席喫煙可",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "祇園的烏龍麵、蕎麥麵店，每人約 1,000～1,999 円，37 席（4 人桌 5 張、6 人座敷桌 2 張等）。11:00～15:00、17:00 開到深夜，週日只有午餐；不能預約。",
+      "pros": [
+        "食べログ 3.59（1,432 則），祇園四條站步行 4 分",
+        "營業到深夜，晚上散步完也吃得到",
+        "4 人桌、6 人座敷桌，適合 4～6 人一組"
+      ],
+      "cons": [
+        "Google 3.8，比食べログ的評價低",
+        "不能預約，15 人要分桌；週日只有午餐，公休沒寫",
+        "食べログ寫全席可吸菸（午餐時段禁菸）；兒童規定沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26001282/",
+        "https://maps.google.com/?cid=7681177503997776132"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.59（1,432 則）、Google 3.8（1,582 則）；Google 3.8",
+        "localFlavor": "烏龍麵、蕎麥麵（一般和食）",
+        "groupFit": "不能預約，37 席",
+        "elderFit": "有 4 人桌（椅子）和座敷桌",
+        "kidsFit": "兒童規定沒有來源，烏龍麵是熟食；食べログ寫可吸菸（午餐禁菸）"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-izuu",
@@ -2768,7 +3351,7 @@
       "instagram": "@izuu_sushi"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -2810,6 +3393,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-good-nature",
+        "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-super-hotel-kawaramachi",
+        "walkMinutes": 11,
         "walkSource": "osrm"
       }
     ],
@@ -2891,7 +3484,46 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "祇園的京都鯖壽司（鯖姿寿司）老店，鯖姿寿司 4 貫 2,200 円、冬季限定蒸し寿司 3,300 円、京寿司盛合せ 3,960 円。店內只有 4 人桌 4 張（16 席），不能預約；外帶的鯖姿壽司可以從早上 8 點電話預約。週二公休（遇國定假日營業）。",
+      "pros": [
+        "食べログ 3.69（1,189 則）、Google 4.2（1,363 則），京都門檻的 A",
+        "祇園的鯖壽司老店，2 月有冬季限定蒸し寿司",
+        "外帶可以電話預約，15 人可以分批買"
+      ],
+      "cons": [
+        "週二公休：2/9（二）休",
+        "店內只有 4 人桌 4 張，不能預約，適合 4 人一組",
+        "鯖壽司是醋漬生魚，小孩可能要點小卷壽司"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26000585/",
+        "https://maps.google.com/?cid=4934790349886876838",
+        "https://www.izuu.jp/eating",
+        "http://izuu.jp"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.69（1,189 則）、Google 4.2（1,363 則），京都門檻的 4；食べログ 3.69 差一點到 5",
+        "localFlavor": "京都鯖壽司的老店",
+        "groupFit": "店內不能預約、只有 16 席；外帶可以電話訂",
+        "elderFit": "4 人桌，椅子",
+        "kidsFit": "可以帶小孩，但主菜是醋漬鯖魚；有小孩也能吃的小卷壽司"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-gion-duck-noodles",
@@ -2981,7 +3613,7 @@
       "instagram": "@gion_duck_noodles"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -3011,6 +3643,16 @@
       {
         "id": "kyoto-sannenzaka",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-good-nature",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-super-hotel-kawaramachi",
+        "walkMinutes": 13,
         "walkSource": "osrm"
       }
     ],
@@ -3092,6 +3734,43 @@
       "conflicts": [
         "席數：食べログ 9 席，其他介紹寫 7 席"
       ]
+    },
+    "summary": {
+      "text": "祇園小巷裡的鴨肉清湯拉麵，每人約 2,000～2,999 円。只有吧台 9 席，不能預約，要全員到齊才能排隊。11:00～21:30、無定休。",
+      "pros": [
+        "食べログ 3.68（1,025 則）、Google 4.4（2,038 則），京都門檻的 A",
+        "無定休，2/9～2/12 都營業",
+        "可以帶小孩"
+      ],
+      "cons": [
+        "只有吧台 9 席，4～6 人也要等連號的位子",
+        "不能預約，全員到齊才能排隊",
+        "新派的鴨肉拉麵，不是京都傳統的拉麵"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26031755/",
+        "https://maps.google.com/?cid=1085993945713994263"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.68（1,025 則）、Google 4.4（2,038 則），京都門檻的 4",
+        "localFlavor": "新派的鴨肉拉麵（不是京都拉麵的老店）",
+        "groupFit": "只有吧台 9 席、不能預約",
+        "elderFit": "只有吧台，要排隊",
+        "kidsFit": "可以帶小孩，拉麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -3181,7 +3860,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3292,7 +3971,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "京阪伏見稻荷站步行 1 分的濃厚雞白湯拉麵，每人 1,000 円內。25 席（吧台 11、2 人桌 3、4 人桌 2），不能預約。11:00～21:00，公休沒寫。",
+      "pros": [
+        "Google 4.4（1,192 則），伏見稻荷站出來就到",
+        "有兒童椅、紙圍兜",
+        "每人 1,000 円內"
+      ],
+      "cons": [
+        "不能預約，15 人要分批",
+        "公休沒寫，2/9～2/12 要確認",
+        "桌席只有 5 張，吧台為主"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260601/26026153/",
+        "https://maps.google.com/?cid=866352178841712136",
+        "https://ramenhiwamatanoboru.com/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.52（504 則）、Google 4.4（1,192 則）；食べログ不到 3.55",
+        "localFlavor": "新派的雞白湯拉麵",
+        "groupFit": "不能預約，25 席",
+        "elderFit": "吧台和桌席，都是椅子",
+        "kidsFit": "有兒童椅、紙圍兜，拉麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nezameya",
@@ -3381,7 +4098,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3495,6 +4212,44 @@
       "conflicts": [
         "2 樓座位：舊心得寫座敷、Google 評論寫桌椅"
       ]
+    },
+    "summary": {
+      "text": "伏見稻荷大社參道口的老店，稻荷壽司（7 個 1,050 円）、鰻魚丼、烤鵪鶉，祢ざめやセット（うな丼・きつねうどん）2,300 円。90 席（1 樓 40、2 樓 50），可以預約，15 人能不能同桌要電話問。10:00～16:00，不定休、賣完就打烊。",
+      "pros": [
+        "JR 稻荷站、京阪伏見稻荷站步行 2 分，參拜前後順路",
+        "稻荷壽司受好評，90 席、可以預約",
+        "可以帶小孩，有烏龍麵、丼"
+      ],
+      "cons": [
+        "Google 3.0：鰻魚量少、和樣品不符、接待冷淡（約 2024～2026）",
+        "一人要點一份，小孩也要；外國觀光客多、平日也擠",
+        "只開到 16:00、不定休；團體多在 2 樓，樓梯、電梯沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260601/26003540/",
+        "https://maps.google.com/?cid=16672515268869780091",
+        "http://nezameya.com/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（405 則）、Google 3.0（961 則）；Google 3.5 以下",
+        "localFlavor": "稻荷壽司、鰻魚（鰻魚算一般和食）",
+        "groupFit": "可以預約、90 席，但沒有個室，15 人能不能同桌要電話問",
+        "elderFit": "1 樓桌席；團體多在 2 樓，2 樓是桌椅還是座敷說法不一、電梯沒寫",
+        "kidsFit": "可以帶小孩，但小孩也要點一份；有烏龍麵、丼"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -3579,7 +4334,7 @@
       "instagram": "@kendonya_udon"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3625,8 +4380,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-togetsutei",
-        "walkMinutes": 156,
+        "id": "kyoto-viscio",
+        "walkMinutes": 30,
         "walkSource": "osrm"
       }
     ],
@@ -3704,7 +4459,47 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "伏見稻荷附近的手打烏龍麵，Aセット（迷你親子丼＋烏龍麵）1,170 円、かき揚げカレー 1,140 円。25 席（桌 20、吧台 5），完全不接預約；只開 11:00～15:00，食材賣完提早打烊。週三公休，另每月 1 天不定休；有 3 台免費停車位。",
+      "pros": [
+        "Google 4.5（903 則），手打烏龍麵",
+        "每人約 1,000 円，丼＋烏龍麵套餐",
+        "有兒童用小碗、湯匙、剪麵剪刀"
+      ],
+      "cons": [
+        "週三公休：2/10（三）休，另每月 1 天不定休",
+        "完全不接預約、只開午餐，15 人要分批",
+        "沒有兒童椅；廁所是和式、沒有尿布台"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260601/26003538/",
+        "https://maps.google.com/?cid=16984350875559884345",
+        "https://kendonya.com/menu/",
+        "https://kendonya.com/",
+        "https://kendonya.com/access/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.54（327 則）、Google 4.5（903 則）；食べログ不到 3.55",
+        "localFlavor": "手打烏龍麵（一般和食）",
+        "groupFit": "完全不接預約，25 席",
+        "elderFit": "桌席、吧台都是椅子",
+        "kidsFit": "有兒童餐具，烏龍麵、丼是熟食；沒有兒童椅"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-yudofu-sagano",
@@ -3793,7 +4588,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -3946,6 +4741,46 @@
         "營業時間：官網客服 11:00～17:30，食べログ 11:00～16:30",
         "席數：食べログ 80 席，官網各房間合計約 117 席以上"
       ]
+    },
+    "summary": {
+      "text": "嵐山竹林附近的湯豆腐專門店，庭園座敷，湯豆腐定食（10 品）4,400 円，嵐電嵐山站步行 5 分。80 席，本館 2 樓「桜」可以坐 15 人，要 2 天前預約（網路或電話）。11:00～16:30，不定休。",
+      "pros": [
+        "湯豆腐專門，本館 2 樓有剛好 15 人的房間",
+        "有兒童套餐 1,200 円，新館有育嬰室",
+        "離竹林小徑、天龍寺很近"
+      ],
+      "cons": [
+        "15 人的房間是座敷（坐地板），要穿過中庭、走樓梯",
+        "只開到 16:30、不定休；要 2 天前預約，取消前一天起收 50%",
+        "低分評論有價格偏高、料理少、尖峰有預約還要等"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260403/26000814/",
+        "https://maps.google.com/?cid=3625464918259608956",
+        "https://tabelog.com/kyoto/A2601/A260403/26000814/party/",
+        "https://kyoto-sagano.jp/",
+        "https://kyoto-sagano.jp/guide"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（350 則）、Google 4.3（1,250 則）；食べログ不到 3.55；低分評論主題分散（價格、天婦羅、服務），不調",
+        "localFlavor": "嵐山的湯豆腐專門店",
+        "groupFit": "本館 2 樓有 15 人的房間，可以網路預約",
+        "elderFit": "15 人的房間是座敷，要穿過中庭、上樓；新館有桌椅",
+        "kidsFit": "有兒童套餐、育嬰室，可推嬰兒車"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -4031,7 +4866,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4099,7 +4934,7 @@
       },
       {
         "id": "kyoto-togetsutei",
-        "walkMinutes": 11,
+        "walkMinutes": 10,
         "walkSource": "osrm"
       }
     ],
@@ -4195,6 +5030,47 @@
         "週四公休：官網寫週四，食べログ註春秋有時營業",
         "晚間座位費：Google 評論提到，官網沒寫"
       ]
+    },
+    "summary": {
+      "text": "嵐電嵐山站步行 3～4 分的湯豆腐店（用森嘉豆腐），全座敷 44 席，套餐 2,900～6,700 円、兒童套餐 2,000 円。個室 10～20 人，20～50 人可以包場（要先談），套餐 1～60 人，可以只訂座位。週四公休，11:00～19:30。",
+      "pros": [
+        "個室 10～20 人，可以網路只訂座位、套餐當天選",
+        "歡迎小孩，有兒童套餐",
+        "用森嘉豆腐，もみじコース有揚げ出し豆腐"
+      ],
+      "cons": [
+        "週四公休：2/11（四、國定假日）可能休，要電話確認",
+        "全是座敷，入口要脫鞋、坐地板",
+        "評論說出菜慢，18 點後可能加收座位費（官網沒寫）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260403/26001310/",
+        "https://maps.google.com/?cid=13134662365857924096",
+        "https://tabelog.com/kyoto/A2601/A260403/26001310/party/",
+        "https://www.yudouhutakemura.com/",
+        "https://www.yudouhutakemura.com/access/",
+        "https://www.yudouhutakemura.com/menu/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（260 則）、Google 4.1（613 則）；食べログ不到 3.55；出菜慢、座位費不是品質問題",
+        "localFlavor": "嵐山的湯豆腐（森嘉豆腐）",
+        "groupFit": "個室 10～20 人、可包場，網路可以訂",
+        "elderFit": "全是座敷，要脫鞋坐地板",
+        "kidsFit": "歡迎小孩，有兒童套餐"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -4284,7 +5160,7 @@
       "instagram": "@yoshimura_gr"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4428,6 +5304,46 @@
       "conflicts": [
         "到阪急嵐山站：官網 7 分、食べログ 9 分"
       ]
+    },
+    "summary": {
+      "text": "渡月橋旁的蕎麥麵店，窗邊看得到桂川；十割そば（限量）1,600 円、天ざる膳 2,780 円、嵐山膳 2,200 円。50 席，不能預約，觀光季常排隊。無休（元旦休），平日 11:00～16:00、週末假日到 17:00。",
+      "pros": [
+        "食べログ 3.50（1,054 則）、Google 4.2（2,717 則），渡月橋旁的蕎麥麵",
+        "渡月橋旁、看得到桂川，2/9～2/12 都營業",
+        "有小孩的會被帶到 1 樓家庭席"
+      ],
+      "cons": [
+        "不能預約，觀光季要排隊，15 人要分批",
+        "只開午餐到傍晚（16:00、假日 17:00）",
+        "座位是椅子還是座敷、樓梯都沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260403/26000403/",
+        "https://maps.google.com/?cid=14941654592724285625",
+        "https://yoshimura-gr.com/arashiyama/",
+        "https://yoshimura-gr.com/arashiyama/shop/",
+        "https://yoshimura-gr.com/arashiyama/menu/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（1,054 則）、Google 4.2（2,717 則）；食べログ不到 3.55",
+        "localFlavor": "蕎麥麵（一般和食）",
+        "groupFit": "不能預約",
+        "elderFit": "有桌席、吧台，但不能預約、觀光季要排隊",
+        "kidsFit": "有 1 樓家庭席，蕎麥麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -4544,7 +5460,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -4606,7 +5522,7 @@
       },
       {
         "id": "kyoto-togetsutei",
-        "walkMinutes": 10,
+        "walkMinutes": 9,
         "walkSource": "osrm"
       }
     ],
@@ -4695,6 +5611,46 @@
       "conflicts": [
         "停車場：官網 18 台、食べログ 15 台"
       ]
+    },
+    "summary": {
+      "text": "嵐山的米其林鰻魚名店，うな重 3,900 円起（未稅）、うな重定食 5,300 円起。完全預約制，一個月前同一天開放，海外旅客可以用官網的中文網路預約；一筆最多 8 人，同一團體拆開訂也不接。週一公休（含國定假日）。",
+      "pros": [
+        "食べログ 3.71（881 則）、Google 4.3（2,213 則），京都門檻的 A",
+        "完全預約制，不用像以前排很久",
+        "2/9～2/12 都是營業日，官網有中文預約"
+      ],
+      "cons": [
+        "一筆最多 8 人，15 人不能同去（拆開訂也不行），只能 4～6 人一組",
+        "一個月前開放、很快訂滿",
+        "未滿小學的小孩只能訂個室（另收 2,000 円）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260403/26000921/",
+        "https://maps.google.com/?cid=5471874807543383580",
+        "http://unagi-hirokawa.jp/access.html",
+        "http://unagi-hirokawa.jp/reservation.html",
+        "http://unagi-hirokawa.jp/menu.html"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.71（881 則）、Google 4.3（2,213 則），京都門檻的 4；5 要食べログ 1,000 則以上；口コミ沒有集中的負評",
+        "localFlavor": "鰻魚（不是京都特產）",
+        "groupFit": "一筆最多 8 人，同一團體拆開訂也不接",
+        "elderFit": "1 樓桌席、2 樓掘りごたつ個室，完全預約制不用排隊",
+        "kidsFit": "未滿小學的小孩只能訂個室，鰻魚是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -4784,7 +5740,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -4926,6 +5882,46 @@
       "conflicts": [
         "營業時間：食べログ 11:00～18:00，官網 11:00～19:00（L.O.）"
       ]
+    },
+    "summary": {
+      "text": "嵐電嵐山站前的豆腐、湯葉料理，湯葉丼、素食御膳，每人約 1,000～1,999 円。本店 60 席、不能預約，附近的北店 115 席（預約要問）。全年無休，11:00～19:00。",
+      "pros": [
+        "嵐電嵐山站步行 1 分，全年無休",
+        "湯葉丼、豆腐料理，每人 2,000 円內",
+        "北店 115 席，15 人比較有機會同桌"
+      ],
+      "cons": [
+        "Google 3.9，比食べログ低",
+        "本店不能預約，北店的預約方式要電話問",
+        "兒童規定、菜單價格都沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260403/26014024/",
+        "https://maps.google.com/?cid=15006862261513329751",
+        "https://www.kyo-ine.com/",
+        "https://www.kyo-ine.com/access/",
+        "https://www.kyo-ine.com/tofu/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.48（561 則）、Google 3.9（1,530 則）；Google 3.9",
+        "localFlavor": "嵐山的豆腐、湯葉料理",
+        "groupFit": "本店不能預約；北店要問",
+        "elderFit": "桌椅，站前",
+        "kidsFit": "兒童規定沒有來源，豆腐、湯葉丼是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -5016,7 +6012,7 @@
       "instagram": "@oimatsu_kyoto"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5145,6 +6141,44 @@
       "conflicts": [
         "Google 低分評論集中在接待冷淡"
       ]
+    },
+    "summary": {
+      "text": "京都老字號和菓子店老松的嵐山茶房，わらび餅（點了才揉）、夏柑糖、抹茶和生菓子套餐，每人約 1,000～2,200 円。33 席全是桌椅、可以電話預約。9:30～17:00，不定休。",
+      "pros": [
+        "老字號和菓子店的茶房，わらび餅點了才做",
+        "全是桌椅、可以電話預約",
+        "嵐電嵐山站步行 3 分"
+      ],
+      "cons": [
+        "不定休，2/9～2/12 要確認",
+        "33 席、沒有個室，15 人要分桌",
+        "價格偏高；Google 低分有接待冷淡（多為 2019～2025）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260403/26000713/",
+        "https://maps.google.com/?cid=6646613709109410270",
+        "https://oimatu.co.jp/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 3,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（500 則）、Google 4.3（709 則）；接待冷淡的低分多在 2023 年以前、近一年 1 則，不調",
+        "localFlavor": "老字號和菓子店的甘味處（分店）",
+        "groupFit": "可以預約，但只有 33 席、沒有個室",
+        "elderFit": "全是桌椅，可以預約",
+        "kidsFit": "兒童規定沒寫，口コミ有帶小孩的；甜點"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -5270,7 +6304,7 @@
       "instagram": "@pocciri"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5307,6 +6341,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 9,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-monterey",
+        "walkMinutes": 7,
         "walkSource": "osrm"
       }
     ],
@@ -5408,6 +6452,45 @@
         "個室數：官網 9 間、食べログ舊文 6 間",
         "Google 低分評論有衛生問題（約 2024～2025）"
       ]
+    },
+    "summary": {
+      "text": "四条烏丸一帶的町家北京菜，北京ダック膳 5,500 円、ふかひれ美人膳 3,800 円；196 席，個室 9 間（2～40 人），宴會 10～40 人 8,000～12,000 円（含喝到飽）。可以網路預約，宴會打電話；晚餐另收 10% 服務費。無休（年末年始除外）。",
+      "pros": [
+        "個室 9 間、最多 40 人，15 人可以同一間",
+        "窯烤北京烤鴨，午餐膳 3,800 円起",
+        "可以帶小孩、可推嬰兒車，2/9～2/12 都營業"
+      ],
+      "cons": [
+        "Google 低分有衛生問題（老鼠 2 則、桌面黏）和服務差（約 2024～2025）",
+        "15 人的個室是桌椅還是座敷沒寫；樓梯、電梯沒寫",
+        "午餐 11:30 開門前會排隊；分煙"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260202/26001011/",
+        "https://maps.google.com/?cid=195845636622741773",
+        "https://tabelog.com/kyoto/A2601/A260202/26001011/party/",
+        "https://kiwa-group.co.jp/zezekan/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.51（951 則）、Google 4.2（1,040 則），照數字是 3；Google 低分集中在衛生（老鼠 2 則、桌面黏，約 2024～2025），負評往下調一級",
+        "localFlavor": "北京菜",
+        "groupFit": "個室 9 間、最多 40 人，可以預約",
+        "elderFit": "大多是桌席，但 15 人的個室座位形式、樓梯沒寫",
+        "kidsFit": "可以帶小孩、可推嬰兒車，中華是熟食"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -5533,7 +6616,7 @@
       "instagram": "@yoshimura_gr"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5582,6 +6665,16 @@
       {
         "id": "kyoto-tower",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-daiwa-shijo-karasuma",
+        "walkMinutes": 7,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-nikko-princess",
+        "walkMinutes": 8,
         "walkSource": "osrm"
       }
     ],
@@ -5672,6 +6765,47 @@
       "conflicts": [
         "個室：食べログ寫 12 人個室（4～20 人可），官網沒寫"
       ]
+    },
+    "summary": {
+      "text": "地下鐵五条站 1 號出口前的手打蕎麥麵，蕎麦の実膳 1,780 円、天ざる 1,880 円、にしんそば 1,560 円；晚上有宴膳 5,500 円、鴨鍋套餐 6,000 円。70 席，有 12 人個室，可以網路訂。無休（元旦休），午 11:00～16:00、晚 17:00～21:30。",
+      "pros": [
+        "12 人個室加旁邊的桌，15 人可以分兩桌坐近一點",
+        "五条站出口前，2/9～2/12 都營業",
+        "有にしんそば，午餐每人約 2,000 円"
+      ],
+      "cons": [
+        "個室只有 12 人，15 人要分兩桌",
+        "午餐尖峰、觀光季要排隊，晚一點的時段要預約",
+        "個室是椅子還是座敷沒寫；有 2 樓座位，樓梯、電梯沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260201/26002621/",
+        "https://maps.google.com/?cid=1081651214836240257",
+        "https://tabelog.com/kyoto/A2601/A260201/26002621/party/",
+        "http://yoshimura-gr.com/sobanomi/",
+        "https://yoshimura-gr.com/sobanomi/shop/",
+        "https://yoshimura-gr.com/sobanomi/menu/lunch/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（1,320 則）、Google 4.3（2,802 則）；食べログ不到 3.55；低分主題分散（湯頭、麵、店員），不調",
+        "localFlavor": "蕎麥麵（有にしんそば，但不是專門店）",
+        "groupFit": "12 人個室，可以網路預約；15 人要分兩桌",
+        "elderFit": "桌席為主，但午餐要排隊、個室座位形式沒寫",
+        "kidsFit": "可以帶小孩，蕎麥麵是熟食"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -5830,7 +6964,7 @@
       "instagram": "@miyakoyasaikamo_"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -5861,6 +6995,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-nikko-princess",
+        "walkMinutes": 4,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-daiwa-shijo-karasuma",
+        "walkMinutes": 5,
         "walkSource": "osrm"
       }
     ],
@@ -5951,6 +7095,44 @@
         "營業時段：官網早餐 7:00～9:00、午餐 10:00 起，食べログ早餐到 10:00、午餐 10:30 起",
         "預約方式：官網可電話，食べログ寫不接電話預約"
       ]
+    },
+    "summary": {
+      "text": "四条烏丸的京野菜吃到飽（沙拉、小火鍋、炸物、おばんざい），午餐平日 1,360 円、晚餐 1,810 円起，早餐 650 円。67 席全是桌椅，最多可訂 67 人，2 樓整層 30～60 人可包場；前一天 19 點前預約。無休，早、午、晚三段。",
+      "pros": [
+        "最多可訂 67 人，15 人一起吃最容易安排",
+        "小孩便宜（午餐 7～12 歲 500 円、3～6 歲 300 円），選擇多",
+        "地下鐵四條站、阪急烏丸站步行 2 分，輪椅可入店"
+      ],
+      "cons": [
+        "Google 3.9，評論說補菜慢、漲價後內容縮水",
+        "早餐時段排隊約 1 小時；取菜要上下樓",
+        "電話預約只收 15:00～18:00，食べログ寫要用官網"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260201/26021609/",
+        "https://maps.google.com/?cid=3548602296839396831",
+        "https://nasukamo.net/karasuma"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（667 則）、Google 3.9（2,291 則）；Google 3.9；補菜慢、份量縮水是等候和價格的問題，不調",
+        "localFlavor": "京野菜、おばんざい的自助餐",
+        "groupFit": "最多可訂 67 人，2 樓可包場",
+        "elderFit": "輪椅可入店、全是桌椅；取菜要上下樓",
+        "kidsFit": "小孩有兒童價，選擇多"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -6072,7 +7254,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6103,6 +7285,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-monterey",
+        "walkMinutes": 8,
         "walkSource": "osrm"
       }
     ],
@@ -6180,7 +7372,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "四条烏丸巷子裡的拉麵、沾麵，每人 1,000 円內，買餐券。只有吧台 10 席，不能預約，賣完就打烊。11:30～15:00、18:00～22:00。",
+      "pros": [
+        "食べログ 3.66（2,198 則）、Google 4.1（2,959 則），四条一帶的人氣沾麵",
+        "烏丸站、四條站步行約 2 分",
+        "可以帶小學生"
+      ],
+      "cons": [
+        "只有吧台 10 席，4～6 人要等連號的位子",
+        "不能預約、賣完就打烊",
+        "公休沒寫，2/9～2/12 要確認"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260201/26006820/",
+        "https://maps.google.com/?cid=2521468783158862043",
+        "https://www.sugari.net/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.66（2,198 則）、Google 4.1（2,959 則）；Google 4.1",
+        "localFlavor": "新派的拉麵、沾麵",
+        "groupFit": "只有吧台 10 席、不能預約",
+        "elderFit": "只有吧台，要等位",
+        "kidsFit": "可以帶小學生，拉麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-takakura-nijo",
@@ -6305,7 +7535,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6336,6 +7566,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 15,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-monterey",
+        "walkMinutes": 12,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-watazen",
+        "walkMinutes": 12,
         "walkSource": "osrm"
       }
     ],
@@ -6408,7 +7648,45 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "烏丸御池、丸太町之間的沾麵名店（和すがり同一個老闆），每人 1,000 円內。只有吧台 6 席，不能預約。11:30～15:00、18:00～21:00，只有年末年始休。",
+      "pros": [
+        "食べログ 3.71（1,801 則）、Google 4.1（1,301 則），京都沾麵的名店",
+        "只有年末年始休，2/9～2/12 都營業",
+        "吧台座位寬"
+      ],
+      "cons": [
+        "只有吧台 6 席，4～6 人也要分批",
+        "不能預約、要等位",
+        "兒童規定沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260202/26003182/",
+        "https://maps.google.com/?cid=13361978835888582613",
+        "https://www.takakura-nijo.jp"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.71（1,801 則）、Google 4.1（1,301 則）；Google 4.1，差一點到 A",
+        "localFlavor": "新派的沾麵",
+        "groupFit": "只有吧台 6 席、不能預約",
+        "elderFit": "只有吧台，要等位",
+        "kidsFit": "兒童規定沒有來源，拉麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-kyogoku-kaneyo",
@@ -6524,7 +7802,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -6573,6 +7851,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 8,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-super-hotel-kawaramachi",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-watazen",
+        "walkMinutes": 6,
         "walkSource": "osrm"
       }
     ],
@@ -6668,6 +7956,47 @@
         "席數：官網 34＋96 人、食べログ 40 席",
         "公休：官網寫週三＋週二晚上，食べログ只寫週三"
       ]
+    },
+    "summary": {
+      "text": "新京極的鰻魚老店，招牌是蓋大片玉子燒的きんし丼（並）3,000 円、うなぎ丼 3,200 円起、兒童丼 2,000 円。1 樓桌席、2 樓座敷，可以網路或電話預約，15 人一間要問。週三公休，午 11:30～15:30、晚 17:00～20:30。",
+      "pros": [
+        "きんし丼是這家才有的招牌",
+        "有兒童丼 2,000 円，可以預約",
+        "1 樓有桌椅、輪椅可入店"
+      ],
+      "cons": [
+        "低分集中在鰻魚偏小、味道普通（約 7 則，2024～2026）",
+        "週三公休：2/10（三）休，官網另寫週二晚上也休（2/9 晚上）",
+        "團體、小孩會被帶到 2 樓座敷（坐地板、樓梯陡）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260201/26001330/",
+        "https://maps.google.com/?cid=9166099478908384315",
+        "https://tabelog.com/kyoto/A2601/A260201/26001330/party/",
+        "https://kyogoku-kaneyo.co.jp/",
+        "https://kyogoku-kaneyo.co.jp/shop/access",
+        "https://kyogoku-kaneyo.co.jp/menu-2023/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（1,516 則）、Google 3.8（3,364 則），照數字是 3；低分集中在料理品質（鰻魚偏小、味道普通，約 7 則，2024～2026），負評往下調一級",
+        "localFlavor": "鰻魚（不是京都特產）",
+        "groupFit": "可以預約，2 樓座敷 96 人，15 人一間要問",
+        "elderFit": "1 樓桌椅，但團體、小孩會被帶到 2 樓座敷，樓梯陡",
+        "kidsFit": "有兒童丼"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -6753,7 +8082,7 @@
       "instagram": "@daigokuden.seien"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -6783,6 +8112,16 @@
       },
       {
         "id": "kyoto-nishiki-market",
+        "walkMinutes": 6,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-watazen",
+        "walkMinutes": 3,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-monterey",
         "walkMinutes": 6,
         "walkSource": "osrm"
       }
@@ -6867,6 +8206,44 @@
         "營業時間：食べログ 10:00～18:00，觀光協會甘味處到 17:00（L.O.）",
         "琥珀流し價格：660 或 980 円"
       ]
+    },
+    "summary": {
+      "text": "六角通上的老和菓子店附設甘味處「栖園」，招牌是每月換口味的寒天「琥珀流し」（2 月是巧克力霰口味），抹茶和生菓子 1,150 円。22 席（桌 16、座敷 6），不能預約，客滿時登記排隊。週三公休，甘味處 10:00～17:00。",
+      "pros": [
+        "食べログ 3.77（1,194 則）、Google 4.3（735 則），京都門檻的 A",
+        "琥珀流し每月換口味，2 月是巧克力霰",
+        "錦市場步行約 6 分，可以帶小孩"
+      ],
+      "cons": [
+        "週三公休：2/10（三）休",
+        "只有 22 席、不能預約，15 人要分組排隊",
+        "座敷 6 席是坐地板（可以選桌席）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260202/26004652/",
+        "https://maps.google.com/?cid=11759027762573946126",
+        "https://www.kyoto-kankou.or.jp/info_search/7717"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.77（1,194 則）、Google 4.3（735 則），京都門檻的 4；5 要 Google 1,000 則以上",
+        "localFlavor": "老和菓子店的甘味處",
+        "groupFit": "不能預約，22 席",
+        "elderFit": "有桌席，但要登記排隊",
+        "kidsFit": "可以帶小孩，甜點"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -6992,7 +8369,7 @@
       "instagram": "@kuon_kyoto"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7017,6 +8394,16 @@
       {
         "id": "kyoto-nishiki-market",
         "walkMinutes": 10,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 5,
+        "walkSource": "osrm"
+      },
+      {
+        "id": "kyoto-monterey",
+        "walkMinutes": 8,
         "walkSource": "osrm"
       }
     ],
@@ -7106,6 +8493,43 @@
       "conflicts": [
         "公休：食べログ不定休，其他介紹寫無休"
       ]
+    },
+    "summary": {
+      "text": "四条烏丸的雞肉咖哩烏龍麵（和風かしわキーマうどん 1,430 円起），串天、揚げ野菜到 2,310 円。40 席（1 樓 12、2 樓 28），只接平日電話預約。11:00～15:00、17:00～21:00，不定休。",
+      "pros": [
+        "Google 4.5（2,775 則），四条一帶評價很高的烏龍麵",
+        "湯頭可選鰹魚高湯或豆乳",
+        "可以帶小孩，平日可以電話預約"
+      ],
+      "cons": [
+        "只接平日預約，2/11（國定假日）要排隊",
+        "2 樓樓梯很陡；1 樓只有 12 席",
+        "Google 低分有麵太硬、咖哩普通、偏貴；不定休，要確認"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260201/26031546/",
+        "https://maps.google.com/?cid=13268999363676811740"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 3,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（1,029 則）、Google 4.5（2,775 則）；食べログ不到 3.55；低分多從 2022 年起、混著價格，不調",
+        "localFlavor": "咖哩烏龍麵（一般和食）",
+        "groupFit": "平日可以電話預約，但沒有個室，15 人要分桌",
+        "elderFit": "1 樓滿了要上 2 樓，樓梯很陡",
+        "kidsFit": "可以帶小孩，烏龍麵是熟食"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -7231,7 +8655,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7266,8 +8690,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-togetsutei",
-        "walkMinutes": 109,
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 81,
         "walkSource": "osrm"
       }
     ],
@@ -7366,6 +8790,45 @@
       "conflicts": [
         "個室人數：官網各間 8～10 人，食べログ 10～20、20～30 人可"
       ]
+    },
+    "summary": {
+      "text": "鷹峯「しょうざん」庭園裡的四川菜，サービスランチ 2,662 円、飲茶ランチ 3,630 円、土鍋麻婆豆腐。個室 4 間（最多 28 人）、另有宴會場，最多可訂 120 人，有兒童餐；15 人以上可以預約接送小巴。全年無休。",
+      "pros": [
+        "個室最多 28 人、有宴會場，15 人以上有接送小巴",
+        "有兒童餐、可推嬰兒車，輪椅可入店",
+        "全年無休，2/11 照假日時間 11:30 開"
+      ],
+      "cons": [
+        "Google 低分有特定服務生態度差（3 則，約 2025）、疑似食物中毒（約 2024～2025）",
+        "離車站遠（市巴士「土天井町」步行 5 分）",
+        "個室是幾人一間、座位形式要預約時問"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260501/26006496/",
+        "https://maps.google.com/?cid=8385832398687962704",
+        "https://tabelog.com/kyoto/A2601/A260501/26006496/party/",
+        "https://www.shozan.co.jp/restaurant/louran.html"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 2,
+        "localFlavor": 2,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.46（130 則）、Google 4.3（216 則），照數字是 3；Google 低分集中在服務態度（3 則，約 2025），負評往下調一級",
+        "localFlavor": "四川菜",
+        "groupFit": "個室最多 28 人、最多可訂 120 人",
+        "elderFit": "輪椅可入店；座位形式、樓層沒寫",
+        "kidsFit": "有兒童餐、可推嬰兒車"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -7440,7 +8903,7 @@
       "instagram": "@toyoukeya_yamamoto"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7535,7 +8998,44 @@
       "note": "三層樓，電梯沒寫"
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "北野天滿宮對面的豆腐老舖附設食堂，豆腐料理、丼，每人約 1,000～1,999 円。44 席分在 1～3 樓，不能預約；只開午餐 11:00～14:00。週四、週五公休。",
+      "pros": [
+        "北野天滿宮對面，看梅花順路",
+        "豆腐老舖的食堂，Google 4.2",
+        "可以帶小孩"
+      ],
+      "cons": [
+        "週四、週五公休：2/11（四、國定假日）、2/12（五）休",
+        "不能預約、只開到 14:00",
+        "座位在 1～3 樓，15 人要上樓、電梯沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260501/26001508/",
+        "https://maps.google.com/?cid=15305296941872698520"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（521 則）、Google 4.2（821 則）；食べログ不到 3.55",
+        "localFlavor": "豆腐老舖的豆腐料理",
+        "groupFit": "不能預約，44 席分三層",
+        "elderFit": "座位在 1～3 樓，電梯、座位形式沒寫",
+        "kidsFit": "可以帶小孩，豆腐、丼是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-ramen-tanpopo",
@@ -7624,7 +9124,7 @@
       "instagram": "@ramen_tanpopo"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7647,8 +9147,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-hanaikada",
-        "walkMinutes": 109,
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 71,
         "walkSource": "osrm"
       }
     ],
@@ -7713,7 +9213,44 @@
       "note": null
     },
     "smoking": "全席喫煙可",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "北大路一帶的老拉麵店，20 席（吧台、座敷），不能預約。11:30～20:30，公休沒寫。要從北大路站搭市巴士約 15 分（「佛教大学前」步行 3 分），店後有 5 台停車位。",
+      "pros": [
+        "老拉麵店，Google 4.0（781 則）",
+        "營業到晚上 20:30",
+        "有吧台和座敷"
+      ],
+      "cons": [
+        "離車站遠，要搭市巴士",
+        "不能預約、只有 20 席；公休沒寫",
+        "食べログ寫全席可吸菸；菜單、價格、兒童規定都沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260501/26001890/",
+        "https://maps.google.com/?cid=257059071912679078"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（499 則）、Google 4.0（781 則）；Google 4.0",
+        "localFlavor": "京都的老拉麵店（菜單、創業資料少）",
+        "groupFit": "不能預約，20 席",
+        "elderFit": "吧台和座敷",
+        "kidsFit": "兒童規定沒有來源，拉麵是熟食；食べログ寫可吸菸"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-nanzenji-junsei",
@@ -7838,7 +9375,7 @@
       "instagram": "@yudo_fu_junsei"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -7995,6 +9532,47 @@
         "公休：官網不定休、食べログ週三",
         "蹴上站步行：官網 5 分、食べログ 7 分"
       ]
+    },
+    "summary": {
+      "text": "南禪寺參道上的湯豆腐老店，庭園寬敞，湯豆腐「花」套餐 3,850 円、湯豆腐會席 7,700 円起。250 席，最多可訂 120 人、大廣間最多 88 人，5 人以上的團體要電話談；「花」套餐不能預約。地下鐵蹴上站步行 5～7 分，午 11:00～、晚 17:00～。",
+      "pros": [
+        "湯豆腐老店，大廣間最多 88 人，可以接團體",
+        "主建築以椅子席為主，座敷是掘りごたつ，輪椅可入店",
+        "在南禪寺參道上，可以帶小孩"
+      ],
+      "cons": [
+        "15 人要電話談；最便宜的「花」套餐不能預約，午餐要登記排隊",
+        "官網寫不定休、食べログ寫週三公休，2/10（三）要確認",
+        "觀光團多、有點吵；低分有豆腐普通、服務忙亂"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26001013/",
+        "https://maps.google.com/?cid=5387747800903554979",
+        "https://tabelog.com/kyoto/A2601/A260301/26001013/party/",
+        "https://to-fu.co.jp/travel/",
+        "https://to-fu.co.jp/reserve/",
+        "https://to-fu.co.jp/access/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（841 則）、Google 4.1（2,408 則）；Google 4.1；豆腐普通的低分近 3 年約 3 則，偏口味，不調",
+        "localFlavor": "南禪寺的湯豆腐老店",
+        "groupFit": "最多可訂 120 人、大廣間 88 人；15 人要電話",
+        "elderFit": "輪椅可入店，椅子席為主、座敷是掘りごたつ",
+        "kidsFit": "可以帶小孩、可推嬰兒車，豆腐是熟食"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -8102,7 +9680,7 @@
       "instagram": "@rokusei"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8233,6 +9811,45 @@
         "兒童餐：食べログ 1,100 円起，官網七五三祝膳 3,850 円",
         "2/10：食べログ週三定休，官網寫不定休"
       ]
+    },
+    "summary": {
+      "text": "平安神宮附近的京料理老店，招牌是裝在小木桶裡的「手をけ弁当」（午餐），午約 3,000～3,999 円、晚約 6,000～7,999 円，另收服務費（個室 15%）。個室 5 間、大廣間 2 處，最多可訂 100 人；午餐前一天前預約、晚上只接預約。週一公休（遇國定假日營業）、週三不定休。",
+      "pros": [
+        "個室 5 間、大廣間 2 處，15 人可以訂個室",
+        "招牌手をけ弁当（人間國寶做的木桶）",
+        "有兒童料理、兒童椅，標示バリアフリー"
+      ],
+      "cons": [
+        "週一公休、週三不定休：2/10（三）可能休，要確認",
+        "另收服務費 10～15%；晚上只接預約",
+        "15 人的房間是椅子還是座敷沒寫，窗邊榻榻米席要脫鞋"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260302/26002316/",
+        "https://maps.google.com/?cid=1619173561345193888",
+        "http://www.rokusei.co.jp",
+        "https://www.rokusei.co.jp/?men=7"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.49（315 則）、Google 4.2（888 則）；食べログ不到 3.55；服務的低分多從 2021 年起，不調",
+        "localFlavor": "京料理老店的手をけ弁当",
+        "groupFit": "個室 5 間、最多可訂 100 人，前一天前預約",
+        "elderFit": "標示バリアフリー，但座位有座敷、掘りごたつ，15 人的房間形式沒寫",
+        "kidsFit": "有兒童料理、兒童椅"
+      },
+      "confidence": "high",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -8317,7 +9934,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "S",
     "sources": [
       {
         "type": "tabelog",
@@ -8441,6 +10058,45 @@
       "conflicts": [
         "食べログ寫沒預約也可以，官網說有預約也要排隊"
       ]
+    },
+    "summary": {
+      "text": "岡崎（平安神宮附近）的人氣烏龍麵，冬季限定みぞれうどん，每人約 1,000～1,999 円。18 席（吧台 10、4 人桌 2），可以當天電話或 3 天前網路預約，但有預約也要在店前排隊；只收現金。週四、第 4 個週三公休，麵賣完就打烊。",
+      "pros": [
+        "食べログ 3.95（2,840 則）、Google 4.4（2,894 則），京都門檻的 S",
+        "可以網路預約時段，冬天有みぞれうどん",
+        "有兒童用碗和叉子"
+      ],
+      "cons": [
+        "週四公休、遇國定假日改隔天：2/12（五）可能休，要確認",
+        "18 席、4 人桌只有 2 張，有預約也要排隊",
+        "麵賣完就打烊，只收現金"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260301/26002504/",
+        "https://maps.google.com/?cid=6861482635893519122",
+        "https://yamamotomenzou.com/",
+        "https://yamamotomenzou.com/top.php"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 5,
+        "localFlavor": 3,
+        "groupFit": 2,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.95（2,840 則）、Google 4.4（2,894 則），京都門檻的 5",
+        "localFlavor": "烏龍麵（一般和食）",
+        "groupFit": "可以預約，但只有 18 席",
+        "elderFit": "吧台和 2 張桌，有預約也要排隊",
+        "kidsFit": "有兒童餐具，烏龍麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -8520,7 +10176,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -8625,7 +10281,44 @@
       "note": "可坐輪椅入店（食べログ）"
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "平安神宮附近的烏龍麵、蕎麥麵老店，每人約 1,000～1,999 円，36 席，不能預約。11:00～19:00，週二、週三公休；地下鐵東山站步行約 10 分，店前有市營停車場。",
+      "pros": [
+        "食べログ 3.69（1,684 則）、Google 4.4（1,513 則），京都門檻的 A",
+        "輪椅可入店、席位寬",
+        "有兒童用碗和叉子，可推嬰兒車"
+      ],
+      "cons": [
+        "週二、週三公休：2/9（二）、2/10（三）休",
+        "不能預約，15 人要分桌",
+        "菜單、座位形式官網讀不到"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260302/26000919/",
+        "https://maps.google.com/?cid=13433813348006827846"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.69（1,684 則）、Google 4.4（1,513 則），京都門檻的 4；食べログ 3.69 差一點到 5",
+        "localFlavor": "烏龍麵、蕎麥麵（一般和食）",
+        "groupFit": "不能預約，36 席",
+        "elderFit": "輪椅可入店",
+        "kidsFit": "有兒童餐具、可推嬰兒車，麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-uji-tatsumiya",
@@ -8750,7 +10443,7 @@
       "instagram": "@tatsumiya213131"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -8895,6 +10588,46 @@
         "大廣間：官網正文最多 60 人，圖說和食べログ 80 人",
         "電話：官網 0774-21-3131、食べログ 050-5457-7459"
       ]
+    },
+    "summary": {
+      "text": "宇治川畔的京料理老店，宇治丸弁当 5,000 円起、抹茶料理 7,000 円（午餐限定、要預約）。100 席、個室 8 間，2 樓大廣間最多 60 人（椅子桌），團體有免費迷你巴士接送。可以網路或電話預約；不定休，晚餐要預約。",
+      "pros": [
+        "2 樓大廣間是椅子桌，15 人可以同一間",
+        "宇治的抹茶料理、宇治丸弁当",
+        "可以帶小孩，過敏、偏食可以先說"
+      ],
+      "cons": [
+        "大廣間在 2 樓、沒有電梯要走樓梯（1 樓吧台是掘りごたつ）",
+        "不定休，2/9～2/12 的休日官網還沒公布",
+        "價格偏觀光地（午餐 5,000 円起），當天取消收 100%"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2607/A260701/26000038/",
+        "https://maps.google.com/?cid=2991142417397569668",
+        "https://tabelog.com/kyoto/A2607/A260701/26000038/party/",
+        "https://uji-tatsumiya.co.jp/",
+        "https://uji-tatsumiya.co.jp/zashiki/index.html"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 5,
+        "elderFit": 2,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.46（136 則）、Google 4.3（379 則）；食べログ不到 3.55；低分主題分散，不調",
+        "localFlavor": "宇治的京料理老店、抹茶料理",
+        "groupFit": "2 樓大廣間最多 60 人、個室 8 間、團體有接送",
+        "elderFit": "大廣間是椅子桌，但在 2 樓、沒有電梯",
+        "kidsFit": "可以帶小孩、可推嬰兒車，可以處理過敏"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -8985,7 +10718,7 @@
       "instagram": "@nakamura_tokichi_official"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9107,6 +10840,46 @@
       "conflicts": [
         "營業時間：食べログ 10:00～17:30，官網最後受理 16:00"
       ]
+    },
+    "summary": {
+      "text": "JR 宇治站南口正對面的老茶舖附設咖啡廳，抹茶甜點、麵類，每人約 1,000～2,999 円。70 席（桌 58、露台 12），不能預約，官網看得到即時候位組數。10:00～17:30（最後受理 16:00），無定休。",
+      "pros": [
+        "Google 4.4（5,593 則），宇治的甘味處裡評論數最多",
+        "JR 宇治站出來就到，輪椅可入店",
+        "2/9～2/12 都營業，官網看得到候位組數"
+      ],
+      "cons": [
+        "不能預約，15 人要分桌、排隊",
+        "最後受理 16:00，擠的時候提早停止受理",
+        "菜單價格只有圖片"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2607/A260701/26000722/",
+        "https://maps.google.com/?cid=8281509582425298759",
+        "https://tokichi.jp/pages/honten-store-page",
+        "http://www.tokichi.jp",
+        "https://tokichi.jp/blogs/menu/honten"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.54（1,681 則）、Google 4.4（5,593 則）；食べログ不到 3.55",
+        "localFlavor": "宇治老茶舖本店的抹茶甘味",
+        "groupFit": "不能預約",
+        "elderFit": "輪椅可入店、桌椅，但要排隊",
+        "kidsFit": "可以帶小孩、可推嬰兒車"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -9197,7 +10970,7 @@
       "instagram": "@itohkyuemon"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9317,6 +11090,44 @@
         "席數：官網 60、食べログ 62",
         "停車場：官網約 45 台、食べログ 35 台"
       ]
+    },
+    "summary": {
+      "text": "宇治的老茶舖茶房，伊藤久右衛門パフェ 1,090 円、抹茶そば 1,090 円起、抹茶ぜんざい 1,190 円。62 席（4 人桌 10、2 人桌 11），不能預約，每人至少點一份。10:00～18:00，京阪宇治站步行約 5 分，有免費停車場。",
+      "pros": [
+        "老茶舖本店的抹茶甜點、抹茶蕎麥麵",
+        "4 人桌多，有兒童椅、輪椅可入店",
+        "2/9～2/12 都營業"
+      ],
+      "cons": [
+        "不能預約，15 人要分桌",
+        "每人至少點一份",
+        "食べログ 3.45，比宇治其他甘味處低"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2607/A260701/26002107/",
+        "https://maps.google.com/?cid=14634454861380210344",
+        "https://www.itohkyuemon.co.jp/corporate/shop/uji/sabo/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 5,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.45（1,307 則）、Google 4.2（3,678 則）；食べログ不到 3.55",
+        "localFlavor": "宇治老茶舖本店的抹茶甘味",
+        "groupFit": "不能預約",
+        "elderFit": "輪椅可入店、桌椅",
+        "kidsFit": "有兒童椅、可推嬰兒車"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -9402,7 +11213,7 @@
       "instagram": "@s.k.u.d.4"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -9436,8 +11247,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-togetsutei",
-        "walkMinutes": 260,
+        "id": "kyoto-viscio",
+        "walkMinutes": 164,
         "walkSource": "osrm"
       }
     ],
@@ -9518,6 +11329,44 @@
       "conflicts": [
         "營業星期：官網週五～週日，食べログ週一～週四"
       ]
+    },
+    "summary": {
+      "text": "宇治的拌麵（まぜそば）店，每人 1,000 円內，只開午餐 11:00～14:30。官網預約營業日前一天 0:00 起，也可以現場登記；吧台座位，席數沒寫。營業星期官網和食べログ相反，要看官網。",
+      "pros": [
+        "食べログ 3.83（657 則）、Google 4.2（405 則），京都門檻的 A",
+        "可以網路預約",
+        "可以帶小孩"
+      ],
+      "cons": [
+        "營業星期官網（週五～週日）和食べログ（週一～週四）相反，2/9～2/12 開哪天要看官網",
+        "只開午餐；吧台為主，只適合小組",
+        "JR 宇治站步行約 15 分"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2607/A260701/26030760/",
+        "https://maps.google.com/?cid=15157716329922634178",
+        "https://www.seikouudoku-uji.com/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 2,
+        "elderFit": 3,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.83（657 則）、Google 4.2（405 則），京都門檻的 4；Google 不到 1,000 則",
+        "localFlavor": "新派的拌麵",
+        "groupFit": "可以網路預約，但吧台為主、席數沒寫",
+        "elderFit": "只有吧台",
+        "kidsFit": "可以帶小孩，拌麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -9597,7 +11446,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -9703,6 +11552,44 @@
       "conflicts": [
         "公休：食べログ週一、週五，其他網站多寫週一"
       ]
+    },
+    "summary": {
+      "text": "京阪宇治站步行 1～3 分的石臼手打十割蕎麥，20 席（吧台 4、座敷 4 人×2、桌 4 人×2），不能預約。只開午餐 11:30～15:00；食べログ寫週一、週五公休。",
+      "pros": [
+        "食べログ 3.67（511 則）、Google 4.3（445 則），京都門檻的 A",
+        "京阪宇治站旁，逛平等院順路",
+        "有 4 人桌，適合 4 人一組"
+      ],
+      "cons": [
+        "公休有週一、週五兩種說法：2/12（五）可能休",
+        "不能預約、只開午餐，15 人坐不下",
+        "價格沒寫；座敷是坐地板（可以選桌席）"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2607/A260701/26004771/",
+        "https://maps.google.com/?cid=5244137139614300498",
+        "https://rurubu.jp/andmore/spot/80027475"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.67（511 則）、Google 4.3（445 則），京都門檻的 4",
+        "localFlavor": "手打蕎麥麵（一般和食）",
+        "groupFit": "不能預約，20 席",
+        "elderFit": "有桌席",
+        "kidsFit": "可以帶小孩，蕎麥麵是熟食"
+      },
+      "confidence": "low",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -9787,7 +11674,7 @@
       "instagram": "@sangokushi2012"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -9815,8 +11702,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-togetsutei",
-        "walkMinutes": 254,
+        "id": "kyoto-viscio",
+        "walkMinutes": 158,
         "walkSource": "osrm"
       }
     ],
@@ -9887,7 +11774,44 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "京阪三室戶站前的擔擔麵小店（三室戶寺附近），13 席（吧台 5、4 人桌 2），買餐券，有兒童餐。只開午餐 11:30～15:00（週末到 15:30），不能預約。",
+      "pros": [
+        "Google 4.4（435 則），三室戶站前",
+        "有兒童餐",
+        "三室戶寺順路"
+      ],
+      "cons": [
+        "只有 13 席、不能預約，只適合 2～4 人",
+        "只開午餐；公休沒寫，2/9～2/12 要確認",
+        "價格沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2607/A260701/26021628/",
+        "https://maps.google.com/?cid=9981732965110401317"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.52（307 則）、Google 4.4（435 則）；食べログ不到 3.55",
+        "localFlavor": "擔擔麵（中華）",
+        "groupFit": "不能預約，13 席",
+        "elderFit": "吧台和桌席",
+        "kidsFit": "有兒童餐"
+      },
+      "confidence": "low",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-sakon",
@@ -10003,7 +11927,7 @@
       "instagram": "@sakonkyoto"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10049,7 +11973,7 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-hanaikada",
+        "id": "kyoto-togetsutei",
         "walkMinutes": 64,
         "walkSource": "osrm"
       }
@@ -10143,6 +12067,46 @@
       "conflicts": [
         "個室：食べログ 20～30 人可，官網只寫 2 樓 24 席"
       ]
+    },
+    "summary": {
+      "text": "仁和寺門前的創作和食，穴子ちらし膳 2,500 円、白身魚昆布〆午餐約 3,000 円，晚上套餐 5,830～13,750 円。2 樓山門側 24 席接團體（4 人起、要先點套餐），可以包場；電話、郵件預約。週三、第 2・第 4 個週二公休；嵐電御室仁和寺站步行 2 分。",
+      "pros": [
+        "2 樓 24 席可以接 15 人，看得到仁和寺山門",
+        "嵐電御室仁和寺站步行 2 分",
+        "可以帶小孩"
+      ],
+      "cons": [
+        "2/9（第 2 個週二）、2/10（三）公休；2/11 要電話確認",
+        "團體要先點套餐，平日晚上要前一天前預約",
+        "2 樓的座位形式、樓梯沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260402/26000838/",
+        "https://maps.google.com/?cid=2599227406748850610",
+        "https://tabelog.com/kyoto/A2601/A260402/26000838/party/",
+        "http://www.sakon-kyoto.com",
+        "https://www.sakon-kyoto.com/restaurant/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 5,
+        "elderFit": 3,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.32（165 則）、Google 4.2（182 則）；食べログ不到 3.55；低分只有零星幾則，不調",
+        "localFlavor": "創作和食（一般和食）",
+        "groupFit": "2 樓 24 席接團體、可包場",
+        "elderFit": "團體在 2 樓，座位形式、樓梯沒寫",
+        "kidsFit": "可以帶小孩，但有昆布〆生魚"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -10232,7 +12196,7 @@
       "instagram": "@kyouryourimancho"
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10272,8 +12236,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-togetsutei",
-        "walkMinutes": 69,
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 65,
         "walkSource": "osrm"
       }
     ],
@@ -10377,6 +12341,45 @@
         "營業時間：官網到 20:00、食べログ到 21:30",
         "有預約仍等近 1 小時才上菜（Google 評論）"
       ]
+    },
+    "summary": {
+      "text": "妙心寺北門前的京料理、鰻魚，丸弁当 2,530 円、四季の昼御膳 3,410 円、江戸焼き鰻のひつまぶし 3,630 円。桌椅個室 30 席、掘りごたつ個室 10 人，最多可訂 40 人；個室前一天前預約，15 人要電話談。不定休，17 點以後要預約。",
+      "pros": [
+        "桌椅個室 30 席，15 人可以同一間",
+        "有兒童餐、可推嬰兒車，標示バリアフリー",
+        "嵐電妙心寺站步行 2 分，有停車場"
+      ],
+      "cons": [
+        "不定休，2/9～2/12 要電話確認",
+        "便當類網路只訂到 8～10 人，15 人要電話",
+        "評論說有預約還等近 1 小時才上菜；觀光季沒預約會客滿"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260402/26000837/",
+        "https://maps.google.com/?cid=9715795056358342912",
+        "https://tabelog.com/kyoto/A2601/A260402/26000837/party/",
+        "https://www.mantyo.com/"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 4,
+        "groupFit": 5,
+        "elderFit": 5,
+        "kidsFit": 5
+      },
+      "rationale": {
+        "recommend": "食べログ 3.39（58 則）、Google 4.1（110 則）；食べログ不到 100 則、Google 不到 300 則",
+        "localFlavor": "京料理",
+        "groupFit": "桌椅個室 30 席、最多可訂 40 人",
+        "elderFit": "桌椅個室、バリアフリー，輪椅可入店",
+        "kidsFit": "有兒童餐、可推嬰兒車"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -10456,7 +12459,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10484,8 +12487,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-hanaikada",
-        "walkMinutes": 68,
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 53,
         "walkSource": "osrm"
       }
     ],
@@ -10563,6 +12566,43 @@
       "conflicts": [
         "其他網站的營業時間、公休和食べログ不同"
       ]
+    },
+    "summary": {
+      "text": "JR 花園站步行 5 分的拉麵店，每人約 1,000～1,999 円，20 席（吧台 10、桌 10），不能預約，賣完就打烊。週二、週三公休，有 3 台停車位。",
+      "pros": [
+        "Google 4.2（991 則），花園站附近",
+        "有桌席，可以帶小孩",
+        "妙心寺一帶順路"
+      ],
+      "cons": [
+        "週二、週三公休：2/9（二）、2/10（三）休",
+        "不能預約、賣完就打烊，15 人要分批",
+        "其他網站的營業時間、公休不同，要確認"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260402/26001737/",
+        "https://maps.google.com/?cid=6483648679375776888"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 4
+      },
+      "rationale": {
+        "recommend": "食べログ 3.53（409 則）、Google 4.2（991 則）；食べログ不到 3.55",
+        "localFlavor": "一般的拉麵",
+        "groupFit": "不能預約，20 席",
+        "elderFit": "吧台和桌席",
+        "kidsFit": "可以帶小孩，拉麵是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   },
   {
@@ -10658,7 +12698,7 @@
       "instagram": "@fujitora_uzumasa"
     },
     "tags": [],
-    "tier": null,
+    "tier": "A",
     "sources": [
       {
         "type": "tabelog",
@@ -10686,8 +12726,8 @@
         "walkSource": "osrm"
       },
       {
-        "id": "kyoto-togetsutei",
-        "walkMinutes": 66,
+        "id": "kyoto-richmond-shijo",
+        "walkMinutes": 54,
         "walkSource": "osrm"
       }
     ],
@@ -10752,7 +12792,44 @@
       "note": null
     },
     "smoking": "全席禁煙",
-    "extra": {}
+    "extra": {},
+    "summary": {
+      "text": "JR 花園站附近的拉麵小店，13 席（吧台 9、桌 4），不能預約。週二公休；週一、週日只開午餐，其他天午 11:00～14:00、晚 18:00～20:00；有 4 台停車位。",
+      "pros": [
+        "食べログ 3.67（297 則）、Google 4.2（272 則），京都門檻的 A",
+        "2/10～2/12 都營業",
+        "有停車位"
+      ],
+      "cons": [
+        "週二公休：2/9（二）休",
+        "只有 13 席、不能預約，只適合 2～4 人",
+        "菜單、價格、兒童規定都沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260402/26040084/",
+        "https://maps.google.com/?cid=7511451645655946917"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 4,
+        "localFlavor": 2,
+        "groupFit": 1,
+        "elderFit": 4,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.67（297 則）、Google 4.2（272 則），京都門檻的 4",
+        "localFlavor": "新派的拉麵",
+        "groupFit": "不能預約，13 席",
+        "elderFit": "吧台和桌席",
+        "kidsFit": "兒童規定沒有來源，拉麵是熟食"
+      },
+      "confidence": "low",
+      "assessed": "2026-11-12"
+    }
   },
   {
     "id": "kyoto-toriiwaro",
@@ -10831,7 +12908,7 @@
       "instagram": null
     },
     "tags": [],
-    "tier": null,
+    "tier": "B",
     "sources": [
       {
         "type": "tabelog",
@@ -10935,6 +13012,44 @@
       "conflicts": [
         "營業時間：食べログ只有午餐 11:30～15:00，舊介紹文寫到 21:30（晚上水炊き）"
       ]
+    },
+    "summary": {
+      "text": "西陣的雞肉火鍋（水炊き）老店，目前只開午餐，午餐只有親子丼（每人約 1,000～1,999 円）。不能預約、有座敷。週四公休，11:30～15:00；市巴士「千本今出川」步行 5 分。",
+      "pros": [
+        "Google 4.4（1,106 則），西陣的雞肉老店",
+        "雞肉老店的親子丼，每人 2,000 円內",
+        "離北野天滿宮步行約 14 分"
+      ],
+      "cons": [
+        "週四公休：2/11（四、國定假日）休；目前只有午餐",
+        "不能預約、席數沒寫，15 人要分組",
+        "座位是座敷；兒童規定沒寫"
+      ],
+      "basedOn": [
+        "https://tabelog.com/kyoto/A2601/A260501/26001030/",
+        "https://maps.google.com/?cid=6977823613938839834",
+        "https://serai.jp/gourmet/92013"
+      ],
+      "generated": "2026-11-12"
+    },
+    "assessment": {
+      "rubric": "restaurant-v1",
+      "scores": {
+        "recommend": 3,
+        "localFlavor": 3,
+        "groupFit": 1,
+        "elderFit": 2,
+        "kidsFit": 3
+      },
+      "rationale": {
+        "recommend": "食べログ 3.50（710 則）、Google 4.4（1,106 則）；食べログ不到 3.55",
+        "localFlavor": "雞肉水炊き、親子丼（一般和食）",
+        "groupFit": "不能預約",
+        "elderFit": "座位是座敷",
+        "kidsFit": "兒童規定沒有來源，親子丼是熟食"
+      },
+      "confidence": "medium",
+      "assessed": "2026-11-12"
     }
   }
 ]
