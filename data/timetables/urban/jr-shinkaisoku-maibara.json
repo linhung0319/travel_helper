@@ -1,0 +1,373 @@
+{
+  "id": "jr-shinkaisoku-maibara",
+  "mode": "jr",
+  "operator": "JR 西日本",
+  "name": {
+    "ja": "JR新快速（大阪～京都～彦根・米原方面）",
+    "zh": "JR 新快速（大阪～京都～彥根・米原方面）"
+  },
+  "serviceType": "新快速",
+  "stops": [
+    {
+      "id": "jr-osaka",
+      "min": 0,
+      "note": "大阪站 新快速多在 7～10 號月台（見 _transfers）"
+    },
+    {
+      "id": "jr-kyoto",
+      "min": 29,
+      "note": null
+    },
+    {
+      "id": "jr-yamashina",
+      "min": 35,
+      "note": "琵琶湖線、湖西線分岔；轉地下鐵東西線"
+    },
+    {
+      "id": "jr-otsu",
+      "min": 39,
+      "note": "轉京阪石山坂本線要走到京阪びわ湖浜大津（約 10 分）"
+    },
+    {
+      "id": "jr-ishiyama",
+      "min": 43,
+      "note": "轉京阪石山（石山寺）"
+    },
+    {
+      "id": "jr-kusatsu",
+      "min": 50,
+      "note": "琵琶湖博物館的巴士"
+    },
+    {
+      "id": "jr-moriyama",
+      "min": 54,
+      "note": "佐川美術館的巴士"
+    },
+    {
+      "id": "jr-omi-hachiman",
+      "min": 64,
+      "note": "La Collina、八幡堀的巴士"
+    },
+    {
+      "id": "jr-hikone",
+      "min": 78,
+      "note": "彥根城走約 15 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:29",
+      "last": "23:29",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 60
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 12
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 60
+        },
+        {
+          "from": "10:00",
+          "to": "14:00",
+          "min": 30
+        },
+        {
+          "from": "14:00",
+          "to": "15:00",
+          "min": 20
+        },
+        {
+          "from": "15:00",
+          "to": "16:00",
+          "min": 15
+        },
+        {
+          "from": "16:00",
+          "to": "17:00",
+          "min": 10
+        },
+        {
+          "from": "17:00",
+          "to": "18:00",
+          "min": 15
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 10
+        },
+        {
+          "from": "19:00",
+          "to": "22:00",
+          "min": 15
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 12
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "班距數京都站往米原方向、終點是米原、長浜、近江塩津、敦賀（過了彥根）的新快速和快速，和往大阪方向的新快速、快速，取較少的一方（實際上就是往米原方向的班數）；平日：往外 62 班（首 06:29、末 23:37）、往回 131 班（首 05:21、末 23:29）；用 2026-12-22 的時刻表推算"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "06:33",
+      "last": "23:16",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 20
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "12:00",
+          "min": 20
+        },
+        {
+          "from": "12:00",
+          "to": "13:00",
+          "min": 30
+        },
+        {
+          "from": "13:00",
+          "to": "14:00",
+          "min": 20
+        },
+        {
+          "from": "14:00",
+          "to": "15:00",
+          "min": 15
+        },
+        {
+          "from": "15:00",
+          "to": "16:00",
+          "min": 20
+        },
+        {
+          "from": "16:00",
+          "to": "17:00",
+          "min": 10
+        },
+        {
+          "from": "17:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "21:00",
+          "min": 15
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 20
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 60
+        }
+      ],
+      "note": "班距數京都站往米原方向、終點是米原、長浜、近江塩津、敦賀（過了彥根）的新快速和快速，和往大阪方向的新快速、快速，取較少的一方（實際上就是往米原方向的班數）；土休日：往外 62 班（首 06:33、末 23:16）、往回 125 班（首 05:21、末 23:29）；用 2026-12-27 的時刻表推算"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "jr-kyoto": {
+        "jr-osaka": 580,
+        "jr-yamashina": 180,
+        "jr-otsu": 200,
+        "jr-ishiyama": 240,
+        "jr-kusatsu": 410,
+        "jr-moriyama": 490,
+        "jr-omi-hachiman": 680,
+        "jr-hikone": 1170
+      },
+      "jr-osaka": {
+        "jr-otsu": 960,
+        "jr-kusatsu": 1120,
+        "jr-omi-hachiman": 1520,
+        "jr-hikone": 1980
+      }
+    },
+    "child": "兒童半價，10 円未滿捨去（JR 西日本 旅客営業規則第 74 條）",
+    "note": "IC 卡同價"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "同一班新快速穿過京都站（姫路・大阪 ↔ 京都 ↔ 米原・長浜・敦賀），存成一條：拆成大阪 ↔ 京都、京都 ↔ 琵琶湖兩條會在京都多算一次換車。往湖西線的新快速（大阪 → 京都 → 山科 → 堅田 → 近江今津・敦賀）在 jr-kosei（時刻表型），這裡只算琵琶湖線那一側。只算會開到彥根以東的新快速和快速（白天新快速到野洲為止的多，往米原、長浜的多是快速）；快速在草津以東各站停，比新快速慢幾分鐘，站間分鐘用新快速。到草津為止的用 jr-shinkaisoku（班次比較多）。往大阪方向沒有分終點，是用全部新快速、快速數的（不影響取較少的一方）。有付費座位 Aシート（A）、うれしート（う）的車廂，一般車廂不用另外付費。JR 不能用 KINTETSU RAIL PASS，車資另付；ICOCA 可用。時刻表 2026-03-14 改正，2027-03 可能改點，2 月應該還是這一版。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784013001?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 琵琶湖線 山科・草津・米原方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784013001?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 琵琶湖線 山科・草津・米原方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784011001?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 JR京都線 新大阪・大阪・三ノ宮方面（weekday，用 2026-12-22 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/station-timetable/2784011001?date=20261227",
+      "retrieved": "2026-11-12",
+      "note": "JR おでかけネット 駅時刻表 京都 JR京都線 新大阪・大阪・三ノ宮方面（holiday，用 2026-12-27 推算）"
+    },
+    {
+      "type": "official",
+      "url": "https://timetable.jr-odekake.net/train-timetable/173041?date=20261222",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 12:00 發的那一班的停站時刻"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5006",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 大阪 580"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-6091",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 守山 490"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-4991",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 近江八幡 680"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5198/st-5877",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：京都 ↔ 彦根 1,170"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5006/st-4991",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：大阪 ↔ 近江八幡 1,520"
+    },
+    {
+      "type": "other",
+      "url": "https://ekitan.com/transit/fare/sf-5006/st-5877",
+      "retrieved": "2026-11-12",
+      "note": "駅探（非官方）：大阪 ↔ 彦根 1,980（新快速經由）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.jr-odekake.net/ticket/guide/assets/pdf/stipulation/2026/covenant2-03.pdf",
+      "retrieved": "2026-11-12",
+      "note": "JR 西日本 旅客営業規則（2026-10-01 現行）第 73、74 條：兒童票"
+    }
+  ],
+  "extra": {
+    "dayTypeBasis": [
+      [
+        "2027-02-02",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-03",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-04",
+        "weekday",
+        "2026-12-24"
+      ],
+      [
+        "2027-02-05",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-06",
+        "saturday",
+        "2026-12-26"
+      ],
+      [
+        "2027-02-07",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-08",
+        "weekday",
+        "2026-12-28"
+      ],
+      [
+        "2027-02-09",
+        "weekday",
+        "2026-12-22"
+      ],
+      [
+        "2027-02-10",
+        "weekday",
+        "2026-12-23"
+      ],
+      [
+        "2027-02-11",
+        "holiday",
+        "2026-12-27"
+      ],
+      [
+        "2027-02-12",
+        "weekday",
+        "2026-12-25"
+      ],
+      [
+        "2027-02-13",
+        "saturday",
+        "2026-12-26"
+      ]
+    ]
+  }
+}

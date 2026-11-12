@@ -1,0 +1,2925 @@
+{
+  "id": "ekojo-sakamoto-cable",
+  "mode": "bus",
+  "operator": "江若交通",
+  "name": {
+    "ja": "日吉台線（ケーブル坂本線）41系統 比叡山坂本駅～ケーブル坂本駅",
+    "zh": "江若巴士 坂本纜車接駁線（JR 比叡山坂本站～京阪坂本比叡山口站～日吉大社前～纜車坂本站）"
+  },
+  "validFrom": "2020-04-01",
+  "validTo": null,
+  "retrieved": "2026-11-12",
+  "stops": [
+    {
+      "id": "hieizan-sakamoto",
+      "name": "比叡山坂本駅",
+      "coords": [
+        135.8782667,
+        35.0704611
+      ],
+      "near": [
+        {
+          "id": "jr-hieizan-sakamoto",
+          "meters": 0
+        }
+      ]
+    },
+    {
+      "id": "sakamoto-hieizanguchi",
+      "name": "坂本比叡山口駅",
+      "coords": [
+        135.871278,
+        35.070778
+      ],
+      "near": [
+        {
+          "id": "keihan-sakamoto-hieizanguchi",
+          "meters": 0
+        }
+      ]
+    },
+    {
+      "id": "hiyoshi-taisha-mae",
+      "name": "日吉大社前",
+      "coords": null,
+      "near": [
+        {
+          "id": "biwako-hiyoshi-taisha",
+          "meters": null
+        }
+      ]
+    },
+    {
+      "id": "cable-sakamoto",
+      "name": "ケーブル坂本駅",
+      "coords": [
+        135.863972,
+        35.069667
+      ],
+      "near": [
+        {
+          "id": "sakamoto-cable-sakamoto",
+          "meters": 0
+        }
+      ]
+    }
+  ],
+  "trips": {
+    "weekday": [
+      {
+        "id": "ekojo-sakamoto-cable-weekday-1",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "09:10"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:13",
+            "09:13"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:15",
+            "09:15"
+          ],
+          [
+            "cable-sakamoto",
+            "09:17",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-2",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "09:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:41",
+            "09:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:43",
+            "09:43"
+          ],
+          [
+            "cable-sakamoto",
+            "09:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-3",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "10:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:11",
+            "10:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:13",
+            "10:13"
+          ],
+          [
+            "cable-sakamoto",
+            "10:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-4",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "10:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:41",
+            "10:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:43",
+            "10:43"
+          ],
+          [
+            "cable-sakamoto",
+            "10:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-5",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "11:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:11",
+            "11:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:13",
+            "11:13"
+          ],
+          [
+            "cable-sakamoto",
+            "11:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-6",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "11:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:41",
+            "11:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:43",
+            "11:43"
+          ],
+          [
+            "cable-sakamoto",
+            "11:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-7",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "12:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:11",
+            "12:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:13",
+            "12:13"
+          ],
+          [
+            "cable-sakamoto",
+            "12:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-8",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "12:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:41",
+            "12:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:43",
+            "12:43"
+          ],
+          [
+            "cable-sakamoto",
+            "12:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-9",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "13:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:11",
+            "13:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:13",
+            "13:13"
+          ],
+          [
+            "cable-sakamoto",
+            "13:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-10",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "13:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:41",
+            "13:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:43",
+            "13:43"
+          ],
+          [
+            "cable-sakamoto",
+            "13:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-11",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "14:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:11",
+            "14:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:13",
+            "14:13"
+          ],
+          [
+            "cable-sakamoto",
+            "14:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-12",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "14:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:41",
+            "14:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:43",
+            "14:43"
+          ],
+          [
+            "cable-sakamoto",
+            "14:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-13",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "15:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:11",
+            "15:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:13",
+            "15:13"
+          ],
+          [
+            "cable-sakamoto",
+            "15:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-14",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "15:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:41",
+            "15:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:43",
+            "15:43"
+          ],
+          [
+            "cable-sakamoto",
+            "15:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-15",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "16:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:11",
+            "16:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:13",
+            "16:13"
+          ],
+          [
+            "cable-sakamoto",
+            "16:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-16",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "16:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:41",
+            "16:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:43",
+            "16:43"
+          ],
+          [
+            "cable-sakamoto",
+            "16:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-17",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "17:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "17:11",
+            "17:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "17:13",
+            "17:13"
+          ],
+          [
+            "cable-sakamoto",
+            "17:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-18",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "09:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:21",
+            "09:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:23",
+            "09:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "09:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-19",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "09:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:51",
+            "09:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:53",
+            "09:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "09:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-20",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "10:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:21",
+            "10:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:23",
+            "10:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "10:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-21",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "10:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:51",
+            "10:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:53",
+            "10:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "10:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-22",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "11:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:21",
+            "11:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:23",
+            "11:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "11:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-23",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "11:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:51",
+            "11:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:53",
+            "11:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "11:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-24",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "12:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:21",
+            "12:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:23",
+            "12:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "12:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-25",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "12:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:51",
+            "12:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:53",
+            "12:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "12:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-26",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "13:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:21",
+            "13:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:23",
+            "13:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "13:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-27",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "13:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:51",
+            "13:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:53",
+            "13:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "13:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-28",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "14:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:21",
+            "14:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:23",
+            "14:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "14:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-29",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "14:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:51",
+            "14:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:53",
+            "14:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "14:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-30",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "15:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:21",
+            "15:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:23",
+            "15:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "15:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-31",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "15:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:51",
+            "15:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:53",
+            "15:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "15:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-32",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "16:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:21",
+            "16:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:23",
+            "16:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "16:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-33",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "16:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:51",
+            "16:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:53",
+            "16:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "16:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-weekday-34",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "17:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "17:21",
+            "17:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "17:23",
+            "17:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "17:26",
+            null
+          ]
+        ]
+      }
+    ],
+    "saturday": [
+      {
+        "id": "ekojo-sakamoto-cable-holiday-1",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "09:10"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:13",
+            "09:13"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:15",
+            "09:15"
+          ],
+          [
+            "cable-sakamoto",
+            "09:17",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-2",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "09:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:41",
+            "09:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:43",
+            "09:43"
+          ],
+          [
+            "cable-sakamoto",
+            "09:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-3",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "10:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:11",
+            "10:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:13",
+            "10:13"
+          ],
+          [
+            "cable-sakamoto",
+            "10:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-4",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "10:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:41",
+            "10:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:43",
+            "10:43"
+          ],
+          [
+            "cable-sakamoto",
+            "10:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-5",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "11:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:11",
+            "11:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:13",
+            "11:13"
+          ],
+          [
+            "cable-sakamoto",
+            "11:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-6",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "11:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:41",
+            "11:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:43",
+            "11:43"
+          ],
+          [
+            "cable-sakamoto",
+            "11:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-7",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "12:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:11",
+            "12:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:13",
+            "12:13"
+          ],
+          [
+            "cable-sakamoto",
+            "12:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-8",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "12:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:41",
+            "12:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:43",
+            "12:43"
+          ],
+          [
+            "cable-sakamoto",
+            "12:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-9",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "13:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:11",
+            "13:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:13",
+            "13:13"
+          ],
+          [
+            "cable-sakamoto",
+            "13:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-10",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "13:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:41",
+            "13:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:43",
+            "13:43"
+          ],
+          [
+            "cable-sakamoto",
+            "13:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-11",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "14:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:11",
+            "14:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:13",
+            "14:13"
+          ],
+          [
+            "cable-sakamoto",
+            "14:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-12",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "14:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:41",
+            "14:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:43",
+            "14:43"
+          ],
+          [
+            "cable-sakamoto",
+            "14:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-13",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "15:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:11",
+            "15:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:13",
+            "15:13"
+          ],
+          [
+            "cable-sakamoto",
+            "15:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-14",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "15:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:41",
+            "15:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:43",
+            "15:43"
+          ],
+          [
+            "cable-sakamoto",
+            "15:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-15",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "16:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:11",
+            "16:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:13",
+            "16:13"
+          ],
+          [
+            "cable-sakamoto",
+            "16:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-16",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "16:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:41",
+            "16:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:43",
+            "16:43"
+          ],
+          [
+            "cable-sakamoto",
+            "16:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-17",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "17:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "17:11",
+            "17:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "17:13",
+            "17:13"
+          ],
+          [
+            "cable-sakamoto",
+            "17:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-18",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "09:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:21",
+            "09:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:23",
+            "09:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "09:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-19",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "09:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:51",
+            "09:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:53",
+            "09:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "09:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-20",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "10:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:21",
+            "10:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:23",
+            "10:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "10:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-21",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "10:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:51",
+            "10:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:53",
+            "10:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "10:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-22",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "11:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:21",
+            "11:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:23",
+            "11:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "11:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-23",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "11:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:51",
+            "11:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:53",
+            "11:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "11:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-24",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "12:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:21",
+            "12:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:23",
+            "12:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "12:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-25",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "12:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:51",
+            "12:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:53",
+            "12:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "12:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-26",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "13:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:21",
+            "13:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:23",
+            "13:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "13:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-27",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "13:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:51",
+            "13:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:53",
+            "13:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "13:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-28",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "14:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:21",
+            "14:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:23",
+            "14:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "14:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-29",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "14:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:51",
+            "14:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:53",
+            "14:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "14:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-30",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "15:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:21",
+            "15:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:23",
+            "15:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "15:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-31",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "15:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:51",
+            "15:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:53",
+            "15:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "15:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-32",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "16:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:21",
+            "16:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:23",
+            "16:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "16:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-33",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "16:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:51",
+            "16:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:53",
+            "16:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "16:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-34",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "17:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "17:21",
+            "17:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "17:23",
+            "17:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "17:26",
+            null
+          ]
+        ]
+      }
+    ],
+    "holiday": [
+      {
+        "id": "ekojo-sakamoto-cable-holiday-1",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "09:10"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:13",
+            "09:13"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:15",
+            "09:15"
+          ],
+          [
+            "cable-sakamoto",
+            "09:17",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-2",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "09:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:41",
+            "09:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:43",
+            "09:43"
+          ],
+          [
+            "cable-sakamoto",
+            "09:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-3",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "10:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:11",
+            "10:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:13",
+            "10:13"
+          ],
+          [
+            "cable-sakamoto",
+            "10:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-4",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "10:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:41",
+            "10:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:43",
+            "10:43"
+          ],
+          [
+            "cable-sakamoto",
+            "10:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-5",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "11:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:11",
+            "11:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:13",
+            "11:13"
+          ],
+          [
+            "cable-sakamoto",
+            "11:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-6",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "11:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:41",
+            "11:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:43",
+            "11:43"
+          ],
+          [
+            "cable-sakamoto",
+            "11:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-7",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "12:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:11",
+            "12:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:13",
+            "12:13"
+          ],
+          [
+            "cable-sakamoto",
+            "12:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-8",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "12:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:41",
+            "12:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:43",
+            "12:43"
+          ],
+          [
+            "cable-sakamoto",
+            "12:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-9",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "13:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:11",
+            "13:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:13",
+            "13:13"
+          ],
+          [
+            "cable-sakamoto",
+            "13:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-10",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "13:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:41",
+            "13:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:43",
+            "13:43"
+          ],
+          [
+            "cable-sakamoto",
+            "13:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-11",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "14:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:11",
+            "14:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:13",
+            "14:13"
+          ],
+          [
+            "cable-sakamoto",
+            "14:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-12",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "14:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:41",
+            "14:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:43",
+            "14:43"
+          ],
+          [
+            "cable-sakamoto",
+            "14:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-13",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "15:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:11",
+            "15:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:13",
+            "15:13"
+          ],
+          [
+            "cable-sakamoto",
+            "15:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-14",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "15:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:41",
+            "15:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:43",
+            "15:43"
+          ],
+          [
+            "cable-sakamoto",
+            "15:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-15",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "16:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:11",
+            "16:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:13",
+            "16:13"
+          ],
+          [
+            "cable-sakamoto",
+            "16:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-16",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "16:38"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:41",
+            "16:41"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:43",
+            "16:43"
+          ],
+          [
+            "cable-sakamoto",
+            "16:45",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-17",
+        "headsign": "ケーブル坂本駅",
+        "dir": 0,
+        "stops": [
+          [
+            "hieizan-sakamoto",
+            null,
+            "17:08"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "17:11",
+            "17:11"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "17:13",
+            "17:13"
+          ],
+          [
+            "cable-sakamoto",
+            "17:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-18",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "09:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:21",
+            "09:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:23",
+            "09:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "09:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-19",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "09:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "09:51",
+            "09:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "09:53",
+            "09:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "09:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-20",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "10:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:21",
+            "10:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:23",
+            "10:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "10:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-21",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "10:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "10:51",
+            "10:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "10:53",
+            "10:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "10:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-22",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "11:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:21",
+            "11:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:23",
+            "11:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "11:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-23",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "11:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "11:51",
+            "11:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "11:53",
+            "11:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "11:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-24",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "12:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:21",
+            "12:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:23",
+            "12:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "12:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-25",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "12:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "12:51",
+            "12:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "12:53",
+            "12:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "12:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-26",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "13:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:21",
+            "13:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:23",
+            "13:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "13:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-27",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "13:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "13:51",
+            "13:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "13:53",
+            "13:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "13:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-28",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "14:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:21",
+            "14:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:23",
+            "14:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "14:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-29",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "14:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "14:51",
+            "14:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "14:53",
+            "14:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "14:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-30",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "15:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:21",
+            "15:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:23",
+            "15:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "15:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-31",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "15:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "15:51",
+            "15:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "15:53",
+            "15:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "15:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-32",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "16:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:21",
+            "16:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:23",
+            "16:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "16:26",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-33",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "16:50"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "16:51",
+            "16:51"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "16:53",
+            "16:53"
+          ],
+          [
+            "hieizan-sakamoto",
+            "16:56",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-sakamoto-cable-holiday-34",
+        "headsign": "比叡山坂本駅",
+        "dir": 1,
+        "stops": [
+          [
+            "cable-sakamoto",
+            null,
+            "17:20"
+          ],
+          [
+            "hiyoshi-taisha-mae",
+            "17:21",
+            "17:21"
+          ],
+          [
+            "sakamoto-hieizanguchi",
+            "17:23",
+            "17:23"
+          ],
+          [
+            "hieizan-sakamoto",
+            "17:26",
+            null
+          ]
+        ]
+      }
+    ]
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "hieizan-sakamoto": {
+        "sakamoto-hieizanguchi": 210,
+        "hiyoshi-taisha-mae": 250,
+        "cable-sakamoto": 250
+      },
+      "sakamoto-hieizanguchi": {
+        "hieizan-sakamoto": 210,
+        "hiyoshi-taisha-mae": 230,
+        "cable-sakamoto": 230
+      },
+      "hiyoshi-taisha-mae": {
+        "hieizan-sakamoto": 250,
+        "sakamoto-hieizanguchi": 230,
+        "cable-sakamoto": 230
+      },
+      "cable-sakamoto": {
+        "hieizan-sakamoto": 250,
+        "sakamoto-hieizanguchi": 230,
+        "hiyoshi-taisha-mae": 230
+      }
+    },
+    "child": {
+      "hieizan-sakamoto": {
+        "sakamoto-hieizanguchi": 110,
+        "hiyoshi-taisha-mae": 130,
+        "cable-sakamoto": 130
+      },
+      "sakamoto-hieizanguchi": {
+        "hieizan-sakamoto": 110,
+        "hiyoshi-taisha-mae": 120,
+        "cable-sakamoto": 120
+      },
+      "hiyoshi-taisha-mae": {
+        "hieizan-sakamoto": 130,
+        "sakamoto-hieizanguchi": 120,
+        "cable-sakamoto": 120
+      },
+      "cable-sakamoto": {
+        "hieizan-sakamoto": 130,
+        "sakamoto-hieizanguchi": 120,
+        "hiyoshi-taisha-mae": 120
+      }
+    }
+  },
+  "notes": "每天同一時刻（平日、土休日相同；weekday 和 holiday 放同一組）。12/1～2 月底：比叡山坂本駅發到 17:08、ケーブル坂本駅發到 17:20；3/1～11/30 才有 17:38、17:50（A 印）班。旅程 2/9～2/12 都在冬季時段。每班時刻依 PDF 每站時刻：下行 比叡山坂本→坂本比叡山口 +3、日吉大社前 +5、ケーブル坂本 +7 分；上行 ケーブル坂本→日吉大社前 +1、坂本比叡山口 +3、比叡山坂本 +6 分（所有班次都一樣，已逐班對過 PDF）。停留所時刻表（坂本比叡山口駅 1番，2026-11-12）也一致。和纜車接駁（推算）：纜車 12～2 月 ケーブル坂本駅 8:30、9:00 起每 :00、:30 發，末班 17:00；巴士 :15／:45 到ケーブル坂本，等下一班纜車約 15 分。下山纜車 :00／:30 從延暦寺站發、11 分到坂本，接 :20／:50 的巴士。坂本ケーブル每年 2 月下旬～3 月初有點檢停駛，停駛期間這條巴士也停（2026 年是 2/24～3/1）；2027 年的日期還沒公布。票價（2021年4月1日改定，現行）：比叡山坂本駅～坂本比叡山口駅 210、比叡山坂本駅～日吉大社前／ケーブル坂本駅 250、坂本比叡山口駅～日吉大社前／ケーブル坂本駅 230、日吉大社前～ケーブル坂本駅 230。兒童＝大人半額 10 円切り上げ（推算）。**2027-02-01 起預定改定**（江若 2026-10-23 申請，待認可）：比叡山坂本駅～坂本比叡山口駅 210→250、坂本比叡山口駅～ケーブル坂本駅 230→250、比叡山坂本駅～ケーブル坂本駅 250→270；含日吉大社前的區間沒有列出（null 待確認）。旅程在 2/1 之後，實際付的可能是新票價。步行替代：坂本比叡山口駅→ケーブル坂本駅 徒步約 15 分、JR 比叡山坂本駅→ケーブル坂本駅 徒步約 25 分（坂本ケーブル官網）；上坡。停留所座標 null（見 research.md）。停留所座標：比叡山坂本駅、坂本比叡山口駅、ケーブル坂本駅用旁邊車站的座標（ja.wikipedia，近似）；其他江若的停留所座標沒查到，填 null（near 的公尺數也是 null，步行分鐘見上面的說明）。",
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  },
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/ke-saka.pdf",
+      "retrieved": "2026-11-12",
+      "note": "日吉台線（ケーブル）時刻表，2020年4月1日改正；12/1～2/末は無印まで"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/timetable/Zikoku/00191_01/",
+      "retrieved": "2026-11-12",
+      "note": "停留所時刻表 坂本比叡山口駅(1番) ケーブル坂本駅方面"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/hiyo-u20210401.pdf",
+      "retrieved": "2026-11-12",
+      "note": "運賃表 日吉台線（2021年4月1日改定）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/20270201unkai.pdf",
+      "retrieved": "2026-11-12",
+      "note": "2027-02-01 運賃改定（日吉台線の改定運賃）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/info/%e3%82%b1%e3%83%bc%e3%83%96%e3%83%ab%e5%9d%82%e6%9c%ac%e7%b7%9a%e9%81%8b%e4%bc%91%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%ef%bc%882-24%ef%bd%9e3-1%ef%bc%89/",
+      "retrieved": "2026-11-12",
+      "note": "2026 年 ケーブル坂本線運休（2/24～3/1）"
+    },
+    {
+      "type": "official",
+      "url": "https://sakamoto-cable.jp/guide/",
+      "retrieved": "2026-11-12",
+      "note": "坂本ケーブル 時刻表（12月～2月）"
+    },
+    {
+      "type": "official",
+      "url": "https://sakamoto-cable.jp/access/",
+      "retrieved": "2026-11-12",
+      "note": "ケーブル坂本駅へのアクセス：坂本比叡山口駅 徒歩約15分・バス約3分、比叡山坂本駅 徒歩約25分・バス約7分"
+    }
+  ]
+}

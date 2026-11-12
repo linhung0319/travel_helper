@@ -2,9 +2,13 @@
  "validFrom": "2026-03-14",
  "retrieved": "2026-10-17",
  "stationOrder": [
+  "kyoto",
+  "kintetsu-tambabashi",
+  "yamato-saidaiji",
   "osaka-namba",
   "osaka-uehommachi",
   "tsuruhashi",
+  "yamato-yagi",
   "iseshi",
   "ujiyamada",
   "isuzugawa",
@@ -27,8 +31,78 @@
   "shima-shimmei",
   "kashikojima"
  ],
- "notes": "近鐵目標區間（伊勢市 M73 ～ 賢島 M93）的車程。trains：每班車在目標區間內的停站時刻，鍵是 weekday（平日）/holiday（土休日）→ trainNo（和各站時刻表的 trainNo 相同）；stops 每一項是 [車站 ID, 到站時刻, 發車時刻]，起點站的到站時刻和終點站的發車時刻可能是 null；只列停車的站，通過的站不列。dir 是方向（for-kashikojima 南下、for-ise-nakagawa 北上），to 是終點站（可能在區間外），note 是車種（伊勢志摩ライナー等）或しまかぜ的發著站（例如「大阪難波発着」）。查「A 站某時之後的下一班到 B 站」：在 trains 裡找 stops 依序含有 A、B 且 A 的發車時刻 ≥ 指定時刻的列車（scripts/next-train.mjs）。segments：相鄰兩個停車站之間的車程統計（分鐘，以後一站的到站時刻減前一站的發車時刻），依列車種別分開；特急、しまかぜ跳過的站會出現跨站的區間（例如 toba>ugata）。大阪側（T28，scripts/kintetsu-osaka.mjs）：往返大阪的特急、しまかぜ的 stops 加上大阪難波、大阪上本町、鶴橋（stationOrder 排在伊勢市前面）。北上（終點大阪難波、大阪上本町）平日、土休日都有；南下（大阪發往伊勢志摩）只有平日（第一天 2/2 週二）。伊勢中川、名張等中間站不列（不是資料點），所以會有 tsuruhashi>iseshi 這種跨站的區間。往名古屋的車在伊勢中川轉往大阪的組合、急行都沒有收。kintetsu-timetable.mjs 重跑後要再跑 kintetsu-osaka.mjs。",
+ "notes": "近鐵目標區間（伊勢市 M73 ～ 賢島 M93）的車程。trains：每班車在目標區間內的停站時刻，鍵是 weekday（平日）/holiday（土休日）→ trainNo（和各站時刻表的 trainNo 相同）；stops 每一項是 [車站 ID, 到站時刻, 發車時刻]，起點站的到站時刻和終點站的發車時刻可能是 null；只列停車的站，通過的站不列。dir 是方向（for-kashikojima 南下、for-ise-nakagawa 北上），to 是終點站（可能在區間外），note 是車種（伊勢志摩ライナー等）或しまかぜ的發著站（例如「大阪難波発着」）。查「A 站某時之後的下一班到 B 站」：在 trains 裡找 stops 依序含有 A、B 且 A 的發車時刻 ≥ 指定時刻的列車（scripts/next-train.mjs）。segments：相鄰兩個停車站之間的車程統計（分鐘，以後一站的到站時刻減前一站的發車時刻），依列車種別分開；特急、しまかぜ跳過的站會出現跨站的區間（例如 toba>ugata）。大阪側（T28，scripts/kintetsu-osaka.mjs）：往返大阪的特急、しまかぜ的 stops 加上大阪難波、大阪上本町、鶴橋（stationOrder 排在伊勢市前面）。北上（終點大阪難波、大阪上本町）平日、土休日都有；南下（大阪發往伊勢志摩）只有平日（第一天 2/2 週二）。伊勢中川、名張等中間站不列（不是資料點），所以會有 tsuruhashi>iseshi 這種跨站的區間。往名古屋的車在伊勢中川轉往大阪的組合、急行都沒有收。kintetsu-timetable.mjs 重跑後要再跑 kintetsu-osaka.mjs。京都側（T87，scripts/kintetsu-kyoto.mjs）：京都 ↔ 伊勢志摩的直達特急、しまかぜ補上近鉄京都、近鉄丹波橋、大和西大寺、大和八木的停站；往返大阪的特急補上大和八木；京都 ↔ 大和八木（橿原線）的特急另外加成班次（note 寫「京都線・橿原線…」），在大和八木換車。平日、土休日、兩個方向都有。大和八木的大阪線、橿原線月台不同（換車要上下樓，見 urban/_transfers.json）。執行順序：kintetsu-timetable.mjs → kintetsu-osaka.mjs → kintetsu-kyoto.mjs。",
  "segments": {
+  "kyoto>kintetsu-tambabashi": {
+   "特急": {
+    "min": 6,
+    "max": 7,
+    "median": 6,
+    "n": 58
+   },
+   "しまかぜ": {
+    "min": 6,
+    "max": 6,
+    "median": 6,
+    "n": 2
+   }
+  },
+  "kintetsu-tambabashi>kyoto": {
+   "特急": {
+    "min": 6,
+    "max": 9,
+    "median": 7,
+    "n": 64
+   },
+   "しまかぜ": {
+    "min": 7,
+    "max": 7,
+    "median": 7,
+    "n": 2
+   }
+  },
+  "kintetsu-tambabashi>yamato-saidaiji": {
+   "特急": {
+    "min": 22,
+    "max": 26,
+    "median": 24,
+    "n": 58
+   },
+   "しまかぜ": {
+    "min": 24,
+    "max": 24,
+    "median": 24,
+    "n": 2
+   }
+  },
+  "yamato-saidaiji>kintetsu-tambabashi": {
+   "特急": {
+    "min": 22,
+    "max": 28,
+    "median": 23,
+    "n": 64
+   },
+   "しまかぜ": {
+    "min": 22,
+    "max": 23,
+    "median": 23,
+    "n": 2
+   }
+  },
+  "yamato-saidaiji>yamato-yagi": {
+   "特急": {
+    "min": 16,
+    "max": 20,
+    "median": 17,
+    "n": 58
+   },
+   "しまかぜ": {
+    "min": 20,
+    "max": 21,
+    "median": 21,
+    "n": 2
+   }
+  },
   "osaka-namba>osaka-uehommachi": {
    "特急": {
     "min": 2,
@@ -85,32 +159,82 @@
     "n": 2
    }
   },
-  "tsuruhashi>iseshi": {
+  "tsuruhashi>yamato-yagi": {
    "特急": {
-    "min": 98,
-    "max": 105,
-    "median": 100,
+    "min": 24,
+    "max": 29,
+    "median": 24,
     "n": 17
    },
    "しまかぜ": {
-    "min": 90,
-    "max": 90,
-    "median": 90,
+    "min": 23,
+    "max": 23,
+    "median": 23,
     "n": 1
+   }
+  },
+  "yamato-yagi>yamato-saidaiji": {
+   "特急": {
+    "min": 15,
+    "max": 20,
+    "median": 17,
+    "n": 64
+   },
+   "しまかぜ": {
+    "min": 18,
+    "max": 20,
+    "median": 20,
+    "n": 2
+   }
+  },
+  "yamato-yagi>tsuruhashi": {
+   "特急": {
+    "min": 23,
+    "max": 30,
+    "median": 25,
+    "n": 34
+   },
+   "しまかぜ": {
+    "min": 25,
+    "max": 26,
+    "median": 26,
+    "n": 2
+   }
+  },
+  "yamato-yagi>iseshi": {
+   "特急": {
+    "min": 67,
+    "max": 82,
+    "median": 73,
+    "n": 45
+   },
+   "しまかぜ": {
+    "min": 63,
+    "max": 69,
+    "median": 66,
+    "n": 4
    }
   },
   "iseshi>tsuruhashi": {
    "特急": {
     "min": 93,
-    "max": 111,
-    "median": 100,
-    "n": 35
-   },
-   "しまかぜ": {
-    "min": 92,
     "max": 93,
     "median": 93,
-    "n": 2
+    "n": 1
+   }
+  },
+  "iseshi>yamato-yagi": {
+   "特急": {
+    "min": 69,
+    "max": 79,
+    "median": 72,
+    "n": 39
+   },
+   "しまかぜ": {
+    "min": 65,
+    "max": 66,
+    "median": 66,
+    "n": 4
    }
   },
   "iseshi>ujiyamada": {
@@ -1756,6 +1880,11 @@
       "08:49"
      ],
      [
+      "yamato-yagi",
+      "10:01",
+      "10:02"
+     ],
+     [
       "tsuruhashi",
       "10:26",
       "10:27"
@@ -2152,6 +2281,11 @@
       "09:46"
      ],
      [
+      "yamato-yagi",
+      "11:01",
+      "11:02"
+     ],
+     [
       "tsuruhashi",
       "11:27",
       "11:28"
@@ -2448,6 +2582,11 @@
       "iseshi",
       "10:48",
       "10:49"
+     ],
+     [
+      "yamato-yagi",
+      "12:01",
+      "12:02"
      ],
      [
       "tsuruhashi",
@@ -2748,6 +2887,11 @@
       "11:49"
      ],
      [
+      "yamato-yagi",
+      "13:01",
+      "13:02"
+     ],
+     [
       "tsuruhashi",
       "13:27",
       "13:28"
@@ -3029,6 +3173,11 @@
       "iseshi",
       "12:48",
       "12:49"
+     ],
+     [
+      "yamato-yagi",
+      "14:01",
+      "14:02"
      ],
      [
       "tsuruhashi",
@@ -3329,6 +3478,11 @@
       "13:49"
      ],
      [
+      "yamato-yagi",
+      "15:01",
+      "15:02"
+     ],
+     [
       "tsuruhashi",
       "15:27",
       "15:28"
@@ -3612,6 +3766,11 @@
       "14:49"
      ],
      [
+      "yamato-yagi",
+      "16:01",
+      "16:03"
+     ],
+     [
       "tsuruhashi",
       "16:27",
       "16:28"
@@ -3691,6 +3850,26 @@
       "iseshi",
       "15:07",
       "15:07"
+     ],
+     [
+      "yamato-yagi",
+      "16:20",
+      "16:23"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:42",
+      "16:44"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:08",
+      "17:09"
+     ],
+     [
+      "kyoto",
+      "17:15",
+      null
      ]
     ]
    },
@@ -3903,6 +4082,26 @@
       "iseshi",
       "15:33",
       "15:34"
+     ],
+     [
+      "yamato-yagi",
+      "16:39",
+      "16:41"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:01",
+      "17:04"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:27",
+      "17:27"
+     ],
+     [
+      "kyoto",
+      "17:34",
+      null
      ]
     ]
    },
@@ -3984,6 +4183,11 @@
       "iseshi",
       "15:48",
       "15:49"
+     ],
+     [
+      "yamato-yagi",
+      "17:06",
+      "17:07"
      ],
      [
       "tsuruhashi",
@@ -4096,6 +4300,26 @@
       "iseshi",
       "16:08",
       "16:09"
+     ],
+     [
+      "yamato-yagi",
+      "17:19",
+      "17:20"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:39",
+      "17:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:05",
+      "18:06"
+     ],
+     [
+      "kyoto",
+      "18:12",
+      null
      ]
     ]
    },
@@ -4338,6 +4562,11 @@
       "16:32"
      ],
      [
+      "yamato-yagi",
+      "17:45",
+      "17:47"
+     ],
+     [
       "tsuruhashi",
       "18:13",
       "18:14"
@@ -4379,6 +4608,11 @@
       "iseshi",
       "16:42",
       "16:43"
+     ],
+     [
+      "yamato-yagi",
+      "17:49",
+      "17:50"
      ],
      [
       "tsuruhashi",
@@ -4550,6 +4784,11 @@
       "iseshi",
       "16:49",
       "16:49"
+     ],
+     [
+      "yamato-yagi",
+      "18:05",
+      "18:07"
      ],
      [
       "tsuruhashi",
@@ -4843,6 +5082,11 @@
       "17:32"
      ],
      [
+      "yamato-yagi",
+      "18:44",
+      "18:45"
+     ],
+     [
       "tsuruhashi",
       "19:12",
       "19:13"
@@ -5030,6 +5274,11 @@
       "iseshi",
       "17:45",
       "17:46"
+     ],
+     [
+      "yamato-yagi",
+      "19:03",
+      "19:04"
      ],
      [
       "tsuruhashi",
@@ -5471,6 +5720,11 @@
       "18:48"
      ],
      [
+      "yamato-yagi",
+      "20:00",
+      "20:02"
+     ],
+     [
       "tsuruhashi",
       "20:29",
       "20:30"
@@ -5757,6 +6011,11 @@
       "iseshi",
       "19:33",
       "19:33"
+     ],
+     [
+      "yamato-yagi",
+      "20:50",
+      "20:51"
      ],
      [
       "tsuruhashi",
@@ -6189,6 +6448,11 @@
       "iseshi",
       "20:33",
       "20:34"
+     ],
+     [
+      "yamato-yagi",
+      "21:47",
+      "21:49"
      ],
      [
       "tsuruhashi",
@@ -7426,6 +7690,11 @@
       "06:11"
      ],
      [
+      "yamato-yagi",
+      "06:35",
+      "06:37"
+     ],
+     [
       "iseshi",
       "07:53",
       "07:53"
@@ -7606,6 +7875,11 @@
       "06:49"
      ],
      [
+      "yamato-yagi",
+      "07:13",
+      "07:14"
+     ],
+     [
       "iseshi",
       "08:29",
       "08:30"
@@ -7741,6 +8015,11 @@
       "tsuruhashi",
       "07:10",
       "07:11"
+     ],
+     [
+      "yamato-yagi",
+      "07:38",
+      "07:39"
      ],
      [
       "iseshi",
@@ -8044,6 +8323,11 @@
       "07:48"
      ],
      [
+      "yamato-yagi",
+      "08:17",
+      "08:20"
+     ],
+     [
       "iseshi",
       "09:33",
       "09:33"
@@ -8070,6 +8354,11 @@
       "tsuruhashi",
       "08:11",
       "08:12"
+     ],
+     [
+      "yamato-yagi",
+      "08:39",
+      "08:41"
      ],
      [
       "iseshi",
@@ -8274,6 +8563,26 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "kyoto",
+      null,
+      "08:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:16",
+      "08:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:40",
+      "08:41"
+     ],
+     [
+      "yamato-yagi",
+      "09:01",
+      "09:05"
+     ],
+     [
       "iseshi",
       "10:13",
       "10:14"
@@ -8355,6 +8664,11 @@
       "08:53"
      ],
      [
+      "yamato-yagi",
+      "09:17",
+      "09:18"
+     ],
+     [
       "iseshi",
       "10:33",
       "10:33"
@@ -8419,6 +8733,11 @@
       "tsuruhashi",
       "09:13",
       "09:14"
+     ],
+     [
+      "yamato-yagi",
+      "09:39",
+      "09:41"
      ],
      [
       "iseshi",
@@ -8623,6 +8942,26 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "kyoto",
+      null,
+      "09:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:16",
+      "09:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:39",
+      "09:40"
+     ],
+     [
+      "yamato-yagi",
+      "10:00",
+      "10:04"
+     ],
+     [
       "iseshi",
       "11:13",
       "11:14"
@@ -8780,6 +9119,11 @@
       "10:16"
      ],
      [
+      "yamato-yagi",
+      "10:40",
+      "10:41"
+     ],
+     [
       "iseshi",
       "11:54",
       "11:55"
@@ -8845,6 +9189,26 @@
     "to": "kashikojima",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "kyoto",
+      null,
+      "10:00"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:06",
+      "10:06"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:30",
+      "10:32"
+     ],
+     [
+      "yamato-yagi",
+      "10:52",
+      "10:54"
+     ],
      [
       "iseshi",
       "12:03",
@@ -9030,6 +9394,11 @@
       "10:46"
      ],
      [
+      "yamato-yagi",
+      "11:09",
+      "11:11"
+     ],
+     [
       "iseshi",
       "12:16",
       "12:16"
@@ -9157,6 +9526,11 @@
       "tsuruhashi",
       "11:15",
       "11:16"
+     ],
+     [
+      "yamato-yagi",
+      "11:41",
+      "11:42"
      ],
      [
       "iseshi",
@@ -9455,6 +9829,11 @@
       "tsuruhashi",
       "12:15",
       "12:16"
+     ],
+     [
+      "yamato-yagi",
+      "12:40",
+      "12:41"
      ],
      [
       "iseshi",
@@ -9828,6 +10207,11 @@
       "tsuruhashi",
       "13:15",
       "13:16"
+     ],
+     [
+      "yamato-yagi",
+      "13:40",
+      "13:41"
      ],
      [
       "iseshi",
@@ -10254,6 +10638,11 @@
       "14:16"
      ],
      [
+      "yamato-yagi",
+      "14:40",
+      "14:41"
+     ],
+     [
       "iseshi",
       "15:54",
       "15:55"
@@ -10673,6 +11062,11 @@
       "15:16"
      ],
      [
+      "yamato-yagi",
+      "15:40",
+      "15:41"
+     ],
+     [
       "iseshi",
       "16:54",
       "16:55"
@@ -11087,6 +11481,11 @@
       "tsuruhashi",
       "16:15",
       "16:16"
+     ],
+     [
+      "yamato-yagi",
+      "16:40",
+      "16:42"
      ],
      [
       "iseshi",
@@ -11528,6 +11927,11 @@
       "17:16"
      ],
      [
+      "yamato-yagi",
+      "17:41",
+      "17:42"
+     ],
+     [
       "iseshi",
       "18:54",
       "18:55"
@@ -11637,6 +12041,26 @@
     "to": "toba",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "kyoto",
+      null,
+      "17:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:16",
+      "17:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:40",
+      "17:42"
+     ],
+     [
+      "yamato-yagi",
+      "18:01",
+      "18:04"
+     ],
      [
       "iseshi",
       "19:17",
@@ -12014,6 +12438,11 @@
       "18:16"
      ],
      [
+      "yamato-yagi",
+      "18:41",
+      "18:42"
+     ],
+     [
       "iseshi",
       "19:58",
       "19:58"
@@ -12293,6 +12722,11 @@
       "tsuruhashi",
       "19:15",
       "19:16"
+     ],
+     [
+      "yamato-yagi",
+      "19:41",
+      "19:42"
      ],
      [
       "iseshi",
@@ -13559,6 +13993,1546 @@
       null
      ]
     ]
+   },
+   "1-1924": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "07:05"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:11",
+      "07:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "07:34",
+      "07:36"
+     ],
+     [
+      "yamato-yagi",
+      "07:56",
+      null
+     ]
+    ]
+   },
+   "1-1925": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "07:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:37",
+      "07:37"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:03",
+      "08:05"
+     ],
+     [
+      "yamato-yagi",
+      "08:23",
+      null
+     ]
+    ]
+   },
+   "1-1926": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "08:35"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:41",
+      "08:41"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:06",
+      "09:07"
+     ],
+     [
+      "yamato-yagi",
+      "09:25",
+      null
+     ]
+    ]
+   },
+   "1-1927": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "09:36"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:43",
+      "09:43"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:08",
+      "10:10"
+     ],
+     [
+      "yamato-yagi",
+      "10:26",
+      null
+     ]
+    ]
+   },
+   "1-1749": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "10:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:16",
+      "10:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:39",
+      "10:40"
+     ],
+     [
+      "yamato-yagi",
+      "10:57",
+      null
+     ]
+    ]
+   },
+   "1-1746": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "10:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:46",
+      "10:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:08",
+      "11:10"
+     ],
+     [
+      "yamato-yagi",
+      "11:27",
+      null
+     ]
+    ]
+   },
+   "1-1750": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "11:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:16",
+      "11:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:38",
+      "11:40"
+     ],
+     [
+      "yamato-yagi",
+      "11:57",
+      null
+     ]
+    ]
+   },
+   "1-1748": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "11:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:46",
+      "11:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:08",
+      "12:10"
+     ],
+     [
+      "yamato-yagi",
+      "12:27",
+      null
+     ]
+    ]
+   },
+   "1-1747": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "12:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:16",
+      "12:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:38",
+      "12:40"
+     ],
+     [
+      "yamato-yagi",
+      "12:57",
+      null
+     ]
+    ]
+   },
+   "1-1751": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "12:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:46",
+      "12:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:08",
+      "13:10"
+     ],
+     [
+      "yamato-yagi",
+      "13:27",
+      null
+     ]
+    ]
+   },
+   "1-1745": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "13:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:16",
+      "13:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:38",
+      "13:40"
+     ],
+     [
+      "yamato-yagi",
+      "13:57",
+      null
+     ]
+    ]
+   },
+   "1-1752": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "13:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:46",
+      "13:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:08",
+      "14:10"
+     ],
+     [
+      "yamato-yagi",
+      "14:27",
+      null
+     ]
+    ]
+   },
+   "1-1743": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "14:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:16",
+      "14:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:39",
+      "14:40"
+     ],
+     [
+      "yamato-yagi",
+      "14:57",
+      null
+     ]
+    ]
+   },
+   "1-1744": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "14:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:46",
+      "14:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:09",
+      "15:10"
+     ],
+     [
+      "yamato-yagi",
+      "15:27",
+      null
+     ]
+    ]
+   },
+   "1-1677": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "15:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:16",
+      "15:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:40",
+      "15:41"
+     ],
+     [
+      "yamato-yagi",
+      "15:57",
+      null
+     ]
+    ]
+   },
+   "1-1676": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "15:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:46",
+      "15:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:10",
+      "16:11"
+     ],
+     [
+      "yamato-yagi",
+      "16:27",
+      null
+     ]
+    ]
+   },
+   "1-1678": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "16:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:16",
+      "16:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:41",
+      "16:42"
+     ],
+     [
+      "yamato-yagi",
+      "16:58",
+      null
+     ]
+    ]
+   },
+   "1-1679": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "16:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:46",
+      "16:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:10",
+      "17:11"
+     ],
+     [
+      "yamato-yagi",
+      "17:27",
+      null
+     ]
+    ]
+   },
+   "1-1680": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "17:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:46",
+      "17:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:11",
+      "18:13"
+     ],
+     [
+      "yamato-yagi",
+      "18:30",
+      null
+     ]
+    ]
+   },
+   "1-1681": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "18:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:16",
+      "18:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:40",
+      "18:41"
+     ],
+     [
+      "yamato-yagi",
+      "18:57",
+      null
+     ]
+    ]
+   },
+   "1-1682": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "18:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:46",
+      "18:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:11",
+      "19:12"
+     ],
+     [
+      "yamato-yagi",
+      "19:28",
+      null
+     ]
+    ]
+   },
+   "1-1683": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "19:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:16",
+      "19:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:40",
+      "19:41"
+     ],
+     [
+      "yamato-yagi",
+      "19:57",
+      null
+     ]
+    ]
+   },
+   "1-1684": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "19:50"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:56",
+      "19:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:20",
+      "20:21"
+     ],
+     [
+      "yamato-yagi",
+      "20:37",
+      null
+     ]
+    ]
+   },
+   "1-1685": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "20:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:16",
+      "20:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:40",
+      "20:41"
+     ],
+     [
+      "yamato-yagi",
+      "20:57",
+      null
+     ]
+    ]
+   },
+   "1-1686": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "20:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:51",
+      "20:51"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:15",
+      "21:16"
+     ],
+     [
+      "yamato-yagi",
+      "21:32",
+      null
+     ]
+    ]
+   },
+   "1-1687": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "21:25"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "21:31",
+      "21:31"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:55",
+      "21:58"
+     ],
+     [
+      "yamato-yagi",
+      "22:16",
+      null
+     ]
+    ]
+   },
+   "1-1013": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "06:22"
+     ],
+     [
+      "yamato-saidaiji",
+      "06:42",
+      "06:43"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:08",
+      "07:08"
+     ],
+     [
+      "kyoto",
+      "07:16",
+      null
+     ]
+    ]
+   },
+   "1-1535": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "07:03"
+     ],
+     [
+      "yamato-saidaiji",
+      "07:20",
+      "07:21"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:48",
+      "07:49"
+     ],
+     [
+      "kyoto",
+      "07:58",
+      null
+     ]
+    ]
+   },
+   "1-4253": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "07:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:06",
+      "08:09"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:34",
+      "08:35"
+     ],
+     [
+      "kyoto",
+      "08:42",
+      null
+     ]
+    ]
+   },
+   "1-1537": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "08:09"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:26",
+      "08:27"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:53",
+      "08:53"
+     ],
+     [
+      "kyoto",
+      "09:00",
+      null
+     ]
+    ]
+   },
+   "1-1536": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "08:32"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:49",
+      "08:51"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:19",
+      "09:19"
+     ],
+     [
+      "kyoto",
+      "09:27",
+      null
+     ]
+    ]
+   },
+   "1-1538": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "08:58"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:13",
+      "09:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:41",
+      "09:42"
+     ],
+     [
+      "kyoto",
+      "09:49",
+      null
+     ]
+    ]
+   },
+   "1-4254": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "09:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:44",
+      "09:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:12",
+      "10:12"
+     ],
+     [
+      "kyoto",
+      "10:20",
+      null
+     ]
+    ]
+   },
+   "1-1675": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "10:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:43",
+      "10:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:07",
+      "11:08"
+     ],
+     [
+      "kyoto",
+      "11:15",
+      null
+     ]
+    ]
+   },
+   "1-1540": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "11:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:27",
+      "11:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:53",
+      "11:54"
+     ],
+     [
+      "kyoto",
+      "12:00",
+      null
+     ]
+    ]
+   },
+   "1-1670": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "11:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:43",
+      "11:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:07",
+      "12:08"
+     ],
+     [
+      "kyoto",
+      "12:15",
+      null
+     ]
+    ]
+   },
+   "1-1539": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "12:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:28",
+      "12:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:53",
+      "12:54"
+     ],
+     [
+      "kyoto",
+      "13:00",
+      null
+     ]
+    ]
+   },
+   "1-1669": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "12:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:43",
+      "12:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:07",
+      "13:08"
+     ],
+     [
+      "kyoto",
+      "13:15",
+      null
+     ]
+    ]
+   },
+   "1-1667": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "13:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:29",
+      "13:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:52",
+      "13:53"
+     ],
+     [
+      "kyoto",
+      "14:00",
+      null
+     ]
+    ]
+   },
+   "1-1668": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "13:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:43",
+      "13:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:07",
+      "14:08"
+     ],
+     [
+      "kyoto",
+      "14:15",
+      null
+     ]
+    ]
+   },
+   "1-1671": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "14:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:29",
+      "14:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:52",
+      "14:53"
+     ],
+     [
+      "kyoto",
+      "15:00",
+      null
+     ]
+    ]
+   },
+   "1-1666": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "14:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:43",
+      "14:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:07",
+      "15:08"
+     ],
+     [
+      "kyoto",
+      "15:15",
+      null
+     ]
+    ]
+   },
+   "1-1673": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "15:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:29",
+      "15:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:54",
+      "15:54"
+     ],
+     [
+      "kyoto",
+      "16:02",
+      null
+     ]
+    ]
+   },
+   "1-1672": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "15:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:43",
+      "15:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:07",
+      "16:07"
+     ],
+     [
+      "kyoto",
+      "16:14",
+      null
+     ]
+    ]
+   },
+   "1-1674": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "15:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:13",
+      "16:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:37",
+      "16:38"
+     ],
+     [
+      "kyoto",
+      "16:44",
+      null
+     ]
+    ]
+   },
+   "1-1968": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "16:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:13",
+      "17:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:39",
+      "17:40"
+     ],
+     [
+      "kyoto",
+      "17:46",
+      null
+     ]
+    ]
+   },
+   "1-1969": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "17:55"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:13",
+      "18:14"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:37",
+      "18:37"
+     ],
+     [
+      "kyoto",
+      "18:44",
+      null
+     ]
+    ]
+   },
+   "1-1970": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "18:25"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:43",
+      "18:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:08",
+      "19:08"
+     ],
+     [
+      "kyoto",
+      "19:15",
+      null
+     ]
+    ]
+   },
+   "1-1971": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "18:51"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:08",
+      "19:09"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:32",
+      "19:32"
+     ],
+     [
+      "kyoto",
+      "19:40",
+      null
+     ]
+    ]
+   },
+   "1-1972": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "19:27"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:43",
+      "19:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:09",
+      "20:09"
+     ],
+     [
+      "kyoto",
+      "20:17",
+      null
+     ]
+    ]
+   },
+   "1-1973": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "19:48"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:03",
+      "20:05"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:28",
+      "20:29"
+     ],
+     [
+      "kyoto",
+      "20:35",
+      null
+     ]
+    ]
+   },
+   "1-1974": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "20:25"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:42",
+      "20:43"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "21:05",
+      "21:06"
+     ],
+     [
+      "kyoto",
+      "21:13",
+      null
+     ]
+    ]
+   },
+   "1-1975": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "20:58"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:13",
+      "21:14"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "21:38",
+      "21:38"
+     ],
+     [
+      "kyoto",
+      "21:45",
+      null
+     ]
+    ]
+   },
+   "1-1976": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "21:24"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:40",
+      "21:41"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "22:05",
+      "22:06"
+     ],
+     [
+      "kyoto",
+      "22:12",
+      null
+     ]
+    ]
+   },
+   "1-1967": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "21:52"
+     ],
+     [
+      "yamato-saidaiji",
+      "22:08",
+      "22:09"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "22:33",
+      "22:34"
+     ],
+     [
+      "kyoto",
+      "22:41",
+      null
+     ]
+    ]
    }
   },
   "holiday": {
@@ -13740,6 +15714,11 @@
       "iseshi",
       "06:07",
       "06:07"
+     ],
+     [
+      "yamato-yagi",
+      "07:26",
+      "07:27"
      ],
      [
       "tsuruhashi",
@@ -14633,6 +16612,11 @@
       "08:49"
      ],
      [
+      "yamato-yagi",
+      "10:06",
+      "10:07"
+     ],
+     [
       "tsuruhashi",
       "10:32",
       "10:33"
@@ -14828,6 +16812,26 @@
       "iseshi",
       "09:21",
       "09:22"
+     ],
+     [
+      "yamato-yagi",
+      "10:31",
+      "10:33"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:53",
+      "10:57"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:22",
+      "11:23"
+     ],
+     [
+      "kyoto",
+      "11:30",
+      null
      ]
     ]
    },
@@ -15040,6 +17044,11 @@
       "iseshi",
       "09:45",
       "09:46"
+     ],
+     [
+      "yamato-yagi",
+      "11:05",
+      "11:08"
      ],
      [
       "tsuruhashi",
@@ -15340,6 +17349,11 @@
       "10:49"
      ],
      [
+      "yamato-yagi",
+      "12:01",
+      "12:02"
+     ],
+     [
       "tsuruhashi",
       "12:26",
       "12:27"
@@ -15636,6 +17650,11 @@
       "iseshi",
       "11:48",
       "11:49"
+     ],
+     [
+      "yamato-yagi",
+      "13:01",
+      "13:02"
      ],
      [
       "tsuruhashi",
@@ -15936,6 +17955,11 @@
       "12:49"
      ],
      [
+      "yamato-yagi",
+      "14:01",
+      "14:02"
+     ],
+     [
       "tsuruhashi",
       "14:26",
       "14:27"
@@ -16234,6 +18258,11 @@
       "13:49"
      ],
      [
+      "yamato-yagi",
+      "15:01",
+      "15:02"
+     ],
+     [
       "tsuruhashi",
       "15:26",
       "15:27"
@@ -16479,6 +18508,11 @@
       "14:34"
      ],
      [
+      "yamato-yagi",
+      "15:46",
+      "15:47"
+     ],
+     [
       "tsuruhashi",
       "16:17",
       "16:18"
@@ -16573,6 +18607,11 @@
       "iseshi",
       "14:48",
       "14:49"
+     ],
+     [
+      "yamato-yagi",
+      "16:01",
+      "16:02"
      ],
      [
       "tsuruhashi",
@@ -16677,6 +18716,26 @@
       "iseshi",
       "15:09",
       "15:10"
+     ],
+     [
+      "yamato-yagi",
+      "16:20",
+      "16:23"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:42",
+      "16:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:08",
+      "17:08"
+     ],
+     [
+      "kyoto",
+      "17:15",
+      null
      ]
     ]
    },
@@ -16909,6 +18968,11 @@
       "15:29"
      ],
      [
+      "yamato-yagi",
+      "16:47",
+      "16:48"
+     ],
+     [
       "tsuruhashi",
       "17:13",
       "17:14"
@@ -16950,6 +19014,26 @@
       "iseshi",
       "15:33",
       "15:34"
+     ],
+     [
+      "yamato-yagi",
+      "16:39",
+      "16:40"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:58",
+      "17:00"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:22",
+      "17:23"
+     ],
+     [
+      "kyoto",
+      "17:30",
+      null
      ]
     ]
    },
@@ -17066,6 +19150,11 @@
       "15:50"
      ],
      [
+      "yamato-yagi",
+      "17:02",
+      "17:03"
+     ],
+     [
       "tsuruhashi",
       "17:27",
       "17:28"
@@ -17168,6 +19257,26 @@
       "iseshi",
       "16:09",
       "16:10"
+     ],
+     [
+      "yamato-yagi",
+      "17:19",
+      "17:23"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:42",
+      "17:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:07",
+      "18:08"
+     ],
+     [
+      "kyoto",
+      "18:14",
+      null
      ]
     ]
    },
@@ -17410,6 +19519,11 @@
       "16:32"
      ],
      [
+      "yamato-yagi",
+      "17:47",
+      "17:48"
+     ],
+     [
       "tsuruhashi",
       "18:14",
       "18:15"
@@ -17451,6 +19565,11 @@
       "iseshi",
       "16:42",
       "16:43"
+     ],
+     [
+      "yamato-yagi",
+      "17:49",
+      "17:50"
      ],
      [
       "tsuruhashi",
@@ -17622,6 +19741,11 @@
       "iseshi",
       "16:49",
       "16:50"
+     ],
+     [
+      "yamato-yagi",
+      "18:02",
+      "18:02"
      ],
      [
       "tsuruhashi",
@@ -17915,6 +20039,11 @@
       "17:32"
      ],
      [
+      "yamato-yagi",
+      "18:47",
+      "18:48"
+     ],
+     [
       "tsuruhashi",
       "19:11",
       "19:12"
@@ -18102,6 +20231,11 @@
       "iseshi",
       "17:45",
       "17:46"
+     ],
+     [
+      "yamato-yagi",
+      "19:01",
+      "19:02"
      ],
      [
       "tsuruhashi",
@@ -18523,6 +20657,11 @@
       "18:47"
      ],
      [
+      "yamato-yagi",
+      "19:59",
+      "20:00"
+     ],
+     [
       "tsuruhashi",
       "20:24",
       "20:25"
@@ -18794,6 +20933,11 @@
       "iseshi",
       "19:31",
       "19:32"
+     ],
+     [
+      "yamato-yagi",
+      "20:47",
+      "20:48"
      ],
      [
       "tsuruhashi",
@@ -19205,6 +21349,11 @@
       "20:32"
      ],
      [
+      "yamato-yagi",
+      "21:48",
+      "21:50"
+     ],
+     [
       "tsuruhashi",
       "22:15",
       "22:16"
@@ -19500,6 +21649,11 @@
       "iseshi",
       "21:26",
       "21:26"
+     ],
+     [
+      "yamato-yagi",
+      "22:41",
+      "22:42"
      ],
      [
       "tsuruhashi",
@@ -20432,6 +22586,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "06:37"
+     ],
+     [
       "iseshi",
       "07:52",
       "07:53"
@@ -20579,6 +22738,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "07:12"
+     ],
+     [
       "iseshi",
       "08:24",
       "08:24"
@@ -20719,6 +22883,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "07:38"
+     ],
+     [
       "iseshi",
       "08:53",
       "08:54"
@@ -20841,6 +23010,26 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "kyoto",
+      null,
+      "07:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:16",
+      "07:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "07:40",
+      "07:41"
+     ],
+     [
+      "yamato-yagi",
+      "08:00",
+      "08:03"
+     ],
+     [
       "iseshi",
       "09:15",
       "09:15"
@@ -20935,6 +23124,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "08:16"
+     ],
+     [
       "iseshi",
       "09:34",
       "09:35"
@@ -20990,6 +23184,11 @@
     "to": "kashikojima",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "08:41"
+     ],
      [
       "iseshi",
       "09:54",
@@ -21193,6 +23392,26 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "kyoto",
+      null,
+      "08:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:16",
+      "08:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:40",
+      "08:41"
+     ],
+     [
+      "yamato-yagi",
+      "09:00",
+      "09:04"
+     ],
+     [
       "iseshi",
       "10:13",
       "10:14"
@@ -21263,6 +23482,11 @@
     "to": "ujiyamada",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "09:19"
+     ],
      [
       "iseshi",
       "10:32",
@@ -21357,6 +23581,11 @@
     "to": "toba",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "09:41"
+     ],
      [
       "iseshi",
       "10:54",
@@ -21583,6 +23812,26 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "kyoto",
+      null,
+      "09:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:16",
+      "09:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:40",
+      "09:42"
+     ],
+     [
+      "yamato-yagi",
+      "10:00",
+      "10:04"
+     ],
+     [
       "iseshi",
       "11:13",
       "11:14"
@@ -21625,6 +23874,11 @@
     "to": "toba",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "10:16"
+     ],
      [
       "iseshi",
       "11:26",
@@ -21768,6 +24022,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "10:42"
+     ],
+     [
       "iseshi",
       "11:54",
       "11:55"
@@ -21810,6 +24069,26 @@
     "to": "kashikojima",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "kyoto",
+      null,
+      "10:00"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:06",
+      "10:06"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:30",
+      "10:32"
+     ],
+     [
+      "yamato-yagi",
+      "10:53",
+      "10:54"
+     ],
      [
       "iseshi",
       "12:00",
@@ -22003,6 +24282,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "11:13"
+     ],
+     [
       "iseshi",
       "12:16",
       "12:16"
@@ -22035,6 +24319,11 @@
     "to": "toba",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "11:20"
+     ],
      [
       "iseshi",
       "12:27",
@@ -22144,6 +24433,11 @@
     "to": "kashikojima",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "11:43"
+     ],
      [
       "iseshi",
       "12:55",
@@ -22427,6 +24721,11 @@
     "to": "kashikojima",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "12:41"
+     ],
      [
       "iseshi",
       "13:54",
@@ -22785,6 +25084,11 @@
     "to": "kashikojima",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "13:41"
+     ],
      [
       "iseshi",
       "14:54",
@@ -23185,6 +25489,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "14:41"
+     ],
+     [
       "iseshi",
       "15:54",
       "15:55"
@@ -23571,6 +25880,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "15:42"
+     ],
+     [
       "iseshi",
       "16:54",
       "16:55"
@@ -23952,6 +26266,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "16:41"
+     ],
+     [
       "iseshi",
       "17:54",
       "17:55"
@@ -24276,6 +26595,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "17:42"
+     ],
+     [
       "iseshi",
       "18:54",
       "18:54"
@@ -24387,6 +26711,26 @@
     "to": "toba",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "kyoto",
+      null,
+      "17:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:16",
+      "17:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:40",
+      "17:41"
+     ],
+     [
+      "yamato-yagi",
+      "17:59",
+      "18:04"
+     ],
      [
       "iseshi",
       "19:15",
@@ -24654,6 +26998,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "18:40"
+     ],
+     [
       "iseshi",
       "19:55",
       "19:56"
@@ -24877,6 +27226,11 @@
     "dir": "for-kashikojima",
     "stops": [
      [
+      "yamato-yagi",
+      null,
+      "19:15"
+     ],
+     [
       "iseshi",
       "20:37",
       "20:38"
@@ -24980,6 +27334,11 @@
     "to": "isuzugawa",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "19:41"
+     ],
      [
       "iseshi",
       "20:54",
@@ -25120,6 +27479,11 @@
     "to": "isuzugawa",
     "dir": "for-kashikojima",
     "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "20:17"
+     ],
      [
       "iseshi",
       "21:35",
@@ -26463,6 +28827,1546 @@
       null
      ]
     ]
+   },
+   "1-7081": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "07:35"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:41",
+      "07:41"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:05",
+      "08:06"
+     ],
+     [
+      "yamato-yagi",
+      "08:24",
+      null
+     ]
+    ]
+   },
+   "1-7080": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "08:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:46",
+      "08:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:08",
+      "09:10"
+     ],
+     [
+      "yamato-yagi",
+      "09:26",
+      null
+     ]
+    ]
+   },
+   "1-6914": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "09:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:46",
+      "09:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:09",
+      "10:10"
+     ],
+     [
+      "yamato-yagi",
+      "10:27",
+      null
+     ]
+    ]
+   },
+   "1-6915": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "10:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:16",
+      "10:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:39",
+      "10:40"
+     ],
+     [
+      "yamato-yagi",
+      "10:57",
+      null
+     ]
+    ]
+   },
+   "1-6913": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "10:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:46",
+      "10:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:09",
+      "11:10"
+     ],
+     [
+      "yamato-yagi",
+      "11:27",
+      null
+     ]
+    ]
+   },
+   "1-6918": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "11:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:16",
+      "11:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:39",
+      "11:40"
+     ],
+     [
+      "yamato-yagi",
+      "11:57",
+      null
+     ]
+    ]
+   },
+   "1-6916": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "11:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:46",
+      "11:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:08",
+      "12:10"
+     ],
+     [
+      "yamato-yagi",
+      "12:27",
+      null
+     ]
+    ]
+   },
+   "1-6920": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "12:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:16",
+      "12:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:39",
+      "12:40"
+     ],
+     [
+      "yamato-yagi",
+      "12:57",
+      null
+     ]
+    ]
+   },
+   "1-6917": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "12:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:46",
+      "12:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:08",
+      "13:10"
+     ],
+     [
+      "yamato-yagi",
+      "13:27",
+      null
+     ]
+    ]
+   },
+   "1-6921": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "13:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:16",
+      "13:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:38",
+      "13:40"
+     ],
+     [
+      "yamato-yagi",
+      "13:57",
+      null
+     ]
+    ]
+   },
+   "1-6919": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "13:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:46",
+      "13:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:08",
+      "14:10"
+     ],
+     [
+      "yamato-yagi",
+      "14:27",
+      null
+     ]
+    ]
+   },
+   "1-6922": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "14:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:16",
+      "14:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:38",
+      "14:40"
+     ],
+     [
+      "yamato-yagi",
+      "14:57",
+      null
+     ]
+    ]
+   },
+   "1-6923": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "14:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:46",
+      "14:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:08",
+      "15:10"
+     ],
+     [
+      "yamato-yagi",
+      "15:27",
+      null
+     ]
+    ]
+   },
+   "1-6820": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "15:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:16",
+      "15:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:40",
+      "15:41"
+     ],
+     [
+      "yamato-yagi",
+      "15:57",
+      null
+     ]
+    ]
+   },
+   "1-6821": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "15:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:46",
+      "15:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:10",
+      "16:11"
+     ],
+     [
+      "yamato-yagi",
+      "16:27",
+      null
+     ]
+    ]
+   },
+   "1-6823": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "16:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:16",
+      "16:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:40",
+      "16:41"
+     ],
+     [
+      "yamato-yagi",
+      "16:57",
+      null
+     ]
+    ]
+   },
+   "1-6819": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "16:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:46",
+      "16:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:10",
+      "17:11"
+     ],
+     [
+      "yamato-yagi",
+      "17:27",
+      null
+     ]
+    ]
+   },
+   "1-6822": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "17:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:46",
+      "17:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:10",
+      "18:11"
+     ],
+     [
+      "yamato-yagi",
+      "18:27",
+      null
+     ]
+    ]
+   },
+   "1-6824": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "18:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:16",
+      "18:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:40",
+      "18:41"
+     ],
+     [
+      "yamato-yagi",
+      "18:57",
+      null
+     ]
+    ]
+   },
+   "1-6825": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "18:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:46",
+      "18:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:10",
+      "19:12"
+     ],
+     [
+      "yamato-yagi",
+      "19:28",
+      null
+     ]
+    ]
+   },
+   "1-6826": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "19:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:16",
+      "19:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:40",
+      "19:41"
+     ],
+     [
+      "yamato-yagi",
+      "19:57",
+      null
+     ]
+    ]
+   },
+   "1-6827": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "19:50"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:56",
+      "19:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:20",
+      "20:21"
+     ],
+     [
+      "yamato-yagi",
+      "20:37",
+      null
+     ]
+    ]
+   },
+   "1-6828": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "20:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:16",
+      "20:16"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:40",
+      "20:41"
+     ],
+     [
+      "yamato-yagi",
+      "20:57",
+      null
+     ]
+    ]
+   },
+   "1-6829": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "20:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:51",
+      "20:51"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:15",
+      "21:16"
+     ],
+     [
+      "yamato-yagi",
+      "21:32",
+      null
+     ]
+    ]
+   },
+   "1-6830": {
+    "type": "特急",
+    "to": "kashiharajingu-mae",
+    "dir": "for-kashikojima",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "kyoto",
+      null,
+      "21:25"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "21:31",
+      "21:31"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:55",
+      "21:57"
+     ],
+     [
+      "yamato-yagi",
+      "22:15",
+      null
+     ]
+    ]
+   },
+   "1-6225": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "06:23"
+     ],
+     [
+      "yamato-saidaiji",
+      "06:42",
+      "06:44"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:09",
+      "07:09"
+     ],
+     [
+      "kyoto",
+      "07:16",
+      null
+     ]
+    ]
+   },
+   "1-6679": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "06:46"
+     ],
+     [
+      "yamato-saidaiji",
+      "07:04",
+      "07:05"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "07:29",
+      "07:30"
+     ],
+     [
+      "kyoto",
+      "07:37",
+      null
+     ]
+    ]
+   },
+   "1-6680": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "07:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "07:44",
+      "07:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:10",
+      "08:10"
+     ],
+     [
+      "kyoto",
+      "08:17",
+      null
+     ]
+    ]
+   },
+   "1-9184": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "07:48"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:07",
+      "08:08"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "08:33",
+      "08:34"
+     ],
+     [
+      "kyoto",
+      "08:41",
+      null
+     ]
+    ]
+   },
+   "1-6681": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "08:27"
+     ],
+     [
+      "yamato-saidaiji",
+      "08:44",
+      "08:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:10",
+      "09:10"
+     ],
+     [
+      "kyoto",
+      "09:19",
+      null
+     ]
+    ]
+   },
+   "1-6682": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "08:57"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:13",
+      "09:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "09:42",
+      "09:43"
+     ],
+     [
+      "kyoto",
+      "09:52",
+      null
+     ]
+    ]
+   },
+   "1-9185": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "09:23"
+     ],
+     [
+      "yamato-saidaiji",
+      "09:43",
+      "09:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:08",
+      "10:09"
+     ],
+     [
+      "kyoto",
+      "10:15",
+      null
+     ]
+    ]
+   },
+   "1-6809": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "10:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "10:28",
+      "10:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "10:54",
+      "10:54"
+     ],
+     [
+      "kyoto",
+      "11:01",
+      null
+     ]
+    ]
+   },
+   "1-6683": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "11:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:27",
+      "11:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "11:53",
+      "11:54"
+     ],
+     [
+      "kyoto",
+      "12:00",
+      null
+     ]
+    ]
+   },
+   "1-6811": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "11:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "11:44",
+      "11:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:07",
+      "12:08"
+     ],
+     [
+      "kyoto",
+      "12:15",
+      null
+     ]
+    ]
+   },
+   "1-6812": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "12:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:28",
+      "12:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "12:53",
+      "12:54"
+     ],
+     [
+      "kyoto",
+      "13:00",
+      null
+     ]
+    ]
+   },
+   "1-6810": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "12:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "12:43",
+      "12:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:07",
+      "13:08"
+     ],
+     [
+      "kyoto",
+      "13:15",
+      null
+     ]
+    ]
+   },
+   "1-6813": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "13:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:28",
+      "13:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "13:52",
+      "13:53"
+     ],
+     [
+      "kyoto",
+      "14:00",
+      null
+     ]
+    ]
+   },
+   "1-6814": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "13:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "13:43",
+      "13:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:07",
+      "14:08"
+     ],
+     [
+      "kyoto",
+      "14:15",
+      null
+     ]
+    ]
+   },
+   "1-6815": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "14:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:28",
+      "14:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "14:52",
+      "14:53"
+     ],
+     [
+      "kyoto",
+      "15:00",
+      null
+     ]
+    ]
+   },
+   "1-6816": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "14:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "14:43",
+      "14:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:07",
+      "15:08"
+     ],
+     [
+      "kyoto",
+      "15:15",
+      null
+     ]
+    ]
+   },
+   "1-6817": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "15:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:28",
+      "15:30"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "15:52",
+      "15:53"
+     ],
+     [
+      "kyoto",
+      "16:00",
+      null
+     ]
+    ]
+   },
+   "1-6818": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "15:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "15:43",
+      "15:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:07",
+      "16:08"
+     ],
+     [
+      "kyoto",
+      "16:15",
+      null
+     ]
+    ]
+   },
+   "1-7115": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "15:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "16:12",
+      "16:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "16:38",
+      "16:38"
+     ],
+     [
+      "kyoto",
+      "16:45",
+      null
+     ]
+    ]
+   },
+   "1-7114": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "16:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "17:12",
+      "17:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "17:37",
+      "17:38"
+     ],
+     [
+      "kyoto",
+      "17:44",
+      null
+     ]
+    ]
+   },
+   "1-7113": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "17:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:12",
+      "18:15"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "18:38",
+      "18:38"
+     ],
+     [
+      "kyoto",
+      "18:45",
+      null
+     ]
+    ]
+   },
+   "1-7116": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "18:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "18:42",
+      "18:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:07",
+      "19:08"
+     ],
+     [
+      "kyoto",
+      "19:15",
+      null
+     ]
+    ]
+   },
+   "1-7117": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "18:53"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:09",
+      "19:10"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "19:34",
+      "19:34"
+     ],
+     [
+      "kyoto",
+      "19:41",
+      null
+     ]
+    ]
+   },
+   "1-7118": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "19:26"
+     ],
+     [
+      "yamato-saidaiji",
+      "19:43",
+      "19:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:09",
+      "20:09"
+     ],
+     [
+      "kyoto",
+      "20:16",
+      null
+     ]
+    ]
+   },
+   "1-7119": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "19:48"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:03",
+      "20:05"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:27",
+      "20:28"
+     ],
+     [
+      "kyoto",
+      "20:36",
+      null
+     ]
+    ]
+   },
+   "1-7123": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "20:06"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:23",
+      "20:25"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "20:47",
+      "20:47"
+     ],
+     [
+      "kyoto",
+      "20:54",
+      null
+     ]
+    ]
+   },
+   "1-7120": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "20:28"
+     ],
+     [
+      "yamato-saidaiji",
+      "20:44",
+      "20:45"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "21:08",
+      "21:08"
+     ],
+     [
+      "kyoto",
+      "21:15",
+      null
+     ]
+    ]
+   },
+   "1-7121": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "20:56"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:12",
+      "21:13"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "21:35",
+      "21:35"
+     ],
+     [
+      "kyoto",
+      "21:42",
+      null
+     ]
+    ]
+   },
+   "1-7122": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "21:24"
+     ],
+     [
+      "yamato-saidaiji",
+      "21:39",
+      "21:40"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "22:03",
+      "22:03"
+     ],
+     [
+      "kyoto",
+      "22:10",
+      null
+     ]
+    ]
+   },
+   "1-7124": {
+    "type": "特急",
+    "to": "kyoto",
+    "dir": "for-ise-nakagawa",
+    "note": "京都線・橿原線（京都 ↔ 大和八木），在大和八木換大阪線往返伊勢志摩的特急",
+    "stops": [
+     [
+      "yamato-yagi",
+      null,
+      "22:11"
+     ],
+     [
+      "yamato-saidaiji",
+      "22:27",
+      "22:28"
+     ],
+     [
+      "kintetsu-tambabashi",
+      "22:52",
+      "22:53"
+     ],
+     [
+      "kyoto",
+      "23:00",
+      null
+     ]
+    ]
    }
   }
  },
@@ -26496,6 +30400,48 @@
    "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=356-0&d=1&dw=0",
    "retrieved": "2026-10-26",
    "note": "T28：osaka-uehommachi 平日發車時刻表（南下往伊勢志摩的特急），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-0&d=1&dw=0",
+   "retrieved": "2026-11-12",
+   "note": "T87：近鉄京都 京都線 近鉄奈良・天理・橿原神宮前・賢島方面（weekday），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-0&d=1&dw=1",
+   "retrieved": "2026-11-12",
+   "note": "T87：近鉄京都 京都線 近鉄奈良・天理・橿原神宮前・賢島方面（holiday），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=356-25&d=2&dw=0",
+   "retrieved": "2026-11-12",
+   "note": "T87：大和八木 大阪線 名張・五十鈴川・賢島・近鉄名古屋方面（weekday），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=356-25&d=2&dw=1",
+   "retrieved": "2026-11-12",
+   "note": "T87：大和八木 大阪線 名張・五十鈴川・賢島・近鉄名古屋方面（holiday），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=361-13&d=1&dw=0",
+   "retrieved": "2026-11-12",
+   "note": "T87：大和八木 橿原線 大和西大寺・京都方面（weekday），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=361-13&d=1&dw=1",
+   "retrieved": "2026-11-12",
+   "note": "T87：大和八木 橿原線 大和西大寺・京都方面（holiday），各班再讀 T7"
+  },
+  {
+   "type": "official",
+   "url": "https://eki.kintetsu.co.jp/norikae/T7?sf=3853&tx=1-4268&dw=0",
+   "retrieved": "2026-11-12",
+   "note": "T87：北上往京都、大阪的特急，從伊勢市的列車停站頁（T7，tx 換成各班的列車編號）讀京都側、大和八木的停站"
   }
  ]
 }

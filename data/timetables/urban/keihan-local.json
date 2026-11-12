@@ -1,0 +1,193 @@
+{
+  "id": "keihan-local",
+  "mode": "private",
+  "operator": "京阪電気鉄道",
+  "name": {
+    "ja": "京阪本線（普通・準急，中書島～三条）",
+    "zh": "京阪本線（普通・準急，中書島～三条）"
+  },
+  "serviceType": "普通・準急",
+  "stops": [
+    {
+      "id": "keihan-chushojima",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "keihan-tambabashi",
+      "min": 3,
+      "note": "常停 4 分等特急（已含在之後的分鐘）"
+    },
+    {
+      "id": "keihan-fushimi-inari",
+      "min": 14,
+      "note": "伏見稻荷大社走約 5 分"
+    },
+    {
+      "id": "keihan-tofukuji",
+      "min": 17,
+      "note": "轉 JR 奈良線東福寺"
+    },
+    {
+      "id": "keihan-shichijo",
+      "min": 19,
+      "note": null
+    },
+    {
+      "id": "keihan-kiyomizu-gojo",
+      "min": 21,
+      "note": "清水寺走約 25 分上坡，通常改搭巴士"
+    },
+    {
+      "id": "keihan-gion-shijo",
+      "min": 23,
+      "note": null
+    },
+    {
+      "id": "keihan-sanjo",
+      "min": 25,
+      "note": null
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:14",
+      "last": "24:18",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 20
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 10
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 12
+        },
+        {
+          "from": "08:00",
+          "to": "10:00",
+          "min": 8.5
+        },
+        {
+          "from": "10:00",
+          "to": "16:00",
+          "min": 12
+        },
+        {
+          "from": "16:00",
+          "to": "18:00",
+          "min": 8.5
+        },
+        {
+          "from": "18:00",
+          "to": "23:00",
+          "min": 12
+        },
+        {
+          "from": "23:00",
+          "to": "24:20",
+          "min": 15
+        }
+      ],
+      "note": "數伏見稲荷站兩個方向所有停的車（普通、準急、急行），每小時取較少的一方；PDF 圖看圖數，可能差 ±1。首末班是伏見稲荷站的"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:14",
+      "last": "24:18",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 20
+        },
+        {
+          "from": "06:00",
+          "to": "08:00",
+          "min": 15
+        },
+        {
+          "from": "08:00",
+          "to": "10:00",
+          "min": 12
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 8.5
+        },
+        {
+          "from": "11:00",
+          "to": "16:00",
+          "min": 12
+        },
+        {
+          "from": "16:00",
+          "to": "18:00",
+          "min": 10
+        },
+        {
+          "from": "18:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "24:20",
+          "min": 15
+        }
+      ],
+      "note": "同平日的數法"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "keihan-gion-shijo": {
+        "keihan-chushojima": 320,
+        "keihan-tambabashi": 320,
+        "keihan-fushimi-inari": 240,
+        "keihan-tofukuji": 180,
+        "keihan-shichijo": 180,
+        "keihan-kiyomizu-gojo": 180,
+        "keihan-sanjo": 180
+      }
+    },
+    "child": "大人的半價、10 円未滿進位",
+    "note": "京阪各站運賃表（2025-10-01 改定）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "京都側（中書島～出町柳）各站停的車：普通、準急（急行也停伏見稲荷）。從大阪來要在丹波橋或中書島換特急。",
+  "validFrom": "2026-08-24",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/time/15111.pdf",
+      "retrieved": "2026-11-12",
+      "note": "伏見稲荷 平日 出町柳方面（15121 淀屋橋方面；土休日 15112、15122）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/time-fare/pdf/time01-1.pdf",
+      "retrieved": "2026-11-12",
+      "note": "全列車時刻表 平日 上り；站間分鐘：普通 中書島 13:11 發"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/fare/162.pdf",
+      "retrieved": "2026-11-12",
+      "note": "祇園四条發運賃表"
+    }
+  ]
+}

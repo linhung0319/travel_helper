@@ -1,0 +1,135 @@
+{
+  "id": "keihan-keishin",
+  "mode": "private",
+  "operator": "京阪電気鉄道・京都市交通局",
+  "name": {
+    "ja": "京阪京津線（地下鉄東西線直通，京都市役所前～びわ湖浜大津）",
+    "zh": "京阪京津線（地下鐵東西線直通，京都市役所前～琵琶湖濱大津）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "subway-kyoto-shiyakusho-mae",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "subway-sanjo-keihan",
+      "min": 2,
+      "note": null
+    },
+    {
+      "id": "subway-higashiyama",
+      "min": 4,
+      "note": null
+    },
+    {
+      "id": "subway-keage",
+      "min": 6,
+      "note": null
+    },
+    {
+      "id": "subway-misasagi",
+      "min": 9,
+      "note": "和東西線（往山科、六地蔵）分岔"
+    },
+    {
+      "id": "keihan-biwako-hamaotsu",
+      "min": 25,
+      "note": "轉京阪石山坂本線；密西根號遊船的大津港"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:46",
+      "last": "22:44",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 20
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 15
+        },
+        {
+          "from": "08:00",
+          "to": "23:00",
+          "min": 20
+        }
+      ],
+      "note": "班距數地下鐵 CSV 裡京都市役所前～びわ湖浜大津每站都有時刻的直通車（在蹴上數）；平日：往外 58 班（首 05:46、末 23:18）、往回 56 班（首 05:30、末 22:44）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:46",
+      "last": "22:44",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "23:00",
+          "min": 20
+        }
+      ],
+      "note": "班距數地下鐵 CSV 裡京都市役所前～びわ湖浜大津每站都有時刻的直通車（在蹴上數）；土休日：往外 58 班（首 05:46、末 23:18）、往回 56 班（首 05:30、末 22:44）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {},
+    "child": null,
+    "note": null
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "京阪京津線的車直通地下鐵東西線（京都市役所前、有的到太秦天神川），不用在御陵換車。地下鐵區間和京阪區間的票價相加（見 fares）。",
+  "validFrom": "2025-02-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010101_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（weekday；京津線直通的車也在裡面，京津線區間只列御陵、四宮、びわ湖浜大津）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010100_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（weekday；京津線直通的車也在裡面，京津線區間只列御陵、四宮、びわ湖浜大津）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010201_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（holiday；京津線直通的車也在裡面，京津線區間只列御陵、四宮、びわ湖浜大津）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010200_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "京都市交通局 地下鉄 東西線 全列車時刻表 CSV（holiday；京津線直通的車也在裡面，京津線區間只列御陵、四宮、びわ湖浜大津）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/tn010101_dia_utf8.csv",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 11:04 發的那一班的停站時刻"
+    }
+  ]
+}

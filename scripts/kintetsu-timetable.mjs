@@ -58,8 +58,9 @@ const decode = (s) => s.replace(/&nbsp;/g, ' ').replace(/<[^>]*>/g, '').trim();
 
 // ---------- 站名、終點站對照 ----------
 const stations = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/stations.json'), 'utf8'))
-  // 大阪的近鐵站（T28）不是目標區間，往返大阪的特急由 kintetsu-osaka.mjs 另外補（這支重跑後要再跑那支）
-  .filter((s) => s.operator === 'kintetsu' && s.area !== 'osaka')
+  // 大阪、京都的近鐵站（T28、T87）不是目標區間，往返大阪、京都的特急由 kintetsu-osaka.mjs、kintetsu-kyoto.mjs 另外補
+  // （這支重跑後要依序再跑那兩支）
+  .filter((s) => s.operator === 'kintetsu' && !['osaka', 'kyoto', 'biwako'].includes(s.area))
   .sort((a, b) => a.stationNumber.localeCompare(b.stationNumber)); // M73 伊勢市 → M93 賢島（南下順）
 const order = stations.map((s) => s.id);
 const idByJa = new Map(stations.map((s) => [s.name.ja, s.id]));

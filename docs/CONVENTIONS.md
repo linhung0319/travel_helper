@@ -29,7 +29,7 @@ travel_helper/
 │  │  ├─ bus/<route-id>.json
 │  │  ├─ jr/<station-id>.json
 │  │  ├─ ferry/<route-id>.json
-│  │  └─ urban/<route-id>.json   大阪市區的班距型路線、`_transfers.json`（T28）
+│  │  └─ urban/<route-id>.json   大阪、京都、琵琶湖的班距型路線（含京都市巴士）、`_transfers.json`（T28、T87）
 │  ├─ raw/<area-id>/         研究筆記（怎麼存見 §4「研究筆記怎麼存」）
 │  │  ├─ README.md           區域的現況、決定、給後續的建議（開工先讀這個）
 │  │  ├─ candidates/         候選清單 JSON（含沒納入、被排除的）
@@ -63,17 +63,20 @@ travel_helper/
 
 ## 1.5 Schema 與驗證（T0 建立）
 
-- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`urban-route`、`urban-transfers`（T28）、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
+- JSON Schema 放在 `schema/`：`common`（共同欄位）、`station`、`spot`、`lodging`、`restaurant`、`area`、`timetable-kintetsu`、`kintetsu-travel-times`、`urban-route`、`urban-transfers`（T28；T87 加 `mode: bus`）、`passes`、`access`、`candidate`（`raw/<area>/candidates/*.json`），以及格式還沒定的檔案共用的 `sourced-document`（目前只有 `timetables/bus/*.json`：只要求最外層是物件、有 `sources`，T10 定好格式後到 `docs/requests.md` 提出）。
 - 驗證：`npm run validate`（或 `node scripts/validate.mjs`；bash 下可以直接跑 `scripts/validate`）。第一次使用前要先 `npm install`。
   - 檢查：符合 schema、資料點 ID 全專案唯一、座標在伊勢志摩範圍內（`access/`、`kix` 區域放寬到關西、中部）、引用的 ID 存在（`nearestStation`、`access.from`、`anchors`、`transfers`、`group.nearbyCombos`、`areas.json` 的 `stations`）、`region` 在該區域的 `regions` 裡、候選清單的 key 不重複而且 `pointId` 存在、有 `assessment` 時 `tier` 和推薦度一致、檔案在規定的位置、`areas.json` 的 `intro`（代表的點存在而且屬於那一區或那個子地區、區域的代表點是 S/A 級而且有餐廳、`basedOn` 和二月注意引用的點存在；沒有 `intro` 只警告）。
   - 座標不在所屬區域的 `bbox` 內只會警告（bbox 是大致範圍）。
+  - 班距型路線、轉乘的檢查見 §3「班距型路線」「轉乘」（T28、T87）。
 - `areas/*.json`、`stations.json` 等清單檔的最外層是**陣列**，每個元素一筆資料。
 - schema 不允許沒定義的欄位：暫時放進 `extra`，需要正式欄位的話寫到 `docs/requests.md`。
 
 ### ID 規則
 - 近鐵車站：站名的羅馬字（`toba`、`ugata`、`kashikojima`、`shima-isobe`）；JR 車站加 `jr-` 前綴（`jr-toba`、`jr-futaminoura`）。同一站的近鐵、JR 用 `transfers` 互相連結。關西機場周邊（JR・南海共用、或只有南海）的車站用站名的羅馬字、不加前綴，`operator: "other"`、`lines` 寫各業者的線名（`kansai-airport`、`rinku-town`、`izumisano`、`hagurazaki`；2026-10-21 T13）。
 - 大阪的車站（2026-10-26，T28）：近鐵用站名的羅馬字、不加前綴（`osaka-namba`、`osaka-uehommachi`、`tsuruhashi`，`passes.json` 已經用 `osaka-namba`）；其他業者加前綴：JR `jr-`（`jr-tsuruhashi`、`jr-universal-city`）、Osaka Metro `metro-`（`metro-namba`、`metro-tanimachi-4chome`）、南海 `nankai-`（`nankai-namba`）、阪神 `hanshin-`。同名、相連的站用 `transfers` 互相連結（例如 `osaka-namba`、`metro-namba`、`nankai-namba`），站內轉乘的步行時間另外記（§3「轉乘」）。
-- 同名的車站（不同業者）：`name.zh` 後面加全形括號標業者，兩邊都標，例如「鳥羽（近鐵）」「鳥羽（JR）」「伊勢市（近鐵）」「伊勢市（JR）」「鶴橋（近鐵）」「鶴橋（JR）」；`name.ja` 維持原站名、不加（引擎用日文名組「特急（往鳥羽）」這類車種名稱，加了會變成括號包括號）。名稱不重複的站不用標（2026-11-02，T36）。
+- 京都、琵琶湖的車站（2026-11-12，T87）：近鐵照舊用站名的羅馬字、不加前綴（`kyoto` 已被 `next-train.mjs` 當成近鐵京都用；`toji`、`takeda`、`kintetsu-tambabashi`、`momoyamagoryo-mae`、`ogura`、換車用的 `yamato-saidaiji`、`yamato-yagi`）；JR `jr-`；京都市營地下鐵 **`subway-`**（Osaka Metro 已經用 `metro-`，京都用同一個前綴雖然站名不撞，但看 ID 分不出是哪個城市，所以另訂；`subway-kyoto`、`subway-karasuma-oike`）；京阪 `keihan-`（含石山坂本線）、阪急 `hankyu-`、嵐電 `randen-`、坂本纜車 `sakamoto-cable-`。**竹田**近鐵和地下鐵是同一個車站、同一組剪票口，只有一個 ID `takeda`（`lines` 兩條都列）。換車用的大和西大寺、大和八木在奈良縣，`area` 掛 `kyoto`（`extra.note` 寫明），不是景點區域。
+- 巴士停留所（T87）：**不進 `stations.json`**，寫在路線檔裡（時刻表型 `timetables/bus/`、班距型 `timetables/urban/` 的 `mode: bus` 都一樣）。班距型市巴士的停留所 ID 用業者前綴 `citybus-`，同一個停留所在不同系統用同一個 ID；不能和車站等資料點的 ID 撞（validate 擋）。
+- 同名的車站（不同業者）：`name.zh` 後面加全形括號標業者，兩邊都標，例如「鳥羽（近鐵）」「鳥羽（JR）」「伊勢市（近鐵）」「伊勢市（JR）」「鶴橋（近鐵）」「鶴橋（JR）」「京都（近鐵）」「京都（JR）」「京都（地下鐵）」「嵐山（阪急）」「嵐山（嵐電）」；`name.ja` 維持原站名、不加（引擎用日文名組「特急（往鳥羽）」這類車種名稱，加了會變成括號包括號）。名稱不重複的站不用標（2026-11-02，T36）。
 - 區域 ID 是另一個命名空間，可以和車站 ID 相同（區域 `toba`、車站 `toba`）。
 - 其他資料點建議以區域開頭，例如 `toba-aquarium`。
 - **第一次正式匯入資料庫（T24、T25）之後，已經匯入的 ID 不改名**：ID 是連接預設資料、使用者的修改、行程、投票的關鍵。合併重複的點時保留一個 ID，被合併的記成轉址（`data/redirects.json`，格式由 T24 定）。見 [architecture.md](architecture.md) §3.5。
@@ -93,11 +96,12 @@ travel_helper/
 |---|---|
 | `schema/`、`data/areas.json`、`data/stations.json` | 只有 T0、T7 |
 | `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19、T27a）；其他欄位仍然只有 T0、T7。例外：T27a 新增 `osaka` 這一整筆，T28 補它的 `stations`；T86a 新增 `kyoto`、`biwako` 兩筆（並挪了大阪、關西機場周邊的 `tripOrder`），T87 補它們的 `stations`（T86a 不碰 `stations`、T87 不碰其他欄位），T86d 補 `intro`、`photos`；T40 加各區、各子地區的 `intro`（和 `schema/area.schema.json`） |
-| `data/timetables/kintetsu/`、`data/passes.json` | T1。例外：T28 在 `_travel-times.json` 加往返大阪的特急 |
-| `data/access/`、`data/raw/access/` | T1b（機場往返交通）。例外：T28 新增 `data/raw/access/osaka.md` |
-| `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
-| `data/timetables/urban/` | T28（班距型路線、轉乘） |
+| `data/timetables/kintetsu/`、`data/passes.json` | T1。例外：T28 在 `_travel-times.json` 加往返大阪的特急；T87 加往返京都的特急（`scripts/kintetsu-kyoto.mjs`）和 `passes.json` 的京都 ↔ 伊勢志摩票價 |
+| `data/access/`、`data/raw/access/` | T1b（機場往返交通）。例外：T28 新增 `data/raw/access/osaka.md`；T87 新增 `data/raw/access/kyoto.md`（京都 ↔ 關西機場只記在這份筆記） |
+| `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充）。例外：T87 新增琵琶湖的巴士（`bus/ekojo-*`、`bus/akakon-*`）和 JR 湖西線（`jr/jr-kosei.json`、湖西線各站） |
+| `data/timetables/urban/` | T28（班距型路線、轉乘）；T87 新增京都、琵琶湖的路線（`scripts/kyoto-urban.mjs` 產生）和 `_transfers.json` 的京都那幾筆（`scripts/kyoto-transfers.mjs`） |
 | `data/stations.json` 裡大阪的車站 | T28（例外允許；其他車站仍然只有 T0、T7）。T28 也可以為了班距型路線、轉乘改 `schema/`、`scripts/validate.mjs`（補測試） |
+| `data/stations.json` 裡京都、琵琶湖的車站（含大阪側的阪急大阪梅田、京阪淀屋橋） | T87（例外允許，`scripts/kyoto-stations.mjs` 產生）。T87 也可以為了市巴士改 `schema/urban-route.schema.json`、`scripts/validate.mjs`（補測試） |
 | `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19；大阪 T27a～T27d；京都 `kyoto`、琵琶湖 `biwako` T86a～T86d）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
 | `docs/CONVENTIONS.md` 的「口コミ、Google 評論」一節 | T8e 補「還沒確認的」實測結果和選擇器的修正；其他部分照舊由 👤 討論後修改 |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
@@ -321,12 +325,12 @@ travel_helper/
 - `trainNo` 是近鐵時刻表網站的列車編號（例如 `1-3896`），同一班車在各站相同，可以對到 `_travel-times.json` 的 `trains`。
 - 各站之間的車程和每班車的停站時刻存在 `data/timetables/kintetsu/_travel-times.json`（格式見 `schema/kintetsu-travel-times.schema.json`）。
 
-### 班距型路線（`timetables/urban/<route-id>.json`，大阪，2026-10-26 T28 定案）
+### 班距型路線（`timetables/urban/<route-id>.json`，大阪 2026-10-26 T28 定案；京都、琵琶湖、市巴士 2026-11-12 T87）
 大阪的地鐵、JR 環狀線幾分鐘一班，存完整時刻表沒有意義，所以只記**所需時間和班距**。近鐵特急（伊勢 ↔ 大阪）一小時一班，照舊用時刻表（`_travel-times.json`，T28 已經補上大阪側的停站）。格式見 `schema/urban-route.schema.json`，檔名要和 `id` 相同。
 ```jsonc
 {
   "id": "metro-midosuji",
-  "mode": "metro",                       // metro | jr | private
+  "mode": "metro",                       // metro | jr | private | bus（T87：市巴士，停留所寫在 stops 裡，見下）
   "operator": "Osaka Metro",
   "name": { "ja": "御堂筋線", "zh": "御堂筋線" },
   "serviceType": null,                   // 快慢車混跑的線記哪一種（"空港急行"）；全部都停填 null
@@ -349,10 +353,14 @@ travel_helper/
   "sources": [ { "type": "official", "url": "https://...", "retrieved": "2026-10-xx" } ]
 }
 ```
-- 快車、慢車混跑的線（JR、南海）：只記會用到的那一種（例如南海的空港急行），特急（ラピート）另外一筆 `id`。
+- 快車、慢車混跑的線（JR、南海）：只記會用到的那一種（例如南海的空港急行），特急（ラピート）另外一筆 `id`。京阪本線分「特急」「普通・準急」兩筆（特急不停伏見稲荷、東福寺、清水五条）。
+- **同一班車穿過大站的不要在那裡拆開**（T87）：JR 新快速（大阪 ↔ 京都 ↔ 琵琶湖線）存成一條，拆成兩條引擎會在京都多算一次換車。班距在不同段差很多時可以分兩條、但兩條都從頭列到尾（`jr-shinkaisoku` 到草津、`jr-shinkaisoku-maibara` 到彥根，都從大阪列起）。真的不直通、或在中間站換車才分開（京阪石山坂本線在びわ湖浜大津拆開是例外，notes 有寫）。
+- 時刻表型的 JR（湖西線 `jr/jr-kosei.json`）也一樣：從大阪直通的班次，停站從大阪列起。
+- **市巴士（`mode: bus`，T87）**：停留所不在 `stations.json`，`stops[]` 每站寫 `id`（`citybus-` 前綴）、`name`（ja、zh）、`coords`、`min`，可以加 `station`（旁邊的車站 ID）；票價表的鍵是這條路線的停留所。電車的 `stops` 不能寫 `name`、`coords`、`station`（schema 擋）。
+- 產生方式：大阪的是手寫；京都、琵琶湖用 `scripts/kyoto-urban.mjs`（JR おでかけネット、近鐵 T5／T7、京都市交通局的全列車 CSV 算班距和分鐘；時刻表是圖片或 PDF 的阪急、京阪、嵐電、坂本纜車手寫在 `kyoto-urban.manual.mjs`），改設定再重跑，不要手改 JSON。
 - 日別照巴士的 `weekday`／`saturday`／`holiday`（2/11 國定假日算 holiday）。
 - 不知道的班距、首末班填 `null`，不要猜。
-- validate 另外檢查：停站和票價的車站在 `stations.json`、第一站 min 是 0 而且依序不減少、停站不重複、環狀線的 `loopMin` 大於最後一站、班距時段 from < to。
+- validate 另外檢查：停站和票價的車站在 `stations.json`、第一站 min 是 0 而且依序不減少、停站不重複、環狀線的 `loopMin` 大於最後一站、班距時段 from < to。`mode: bus`：停留所 ID 不和資料點撞、`station` 是車站、同一個停留所 ID 在各路線名稱相同、座標相差 100 m 內、票價表的鍵是本路線的停留所。
 
 ### 轉乘（`timetables/urban/_transfers.json`）
 大站的站內轉乘常常要走 10 分鐘以上，對長輩影響比班次大，所以另外記。格式見 `schema/urban-transfers.schema.json`。
@@ -374,6 +382,8 @@ travel_helper/
 ```
 - 一筆代表兩個方向；兩個方向不同時拆成兩筆，各加 `"oneWay": true`。
 - validate 檢查：車站存在、同站換線要寫不同的 fromLine/toLine、fromLine/toLine 是存在的路線、同一組不重複。
+- 兩邊都是近鐵時刻表型的班次（`kintetsu`）在同一站換車（大和八木：京都 ↔ 八木的特急 ↔ 大阪線往伊勢的特急）寫不出來（fromLine、toLine 都是 `kintetsu`）：引擎用預設的換車時間，T87 交接給 T88。
+- 京都的 14 筆由 `scripts/kyoto-transfers.mjs` 產生（重跑只換京都那幾筆）。
 
 ### 行程（`itinerary-v1`，T14 訂定，2026-10-22）
 - **只有一份確定的行程**（2026-10-21）：12 天，一開始就放好航班當固定項目；不做方案。家人的建議、投票、使用者加的點不放在行程裡，另外存在資料庫（[architecture.md](architecture.md) §3.6、[interaction-design.md](interaction-design.md) §6）；「整趟」的建議取代原本草稿的 `wishlist`。

@@ -1,0 +1,161 @@
+{
+  "id": "hankyu-kyoto",
+  "mode": "private",
+  "operator": "阪急電鉄",
+  "name": {
+    "ja": "阪急京都線（特急・準特急，大阪梅田～京都河原町）",
+    "zh": "阪急京都線（特急・準特急，大阪梅田～京都河原町）"
+  },
+  "serviceType": "特急・準特急",
+  "stops": [
+    {
+      "id": "hankyu-osaka-umeda",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "hankyu-katsura",
+      "min": 35,
+      "note": "轉嵐山線（同站換車）"
+    },
+    {
+      "id": "hankyu-karasuma",
+      "min": 41,
+      "note": "轉地下鐵四条；錦市場"
+    },
+    {
+      "id": "hankyu-kyoto-kawaramachi",
+      "min": 43,
+      "note": "四条河原町；京阪祇園四条走約 3 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:46",
+      "last": "23:00",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "09:00",
+          "min": 10
+        },
+        {
+          "from": "09:00",
+          "to": "11:00",
+          "min": 12
+        },
+        {
+          "from": "11:00",
+          "to": "21:00",
+          "min": 10
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "23:15",
+          "min": 30
+        }
+      ],
+      "note": "班距數直通大阪梅田～京都河原町的特急、準特急、通勤特急、快速特急（不含天下茶屋行，它不到梅田）：大阪梅田「京都河原町方面」、京都河原町「大阪梅田方面」兩張站別時刻表每小時取較少的一方。首班：梅田 06:00 準特急到烏丸 06:46；末班：梅田最後一班快車 23:00"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "06:57",
+      "last": "23:00",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "20:00",
+          "min": 10
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 15
+        },
+        {
+          "from": "22:00",
+          "to": "23:15",
+          "min": 20
+        }
+      ],
+      "note": "同平日的數法（土曜・休日時刻表）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "hankyu-osaka-umeda": {
+        "hankyu-kyoto-kawaramachi": 410,
+        "hankyu-karasuma": 410,
+        "hankyu-katsura": 390,
+        "hankyu-arashiyama": 410
+      },
+      "hankyu-kyoto-kawaramachi": {
+        "hankyu-katsura": 200,
+        "hankyu-arashiyama": 240,
+        "hankyu-karasuma": 170
+      },
+      "hankyu-karasuma": {
+        "hankyu-katsura": 200,
+        "hankyu-arashiyama": 240
+      }
+    },
+    "child": "大人的半價、10 円未滿進位（阪急 fare.html；例：410 → 210）",
+    "note": "阪急ダイヤ検索（搭乘日 2027-02-11），含鐵道駅バリアフリー料金 10 円"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "特急不停西院、大宮。平日 16:30 以後京都河原町往梅田的快車是準特急（44 分）。土休日另有快速特急「京とれいん 雅洛」4 班（不另收費）。準急、普通各站停（梅田～河原町約 63 分）。時刻表是 2025-02-22 改正版，阪急公告沒有 2026 年改正。ICOCA 可用。",
+  "validFrom": "2025-02-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/html/HK-01_ky_2_w.html",
+      "retrieved": "2026-11-12",
+      "note": "大阪梅田 京都河原町・北千里方面 平日（土休日是 HK-01_ky_2_h.html）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/html/HK-86_ky_1_w.html",
+      "retrieved": "2026-11-12",
+      "note": "京都河原町 大阪梅田方面 平日（土休日是 HK-86_ky_1_h.html）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/timetable.php?stationName=大阪梅田(阪急)&SF=4958&TX=1950100-271-KY10010&DW=0&TM=1000",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日特急 大阪梅田 10:00 發"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/search/index.php?from=京都河原町&to=大阪梅田&ymd=2027-02-11&hm=10:00&type=0&tp=0&mode=result",
+      "retrieved": "2026-11-12",
+      "note": "票價（其他區間同格式換 from／to）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/ticket/fare.html",
+      "retrieved": "2026-11-12",
+      "note": "兒童票規則"
+    }
+  ]
+}

@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://travel-helper.local/schema/urban-route.schema.json",
   "title": "班距型路線（data/timetables/urban/<route-id>.json）",
-  "description": "T28 定的格式（2026-10-26）。大阪的地鐵、JR、南海幾分鐘一班，不存完整時刻表，只記站間所需分鐘、班距、首末班、票價。檔名要和 id 相同。見 CONVENTIONS §3「班距型路線」。",
+  "description": "T28 定的格式（2026-10-26）。大阪的地鐵、JR、南海幾分鐘一班，不存完整時刻表，只記站間所需分鐘、班距、首末班、票價；T87（2026-11-12）加京都的市巴士（mode bus）。檔名要和 id 相同。見 CONVENTIONS §3「班距型路線」。",
   "type": "object",
   "properties": {
     "id": { "$ref": "common.schema.json#/$defs/id" },
-    "mode": { "enum": ["metro", "jr", "private"] },
+    "mode": { "description": "bus（T87）：停留所不在 stations.json，名稱、座標寫在 stops 裡（同 timetables/bus/）", "enum": ["metro", "jr", "private", "bus"] },
     "operator": { "type": "string", "minLength": 1 },
     "name": {
       "type": "object",
@@ -19,12 +19,21 @@
     },
     "serviceType": { "description": "快車、慢車混跑的線只記一種（例如「空港急行」）；全部列車都停的線填 null", "$ref": "common.schema.json#/$defs/nullableString" },
     "stops": {
-      "description": "依路線順序（大阪環状線依内回り：大阪 → 西九条 → 天王寺 → 鶴橋 → 京橋）；只列資料點會用到的站；min 是從第一站起算的車上分鐘（不含停車等待以外的時間）",
+      "description": "依路線順序（大阪環状線依内回り：大阪 → 西九条 → 天王寺 → 鶴橋 → 京橋）；只列資料點會用到的站；min 是從第一站起算的車上分鐘（不含停車等待以外的時間）。mode bus 的 id 是停留所 ID（業者前綴，例如 citybus-gojozaka），要寫 name、coords；同一個停留所在不同路線用同一個 ID",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "id": { "description": "stations.json 的車站 ID", "$ref": "common.schema.json#/$defs/id" },
+          "id": { "description": "stations.json 的車站 ID；mode bus 是停留所 ID", "$ref": "common.schema.json#/$defs/id" },
+          "name": {
+            "description": "停留所名（只有 mode bus）",
+            "type": "object",
+            "properties": { "ja": { "type": "string", "minLength": 1 }, "zh": { "type": "string", "minLength": 1 } },
+            "required": ["ja", "zh"],
+            "additionalProperties": false
+          },
+          "coords": { "description": "停留所座標（只有 mode bus）", "$ref": "common.schema.json#/$defs/coords" },
+          "station": { "description": "停留所旁邊的車站 ID（只有 mode bus，例如京都駅前 → jr-kyoto）；沒有填 null", "anyOf": [{ "$ref": "common.schema.json#/$defs/id" }, { "type": "null" }] },
           "min": { "type": "number", "minimum": 0 },
           "note": { "$ref": "common.schema.json#/$defs/nullableString" }
         },
@@ -71,6 +80,14 @@
   },
   "required": ["id", "mode", "operator", "name", "stops", "loop", "loopMin", "service", "fares", "passes", "retrieved", "sources"],
   "additionalProperties": false,
+  "allOf": [
+    {
+      "description": "mode bus 的停留所要有 name、coords；其他 mode 的停站是車站，不寫 name、coords、station",
+      "if": { "properties": { "mode": { "const": "bus" } }, "required": ["mode"] },
+      "then": { "properties": { "stops": { "items": { "required": ["id", "min", "name", "coords"] } } } },
+      "else": { "properties": { "stops": { "items": { "not": { "anyOf": [{ "required": ["name"] }, { "required": ["coords"] }, { "required": ["station"] }] } } } } }
+    }
+  ],
   "$defs": {
     "timeOrNull": { "anyOf": [{ "$ref": "common.schema.json#/$defs/time" }, { "type": "null" }] },
     "day": {

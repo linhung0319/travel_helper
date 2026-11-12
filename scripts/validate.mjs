@@ -267,12 +267,14 @@ function main() {
         if (!rec?.id) continue;
         if (/^user-/.test(rec.id)) err(shown, `[${rec.id}] ID 不能用「user-」開頭（保留給使用者在網站上自己加的點）`);
         if (Array.isArray(rec.coords) && rec.coords.length === 2 && areaBoxes.length) {
-          const ranges = rangeOf(rec.area);
-          const label = areas.has(rec.area) ? `區域「${rec.area}」` : '任何區域';
+          // 換車用的經由站（extra.via，例如近鐵大和八木，T87）不是景點區域裡的點，範圍放寬到 access/ 的大小
+          const via = rec.type === 'station' && rec.extra?.via === true;
+          const ranges = via ? accessRange : rangeOf(rec.area);
+          const label = via ? '經由站的放寬範圍' : areas.has(rec.area) ? `區域「${rec.area}」` : '任何區域';
           if (!inAny(rec.coords, ranges)) {
             const swapped = inAny([rec.coords[1], rec.coords[0]], ranges);
             err(shown, `[${rec.id}] 座標 ${JSON.stringify(rec.coords)} 不在${label}的範圍內（bbox 往外 ${BBOX_MARGIN} 度）${swapped ? '（經緯度可能寫反了，應該是 [經度, 緯度]）' : ''}`);
-          } else if (areas.has(rec.area) && !inBbox(rec.coords, areas.get(rec.area).bbox)) {
+          } else if (!via && areas.has(rec.area) && !inBbox(rec.coords, areas.get(rec.area).bbox)) {
             warn(shown, `[${rec.id}] 座標不在區域「${rec.area}」的大致範圍內，請確認 area 是否正確`);
           }
         }
@@ -488,18 +490,43 @@ function checkTopIntro(a, intro, shown, points, err, warn, ref) {
 }
 
 const toMin = (t) => Number(t.slice(0, 2)) * 60 + Number(t.slice(3));
+/** 兩點的直線距離（公尺），座標是 [經度, 緯度] */
+function haversine([lng1, lat1], [lng2, lat2]) {
+  const r = Math.PI / 180;
+  const a = Math.sin(((lat2 - lat1) * r) / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(((lng2 - lng1) * r) / 2) ** 2;
+  return 2 * 6371000 * Math.asin(Math.sqrt(a));
+}
 
-/** 班距型路線、站內轉乘（T28）：車站存在、停站順序、環狀線、班距時段、換線的路線 ID、轉乘重複 */
+/**
+ * 班距型路線、站內轉乘（T28）：車站存在、停站順序、環狀線、班距時段、換線的路線 ID、轉乘重複。
+ * 市巴士（mode bus，T87）：停留所不在 stations.json（ID 不能和車站撞），同一個停留所 ID 在各路線的名稱一樣、座標相差 100 m 以內；
+ * station 欄位要是 stations.json 的車站；票價表的鍵是本路線的停留所。
+ */
 function checkUrban(loaded, points, err) {
   const isStation = (id) => !points.size || points.get(id)?.record.type === 'station';
   const routes = loaded.filter((l) => l.route.kind === 'urban-route' && l.data && typeof l.data === 'object');
   const routeIds = new Set(routes.map((r) => r.data.id));
+  const busStops = new Map(); // 停留所 ID → { name, coords, shown }
   for (const { shown, data } of routes) {
     const stops = Array.isArray(data.stops) ? data.stops : [];
+    const bus = data.mode === 'bus';
+    const own = new Set(stops.map((s) => s?.id));
+    const known = (id) => (bus ? own.has(id) : isStation(id));
     const seen = new Set();
     stops.forEach((s, i) => {
       if (!s?.id) return;
-      if (!isStation(s.id)) err(shown, `stops 的「${s.id}」不在 stations.json`);
+      if (bus) {
+        if (points.get(s.id)) err(shown, `停留所「${s.id}」和資料點（車站等）的 ID 撞了，停留所要用業者前綴`);
+        if (s.station && !isStation(s.station)) err(shown, `停留所「${s.id}」的 station「${s.station}」不在 stations.json`);
+        const prev = busStops.get(s.id);
+        if (!prev) busStops.set(s.id, { name: s.name, coords: s.coords, shown });
+        else {
+          if (prev.name?.ja !== s.name?.ja) err(shown, `停留所「${s.id}」的名稱「${s.name?.ja}」和 ${prev.shown} 的「${prev.name?.ja}」不同`);
+          if (Array.isArray(prev.coords) && Array.isArray(s.coords) && haversine(prev.coords, s.coords) > 100) {
+            err(shown, `停留所「${s.id}」的座標和 ${prev.shown} 相差超過 100 m`);
+          }
+        }
+      } else if (!isStation(s.id)) err(shown, `stops 的「${s.id}」不在 stations.json`);
       if (seen.has(s.id)) err(shown, `停站「${s.id}」重複`);
       seen.add(s.id);
       if (i === 0 && s.min !== 0) err(shown, '第一站的 min 要是 0');
@@ -514,8 +541,9 @@ function checkUrban(loaded, points, err) {
       const table = data.fares?.[kind];
       if (!table || typeof table !== 'object') continue;
       for (const [a, row] of Object.entries(table)) {
-        if (!isStation(a)) err(shown, `fares.${kind} 的「${a}」不在 stations.json`);
-        for (const b of Object.keys(row ?? {})) if (!isStation(b)) err(shown, `fares.${kind} 的「${b}」不在 stations.json`);
+        const where = bus ? '這條路線的停留所' : 'stations.json';
+        if (!known(a)) err(shown, `fares.${kind} 的「${a}」不在 ${where}`);
+        for (const b of Object.keys(row ?? {})) if (!known(b)) err(shown, `fares.${kind} 的「${b}」不在 ${where}`);
       }
     }
     for (const [day, svc] of Object.entries(data.service ?? {})) {

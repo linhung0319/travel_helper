@@ -1,0 +1,829 @@
+{
+  "id": "ekojo-katata-sagawa-museum",
+  "mode": "bus",
+  "operator": "江若交通",
+  "name": {
+    "ja": "琵琶湖大橋線 80・85系統 堅田駅～佐川美術館",
+    "zh": "江若巴士 琵琶湖大橋線（堅田站～佐川美術館）"
+  },
+  "validFrom": "2025-03-15",
+  "validTo": null,
+  "retrieved": "2026-11-12",
+  "stops": [
+    {
+      "id": "katata-eki",
+      "name": "堅田駅（2番のりば）",
+      "coords": [
+        135.9150028,
+        35.120825
+      ],
+      "near": [
+        {
+          "id": "jr-katata",
+          "meters": 0
+        }
+      ]
+    },
+    {
+      "id": "sagawa-museum",
+      "name": "佐川美術館",
+      "coords": null,
+      "near": [
+        {
+          "id": "biwako-sagawa-museum",
+          "meters": null
+        }
+      ]
+    }
+  ],
+  "trips": {
+    "weekday": [
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-1",
+        "headsign": "免許センター前（80系統・佐川美術館経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "06:44"
+          ],
+          [
+            "sagawa-museum",
+            "06:59",
+            "06:59"
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-2",
+        "headsign": "免許センター前（80系統・佐川美術館経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:32"
+          ],
+          [
+            "sagawa-museum",
+            "07:47",
+            "07:47"
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-3",
+        "headsign": "免許センター前（80系統・佐川美術館経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "07:57"
+          ],
+          [
+            "sagawa-museum",
+            "08:12",
+            "08:12"
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-4",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:20"
+          ],
+          [
+            "sagawa-museum",
+            "09:35",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-5",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:20"
+          ],
+          [
+            "sagawa-museum",
+            "10:35",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-6",
+        "headsign": "免許センター前（80系統・佐川美術館経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "12:15"
+          ],
+          [
+            "sagawa-museum",
+            "12:30",
+            "12:30"
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-7",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:15"
+          ],
+          [
+            "sagawa-museum",
+            "14:30",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-8",
+        "headsign": "免許センター前（80系統・佐川美術館経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:42"
+          ],
+          [
+            "sagawa-museum",
+            "16:57",
+            "16:57"
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-9",
+        "headsign": "免許センター前（80系統・佐川美術館経由）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "18:12"
+          ],
+          [
+            "sagawa-museum",
+            "18:27",
+            "18:27"
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-10",
+        "headsign": "堅田駅（80系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            "07:15",
+            "07:15"
+          ],
+          [
+            "katata-eki",
+            "07:32",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-11",
+        "headsign": "堅田駅（80系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            "08:12",
+            "08:12"
+          ],
+          [
+            "katata-eki",
+            "08:34",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-12",
+        "headsign": "堅田駅（80系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            "08:32",
+            "08:32"
+          ],
+          [
+            "katata-eki",
+            "08:49",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-13",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "09:40"
+          ],
+          [
+            "katata-eki",
+            "09:57",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-14",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "10:40"
+          ],
+          [
+            "katata-eki",
+            "10:57",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-15",
+        "headsign": "堅田駅（80系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            "12:45",
+            "12:45"
+          ],
+          [
+            "katata-eki",
+            "13:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-16",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "14:35"
+          ],
+          [
+            "katata-eki",
+            "14:52",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-17",
+        "headsign": "堅田駅（80系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            "17:19",
+            "17:19"
+          ],
+          [
+            "katata-eki",
+            "17:36",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-weekday-18",
+        "headsign": "堅田駅（80系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            "18:42",
+            "18:42"
+          ],
+          [
+            "katata-eki",
+            "18:59",
+            null
+          ]
+        ]
+      }
+    ],
+    "saturday": [
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-1",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:00"
+          ],
+          [
+            "sagawa-museum",
+            "08:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-2",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:25"
+          ],
+          [
+            "sagawa-museum",
+            "09:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-3",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:24"
+          ],
+          [
+            "sagawa-museum",
+            "10:39",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-4",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "12:25"
+          ],
+          [
+            "sagawa-museum",
+            "12:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-5",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:25"
+          ],
+          [
+            "sagawa-museum",
+            "14:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-6",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:25"
+          ],
+          [
+            "sagawa-museum",
+            "16:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-7",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "08:20"
+          ],
+          [
+            "katata-eki",
+            "08:37",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-8",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "09:45"
+          ],
+          [
+            "katata-eki",
+            "10:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-9",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "10:44"
+          ],
+          [
+            "katata-eki",
+            "11:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-10",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "12:45"
+          ],
+          [
+            "katata-eki",
+            "13:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-11",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "14:45"
+          ],
+          [
+            "katata-eki",
+            "15:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-12",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "16:44"
+          ],
+          [
+            "katata-eki",
+            "17:01",
+            null
+          ]
+        ]
+      }
+    ],
+    "holiday": [
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-1",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "08:00"
+          ],
+          [
+            "sagawa-museum",
+            "08:15",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-2",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "09:25"
+          ],
+          [
+            "sagawa-museum",
+            "09:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-3",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "10:24"
+          ],
+          [
+            "sagawa-museum",
+            "10:39",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-4",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "12:25"
+          ],
+          [
+            "sagawa-museum",
+            "12:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-5",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "14:25"
+          ],
+          [
+            "sagawa-museum",
+            "14:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-6",
+        "headsign": "佐川美術館（85系統）",
+        "dir": 0,
+        "stops": [
+          [
+            "katata-eki",
+            null,
+            "16:25"
+          ],
+          [
+            "sagawa-museum",
+            "16:40",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-7",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "08:20"
+          ],
+          [
+            "katata-eki",
+            "08:37",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-8",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "09:45"
+          ],
+          [
+            "katata-eki",
+            "10:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-9",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "10:44"
+          ],
+          [
+            "katata-eki",
+            "11:01",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-10",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "12:45"
+          ],
+          [
+            "katata-eki",
+            "13:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-11",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "14:45"
+          ],
+          [
+            "katata-eki",
+            "15:02",
+            null
+          ]
+        ]
+      },
+      {
+        "id": "ekojo-katata-sagawa-museum-holiday-12",
+        "headsign": "堅田駅（85系統）",
+        "dir": 1,
+        "stops": [
+          [
+            "sagawa-museum",
+            null,
+            "16:44"
+          ],
+          [
+            "katata-eki",
+            "17:01",
+            null
+          ]
+        ]
+      }
+    ]
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "katata-eki": {
+        "sagawa-museum": 450
+      },
+      "sagawa-museum": {
+        "katata-eki": 450
+      }
+    },
+    "child": {
+      "katata-eki": {
+        "sagawa-museum": 230
+      },
+      "sagawa-museum": {
+        "katata-eki": 230
+      }
+    }
+  },
+  "notes": "85 系統：堅田駅 → 佐川美術館（終點）→ 堅田駅；80 系統：堅田駅 → 佐川美術館 → 免許センター前（往返都經過佐川美術館）。經琵琶湖大橋，堅田駅→佐川美術館 15 分，回程 17 分（平日 8:12 那班 22 分）。時刻：琵琶湖大橋線 路線時刻表 PDF「2025年3月15日改正」，和停留所時刻表（佐川美術館 1番、堅田駅 2番，2026-11-12 讀）一致。2027-02 是否改正查不到。平日只有 9 班去、9 班回；土休日只有 85 系統 6 班去、6 班回。土休日一張表，saturday 填 null；2027-02-11（木・祝）走 holiday。票價：運賃表「2025年4月1日改定」堅田駅～佐川美術館 450 円。江若 2027-02-01 運賃改定公告寫「堅田営業所管内（琵琶湖大橋線…）的改定運賃据置」，所以 2027-02 預期仍是 450（依公告，申請待認可）。兒童 230 是依「小児＝大人半額、10 円切り上げ」推算。守山駅側：琵琶湖大橋線（江若・近江鐵道共同運行）的守山駅班次不經過「佐川美術館」停留所（經みずほ団地口等）；佐川美術館官網寫的守山駅近江鐵道巴士（約 35 分）是哪條路線、時刻都查不到（近江鐵道的官方時刻表在 NAVITIME transfer-cloud，curl 被 403 擋）。停留所座標 null（見 research.md）。停留所座標：堅田駅（2番のりば）用旁邊車站的座標（ja.wikipedia，近似）；其他江若的停留所座標沒查到，填 null（near 的公尺數也是 null，步行分鐘見上面的說明）。",
+  "passes": {
+    "kintetsu-rail-pass-5day": false,
+    "kintetsu-rail-pass-5day-plus": false
+  },
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/biwa-hasi-all.pdf",
+      "retrieved": "2026-11-12",
+      "note": "琵琶湖大橋線 時刻表（平日・土休日），2025年3月15日改正"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/timetable/Zikoku/00285_01/",
+      "retrieved": "2026-11-12",
+      "note": "停留所時刻表 佐川美術館(1番)"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/timetable/Zikoku/00075_02/",
+      "retrieved": "2026-11-12",
+      "note": "停留所時刻表 堅田駅(2番)"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/katata2.pdf",
+      "retrieved": "2026-11-12",
+      "note": "堅田駅②のりば時刻表（80・85 系統）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/hasi-u.pdf",
+      "retrieved": "2026-11-12",
+      "note": "運賃表 琵琶湖大橋線 堅田駅～佐川美術館 450 円（2025年4月1日改定）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/bus/ticket/",
+      "retrieved": "2026-11-12",
+      "note": "小児運賃：大人の半額（10円単位に切り上げ）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kojak.co.jp/uploads/20270201unkai.pdf",
+      "retrieved": "2026-11-12",
+      "note": "2027-02-01 運賃改定：琵琶湖大橋線は据置"
+    }
+  ]
+}

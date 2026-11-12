@@ -211,6 +211,7 @@ export const EXTRA_HIDDEN: ReadonlySet<string> = new Set([
   'phoneNote',
   'operator',
   'ferryTimetable',
+  'via', // 換車用的經由站（車站，T87：大和西大寺、大和八木），只給 validate 放寬座標範圍
 ]);
 
 type Rec = Record<string, unknown>;

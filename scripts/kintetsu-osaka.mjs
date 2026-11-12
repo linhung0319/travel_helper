@@ -8,6 +8,7 @@
 //     平日的 T5（發車時刻表）裡，在 _travel-times.json 已經有的特急、しまかぜ，從大阪那站的 T7 讀停站。
 //
 // _travel-times.json 是 scripts/kintetsu-timetable.mjs（T1）產生的；那支重跑之後要再跑這支。
+// 京都側（T87，kintetsu-kyoto.mjs）會在往返大阪的車插大和八木：這支先把京都側拿掉，跑完要再跑 kintetsu-kyoto.mjs。
 // 重跑這支不會重複加：先拿掉既有的大阪停站再補。
 // 只抓一般看得到的網頁，請求之間有間隔；抓過的頁面快取在 --cache 目錄。
 //
@@ -129,6 +130,14 @@ function parseT7(html) {
 const tt = JSON.parse(fs.readFileSync(FILE, 'utf8'));
 const problems = [];
 const stripOsaka = (t) => (t.stops = t.stops.filter(([id]) => !OSAKA_IDS.includes(id)));
+// T87 的京都側（停站、京都 ↔ 八木的班次）一起拿掉，避免南下時伊勢市不是第一站
+const KYOTO_IDS = ['kyoto', 'kintetsu-tambabashi', 'yamato-saidaiji', 'yamato-yagi'];
+for (const day of Object.values(tt.trains)) {
+  for (const [no, t] of Object.entries(day)) {
+    if (t.note?.startsWith('京都線・橿原線')) delete day[no];
+    else t.stops = t.stops.filter(([id]) => !KYOTO_IDS.includes(id));
+  }
+}
 for (const day of Object.values(tt.trains)) for (const t of Object.values(day)) stripOsaka(t);
 
 // 北上
@@ -222,7 +231,7 @@ const NOTE =
   '大阪側（T28，scripts/kintetsu-osaka.mjs）：往返大阪的特急、しまかぜ的 stops 加上大阪難波、大阪上本町、鶴橋（stationOrder 排在伊勢市前面）。' +
   '北上（終點大阪難波、大阪上本町）平日、土休日都有；南下（大阪發往伊勢志摩）只有平日（第一天 2/2 週二）。' +
   '伊勢中川、名張等中間站不列（不是資料點），所以會有 tsuruhashi>iseshi 這種跨站的區間。往名古屋的車在伊勢中川轉往大阪的組合、急行都沒有收。' +
-  'kintetsu-timetable.mjs 重跑後要再跑 kintetsu-osaka.mjs。';
+  'kintetsu-timetable.mjs 重跑後要再跑 kintetsu-osaka.mjs，再跑 kintetsu-kyoto.mjs。';
 const notes = (Array.isArray(tt.notes) ? tt.notes.join('') : tt.notes ?? '').replace(/大阪側（T28[\s\S]*$/, '');
 tt.notes = notes + NOTE;
 tt.sources = tt.sources.filter((s) => !/T28/.test(s.note ?? ''));

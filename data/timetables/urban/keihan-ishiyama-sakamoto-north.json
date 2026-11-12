@@ -1,0 +1,111 @@
+{
+  "id": "keihan-ishiyama-sakamoto-north",
+  "mode": "private",
+  "operator": "京阪電気鉄道",
+  "name": {
+    "ja": "京阪石山坂本線（びわ湖浜大津～坂本比叡山口）",
+    "zh": "京阪石山坂本線（琵琶湖濱大津～坂本比叡山口）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "keihan-biwako-hamaotsu",
+      "min": 0,
+      "note": "轉京津線；密西根號遊船的大津港走約 3 分"
+    },
+    {
+      "id": "keihan-miidera",
+      "min": 1,
+      "note": "三井寺走約 10 分"
+    },
+    {
+      "id": "keihan-omi-jingu-mae",
+      "min": 6,
+      "note": "近江神宮走約 9 分"
+    },
+    {
+      "id": "keihan-sakamoto-hieizanguchi",
+      "min": 16,
+      "note": "日吉大社、坂本纜車（走約 15 分或搭江若巴士）"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:48",
+      "last": "23:04",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "23:30",
+          "min": 20
+        }
+      ],
+      "note": "數びわ湖浜大津（坂本比叡山口方面）、坂本比叡山口（浜大津方面）的站別時刻表：到坂本比叡山口的車白天每 20 分（:06、:26、:46；中間的 :16、:36、:56 只到近江神宮前），16～18 時約 7～8 分且多數到坂本；全天取 20（保守）。到近江神宮前白天每 10 分。首班浜大津 05:48、末班坂本發往浜大津 23:04（接得上京津線往京都的末班是 22:04）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:48",
+      "last": "23:04",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "23:30",
+          "min": 20
+        }
+      ],
+      "note": "同平日：9～15 時坂本行每 20 分，取 20"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "keihan-biwako-hamaotsu": {
+        "keihan-miidera": 200,
+        "keihan-omi-jingu-mae": 200,
+        "keihan-sakamoto-hieizanguchi": 280
+      }
+    },
+    "child": "大人的半價、10 円未滿進位（推算：200 → 100、280 → 140）",
+    "note": "京阪運賃表（びわ湖浜大津發，2025-10-01 改定）。京都市役所前 ↔ 三井寺、近江神宮前 540／270，↔ 坂本比叡山口 640／320（地下鐵＋京阪連絡運賃）"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "見 keihan-ishiyama-sakamoto-south（在びわ湖浜大津拆成兩條）。",
+  "validFrom": "2026-08-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/time/61121.pdf",
+      "retrieved": "2026-11-12",
+      "note": "びわ湖浜大津 坂本比叡山口方面 平日（土休日 61122）；三井寺 61221、近江神宮前 61521 對照算分鐘"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/time/62011.pdf",
+      "retrieved": "2026-11-12",
+      "note": "坂本比叡山口 浜大津方面 平日（土休日 62012）"
+    },
+    {
+      "type": "official",
+      "url": "https://sakamoto-cable.jp/access/",
+      "retrieved": "2026-11-12",
+      "note": "びわ湖浜大津 → 坂本比叡山口 約 16 分"
+    },
+    {
+      "type": "official",
+      "url": "https://www.keihan.co.jp/traffic/station/assets/pdf/fare/611.pdf",
+      "retrieved": "2026-11-12",
+      "note": "びわ湖浜大津發運賃表"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.kyoto.lg.jp/kotsu/cmsfiles/contents/0000240/240757/keihanfutuu20251001.pdf",
+      "retrieved": "2026-11-12",
+      "note": "地下鉄・京阪電鉄大津線連絡普通運賃表（2025-10-01～）"
+    }
+  ]
+}

@@ -84,9 +84,10 @@ describe('經緯度順序 [經度, 緯度]', () => {
     for (const s of stations) {
       if (!s.coords) continue;
       assert.equal(looksSwapped(s.coords), false, s.id);
-      // 關西機場周邊（kix，T13 加）、大阪（osaka，T28 加）在大阪府，經度 135
-      const [minLon, maxLon] = s.area === 'kix' || s.area === 'osaka' ? [135, 136] : [136, 137];
-      assert.ok(s.coords[0] > minLon && s.coords[0] < maxLon && s.coords[1] > 34 && s.coords[1] < 35, s.id);
+      // 關西機場周邊（kix，T13 加）、大阪（osaka，T28 加）在大阪府，經度 135；京都、琵琶湖（T87）經度 135～136.3、緯度到 35.3（近江高島、彥根）
+      const [minLon, maxLon] = s.area === 'kix' || s.area === 'osaka' || s.area === 'kyoto' ? [135, 136] : s.area === 'biwako' ? [135, 137] : [136, 137];
+      const maxLat = s.area === 'kyoto' || s.area === 'biwako' ? 35.5 : 35;
+      assert.ok(s.coords[0] > minLon && s.coords[0] < maxLon && s.coords[1] > 34 && s.coords[1] < maxLat, s.id);
     }
   });
 });

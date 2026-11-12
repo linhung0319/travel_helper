@@ -1,0 +1,154 @@
+{
+  "id": "hankyu-arashiyama",
+  "mode": "private",
+  "operator": "阪急電鉄",
+  "name": {
+    "ja": "阪急嵐山線（桂～嵐山）",
+    "zh": "阪急嵐山線（桂～嵐山）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "hankyu-katsura",
+      "min": 0,
+      "note": "從京都線換車（2 月沒有直通嵐山的車）"
+    },
+    {
+      "id": "hankyu-arashiyama",
+      "min": 7,
+      "note": "渡月橋南側，走到渡月橋約 5 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:09",
+      "last": "23:42",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "10:00",
+          "min": 12
+        },
+        {
+          "from": "10:00",
+          "to": "17:00",
+          "min": 15
+        },
+        {
+          "from": "17:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 15
+        },
+        {
+          "from": "23:00",
+          "to": "23:51",
+          "min": 20
+        }
+      ],
+      "note": "桂發、嵐山發兩張站別時刻表每小時取較少的一方；白天實際是 12、18 分交錯。首班嵐山 05:09，末班桂 23:42"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "05:09",
+      "last": "23:42",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "07:00",
+          "min": 20
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 20
+        },
+        {
+          "from": "10:00",
+          "to": "20:00",
+          "min": 15
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 20
+        },
+        {
+          "from": "21:00",
+          "to": "22:00",
+          "min": 15
+        },
+        {
+          "from": "22:00",
+          "to": "23:51",
+          "min": 20
+        }
+      ],
+      "note": "同平日的數法"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "hankyu-katsura": {
+        "hankyu-arashiyama": 200
+      }
+    },
+    "child": "大人的半價、10 円未滿進位（桂～嵐山 100）",
+    "note": "京都河原町、烏丸、大阪梅田到嵐山見 hankyu-kyoto 的 fares"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "全部普通。京都河原町 → 嵐山約 19 分、大阪梅田 → 嵐山約 49 分（都在桂換車）。",
+  "validFrom": "2025-02-22",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/html/HK-81_ar_2_w.html",
+      "retrieved": "2026-11-12",
+      "note": "桂 嵐山線 平日（土休日 _h）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/html/HK-98_ar_1_w.html",
+      "retrieved": "2026-11-12",
+      "note": "嵐山 桂方面 平日（土休日 _h）"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/timetable.php?stationName=桂&SF=5077&TX=2020100-1-A1080&DW=0&TM=1000",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：桂 10:00 發"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/topics/detail/014177.html",
+      "retrieved": "2026-11-12",
+      "note": "嵐山線臨時列車只在 2026 年 11 月週末"
+    },
+    {
+      "type": "official",
+      "url": "https://www.hankyu.co.jp/station/search/index.php?from=桂&to=嵐山&ymd=2027-02-11&hm=10:00&type=0&tp=0&mode=result",
+      "retrieved": "2026-11-12",
+      "note": "票價"
+    }
+  ]
+}

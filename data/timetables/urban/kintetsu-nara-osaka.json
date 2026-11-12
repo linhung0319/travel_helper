@@ -1,0 +1,208 @@
+{
+  "id": "kintetsu-nara-osaka",
+  "mode": "private",
+  "operator": "近畿日本鉄道",
+  "name": {
+    "ja": "近鉄奈良線（快速急行・急行，大和西大寺～大阪難波）",
+    "zh": "近鐵奈良線（快速急行・急行，大和西大寺～大阪難波）"
+  },
+  "serviceType": "快速急行・急行",
+  "stops": [
+    {
+      "id": "yamato-saidaiji",
+      "min": 0,
+      "note": null
+    },
+    {
+      "id": "tsuruhashi",
+      "min": 26,
+      "note": null
+    },
+    {
+      "id": "osaka-uehommachi",
+      "min": 29,
+      "note": "停地下月台"
+    },
+    {
+      "id": "osaka-namba",
+      "min": 33,
+      "note": null
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:38",
+      "last": "23:13",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 10
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 12
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 10
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 12
+        },
+        {
+          "from": "11:00",
+          "to": "16:00",
+          "min": 10
+        },
+        {
+          "from": "16:00",
+          "to": "18:00",
+          "min": 12
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 10
+        },
+        {
+          "from": "19:00",
+          "to": "22:00",
+          "min": 15
+        },
+        {
+          "from": "22:00",
+          "to": "23:00",
+          "min": 20
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 60
+        }
+      ],
+      "note": "班距數快速急行和急行（兩種都停這四站）：往大阪看大和西大寺發車、往西大寺看大阪難波往奈良的發車；平日：往外 97 班（首 05:25、末 23:13）、往回 91 班（首 06:38、末 24:03）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "06:09",
+      "last": "23:13",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 20
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 15
+        },
+        {
+          "from": "08:00",
+          "to": "10:00",
+          "min": 10
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 12
+        },
+        {
+          "from": "11:00",
+          "to": "19:00",
+          "min": 10
+        },
+        {
+          "from": "19:00",
+          "to": "21:00",
+          "min": 15
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 30
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 60
+        }
+      ],
+      "note": "班距數快速急行和急行（兩種都停這四站）：往大阪看大和西大寺發車、往西大寺看大阪難波往奈良的發車；土休日：往外 95 班（首 05:40、末 23:13）、往回 87 班（首 06:09、末 24:03）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {
+      "yamato-saidaiji": {
+        "tsuruhashi": 530,
+        "osaka-uehommachi": 590,
+        "osaka-namba": 590
+      }
+    },
+    "child": "兒童半價，10 円未滿進位（近鐵 旅客営業規則第 60 條）",
+    "note": "官方運賃特急料金表的普通運賃"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": true
+  },
+  "notes": "京都 ↔ 大阪的近鐵路線的後半段（京都線急行在大和西大寺換這條）。KINTETSU RAIL PASS 可用。時刻表 2026-03-14 現在。",
+  "validFrom": "2026-03-14",
+  "retrieved": "2026-11-12",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-21&d=1&dw=0",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 大和西大寺 奈良線 大阪難波・神戸三宮方面（weekday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-21&d=1&dw=1",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 大和西大寺 奈良線 大阪難波・神戸三宮方面（holiday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=0",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 大阪難波 難波線 奈良・名古屋・賢島方面（weekday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=350-0&d=1&dw=1",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 駅時刻表 大阪難波 難波線 奈良・名古屋・賢島方面（holiday）"
+    },
+    {
+      "type": "official",
+      "url": "https://eki.kintetsu.co.jp/norikae/T7?sf=6119&tx=1-351&dw=0&time=1200",
+      "retrieved": "2026-11-12",
+      "note": "站間分鐘：平日 12:03 發的那一班的停站時刻"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_e.pdf",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 運賃特急料金表 大阪難波⇔近鉄奈良"
+    },
+    {
+      "type": "official",
+      "url": "https://www.kintetsu.co.jp/gyoumu/kippu/pdf/10_kisoku_2-03-01.pdf",
+      "retrieved": "2026-11-12",
+      "note": "近鐵 旅客営業規則第 59、60 條：兒童票"
+    }
+  ]
+}

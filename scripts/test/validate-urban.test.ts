@@ -176,3 +176,68 @@ describe('validate：車站名稱', () => {
     assert.ok(ok.ok, ok.out);
   });
 });
+
+describe('validate：市巴士（mode bus，T87）', () => {
+  const stop = (id: string, min: number, over: Record<string, unknown> = {}) => ({
+    id,
+    min,
+    name: { ja: id, zh: id },
+    coords: [135.5 + min / 1000, 34.7],
+    ...over,
+  });
+  const bus = (over: Record<string, unknown> = {}) =>
+    route({
+      id: 'test-bus',
+      mode: 'bus',
+      stops: [stop('bus-a', 0, { station: 'test-station' }), stop('bus-b', 5)],
+      fares: { currency: 'JPY', adult: { 'bus-a': { 'bus-b': 230 } }, child: null, note: null },
+      ...over,
+    });
+
+  test('停留所寫在路線裡、不用在 stations.json；票價表用停留所 ID', () => {
+    const r = validate(data({ 'timetables/urban/test-bus.json': bus() }));
+    assert.ok(r.ok, r.out);
+  });
+
+  test('巴士的停留所要有 name、coords；電車的停站不能有', () => {
+    const noName = validate(data({ 'timetables/urban/test-bus.json': bus({ stops: [{ id: 'bus-a', min: 0 }, stop('bus-b', 5)] }) }));
+    assert.ok(!noName.ok);
+    assert.match(noName.out, /name|coords/);
+    const trainWithName = validate(data({ 'timetables/urban/test-line.json': route({ stops: [{ id: 'test-station', min: 0, name: { ja: 'x', zh: 'x' } }, { id: 'test-station-b', min: 4 }] }) }));
+    assert.ok(!trainWithName.ok);
+  });
+
+  test('停留所 ID 不能和車站撞；station 要是車站', () => {
+    const clash = validate(data({ 'timetables/urban/test-bus.json': bus({ stops: [stop('test-station', 0), stop('bus-b', 5)], fares: { currency: 'JPY', adult: {}, child: null, note: null } }) }));
+    assert.match(clash.out, /停留所「test-station」和資料點/);
+    const badStation = validate(data({ 'timetables/urban/test-bus.json': bus({ stops: [stop('bus-a', 0, { station: 'nowhere' }), stop('bus-b', 5)] }) }));
+    assert.match(badStation.out, /station「nowhere」不在 stations\.json/);
+  });
+
+  test('同一個停留所在兩條路線的名稱、座標要一致', () => {
+    const other = (over: Record<string, unknown>) =>
+      bus({ id: 'test-bus-2', stops: [stop('bus-a', 0, over), stop('bus-c', 7)], fares: { currency: 'JPY', adult: {}, child: null, note: null } });
+    const same = validate(data({ 'timetables/urban/test-bus.json': bus(), 'timetables/urban/test-bus-2.json': other({}) }));
+    assert.ok(same.ok, same.out);
+    const renamed = validate(data({ 'timetables/urban/test-bus.json': bus(), 'timetables/urban/test-bus-2.json': other({ name: { ja: '別名', zh: '別名' } }) }));
+    assert.match(renamed.out, /停留所「bus-a」的名稱/);
+    const moved = validate(data({ 'timetables/urban/test-bus.json': bus(), 'timetables/urban/test-bus-2.json': other({ coords: [135.6, 34.7] }) }));
+    assert.match(moved.out, /停留所「bus-a」的座標/);
+  });
+
+  test('票價表的鍵要是這條路線的停留所', () => {
+    const r = validate(data({ 'timetables/urban/test-bus.json': bus({ fares: { currency: 'JPY', adult: { 'bus-a': { 'bus-x': 230 } }, child: null, note: null } }) }));
+    assert.match(r.out, /fares\.adult 的「bus-x」不在 這條路線的停留所/);
+  });
+});
+
+describe('validate：換車用的經由站（extra.via，T87）', () => {
+  test('區域外 0.2 度以上的車站會被擋，標 extra.via 就放寬', () => {
+    const far = { ...testStation(), id: 'test-station-b', name: { ja: '八木', zh: '八木' }, coords: [135.79, 34.51] };
+    const blocked = validate(writeTestData({ extraFiles: { 'areas.json': [area()], 'stations.json': [testStation(), far] } }));
+    assert.ok(!blocked.ok);
+    assert.match(blocked.out, /\[test-station-b\] 座標 .* 不在區域「test-area」的範圍內/);
+    const via = validate(writeTestData({ extraFiles: { 'areas.json': [area()], 'stations.json': [testStation(), { ...far, extra: { via: true } }] } }));
+    assert.ok(via.ok, via.out);
+  });
+});

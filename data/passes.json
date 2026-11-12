@@ -69,12 +69,19 @@
       { "from": "toba", "to": "ugata", "fare": { "adult": 520, "child": 260 }, "express": { "adult": 520, "child": 260 }, "shimakaze": null },
       { "from": "toba", "to": "kashikojima", "fare": { "adult": 560, "child": 280 }, "express": { "adult": 520, "child": 260 }, "shimakaze": null },
       { "from": "ujiyamada", "to": "kashikojima", "fare": { "adult": 790, "child": 400 }, "express": { "adult": 520, "child": 260 }, "shimakaze": null },
-      { "from": "iseshi", "to": "kashikojima", "fare": { "adult": 820, "child": 410 }, "express": { "adult": 520, "child": 260 }, "shimakaze": null }
+      { "from": "iseshi", "to": "kashikojima", "fare": { "adult": 820, "child": 410 }, "express": { "adult": 520, "child": 260 }, "shimakaze": null },
+      { "from": "kyoto", "to": "iseshi", "fare": { "adult": 2430, "child": 1220 }, "express": { "adult": 1640, "child": 820 }, "shimakaze": null, "note": "T87：近鐵官方運賃特急料金表（大阪難波・京都⇔賢島）。兒童運賃照第 60 條算（半價、10 円未滿進位）、兒童特急料金照 expressByDistance。京都發的しまかぜ特別車両料金沒查" },
+      { "from": "kyoto", "to": "ujiyamada", "fare": { "adult": 2430, "child": 1220 }, "express": { "adult": 1640, "child": 820 }, "shimakaze": null, "note": "T87：近鐵官方運賃特急料金表（大阪難波・京都⇔賢島）。兒童運賃照第 60 條算（半價、10 円未滿進位）、兒童特急料金照 expressByDistance。京都發的しまかぜ特別車両料金沒查" },
+      { "from": "kyoto", "to": "isuzugawa", "fare": { "adult": 2440, "child": 1220 }, "express": { "adult": 1640, "child": 820 }, "shimakaze": null, "note": "T87：近鐵官方運賃特急料金表（大阪難波・京都⇔賢島）。兒童運賃照第 60 條算（半價、10 円未滿進位）、兒童特急料金照 expressByDistance。京都發的しまかぜ特別車両料金沒查" },
+      { "from": "kyoto", "to": "toba", "fare": { "adult": 2740, "child": 1370 }, "express": { "adult": 1640, "child": 820 }, "shimakaze": null, "note": "T87：近鐵官方運賃特急料金表（大阪難波・京都⇔賢島）。兒童運賃照第 60 條算（半價、10 円未滿進位）、兒童特急料金照 expressByDistance。京都發的しまかぜ特別車両料金沒查" },
+      { "from": "kyoto", "to": "ugata", "fare": { "adult": 3060, "child": 1530 }, "express": { "adult": 1930, "child": 970 }, "shimakaze": null, "note": "T87：近鐵官方運賃特急料金表（大阪難波・京都⇔賢島）。兒童運賃照第 60 條算（半價、10 円未滿進位）、兒童特急料金照 expressByDistance。京都發的しまかぜ特別車両料金沒查" },
+      { "from": "kyoto", "to": "kashikojima", "fare": { "adult": 3060, "child": 1530 }, "express": { "adult": 1930, "child": 970 }, "shimakaze": null, "note": "T87：近鐵官方運賃特急料金表（大阪難波・京都⇔賢島）。兒童運賃照第 60 條算（半價、10 円未滿進位）、兒童特急料金照 expressByDistance。京都發的しまかぜ特別車両料金沒查" }
     ],
-    "segmentNote": "shimakaze 是加在特急料金之上的しまかぜ特別車両料金；null 表示沒查或しまかぜ不適用。官網的しまかぜ單程總額可以對上：難波→賢島 2,770＋1,640＋1,050＝5,460（兒童 2,740）。目標區間內的短程（例如鳥羽→賢島）搭特急也要付 520 圓特急料金，普通車班次夠多時不一定划算。",
+    "segmentNote": "shimakaze 是加在特急料金之上的しまかぜ特別車両料金；null 表示沒查或しまかぜ不適用。官網的しまかぜ單程總額可以對上：難波→賢島 2,770＋1,640＋1,050＝5,460（兒童 2,740）。京都 → 賢島（T87）：3,060＋1,930＝4,990，和 shimakaze.oneWayTotals 的 6,150 相減是 1,160，京都發的しまかぜ特別車両料金和難波・名古屋的 1,050 不同，沒查到官方數字。目標區間內的短程（例如鳥羽→賢島）搭特急也要付 520 圓特急料金，普通車班次夠多時不一定划算。",
     "sources": [
       { "type": "official", "url": "https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_b.pdf", "retrieved": "2026-10-17", "note": "運賃・特急料金表（大阪方面）" },
       { "type": "official", "url": "https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_c.pdf", "retrieved": "2026-10-17", "note": "運賃・特急料金表（名古屋方面）" },
+      { "type": "official", "url": "https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_b.pdf", "retrieved": "2026-11-12", "note": "T87：運賃特急料金表（大阪難波・京都⇔賢島）：京都 ↔ 伊勢市、宇治山田、五十鈴川、鳥羽、鵜方、賢島" },
       { "type": "official", "url": "https://www.kintetsu.co.jp/gyoumu/kippu/pdf/14_kisoku_2-03-05.pdf", "retrieved": "2026-10-17", "note": "旅客營業規則：特急料金距離級距（第 85 條）、特別車両料金（第 88 條之 2）" },
       { "type": "official", "url": "https://www.kintetsu.co.jp/gyoumu/kippu/tokkyuuken/tokkyuuken.html", "retrieved": "2026-10-17", "note": "特急券說明" }
     ]
