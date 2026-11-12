@@ -1,0 +1,423 @@
+[
+  {
+    "key": "biwako-shirahige-jinja",
+    "name": {
+      "ja": "白鬚神社"
+    },
+    "region": "takashima",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-shirahige-jinja",
+    "note": "湖中鳥居；不可橫越國道 161 號"
+  },
+  {
+    "key": "biwako-miidera",
+    "name": {
+      "ja": "三井寺（園城寺）"
+    },
+    "region": "otsu",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-miidera",
+    "note": null
+  },
+  {
+    "key": "biwako-ishiyamadera",
+    "name": {
+      "ja": "石山寺"
+    },
+    "region": "otsu",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-ishiyamadera",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 5079
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-omi-jingu",
+    "name": {
+      "ja": "近江神宮"
+    },
+    "region": "otsu",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-omi-jingu",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 4708
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-hiyoshi-taisha",
+    "name": {
+      "ja": "日吉大社"
+    },
+    "region": "otsu",
+    "category": "神社",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-hiyoshi-taisha",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 3224
+    },
+    "note": "坂本の町並み（石積み）寫進 extra.nearby"
+  },
+  {
+    "key": "biwako-enryakuji",
+    "name": {
+      "ja": "比叡山延暦寺"
+    },
+    "region": "otsu",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-enryakuji",
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 9591
+    },
+    "note": "冬季山上巴士停駛，上山用坂本ケーブル"
+  },
+  {
+    "key": "biwako-michigan-cruise",
+    "name": {
+      "ja": "ミシガンクルーズ（大津港）"
+    },
+    "region": "otsu",
+    "category": "遊船",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-michigan-cruise",
+    "note": "冬季只有週末假日運航：旅程中只有 2/11"
+  },
+  {
+    "key": "biwako-ukimido",
+    "name": {
+      "ja": "浮御堂（満月寺）"
+    },
+    "region": "ogoto-katata",
+    "category": "寺院",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-ukimido",
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 2357
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-biwako-valley",
+    "name": {
+      "ja": "びわ湖バレイ（びわ湖テラス）"
+    },
+    "region": "ogoto-katata",
+    "category": "山上設施",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-biwako-valley",
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 1084
+    },
+    "note": "冬季是滑雪場，不滑雪可買施設利用券（纜車＋玩雪＋テラス）；びわ湖テラス是另一個 Google 地點 4.2（694）"
+  },
+  {
+    "key": "biwako-biwako-museum",
+    "name": {
+      "ja": "滋賀県立琵琶湖博物館"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "博物館",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-biwako-museum",
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 6197
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-sagawa-museum",
+    "name": {
+      "ja": "佐川美術館"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "美術館",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-sagawa-museum",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 3974
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-la-collina",
+    "name": {
+      "ja": "ラ コリーナ近江八幡"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "商店・庭園",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-la-collina",
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 19008
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-hachimanbori",
+    "name": {
+      "ja": "八幡堀・近江八幡旧市街"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "街道",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-hachimanbori",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 4251
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-hikone-castle",
+    "name": {
+      "ja": "彦根城（玄宮園）"
+    },
+    "region": "hikone",
+    "category": "城",
+    "status": "included",
+    "reason": null,
+    "pointId": "biwako-hikone-castle",
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 21371
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-saikyoji",
+    "name": {
+      "ja": "西教寺"
+    },
+    "region": "otsu",
+    "category": "寺院",
+    "status": "not-included",
+    "reason": "查不到巴士、一路上坡；和日吉大社同在坂本，重複",
+    "pointId": null,
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 1756
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-otsukan",
+    "name": {
+      "ja": "びわ湖大津館"
+    },
+    "region": "otsu",
+    "category": "庭園・建築",
+    "status": "not-included",
+    "reason": "冬季燈飾 1/31 已結束；評論少",
+    "pointId": null,
+    "ratings": {
+      "google": 4.1,
+      "googleReviews": 1024
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-sakamoto-townscape",
+    "name": {
+      "ja": "坂本の町並み"
+    },
+    "region": "otsu",
+    "category": "街道",
+    "status": "not-included",
+    "reason": "寫進日吉大社的 extra.nearby",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "biwako-sosui-boat",
+    "name": {
+      "ja": "琵琶湖疏水船"
+    },
+    "region": "otsu",
+    "category": "遊船",
+    "status": "not-included",
+    "reason": "2 月不開（2026 秋季航期到 12/6、春季 3/26 起）",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "biwako-ogoto-onsen",
+    "name": {
+      "ja": "おごと温泉"
+    },
+    "region": "ogoto-katata",
+    "category": "溫泉",
+    "status": "not-included",
+    "reason": "住宿地，T86b 收旅館；日帰り入浴的價格查不到",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "biwako-mizunomori",
+    "name": {
+      "ja": "草津市立水生植物公園みずの森"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "植物園",
+    "status": "not-included",
+    "reason": "2 月花少、評論少；和琵琶湖博物館相鄰，可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 779
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-suigo-meguri",
+    "name": {
+      "ja": "近江八幡 水郷めぐり"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "遊船",
+    "status": "not-included",
+    "reason": "冬季沒有定期船，只剩手划包船（週三休），湖上冷，15 人要包 2～3 艘",
+    "pointId": null,
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 958
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-hachimanyama-ropeway",
+    "name": {
+      "ja": "八幡山ロープウェー"
+    },
+    "region": "kusatsu-omihachiman",
+    "category": "纜車",
+    "status": "not-included",
+    "reason": "1/25～2/10 停駛點檢；和八幡堀同一帶，2/11 起排行程時可順路",
+    "pointId": null,
+    "ratings": {
+      "google": 4,
+      "googleReviews": 1316
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-koka-ninja",
+    "name": {
+      "ja": "甲賀流忍術屋敷"
+    },
+    "category": "體驗",
+    "status": "not-included",
+    "reason": "京都站約 70～80 分（估算），方向和其他點不同；2/10 週三休",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "biwako-miho-museum",
+    "name": {
+      "ja": "MIHO MUSEUM"
+    },
+    "category": "美術館",
+    "status": "not-included",
+    "reason": "冬季休館（2027-03-13 才開）",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "biwako-kurokabe-square",
+    "name": {
+      "ja": "黒壁スクエア"
+    },
+    "category": "街道",
+    "status": "not-included",
+    "reason": "長濱：京都站約 77～85 分，超過約 75 分的條件",
+    "pointId": null,
+    "ratings": {
+      "google": 4,
+      "googleReviews": 6266
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-nagahama-castle",
+    "name": {
+      "ja": "長浜城歴史博物館"
+    },
+    "category": "博物館",
+    "status": "not-included",
+    "reason": "長濱：太遠（約 80 分）",
+    "pointId": null,
+    "ratings": {
+      "google": 3.9,
+      "googleReviews": 2092
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-nagahama-railway",
+    "name": {
+      "ja": "長浜鉄道スクエア"
+    },
+    "category": "博物館",
+    "status": "not-included",
+    "reason": "長濱：太遠（約 75～80 分）",
+    "pointId": null,
+    "note": null
+  },
+  {
+    "key": "biwako-chikubushima",
+    "name": {
+      "ja": "竹生島"
+    },
+    "category": "島・寺社",
+    "status": "not-included",
+    "reason": "京都站單程約 2 小時（含船）；島上 165 段陡石階、沒有其他上法",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 478
+    },
+    "note": null
+  },
+  {
+    "key": "biwako-metasequoia",
+    "name": {
+      "ja": "メタセコイア並木"
+    },
+    "category": "並木道",
+    "status": "not-included",
+    "reason": "京都站約 75～90 分、巴士一天約 6 班、冬季路面結冰",
+    "pointId": null,
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 1297
+    },
+    "note": null
+  }
+]

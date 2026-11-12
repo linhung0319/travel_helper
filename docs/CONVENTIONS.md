@@ -49,7 +49,7 @@ travel_helper/
 
 `packages/engine`、`scripts`、`web`、`worker` 是 npm workspaces：在根目錄跑一次 `npm install` 就裝好全部，只有根目錄有 `package-lock.json`（見 [architecture.md](architecture.md) §1）。
 
-區域 ID：`ise`、`futami`、`toba`、`shima`、`kix`（關西機場周邊，只有住宿和晚餐）、`osaka`（最後 1～2 天，2026-10-26 加入；做法見 §4「大阪（都市區）的做法」）
+區域 ID：`ise`、`futami`、`toba`、`shima`、`kix`（關西機場周邊，只有住宿和晚餐）、`osaka`（最後 1～2 天，2026-10-26 加入；做法見 §4「大阪（都市區）的做法」）、`kyoto`（京都，2026-11-12 加入；暫定伊勢之後、大阪之前，住不住還沒定）、`biwako`（琵琶湖周邊，2026-11-12 加入；從京都當天來回到得了的點，也可以住雄琴溫泉）；兩區的做法見 §4「京都的做法」
 
 每個區域在 `areas.json` 有**子地區**（`regions`），是搜尋、缺漏檢查、地圖篩選的單位；資料點的 `region` 填子地區 ID。
 
@@ -92,13 +92,13 @@ travel_helper/
 | 檔案 | 誰可以寫 |
 |---|---|
 | `schema/`、`data/areas.json`、`data/stations.json` | 只有 T0、T7 |
-| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19、T27a）；其他欄位仍然只有 T0、T7。例外：T27a 新增 `osaka` 這一整筆，T28 補它的 `stations`；T40 加各區、各子地區的 `intro`（和 `schema/area.schema.json`） |
+| `data/areas.json` 裡**自己區域的 `regions`** | 負責該區的任務（T7b～T7g、T8a、T9a、T19、T27a）；其他欄位仍然只有 T0、T7。例外：T27a 新增 `osaka` 這一整筆，T28 補它的 `stations`；T86a 新增 `kyoto`、`biwako` 兩筆（並挪了大阪、關西機場周邊的 `tripOrder`），T87 補它們的 `stations`（T86a 不碰 `stations`、T87 不碰其他欄位），T86d 補 `intro`、`photos`；T40 加各區、各子地區的 `intro`（和 `schema/area.schema.json`） |
 | `data/timetables/kintetsu/`、`data/passes.json` | T1。例外：T28 在 `_travel-times.json` 加往返大阪的特急 |
 | `data/access/`、`data/raw/access/` | T1b（機場往返交通）。例外：T28 新增 `data/raw/access/osaka.md` |
 | `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充） |
 | `data/timetables/urban/` | T28（班距型路線、轉乘） |
 | `data/stations.json` 裡大阪的車站 | T28（例外允許；其他車站仍然只有 T0、T7）。T28 也可以為了班距型路線、轉乘改 `schema/`、`scripts/validate.mjs`（補測試） |
-| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19；大阪 T27a～T27d）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
+| `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19；大阪 T27a～T27d；京都 `kyoto`、琵琶湖 `biwako` T86a～T86d）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
 | `docs/CONVENTIONS.md` 的「口コミ、Google 評論」一節 | T8e 補「還沒確認的」實測結果和選擇器的修正；其他部分照舊由 👤 討論後修改 |
 | `data/cache/` | 任何任務都可以新增，不可以刪除別人的檔案 |
 | `data/derived/` | 只由腳本產生（例如評分的一致性檢查），不要手改 |
@@ -831,6 +831,42 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 - 餐廳 `localFlavor` 的「在地」改成大阪名物：たこ焼き、お好み焼き、串カツ、てっちり、きつねうどん 等的專門店 → 4～5；一般和食、洋食 → 2；連鎖 → 1。
 - 景點 `accessEase`：地鐵、JR 站步行 10 分內 → 5；要轉乘 2 次以上或站內轉乘步行 10 分以上 → 3。
 - `winterFit`、`elderFit`、`kidsFit`、`groupFit` 照 §5.1。
+
+### 京都、琵琶湖的做法（2026-11-12，T86a）
+區域 `kyoto`、`biwako`。**大阪（都市區）的做法整套沿用**（不做深入調查、g 任務、D 規則、缺漏檢查、數量控制、`ig-notes.md`、じゃらん；代表照片照來源自動排序；手動執行、要 👤 決定的當場問）。這一節只寫和大阪的差別。任務見 PLAN.md 的 T86a～T86d、T87～T89。
+
+**範圍**
+- **行程的位置是暫定的**：暫定伊勢 → 京都 1～2 晚 → 大阪，也可能不住京都、從大阪當天來回（2026-11-12 👤）。資料要兩種排法都能用；住幾晚不影響蒐集的範圍。
+- 京都 9 個子地區（含可選的銀閣寺・南禪寺・平安神宮、宇治、太秦，👤 照建議全收）。
+- 琵琶湖是獨立一區（在滋賀縣、交通和京都市區不同）。**收哪些點不問 👤**：先盤點整個湖周邊一般人會去的點（T86a 列了 29 個），照下面的條件收 10～15 筆，清單給 👤 看過就定：
+  - 2 月有開；
+  - 從京都站大眾運輸單程約 75 分內（含最後一段巴士或計程車），當天來回排得進去；
+  - 15 人帶長輩小孩去得成（不是要划船、健行、滑雪才有得玩的）；
+  - Google 評論數高的優先。沒收的在 `candidates/spots.json` 寫原因（冬季休業、太遠、要自駕）。
+
+**景點**
+- 來源：京都市觀光協會（京都観光Navi，程式讀常回 403，讀不到就用搜尋摘要並註明）、びわこビジターズビューロー、各寺社和設施官網、Google 星數和評論數；不跑觀光三重的腳本。
+- 除了共同欄位，每筆特別查：
+  - 拜觀時間：冬天提早關、最後入場；2/11 國定假日有沒有不同。
+  - 拜觀費：大人、小學生；團體價從幾人起（15 人用不用得到）；要不要事先申請。
+  - 坡、階梯、步行：車站或巴士站到入口多遠、境內繞一圈多久、哪一段是石階、長輩可以只走到哪裡、計程車開到哪；要脫鞋、坐地板的殿內參觀。寫在 `accessibility`、`stayMinutes`、`extra`。
+  - 2 月：梅花、「京の冬の旅」（2027 年沒公布就寫 null 和「出發前要再查」）、冬季停駛休業、下雪結冰。
+- **要事先申請、這一團進不去的不收**：桂離宮（國中以上）、修學院離宮・仙洞御所（18 歲以上），都是一件最多 4 人；苔寺（不收 5 人以上）。原因記在候選和 README。
+- **只有巴士到的點**（金閣寺、銀閣寺、清水寺一帶）照收；15 人坐不下由使用者在交通卡改搭計程車（2026-11-12 👤），不記巴士擠不擠。
+- 讀文 subagent 除了筆記，也寫 `data/cache/work/<任務>/facts/<id>.json` 的欄位草稿（`fields`），主 session 看過再寫進 `judgement.json` 用 `build-spots.mjs` 組裝（T86a，見 `data/raw/kyoto/log/T86a.md`）。
+
+**住宿**（T86b；開工前和 👤 定的規則回填這裡）
+- 楽天查 **2027-02-09（二，平日價）**、**2027-02-10（三，隔天 2/11 是國定假日 → 休前日價）** 兩晚。
+- 京都的範圍：京都站周邊、四条烏丸・河原町（2026-11-12 👤）；町家一棟貸し另外找 5～8 間（相鄰或同一業者的兩、三棟組合也收）。琵琶湖只收雄琴溫泉的旅館 3～5 間。
+- 京都市的住宿稅記在 `prices` 的 note。
+
+**餐廳**（T86c；開工前和 👤 定的規則回填這裡）
+- G／S 照大阪。S 的「京都名物」類別、要不要收抹茶甘味：T86c 開工前定。琵琶湖每個有景點的子地區 2～4 家（當天來回主要是午餐），名物（近江牛、湖魚、鰻魚 等）同時定。
+- 京都的大間多是座敷：`seating` 要分清楚椅子、掘りごたつ、座敷。
+
+**評分**（T86d 訂）
+- 門檻在 `data/raw/toba/assessment-notes.md` 另加「京都」「琵琶湖」兩節，打分前試算（京都的 Google 評論數比大阪更高，不抄大阪的）。
+- `elderFit` 反映坡、石階、座敷；`winterFit` 反映戶外、提早關門；`accessEase` 京都的寫法（例如只有巴士到的降一級）T86d 訂。
 
 ### 研究筆記怎麼存
 鳥羽的 `restaurants.md` 長到 97 KB：一半是候選表，四分之一是貼上的腳本輸出，其他是各任務一路追加的過程紀錄。之後每個 session 都要讀它，會越來越吃 context。所以**依內容的性質分開存**：

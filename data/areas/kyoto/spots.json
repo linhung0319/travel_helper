@@ -1,0 +1,4209 @@
+[
+  {
+    "id": "kyoto-toji",
+    "type": "spot",
+    "name": {
+      "ja": "東寺（教王護国寺）",
+      "kana": "とうじ",
+      "zh": "東寺",
+      "en": "To-ji Temple"
+    },
+    "area": "kyoto",
+    "region": "kyoto-station",
+    "coords": [
+      135.7476935,
+      34.9803395
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒601-8473 京都府京都市南区九条町1番地",
+    "hours": {
+      "mon": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "金堂・講堂 8:00～17:00（16:30 停止受理），官網沒寫季節差異。開門 5:00、閉門 17:00（御影堂、食堂免費參拜）。観智院 9:00～17:00（16:30 止）；宝物館只在春秋特別公開期間開。共通券受理：金堂講堂＋観智院到 16:00。"
+    },
+    "closedNote": "官網沒寫休日（拝観案內頁沒有公休日）。",
+    "febNote": "2026 年 1/9～3/18 是「京の冬の旅」五重塔初層特別拝観（官網），2027 年有沒有、日期都還沒公布，出發前要再查。每月 21 日弘法市（境內露店，5:00 開始準備、16:00 左右收攤，當天停車場不能用）；2027-02-21 不在旅程內。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://toji.or.jp/pc/wp-content/themes/toji2019/img/og.jpg",
+        "page": "https://toji.or.jp/",
+        "kind": "official",
+        "credit": "東寺 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeKPB8uuO9__V-xoFrcz0LKjmsu55G226yyBG-BVcZ54c5sXO3_71JZeVc_T86tOHTKci52mbP_R3cC6rTkW37J4Ts9X6yURJllkJLAb3F6PVUl2VwrsPQ6snCYyKW_DknNcir1=w800",
+        "page": "https://maps.google.com/?cid=15271193799445412112",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://toji.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=15271193799445412112"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "金堂・講堂 大人 800 円（五重塔初層公開期間含塔 1,200 円）；高中生 400／700、國中以下 300／500 円。",
+    "phone": "075-691-3325",
+    "stayMinutes": 60,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "金堂・講堂 800 円；五重塔初層公開時（塔＋金堂講堂）1,200 円；観智院 600 円；共通券（金堂講堂＋観智院）1,200 円，冬季五重塔公開期間的共通券 1,500 円",
+      "child": "高中生 400 円（公開時 700）；中學生以下 300 円（公開時 500），小學生也在「中学生以下」；観智院 高中 300，國中以下官網列「—」",
+      "senior": null,
+      "group": "30 人以上才有團體價（金堂講堂 大人 700，公開時 1,100），15 人不適用；共通券沒有團體價",
+      "note": "2026-11 官網拝観案內頁；官網註明特別公開期間和金額可能變動。"
+    },
+    "group": {
+      "reservation": null,
+      "contact": {
+        "phone": "075-691-3325",
+        "url": "https://toji.or.jp/admission/",
+        "note": "日文"
+      },
+      "note": "官網沒寫一般團體要不要預約；15 人不到團體門檻，照個人票。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "官網（拝観案內、交通、FAQ）都沒寫輪椅、階梯、要不要脫鞋；FAQ 說一般參觀 30 分～1 小時。境內有停車場（自家用車・計程車 600 円/2 小時，每月 21 日不能停），計程車可進到停車場。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院，看佛像和五重塔外觀；沒有兒童設施。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 20349,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://toji.or.jp/admission/",
+        "retrieved": "2026-11-12",
+        "note": "拝観時間、拝観料（個人、團體 30 人以上、五重塔初層公開時）、2026 年特別公開日程"
+      },
+      {
+        "type": "official",
+        "url": "https://toji.or.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "住所、電話、各站步行分數、市巴士站名、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://toji.or.jp/faq/",
+        "retrieved": "2026-11-12",
+        "note": "參觀所需時間、弘法市時間"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/specialopening/winter",
+        "retrieved": "2026-11-12",
+        "note": "搜尋摘要：第 60 回京の冬の旅已結束，2027 年第 61 回未公布"
+      },
+      {
+        "type": "official",
+        "url": "https://toji.or.jp/",
+        "retrieved": "2026-11-12",
+        "note": "og:image"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=15271193799445412112",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：東寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "近鐵京都線「東寺」駅 步行 10 分（約 0.6 km）；JR 京都駅 八条口 步行 15 分（約 1.1 km）；市巴士「東寺東門前」「東寺南門前」「九条大宮」「東寺西門前」下車（官網，各站步行分數沒寫）。",
+      "indoorNote": "境內戶外移動，金堂、講堂、五重塔初層在堂內參觀；從車站走 10 分以上。",
+      "stayNote": "官網 FAQ：一般 30 分～1 小時；含観智院、宝物館 1～2 小時。",
+      "conflicts": [
+        "二手旅遊網站寫金堂講堂 500 円（舊價），官網為 800 円。"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-railway-museum",
+    "type": "spot",
+    "name": {
+      "ja": "京都鉄道博物館",
+      "kana": "きょうとてつどうはくぶつかん",
+      "zh": "京都鐵道博物館",
+      "en": "Kyoto Railway Museum"
+    },
+    "area": "kyoto",
+    "region": "kyoto-station",
+    "coords": [
+      135.7422732,
+      34.9870986
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒600-8835 京都府京都市下京区観喜寺町",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "wed": [],
+      "thu": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "10:00～17:00（16:30 停止入館）。每週三休館，但國定假日、春假（3/25～4/7）、暑假（7/21～8/31）照開；年末年始 12/30～1/1 休；天候不佳可能臨時休館。2027 年 2 月有沒有加休：官網月曆讀不到，出發前看。"
+    },
+    "closedNote": "每週三（假日照開）、12/30～1/1；臨時休館看官網月曆。旅程中 2027-02-10（三）休館；2/11（四，假日）開館。",
+    "febNote": "2 月去還是舊票價（2027-03-01 漲價）。SL スチーム号 冬季有沒有開：官網每月公布牽引機時刻表，2027 年 2 月還沒公布，null。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd0HHWoGaJZZGSPeVuUWRtxn0wq4msM5JKdKjBpjtJ5LD69UeigAokTGXYyVZyKB7E9YX2pCRwWobb9tUujMKfQv3U6eGpxrOecwnd8InVSIDcACBNJcvu5IBkUQgL1EGu6Mbu8=w800",
+        "page": "https://maps.google.com/?cid=9916920369112840685",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kyotorailwaymuseum.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=9916920369112840685"
+    },
+    "tags": [
+      "室內",
+      "雨天備案",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "到 2027-02-28：一般 1,500、大學高中 1,300、中小學 500、幼兒（3 歲以上）200 円；3/1 起漲價。",
+    "phone": "0570-080-462",
+    "stayMinutes": 150,
+    "weather": "indoor",
+    "fares": {
+      "adult": "一般 1,500 円（到 2027-02-28）；2027-03-01 起當日 1,900、預售 1,800 円",
+      "child": "中小學生 500 円、幼兒（3 歲以上）200 円、大學高中 1,300 円（到 2/28）；3/1 起 600／300／1,400 円",
+      "senior": null,
+      "group": null,
+      "note": "SL スチーム号另收：高中以上 300 円、3 歲～國中 100 円（2024 年資料），3/1 起高中以上 500 円。舊價來自 museum.or.jp、新價來自 tabiris（2026-11-03 報導），官網讀不到未核對。"
+    },
+    "group": {
+      "reservation": null,
+      "contact": {
+        "phone": "0570-080-462",
+        "url": "https://www.kyotorailwaymuseum.jp/",
+        "note": "日文"
+      },
+      "note": "搜尋摘要提到團體 20 人以上有優惠（第三方網站、金額可能過時），官網讀不到未核對；15 人大概用不到。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "museum.or.jp 列「バリアフリー対応」「車椅子貸し出し」",
+      "note": "館內電梯、推車能不能進、推車出借：官網有 bot 防護讀不到，null，出發前看官網。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "鐵道博物館，實車展示、扇形車庫、SL スチーム号（冬季有沒有開待查）。"
+    },
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 20248,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kyotorailwaymuseum.jp/news/sysimg/01843/link_JKhpN.pdf",
+        "retrieved": "2026-11-12",
+        "note": "官方新聞稿（2026-04-27）頁尾：休館日每週三、假日開館、地址、電話"
+      },
+      {
+        "type": "other",
+        "url": "https://www.museum.or.jp/museum/17634",
+        "retrieved": "2026-11-12",
+        "note": "開館時間、休館日、現行票價、バリアフリー・車椅子出借"
+      },
+      {
+        "type": "media",
+        "url": "https://tabiris.com/?p=67423",
+        "retrieved": "2026-11-12",
+        "note": "2026-11-02 發表 2027-03-01 漲價（各區分新價、SL スチーム号 500 円）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.westjr.co.jp/press/article/items/240118_00_press_SL.pdf",
+        "retrieved": "2026-11-12",
+        "note": "SL スチーム号現行票價、運行時間（2024 年資料，沿用背景筆記）"
+      },
+      {
+        "type": "other",
+        "url": "https://newt.net/jpn/kyoto/mag-758835791809",
+        "retrieved": "2026-11-12",
+        "note": "搜尋摘要：各站步行分數、巴士站名（引官網）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyotorailwaymuseum.jp/",
+        "retrieved": "2026-11-12",
+        "note": "官網有 Imperva 防護，程式讀取空白，沒有繞過"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=9916920369112840685",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：京都鉄道博物館）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 嵯峨野線「梅小路京都西」駅 步行約 2 分；JR 京都駅 中央口 步行約 20 分；JR 西大路駅 步行約 15 分；市巴士「梅小路公園・京都鉄道博物館前」下車即到（搜尋摘要引官網，未直接核對）。",
+      "indoorNote": "主要展示在本館屋內，離梅小路京都西駅 2 分；扇形車庫、SL スチーム号在戶外。",
+      "stayNote": "鐵道迷或小孩可待半天。",
+      "conflicts": [
+        "JR 西日本「鉄道ファン」頁（文字化けで判読困難）寫休館日週一、週末到 16:30，和其他來源（週三休、16:30 停止入館）不同，判斷為讀取錯誤或舊資料，不採用。"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-aquarium",
+    "type": "spot",
+    "name": {
+      "ja": "京都水族館",
+      "kana": "きょうとすいぞくかん",
+      "zh": "京都水族館",
+      "en": "Kyoto Aquarium"
+    },
+    "area": "kyoto",
+    "region": "kyoto-station",
+    "coords": [
+      135.7472123,
+      34.987516
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒600-8835 京都府京都市下京区観喜寺町35-1（梅小路公園内）",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "lastEntry": null,
+      "note": "官網營業時間看月曆，2027 年 2 月讀不到。入場、買票受理到閉館前 1 小時。往年新聞稿是 10:00～18:00（有夜間活動時延到 20:00），只能當參考。天候可能變更時間。"
+    },
+    "closedNote": "年中無休（維護、活動時可能無法入場）。",
+    "febNote": "往年 2 月上旬曾有情人節前後夜間延長營業（2018、2019 年），2027 年有沒有：null。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.kyoto-aquarium.com/ogp/ogp-common.png",
+        "page": "https://www.kyoto-aquarium.com/",
+        "kind": "official",
+        "credit": "京都水族館 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfyNl-TyJpiM4AvMLL-98uAsO9EzWFDjjkB9QbExwkFuYPyiAFO0m0gi5nvAsSbWsIG2nRue54YJFhWSyK7yr6t1SSJ6GBTSGvFo9KGCsm-XfudCXeBFolZfu5vzG_YGsdBonx1aw=w800",
+        "page": "https://maps.google.com/?cid=6059551674669155929",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kyoto-aquarium.com/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=6059551674669155929"
+    },
+    "tags": [
+      "雨天備案",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人 2,600、高中 2,000、中小學 1,400、幼兒（3 歲以上）900 円。",
+    "phone": null,
+    "stayMinutes": 120,
+    "weather": "covered",
+    "fares": {
+      "adult": "2,600 円",
+      "child": "中小學生 1,400 円、幼兒（3 歲以上）900 円、高中生 2,000 円（要出示學生證）、0～2 歲免費",
+      "senior": "無長輩優惠（官網沒列）",
+      "group": "20 人以上且一次結帳：大人 2,340、高中 1,800、中小 1,260、幼兒 810 円；要先電話再傳真申請書；15 人不適用",
+      "note": "2026-11 官網；官網沒寫依日期浮動。市巴士・地鐵一日券出示打 9 折（搜尋摘要，未核對官網）。"
+    },
+    "group": {
+      "reservation": "20 人以上團體價要事先申請（電話確認空位→專用申請書 FAX 或郵寄）",
+      "contact": {
+        "phone": "075-354-3160",
+        "url": "https://www.kyoto-aquarium.com/about/group/",
+        "note": "團體預約專線，日文；FAX 075-354-3170"
+      },
+      "note": "15 人照個人票即可，不需預約。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": "館內有斜坡",
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": "各處有電梯；輪椅免費出借（數量有限、不能預約）；推車可推著逛",
+      "note": "官網沒寫推車出借。可帶便當，在海豹、海狗、海豚表演場和山紫水明區長椅用餐。再入場出示票券。館內沒有停車場，長輩、幼兒同行可用梅小路公園おもいやり駐車場。；廁所：多功能廁所 4 處（1 處有 ostomate），嬰兒休息室（授乳）3 處"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "水族館，有海豚表演場。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 15173,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kyoto-aquarium.com/about/price/",
+        "retrieved": "2026-11-12",
+        "note": "票價、年票、高中生要學生證"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-aquarium.com/about/access/",
+        "retrieved": "2026-11-12",
+        "note": "年中無休、閉館前 1 小時停止入場、住所、交通、停車"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-aquarium.com/about/group/",
+        "retrieved": "2026-11-12",
+        "note": "團體 20 人以上票價、申請方式"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-aquarium.com/about/support/",
+        "retrieved": "2026-11-12",
+        "note": "輪椅出借、電梯、推車、廁所、嬰兒室、用餐"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-aquarium.com/wp/wp-content/uploads/2021/05/press_20210508.pdf",
+        "retrieved": "2026-11-12",
+        "note": "搜尋摘要：2021 年通常 10:00～18:00、夜間延到 20:00（舊資料）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-aquarium.com/",
+        "retrieved": "2026-11-12",
+        "note": "og:image"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6059551674669155929",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：京都水族館）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 嵯峨野線「梅小路京都西」駅 步行約 7 分；JR 京都駅 中央口 步行約 15 分；市巴士（京都駅 B3 205・208・86、C5 33・特33）或京阪京都交通（C2）「七条大宮・京都水族館前」下車（官網）。",
+      "indoorNote": "展示在館內，但最近車站步行 7 分（梅小路公園內）；海豚表演場是否有屋頂官網沒寫。",
+      "stayNote": null,
+      "conflicts": []
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-tower",
+    "type": "spot",
+    "name": {
+      "ja": "ニデック京都タワー 展望室",
+      "kana": "にでっくきょうとたわー",
+      "zh": "京都塔",
+      "en": "Nidec Kyoto Tower"
+    },
+    "area": "kyoto",
+    "region": "kyoto-station",
+    "coords": [
+      135.7592518,
+      34.9875205
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒600-8216 京都府京都市下京区烏丸通七条下る 東塩小路町721-1",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "tue": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "wed": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": "20:30",
+      "note": "展望室 10:00～21:00（20:30 最後入場）；只有 8/16 縮短到 18:30。"
+    },
+    "closedNote": "年中無休（大樓有法定電氣檢查時會全館休，看官網公告）。",
+    "febNote": "2 月沒有特別變動；晚上可看夜景。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.kyoto-tower.jp/img/common/ogp.png",
+        "page": "https://www.kyoto-tower.jp/",
+        "kind": "official",
+        "credit": "ニデック京都タワー 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLec9DypCcrOdFhM6WPqicM79tkipvhLU9kHUAQV_jV0Po27UcJBDLqXR5Zb9UTSWI1OGOkvIAmIVnUbi5EDYqE7ZzE1U0b3Qu0eoVFM8vrcStFjnq2L5Nj4TYNP976jHmszw62h8g=w800",
+        "page": "https://maps.google.com/?cid=17017157882742292436",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kyoto-tower.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=17017157882742292436"
+    },
+    "tags": [
+      "展望",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人 1,000、高中 800、中小學 700、幼兒（3 歲以上）300 円，3 歲以下免費。",
+    "phone": null,
+    "stayMinutes": 30,
+    "weather": "indoor",
+    "fares": {
+      "adult": "1,000 円",
+      "child": "中小學生 700 円、幼兒（3 歲以上）300 円、高中生 800 円、3 歲未滿免費",
+      "senior": null,
+      "group": "20 人以上一次結帳：大人 800、高中 650、中小 550 円；15 人不適用",
+      "note": "2026-11 官網費用頁（2026-08-01 有「入場料金改定」公告，現價應是改定後）。身障手帳 500 円（陪同 1 人）。"
+    },
+    "group": {
+      "reservation": "只有團體接受預約（官網專用頁洽詢）；個人不用預約，依到達順序入場",
+      "contact": {
+        "phone": null,
+        "url": "https://www.kyoto-tower.jp/faq/",
+        "note": "團體洽詢走官網專用頁"
+      },
+      "note": "15 人照個人票，不需預約。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 20,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "輪椅可上展望室：1F→11F 電梯，11F 換展望專用電梯，換乘處有輪椅專用升降機（限重 180 kg）；展望室 5F・4F 之間也用電梯",
+      "note": "1F 櫃台買當日票。推車不能寄放（能不能帶上展望室官網沒寫）。不能再入場。地下入口 11:00～23:00 可通行。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "高 100 m 的 360 度展望，看得到京都市區；官網沒寫兒童設施。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 18614,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kyoto-tower.jp/fee/",
+        "retrieved": "2026-11-12",
+        "note": "營業時間、票價、團體 20 人以上、身障優惠、年中無休、住所"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-tower.jp/faq/",
+        "retrieved": "2026-11-12",
+        "note": "輪椅、電梯換乘、升降機、推車、停留時間、不可再入場、團體預約"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-tower.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "京都駅中央口步行 2 分、地下入口時間"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-tower.jp/",
+        "retrieved": "2026-11-12",
+        "note": "高 100 m、2026-08-01 改價公告、og:image"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17017157882742292436",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：ニデック京都タワー）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 京都駅 中央口 步行 2 分（官網）。",
+      "indoorNote": "展望室在室內（玻璃窗），從京都駅 2 分；下雨能見度差。",
+      "stayNote": "官網 FAQ：多數人 15～30 分，停留不限時。",
+      "conflicts": [
+        "費用頁團體條件寫「大人・高校生・小中学生が混在する 20 名は対象外」，意思可能是每個區分各自要 20 人，讀不太懂，要團體價前先問。"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-sanjusangendo",
+    "type": "spot",
+    "name": {
+      "ja": "三十三間堂（蓮華王院）",
+      "kana": "さんじゅうさんげんどう",
+      "zh": "三十三間堂",
+      "en": "Sanjusangendo Temple"
+    },
+    "area": "kyoto",
+    "region": "kyoto-station",
+    "coords": [
+      135.7717126,
+      34.9878845
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒605-0941 京都府京都市東山区三十三間堂廻町657",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "lastEntry": "15:30",
+      "note": "11/16～3/31 9:00～16:00（15:30 停止受理）；4/1～11/15 8:30～17:00。2026-11-04 公告確認到 2027-03-31 為 9:00～16:00；今年度不辦夜間拝観。"
+    },
+    "closedNote": "年中無休。",
+    "febNote": "2/11（假日）14:00～15:00 初午祭：本堂前庭山伏護摩、古札供養（官網年中行事，日期固定、頁面沒標年份）。2/3 節分会在旅程前。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-11",
+        "note": "初午祭 14:00～15:00，本堂前庭山伏護摩（官網行事頁未標年份，2027 年待確認）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfzIqynSN3tdpD0yEaYUDA2xpGejYHik5s-NuV4wRhUpZtXCjG67W2sgkB30H1s_jaWb2Nm15XYmk7fhaFHnMwEmZmJxkfLlADCYWgEYRW0ngixWc05Vo9BKo0BsMKvokhHs2fbXHLkcm_Q=w800",
+        "page": "https://maps.google.com/?cid=12261896522956084872",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.sanjusangendo.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=12261896522956084872"
+    },
+    "tags": [
+      "神社寺院",
+      "室內",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "一般 600、中高生 400、小學生 300 円（25 人以上團體 550／350／250）。",
+    "phone": "075-561-0467",
+    "stayMinutes": 45,
+    "weather": "indoor",
+    "fares": {
+      "adult": "600 円",
+      "child": "小學生 300 円、中高生 400 円",
+      "senior": null,
+      "group": "25 人以上：一般 550、中高 350、小學生 250 円；15 人不適用",
+      "note": "2026-11 官網拝観頁。身障手帳本人＋陪同 1 人半價。"
+    },
+    "group": {
+      "reservation": "不受理團體預約，也不需事先聯絡",
+      "contact": {
+        "phone": "075-561-0467",
+        "url": "https://www.sanjusangendo.jp/visit/",
+        "note": "日文"
+      },
+      "note": "停車場不接受預約。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": "堂內參拜通道、境內步道有斜坡",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "有出借輪椅（堂內、境內用，向職員說）；無障礙停車位 2 台",
+      "note": "本堂內禁止穿鞋（入口有鞋櫃），要脫鞋走堂內；本堂南北約 120 m，走廊單程約 120 m。不用坐地板（站著沿通道參觀）。；廁所：境內和停車場有無障礙廁所（輪椅、換尿布、ostomate）"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一千零一尊千手觀音並排，視覺震撼；沒有兒童設施。"
+    },
+    "ratings": {
+      "google": 4.7,
+      "googleReviews": 18053,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.sanjusangendo.jp/visit/",
+        "retrieved": "2026-11-12",
+        "note": "住所、電話、拝観時間、拝観料、團體 25 人以上、不受理團體預約、土足禁止、無障礙、交通"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanjusangendo.jp/news/1717/",
+        "retrieved": "2026-11-12",
+        "note": "2026-11-04 公告：2026-11-16～2027-03-31 9:00～16:00、15:30 停止受理、今年度不辦夜間拝観"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanjusangendo.jp/event/",
+        "retrieved": "2026-11-12",
+        "note": "年中行事：2/3 節分会、2/11 初午祭"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanjusangendo.jp/precincts/",
+        "retrieved": "2026-11-12",
+        "note": "本堂南北約 120 m、庭園、南大門、太閤塀"
+      },
+      {
+        "type": "official",
+        "url": "https://www.sanjusangendo.jp/",
+        "retrieved": "2026-11-12",
+        "note": "og:image、年中無休"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=12261896522956084872",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：三十三間堂）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "市巴士 100・206・208 系統「博物館三十三間堂前」下車即到（京都駅出發約 10 分）；京阪「七条」駅 2 號出口 步行約 7 分（官網）。境內停車場約 50 台。",
+      "indoorNote": "主要參觀在本堂內（屋頂下），巴士站下車即到；庭園、太閤塀在戶外。",
+      "stayNote": "官網沒寫參觀所需時間。",
+      "conflicts": [
+        "官網用 WebFetch 讀會出現憑證錯誤，用 curl（系統憑證）可正常讀取，資料取自官網。"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-kiyomizudera",
+    "type": "spot",
+    "name": {
+      "ja": "清水寺",
+      "kana": "きよみずでら",
+      "zh": "清水寺",
+      "en": "Kiyomizu-dera Temple"
+    },
+    "area": "kyoto",
+    "region": "higashiyama",
+    "coords": [
+      135.784661,
+      34.9946662
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒605-0862 京都府京都市東山区清水1丁目294",
+    "hours": {
+      "mon": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "tue": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "wed": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "thu": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "fri": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "sat": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "sun": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "06:00",
+          "18:00"
+        ]
+      ],
+      "lastEntry": null,
+      "note": "1/1～3/26 開門 6:00、閉門 18:00（官網）；3/27～4/5 春季夜間特別拜觀到 21:30（21:00 停止受理）。官網沒寫一般時段的最後入場。"
+    },
+    "closedNote": "官網沒有寫公休日；首頁（2026-11）沒有 2027 年閉寺或工程公告。",
+    "febNote": "2 月照 1/1～3/26 的 6:00～18:00。2/1～2/3 修二会、節分當日節分会、2/15 涅槃会，都不在 2/9～2/12 之間。2 月沒有夜間拜觀。下雪時參道石板、境內砂利道會滑（官網無冬季專門說明）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.kiyomizudera.or.jp/ogp.jpg",
+        "page": "https://www.kiyomizudera.or.jp/",
+        "kind": "official",
+        "credit": "清水寺 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfrgwBwrQvlpuNa0_V7UKQws6FKmaxR7DkPMJqBeuABZ7un4NfiHsC27pH8ssZuKvJZodXyGbvkg_6y-Oa9fOotKXjHd59EAvCBaynyX3YlwEc44_K1kh80XSVbC6R4ayJzhg_vVdz6-Gg=w800",
+        "page": "https://maps.google.com/?cid=7111013964196361402",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kiyomizudera.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=7111013964196361402"
+    },
+    "tags": [
+      "神社寺院",
+      "長階梯"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "境內大部分免費；轟門內（本堂、舞台）有料：大人 500 円、小中學生 200 円（觀光網站，官網頁面沒寫金額）。",
+    "phone": "075-551-1234",
+    "stayMinutes": 60,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "500 円",
+      "child": "小中學生 200 円",
+      "senior": null,
+      "group": "沒有團體折扣（官網 FAQ「拝観料の団体割引等はございません」）",
+      "note": "金額出自京都観光Navi（春季夜間拜觀頁）、るるぶ的搜尋摘要，官網頁面沒列一般拜觀料；身障手冊本人＋陪同 1 人免費（官網 FAQ）。"
+    },
+    "group": {
+      "reservation": "不需預約（官網沒寫團體要申請）",
+      "contact": {
+        "phone": "075-551-1234",
+        "url": "https://www.kiyomizudera.or.jp/faq.php",
+        "note": "日文"
+      },
+      "note": "團體合照限定在指定地點拍（官網 FAQ）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "從市巴士「五条坂」或「清水道」走上坡約 10 分（官網）到仁王門；五条坂只有南側有步道（京都市修學旅行指南）。茶わん坂、清水坂都是上坡。",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "官網 FAQ：輪椅可引導到本堂附近，之後沿無段差路線繞境內一圈；嬰兒車也能繞一圈；不出借輪椅。官網輪椅地圖註明途中有砂利道、坂道。",
+      "note": "長輩可走官網的無段差路線（輪椅地圖紅線）避開石階；官網輪椅地圖上仁王門、三重塔一帶與往音羽の瀧的路都畫有石階，段數官網沒寫。境內無停車場；FAQ 提到車輛可從防災道路（茶わん坂）的入口進入（輪椅參拜的說明），一般計程車能開到哪官網沒寫。不用脫鞋坐地板。；廁所：境內有多處廁所，含無障礙廁所（官網 FAQ、輪椅地圖）"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院；舞台眺望、音羽の瀧取水小孩可能有興趣，沒有兒童設施。"
+    },
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 74439,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kiyomizudera.or.jp/access.php",
+        "retrieved": "2026-11-12",
+        "note": "拝観時間（季節別）、住所、電話、巴士與車站步行分數、無停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kiyomizudera.or.jp/faq.php",
+        "retrieved": "2026-11-12",
+        "note": "無團體折扣、身障免費、輪椅與嬰兒車路線、無停車場、防災道路（茶わん坂）入口"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kiyomizudera.or.jp/assets/img/map_for_wc.pdf",
+        "retrieved": "2026-11-12",
+        "note": "輪椅參拜地圖：一圈路線、廁所位置、途中有砂利道與坂道"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kiyomizudera.or.jp/event/",
+        "retrieved": "2026-11-12",
+        "note": "年中行事（2 月修二会、節分会、涅槃会）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kiyomizudera.or.jp/",
+        "retrieved": "2026-11-12",
+        "note": "首頁公告、og:image；沒有 2027 年閉寺公告"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/event/single.php?event_id=4608",
+        "retrieved": "2026-11-12",
+        "note": "拜觀料 大人 500、小中 200 円（搜尋摘要，網頁 403）"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80026812/hatsumode",
+        "retrieved": "2026-11-12",
+        "note": "轟門內有料區 大人 500、小中 200 円（搜尋摘要）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://shugakuryoko.kyoto.travel/article/wp-content/uploads/2020/04/修学旅行アクセスガイド清水寺_260316.pdf",
+        "retrieved": "2026-11-12",
+        "note": "京都市修學旅行指南：各路線地圖、五条坂下車步行 10 分、五条坂只有南側步道"
+      },
+      {
+        "type": "media",
+        "url": "https://www.correc.co.jp/taxiappnavi/kiyomizuderataxi",
+        "retrieved": "2026-11-12",
+        "note": "計程車在五条坂乘車處上下車、到仁王門約 4 分（搜尋摘要，二手）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7111013964196361402",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：清水寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "市巴士 206・100 系統（京都站出發）「五条坂」下車 步行 10 分；市巴士 207 系統、京阪巴士（從京阪祇園四条站・阪急京都河原町站一帶）「清水道」下車 步行 10 分；京阪 清水五条站 步行約 25 分（官網）。",
+      "indoorNote": "本堂有屋簷，但舞台、參道、境內移動都在戶外；從巴士站走上坡 10 分。",
+      "conflicts": [
+        "官網頁面沒有一般拜觀料金額，大人 500／小中 200 円來自京都観光Navi 與るるぶ；搜尋摘要中有一個海外向導寫大人 400 円（舊價或錯誤）。",
+        "計程車：官網只說境內無停車場、建議搭大眾運輸或計程車；二手媒體（correc 計程車 App 介紹）說計程車在五条坂的乘車處上下車、到仁王門步行約 4 分，視時段與司機判斷可再往上，未經官網證實。"
+      ],
+      "stayNote": "本堂、舞台、音羽の瀧、子安塔繞一圈約 1 小時（推估，官網沒寫所要時間）"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-yasaka-jinja",
+    "type": "spot",
+    "name": {
+      "ja": "八坂神社",
+      "kana": "やさかじんじゃ",
+      "zh": "八坂神社",
+      "en": "Yasaka Shrine"
+    },
+    "area": "kyoto",
+    "region": "higashiyama",
+    "coords": [
+      135.7785534,
+      35.0036559
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒605-0073 京都府京都市東山区祇園町北側625",
+    "hours": {
+      "always": true,
+      "lastEntry": null,
+      "note": "24 小時可參拜（官網「24時間参拝可能」）；社務所 9:00～17:00。授与所的時間官網沒有另外寫。"
+    },
+    "closedNote": "無休（24 小時參拜）。",
+    "febNote": "2/2～2/3 節分祭（舞殿撒豆）在旅程前；2/11 10:00 紀元祭（國定假日當天，祭典本身是神事、境內照常參拜）。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-11",
+        "note": "紀元祭 10:00（官網行事頁，沒標年份，每年固定 2/11）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://www.yasaka-jinja.or.jp/wp-content/themes/yasaka/img/common/ogp_thumb.png",
+        "page": "https://www.yasaka-jinja.or.jp/",
+        "kind": "official",
+        "credit": "八坂神社 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfrI_9aVssvoxXPky84JePPJio8w20lqQAU9hJAnW4xOo_KIAHINEiFURPpNPSxhd6BuchXhF47uxZDHg7rmZegQJUeGF247K1ZOa-n9vEFhpXp5bcRGZnv4PtQjOnnAlX-Vr5S=w800",
+        "page": "https://maps.google.com/?cid=14374021738854095593",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.yasaka-jinja.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=14374021738854095593"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費，24 小時可參拜。",
+    "phone": "075-561-6155",
+    "stayMinutes": 20,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "不適用",
+      "note": "參拜免費（官網）。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "075-561-6155",
+        "url": "https://www.yasaka-jinja.or.jp/access/",
+        "note": "社務所 9:00～17:00，日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "西樓門前、境內階梯段數與無障礙資訊官網都沒寫（null）。境內無停車場。不用脫鞋。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般神社，沒有兒童設施。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 34473,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.yasaka-jinja.or.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "24 小時參拜、社務所時間、住所、電話、各站步行、無停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yasaka-jinja.or.jp/event/",
+        "retrieved": "2026-11-12",
+        "note": "2 月祭典：節分祭 2/2～3、紀元祭 2/11 10:00 等"
+      },
+      {
+        "type": "official",
+        "url": "https://www.yasaka-jinja.or.jp/",
+        "retrieved": "2026-11-12",
+        "note": "og:image"
+      },
+      {
+        "type": "tourism",
+        "url": "https://shugakuryoko.kyoto.travel/article/wp-content/uploads/2020/04/修学旅行アクセスガイド清水寺_260316.pdf",
+        "retrieved": "2026-11-12",
+        "note": "京都市修學旅行路線圖：八坂神社、花見小路、巽橋、ねねの道到清水寺的散策路線"
+      },
+      {
+        "type": "official",
+        "url": "https://www.bunka.go.jp/seisaku/bunkazai/shokai/hozonchiku/pdf/r1392257_056.pdf",
+        "retrieved": "2026-11-12",
+        "note": "文化廳：京都市祇園新橋 重要伝統的建造物群保存地区（標題，搜尋摘要）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14374021738854095593",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：八坂神社）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "京阪「祇園四条」站 步行約 5 分；阪急「京都河原町」站 步行約 8 分；JR 京都站搭市巴士 100・206 系統「祇園」下車即到（官網）。",
+      "indoorNote": "神社境內戶外為主，只有舞殿、本殿屋簷下可躲雨。",
+      "nearby": "花見小路通：四条通往南、到建仁寺一帶的石板路，兩側是茶屋町家（京都市修學旅行路線圖）。祇園白川：四条通北側、白川沿岸的巽橋一帶，屬「祇園新橋」重要傳統建造物群保存地區，石板路、柳樹、茶屋。往南沿ねねの道、二年坂、產寧坂可走到清水寺（京都市修學旅行路線圖的散策路線）。",
+      "conflicts": []
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-sannenzaka",
+    "type": "spot",
+    "name": {
+      "ja": "産寧坂（三年坂）・二寧坂（二年坂）",
+      "kana": "さんねいざか・にねいざか",
+      "zh": "三年坂・二年坂",
+      "en": "Sannenzaka & Ninenzaka"
+    },
+    "area": "kyoto",
+    "region": "higashiyama",
+    "coords": [
+      135.781008,
+      34.9966644
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "京都府京都市東山区清水2丁目一帶（產寧坂重要傳統建造物群保存地區）",
+    "hours": {
+      "always": true,
+      "lastEntry": null,
+      "note": "公共街道，隨時可散步。沿路店家營業時間各家不同，官方沒有統一資料（null）。"
+    },
+    "closedNote": "街道無休；個別店家公休日不一。",
+    "febNote": "2 月沒有特別活動。石階、石板路下雨或結冰會滑；傳說「三年坂跌倒三年內會死」，當地有帶葫蘆避厄的說法（維基百科）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfvLsGtHbtdMI6phlP_TZx9JnYBFD2Rmf3sbAD8BP0j0rE_fvQQcBuuy6By3S0EdvlTTp6jOTKKNij6hde03oOS0plM5EVm5CEL_QwXMXjXbxBquhxbeUJxigL4vDmKS286PcGcCw=w800",
+        "page": "https://maps.google.com/?cid=11767990651930696711",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=11767990651930696711"
+    },
+    "tags": [
+      "長階梯"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費（公共街道）。",
+    "phone": null,
+    "stayMinutes": 45,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "不適用",
+      "note": null
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": null,
+        "url": null,
+        "note": null
+      },
+      "note": "路窄、觀光客多，15 人建議分組走。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "產寧坂是從八坂往清水寺的陡石板坡、約 100 公尺（京都観光Navi 摘要）；二寧坂、產寧坂都有石段（京都市保存計畫）。石段段數：官方沒寫（null）。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "石階多，輪椅、嬰兒車不適合（由「石段」推斷；官方沒寫）。",
+      "note": "長輩：雨天、結冰石階會滑，要慢走。不走石階的替代：從「五条坂」巴士站走五条坂・茶わん坂上清水寺（官網 FAQ 提到茶わん坂側有車輛入口；階梯多寡官方沒寫）。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "街道散步、土產店與小吃；沒有兒童設施。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 17351,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/tokei/page/0000281761.html",
+        "retrieved": "2026-11-12",
+        "note": "產寧坂伝建地區保存計畫：產寧坂、二年坂的石段與折れ曲がった石畳（搜尋摘要）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/tokei/cmsfiles/contents/0000339/339942/04_kiyomizudera.pdf",
+        "retrieved": "2026-11-12",
+        "note": "京都市清水寺周邊景觀資料：產寧坂、二年坂的石段與石疊坂道、位置圖"
+      },
+      {
+        "type": "tourism",
+        "url": "https://shugakuryoko.kyoto.travel/spot/536/",
+        "retrieved": "2026-11-12",
+        "note": "高台寺往清水寺途中的街道、石段與石疊、土產店"
+      },
+      {
+        "type": "tourism",
+        "url": "http://kanko.city.kyoto.lg.jp/detail.php?InforKindCode=4&ManageCode=6000047",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Navi 三年坂：八坂通往清水寺的陡石疊坡道、約 100m（搜尋摘要，網頁連不上）"
+      },
+      {
+        "type": "tourism",
+        "url": "https://shugakuryoko.kyoto.travel/article/wp-content/uploads/2020/04/修学旅行アクセスガイド清水寺_260316.pdf",
+        "retrieved": "2026-11-12",
+        "note": "京都市修學旅行路線圖：清水道巴士站、八坂神社→二年坂→產寧坂→清水寺"
+      },
+      {
+        "type": "wikipedia",
+        "url": "https://ja.wikipedia.org/wiki/産寧坂",
+        "retrieved": "2026-11-12",
+        "note": "1976 年選定伝建地區、跌倒傳說、位置"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11767990651930696711",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：産寧坂（三年坂））"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "市巴士「清水道」下車，沿清水道往東上坡到產寧坂下（步行分鐘官方沒寫）；從八坂神社往南經ねねの道 到二寧坂（京都市修學旅行路線圖）。",
+      "indoorNote": "戶外石板街道，下雨只能撐傘或進店躲雨。",
+      "conflicts": [
+        "石段段數、店家營業時間、廁所位置：官方與京都市資料都沒寫，待現場或出發前再查。"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-fushimi-inari",
+    "type": "spot",
+    "name": {
+      "ja": "伏見稲荷大社",
+      "kana": "ふしみいなりたいしゃ",
+      "zh": "伏見稻荷大社",
+      "en": "Fushimi Inari Taisha"
+    },
+    "area": "kyoto",
+    "region": "fushimi",
+    "coords": [
+      135.7791876,
+      34.9676945
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒612-0882 京都府京都市伏見区深草薮之内町68",
+    "hours": {
+      "always": true,
+      "lastEntry": null,
+      "note": "境內與稻荷山自由參拜、24 小時（京都觀光研究整理的二手資料；官網沒寫參拜時間）。授与所時間來源不一：8:30～16:30 或 7:00～18:00（都是二手）。夜間山路暗，不建議天黑上山。"
+    },
+    "closedNote": "無休（自由參拜）。",
+    "febNote": "初午大祭是節分後第一個午日，2027 年依曆推算為 2/8（一），在旅程前一天，當天人潮極多；2/9～2/12 沒有大祭典。下雪結冰時山路石階會滑。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-08",
+        "note": "初午大祭（依曆推算，神社尚未公布；2026 年是 2/1 8:00 起）。出發前要再查"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfJ6EOgOIvgq_BrAf0-P6EpWjwuHLBnQh_To0cghyHvKqgab-BfL5A0S3v0KXrJmpRvlGAsPgLJaB1QX-kPP4I6JzG1hDAt22zuVwNiXDIA-pfikhVnhfVQmw6SXy8_10Geb1VT=w800",
+        "page": "https://maps.google.com/?cid=8870624639634301673",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://inari.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=8870624639634301673"
+    },
+    "tags": [
+      "神社寺院",
+      "長階梯"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費，自由參拜。",
+    "phone": "075-641-7331",
+    "stayMinutes": 60,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "不適用",
+      "note": "參拜免費（二手資料一致；官網沒寫參拜費）。"
+    },
+    "group": {
+      "reservation": "不需預約（祈禱另外受理）",
+      "contact": {
+        "phone": "075-641-7331",
+        "url": "https://inari.jp/",
+        "note": "日文"
+      },
+      "note": "狹窄參道禁止拍照擋路（官網參拜須知）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "千本鳥居是從奥宮到奥社奉拝所約 400m 的參道（京都觀光資料摘要）；奥社奉拝所以後是稻荷山登山道，一圈約 4km、約 2 小時，最高點一ノ峰海拔 233m（京都観光Navi 摘要、官網地圖）。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "長輩建議：本殿 → 千本鳥居 → 奥社奉拝所（おもかる石）後原路折返；奥社以後是山路石階，不建議長輩上山。千本鳥居段的階梯數、本殿到奥社的分鐘數官網沒寫（null）。輪椅、嬰兒車資訊官網沒寫。不用脫鞋。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "千本鳥居、狐狸像、おもかる石（舉石燈籠頭試願望）小孩有興趣；體力好的可以爬到四ツ辻或山頂。"
+    },
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 93821,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://inari.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "JR 稲荷站即到、京阪伏見稲荷站 5 分、巴士 7 分；停車場擁擠"
+      },
+      {
+        "type": "official",
+        "url": "https://inari.jp/",
+        "retrieved": "2026-11-12",
+        "note": "住所、電話；沒有參拜時間；沒有 og:image"
+      },
+      {
+        "type": "official",
+        "url": "https://inari.jp/sp/map/spot_08/",
+        "retrieved": "2026-11-12",
+        "note": "奥社奉拝所在本殿東方、千本鳥居出口；おもかる石"
+      },
+      {
+        "type": "official",
+        "url": "https://inari.jp/trip/map01/",
+        "retrieved": "2026-11-12",
+        "note": "大社地圖：一ノ峰海拔 233m、御塚大祭 2 月初午（舊暦）"
+      },
+      {
+        "type": "official",
+        "url": "https://inari.jp/request/",
+        "retrieved": "2026-11-12",
+        "note": "參拜須知：禁止寵物、狹窄參道拍照擋路等"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/tourism/single01.php?category_id=7&tourism_id=448",
+        "retrieved": "2026-11-12",
+        "note": "所要時間含お山めぐり 120 分、一圈 4km 約 2 小時（搜尋摘要，網頁 403）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.ana.co.jp/ja/at/japan-travel-planner/kyoto/0000002.html",
+        "retrieved": "2026-11-12",
+        "note": "24 小時、免費、授与所 8:30～16:30（前期盤點）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/spot/ar0726s30553/data.html",
+        "retrieved": "2026-11-12",
+        "note": "24 小時、免費（前期盤點）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/article/38878/",
+        "retrieved": "2026-11-12",
+        "note": "お守お札授与所 7:00～18:00、山頂一圈約 2 小時（搜尋摘要）"
+      },
+      {
+        "type": "other",
+        "url": "https://bestcalendar.jp/koyomi/hatsu-uma",
+        "retrieved": "2026-11-12",
+        "note": "2027 年初午 2/8（曆推算）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8870624639634301673",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：伏見稲荷大社）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 奈良線「稲荷」站 下車即到（京都站 5 分）；京阪本線「伏見稲荷」站 往東步行 5 分；市巴士 南5 系統「稲荷大社前」往東步行 7 分（官網）。",
+      "indoorNote": "神社與山路都是戶外；千本鳥居下仍會淋雨。",
+      "conflicts": [
+        "授与所時間： ANA、Walker+ 寫 8:30～16:30；搜尋摘要中旅遊媒體寫お守お札授与所 7:00～18:00。官網沒有寫，待確認。",
+        "參拜時間 24 小時、免費：只有二手資料，官網的 FAQ、アクセス、參拜須知頁都沒寫。",
+        "初午大祭 2027-02-08 是暦推算，神社未公布。"
+      ],
+      "stayNote": "只到奥社奉拝所來回約 1 小時（推估）；全程繞山一圈約 2 小時（京都観光Navi 摘要）"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-togetsukyo",
+    "type": "spot",
+    "name": {
+      "ja": "渡月橋",
+      "kana": "とげつきょう",
+      "zh": "渡月橋",
+      "en": "Togetsukyo Bridge"
+    },
+    "area": "kyoto",
+    "region": "arashiyama",
+    "coords": [
+      135.6777748,
+      35.0128769
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "京都府京都市右京区嵯峨天龍寺芒ノ馬場町～西京区嵐山（桂川・大堰川）",
+    "hours": {
+      "always": true,
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "lastEntry": null,
+      "note": "公共道路橋，24 小時自由通行，免費。"
+    },
+    "closedNote": "無休（道路橋）。",
+    "febNote": "2 月沒有特別活動。「嵐山花灯路」已於 2021 年 12 月最後一屆後結束，現在改成秋天的「嵐山月灯路」（2026 年 9/30～11/8），2 月都沒有夜間點燈。下雪時橋面、河岸可能結冰。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeDntyYdtYq-5-8Mj_M_tEMqDGhIJr6kISpVXnFYq0lvdI2Nx_4WGCmGw1H5k1n-Ye9KNgHqIfIyjO1MUJpYWwDI5MBgHsElDdDxsbNOrL6f4P6CFyhwZ1l5U2xaEdzktbYuwIe=w800",
+        "page": "https://maps.google.com/?cid=17011495368415127613",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=17011495368415127613"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費，自由通行。",
+    "phone": null,
+    "stayMinutes": 30,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "不適用",
+      "note": "嵐電嵐山駅月台的「駅の足湯」另收 250 円（附毛巾，二手資料）。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": null,
+        "url": null,
+        "note": null
+      },
+      "note": "15 人可一起走；橋上人行道寬度有限，週末假日人多，建議分組拍照。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 5,
+      "stairs": "無",
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "全長約 155 m（二手資料），走過去約 2～3 分。官方無障礙資料沒讀到；橋是平的道路橋，計程車、巴士可開到橋頭（京都巴士、市巴士「嵐山」一帶）。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "可以看河、看船；嵐電嵐山駅的足湯（付費）小孩也能泡。一般景點、沒有兒童設施。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 5735,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/event/single.php?event_id=5579",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Navi（403，只用搜尋摘要）：嵐山花灯路 2021 年 12 月為最後一屆"
+      },
+      {
+        "type": "official",
+        "url": "https://www.keifuku.co.jp/cms/%e3%80%90%e6%b2%bf%e7%b7%9a%e3%81%94%e6%a1%88%e5%86%85%e3%80%91%e4%ba%ac%e9%83%bd%e5%b5%90%e5%b1%b1%e3%81%ae%e7%ab%b9%e6%9e%97%e3%82%92%e5%bd%a9%e3%82%8b%e5%a4%9c%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3/",
+        "retrieved": "2026-11-12",
+        "note": "嵐電：嵐山月灯路 2026-09-30～11-08（竹林の小径），嵐電嵐山駅徒歩 8 分"
+      },
+      {
+        "type": "media",
+        "url": "https://aumo.jp/articles/16870",
+        "retrieved": "2026-11-12",
+        "note": "二手：各站步行分數（嵐電 3～5 分、阪急 10 分、JR 10 分）"
+      },
+      {
+        "type": "media",
+        "url": "https://newt.net/jpn/kyoto/mag-91455993606",
+        "retrieved": "2026-11-12",
+        "note": "二手：JR 嵯峨嵐山駅步行約 11 分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.minnacamera.com/spots/1917",
+        "retrieved": "2026-11-12",
+        "note": "二手：全長 155 m 木造橋"
+      },
+      {
+        "type": "media",
+        "url": "https://www.mapple.net/region/a0502010302_g05050000/spot/",
+        "retrieved": "2026-11-12",
+        "note": "二手：駅の足湯 250 円附毛巾、9:30～17:30"
+      },
+      {
+        "type": "other",
+        "url": "https://sp.jorudan.co.jp/onsen/details/1647/",
+        "retrieved": "2026-11-12",
+        "note": "二手：駅の足湯 9:00～20:00（冬季到 18:00）、電話 075-873-2121"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=17011495368415127613",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：渡月橋）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "嵐電 嵐山駅 步行約 3～5 分；阪急 嵐山駅 步行約 10 分（過橋前從南岸過來）；JR 嵯峨野線 嵯峨嵐山駅 步行約 10～11 分（皆二手資料，官方頁 403 未讀到）。",
+      "indoorNote": "戶外橋與河岸，沒有屋頂。",
+      "conflicts": [
+        "嵐電嵐山駅步行：aumo 同頁同時寫 3 分和 5 分",
+        "駅の足湯 營業時間：Mapple 9:30～17:30（18:00 閉）、Jorudan 9:00～20:00（冬季到 18:00），官網沒讀到（randen.keifuku.co.jp 無法連線）",
+        "委託說「嵐山花灯路 12 月舉辦」：查到 2021 年 12 月為最後一屆，之後沒有辦"
+      ],
+      "stayNote": "過橋、河岸散步、拍照約 30 分；加足湯再加 20～30 分。",
+      "nearby": "足湯：嵐電嵐山駅中央月台「駅の足湯」，250 円附毛巾（二手），全年營業，時間兩說。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-bamboo-grove",
+    "type": "spot",
+    "name": {
+      "ja": "竹林の小径",
+      "kana": "ちくりんのこみち",
+      "zh": "竹林小徑",
+      "en": "Arashiyama Bamboo Grove"
+    },
+    "area": "kyoto",
+    "region": "arashiyama",
+    "coords": [
+      135.6713013,
+      35.0168187
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "京都府京都市右京区嵯峨天龍寺立石町（竹林の小径）",
+    "hours": {
+      "always": true,
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "lastEntry": null,
+      "note": "公共散步道，自由通行、免費；二手資料有寫 24 小時，也有寫「9:00～17:00 為參考時間」。從天龍寺北門進出只在 8:30～17:00（北門開門時間）。"
+    },
+    "closedNote": "無休（散步道）。",
+    "febNote": "2 月沒有夜間活動（嵐山月灯路是 9/30～11/8）。冬天人比秋天少，但白天中午仍擁擠；下雪時竹林雪景好看，但路面濕滑。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeUhd4hEYOxrcfCLp721msGQhX_t7KDC_QhYEKmrDYQauwentdG27HTSdcWp-WDI58qRgaG-ZZxAHYTi_SzblL07MPL0E-NeiSEUsDJS7AoyBnE24Z_zHdnkQ2yqQ52nGEpV6L_uzTejAbC=w800",
+        "page": "https://maps.google.com/?cid=18131488233213033693",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": null,
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=18131488233213033693"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費，自由通行。",
+    "phone": null,
+    "stayMinutes": 30,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "不適用",
+      "note": "從天龍寺北門進來要買天龍寺庭園票（大人 500、小中 300）。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": null,
+        "url": null,
+        "note": null
+      },
+      "note": "路窄、人多時 15 人不容易同步，建議 4～6 人分組走、約好出口會合（野宮神社或大河内山荘那頭）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 10,
+      "stairs": "無",
+      "slope": null,
+      "restAreas": false,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "野宮神社 → 天龍寺北門 → 大河内山荘 約 400 m 的散步道（京都観光Navi 搜尋摘要），走完約 10 分。坡度官方沒寫（null）。從天龍寺庭園（百花苑）往北門是沿自然斜坡的園路（二手），北門出來就是竹林。路上沒有長椅。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "散步道，沒有兒童設施；小孩可以走完。"
+    },
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 26661,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.keifuku.co.jp/cms/%e3%80%90%e6%b2%bf%e7%b7%9a%e3%81%94%e6%a1%88%e5%86%85%e3%80%91%e4%ba%ac%e9%83%bd%e5%b5%90%e5%b1%b1%e3%81%ae%e7%ab%b9%e6%9e%97%e3%82%92%e5%bd%a9%e3%82%8b%e5%a4%9c%e3%81%ae%e3%82%a4%e3%83%99%e3%83%b3/",
+        "retrieved": "2026-11-12",
+        "note": "嵐電：嵐山月灯路 2026-09-30～11-08（竹林の小径），嵐電嵐山駅徒歩 8 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Navi（403，只用搜尋摘要）：野宮神社～天龍寺北門～大河内山荘 約 400 m"
+      },
+      {
+        "type": "official",
+        "url": "https://www.tenryuji.com/visit/",
+        "retrieved": "2026-11-12",
+        "note": "参拝時間（庭園・北門・諸堂・雲龍図）、拝観料、雲龍図は土日祝公開、住所、電話、各駅徒歩分"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80027218",
+        "retrieved": "2026-11-12",
+        "note": "二手：免費、開放時間參考"
+      },
+      {
+        "type": "media",
+        "url": "https://www.gltjp.com/ja/directory/item/12148/",
+        "retrieved": "2026-11-12",
+        "note": "二手：百花苑經北門通竹林"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=18131488233213033693",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：嵐山竹林の小径）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "嵐電 嵐山駅 步行約 8 分（嵐電官方）；JR 嵯峨野線 嵯峨嵐山駅 步行約 10 分（二手）；或從天龍寺北門直接出來。",
+      "indoorNote": "戶外竹林步道，沒有屋頂；雨天撐傘可走但路窄擁擠。",
+      "conflicts": [
+        "開放時間：二手資料一說 24 小時（一部分 9:00～17:00），一說參考時間 9:00～17:00；官方沒有。"
+      ],
+      "stayNote": "走一趟約 10～15 分，拍照加起來約 30 分。",
+      "fullCourse": "推薦走法：嵐電嵐山駅 → 天龍寺（正門）→ 曹源池庭園 → 百花苑 → 北門出 → 竹林の小径 → 野宮神社 或 往大河内山荘方向。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-tenryuji",
+    "type": "spot",
+    "name": {
+      "ja": "天龍寺",
+      "kana": "てんりゅうじ",
+      "zh": "天龍寺",
+      "en": "Tenryuji Temple"
+    },
+    "area": "kyoto",
+    "region": "arashiyama",
+    "coords": [
+      135.6737654,
+      35.0158379
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒616-8385 京都府京都市右京区嵯峨天龍寺芒ノ馬場町68",
+    "hours": {
+      "mon": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:50",
+      "note": "庭園（曹源池・百花苑）與北門 8:30～17:00（16:50 停止受理）；諸堂（大方丈・書院・多宝殿）8:30～16:45（16:30 停止受理）；法堂「雲龍図」9:00～16:30（16:20 停止受理），只在週六日、國定假日開（春秋有每天公開期間）。"
+    },
+    "closedNote": "沒有固定休日；諸堂、雲龍図偶有休止日（例：2027-01-02 雲龍図休），2027 年 2 月的休止日官網還沒列。",
+    "febNote": "2 月照常開放。雲龍図只有週末假日開 → 旅程中只有 2/11（四，建國記念の日）看得到，2/9、2/10、2/12 看不到。下雪時庭園雪景，石子路濕滑。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-11",
+        "note": "國定假日，法堂「雲龍図」有公開（官網：土日祝公開）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeh06FxxBbhK30RLRYG6zPDEzL8NhYsc9xwUDd3FB03xJd6lDXIqLkY5kHRu9KMXKsMzzoeI0a4ArsYW6vnYFawcOsIlggFYUtgWQyVZ_iEo9ux8vqHnAoBX140OG0IAjpy2xpO=w800",
+        "page": "https://maps.google.com/?cid=14815785984447432896",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.tenryuji.com/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=14815785984447432896"
+    },
+    "tags": [
+      "神社寺院",
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "庭園 大人 500、小中 300；諸堂再加 300；法堂雲龍図另收 500。",
+    "phone": "075-881-1235",
+    "stayMinutes": 60,
+    "weather": "covered",
+    "fares": {
+      "adult": "庭園 500 円（高中以上）；諸堂 +300 円；法堂雲龍図 500 円",
+      "child": "庭園 小中學生 300 円（諸堂 +300）；未就學免費；雲龍図「1 人 500 円」沒寫兒童價",
+      "senior": null,
+      "group": "官網沒寫團體價（null）",
+      "note": "2026-11 官網頁面；身障手冊本人＋1 位陪同減 100 円。"
+    },
+    "group": {
+      "reservation": "官網沒寫（一般參拜不需預約）",
+      "contact": {
+        "phone": "075-881-1235",
+        "url": "https://www.tenryuji.com/visit/",
+        "note": "日文，8:30～17:00"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": "百花苑往北門是沿自然斜坡的園路（二手）",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "官網沒寫無障礙、輪椅、是否脫鞋。諸堂（大方丈・書院・多宝殿）是室內參觀，一般寺院要脫鞋，現場確認。長輩可只走曹源池庭園（大方丈前一帶），不一定要上百花苑。正門在嵐電嵐山駅前，計程車可到門前。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院；雲龍図（天花板的龍）小孩可能有興趣，只有 2/11 能看。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 17552,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.tenryuji.com/visit/",
+        "retrieved": "2026-11-12",
+        "note": "参拝時間（庭園・北門・諸堂・雲龍図）、拝観料、雲龍図は土日祝公開、住所、電話、各駅徒歩分"
+      },
+      {
+        "type": "media",
+        "url": "https://www.gltjp.com/zh-hant/article/item/20334/",
+        "retrieved": "2026-11-12",
+        "note": "二手：百花苑沿斜坡、北門接竹林"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=14815785984447432896",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：天龍寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "嵐電 嵐山駅 下車即到（官網「下車前」）；JR 嵯峨野線 嵯峨嵐山駅 步行 13 分；阪急 嵐山駅 步行 15 分；市巴士 11・28・93 系統「嵐山天龍寺前」、京都巴士 61・72・83 系統「京福嵐山駅前」（官網）。",
+      "indoorNote": "庭園戶外為主，諸堂（大方丈等）在屋頂下，從大方丈廊下可以看曹源池；雨天撐傘可。",
+      "conflicts": [],
+      "stayNote": "庭園 30～40 分；加諸堂、雲龍図約 60～75 分。北門出去接竹林。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-nishiki-market",
+    "type": "spot",
+    "name": {
+      "ja": "錦市場",
+      "kana": "にしきいちば",
+      "zh": "錦市場",
+      "en": "Nishiki Market"
+    },
+    "area": "kyoto",
+    "region": "shijo-nijo",
+    "coords": [
+      135.764723,
+      35.0050258
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒604-8054 京都府京都市中京区西大文字町609番地（京都錦市場商店街振興組合）",
+    "hours": {
+      "mon": null,
+      "tue": null,
+      "wed": null,
+      "thu": null,
+      "fri": null,
+      "sat": null,
+      "sun": null,
+      "holiday": null,
+      "lastEntry": null,
+      "note": "商店街本身可自由通行；營業時間、公休依店家而異（官網、ruruBu 都這樣寫）。旅遊媒體寫大約 10 時前後～17、18 時前後、水曜休的店多（未經官方確認）。"
+    },
+    "closedNote": "依店家而異；媒體說週三休的店較多（未經官方確認）。",
+    "febNote": "2 月無特別活動。2/10 是週三，如果週三休的店多，那天去可能比較冷清；2/11 假日人潮多。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdK-Ru4rFC4eImHOyQrM7swChpstIyhlfJ5bnHn2uh8w2QN9pbi1XuxjH-Vlw70-t5drVJs6xuO4qrAYelcVcbrwO_IBnEBiB6hNogW5m7Ybnw8E45MwIzNXAwbnN8uhEGzI4LgzA-ef7M=w800",
+        "page": "https://maps.google.com/?cid=13159134450370243740",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.kyoto-nishiki.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=13159134450370243740"
+    },
+    "tags": [
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費（自由通行，各店消費）。",
+    "phone": "075-211-3882",
+    "stayMinutes": 60,
+    "weather": "covered",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": null,
+      "note": "各店消費另計。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "075-211-3882",
+        "url": "https://www.kyoto-nishiki.or.jp/",
+        "note": "京都錦市場商店街振興組合，日文"
+      },
+      "note": "通道寬約 3 m，15 人一起走會擋路，建議分組逛。附近停車場不收遊覽車、小巴。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 15,
+      "stairs": "無",
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "全長約 390 m、寬約 3 m 的平面拱廊商店街（官網、ruruBu）；走完單程約 5～10 分，邊逛約 15 分以上（估計）。窄又擠，推車、輪椅在人多時難走。廁所、休息處官網沒寫。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "小吃攤多，小孩可以邊看邊選；但禁止邊走邊吃，要在店前或店內吃完。"
+    },
+    "ratings": {
+      "google": 4.3,
+      "googleReviews": 55532,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.kyoto-nishiki.or.jp/",
+        "retrieved": "2026-11-12",
+        "note": "住所、電話、全長 390 m、「食べながら歩く行為はご遠慮下さい」"
+      },
+      {
+        "type": "official",
+        "url": "https://www.kyoto-nishiki.or.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "各站步行分數、市巴士、停車場（不收遊覽車）"
+      },
+      {
+        "type": "media",
+        "url": "https://rurubu.jp/andmore/spot/80026505",
+        "retrieved": "2026-11-12",
+        "note": "營業時間・公休依店而異、130 軒あまり、寬約 3 m"
+      },
+      {
+        "type": "media",
+        "url": "https://allabout.co.jp/gm/gc/397780/",
+        "retrieved": "2026-11-12",
+        "note": "搜尋摘要：10 時前後～18 時前後、水曜休の店が多い（未讀原文）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=13159134450370243740",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：錦市場）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "地下鐵烏丸線 四条駅 步行約 3 分；阪急 烏丸駅 步行約 3 分；阪急 京都河原町駅 步行約 4 分；京阪 祇園四条駅（官網寫「四条」駅）步行約 10 分；京都站搭市巴士 5 系統「四条高倉（大丸百貨店前）」步行約 2 分（官網）。",
+      "indoorNote": "整條有拱廊屋頂，但兩端開放、店面朝通道，冬天不暖；下雨可以逛。",
+      "stayNote": "看吃多少，一般 45～90 分。",
+      "conflicts": [
+        "店家數：ruruBu 寫 130 軒あまり，其他媒體寫 126 店或 120 軒以上；官網沒寫"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-nijojo",
+    "type": "spot",
+    "name": {
+      "ja": "元離宮二条城",
+      "kana": "もとりきゅうにじょうじょう",
+      "zh": "二條城",
+      "en": "Nijo-jo Castle"
+    },
+    "area": "kyoto",
+    "region": "shijo-nijo",
+    "coords": [
+      135.7484258,
+      35.0140379
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒604-8301 京都府京都市中京区二条通堀川西入二条城町541",
+    "hours": {
+      "mon": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:45",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:00",
+      "note": "開城 8:45～16:00 入城、17:00 閉城（全年同一時間）。二の丸御殿觀覽受理 8:45～16:10；本丸御殿 9:30～16:00（事前預約制，WEB 票）。"
+    },
+    "closedNote": "休城日 12/29～31。二の丸御殿觀覽休止：1、7、8、12 月的每週二（遇假日改隔天）、12/26～28、1/1～3。本丸御殿：每月第 3 個週一和隔天休。",
+    "febNote": "2 月二の丸御殿每天都能看（週二休只在 1、7、8、12 月），2/9～2/12 四天都開。梅林例年 2 月中旬～3 月上旬（約 88 株，觀光協會），2/9～2/12 可能才剛開始開。2026 年有「世界遺産 二条城の早春」活動（特別公開、香雲亭特別昼食 1/10～2/28）；官網 2026-10／11 有「早春の昼御膳の提供」業者招募與選定公告，2027 年應會再辦，內容日期出發前要再查。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-09",
+        "note": "「早春の昼御膳」（香雲亭特別昼食）：2026 年是 1/10～2/28 正午～13:00、每天 40 人、完全預約、4,500 円＋入城料；2027 年有招募業者公告但內容未公布，出發前要再查"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc0Bp-KvhIJ5a40E_JilBX5bNhoprZGxMB9PHBFvGH8Uyt1TYMpk8R8vsQE4eSOtg_7HrOGCReq1CANYbDTBDJ6jzQa_jVU4AndYVRERGAh-geaw-F3873AJggHhkT_jYyf8KZm=w800",
+        "page": "https://maps.google.com/?cid=1183188145859604271",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://nijo-jocastle.city.kyoto.lg.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=1183188145859604271"
+    },
+    "tags": [
+      "雨天備案"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "入城＋二の丸御殿 大人 1,300 円；只入城 大人 800、國高中 400、小學生 300 円；未就學免費。",
+    "phone": "075-841-0096",
+    "stayMinutes": 90,
+    "weather": "covered",
+    "fares": {
+      "adult": "入城＋二の丸御殿 1,300 円（只入城 800 円；入城後加購二の丸 500 円）",
+      "child": "國高中 400 円、小學生 300 円（入城券）；未就學免費；學生的二の丸御殿要不要另收官網沒寫",
+      "senior": "京都市民 70 歲以上免費，觀光客不適用；無一般長輩票",
+      "group": "30 人以上才有團體價（入城 700、入城＋二の丸 1,100），15 人不適用",
+      "note": "2026-11 官網料金頁。本丸御殿另收（事前預約）。"
+    },
+    "group": {
+      "reservation": "不需預約（30 人以下照個人票）；本丸御殿要事前 WEB 預約",
+      "contact": {
+        "phone": "075-841-0096",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/",
+        "note": "日文；官網有 asoview WEB 票"
+      },
+      "note": "官網提醒市巴士 9:00、10:30、13:30 前後很擠。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": "城內碎石路；總合案內所免費借電動輔助輪椅（不能預約、要同行者協助）；二の丸御殿、本丸御殿內另有室內輪椅",
+      "note": "城內是碎石路（官網）。二の丸御殿要脫鞋、地板冬天很冷是一般說法，官網沒寫（待確認）。有大休憩所（商店、咖啡、授乳室、行李寄放 500 円、投幣置物櫃）、西橋休憩所、和楽庵（茶房前田 9:30～16:30）。段差、坡道官網沒寫。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "歷史建築與庭園，無兒童設施；鶯張廊下（走起來會響）小孩可能會有興趣（一般說法，官網未查）。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 43874,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/admission/fee/",
+        "retrieved": "2026-11-12",
+        "note": "入城料、二の丸御殿觀覽料、團體 30 名以上、京都市民 70 歲以上免費"
+      },
+      {
+        "type": "official",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/guide/annai/",
+        "retrieved": "2026-11-12",
+        "note": "開城時間、休城日、二の丸・本丸御殿觀覽休止日"
+      },
+      {
+        "type": "official",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/service/",
+        "retrieved": "2026-11-12",
+        "note": "輪椅出借、碎石路、休憩所、寄物、茶房"
+      },
+      {
+        "type": "official",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "住所、電話、巴士擁擠時段"
+      },
+      {
+        "type": "official",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/",
+        "retrieved": "2026-11-12",
+        "note": "2026-10／11「早春の昼御膳の提供」業者招募與選定公告"
+      },
+      {
+        "type": "official",
+        "url": "https://nijo-jocastle.city.kyoto.lg.jp/event/soushun2026/",
+        "retrieved": "2026-11-12",
+        "note": "2026 年早春活動：特別公開、特別昼食 1/10～2/28"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/flower/ume/single.php?flower_id=1296",
+        "retrieved": "2026-11-12",
+        "note": "梅約 88 株、例年 2 月中旬～3 月上旬（搜尋摘要）"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1183188145859604271",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：元離宮二条城）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "地下鐵東西線 二条城前駅 下車即到（觀光媒體摘要；官網交通頁只有圖片路線、沒寫分鐘）；入口是東大手門。",
+      "indoorNote": "主要看點二の丸御殿在室內，但東大手門→御殿、庭園、梅林、本丸都是戶外碎石路，判為 covered。",
+      "stayNote": "二の丸御殿＋二の丸庭園約 1 小時，加梅林、本丸、天守台約 1.5 小時（估計，官網沒寫所需時間）。",
+      "conflicts": [
+        "二の丸御殿觀覽費：料金頁只列「一般」（入城＋二の丸 1,300、加購 500），國高中、小學生要不要付二の丸費用沒寫",
+        "二の丸御殿脫鞋：官網沒寫，待確認",
+        "梅林是否另收費：官網沒找到；推定只要入城券，未確認"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-gosho",
+    "type": "spot",
+    "name": {
+      "ja": "京都御所",
+      "kana": "きょうとごしょ",
+      "zh": "京都御所",
+      "en": "Kyoto Imperial Palace"
+    },
+    "area": "kyoto",
+    "region": "shijo-nijo",
+    "coords": [
+      135.7621436,
+      35.0240977
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "京都府京都市上京区（京都御苑内）",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:00"
+        ]
+      ],
+      "lastEntry": "15:20",
+      "note": "10～2 月 9:00～15:20 入場、16:00 前離開；3、9 月到 15:50（16:30 離開）；4～8 月到 16:20（17:00 離開）。週一休，週一是假日就開、改隔天休。"
+    },
+    "closedNote": "週一（遇假日改隔天）、年末年始 12/28～1/4、有行事的日子休。",
+    "febNote": "2 月 9:00～15:20 入場。2/9（二）～2/12（五）都開（2/8 週一不是假日，所以 2/9 不補休；2/11 假日照開）。行事休止日要看官網。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLe-cXYZawf7ACx--AFaSI6lQirZx_x256YJDRTrHBa6T0JdxwbaYZk3uIKUjf_m4lasP86PnvhJhczkNlLZwq9NXH_7WwYICesEtof0G_xBNmMdEhFCWuvy841KjXvgBUXp1xg=w800",
+        "page": "https://maps.google.com/?cid=8944354417040377478",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://kyoto-gosho.kunaicho.go.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=8944354417040377478"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "免費，不用預約。",
+    "phone": null,
+    "stayMinutes": 60,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "免費",
+      "child": "免費",
+      "senior": "免費",
+      "group": "免費；團體要先洽詢",
+      "note": "2026-11 宮內廳官網。"
+    },
+    "group": {
+      "reservation": "不需申請，但「団体の方は，事前にお問い合せ下さい」",
+      "contact": {
+        "phone": null,
+        "url": "https://kyoto-gosho.kunaicho.go.jp/visit",
+        "note": "宮內廳京都事務所；電話官網頁面沒抓到"
+      },
+      "note": "入場時檢查手荷物；禁止飲食、吸菸、大型行李、寵物。有免費導覽（不用預約，旺季時間可能變動）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 50,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "可借輪椅（向職員申請）；場內是碎石路",
+      "note": "參觀路線所需約 50 分（官網）；場內碎石，建議好走的鞋。御所建築只在外面看、不進殿內（參觀路線 PDF 未細讀）。推車規定官網沒寫，碎石路推車、輪椅會比較難推。從烏丸通進御苑到清所門的距離官網沒寫。沒有停車場。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "宮殿建築與庭園，無兒童設施。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 2125,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://kyoto-gosho.kunaicho.go.jp/visit",
+        "retrieved": "2026-11-12",
+        "note": "通年公開參觀要領：免費、不用申請、休止日、清所門、手荷物檢查、輪椅、所需約 50 分、碎石"
+      },
+      {
+        "type": "official",
+        "url": "https://sankan.kunaicho.go.jp/multilingual/information.html",
+        "retrieved": "2026-11-12",
+        "note": "月別參觀時間（10～2 月 9:00～15:20）、交通"
+      },
+      {
+        "type": "official",
+        "url": "https://kyoto-gosho.kunaicho.go.jp/access",
+        "retrieved": "2026-11-12",
+        "note": "今出川駅 5 分、烏丸今出川巴士站 7 分"
+      },
+      {
+        "type": "official",
+        "url": "https://kyoto-gosho.kunaicho.go.jp/",
+        "retrieved": "2026-11-12",
+        "note": "休止日、無 2027 冬季公告"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8944354417040377478",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：京都御所）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "地下鐵烏丸線 今出川駅 步行 5 分；市巴士「烏丸今出川」步行 5～7 分（兩頁寫法不同）；京阪 出町柳駅 步行 20 分（宮內廳官網）。入口是清所門。地下鐵丸太町駅的步行分數官網沒寫。",
+      "indoorNote": "全程在戶外碎石路上看建築外觀，下雨要撐傘。",
+      "conflicts": [
+        "市巴士烏丸今出川到御所：kyoto-gosho.kunaicho.go.jp/access 寫步行 7 分，sankan.kunaicho.go.jp 多語頁寫約 5 分"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-kinkakuji",
+    "type": "spot",
+    "name": {
+      "ja": "金閣寺（鹿苑寺）",
+      "kana": "きんかくじ（ろくおんじ）",
+      "zh": "金閣寺",
+      "en": "Kinkakuji (Golden Pavilion)"
+    },
+    "area": "kyoto",
+    "region": "kinkaku-kitano",
+    "coords": [
+      135.7292431,
+      35.03937
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒603-8361 京都府京都市北区金閣寺町1",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": null,
+      "note": "全年 9:00～17:00，年中無休；最後受理時間官網沒寫。"
+    },
+    "closedNote": "年中無休。",
+    "febNote": "2 月照常開放。下雪時「雪の金閣」很有名，官網有即時影像可看積雪；雪天石階、坡路易滑，雪景日人潮更多。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdlsBe4HRr5i5eJY86sAT0QiBGf-bHn-qRYO_v-o_4UOSUGPJ4fSvpy7gwiJy-gkg8P4wsMszFyrG1DfG380yloZ-miWfE-rmhs5r8t8sbEVvbnHs4ua0Ent6EACbK3oXTMH5qSIA=w800",
+        "page": "https://maps.google.com/?cid=1073025677330113631",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.shokoku-ji.jp/kinkakuji/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=1073025677330113631"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人（高中以上）500 円、小中學生 300 円。",
+    "phone": "075-461-0013",
+    "stayMinutes": 45,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "500 円（高中以上）",
+      "child": "300 円（小・中學生）；未就學 官網沒寫",
+      "senior": null,
+      "group": "30 人以上算團體，但沒有團體折扣；15 人不適用",
+      "note": "2026-11 官網；2023-04-01 改價。可用「おまいりPay」無現金支付（2026-09-28 起）。拝観券是護符（お札）形式。"
+    },
+    "group": {
+      "reservation": "不需預約",
+      "contact": {
+        "phone": "075-461-0013",
+        "url": "https://www.shokoku-ji.jp/kinkakuji/faq/",
+        "note": "鹿苑寺事務局，日文"
+      },
+      "note": "境內禁止團體合照（FAQ：團體寫真不可）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "少",
+      "slope": "金閣（舎利殿）旁邊過去之後有階梯，接著是登往夕佳亭的山路",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "庭園不是無障礙；輪椅、推車、腳不方便的人到金閣旁邊為止，之後從入口原路折返（官方 FAQ）。輪椅當天有空可借，不能預約。",
+      "note": "單向參拜路線：入口 → 鏡湖池看金閣 → 金閣旁 → 階梯、山路（安民沢、夕佳亭）→ 不動堂 → 出口。長輩可以只走到金閣旁、看完原路回。一圈時間官網沒寫（null）。全程戶外，不用脫鞋。；廁所：有多目的廁所"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院；金閣本身小孩看得懂、印象深。"
+    },
+    "ratings": {
+      "google": 4.6,
+      "googleReviews": 71980,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/kinkakuji/access/",
+        "retrieved": "2026-11-12",
+        "note": "時間、年中無休、拝観料、團體 30 名以上無折扣、住所、電話、巴士系統、停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/kinkakuji/faq/",
+        "retrieved": "2026-11-12",
+        "note": "輪椅、推車在金閣旁折返、階梯、多目的廁所、輪椅借用、禁止團體合照、積雪即時影像"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/kinkakuji/guide/",
+        "retrieved": "2026-11-12",
+        "note": "境內案內：龍門滝旁石段、安民沢後山路登夕佳亭"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/kinkakuji/news/%e3%80%90%e9%87%8d%e8%a6%81%e3%81%aa%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b%e3%80%91%e5%8f%82%e6%8b%9d%e5%bf%97%e7%b4%8d%e6%96%99%e6%94%b9%e5%ae%9a%e3%81%ae%e3%81%8a%e7%9f%a5%e3%82%89%e3%81%9b/",
+        "retrieved": "2026-11-12",
+        "note": "參拝志納料 2023-04-01 改定公告"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/feature/traffic/access.php?id=10",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Navi（只用搜尋摘要）：金閣寺道 交通"
+      },
+      {
+        "type": "media",
+        "url": "https://www.ozmall.co.jp/travel/kyoto/kyoto/kita/30110/",
+        "retrieved": "2026-11-12",
+        "note": "二手：金閣寺道 步行約 5 分"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=1073025677330113631",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：金閣寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "沒有鐵路站，只有巴士：市巴士 12・59・205・M1 系統「金閣寺道」下車（官網），步行約 5 分（二手；乘車處不同約 2～8 分）。京都駅烏丸口搭 205 約 40～50 分（二手）。計程車可到參道前停車場。",
+      "indoorNote": "庭園戶外參拜路線，舎利殿不能入內；沒有屋頂可躲雨。",
+      "conflicts": [],
+      "stayNote": "一圈約 30～45 分；人多時更久。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-kitano-tenmangu",
+    "type": "spot",
+    "name": {
+      "ja": "北野天満宮",
+      "kana": "きたのてんまんぐう",
+      "zh": "北野天滿宮",
+      "en": "Kitano Tenmangu Shrine"
+    },
+    "area": "kyoto",
+    "region": "kinkaku-kitano",
+    "coords": [
+      135.7351227,
+      35.0311737
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒602-8386 京都府京都市上京区馬喰町",
+    "hours": {
+      "mon": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "07:00",
+          "17:00"
+        ]
+      ],
+      "lastEntry": null,
+      "note": "境內開門 7:00～17:00，參拜免費；授与所 9:00～16:30、祈禱 9:00～16:00。梅苑「花の庭」2026 年 9:00～20:30（20:00 停止受理）、每天點燈。"
+    },
+    "closedNote": "無休。梅苑「休苑日有」（日期官網沒列）。",
+    "febNote": "梅苑「花の庭」例年 2 月上旬～3 月下旬開苑（2026 年是 2/1 開），約 1,500 株梅；2027 年開苑日、票價還沒公布，出發前要再查。2/9～2/12 梅花大概是早開到初開。2/25 梅花祭、每月 25 日天神市都在旅程之後，看不到。",
+    "closures": [],
+    "events": [
+      {
+        "date": "2027-02-25",
+        "note": "梅花祭・梅花祭野点大茶湯（旅程後）；同日為天神市（緣日，境內不能停車）"
+      }
+    ],
+    "photos": [
+      {
+        "url": "https://kitanotenmangu.or.jp/wp-content/uploads/2022/11/ogp_kitano.jpg",
+        "page": "https://kitanotenmangu.or.jp/",
+        "kind": "official",
+        "credit": "北野天満宮 官網",
+        "license": null
+      },
+      {
+        "url": "https://kitanotenmangu.or.jp/wp-content/uploads/2026/04/baien_202604.jpg",
+        "page": "https://kitanotenmangu.or.jp/guidance/baien/",
+        "kind": "official",
+        "credit": "北野天満宮 官網（梅苑）",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfiQ9Zf6WGOayzj-ZgElm6QsctFwXn-HVnAoxZeVIKChrlWIjAR0Gc0Ub13PwLTUYkC5f28J2kp7ky3zr4hcsDAdxNA2Z1LL-uBS6cXlTMFXhkynlL1ICAxcuMM9wgzD2u7oQd6ZnkSDzhQ=w800",
+        "page": "https://maps.google.com/?cid=6568217213263605274",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://kitanotenmangu.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=6568217213263605274"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "參拜免費；梅苑「花の庭」2026 年當日 大人 3,000、小人 1,500 円。",
+    "phone": "075-461-0005",
+    "stayMinutes": 60,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "境內免費；梅苑 當日 3,000 円／預售 2,800 円（2026 年）",
+      "child": "梅苑 小人 當日 1,500 円／預售 1,400 円（2026 年；「小人」年齡區分官網梅苑頁沒寫，參考もみじ苑是小學生為小人、未就學免費）",
+      "senior": null,
+      "group": "官網梅苑頁沒寫團體價（null）",
+      "note": "2027 年票價未公布，出發前要再查。茶屋休息有茶點，是否含在票價內官網沒寫。"
+    },
+    "group": {
+      "reservation": "一般參拜不需預約",
+      "contact": {
+        "phone": "075-461-0005",
+        "url": "https://kitanotenmangu.or.jp/",
+        "note": "日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": true,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "一の鳥居（今出川通）→ 楼門 → 三光門 → 本殿，參道平坦但為石板、砂利（官方未寫無障礙）。境內一圈時間官方沒寫。梅苑有茶屋可坐。參拜不用脫鞋。官方境內停車場在南側，計程車可到一の鳥居前。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "學問之神，可帶小孩祈願學業；一般神社。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 17027,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://kitanotenmangu.or.jp/",
+        "retrieved": "2026-11-12",
+        "note": "開門時間、授与所、住所、電話、もみじ苑票價區分（參考）"
+      },
+      {
+        "type": "official",
+        "url": "https://kitanotenmangu.or.jp/guidance/baien/",
+        "retrieved": "2026-11-12",
+        "note": "梅苑例年 2 月上旬～3 月下旬、2026 年 2/1～5/24、時間、票價、點燈、梅花祭 2/25"
+      },
+      {
+        "type": "official",
+        "url": "https://kitanotenmangu.or.jp/guidance/",
+        "retrieved": "2026-11-12",
+        "note": "境內案內：約 1,500 株梅、宝物殿每月 25 日開館、開門 7:00～17:00"
+      },
+      {
+        "type": "official",
+        "url": "https://kitanotenmangu.or.jp/access/",
+        "retrieved": "2026-11-12",
+        "note": "嵐電北野白梅町駅 5 分、市巴士系統、25 日不能停車"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6568217213263605274",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：北野天満宮）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "嵐電 北野線 北野白梅町駅 步行約 5 分（官網）；市巴士「北野天満宮前」：京都駅 50 系統約 35 分、地下鉄今出川駅 51・203 系統約 15 分、地下鉄／JR 二条駅 55 系統約 15 分（官網）。",
+      "indoorNote": "神社境內戶外為主；梅苑也是戶外。",
+      "conflicts": [],
+      "stayNote": "只參拜約 30 分；加梅苑約 60～75 分。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-ginkakuji",
+    "type": "spot",
+    "name": {
+      "ja": "慈照寺（銀閣寺）",
+      "kana": "じしょうじ（ぎんかくじ）",
+      "zh": "銀閣寺",
+      "en": "Ginkakuji Temple (Jishoji)"
+    },
+    "area": "kyoto",
+    "region": "okazaki",
+    "coords": [
+      135.7982058,
+      35.0270213
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒606-8402 京都府京都市左京区銀閣寺町2",
+    "hours": {
+      "mon": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "lastEntry": null,
+      "note": "冬期（12/1～2 月底）9:00～16:30；夏期（3/1～11/30）8:30～17:00。官網沒寫最後入場。"
+    },
+    "closedNote": "年中無休。",
+    "febNote": "2 月是冬期時間 9:00～16:30。秋季特別拝観（2026-11-01～12-05）已在旅程前結束；2027 年 2 月有沒有特別拝観官網沒公布：null，出發前要再查。雪天參道與山坡步道可能濕滑（官網未寫，一般注意）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLeK-7m6EEiqHRLn_nQTNRBxGaVmkgHJuzWRyTfXSyu-GNteRLDka7il0etWqcL01x0IbLy4CE0BY3xT8hMylHzNYZOIDQytq43UfBCBK6BOwRSBvCPvXz0K5OcyZdsunO5WH3x0fw=w800",
+        "page": "https://maps.google.com/?cid=2705196751698570185",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.shokoku-ji.jp/ginkakuji/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=2705196751698570185"
+    },
+    "tags": [
+      "神社寺院",
+      "長階梯"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "拝観料 大人（高中以上）1,000 円、小中學生 500 円（2026-04-01 改定）；無團體折扣。",
+    "phone": "075-771-5725",
+    "stayMinutes": 50,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "1,000 円（高中以上）",
+      "child": "小中學生 500 円；學齡前官網沒寫：null",
+      "senior": null,
+      "group": "官網明寫「団体割引はありません」，15 人也一樣",
+      "note": "2026-04-01 起改定的參拝志納料（官網 2026-11 頁面）。身障者等減免 100 円。"
+    },
+    "group": {
+      "reservation": "官網沒寫團體要事先申請（無團體價）：null",
+      "contact": {
+        "phone": "075-771-5725",
+        "url": "https://www.shokoku-ji.jp/ginkakuji/access/",
+        "note": "寺務所，日文"
+      },
+      "note": "寺沒有停車場；市營駐車場巴士、計程車優先。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "後段 15 展望所、16 弁財天、17 漱蘚亭跡、18 お茶の井 是上山的階梯路段，輪椅、嬰兒車上不去；在 14 洗月泉前往右走是迴避路線，可以不上山直接繞出去。",
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "平地部分（總門→參道→銀沙灘・向月台→銀閣）輪椅可走；展望所一段不行。",
+      "note": "長輩可以只走平地庭園（銀沙灘、向月台、銀閣前），展望所那段山坡階梯讓體力好的人上去。境內繞一圈的分鐘數官網沒寫。總門到中門有約 50 m 的銀閣寺垣參道。書院非公開；方丈、東求堂內部一般不開（官網沒寫是否脫鞋）。；廁所：賣店旁有多目的廁所 1 處"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院庭園；小中學生 500 円。展望所可以俯瞰京都市區，小孩爬坡沒問題。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 18453,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/ginkakuji/access/",
+        "retrieved": "2026-11-12",
+        "note": "地址、電話、冬期／夏期時間、拝観料、無團體折扣、年中無休、巴士系統、停車場、展望所等階梯不可輪椅、多目的廁所"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/ginkakuji/",
+        "retrieved": "2026-11-12",
+        "note": "秋季特別拝観 2026-11-01～12-05、2026-04-01 參拝志納料改定公告"
+      },
+      {
+        "type": "official",
+        "url": "https://www.shokoku-ji.jp/ginkakuji/guide/",
+        "retrieved": "2026-11-12",
+        "note": "境內順路 01～18、書院非公開、15～18 輪椅・嬰兒車不可"
+      },
+      {
+        "type": "tourism",
+        "url": "https://kanko.city.kyoto.lg.jp/detail.php?InforKindCode=1&ManageCode=1000089",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Navi（搜尋摘要）：銀閣寺道 步行約 10 分、銀閣寺前 約 5 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://ja.kyoto.travel/tourism/single01.php?category_id=8&tourism_id=2684",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Navi 哲学の道（搜尋摘要）：約 2 km、若王子神社～銀閣寺、蹴上站約 15 分"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=2705196751698570185",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：銀閣寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "只有巴士：市巴士 5、7、32、102、203、204 系統「銀閣寺道」下車 步行約 10 分；EX100、105 系統「銀閣寺前」下車 步行約 5 分（系統名官網；分鐘數京都観光Navi 搜尋摘要）。附近沒有鐵道車站。",
+      "indoorNote": "庭園和建築都是看外觀，參觀全程在戶外，下雨要撐傘、山坡步道會濕滑。",
+      "conflicts": [],
+      "nearby": "哲学の道：從銀閣寺往南沿疏水走到若王子神社（南禅寺方向）的散步道，約 2 km（京都観光Navi；京都市另一篇寫若王子橋附近到銀閣寺約 1.8 km、慢走約 30 分）。南端到地下鐵蹴上站約 15 分。路面平坦但沒有屋頂，2 月沒有花。",
+      "stayNote": "庭園加展望所約 40～60 分（估計，官網沒寫）。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-nanzenji",
+    "type": "spot",
+    "name": {
+      "ja": "南禅寺",
+      "kana": "なんぜんじ",
+      "zh": "南禪寺",
+      "en": "Nanzenji Temple"
+    },
+    "area": "kyoto",
+    "region": "okazaki",
+    "coords": [
+      135.7944841,
+      35.0114138
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒606-8435 京都府京都市左京区南禅寺福地町",
+    "hours": {
+      "mon": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "tue": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:40",
+          "16:30"
+        ]
+      ],
+      "lastEntry": "16:10",
+      "note": "12/1～2/28 8:40～16:30；3/1～11/30 8:40～17:00；結束前 20 分停止受理。境內本身免費進出（水路閣、法堂外觀）。"
+    },
+    "closedNote": "年末 12/28～31 不接受一般拝観；新年照常。",
+    "febNote": "2 月照冬季時間 8:40～16:30（16:10 停止受理）。2026-02-16 曾因配線工事三門下午停止拝観，臨時休止會在官網「お知らせ」公告，出發前要再查。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc97iESAXLi3N34YFHumbQgAhdpxxCKfpvIpWzNoupkxjU9gbr-QPOGQdb42Dr1ff1midVHpoPSEyi9KOUHeIZmQjBe2ntCsxQHxFy11fScaaL-4LEPdMB7ZjOGg9EhQJzFM8irE2YKZCUO=w800",
+        "page": "https://maps.google.com/?cid=4085672666846396493",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://nanzenji.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=4085672666846396493"
+    },
+    "tags": [
+      "神社寺院",
+      "長階梯"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "境內免費；方丈庭園、三門各 大人 600／高中 500／小中 400 円，南禅院 500／450／350 円。",
+    "phone": "075-771-0365",
+    "stayMinutes": 75,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "方丈庭園 600 円、三門 600 円、南禅院 500 円",
+      "child": "小中學生 方丈庭園・三門 各 400 円、南禅院 350 円；高中生 500／500／450 円",
+      "senior": null,
+      "group": "30 人以上才有團體價（方丈・三門 大人 500 円），15 人不適用",
+      "note": "官網拝観案内（2026-11 頁面，沒標改定日）。持身障手冊本人＋1 名陪同免費。"
+    },
+    "group": {
+      "reservation": "官網沒寫一般團體要預約：null",
+      "contact": {
+        "phone": "075-771-0365",
+        "url": "https://nanzenji.or.jp/about_rinzaishu/visit",
+        "note": "日文"
+      },
+      "note": "大型巴士 7～21 時不能在南禅寺前交差點右轉；ジャンボタクシー要事先洽詢。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": "多",
+      "slope": "官網：「境内には階段や傾斜が多くあります」。三門是階梯上樓（修学旅行ナビ寫三門有階梯、輪椅不可）；方丈入口 3 段。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "輪椅使用者請盡量有人陪同（官網）。三門不可；方丈可能可以（修学旅行ナビ）。",
+      "note": "長輩可以只走平地的參道、法堂外觀、水路閣（都免費），方丈庭園入口只有 3 段。三門樓上的樓梯陡度官網沒寫，一般認知很陡，膝蓋不好的不要上。方丈要不要脫鞋官網沒寫：null。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院；紅磚拱橋水路閣（疏水的水道橋）小孩可以走到下面看、拍照。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 12881,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://nanzenji.or.jp/about_rinzaishu/visit",
+        "retrieved": "2026-11-12",
+        "note": "冬季／夏季時間、停止受理 20 分前、年末休、各處拝観料與 30 人團體價、境內多階梯傾斜"
+      },
+      {
+        "type": "official",
+        "url": "https://nanzenji.or.jp/profile",
+        "retrieved": "2026-11-12",
+        "note": "地址、電話、蹴上站 10 分、巴士站 10 分、停車場、大型巴士注意"
+      },
+      {
+        "type": "official",
+        "url": "https://nanzenji.or.jp/equipment/sanmon",
+        "retrieved": "2026-11-12",
+        "note": "三門約 22 m、重要文化財、天下竜門"
+      },
+      {
+        "type": "official",
+        "url": "https://nanzenji.or.jp/equipment/sosui",
+        "retrieved": "2026-11-12",
+        "note": "疏水與紅磚水道橋（水路閣）的由來"
+      },
+      {
+        "type": "official",
+        "url": "https://www.nanzenji.or.jp/information/20260203",
+        "retrieved": "2026-11-12",
+        "note": "（搜尋摘要）2026-02-16 三門配線工事下午停止拝観的先例"
+      },
+      {
+        "type": "tourism",
+        "url": "https://shugakuryoko.kyoto.travel/spot/416/",
+        "retrieved": "2026-11-12",
+        "note": "きょうと修学旅行ナビ（搜尋摘要）：三門階梯輪椅不可、方丈入口 3 段"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=4085672666846396493",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：南禅寺）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "地下鐵東西線「蹴上」站 步行 10 分（穿過ねじりまんぽ隧道是近路）；市巴士「東天王町」或「南禅寺・永観堂道」下車 步行 10 分（官網）。",
+      "indoorNote": "境內、三門、水路閣都在戶外；方丈庭園在屋簷下看，但大部分時間走在外面。",
+      "conflicts": [],
+      "stayNote": "方丈庭園＋水路閣約 60 分，加三門約 90 分（估計，官網沒寫）。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-heian-jingu",
+    "type": "spot",
+    "name": {
+      "ja": "平安神宮",
+      "kana": "へいあんじんぐう",
+      "zh": "平安神宮",
+      "en": "Heian Jingu Shrine"
+    },
+    "area": "kyoto",
+    "region": "okazaki",
+    "coords": [
+      135.7824263,
+      35.0159823
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒606-8341 京都府京都市左京区岡崎西天王町97",
+    "hours": {
+      "mon": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "tue": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "wed": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "thu": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "fri": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "sat": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "sun": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:30",
+          "17:00"
+        ]
+      ],
+      "lastEntry": "16:30",
+      "note": "這裡記的是神苑：11/1～2/14 8:30～17:00、2/15～2 月底 8:30～17:30（國交省多語資料）；入苑到 16:30（修学旅行ナビ寫神苑「11～2 月 16 時半」）。境內參拜 6:00～17:00（11～2 月），免費。"
+    },
+    "closedNote": "無休（修学旅行ナビ）。",
+    "febNote": "旅程 2/9～2/12 在「11/1～2/14」區間：神苑 8:30～17:00、境內 6:00～17:00。2 月神苑沒有花季（梅、櫻都還沒）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLc_5I7qCHy8Gj5882GudKX_TX8TK2mavUSXTc6CCmpzCwHPMNwS1gIgBxAOE1n_T41kuvsmdJheNwDOuj16EL6Yg9N700C-CYs8wwiMSzgdVP3L6-So3dpLYLaPzdzDsBLCfhQ=w800",
+        "page": "https://maps.google.com/?cid=8484457972734838095",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.heianjingu.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=8484457972734838095"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "境內參拜免費；神苑 大人 600 円、小中學生 300 円。",
+    "phone": "075-761-0221",
+    "stayMinutes": 60,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "神苑 600 円",
+      "child": "神苑 小中學生 300 円；學齡前：null（有媒體寫園児以下免費，未用官方核對）",
+      "senior": null,
+      "group": null,
+      "note": "官網 SSL 憑證錯誤讀不到；價格來自京阪官網 2024 年頁面、きょうと修学旅行ナビ。出發前要再查。"
+    },
+    "group": {
+      "reservation": "參拜不用預約；「平安神宮の創建と明治の京都」解說是預約制（修学旅行ナビ）",
+      "contact": {
+        "phone": "075-761-0221",
+        "url": "https://www.heianjingu.or.jp/",
+        "note": "官網 SSL 憑證錯誤"
+      },
+      "note": "沒有自己的停車場，用附近市營停車場。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 40,
+      "stairs": "少",
+      "slope": "到本殿前有斜坡可以走；神苑入口有 4 段階梯，從出口進可以只看主庭園東神苑（修学旅行ナビ）。",
+      "restAreas": true,
+      "toilets": true,
+      "barrierFree": "境內到本殿前輪椅可（斜坡）；神苑內是庭園步道和踏石，部分輪椅困難（未寫細節）。",
+      "note": "神苑約 33,000 m²、約 40 分可看完，園內有可以坐下賞景的地方（國交省多語資料）。境內是寬廣的白砂礫地。；廁所：楼門進去左手邊有輪椅用廁所；巴士停車場也有公廁"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般神社；神苑池中有踏石（臥龍橋）可以走，小孩會喜歡，但踏石對長輩要小心。"
+    },
+    "ratings": {
+      "google": 4.4,
+      "googleReviews": 16601,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.mlit.go.jp/tagengo-db/common/001771849.pdf",
+        "retrieved": "2026-11-12",
+        "note": "國交省觀光廳多語解說（2024-06）：神苑季節開放時間、約 33,000 m²、約 40 分、可坐下賞景"
+      },
+      {
+        "type": "official",
+        "url": "https://www.keihan.co.jp/recommend/hanameguri/detail/14_heianjingu.html",
+        "retrieved": "2026-11-12",
+        "note": "京阪官網 2024 年頁面：神苑 大人 600／小中 300 円、電話、東山站約 10 分"
+      },
+      {
+        "type": "tourism",
+        "url": "https://shugakuryoko.kyoto.travel/spot/426/",
+        "retrieved": "2026-11-12",
+        "note": "きょうと修学旅行ナビ（京都市）：地址、電話、參拜／神苑時間、無休、交通分鐘、斜坡、神苑入口 4 段、廁所"
+      },
+      {
+        "type": "tourism",
+        "url": "https://plus.kyoto.travel/entry/bicycle_okazaki__area",
+        "retrieved": "2026-11-12",
+        "note": "京都観光Naviぷらす（搜尋摘要）：參拜時間 11/1～2/14 6:00～17:00（16:30）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.heianjingu.or.jp/",
+        "retrieved": "2026-11-12",
+        "note": "官網：SSL 憑證錯誤（unable to verify the first certificate），未能讀取"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=8484457972734838095",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：平安神宮）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "市巴士「岡崎公園 美術館・平安神宮前」（修学旅行ナビ寫「京都会館美術館前」）下車 即到；地下鐵東西線「東山」站 步行約 10 分；京阪「三条」站、「神宮丸太町」站 步行約 15 分（修学旅行ナビ、京阪官網）。到南禅寺步行約 15 分。",
+      "indoorNote": "境內和神苑都是戶外庭園，社殿只能在外面參拜。",
+      "conflicts": [
+        "神苑 2 月關門時間：國交省多語資料 11/1～2/14 8:30～17:00；修学旅行ナビ寫 11～2 月 到 16:30（可能是最後入苑時間）；京都観光Naviぷらす寫參拜時間 11/1～2/14 6:00～17:00（16:30）",
+        "學齡前神苑費用：媒體說法不一（未確認）"
+      ],
+      "stayNote": "境內 20 分＋神苑 40 分。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-city-zoo",
+    "type": "spot",
+    "name": {
+      "ja": "京都市動物園",
+      "kana": "きょうとしどうぶつえん",
+      "zh": "京都市動物園",
+      "en": "Kyoto City Zoo"
+    },
+    "area": "kyoto",
+    "region": "okazaki",
+    "coords": [
+      135.7865786,
+      35.0127643
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒606-8333 京都府京都市左京区岡崎法勝寺町 岡崎公園内",
+    "hours": {
+      "mon": [],
+      "tue": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "wed": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "thu": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "fri": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sat": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "sun": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "09:00",
+          "16:30"
+        ]
+      ],
+      "lastEntry": "16:00",
+      "note": "12～2 月 9:00～16:30、3～11 月 9:00～17:00；閉園前 30 分停止入園。週一休（週一遇假日改休隔天平日）。"
+    },
+    "closedNote": "每週一（遇假日改休之後的平日）、12/28～1/1。",
+    "febNote": "2 月 9:00～16:30（16:00 停止入園）。2/9～2/12（二～五）都有開；2/11 假日照常。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/assets/images/common/ogimage.png",
+        "page": "https://zoo.city.kyoto.lg.jp/zoo/",
+        "kind": "official",
+        "credit": "京都市動物園 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfxHaPRgX5AT14FfA7SJw-Vu8h8JRw66kXC0lT2FFOtV9VGIF8m-wqqM9QI-85HieLhsgYC_SNViH21ohu5RAA2Pw4P5FryozKKJV_hle7Ezt-qPxfAh-dofHKfHgW8h9gExqo=w800",
+        "page": "https://maps.google.com/?cid=11861623245059094083",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://zoo.city.kyoto.lg.jp/zoo/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=11861623245059094083"
+    },
+    "tags": [
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "大人 750 円，國中以下免費。",
+    "phone": "075-771-0210",
+    "stayMinutes": 120,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "750 円",
+      "child": "國中以下免費（滿 15 歲後的第一個 3/31 為止）",
+      "senior": null,
+      "group": "付費大人 30 人以上 650 円；本團大人 11 人，不適用",
+      "note": "官網料金頁（2026-11）。年間パス 2,200 円。"
+    },
+    "group": {
+      "reservation": "一般團體不用預約（官網團體頁：入園預約、雨天取消聯絡都不需要；學校、福祉設施另有規定）",
+      "contact": {
+        "phone": "075-771-0210",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/visitor/group/",
+        "note": "日文"
+      },
+      "note": null
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": true,
+      "barrierFree": "正面入口、東入口免費借輪椅和嬰兒車（數量有限、不能預約）",
+      "note": "坡道、休息處官網無障礙頁沒寫。園在岡崎公園的平地上。；廁所：多目的廁所 5 處；哺乳室 3 處（正面入口、おとぎの国、東入口）"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "動物園；國中以下免費，有おとぎの国（可接觸動物的兒童區）。"
+    },
+    "ratings": {
+      "google": 4.2,
+      "googleReviews": 7321,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/visitor/access/",
+        "retrieved": "2026-11-12",
+        "note": "地址、電話、季節時間、閉園前 30 分、週一休規則、年末年始、停車場、市巴士 100 系統停駛"
+      },
+      {
+        "type": "official",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/visitor/fee/",
+        "retrieved": "2026-11-12",
+        "note": "入園料 750 円、團體 30 人以上 650 円、國中以下免費、年間パス"
+      },
+      {
+        "type": "official",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/visitor/accessible/",
+        "retrieved": "2026-11-12",
+        "note": "輪椅・嬰兒車免費借、多目的廁所 5、哺乳室 3"
+      },
+      {
+        "type": "official",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/visitor/group/",
+        "retrieved": "2026-11-12",
+        "note": "團體入園不需預約（一般團體）"
+      },
+      {
+        "type": "official",
+        "url": "https://zoo.city.kyoto.lg.jp/zoo/uploads/image/f2422a6e4299609a1b1cf3b3fcaf9282.pdf",
+        "retrieved": "2026-11-12",
+        "note": "（搜尋摘要）2023-06 PDF：蹴上 7 分、東山 10 分、岡崎公園 動物園前 2 分"
+      },
+      {
+        "type": "official",
+        "url": "https://www.city.kyoto.lg.jp/kotsu/cmsfiles/contents/0000312/312123/off_202205full.pdf",
+        "retrieved": "2026-11-12",
+        "note": "（搜尋摘要）京都市交通局 2022：蹴上 約 5 分"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=11861623245059094083",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：京都市動物園）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "地下鐵東西線「蹴上」站 步行約 7 分（到東入口）、「東山」站 步行約 10 分（到正面入口）；市巴士 5・100・110 系統「岡崎公園 動物園前」下車 步行約 2 分（官網 2023 年 PDF）。官網提醒市巴士 100 系統目前停駛。",
+      "indoorNote": "動物展示以戶外為主，雨天大多要撐傘走。",
+      "conflicts": [
+        "蹴上站步行：官網 2023 PDF 約 7 分；京都市交通局 2022 資料約 5 分"
+      ],
+      "stayNote": "小孩看動物約 2 小時（估計）。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-byodoin",
+    "type": "spot",
+    "name": {
+      "ja": "平等院",
+      "kana": "びょうどういん",
+      "zh": "平等院（鳳凰堂）",
+      "en": "Byodoin Temple"
+    },
+    "area": "kyoto",
+    "region": "uji",
+    "coords": [
+      135.8076783,
+      34.8892908
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒611-0021 京都府宇治市宇治蓮華116",
+    "hours": {
+      "mon": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "tue": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "wed": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "thu": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "fri": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "sat": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "sun": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "holiday": [
+        [
+          "08:45",
+          "17:30"
+        ]
+      ],
+      "lastEntry": "17:15",
+      "note": "庭園 8:45～17:30（17:15 停止受理）；鳳翔館 9:00～17:00（16:45 停止受理）；鳳凰堂內部拝観 9:30～16:10，每 20 分一場、每場 35 人，9:10 起在庭園內受理、先到先得，額滿即止。官網頁面沒有分季節。"
+    },
+    "closedNote": "庭園、鳳翔館年中無休；鳳凰堂內部遇法要、行事會暫停；茶房藤花 週一～三休（假日營業）。",
+    "febNote": "2 月照常，時間全年相同。2/11 假日人多，內部拝観名額可能提早額滿；想進鳳凰堂內部要一早 9:10 去受理。2026 年度夜間特別拝観中止（搜尋摘要）。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://www.byodoin.or.jp/common/img/og.png",
+        "page": "https://www.byodoin.or.jp/",
+        "kind": "official",
+        "credit": "平等院 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdKVWw40q8U7nNjVSoJK8scDy1isRfBzUQbF_mS3Gjln7BTY6X6fGpCoBcTaVT6Jb2gb8gNXFQxewb7lmr3JGJGTBq6DKF4VrYI-rtBiTds1Vq22wl2S4B2UnhFW2PErp87jbyb=w800",
+        "page": "https://maps.google.com/?cid=6954706348575164324",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.byodoin.or.jp/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=6954706348575164324"
+    },
+    "tags": [
+      "神社寺院"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "庭園＋鳳翔館 大人 700／國高中 400／小學生 300 円；鳳凰堂內部另付 300 円（每場 35 人、先到先得）。",
+    "phone": "0774-21-2861",
+    "stayMinutes": 90,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "700 円（庭園＋鳳翔館）；鳳凰堂內部 +300 円",
+      "child": "國高中 400 円、小學生 300 円；學齡前：null；內部拝観 每人 300 円（官網沒分年齡）",
+      "senior": null,
+      "group": "25 人以上團體價（大人 600／國高中 300／小 200 円）；15 人不適用",
+      "note": "官網拝観案内（2026-11 頁面）。沒有只看庭園的票。身障手冊本人＋1 名半價。"
+    },
+    "group": {
+      "reservation": "一般拝観不用預約；內部拝観當天在庭園內受理、不能預約",
+      "contact": {
+        "phone": "0774-21-2861",
+        "url": "https://www.byodoin.or.jp/guide/",
+        "note": "日文；團體拝観 FAQ 在 /faq/organization/"
+      },
+      "note": "15 人要進內部，最好派一人 9:10 一到就去受理同一場；一場 35 人，假日可能只拿得到分散場次（推測，官網只寫額滿即止）。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": 40,
+      "stairs": "少",
+      "slope": "庭園是碎石路；鳳凰堂內部有段差，輪椅不能進。",
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "入口可借輪椅（庭園碎石路）；鳳凰堂內部輪椅不可（官網 FAQ）。",
+      "note": "官網 FAQ：外觀＋鳳翔館約 40 分；加上周邊、購物、喝茶 90～120 分；內部拝觀約 15 分、等候另計。內部要不要脫鞋官網沒寫：null。"
+    },
+    "kids": {
+      "friendly": "low",
+      "note": "一般寺院；鳳翔館（博物館）有雲中供養菩薩像等，室內。10 円硬幣上的鳳凰堂可以讓小孩對照。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 22887,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://www.byodoin.or.jp/guide/",
+        "retrieved": "2026-11-12",
+        "note": "庭園／鳳翔館／內部拝観時間、內部 300 円、每 20 分 35 人、9:10 起受理、拝観料、25 人團體價、年中無休"
+      },
+      {
+        "type": "official",
+        "url": "https://www.byodoin.or.jp/guide/access/",
+        "retrieved": "2026-11-12",
+        "note": "地址、電話、無專用停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://www.byodoin.or.jp/faq/public/",
+        "retrieved": "2026-11-12",
+        "note": "所需時間 40 分／90～120 分、內部約 15 分、鳳凰堂內輪椅不可、庭園碎石、借輪椅"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/spot/ar0726s05257/map.html",
+        "retrieved": "2026-11-12",
+        "note": "（搜尋摘要）JR・京阪宇治站 步行 10 分"
+      },
+      {
+        "type": "other",
+        "url": "https://watabi.org/articles/byodoin-phoenix-hall-guide",
+        "retrieved": "2026-11-12",
+        "note": "（搜尋摘要）2026-10-16 起每場由 50 減為 35 人的說法，未經官方核對"
+      },
+      {
+        "type": "official",
+        "url": "https://www.pref.kyoto.jp/kyotoyamashirokanko/treasure_1.html",
+        "retrieved": "2026-11-12",
+        "note": "（搜尋摘要）京都府 2026-03 頁：8:45～17:30、年中無休、內部另 300 円"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=6954706348575164324",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：平等院）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "JR 奈良線「宇治」站、京阪宇治線「宇治」站 步行約 10 分（京阪宇治站過宇治橋就是表參道）（ウォーカープラス、ジョルダン；官網只有地圖和 PDF）。",
+      "indoorNote": "主要是戶外庭園；鳳翔館（博物館）和鳳凰堂內部在屋內，但兩者之間要走庭園碎石路。",
+      "conflicts": [
+        "內部拝観每場人數：官網現在寫 35 人；台灣部落格 watabi 說 2026-10-16 起由 50 人減為 35 人，官網未寫改變日期"
+      ],
+      "stayNote": "官網 FAQ 外觀＋鳳翔館 40 分；含內部、表參道約 90～120 分。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-nintendo-museum",
+    "type": "spot",
+    "name": {
+      "ja": "ニンテンドーミュージアム",
+      "kana": "にんてんどーみゅーじあむ",
+      "zh": "任天堂博物館",
+      "en": "Nintendo Museum"
+    },
+    "area": "kyoto",
+    "region": "uji",
+    "coords": [
+      135.784166,
+      34.8927989
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "〒611-0042 京都府宇治市小倉町神楽田56番地",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "20:00"
+        ]
+      ],
+      "lastEntry": null,
+      "note": "10:00～20:00；每週二休（週二遇假日則開館、隔天週三休）；12/30～1/3 休。入館時間依門票上指定的時段。"
+    },
+    "closedNote": "每週二（假日則改休隔天週三）、12/30～1/3；天候災害可能臨時休館。",
+    "febNote": "2027-02-09（二）休館；2/10、2/11（假日）、2/12 開館。2027 年 2 月場次的抽選 2026-11 正在受理（官網首頁「2027年2月の来館予約受付中」），結果預計 2026-12-01 下午公布、12/7 23:59 前付款。",
+    "closures": [],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://museum.nintendo.com/assets/images/common/sns.png",
+        "page": "https://museum.nintendo.com/",
+        "kind": "official",
+        "credit": "ニンテンドーミュージアム 官網",
+        "license": null
+      },
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLf5c3msQk9AsNgGZLXrd_UUHK-j9poX_JySWbe9go7rdO8PKdl-cyrdw2XsPWJeq6ZVOHL8E0Cerlrto32nR43dU0knlCXauOnCdva5OhkYHobnngpqxUqb3OQMy8zbyTgbb9gHJA=w800",
+        "page": "https://maps.google.com/?cid=7237248636885019469",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://museum.nintendo.com/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=7237248636885019469"
+    },
+    "tags": [
+      "室內",
+      "雨天備案",
+      "親子"
+    ],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "全票抽選預約制：大人（18 歲以上）3,300、國高中 2,200、小學生 1,100 円、學齡前免費。",
+    "phone": null,
+    "stayMinutes": 180,
+    "weather": "indoor",
+    "fares": {
+      "adult": "3,300 円（18 歲以上）",
+      "child": "國高中生 2,200 円（18 歲高中生也買這張）、小學生 1,100 円、學齡前免費；小學生票要和至少 1 張大人票一起買",
+      "senior": null,
+      "group": "沒有團體票；同一帳號同一來館日最多 8 張",
+      "note": "官網料金（含稅，2026-11）。Craft & Play（花札製作等）當天另外預約、另付費。只收信用卡（3D-Secure），中籤才付款。"
+    },
+    "group": {
+      "reservation": "必須抽選預約：來館日 3 個月前開始受理、每月抽一次，申請月的隔月 1 日下午公布。需要免費任天堂帳號、來館者全員姓名和電話；要用來館者本人名義，當天查證件，非日本籍只接受護照。",
+      "contact": {
+        "phone": null,
+        "url": "https://museum.nintendo.com/guide/index.html",
+        "note": "FAQ：support-jp.nintendo.com"
+      },
+      "note": "一個帳號同一來館日上限 8 張 → 15 人至少分 2 組（例如 8＋7）用 2 個任天堂帳號分別申請，可能一組中一組沒中。小學生以下要有 18 歲以上陪同。票可分配給同行者，但每位受分配者要有自己的任天堂帳號（30 天內、含當天可分配）。官網沒明寫是否接受海外居住者申請：null。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": "官網另有無障礙頁，這次沒讀到：null",
+      "note": "館內有 1F、2F（展示棟 1、展示棟 3 等）。大型行李、行李箱不能帶入，入口附近有免費寄物櫃。不能帶外食（嬰幼兒食品等除外），寶特瓶、保溫瓶飲料可以。"
+    },
+    "kids": {
+      "friendly": "high",
+      "note": "展示歷代任天堂產品、用現在技術重現的過去遊戲可以實際玩；Craft & Play 可以做花札、玩（當天預約、另付費）。小學生以下要 18 歲以上陪同。體驗區可拍照、展示區不行。"
+    },
+    "ratings": {
+      "google": 4.5,
+      "googleReviews": 5650,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "official",
+        "url": "https://museum.nintendo.com/",
+        "retrieved": "2026-11-12",
+        "note": "開館時間、週二休與假日規則、2027 年 2 月來館預約受付中、展示與體驗概要、og:image"
+      },
+      {
+        "type": "official",
+        "url": "https://museum.nintendo.com/guide/index.html",
+        "retrieved": "2026-11-12",
+        "note": "票價、兒童陪同、抽選與付款、本人名義、寄物櫃、飲食規定"
+      },
+      {
+        "type": "official",
+        "url": "https://museum.nintendo.com/en/guide/visit-flow/index.html",
+        "retrieved": "2026-11-12",
+        "note": "3 個月前受理、隔月 1 日下午公布、7 日前付款、票分配、非日本籍護照"
+      },
+      {
+        "type": "official",
+        "url": "https://museum.nintendo.com/access/index.html",
+        "retrieved": "2026-11-12",
+        "note": "地址、小倉站 5 分、JR小倉站 8 分、巴士、謝絕計程車、無停車場"
+      },
+      {
+        "type": "official",
+        "url": "https://support-jp.nintendo.com/app/answers/detail/a_id/38320/",
+        "retrieved": "2026-11-12",
+        "note": "同一來館日購票上限 8 張"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=7237248636885019469",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：ニンテンドーミュージアム）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "近鐵京都線「小倉」站 東口 步行 5 分；JR 奈良線「JR小倉」站 北出口 步行 8 分；JR「宇治」站 南出口搭巴士 64 系統 約 6 分（官網）。官網明寫謝絕計程車、自用車來館，沒有停車場。",
+      "indoorNote": "展示、體驗都在館內；車站走 5～8 分。",
+      "conflicts": [],
+      "stayNote": "官網沒寫所需時間；含體驗約 2～3 小時（估計）。"
+    },
+    "summary": null,
+    "assessment": null
+  },
+  {
+    "id": "kyoto-toei-uzumasa",
+    "type": "spot",
+    "name": {
+      "ja": "太秦映画村（旧 東映太秦映画村）",
+      "kana": "うずまさえいがむら",
+      "zh": "太秦映畫村",
+      "en": "UZUMASA KYOTO VILLAGE (Toei Kyoto Studio Park)"
+    },
+    "area": "kyoto",
+    "region": "uzumasa",
+    "coords": [
+      135.7080227,
+      35.0164521
+    ],
+    "coordsSource": "google-maps-url",
+    "address": "京都府京都市右京区太秦東蜂岡町10",
+    "hours": {
+      "mon": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "tue": [],
+      "wed": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "thu": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "fri": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "sat": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "sun": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "holiday": [
+        [
+          "10:00",
+          "21:00"
+        ]
+      ],
+      "lastEntry": "20:00",
+      "note": "1DAY 10:00～21:00、夜間 17:00～21:00（2026-04 媒體記事）；Walker+ 寫「季節により変わる、入村は営業終了の60分前まで」。2026-05-12 起每週二休，3、4、11 月和國定假日的週二照開。2 月的實際時間官網沒讀到，出發前要再查。"
+    },
+    "closedNote": "週二休（2026-05-12 起；3、4、11 月和假日照常營業）。",
+    "febNote": "2/9（二）休村；2/10～2/12 營業。第 2 期工程（遊郭區＋5 間餐飲物販，2027 春開幕）施工中，只開一半區域；施工範圍、2027-02 的營業細節官方沒查到，出發前要再查。",
+    "closures": [
+      {
+        "from": "2027-02-09",
+        "to": "2027-02-09",
+        "note": "週二定休"
+      }
+    ],
+    "events": [],
+    "photos": [
+      {
+        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdlh7sXri1CfQBfhErpEIb7eANBrshTlDRbU8lX_VjjkrDvm2e7B4YD-us72-G9uXOppW_lm-cmR8ObELQmGoqMpuOIu3gzJ3fH54wJjQ2NRADpjx3c5Bu50lvK7sFHBdV0xgU=w800",
+        "page": "https://maps.google.com/?cid=3150840243035149927",
+        "kind": "google",
+        "credit": "Google マップ（店家或使用者上傳）",
+        "license": null
+      }
+    ],
+    "links": {
+      "official": "https://www.toei-eigamura.com/",
+      "instagram": null,
+      "googleMaps": "https://maps.google.com/?cid=3150840243035149927"
+    },
+    "tags": [],
+    "tier": null,
+    "nearestStation": null,
+    "access": [],
+    "admission": "1DAY 國中以上 2,800 円、3 歲～小學生 1,600 円（到 2027 春第 2 期開幕為止的價格）。",
+    "phone": "0570-064-349",
+    "stayMinutes": 180,
+    "weather": "outdoor",
+    "fares": {
+      "adult": "1DAY 2,800 円（國中以上）；夜間 17:00～ 2,000 円",
+      "child": "3 歲～小學生 1,600 円；夜間 1,300 円；未滿 3 歲 null",
+      "senior": null,
+      "group": null,
+      "note": "標明「第 2 期開幕（2027 春）為止」的價格，可能依日期不同；2/10～2/12 若在第 2 期開幕前應適用。NINJA BATTLE 800 円、文化體驗 2,700 円、扮裝 5,800 円起另收（2026-04 記事）。"
+    },
+    "group": {
+      "reservation": null,
+      "contact": {
+        "phone": "0570-064-349",
+        "url": "https://www.toei-eigamura.com/",
+        "note": "官網抓取時憑證錯誤，未讀到"
+      },
+      "note": "團體價、團體預約規定沒查到。"
+    },
+    "accessibility": {
+      "walkInsideMinutes": null,
+      "stairs": null,
+      "slope": null,
+      "restAreas": null,
+      "toilets": null,
+      "barrierFree": null,
+      "note": "村內是江戶街景外景區，以戶外步行為主；無障礙資訊沒查到（官網讀不到）。"
+    },
+    "kids": {
+      "friendly": "medium",
+      "note": "侍修練場（跟演員拿刀練習）、NINJA BATTLE、矢場、360° 實境劇、殺陣秀等適合小孩；からくり忍者屋敷見於家庭體驗文（媒體）。夜間的拷問屋敷、丁半博打 18 禁。2026-04 記事說客群從家庭轉向 20～30 代女性。お化け屋敷翻新版開幕時間不明，小孩可能會怕。"
+    },
+    "ratings": {
+      "google": 4,
+      "googleReviews": 11456,
+      "note": null
+    },
+    "sources": [
+      {
+        "type": "media",
+        "url": "https://travel.watch.impress.co.jp/docs/news/2098754.html",
+        "retrieved": "2026-11-12",
+        "note": "2026-04-03 記事：第 1 期設施、1DAY／夜間價格、2026-05-12 起週二休、第 2 期施工、只開一半"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/article/1335483/2.html",
+        "retrieved": "2026-11-12",
+        "note": "2026-04-10 記事：分期時程、價格到第 2 期開幕為止、週二休例外月份"
+      },
+      {
+        "type": "media",
+        "url": "https://www.walkerplus.com/spot/ar0726s04628/data.html",
+        "retrieved": "2026-11-12",
+        "note": "住所、電話、各站步行分數、入村到結束前 60 分（2026-07 資料）"
+      },
+      {
+        "type": "media",
+        "url": "https://www.asoview.com/base/158863/",
+        "retrieved": "2026-11-12",
+        "note": "搜尋摘要：からくり忍者屋敷、營業 10:00～21:00（未讀原文）"
+      },
+      {
+        "type": "official",
+        "url": "https://www.toei-eigamura.com/",
+        "retrieved": "2026-11-12",
+        "note": "憑證錯誤無法讀取"
+      },
+      {
+        "type": "google-maps",
+        "url": "https://maps.google.com/?cid=3150840243035149927",
+        "retrieved": "2026-11-12",
+        "note": "星數、評論數、座標、照片（Google 名稱：太秦映画村）"
+      }
+    ],
+    "verified": false,
+    "extra": {
+      "stationAccess": "嵐電（京福）太秦広隆寺駅 步行約 13 分；JR 嵯峨野線 花園駅 步行約 13 分；地下鐵東西線 太秦天神川駅 步行約 12 分（Walker+，2026-07 資料）。",
+      "indoorNote": "外景街道為主，文化體驗在町家室內、部分設施在室內；雨天大部分要撐傘。",
+      "stayNote": "半天到大半天。",
+      "conflicts": [
+        "2026-03-28 改名「太秦映画村（UZUMASA KYOTO VILLAGE）」；官網網址仍為 toei-eigamura.com",
+        "營業時間：2026-04 記事寫固定 10:00～21:00，Walker+ 寫依季節變動",
+        "官網因 SSL 憑證錯誤未讀到，時間、票價、定休都來自媒體，出發前要以官網核對"
+      ]
+    },
+    "summary": null,
+    "assessment": null
+  }
+]
