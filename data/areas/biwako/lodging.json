@@ -10,11 +10,11 @@
     "region": "ogoto-katata",
     "kind": "ryokan",
     "coords": [
-      135.8927377,
-      35.0877751
+      135.8924697,
+      35.0879307
     ],
-    "coordsSource": "google-maps-url",
-    "address": null,
+    "coordsSource": "other",
+    "address": "滋賀県大津市苗鹿2-30-7",
     "hours": null,
     "closedNote": null,
     "febNote": null,
@@ -28,10 +28,17 @@
         "license": null
       },
       {
-        "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLd1vyM8WywmLpGmkZm3M5TByjriNX5np4wDzwA5w_4dTHdHgxW7pNiqh2gLLy8lxd4o5JNqwpMsiSYpe8pexjfWmIZXz5of9cctO_GKa7gS0kyAlAJp8kfq_ectbZRnaU0HxDyV=w800",
-        "page": "https://maps.google.com/?cid=6601559692674941403",
-        "kind": "google",
-        "credit": "Google マップ（施設或使用者上傳）",
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/137819/137819.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/137819/137819.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/137819/137819_kya.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/137819/137819.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
         "license": null
       }
     ],
@@ -41,18 +48,48 @@
     },
     "tags": [],
     "tier": null,
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "jr-ogotoonsen",
+      "mode": "walk",
+      "minutes": 20,
+      "note": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的接送車（約 5 分）"
+    },
     "pickup": "JR おごと温泉站、比叡山坂本站等有送迎車（約 5 分），住客 13:30～19:00 打電話叫車（077-579-1111）；一次載幾人沒寫",
     "meals": "dinner+breakfast",
-    "priceRange": null,
-    "prices": [],
+    "priceRange": "每人約 24,000～25,000 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【冬季限定 早割30】料金アップなしで『姿ズワイガニ』の1品付＆そのうえ認証近江牛も味わう）",
+        "unit": "per-person",
+        "adult": 24000,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【くつろぎ和室】(10畳)〜癒しの空間〜【禁煙】。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/137819?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（【冬季限定 早割30】料金アップなしで『姿ズワイガニ』の1品付＆そのうえ認証近江牛も味わう）",
+        "unit": "per-person",
+        "adult": 25000,
+        "child": 20000,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【くつろぎ和室】(10畳)〜癒しの空間〜【禁煙】。一間總價 95,000 円；小學生（高學年）20,000 円＝大人的 80%。楽天 API（查詢 2026-11-12）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/137819?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      }
+    ],
     "luggage": null,
     "checkIn": "15:00",
-    "checkOut": null,
-    "rakutenHotelNo": null,
+    "checkOut": "10:00",
+    "rakutenHotelNo": 137819,
     "dinnerAccess": null,
     "group": {
-      "totalRooms": null,
+      "totalRooms": 54,
       "roomTypes": [
         "くつろぎ和室 10 畳＋広縁（布團）",
         "和室二間ファミリールーム 12.5 畳＋7.5 畳（定員沒寫）",
@@ -66,13 +103,19 @@
       "note": "官網沒有團體方案、全館包下；15 人要分幾間（和室二間、ファミリースイート），能不能同一間吃晚餐要問"
     },
     "ratings": {
-      "rakuten": null,
-      "rakutenReviews": null,
+      "rakuten": 4.52,
+      "rakutenReviews": 949,
       "jalan": null,
       "jalanReviews": null,
       "booking": null,
       "google": 4.4,
       "googleReviews": 1690,
+      "rakutenService": 4.55,
+      "rakutenLocation": 4.31,
+      "rakutenRoom": 4.54,
+      "rakutenEquipment": 4.52,
+      "rakutenBath": 4.63,
+      "rakutenMeal": 4.6,
       "note": null
     },
     "accessibility": {
@@ -84,6 +127,7 @@
     },
     "reservation": {
       "methods": [
+        "rakuten",
         "official",
         "phone"
       ],
@@ -91,8 +135,16 @@
       "url": "https://reserve.489ban.net/client/yumotokan/0/plan",
       "groupNote": "團體怎麼訂官網沒寫，要電話問"
     },
-    "bookingLinks": {},
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/137819/137819.html"
+    },
     "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/137819/137819.html",
+        "retrieved": "2026-11-12",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／2027-02-10 的空房與價格"
+      },
       {
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=6601559692674941403",
@@ -160,7 +212,27 @@
       "dinner": "京會席、近江牛；晚餐在食事處或個室，16～20 點整點選時段；2～3 月有冬季限定會席（蟹、河豚鍋，舊頁面，今年要再看）",
       "breakfast": "琴音 3 樓自助餐",
       "stationAccess": "JR 湖西線 おごと温泉站，車約 5 分（約 1.5 km）；京都站到おごと温泉站約 20 分",
-      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始",
+      "rakutenVacancy": {
+        "retrieved": "2026-11-12",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5"
+          ],
+          "2027-02-10": []
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
     },
     "summary": null,
     "assessment": null
@@ -176,16 +248,30 @@
     "region": "ogoto-katata",
     "kind": "ryokan",
     "coords": [
-      135.894064,
-      35.0874861
+      135.8944612,
+      35.0875419
     ],
-    "coordsSource": "google-maps-url",
-    "address": null,
+    "coordsSource": "other",
+    "address": "滋賀県大津市雄琴6-1-6",
     "hours": null,
     "closedNote": null,
     "febNote": null,
     "closures": [],
     "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/3165/3165.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/3165/3165.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/3165/3165_wa.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/3165/3165.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdmHho-uKYc1bA1m66YKQSz3IkMsKJwDTXdnz89ERVYgGcYjh6EccTMibxzxFyXmB8gLuMg6asxJ8EEtOjCOY1dn61Rz2eCNkx4KB_C-RjQVDwLjV1y0JMAId0FebzouTt9iyVo=w800",
         "page": "https://maps.google.com/?cid=18041228338030064488",
@@ -200,15 +286,57 @@
     },
     "tags": [],
     "tier": null,
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "jr-ogotoonsen",
+      "mode": "walk",
+      "minutes": 19,
+      "note": "JR おごと温泉站步行約 19 分（路線估算），一般搭旅館的接送車（約 5 分）"
+    },
     "pickup": "JR おごと温泉站東口巴士站 4 號乘車處，免費接駁（綠色車），到站打電話，車程約 7 分；時刻、載客數沒寫",
     "meals": "dinner+breakfast",
-    "priceRange": null,
-    "prices": [],
+    "priceRange": "每人約 27,015～29,325 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（冬の味覚の王様！遠くへ行くより近くの温泉で蟹鍋（蟹すき）◎朝食は和食ブッフェ）",
+        "unit": "per-person",
+        "adult": 27015,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：◆パーシャルビュー和風ツイン【月詠】（ベッド＋布団）。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/3165?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（冬の味覚の王様！遠くへ行くより近くの温泉で蟹鍋（蟹すき）◎朝食は和食ブッフェ）",
+        "unit": "per-person",
+        "adult": 27015,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：◆パーシャルビュー和風ツイン【月詠】（ベッド＋布団）。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/3165?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（冬の味覚の王様！遠くへ行くより近くの温泉で蟹鍋（蟹すき）◎朝食は和食ブッフェ）",
+        "unit": "per-person",
+        "adult": 29325,
+        "child": 20528,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：◆パーシャルビュー和風ツイン【月詠】（ベッド＋布団）。一間總價 108,503 円；小學生（高學年）20,528 円＝大人的 70%。楽天 API（查詢 2026-11-12）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/3165?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      }
+    ],
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "rakutenHotelNo": null,
+    "rakutenHotelNo": 3165,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 69,
@@ -226,13 +354,19 @@
       "note": "15 人可以 2～3 間（例如萬葉 8＋びわの風和洋室 7）；團體要電話洽詢（團體住宿方案「準備中」）；大宴會場約 80 人，可以全員一起吃"
     },
     "ratings": {
-      "rakuten": null,
-      "rakutenReviews": null,
+      "rakuten": 4.65,
+      "rakutenReviews": 2584,
       "jalan": null,
       "jalanReviews": null,
       "booking": null,
       "google": 4.4,
       "googleReviews": 1628,
+      "rakutenService": 4.69,
+      "rakutenLocation": 4.58,
+      "rakutenRoom": 4.6,
+      "rakutenEquipment": 4.6,
+      "rakutenBath": 4.62,
+      "rakutenMeal": 4.73,
       "note": null
     },
     "accessibility": {
@@ -244,6 +378,7 @@
     },
     "reservation": {
       "methods": [
+        "rakuten",
         "official",
         "phone"
       ],
@@ -251,8 +386,16 @@
       "url": "https://reserve.489ban.net/client/ryokusuitei/0/plan",
       "groupNote": "團體請電話洽詢（9:00～18:00）"
     },
-    "bookingLinks": {},
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/3165/3165.html"
+    },
     "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/3165/3165.html",
+        "retrieved": "2026-11-12",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／2027-02-10 的空房與價格"
+      },
       {
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=18041228338030064488",
@@ -322,7 +465,35 @@
       "breakfast": "自助餐",
       "parking": "免費 100 台",
       "stationAccess": "JR 湖西線 おごと温泉站，接駁車約 7 分；京都站到おごと温泉站約 20 分",
-      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始",
+      "rakutenVacancy": {
+        "retrieved": "2026-11-12",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-09": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ],
+          "2027-02-10": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
     },
     "summary": null,
     "assessment": null
@@ -338,16 +509,30 @@
     "region": "ogoto-katata",
     "kind": "ryokan",
     "coords": [
-      135.8924429,
-      35.088864
+      135.8925502,
+      35.0898166
     ],
-    "coordsSource": "google-maps-url",
-    "address": null,
+    "coordsSource": "other",
+    "address": "滋賀県大津市雄琴1-1-3",
     "hours": null,
     "closedNote": null,
     "febNote": null,
     "closures": [],
     "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/8798/8798.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/8798/8798.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/8798/8798_heya.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/8798/8798.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLdnu0h8AuzpXXcIce4iqJk50phCP0hGKcfjKkUoxtWuE0wZGb6CzdNzJx1cwRrjHz622CTRhfEgmnVZWiqAC7PQ-cf6MjPRUrlqTwtf6Zq4RvZ1xPCjtCqR7u9PCN24-y1dSFge8IgrVqWF=w800",
         "page": "https://maps.google.com/?cid=1138852597221722077",
@@ -362,15 +547,57 @@
     },
     "tags": [],
     "tier": null,
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "jr-ogotoonsen",
+      "mode": "walk",
+      "minutes": 20,
+      "note": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的接送車（約 5 分）"
+    },
     "pickup": "JR おごと温泉站（約 5 分）、JR 比叡山坂本站（約 15 分）免費接送，非定時，到站打電話",
     "meals": "dinner+breakfast",
-    "priceRange": null,
-    "prices": [],
+    "priceRange": "每人約 27,500～28,600 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（旬の味覚を愉しむ！びわ湖花街道ならではの季節会席プラン「恵ーMegumiー」）",
+        "unit": "per-person",
+        "adult": 27500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：和室１０畳【禁煙】。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/8798?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（旬の味覚を愉しむ！びわ湖花街道ならではの季節会席プラン「恵ーMegumiー」）",
+        "unit": "per-person",
+        "adult": 27500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三）1 泊，4 間 × 4 人（大人）有空房時的最低價",
+        "note": "房型：和室１０畳【禁煙】。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4、3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/8798?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=4&f_otona_su=4&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（旬の味覚を愉しむ！びわ湖花街道ならではの季節会席プラン「恵ーMegumiー」）",
+        "unit": "per-person",
+        "adult": 28600,
+        "child": 20020,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：和室１０畳【禁煙】。一間總價 105,820 円；小學生（高學年）20,020 円＝大人的 70%。楽天 API（查詢 2026-11-12）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/8798?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      }
+    ],
     "luggage": "早到可以在櫃台寄放行李",
     "checkIn": "15:00",
     "checkOut": "11:00",
-    "rakutenHotelNo": null,
+    "rakutenHotelNo": 8798,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 43,
@@ -389,13 +616,19 @@
       "note": "15 人可以 3 間 6 人的和洋室；團體方案、能不能 15 人同一處吃沒寫（晚餐在食事會場，有付費個室）"
     },
     "ratings": {
-      "rakuten": null,
-      "rakutenReviews": null,
+      "rakuten": 4.6,
+      "rakutenReviews": 712,
       "jalan": null,
       "jalanReviews": null,
       "booking": null,
       "google": 4.4,
       "googleReviews": 1008,
+      "rakutenService": 4.63,
+      "rakutenLocation": 4.52,
+      "rakutenRoom": 4.48,
+      "rakutenEquipment": 4.45,
+      "rakutenBath": 4.55,
+      "rakutenMeal": 4.67,
       "note": null
     },
     "accessibility": {
@@ -407,6 +640,7 @@
     },
     "reservation": {
       "methods": [
+        "rakuten",
         "official",
         "phone"
       ],
@@ -414,8 +648,16 @@
       "url": "https://reserve.489ban.net/client/hanakaido/0/plan",
       "groupNote": "團體洽詢沒有專頁，打電話（免付費 0120-051-041，9:00～20:00）"
     },
-    "bookingLinks": {},
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/8798/8798.html"
+    },
     "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/8798/8798.html",
+        "retrieved": "2026-11-12",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／2027-02-10 的空房與價格"
+      },
       {
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=1138852597221722077",
@@ -464,7 +706,34 @@
       "onsen": "單純溫泉（弱鹼性）；大浴場 2 座（含露天，男女時段輪替）；貸切風呂「び～どろの湯」3～4 人、50 分 3,300 円、當天櫃台申請",
       "dinner": "晚餐、早餐都在食事會場（不是部屋食）；近江牛しゃぶしゃぶ／すき焼き、冬季限定本鴨鍋、11～2 月ずわい蟹炭焼き；個室加價（和個室 4,400 円、洋個室 2,200 円，看空位）",
       "stationAccess": "JR 湖西線 おごと温泉站，接送車約 5 分",
-      "taxes": "入湯稅：官網的日歸入浴寫 50 円、小學生免（住客要再確認）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+      "taxes": "入湯稅：官網的日歸入浴寫 50 円、小學生免（住客要再確認）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始",
+      "rakutenVacancy": {
+        "retrieved": "2026-11-12",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-09": [
+            "5x3",
+            "4x4",
+            "3x5"
+          ],
+          "2027-02-10": [
+            "8x2",
+            "5x3",
+            "4x4",
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
     },
     "summary": null,
     "assessment": null
@@ -480,16 +749,30 @@
     "region": "ogoto-katata",
     "kind": "ryokan",
     "coords": [
-      135.8927378,
-      35.0884401
+      135.8927113,
+      35.0884306
     ],
-    "coordsSource": "google-maps-url",
-    "address": null,
+    "coordsSource": "other",
+    "address": "滋賀県大津市苗鹿2-30-1",
     "hours": null,
     "closedNote": null,
     "febNote": null,
     "closures": [],
     "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/137820/137820.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/137820/137820.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/137820/137820_wa.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/137820/137820.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/grass-cs/AABkmLfyQ_06RUUYRPo-v03jZ1Wpx41wUSQkxMzuDXhUsRTKZExorb44j-8eDnU0YiHYcpwkPhWv-zTEXLxsda30yCjCXrhKw0b8cnmBzme5dj0TBaId6FL0kkz-ZzJNwJSa70jn3kdf=w800",
         "page": "https://maps.google.com/?cid=6954537263574466686",
@@ -504,15 +787,57 @@
     },
     "tags": [],
     "tier": null,
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "jr-ogotoonsen",
+      "mode": "walk",
+      "minutes": 20,
+      "note": "JR おごと温泉站步行約 20 分（路線估算），一般搭旅館的接送車（約 5 分）"
+    },
     "pickup": "JR おごと温泉站打電話免費接送（約 5 分），比叡山坂本站也接；早上有從湯元舘正門出發的定時班（8:35～11:15）",
     "meals": "dinner+breakfast",
-    "priceRange": null,
-    "prices": [],
+    "priceRange": "每人約 10,700 円（一泊二食；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【スタンダード】リーズナブルに楽しむならこれ！木もれび一押しの得々プラン（１泊２食付））",
+        "unit": "per-person",
+        "adult": 10700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：2階　和室　【禁煙】。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/137820?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（【スタンダード】リーズナブルに楽しむならこれ！木もれび一押しの得々プラン（１泊２食付））",
+        "unit": "per-person",
+        "adult": 10700,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三）1 泊，5 間 × 3 人（大人）有空房時的最低價",
+        "note": "房型：2階　和室　【禁煙】。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：8x2、5x3、4x4。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/137820?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=5&f_otona_su=3&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（【スタンダード】リーズナブルに楽しむならこれ！木もれび一押しの得々プラン（１泊２食付））",
+        "unit": "per-person",
+        "adult": 10700,
+        "child": 9630,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：2階　和室　【禁煙】。一間總價 41,730 円；小學生（高學年）9,630 円＝大人的 90%。楽天 API（查詢 2026-11-12）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/137820?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      }
+    ],
     "luggage": "入住前、退房後可以寄放行李",
     "checkIn": "14:00",
-    "checkOut": null,
-    "rakutenHotelNo": null,
+    "checkOut": "11:00",
+    "rakutenHotelNo": 137820,
     "dinnerAccess": null,
     "group": {
       "totalRooms": 20,
@@ -530,13 +855,19 @@
       "note": "只有 20 室的小旅館，15 人約 4～5 間；官網找不到全館包下的方案（要問）；宴會場「しゃくなげ」30 畳最多 32 人，團體晚餐可能改在大廣間"
     },
     "ratings": {
-      "rakuten": null,
-      "rakutenReviews": null,
+      "rakuten": 4.24,
+      "rakutenReviews": 494,
       "jalan": null,
       "jalanReviews": null,
       "booking": null,
       "google": 4.3,
       "googleReviews": 459,
+      "rakutenService": 4.27,
+      "rakutenLocation": 3.77,
+      "rakutenRoom": 4.22,
+      "rakutenEquipment": 3.96,
+      "rakutenBath": 4.15,
+      "rakutenMeal": 4.51,
       "note": null
     },
     "accessibility": {
@@ -548,6 +879,7 @@
     },
     "reservation": {
       "methods": [
+        "rakuten",
         "official",
         "phone"
       ],
@@ -555,8 +887,16 @@
       "url": "https://reserve.489ban.net/client/komolebi/0/plan",
       "groupNote": "團體、包館要電話問（9～21 時）"
     },
-    "bookingLinks": {},
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/137820/137820.html"
+    },
     "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/137820/137820.html",
+        "retrieved": "2026-11-12",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／2027-02-10 的空房與價格"
+      },
       {
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=6954537263574466686",
@@ -619,7 +959,33 @@
       "banquet": "「しゃくなげ」30 畳最多 32 人、「もみじ」16 席；飲み放題 10 人以上每人 2,500 円",
       "stationAccess": "JR 湖西線 おごと温泉站，接送車約 5 分",
       "checkInNote": "14:00～19:00",
-      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始"
+      "taxes": "住客的入湯稅官網沒寫（要問）；大津市以 2027 年度開徵住宿稅為目標（官方還沒公布），2027 年 2 月應該還沒開始",
+      "rakutenVacancy": {
+        "retrieved": "2026-11-12",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-09": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ],
+          "2027-02-10": [
+            "8x2",
+            "5x3",
+            "4x4"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
     },
     "summary": null,
     "assessment": null
@@ -635,16 +1001,30 @@
     "region": "ogoto-katata",
     "kind": "ryokan",
     "coords": [
-      135.8973798,
-      35.0877554
+      135.8973887,
+      35.0876308
     ],
-    "coordsSource": "google-maps-url",
-    "address": null,
+    "coordsSource": "other",
+    "address": "滋賀県大津市雄琴6-5-1",
     "hours": null,
     "closedNote": null,
     "febNote": null,
     "closures": [],
     "photos": [
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/106122/106122.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/106122/106122.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
+      {
+        "url": "https://img.travel.rakuten.co.jp/share/HOTEL/106122/106122_w.jpg",
+        "page": "https://travel.rakuten.co.jp/HOTEL/106122/106122.html",
+        "kind": "rakuten",
+        "credit": "楽天トラベル（施設提供）",
+        "license": null
+      },
       {
         "url": "https://lh3.googleusercontent.com/grass-proxy/AIM7gW2T7LLFYDU8SyU0cOL2Qt4LQx7GrSLrTDGHECpMAsgCG1soazUtZwyLVjHNt4yzH2kshTpy68uABWHCpcOeBdLj3aybxtgVCRZNbL8__g-yQD4bN1JCGYGXi0aLEsJvT1jgw8gIoUHu2ERZvASLY5WU7C0dcpTz9e8Bmh--SqVi6Zx43JbE6rbt=w800",
         "page": "https://maps.google.com/?cid=5912721437813050324",
@@ -659,18 +1039,84 @@
     },
     "tags": [],
     "tier": null,
-    "nearestStation": null,
+    "nearestStation": {
+      "id": "jr-ogotoonsen",
+      "mode": "walk",
+      "minutes": 19,
+      "note": "JR おごと温泉站步行約 19 分（路線估算），一般搭旅館的接送車（約 5 分）"
+    },
     "pickup": "JR おごと温泉站免費接送巴士，到站打電話；團體依人數安排，要先洽詢",
     "meals": "dinner+breakfast",
-    "priceRange": null,
-    "prices": [],
+    "priceRange": "每人約 12,100～18,700 円（一泊二食／附早餐；詳見 prices）",
+    "prices": [
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（＜冬季限定＞寒い時期にピッタリ◎【鴨　鍋】と名湯・おごと温泉であったまろう(2食付)シガリズム体験）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【西館】和室10畳or12畳(禁煙・シャワールーム・トイレ)。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106122?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【ビジネスプラン】当日12時までご予約可能！朝食は和洋バイキング＆おごと温泉）",
+        "unit": "per-person",
+        "adult": 12100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【西館】和室10畳or12畳(禁煙・シャワールーム・トイレ)。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106122?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 楽天 15 人組合最低價（＜冬季限定＞寒い時期にピッタリ◎【鴨　鍋】と名湯・おごと温泉であったまろう(2食付)シガリズム体験）",
+        "unit": "per-person",
+        "adult": 16500,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【西館】和室10畳or12畳(禁煙・シャワールーム・トイレ)。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106122?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "附早餐 楽天 15 人組合最低價（【ビジネスプラン】当日12時までご予約可能！朝食は和洋バイキング＆おごと温泉）",
+        "unit": "per-person",
+        "adult": 12100,
+        "child": null,
+        "currency": "JPY",
+        "season": "2027-02-10（三）1 泊，3 間 × 5 人（大人）有空房時的最低價",
+        "note": "房型：【西館】和室10畳or12畳(禁煙・シャワールーム・トイレ)。楽天 API 空室検索（查詢 2026-11-12），含稅、不含入湯稅等。這天有空房的組合：3x5。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106122?f_nen1=2027&f_tuki1=2&f_hi1=10&f_nen2=2027&f_tuki2=2&f_hi2=11&f_heya_su=3&f_otona_su=5&f_s1=0&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      },
+      {
+        "plan": "一泊二食 大人 3＋小學生高年級 1（1 室）最低價（＜冬季限定＞寒い時期にピッタリ◎【鴨　鍋】と名湯・おごと温泉であったまろう(2食付)シガリズム体験）",
+        "unit": "per-person",
+        "adult": 18700,
+        "child": 13090,
+        "currency": "JPY",
+        "season": "2027-02-09（二）1 泊，1 間 大人 3＋小學生高年級 1",
+        "note": "房型：【西館】和室10畳or12畳(禁煙・シャワールーム・トイレ)。一間總價 69,190 円；小學生（高學年）13,090 円＝大人的 70%。楽天 API（查詢 2026-11-12）。",
+        "source": "rakuten-api",
+        "url": "https://hotel.travel.rakuten.co.jp/hotelinfo/plan/106122?f_nen1=2027&f_tuki1=2&f_hi1=9&f_nen2=2027&f_tuki2=2&f_hi2=10&f_heya_su=1&f_otona_su=3&f_s1=1&f_s2=0&f_y1=0&f_y2=0&f_y3=0&f_y4=0",
+        "retrieved": "2026-11-12"
+      }
+    ],
     "luggage": null,
     "checkIn": "15:00",
     "checkOut": "10:00",
-    "rakutenHotelNo": null,
+    "rakutenHotelNo": 106122,
     "dinnerAccess": null,
     "group": {
-      "totalRooms": null,
+      "totalRooms": 150,
       "roomTypes": [
         "東館 和室 44 室（浴廁付）、雙床房 4 室",
         "西館 和室 96 室（淋浴間、廁所付）",
@@ -683,13 +1129,19 @@
       "note": "雄琴最大的旅館，有團體、親戚聚會用的宴席（依人數安排個室），可以全員一起吃；各房型最多幾人官網沒寫；房數各網站說法不一（140～193 室）"
     },
     "ratings": {
-      "rakuten": null,
-      "rakutenReviews": null,
+      "rakuten": 4.17,
+      "rakutenReviews": 870,
       "jalan": null,
       "jalanReviews": null,
       "booking": null,
       "google": 3.9,
       "googleReviews": 2049,
+      "rakutenService": 4.28,
+      "rakutenLocation": 4.22,
+      "rakutenRoom": 4.14,
+      "rakutenEquipment": 4.03,
+      "rakutenBath": 4.29,
+      "rakutenMeal": 4.28,
       "note": null
     },
     "accessibility": {
@@ -701,6 +1153,7 @@
     },
     "reservation": {
       "methods": [
+        "rakuten",
         "official",
         "phone"
       ],
@@ -708,8 +1161,16 @@
       "url": "https://reserve.489ban.net/client/biwakogh/0/plan",
       "groupNote": "團體方案要洽詢（官網有團體、親戚旅行的介紹，沒有價格）"
     },
-    "bookingLinks": {},
+    "bookingLinks": {
+      "rakuten": "https://travel.rakuten.co.jp/HOTEL/106122/106122.html"
+    },
     "sources": [
+      {
+        "type": "booking-site",
+        "url": "https://travel.rakuten.co.jp/HOTEL/106122/106122.html",
+        "retrieved": "2026-11-12",
+        "note": "楽天トラベル API（SimpleHotelSearch、HotelDetailSearch、VacantHotelSearch，scripts/rakuten.mjs）：評分、細項評分、房數、check-in/out、照片、2027-02-09／2027-02-10 的空房與價格"
+      },
       {
         "type": "google-maps",
         "url": "https://maps.google.com/?cid=5912721437813050324",
@@ -782,7 +1243,29 @@
         "電話：官網 077-579-2111，其他資料 077-577-2211",
         "客室數：官網教育旅行頁東西館 140 室，其他網站 150／151／184／193 室",
         "接送：交通頁寫免費巴士，教育旅行頁寫依人數運行、要洽詢"
-      ]
+      ],
+      "rakutenVacancy": {
+        "retrieved": "2026-11-12",
+        "dates": [
+          "2027-02-09",
+          "2027-02-10"
+        ],
+        "combos": [
+          "8x2",
+          "5x3",
+          "4x4",
+          "3x5"
+        ],
+        "available": {
+          "2027-02-09": [
+            "3x5"
+          ],
+          "2027-02-10": [
+            "3x5"
+          ]
+        },
+        "note": "15 人（全部以大人計）分 N 間同住的組合，有空房的列出；只代表查詢當天楽天上的庫存"
+      }
     },
     "summary": null,
     "assessment": null
