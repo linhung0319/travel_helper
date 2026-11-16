@@ -146,8 +146,8 @@ const netStopId = (net: Network, doc: RouteTimetable, stop: string) => (doc.mode
  * 超過單段步行上限的不要；pierSide（過海那段、離島那端）上限內沒有碼頭時才不設上限，走太遠由 fromCandidate 提醒。
  * 步行已套係數、向上取整
  */
-function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network, pierSide = false): Access[] {
-  const within = accessWithin(e, ctx, factor, net, ctx.cfg.walk.legMaxWhole);
+function accessStops(e: Endpoint, ctx: LegContext, factor: number, net: Network, pierSide = false, walkMax = ctx.cfg.walk.legMaxWhole): Access[] {
+  const within = accessWithin(e, ctx, factor, net, walkMax);
   return pierSide && !within.length ? accessWithin(e, ctx, factor, net, Infinity) : within;
 }
 
@@ -249,19 +249,22 @@ function findAccess(e: Endpoint, ctx: LegContext, factor: number, net: Network, 
   return [...walks].map(([stop, w]) => ({ stop, walk: round(w) }));
 }
 
-/** a → b 的上車點、下車點：過海時離島那端走到碼頭不設上限（T60：菅島港 → 燈塔 21 分） */
-function legAccess(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network): { origins: Access[]; targets: Access[]; sea: boolean } {
+/**
+ * a → b 的上車點、下車點：過海時離島那端走到碼頭不設上限（T60：菅島港 → 燈塔 21 分）。
+ * walkMax：上下車那段最多走幾分（預設單段步行上限；選了大眾運輸時放寬成 pickedTransitMaxWhole，T89）
+ */
+function legAccess(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network, walkMax?: number): { origins: Access[]; targets: Access[]; sea: boolean } {
   const sea = crossesSea(a, b, ctx.cfg);
   return {
-    origins: accessStops(a, ctx, factor, net, sea && isIsland(a, ctx.cfg)),
-    targets: accessStops(b, ctx, factor, net, sea && isIsland(b, ctx.cfg)),
+    origins: accessStops(a, ctx, factor, net, sea && isIsland(a, ctx.cfg), walkMax),
+    targets: accessStops(b, ctx, factor, net, sea && isIsland(b, ctx.cfg), walkMax),
     sea,
   };
 }
 
 /** a → b 的搜尋條件；上車點或下車點找不到回傳 null */
-function raptorQuery(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network, departMinutes: number): SearchQuery | null {
-  const { origins, targets, sea } = legAccess(a, b, ctx, factor, net);
+function raptorQuery(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network, departMinutes: number, walkMax?: number): SearchQuery | null {
+  const { origins, targets, sea } = legAccess(a, b, ctx, factor, net, walkMax);
   if (!origins.length || !targets.length) return null;
   return { origins, targets, depart: departMinutes, factor, requireFerry: sea };
 }
@@ -275,7 +278,8 @@ function byDefault(js: readonly Journey[], cfg: EngineConfig): Journey[] {
 /**
  * departMinutes 從起點出發，RAPTOR 找到的走法（不套等車、班距規則），依 pickDefault 的值排序。
  * missedLast：現在沒有，但這天從 0 點起有（錯過末班車）。
- * only：只搭這種交通方式（舊的 train／bus／ferry；班距型的電車算 train、市巴士算 bus），其他方式的 group 不搭
+ * only：只搭這種交通方式（舊的 train／bus／ferry；班距型的電車算 train、市巴士算 bus），其他方式的 group 不搭。
+ * walkMax：上下車那段最多走幾分（見 legAccess）
  */
 function raptorCandidates(
   a: Endpoint,
@@ -284,9 +288,10 @@ function raptorCandidates(
   factor: number,
   departMinutes: number,
   only?: 'train' | 'bus' | 'ferry',
+  walkMax?: number,
 ): { cands: Candidate[]; missedLast: boolean } {
   const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
-  const base = raptorQuery(a, b, ctx, factor, net, departMinutes);
+  const base = raptorQuery(a, b, ctx, factor, net, departMinutes, walkMax);
   if (!base) return { cands: [], missedLast: false };
   const q = only ? { ...base, exclude: groupsNot(net, only) } : base;
   const js = searchJourneys(net, q, ctx.cfg);
@@ -356,8 +361,24 @@ function fallbackCandidates(a: Endpoint, b: Endpoint, ctx: LegContext, factor: n
 /** 從 ctx.depart 出發（加上走到上車點）之後，還有沒有任何走法（不管等多久）；離島只看有船的 */
 function transitExists(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number): boolean {
   const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
-  const q = raptorQuery(a, b, ctx, factor, net, ctx.depart);
-  return !!q && searchJourneys(net, q, ctx.cfg).length > 0;
+  const found = (q: SearchQuery | null) => !!q && searchJourneys(net, q, ctx.cfg).length > 0;
+  if (found(raptorQuery(a, b, ctx, factor, net, ctx.depart))) return true;
+  // 選了大眾運輸時找得到的也算（T89，specifiedLeg 的順序）：上下車多走一點、或前後接計程車
+  const loose = ctx.cfg.walk.pickedTransitMaxWhole;
+  const n = legAccess(a, b, ctx, factor, net);
+  const w = legAccess(a, b, ctx, factor, net, loose);
+  if ((w.origins.length > n.origins.length || w.targets.length > n.targets.length) && found(raptorQuery(a, b, ctx, factor, net, ctx.depart, loose))) return true;
+  return found(railTaxiQuery(a, b, ctx, factor, net));
+}
+
+/** 大眾運輸接計程車到得了嗎（只看有沒有，transitExists 用）：上下車點加上 stationsNear 的車站（計程車的分鐘當成走過去的分鐘），一次搜尋 */
+function railTaxiQuery(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, net: Network): SearchQuery | null {
+  if (!isLonLat(a.coords) || !isLonLat(b.coords)) return null;
+  const { origins, targets } = legAccess(a, b, ctx, factor, net);
+  const byTaxi = (e: Endpoint, s: Endpoint): Access => ({ stop: s.id as string, walk: statedTaxiMinutes(e, s.id) ?? round(drive(e.coords as LonLat, s.coords as LonLat, ctx).minutes) });
+  const o = [...origins, ...stationsNear(a, net, ctx).map((s) => byTaxi(a, s))];
+  const t = [...targets, ...stationsNear(b, net, ctx).map((s) => byTaxi(b, s))];
+  return o.length && t.length ? { origins: o, targets: t, depart: ctx.depart, factor, requireFerry: false } : null;
 }
 
 /** 地點的顯示名稱（摘要用）：資料點的中文名 → 日文名 → 網路裡的停靠點名稱 */
@@ -524,6 +545,8 @@ function distinctAlternatives(c: Candidate, alts: readonly Candidate[], ctx: Leg
   const out: Candidate[] = [];
   const seen = new Set<string>();
   for (const x of [c, ...alts]) {
+    // 晚太多才到的不列（T89：伊勢市 9:00 → 京都，直達特急 17:15 才到）
+    if (x !== c && x.arrive - c.arrive > ctx.cfg.transit.alternativeMaxLate) continue;
     const { journey: j, net } = x;
     const keys = [pathOf(j).map((r) => `${r.line}:${r.from}:${r.to}`).join('|'), `summary:${summaryOf(j, net, ctx.data)}`];
     if (keys.some((k) => seen.has(k))) continue;
@@ -716,12 +739,20 @@ function pathLeg(a: Endpoint, b: Endpoint, ctx: LegContext, path: PathRef, facto
   const net = buildNetwork(ctx.data, ctx.cfg, ctx.date);
   const q = { factor };
   let j: Journey | null = null;
-  const { origins, targets } = legAccess(a, b, ctx, factor, net);
-  for (const o of origins) {
-    for (const t of targets) {
-      const x = evaluatePath(net, path.rides, o, t, ctx.depart, q, ctx.cfg);
-      if (x && (!j || x.arr < j.arr)) j = x;
+  let { origins, targets } = legAccess(a, b, ctx, factor, net);
+  const tryAll = () => {
+    for (const o of origins) {
+      for (const t of targets) {
+        const x = evaluatePath(net, path.rides, o, t, ctx.depart, q, ctx.cfg);
+        if (x && (!j || x.arr < j.arr)) j = x;
+      }
     }
+  };
+  tryAll();
+  // 選大眾運輸時放寬步行找到的走法（T89）：上限內接不上就照放寬的再試
+  if (!j) {
+    ({ origins, targets } = legAccess(a, b, ctx, factor, net, ctx.cfg.walk.pickedTransitMaxWhole));
+    tryAll();
   }
   if (!j) return null;
   const c = journeyCandidate(j, net, ctx.depart, ctx, factor, targets);
@@ -802,6 +833,22 @@ function autoLeg(a: Endpoint, b: Endpoint, ctx: LegContext, walk: { minutes: num
   const name = (c: Candidate) => (firstBus(c) ? '巴士' : c.rides[0]?.mode === 'ferry' ? '船' : '電車');
   if (chosen) {
     return fromCandidate(chosen, a, b, ctx, factor, warnings, cands);
+  }
+
+  // 計程車要開很久（T89，👤：15 人要 4 台車開一小時以上不實際）：大眾運輸（等太久的也算）、或前後接計程車，
+  // 比計程車晚到不超過 transitMaxLateVsTaxi 分就搭（例如京都站 → 白鬚神社：湖西線到近江高島再搭 5 分，不整段計程車 103 分）
+  const taxiEnd = taxiAt();
+  if (taxiEnd != null && taxiEnd - ctx.depart >= cfg.taxi.longMinutes) {
+    const limit = taxiEnd + cfg.transit.transitMaxLateVsTaxi;
+    const slow = byDefault(cands.filter((c) => c.arrive <= limit && c.journey).map((c) => c.journey as Journey), cfg)[0];
+    const pick = slow ? cands.find((c) => c.journey === slow) : undefined;
+    if (pick) return fromCandidate(pick, a, b, ctx, factor, warnings, cands);
+    const own: LegWarning[] = [];
+    const linked = railTaxiLeg(a, b, ctx, factor, own);
+    if (linked && toMinutes(linked.arrive) <= limit) {
+      warnings.push(...own);
+      return linked;
+    }
   }
 
   // 有車但不合規則：寫進理由
@@ -887,7 +934,10 @@ function railTaxiLeg(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, 
         const c = raptorCandidates(f, l, sub, factor, start).cands[0];
         if (!c) continue;
         const arrive = c.arrive + after;
-        if (!best || arrive < best.arrive || (arrive === best.arrive && before + after < best.before + best.after)) best = { f, l, before, after, c, arrive, ctx: sub };
+        // 計程車坐越久越扣分（T89：京都站 → 彥根城，不要因為早 1 分到就從近江高島搭計程車繞琵琶湖）
+        const score = (o: { arrive: number; before: number; after: number }) => o.arrive + ctx.cfg.taxi.connectPenalty * (o.before + o.after);
+        const cur = { arrive, before, after };
+        if (!best || score(cur) < score(best) || (score(cur) === score(best) && before + after < best.before + best.after)) best = { f, l, before, after, c, arrive, ctx: sub };
       }
     }
     return best;
@@ -900,7 +950,9 @@ function railTaxiLeg(a: Endpoint, b: Endpoint, ctx: LegContext, factor: number, 
   const inner = fromCandidate(c, f, l, best.ctx, factor, warnings, [c]);
   const nameOf = (e: Endpoint) => placeName(e.id as string, net, ctx.data);
   const where = [needFirst ? `到${nameOf(f)}之前` : '', needLast ? `${nameOf(l)}以後` : ''].filter(Boolean).join('、');
-  warnings.push({ code: 'rail-taxi', level: 'note', message: `${where}沒有車，要先預約計程車` });
+  // 住宿那端：可以問有沒有接送（雄琴溫泉的旅館到車站一般搭接送車）
+  const pickup = (needFirst && pickupNote(a)) || (needLast && pickupNote(b));
+  warnings.push({ code: 'rail-taxi', level: 'note', message: `${where}沒有車，要先預約計程車${pickup ? `；${pickup}` : ''}` });
   const { alternatives: _alternatives, ...rest } = inner;
   return {
     ...rest,
@@ -951,12 +1003,17 @@ function specifiedLeg(
     // 舊的方式：每一程都是那種（班距型算 train），近鐵接巴士不算 bus
     const keep = (c: Candidate) => spec.mode === 'transit' || c.rides.every((r) => r.mode === spec.mode);
     const found = raptorCandidates(a, b, ctx, factor, ctx.depart, spec.mode === 'transit' ? undefined : spec.mode);
-    const kept = found.cands.filter(keep);
+    let kept = found.cands.filter(keep);
+    // 選了大眾運輸、上限內沒有車站（T89）：上下車多走一點（例如京都站 → 伏見稻荷搭 JR 再走 16 分）
+    if (!kept.length && spec.mode === 'transit') kept = raptorCandidates(a, b, ctx, factor, ctx.depart, undefined, ctx.cfg.walk.pickedTransitMaxWhole).cands;
     const c = kept[0] ?? null;
     if (c) {
       return { ...fromCandidate(c, a, b, ctx, factor, warnings, kept), ...base };
     }
     if (spec.mode === 'transit') {
+      // 還是沒有：搭到附近的車站再接計程車（例如京都站 → 白鬚神社，近江高島以後計程車）
+      const linked = railTaxiLeg(a, b, ctx, factor, warnings);
+      if (linked) return { ...linked, ...base };
       warnings.push(
         found.missedLast
           ? { code: 'missed-last', level: 'act', message: '末班車已過' }

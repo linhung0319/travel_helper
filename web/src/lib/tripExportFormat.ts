@@ -4,7 +4,7 @@
 import { formatDuration } from '@travel-helper/engine';
 import type { ExportDay, ExportDoc, ExportGap, ExportLeg, ExportLodging, ExportMissed, ExportRide, ExportRow, ExportStop } from './tripExport.ts';
 
-export const EXPORT_TITLE = '伊勢志摩・大阪 行程';
+export const EXPORT_TITLE = '伊勢志摩・京都・大阪 行程';
 
 const MODE_ZH: Record<ExportRide['mode'], string> = { train: '電車', bus: '巴士', ferry: '船' };
 

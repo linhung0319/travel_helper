@@ -208,3 +208,38 @@ test('畫面的脈絡：沒有篩選就不帶 filterCount；沒點開的、沒�
   assert.ok((withFilter.filterLabels as string[]).length === 1 && typeof withFilter.filterCount === 'number');
   h.close();
 });
+
+test('get_timetable（T89）：班距型的路線回班距、首末班、兩站的車上分鐘；大阪、京都的車站列停這站的線（同名的幾站一起）', async () => {
+  const h = await harness();
+  const t = run(h);
+  const bus = await t('get_timetable', { route: '206', from: '京都站前', to: '五條坂', date: '2027-02-09' });
+  assert.equal(bus.ok, true);
+  const row = (bus.routes as Row[])[0];
+  assert.equal(row.minutes, 15);
+  assert.equal(row.mode, 'bus');
+  assert.ok((row.headway as string[]).some((x) => /約 7\.5 分一班/.test(x)), JSON.stringify(row.headway));
+  const one = await t('get_timetable', { route: '206', date: '2027-02-09' });
+  assert.ok((one.stops as string[])[0].startsWith('京都站前'));
+  // 時刻表型也對到名字（江若巴士的站名有「京阪」）：一起列出來讓 AI 選
+  const keihan = await t('get_timetable', { route: '京阪', date: '2027-02-09' });
+  const ids = (keihan.routes as Row[]).map((r) => r.id);
+  assert.ok(ids.includes('ekojo-sakamoto-cable') && ids.includes('keihan-keishin'), ids.join(','));
+  const st = await t('get_timetable', { station: '京都', date: '2027-02-09' });
+  const names = (st.stations as Row[]).map((s) => s.station);
+  assert.ok(names.includes('京都（近鐵）') && names.includes('京都（JR）'), names.join(','));
+  assert.ok(JSON.stringify(st).includes('206'));
+  // 伊勢志摩的近鐵站照舊回班次
+  const ise = await t('get_timetable', { station: '伊勢市', date: '2027-02-09' });
+  assert.ok(Array.isArray(ise.directions));
+  h.close();
+});
+
+test('get_place 的 hours（T89）：時段一樣的天併成一個鍵，不展開 8 次', async () => {
+  const h = await harness();
+  const t = run(h);
+  const [kiyomizu, osakaya] = (await t('get_place', { ids: ['kyoto-kiyomizudera', 'toba-osakaya'], sections: ['hours'] })).places as Row[];
+  assert.deepEqual(Object.keys(kiyomizu.hours as Row).filter((k) => k !== 'lastEntry' && k !== 'note'), ['mon、tue、wed、thu、fri、sat、sun、holiday']);
+  assert.deepEqual((osakaya.hours as Row).thu, []);
+  assert.ok('mon、tue、wed、fri、sat、sun' in (osakaya.hours as Row));
+  h.close();
+});

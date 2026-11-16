@@ -1,11 +1,12 @@
 // 查資料的工具（規格 §4.1）：畫面不動。能算的交給引擎，資料沒寫就原樣回傳 null，不說成沒有。
 
-import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, mealsUnchosen, nightAreaOf, nightRunOf, openingOn, planItinerary, planLeg, type EngineData, type NewItem, type PlaceMeals, type PlaceRecord } from '@travel-helper/engine';
+import { ItineraryError, bestInsertIndex, checkProposal, dayAreaLabel, dayAreaOf, describeChanges, findItem, kintetsuDayType, busDayType, lodgingMealsOn, lodgingOn, mealsUnchosen, nightAreaOf, nightRunOf, openingOn, planItinerary, planLeg, type EngineData, type NewItem, type PlaceMeals, type PlaceRecord, type UrbanRoute } from '@travel-helper/engine';
 import type { DayPlan, Itinerary, Leg, LonLat, TimelineEntry, TravelMode, TravelSpec } from '@travel-helper/engine/types';
 import type { ReservationStatus } from '../backend/types.ts';
 import { bookedConflicts, noteRows, reservationFor } from '../lib/reservations.ts';
 import { isUserPlace } from '../lib/addPlace/view.ts';
 import { departuresAround, terminusName, toMinutes } from '../lib/timetable.ts';
+import { urbanLinesAt } from '../lib/legView.ts';
 import { dayCandidates, likedPlaces, placeDayStatus } from '../lib/wishlist.ts';
 import { dayTarget, TRIP_TARGET } from '../backend/types.ts';
 import { memberName } from '../sharedStore.ts';
@@ -40,6 +41,9 @@ const SECTIONS: Record<string, string[]> = {
 export const PLACE_SECTIONS = Object.keys(SECTIONS);
 const MAX_GET_PLACE = 6;
 
+/** get_timetable 班距型路線、車站的說明（T89） */
+const HEADWAY_NOTE = '班距型：沒有逐班時刻，只有大概幾分一班和首末班；minutes 是表定的車上分鐘。兩點之間怎麼走（含等車、轉乘、走路）用 get_route';
+
 /** 值是 null、undefined 的鍵拿掉（行程、預約這類結構裡的 null 不是「資料沒寫」，只是沒有） */
 const tidy = <T extends Record<string, unknown>>(o: T): Partial<T> => Object.fromEntries(Object.entries(o).filter(([, v]) => v != null)) as Partial<T>;
 
@@ -51,6 +55,26 @@ function compactPrices(v: unknown): unknown {
 }
 
 /** AI 用不到的欄位：來源網址、取得日期、產生日期（T36：模擬時都沒用到，只佔 token） */
+/**
+ * 營業時間：時段一樣的幾天併成一個鍵（「mon、tue、wed、thu、fri、sat、sun、holiday」），寺社這種每天一樣的不用展開 8 次（T89 模擬：約佔 get_place 的 15%）。
+ * 沒寫的天（null）不列，lastEntry、note 照舊
+ */
+const HOUR_DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun', 'holiday'];
+function compactHours(v: unknown): unknown {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return v;
+  const h = v as Record<string, unknown>;
+  const groups = new Map<string, string[]>();
+  for (const day of HOUR_DAYS) {
+    if (h[day] === undefined || h[day] === null) continue;
+    const key = JSON.stringify(h[day]);
+    groups.set(key, [...(groups.get(key) ?? []), day]);
+  }
+  const out: Record<string, unknown> = {};
+  for (const [key, days] of groups) out[days.join('、')] = JSON.parse(key);
+  for (const [k, x] of Object.entries(h)) if (!HOUR_DAYS.includes(k)) out[k] = x;
+  return out;
+}
+
 const NO_AI_KEYS = new Set(['sources', 'basedOn', 'retrieved', 'generated', 'assessed', 'otherExpressSources']);
 
 /** 遞迴拿掉 NO_AI_KEYS；值是 null 照樣留著（null＝資料沒寫） */
@@ -147,7 +171,7 @@ export function createReadTools(d: AiDeps) {
         const out: Record<string, unknown> = { id: p.id, name: placeName(p), ja: p.name.ja, type: p.type, area: p.area, region: p.region, tier: p.tier, scores: scoresOf(p) };
         if (p.origin === 'user') out.origin = '使用者自己加的，我們沒查過：營業時間、能不能坐 15 人都不知道';
         // 沒有這個欄位＝資料沒寫，回 null，不說成沒有。欄位直接放在點上（不再包一層分區），來源拿掉（T36）
-        for (const s of sections) for (const k of SECTIONS[s]) out[k] = k === 'prices' ? compactPrices(withoutSources(raw[k] ?? null)) : withoutSources(raw[k] ?? null);
+        for (const s of sections) for (const k of SECTIONS[s]) out[k] = k === 'prices' ? compactPrices(withoutSources(raw[k] ?? null)) : k === 'hours' ? compactHours(withoutSources(raw[k] ?? null)) : withoutSources(raw[k] ?? null);
         // 旅程中哪幾天公休：AI 不用自己對星期（容易對錯）；營業時間沒查就不帶
         if (sections.includes('hours') && raw.hours != null) {
           out.closedOnTripDays = tripDates().filter((date) => openingOn(raw as unknown as PlaceRecord, date, d.config.holidays).kind === 'closed').map(dayLabel);
@@ -405,6 +429,45 @@ export function createReadTools(d: AiDeps) {
     };
   }
 
+  /**
+   * 班距型路線的時刻（T89）：那天的首末班、班距（相鄰同班距的時段併成一行）。
+   * 給了 from、to：只回這兩站之間的車上分鐘（路線檔的站序是單方向的，反方向一樣）；沒給：一條就列停靠站，好幾條列出來讓 AI 選
+   */
+  function headwayRoutes(routes: UrbanRoute[], date: string, from?: string, to?: string): ToolOutput {
+    const dayType = busDayType(date, d.config.holidays);
+    const fold = (x: string) => x.normalize('NFKC').replace(/\s/g, '');
+    const hits = (name: string, want: string) => fold(name).includes(fold(want)) || fold(want).includes(fold(name));
+    const stopName = (s: UrbanRoute['stops'][number]) => (s.name ? s.name.zh || s.name.ja : nameOf(s.id) || s.id);
+    const band = (h: { from: string; to: string; min: number | null }) => `${h.from}–${h.to} ${h.min == null ? '沒有車' : `約 ${h.min} 分一班`}`;
+    const base = (r: UrbanRoute) => {
+      const svc = dayType === 'saturday' ? (r.service.saturday ?? r.service.holiday) : r.service[dayType];
+      if (!svc) return { route: r.name.zh || r.name.ja, mode: r.mode, note: '這天沒有營運' };
+      const bands: { from: string; to: string; min: number | null }[] = [];
+      for (const h of svc.headway ?? []) {
+        const last = bands.at(-1);
+        if (last && last.min === h.min && last.to === h.from) last.to = h.to;
+        else bands.push({ ...h });
+      }
+      return { route: r.name.zh || r.name.ja, mode: r.mode, first: svc.first, last: svc.last, headway: bands.map(band) };
+    };
+    const head = { ok: true as const, date: dayLabel(date), dayType, note: HEADWAY_NOTE };
+    if (from && to) {
+      const rows = routes.flatMap((r) => {
+        const i = r.stops.findIndex((s) => hits(stopName(s), from));
+        const j = r.stops.findIndex((s, k) => k !== i && hits(stopName(s), to));
+        if (i < 0 || j < 0) return [];
+        const diff = Math.abs(r.stops[j].min - r.stops[i].min);
+        const minutes = r.loop && r.loopMin != null ? Math.min(diff, r.loopMin - diff) : diff;
+        return [{ ...base(r), from: stopName(r.stops[i]), to: stopName(r.stops[j]), minutes }];
+      });
+      if (!rows.length) return { ...head, routes: routes.map((r) => ({ id: r.id, name: r.name.zh || r.name.ja, stops: r.stops.map(stopName) })), note: '對不到上車站或下車站（站名見 stops）' };
+      return { ...head, routes: rows };
+    }
+    if (routes.length > 1) return { ...head, routes: routes.map((r) => ({ id: r.id, name: r.name.zh || r.name.ja, mode: r.mode })), note: '對到好幾條路線：route 給 id 再查一次，或給 from、to' };
+    const r = routes[0];
+    return { ...head, ...base(r), stops: r.stops.map((s) => `${stopName(s)} ${s.min}`) };
+  }
+
   async function get_timetable(input: { station?: string; route?: string; date: string; after?: string; from?: string; to?: string }): Promise<ToolOutput> {
     const date = needDate(input?.date);
     if (!date) return fail(`date 要是 ${tripDates()[0]}～${tripDates().at(-1)} 的日期`);
@@ -425,7 +488,22 @@ export function createReadTools(d: AiDeps) {
           break;
         }
       }
-      if (!tt) return fail(`${nameOf(station.id)} 沒有車站時刻表（只有近鐵車站有；巴士、船、JR 用 route 查）`);
+      if (!tt) {
+        // 大阪、京都的電車、市巴士是班距型（T89）：列停這站的每條線、大概幾分一班、首末班（同車站面板）。
+        // 同名的幾個站一起列（「京都」是近鐵、JR、地下鐵三個站），最多 4 站
+        const urban = d.engine()?.urban ?? [];
+        const bd = busDayType(date, d.config.holidays);
+        const top = nameScore(candidates[0], wanted);
+        const stations = candidates
+          .filter((c) => c === candidates[0] || (!exact && nameScore(c, wanted) >= top))
+          .slice(0, 4)
+          .flatMap((c) => {
+            const lines = urbanLinesAt(c.id, urban, bd).map((l) => tidy(l));
+            return lines.length ? [{ station: nameOf(c.id), lines }] : [];
+          });
+        if (stations.length) return { ok: true, date: dayLabel(date), dayType: bd, stations, note: HEADWAY_NOTE };
+        return fail(`${nameOf(station.id)} 沒有車站時刻表（只有伊勢志摩一帶的近鐵站有；巴士、船、JR、地鐵用 route 查，兩點之間怎麼走用 get_route）`);
+      }
       const dayType = kintetsuDayType(date, d.config.holidays);
       // 終點寫站名（不是代號）；車次編號 AI 用不到
       const term = (id: string) => (s.byId.has(id) ? nameOf(id) : terminusName(id, s.stationNames));
@@ -440,7 +518,9 @@ export function createReadTools(d: AiDeps) {
       const q = input.route;
       // 名字可能對到好幾條（「かもめバス」有 4 條、「外宮内宮」有 2 條）：給了上下車站就把每一條都查、合在一起；沒給就列出來讓 AI 選
       const matches = (d.engine()?.routes ?? []).filter((r) => r.id === q || r.name.ja.includes(q) || r.name.zh?.includes(q));
-      if (!matches.length) return fail(`找不到路線 ${q}`);
+      // 班距型（大阪、京都的地鐵、JR、私鐵、市巴士，T89）：沒有逐班時刻，回班距、首末班、停靠站
+      const urban = (d.engine()?.urban ?? []).filter((r) => r.id === q || r.name.ja.includes(q) || r.name.zh?.includes(q));
+      if (!matches.length) return urban.length ? headwayRoutes(urban, date, input.from, input.to) : fail(`找不到路線 ${q}`);
       // 路線沒給 after 從頭列：以前預設 09:00 又用第一站的時間濾，會漏掉中途站 9 點前的班（T36 模擬抓到）
       let t: number;
       try {
@@ -480,10 +560,15 @@ export function createReadTools(d: AiDeps) {
           .sort((x, y) => toMinutes(x.depart) - toMinutes(y.depart))
           .slice(0, 10);
         const head = { ok: true as const, route: matches.map(routeName).join('、'), mode: matches[0].mode, date: dayLabel(date), dayType };
+        if (!trips.length && urban.length) {
+          // 時刻表型對到名字但沒有這兩站（「京阪」對到江若巴士的站名）：改查班距型
+          const h = headwayRoutes(urban, date, input.from, input.to);
+          if (h.ok && Array.isArray(h.routes) && h.routes.some((r) => 'minutes' in (r as object))) return h;
+        }
         if (!trips.length) return { ...head, trips, note: '這天沒有從上車站往下車站的班次（站名對不到也會這樣）；站名見 stops', stops: [...new Set(matches.flatMap((r) => runsOf(r).stops))] };
         return { ...head, trips };
       }
-      if (matches.length > 1) return { ok: true, routes: matches.map((r) => ({ id: r.id, name: routeName(r), mode: r.mode })), note: '對到好幾條路線：route 給 id 再查一次，或直接給 from、to 查班次' };
+      if (matches.length > 1 || urban.length) return { ok: true, routes: [...matches, ...urban].map((r) => ({ id: r.id, name: r.name.zh ?? r.name.ja, mode: r.mode })), note: '對到好幾條路線：route 給 id 再查一次，或直接給 from、to 查班次' };
       const route = matches[0];
       const { runs, stops } = runsOf(route);
       // 沒給站：站名清單（去重）和每班的起訖，要細節請 AI 再給 from、to

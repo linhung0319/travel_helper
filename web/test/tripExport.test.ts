@@ -187,7 +187,7 @@ test('整份：航班、總覽、交通的車次和特急券、空檔、預約�
 
 test('MD：開頭的說明、總覽表有去哪裡、每天一段、特急券、錯過的話、空檔、備案、住宿、預約一覽在最後', () => {
   const md = exportMarkdown(build());
-  assert.match(md, /^# 伊勢志摩・大阪 行程\n\n> 這是 15 人（長輩 5、小孩 4）家族旅行 2\/2（二） ～ 2\/4（四） 的行程，以網站為準。時間是規劃的，不是預約好的。\n/);
+  assert.match(md, /^# 伊勢志摩・京都・大阪 行程\n\n> 這是 15 人（長輩 5、小孩 4）家族旅行 2\/2（二） ～ 2\/4（四） 的行程，以網站為準。時間是規劃的，不是預約好的。\n/);
   assert.match(md, /第 12 版・1\/20 21:05 王小明 更新・2026-11-02 14:05 產生（日本時間）/);
   assert.match(md, /\| 日期 \| 地區 \| 去哪裡 \| 住宿 \|/);
   assert.match(md, /\| 2\/2（二） \| 鳥羽 \| 海女小屋 相差、鳥羽水族館 \| 鳥羽<旅館> \|/);
@@ -252,7 +252,7 @@ test('HTML：總覽、一天一頁、預約一覽在最後一頁；跳脫特殊�
   assert.ok(html.includes('<th>去哪裡</th>'));
   assert.ok(html.includes('<td class="places">海女小屋 相差、鳥羽水族館</td>'));
   assert.ok(html.includes('PDF 不會跟著行程更新'));
-  assert.match(html, /<title>伊勢志摩・大阪 行程（第 12 版）<\/title>/);
+  assert.match(html, /<title>伊勢志摩・京都・大阪 行程（第 12 版）<\/title>/);
   assert.ok(html.indexOf('<h2>預約一覽</h2>') > html.indexOf('2/4（四）'));
 });
 
