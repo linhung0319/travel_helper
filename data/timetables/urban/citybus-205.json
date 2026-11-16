@@ -1,0 +1,627 @@
+{
+  "id": "citybus-205",
+  "mode": "bus",
+  "operator": "京都市交通局",
+  "name": {
+    "ja": "市バス 205 系統（京都駅前～金閣寺道、西大路通経由）",
+    "zh": "市巴士 205 系統（京都站前～金閣寺道，經西大路通）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "citybus-kyoto-ekimae",
+      "name": {
+        "ja": "京都駅前",
+        "zh": "京都站前"
+      },
+      "coords": [
+        135.7587,
+        34.9868
+      ],
+      "station": "jr-kyoto",
+      "min": 0,
+      "note": "京都站烏丸口（北側）的巴士總站，各系統的乘車處不同"
+    },
+    {
+      "id": "citybus-shichijo-omiya",
+      "name": {
+        "ja": "七条大宮・京都水族館前",
+        "zh": "七條大宮・京都水族館前"
+      },
+      "coords": [
+        135.749,
+        34.9892
+      ],
+      "station": null,
+      "min": 10,
+      "note": null
+    },
+    {
+      "id": "citybus-nishioji-shijo",
+      "name": {
+        "ja": "西大路四条（阪急・嵐電西院駅）",
+        "zh": "西大路四條（阪急、嵐電西院站）"
+      },
+      "coords": [
+        135.732,
+        35.0039
+      ],
+      "station": null,
+      "min": 26,
+      "note": null
+    },
+    {
+      "id": "citybus-kitano-hakubaicho",
+      "name": {
+        "ja": "北野白梅町",
+        "zh": "北野白梅町"
+      },
+      "coords": [
+        135.7319,
+        35.027
+      ],
+      "station": "randen-kitano-hakubaicho",
+      "min": 39,
+      "note": null
+    },
+    {
+      "id": "citybus-kinkakuji-michi",
+      "name": {
+        "ja": "金閣寺道",
+        "zh": "金閣寺道"
+      },
+      "coords": [
+        135.7337,
+        35.0395
+      ],
+      "station": null,
+      "near": [
+        {
+          "id": "kyoto-kinkakuji",
+          "minutes": 5,
+          "note": "「金閣寺道」下車 步行約 5 分（二手，kyoto-kinkakuji 的 access）"
+        }
+      ],
+      "min": 44,
+      "note": "金閣寺 步行約 5 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "05:40",
+      "last": "23:20",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 15
+        },
+        {
+          "from": "07:00",
+          "to": "09:00",
+          "min": 6
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 8.5
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 10
+        },
+        {
+          "from": "11:00",
+          "to": "12:00",
+          "min": 8.5
+        },
+        {
+          "from": "12:00",
+          "to": "18:00",
+          "min": 7.5
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 10
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 20
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "數京都駅前（往外）、金閣寺道（往回）兩張停留所時刻表：往外 126 班（首 05:37、末 23:20）、往回 127 班（首 05:40、末 23:38）"
+    },
+    "saturday": {
+      "first": "05:40",
+      "last": "23:20",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 8.5
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 10
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 8.5
+        },
+        {
+          "from": "10:00",
+          "to": "11:00",
+          "min": 10
+        },
+        {
+          "from": "11:00",
+          "to": "12:00",
+          "min": 8.5
+        },
+        {
+          "from": "12:00",
+          "to": "15:00",
+          "min": 7.5
+        },
+        {
+          "from": "15:00",
+          "to": "16:00",
+          "min": 8.5
+        },
+        {
+          "from": "16:00",
+          "to": "18:00",
+          "min": 10
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 10
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 20
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "數京都駅前（往外）、金閣寺道（往回）兩張停留所時刻表：往外 116 班（首 05:37、末 23:20）、往回 115 班（首 05:40、末 23:38）"
+    },
+    "holiday": {
+      "first": "05:40",
+      "last": "23:20",
+      "headway": [
+        {
+          "from": "05:00",
+          "to": "06:00",
+          "min": 60
+        },
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 12
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 15
+        },
+        {
+          "from": "09:00",
+          "to": "10:00",
+          "min": 12
+        },
+        {
+          "from": "10:00",
+          "to": "12:00",
+          "min": 10
+        },
+        {
+          "from": "12:00",
+          "to": "15:00",
+          "min": 7.5
+        },
+        {
+          "from": "15:00",
+          "to": "16:00",
+          "min": 8.5
+        },
+        {
+          "from": "16:00",
+          "to": "18:00",
+          "min": 10
+        },
+        {
+          "from": "18:00",
+          "to": "19:00",
+          "min": 12
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 10
+        },
+        {
+          "from": "20:00",
+          "to": "21:00",
+          "min": 12
+        },
+        {
+          "from": "21:00",
+          "to": "23:00",
+          "min": 20
+        },
+        {
+          "from": "23:00",
+          "to": "24:00",
+          "min": 30
+        }
+      ],
+      "note": "數京都駅前（往外）、金閣寺道（往回）兩張停留所時刻表：往外 112 班（首 05:37、末 23:20）、往回 108 班（首 05:40、末 23:38）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {},
+    "child": "均一區間 120 円",
+    "note": "均一區間 大人 230 円（交通局 2026-11-10 更新）；觀光客較貴的「市民優先価格」官方寫令和 9 年度中（2027-04 以後）才實施"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "205 系統是環狀（京都駅 → 西大路通 → 金閣寺道 → 北大路 → 河原町通 → 京都駅，兩個方向都有），這裡只收京都駅前 ↔ 金閣寺道的西大路通區段（金閣寺比較近的那一邊）。地下鉄・バス 1 日券（1,100／550）可以搭（kyoto.md §10）。往回的車上分鐘和往外差 3 分以上：金閣寺道 → 七条大宮・京都水族館前 往回 31 分（往外 34 分）。",
+  "validFrom": "2026-03-20",
+  "retrieved": "2026-11-16",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/keitou/kto/20500.htm",
+      "retrieved": "2026-11-16",
+      "note": "京都市交通局 ハイパー市バスダイヤ 205 系統的停車停留所（2026-03-20 実施）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/06122302.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：京都駅前 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05920001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸七条 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/19320001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条西洞院 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/19310001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条西洞院 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/19220001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条堀川 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/19210001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条堀川 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/30020003.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条大宮・京都水族館前 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/30010004.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条大宮・京都水族館前 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/36820003.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条壬生川 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/36810005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条壬生川 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/35620005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：梅小路公園・ＪＲ梅小路京都西駅前 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/35610005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：梅小路公園・ＪＲ梅小路京都西駅前 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/36920002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条千本 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/36910002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条千本 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/14220002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条御前通 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/14210002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：七条御前通 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/23740004.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路七条 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/23710002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路七条 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/23840004.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路花屋町 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/23830005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路花屋町 發 西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/23940005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路五条 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/23930006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路五条 發 西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24040005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路松原 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24030006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路松原 發 西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/06542004.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路四条（阪急・嵐電西院駅） 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/06530005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路四条（阪急・嵐電西院駅） 發 西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/20440011.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路三条 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/20432006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路三条 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/40340010.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路御池 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/40330009.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西大路御池 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/40441007.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：太子道 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/40430009.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：太子道 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24940008.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西ノ京円町（ＪＲ円町駅） 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24932005.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：西ノ京円町（ＪＲ円町駅） 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24840007.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：北野中学前 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24830007.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：北野中学前 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/19940007.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：大将軍 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/19930006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：大将軍 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/15841008.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：北野白梅町 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/15830006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：北野白梅町 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24740008.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：衣笠校前 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24730011.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：衣笠校前 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24642006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：わら天神前 發 金閣寺・北大路バスターミナル行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/24631009.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：わら天神前 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/22140006.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：金閣寺道 發 北大路バスターミナル四条河原町行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/22131004.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：金閣寺道 發 西大路四条西大路七条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000240682.html",
+      "note": "市バスの運賃",
+      "retrieved": "2026-11-16"
+    },
+    {
+      "type": "other",
+      "url": "https://www.google.com/maps",
+      "note": "停留所座標：Google Maps 的停留所標記（Claude in Chrome 少量查看）；一個停留所有好幾根站牌時取該系統經過那條路的站牌平均，取到小數 4 位",
+      "retrieved": "2026-11-16"
+    }
+  ]
+}

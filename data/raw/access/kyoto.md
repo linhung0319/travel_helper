@@ -2,7 +2,7 @@
 
 - 取得日期：2026-11-12。範圍：近鐵 京都 ↔ 伊勢志摩（直達、大和八木換車）、京都 ↔ 大阪（JR、阪急、京阪、近鐵）、京都市區的電車、JR 湖西線（時刻表型）、琵琶湖東岸的 JR 和京阪大津線、車站到琵琶湖景點的巴士和纜車、站內轉乘、票券比較；京都 ↔ 關西機場、伊勢志摩 → 琵琶湖東岸經名古屋只記筆記。
 - 子地區照 T86a（`areas.json` 的 `kyoto` 9 個、`biwako` 5 個；景點清單見 `data/raw/kyoto/README.md`、`data/raw/biwako/README.md`）。琵琶湖的 14 個點 👤 2026-11-12 確認定案。
-- **市巴士還沒做**：京都市交通局的市巴士 GTFS 在 ODPT，要 access token；👤 2026-11-12 已註冊 developer.odpt.org、等管理員審核。格式先定好（§9），資料等 token。
+- **市巴士**（2026-11-16）：ODPT 的開發者帳號申請被拒（👤），ODPT 上京都市交通局的兩份資料都要 token、沒有免 key 的版本。改讀交通局官網的「ハイパー市バスダイヤ」（`scripts/kyoto-citybus.mjs`，§9）。
 - 計程車的車費、台數、包車行情不查；巴士 15 人上不上得去不記（2026-11-12 👤）。
 
 ## 1. 資料來源：能讀的、不能讀的
@@ -10,7 +10,9 @@
 | 來源 | 結果 |
 |---|---|
 | gtfs-data.jp（robots 全部允許） | 京都府沒有 feed；滋賀縣只有各市的社區巴士（草津まめバス、守山くるっとバス、高島市コミュニティバス等），沒有江若、近江鐵道巴士、京阪巴士 |
-| ODPT（ckan.odpt.org，robots 禁止 /api/、Crawl-Delay 10） | **有京都市交通局的「京都市営バス」「京都市営地下鉄」GTFS**（有效期間 2026-10-27～2027-03-31，涵蓋旅程），下載要開發者帳號的 token |
+| ODPT（ckan.odpt.org，robots 禁止 /api/、Crawl-Delay 10） | 有京都市交通局的「京都市営バス」「京都市営地下鉄」GTFS（市巴士 20261110 版，有效期間 2026-10-27～2027-03-31），**下載網址一定要帶 token**（資料頁寫「要在開發者網站註冊才能用」）；開發者帳號申請被拒（👤 2026-11-16），**沒用**。別人轉存的 GTFS 等於繞過註冊，也不用 |
+| 京都市交通局「ハイパー市バスダイヤ」（www2.city.kyoto.lg.jp/kotsu/busdia/，robots 無限制） | **市巴士用這個**（§9）：系統頁 `keitou/kto/<系統 5 碼>.htm`（停留所和各方向時刻表的連結）、停留所時刻表 `hyperdia/<8 碼>.htm`（HTML，平日・土曜・休日每小時的發車分；「令和8年3月20日実施」）。沒有站間分鐘、沒有座標 |
+| 京都市交通局 市バス接近情報「ポケロケ」（kyotocity.bus-navigation.jp） | 停留所座標是頁面 JS 另外抓的資料，照近鐵站頁的判斷算繞過，沒用 |
 | 京都市交通局「ハイパー地下鉄ダイヤ」的全列車 CSV（www2.city.kyoto.lg.jp，robots 無限制） | **地下鐵用這個**：`diadata/tn{線}{日別}{方向}_dia_utf8.csv`（線 01 東西線、02 烏丸線；日別 01 平日、02 土休日；方向 00 下り、01 上り），京阪京津線直通車也在東西線的檔裡 |
 | 近鐵 eki.kintetsu.co.jp（robots 只限制 Googlebot 的日期參數） | T5 站別時刻表、T7 列車停站頁。站別頁 slCode 從 www.kintetsu.co.jp/station/station_info/station05005.html 這類站頁取得（§2） |
 | JR おでかけネット timetable.jr-odekake.net（robots 全部允許） | 駅時刻表 `station-timetable/<站碼 4><線碼 3><方向 3>?date=` ＋ 列車時刻表 `train-timetable/<id>?date=`。只查得到約 6 週內，用同星期幾推算（同參宮線）。區間時刻表（line-timetable）的 ID 找不到京都附近的線，沒用 |
@@ -189,13 +191,35 @@
 - **沒做的**：草津 → 琵琶湖博物館、近江八幡 → 長命寺線（La Collina、八幡堀）、守山 → 佐川美術館（近江鐵道巴士，時刻網站 403）。石山 → 石山寺的江若巴士白天每 10 分、約 10 分（班距足夠，京阪石山寺站走 10 分也差不多，沒做）。彥根城從 JR 彦根走約 15 分；彦根循環巴士只找到 6 月的時刻（非官方轉載），2 月有沒有開不確定。
 - 白鬚神社（近江高島站約 2 km）：預約制共乘計程車，T86a 已記在 `data/raw/biwako/README.md`，不做資料。
 
-## 9. 市巴士（格式已定，資料等 ODPT token）
+## 9. 市巴士（`scripts/kyoto-citybus.mjs`，2026-11-16）
 
+- **收的系統**（只收沒有電車到的景點需要的）：
+  - `citybus-206`：京都駅前 0 → 博物館三十三間堂前 8 → 五条坂 15 → 清水道 16 → 祇園 21 → 東山三条 25。東山通區段；206 本身是環狀。
+  - `citybus-205`：京都駅前 0 → 七条大宮・京都水族館前 10 → 西大路四条 26 → 北野白梅町 39 → 金閣寺道 44。西大路通區段；205 也是環狀。
+  - `citybus-5`：京都駅前 0 → 四条河原町 18 → 河原町三条 20 → 岡崎公園 美術館・平安神宮前 32 → 動物園前 34 → 南禅寺・永観堂道 36 → 銀閣寺道 43。
+  - 班距：白天 206、205 約 7.5 分，5 約 10 分。首末班大約 06:00～23:00（5 是 06:27～22:47）。
+- **沒收的**：
+  - EX101（京都駅前 ↔ 五条坂的觀光特急）只有土休日 9、10 時，共 8 班。
+  - 105（京都駅前 ↔ 銀閣寺）只有土休日 9～16 時，每 30 分一班。
+  - 100 系統的系統頁沒有停留所（目前停駛）。
+  - 86、202、207 等和 206 重疊的系統也沒收，所以實際班次比班距多。
+- **算法**（腳本開頭有完整說明）：
+  - 班距、首末班：數第一站往外、最後一站往回兩張停留所時刻表。
+  - 站間分鐘：沿路每站接力比對時刻表（相鄰兩站取「白天對上 9 成以上的最小差」），中間的停留所只拿來接力、不寫進路線檔。
+  - 為什麼要接力：白天班距很規律，只比對頭尾兩站會錯開整班。例如 5 系統京都駅前 → 四条河原町，18、28、38 分都對得上。
+  - 往回方向也接力一次比對，只有 205 的金閣寺道 → 七条大宮差 3 分（往回 31、往外 34），寫在 notes。
+- **時刻表記號**：`*`、`△`、`(nn)` 是行先或經路（例如 5 系統的括號是五条通經由）。不分開數，都算班次。
+- **秋季的臨時措施**（2026-10-31～11-29：五条坂南行停留所臨時休止、金閣寺道北行臨時分設）2 月不受影響。
+- **停留所座標**：官網沒有，用 Claude in Chrome 看 Google Maps 的停留所標記（16 站，每站搜尋一次）。一個停留所有好幾根站牌時，取該系統經過那條路的站牌平均。
+- **`near`**（官方的「下車步行幾分」，單人分鐘）：
+  - 五条坂、清水道 → 清水寺 10 分；金閣寺道 → 金閣寺 5 分（二手）；銀閣寺道 → 銀閣寺 10 分（二手）；南禅寺・永観堂道 → 南禅寺 10 分；動物園前 → 動物園 2 分。
+  - 引擎乘團體係數，有 `near` 的景點不再用座標估算這條路線的停留所。
+  - 為什麼要寫：直線 × 繞路係數估算，五条坂 → 清水寺會變成 17 分、銀閣寺 16 分，超過單段步行上限 15 分，引擎會改叫計程車。
 - **格式**：用班距型路線（`timetables/urban/<route-id>.json`），`mode: bus`（schema、validate 已加，有測試）。
 - **停留所不進 `stations.json`**，和現有 `timetables/bus/`（伊勢志摩的時刻表型巴士）一樣寫在路線檔裡：`stops[]` 每站寫 `id`、`name`（ja、zh）、`coords`、`min`，可以加 `station`（旁邊的車站 ID，例如京都駅前 → `jr-kyoto`）。理由：停留所不是資料點，不該出現在車站清單、地圖的車站層；`nearestStation` 仍然只指車站（只有巴士到的點，`access` 寫停留所和系統，T86d 照這個填）。
 - 停留所 ID 用業者前綴 `citybus-`（例 `citybus-gojozaka`、`citybus-kinkakuji-michi`），**同一個停留所在不同系統用同一個 ID**（validate 檢查名稱相同、座標相差 100 m 內），引擎可以直接在同一個停留所換車。ID 不能和車站撞（validate 擋）。
 - 票價表的鍵是本路線的停留所。市巴士均一區間大人 230、兒童 120（交通局 2026-11-10 更新）；「市民優先価格」（觀光客較貴）官方寫令和 9 年度中（2027-04 以後）才實施，2 月不受影響。
-- 要收的系統（只收沒有電車到的子地區需要的）：京都站 ↔ 五条坂・清水道・祇園（206、86 等）、京都站 ↔ 金閣寺道（205 等）、往銀閣寺道（5、17 等），開工時照 GTFS 的實際系統定。
+- 停留所可以加 `near: [{ id, minutes, note }]`（只有 `mode: bus`；validate 檢查 ID 是資料點）。
 
 ## 10. 票券比較（15 人＝11 大人＋4 兒童）
 
@@ -230,7 +254,11 @@
 
 ## 13. 沒查到的
 
-- **市巴士全部**（等 ODPT token，§9）。
+- 市巴士（§9）：
+  - 京都駅前各系統的乘車處（只有水族館官網寫 205 是 B3）。
+  - 停留所時刻表是「令和8年3月20日実施」，2027 年 2 月前會不會改不知道。ODPT 的 GTFS 是 20261110 版，官網網頁可能比它舊。
+  - 土休日限定的 EX101、105 沒收。
+  - 和 206 重疊的 86、202、207 沒收。
 - 近鐵：京都 ↔ 大阪難波通算的運賃（西大寺分開買 680＋590 是上限）；近鐵兒童特急料金的規則（passes.json 的 expressByDistance 有兒童金額，規則條文沒讀）；京都發しまかぜ的特別車両料金；往名古屋的特急在伊勢中川轉往京都的組合（沒收）。
 - JR：所有票價只有駅探（非官方）；平日從滋賀發的はるか；2027-02 的時刻（JR おでかけネット只到 2026-12-25，2027 年 1 月要重跑 `jr-kosei.mjs`、`kyoto-urban.mjs`）。
 - 地下鐵：京都市交通局時刻表是「令和7年02月22日現在」，2027 年 3 月前會不會改不知道。
@@ -247,7 +275,11 @@
 - **新的資料**：班距型路線 20 條（`timetables/urban/`：JR 4、近鐵 3、地下鐵 2、京阪 6（含京津線、石山坂本線南北兩條）、阪急 2、嵐電 2、坂本纜車 1）、轉乘 14 筆（`_transfers.json` 後半）、時刻表型的 JR 湖西線（`jr/jr-kosei.json` ＋ 6 站）和琵琶湖的巴士 5 條（`bus/ekojo-*`、`bus/akakon-*`）、近鐵 `_travel-times.json` 的京都側、車站 70 站。
 - **`OSAKA_KINTETSU`（`raptor/search.ts`）**：近鐵京都線的班距型路線 `kintetsu-kyoto-local`（京都、東寺、竹田、丹波橋、桃山御陵前、小倉）、`kintetsu-kyoto-express`（到大和西大寺）、`kintetsu-nara-osaka`（西大寺 ↔ 鶴橋 ↔ 上本町 ↔ 難波）涵蓋的站，要和大阪那三站一樣不用時刻表型的近鐵特急短程搭。
 - **大和八木換車**：京都 ↔ 八木的特急（`_travel-times.json` 裡 note 開頭「京都線・橿原線」的班次）和大阪線往返伊勢志摩的特急在同一個站 ID `yamato-yagi`、都是近鐵時刻表型，`_transfers.json` 寫不出來；近鐵官方「月台中央 → 最近剪票口」4 分（大阪線 2F、橿原線 1F，改札內有電梯）。引擎在同一站換近鐵車用什麼換車時間要確認（至少 4 分乘團體係數）。京都直達特急（note 沒有「京都線・橿原線」的）不用換。
-- **巴士格式**：時刻表型（`bus/`）和以前一樣；班距型 `mode: bus`（市巴士）的停留所寫在 `stops[]`（`name`、`coords`、`station`），不在 `stations.json`，**引擎現在的 `addStation` 只認車站**，要照路線檔停留所的做法（`network.ts` 的巴士路線檔那段）處理；同一個 `citybus-` ID 在不同系統是同一個停留所，可以直接換車。市巴士資料還沒有（等 ODPT token）。
+- **巴士格式**：時刻表型（`bus/`）和以前一樣；班距型 `mode: bus`（市巴士）的停留所寫在 `stops[]`（`name`、`coords`、`station`），不在 `stations.json`，**引擎現在的 `addStation` 只認車站**，要照路線檔停留所的做法（`network.ts` 的巴士路線檔那段）處理；同一個 `citybus-` ID 在不同系統是同一個停留所，可以直接換車。
+- **市巴士進來後**（2026-11-16，T87 的市巴士那一輪）：
+  - 停留所加 `near`（官方步行分鐘），`packages/engine/src/travel.ts` 的 `findAccess` 加讀班距型巴士的 `near`（乘團體係數），型別在 `data.ts`。
+  - `kyoto.test.ts` 的 3 個 todo 改成真的測試。
+  - `citybus.test.ts` 的假路線測試排除真的市巴士。
 - **`walkMin` 是 null 的轉乘**：三条京阪 ↔ 京阪三条。其他站內換線沒寫的（京阪中書島 本線 ↔ 宇治線、丹波橋 特急 ↔ 普通、阪急桂 京都線 ↔ 嵐山線、嵐電帷子ノ辻 本線 ↔ 北野線、京阪石山坂本線在びわ湖浜大津南北段）引擎用 `urbanTransferDefault`。
 - **假日整段 null 的**：沒有。`saturday` 一律 null（和 holiday 相同）。巴士的 `akakon-omihachiman-shima` 假日（holiday）沒有班次（空陣列），土曜有。
 - **首末班的取法**：每條路線的計數站兩個方向的保守值（`service.*.note` 寫明是哪一站），不是每站的首末班。
@@ -260,7 +292,8 @@
 - 近鐵：https://eki.kintetsu.co.jp/norikae/T5?USR=PC&slCode=360-0&d=1&dw=0 （近鉄京都）、站頁 https://www.kintetsu.co.jp/station/station_info/station05005.html 、運賃特急料金表 https://www.kintetsu.co.jp/railway/Dia/pdf/price_limited_express_a.pdf ～ _f.pdf 、構內圖 https://www.kintetsu.co.jp/soukatsu/kounai/kyoto.html
 - JR おでかけネット：https://timetable.jr-odekake.net/station-timetable/2920014001 （おごと温泉）、2784013001／2784011001／2784064001／2784055001（京都）、3021064002（稲荷）、3191055002（亀岡）；駅情報 https://eki.jr-odekake.net/premises?id=0610116
 - 京都市交通局：https://www2.city.kyoto.lg.jp/kotsu/tikadia/diadata/ （全列車 CSV）、https://www.city.kyoto.lg.jp/kotsu/page/0000240757.html （地下鐵運賃）、https://www.city.kyoto.lg.jp/kotsu/page/0000019521.html （お得な乗車券）、https://www.city.kyoto.lg.jp/kotsu/cmsfiles/contents/0000351/351261/20260317.pdf （市民優先価格）
-- ODPT：https://ckan.odpt.org/dataset/kyoto_municipal_transportation_kyoto_city_bus_gtfs
+- ODPT（要 token，沒用）：https://ckan.odpt.org/dataset/kyoto_municipal_transportation_kyoto_city_bus_gtfs
+- 市巴士（2026-11-16 取得）：https://www2.city.kyoto.lg.jp/kotsu/busdia/keitou/keitou.htm （系統一覽）、https://www2.city.kyoto.lg.jp/kotsu/busdia/keitou/kto/20600.htm 等（各系統）、https://www.city.kyoto.lg.jp/kotsu/page/0000240682.html （市バスの運賃）、https://www.city.kyoto.lg.jp/kotsu/page/0000356765.html （五条坂南行臨時休止）、https://www.city.kyoto.lg.jp/kotsu/page/0000358916.html （金閣寺道北行臨時分設）
 - 阪急：https://www.hankyu.co.jp/station/html/HK-86_ky_1_w.html 等；京阪：https://www.keihan.co.jp/traffic/time-fare/time.html ；嵐電：https://www.keifuku.co.jp/randen_timetable.php
 - JR 西日本 票券：https://www.westjr.co.jp/travel-information/en/tickets-passes/jrwest-rail-pass/kansaimini/ 、https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/ ；機場巴士：http://www.kate.co.jp/timetable/detail/KY
 - 駅探（非官方）：https://ekitan.com/transit/fare/sf-3853/st-5036 （伊勢市 → おごと温泉，近鐵 伊勢市 → 京都的運賃、特急料金）、https://ekitan.com/transit/fare/sf-3853/st-5877 （伊勢市 → 彦根）

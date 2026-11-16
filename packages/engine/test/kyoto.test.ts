@@ -1,5 +1,5 @@
 // 京都、琵琶湖的情境測試（T88）：伊勢 → 京都、京都一天、京都 ↔ 大阪、不住京都的走法，都用真的 data/。
-// 市巴士還沒進來（T87 等 ODPT）：清水寺、金閣寺那兩段只確認不會當掉，真正的斷言是 test.todo，市巴士進來時由 T87 那一輪改成真的
+// 市巴士（T87：官網ハイパー市バスダイヤ，206、205、5 系統）：清水寺、金閣寺、銀閣寺搭巴士
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { addItem, createItinerary, planItinerary, planLeg, resolveConfig, setLodging, type EngineData, type Endpoint, type LegContext } from '../src/index.ts';
@@ -96,19 +96,51 @@ test('京都站的住宿 → JR 稲荷站：搭 JR 奈良線（班距型）', ()
   assert.ok(leg.rides.some((r) => r.routeId === 'jr-nara'), leg.rides.map((r) => r.line).join(','));
 });
 
-// --- 只有巴士到的點（市巴士還沒進來） ---------------------------------------------
+// --- 只有巴士到的點（市巴士） --------------------------------------------------------
 
-test('京都站 → 清水寺、金閣寺：市巴士還沒進來，不會當掉（現在是計程車）', () => {
-  for (const to of ['kyoto-kiyomizudera', 'kyoto-kinkakuji']) {
+test('京都站 → 清水寺：搭市巴士 206（京都駅前 → 五条坂或清水道），下車走官方的 10 分 × 團體係數', () => {
+  const { leg } = planLeg(P('jr-kyoto'), P('kyoto-kiyomizudera'), ctx({ date: '2027-02-09', depart: hm(10) }));
+  assert.equal(leg.mode, 'bus');
+  assert.equal(leg.rides.length, 1, leg.rides.map((r) => r.line).join(' → '));
+  assert.equal(leg.rides[0].routeId, 'citybus-206');
+  assert.equal(leg.rides[0].from, '京都駅前');
+  assert.ok(['五条坂', '清水道'].includes(leg.rides[0].to), leg.rides[0].to);
+  // 停留所的 near：官方「下車步行 10 分」，不是座標直線估算（直線估算會超過單段步行上限、改叫計程車）
+  assert.equal(leg.walkAfter, Math.ceil(10 * cfg.walk.factorWhole));
+  assert.ok(leg.minutes < 50, `${leg.minutes} 分`);
+});
+
+test('京都站 → 金閣寺、銀閣寺：分別搭市巴士 205（西大路通經由）、5，一班直達', () => {
+  for (const [to, route, stop] of [
+    ['kyoto-kinkakuji', 'citybus-205', '金閣寺道'],
+    ['kyoto-ginkakuji', 'citybus-5', '銀閣寺道'],
+  ] as const) {
     const { leg } = planLeg(P('jr-kyoto'), P(to), ctx({ date: '2027-02-09', depart: hm(10) }));
-    assert.ok(leg.minutes > 0 && leg.minutes < 60, `${to} ${leg.mode} ${leg.minutes}`);
-    assert.notEqual(leg.mode, 'unknown');
+    assert.equal(leg.mode, 'bus', `${to} ${leg.mode}`);
+    assert.equal(leg.rides.length, 1, leg.rides.map((r) => r.line).join(' → '));
+    assert.equal(leg.rides[0].routeId, route);
+    assert.equal(leg.rides[0].to, stop);
+    assert.ok(leg.minutes < 75, `${to} ${leg.minutes} 分`);
   }
 });
 
-test.todo('等 T87 市巴士：京都站 → 清水寺 搭市巴士（京都駅前 → 五条坂・清水道），時間合理（約 30 分內）');
-test.todo('等 T87 市巴士：京都站 → 金閣寺 搭市巴士（京都駅前 → 金閣寺道），時間合理（約 45 分內）');
-test.todo('等 T87 市巴士：京都一天加清水寺（京都站 → 伏見稻荷 → 清水寺 → 四条 → 京都站），含一段巴士、沒有計程車');
+test('京都一天加清水寺（京都站的住宿 → 清水寺 → 產寧坂 → 八坂神社 → 住宿）：進出東山搭市巴士 206、沒有「找不到交通」', () => {
+  const date = '2027-02-09';
+  let it = createItinerary();
+  it = setLodging(it, '2027-02-08', 'kyoto-miyako-hachijo');
+  it = setLodging(it, date, 'kyoto-miyako-hachijo');
+  for (const place of ['kyoto-kiyomizudera', 'kyoto-sannenzaka', 'kyoto-yasaka-jinja']) it = addItem(it, date, { type: 'visit', options: [{ place }] }).itinerary;
+  const day = planItinerary(it, real).days.find((d) => d.date === date);
+  assert.ok(day);
+  assert.ok(!day.warnings.some((w) => w.code === 'travel-unknown'), day.warnings.map((w) => w.code).join(','));
+  const [, kiyomizu, sannenzaka, yasaka, back] = day.entries;
+  assert.equal(kiyomizu.travel?.mode, 'bus');
+  assert.equal(back.travel?.mode, 'bus');
+  for (const e of [kiyomizu, back]) assert.ok(e.travel?.rides?.some((r) => r.routeId === 'citybus-206'), e.placeId);
+  // 東山這幾個點彼此 1 km 上下：清水寺 → 產寧坂走路；產寧坂 → 八坂神社 15 人走超過單段上限，照規則是短程計程車
+  assert.equal(sannenzaka.travel?.mode, 'walk');
+  assert.ok(yasaka.travel && (yasaka.travel.mode === 'walk' || yasaka.travel.mode === 'taxi') && yasaka.travel.minutes <= 10, `${yasaka.travel?.mode} ${yasaka.travel?.minutes}`);
+});
 
 // --- 京都 ↔ 大阪 --------------------------------------------------------------
 

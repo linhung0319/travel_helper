@@ -500,7 +500,7 @@ function haversine([lng1, lat1], [lng2, lat2]) {
 /**
  * 班距型路線、站內轉乘（T28）：車站存在、停站順序、環狀線、班距時段、換線的路線 ID、轉乘重複。
  * 市巴士（mode bus，T87）：停留所不在 stations.json（ID 不能和車站撞），同一個停留所 ID 在各路線的名稱一樣、座標相差 100 m 以內；
- * station 欄位要是 stations.json 的車站；票價表的鍵是本路線的停留所。
+ * station 欄位要是 stations.json 的車站；near 的 ID 要是資料點；票價表的鍵是本路線的停留所。
  */
 function checkUrban(loaded, points, err) {
   const isStation = (id) => !points.size || points.get(id)?.record.type === 'station';
@@ -518,6 +518,9 @@ function checkUrban(loaded, points, err) {
       if (bus) {
         if (points.get(s.id)) err(shown, `停留所「${s.id}」和資料點（車站等）的 ID 撞了，停留所要用業者前綴`);
         if (s.station && !isStation(s.station)) err(shown, `停留所「${s.id}」的 station「${s.station}」不在 stations.json`);
+        for (const n of Array.isArray(s.near) ? s.near : []) {
+          if (points.size && n?.id && !points.has(n.id)) err(shown, `停留所「${s.id}」的 near「${n.id}」不是資料點`);
+        }
         const prev = busStops.get(s.id);
         if (!prev) busStops.set(s.id, { name: s.name, coords: s.coords, shown });
         else {

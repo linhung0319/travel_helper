@@ -1,5 +1,6 @@
-// 班距型的市巴士（mode bus，T88；資料格式見 data/raw/access/kyoto.md §9、§14）：真的市巴士資料還沒進來（T87 等 ODPT），
-// 用假路線測引擎：停留所不在 stations.json、同 ID 停留所換車、station 走到車站、等車和班距照 §5.4 巴士的規則
+// 班距型的市巴士（mode bus，T88；資料格式見 data/raw/access/kyoto.md §9、§14）：用假路線測引擎的規則
+//（停留所不在 stations.json、同 ID 停留所換車、station 走到車站、等車和班距照 §5.4 巴士的規則）。
+// 真的市巴士（T87）拿掉，不然會和假路線搶；真的資料的情境測試在 kyoto.test.ts
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { planLeg, resolveConfig, type EngineData, type Endpoint, type LegContext, type UrbanRoute, type UrbanService } from '../src/index.ts';
@@ -30,10 +31,10 @@ const bus = (id: string, stops: (typeof EKIMAE & { min: number })[], min: number
   fares: { adult: null },
 });
 
-/** 真的資料加上假的市巴士（headway：206 系統的班距） */
+/** 真的資料（拿掉真的市巴士）加上假的市巴士（headway：206 系統的班距） */
 function withBus(headway = 8): EngineData {
   const urban = [
-    ...(base.urban ?? []),
+    ...(base.urban ?? []).filter((u) => u.mode !== 'bus'),
     bus('citybus-test-206', [{ ...EKIMAE, min: 0 }, { ...GOJOZAKA, min: 8 }, { ...GION, min: 13 }], headway),
     bus('citybus-test-80', [{ ...GOJOZAKA, min: 0 }, { ...HIGASHIYAMA, min: 8 }], 10),
   ];

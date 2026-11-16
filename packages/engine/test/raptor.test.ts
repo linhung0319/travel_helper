@@ -9,7 +9,7 @@ import { realData } from './fixtures.ts';
 
 test('realData 讀得到班距型路線和轉乘', () => {
   const d = realData();
-  assert.equal(d.urban?.length, 30); // 大阪 10（T28）＋京都、琵琶湖 20（T87）
+  assert.equal(d.urban?.length, 33); // 大阪 10（T28）＋京都、琵琶湖 20（T87）＋京都市巴士 3（T87）
   const loop = d.urban?.find((r) => r.id === 'jr-osaka-loop');
   assert.ok(loop);
   assert.equal(loop.loop, true);
