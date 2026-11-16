@@ -34,6 +34,21 @@
           },
           "coords": { "description": "停留所座標（只有 mode bus）", "$ref": "common.schema.json#/$defs/coords" },
           "station": { "description": "停留所旁邊的車站 ID（只有 mode bus，例如京都駅前 → jr-kyoto）；沒有填 null", "anyOf": [{ "$ref": "common.schema.json#/$defs/id" }, { "type": "null" }] },
+          "near": {
+            "description": "只有 mode bus：官方寫的「這個停留所下車步行幾分」到哪些資料點（單人分鐘，引擎乘團體係數；有寫的資料點不再用座標估算這條路線的停留所）。note 寫來源",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "$ref": "common.schema.json#/$defs/id" },
+                "minutes": { "type": "number", "minimum": 0 },
+                "note": { "$ref": "common.schema.json#/$defs/nullableString" }
+              },
+              "required": ["id", "minutes"],
+              "additionalProperties": false
+            },
+            "minItems": 1
+          },
           "min": { "type": "number", "minimum": 0 },
           "note": { "$ref": "common.schema.json#/$defs/nullableString" }
         },
@@ -82,10 +97,10 @@
   "additionalProperties": false,
   "allOf": [
     {
-      "description": "mode bus 的停留所要有 name、coords；其他 mode 的停站是車站，不寫 name、coords、station",
+      "description": "mode bus 的停留所要有 name、coords；其他 mode 的停站是車站，不寫 name、coords、station、near",
       "if": { "properties": { "mode": { "const": "bus" } }, "required": ["mode"] },
       "then": { "properties": { "stops": { "items": { "required": ["id", "min", "name", "coords"] } } } },
-      "else": { "properties": { "stops": { "items": { "not": { "anyOf": [{ "required": ["name"] }, { "required": ["coords"] }, { "required": ["station"] }] } } } } }
+      "else": { "properties": { "stops": { "items": { "not": { "anyOf": [{ "required": ["name"] }, { "required": ["coords"] }, { "required": ["station"] }, { "required": ["near"] }] } } } } }
     }
   ],
   "$defs": {

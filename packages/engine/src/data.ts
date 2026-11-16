@@ -110,8 +110,19 @@ export interface UrbanRoute {
   operator?: string;
   name: { ja: string; zh?: string | null };
   serviceType?: string | null;
-  /** mode bus（市巴士，T87 §9）的停留所不在 stations.json：name、coords 寫在這裡，station 是旁邊的車站 */
-  stops: { id: string; min: number; note?: string | null; name?: { ja: string; zh?: string | null } | null; coords?: LonLat | null; station?: string | null }[];
+  /**
+   * mode bus（市巴士，T87 §9）的停留所不在 stations.json：name、coords 寫在這裡，station 是旁邊的車站；
+   * near 是官方寫的「下車步行幾分」（單人分鐘，引擎乘團體係數），有寫的景點不再用座標估算這條路線的停留所
+   */
+  stops: {
+    id: string;
+    min: number;
+    note?: string | null;
+    name?: { ja: string; zh?: string | null } | null;
+    coords?: LonLat | null;
+    station?: string | null;
+    near?: { id: string; minutes: number; note?: string | null }[] | null;
+  }[];
   loop: boolean;
   loopMin: number | null;
   service: { weekday: UrbanService | null; saturday: UrbanService | null; holiday: UrbanService | null };

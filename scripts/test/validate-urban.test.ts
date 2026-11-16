@@ -225,6 +225,15 @@ describe('validate：市巴士（mode bus，T87）', () => {
     assert.match(moved.out, /停留所「bus-a」的座標/);
   });
 
+  test('停留所的 near（官方步行分鐘）：ID 要是資料點；電車的停站不能寫', () => {
+    const ok = validate(data({ 'timetables/urban/test-bus.json': bus({ stops: [stop('bus-a', 0, { near: [{ id: 'test-station', minutes: 5 }] }), stop('bus-b', 5)] }) }));
+    assert.ok(ok.ok, ok.out);
+    const bad = validate(data({ 'timetables/urban/test-bus.json': bus({ stops: [stop('bus-a', 0, { near: [{ id: 'nowhere', minutes: 5 }] }), stop('bus-b', 5)] }) }));
+    assert.match(bad.out, /停留所「bus-a」的 near「nowhere」不是資料點/);
+    const train = validate(data({ 'timetables/urban/test-line.json': route({ stops: [{ id: 'test-station', min: 0, near: [{ id: 'test-station-b', minutes: 3 }] }, { id: 'test-station-b', min: 4 }] }) }));
+    assert.ok(!train.ok);
+  });
+
   test('票價表的鍵要是這條路線的停留所', () => {
     const r = validate(data({ 'timetables/urban/test-bus.json': bus({ fares: { currency: 'JPY', adult: { 'bus-a': { 'bus-x': 230 } }, child: null, note: null } }) }));
     assert.match(r.out, /fares\.adult 的「bus-x」不在 這條路線的停留所/);

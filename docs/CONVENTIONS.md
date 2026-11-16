@@ -99,7 +99,7 @@ travel_helper/
 | `data/timetables/kintetsu/`、`data/passes.json` | T1。例外：T28 在 `_travel-times.json` 加往返大阪的特急；T87 加往返京都的特急（`scripts/kintetsu-kyoto.mjs`）和 `passes.json` 的京都 ↔ 伊勢志摩票價 |
 | `data/access/`、`data/raw/access/` | T1b（機場往返交通）。例外：T28 新增 `data/raw/access/osaka.md`；T87 新增 `data/raw/access/kyoto.md`（京都 ↔ 關西機場只記在這份筆記） |
 | `data/timetables/bus/`、`jr/`、`ferry/` | T10（`passes.json` 的巴士部分也由 T10 補充）。例外：T87 新增琵琶湖的巴士（`bus/ekojo-*`、`bus/akakon-*`）和 JR 湖西線（`jr/jr-kosei.json`、湖西線各站） |
-| `data/timetables/urban/` | T28（班距型路線、轉乘）；T87 新增京都、琵琶湖的路線（`scripts/kyoto-urban.mjs` 產生）和 `_transfers.json` 的京都那幾筆（`scripts/kyoto-transfers.mjs`） |
+| `data/timetables/urban/` | T28（班距型路線、轉乘）；T87 新增京都、琵琶湖的路線（`scripts/kyoto-urban.mjs` 產生）、市巴士 `citybus-*`（`scripts/kyoto-citybus.mjs` 產生）和 `_transfers.json` 的京都那幾筆（`scripts/kyoto-transfers.mjs`） |
 | `data/stations.json` 裡大阪的車站 | T28（例外允許；其他車站仍然只有 T0、T7）。T28 也可以為了班距型路線、轉乘改 `schema/`、`scripts/validate.mjs`（補測試） |
 | `data/stations.json` 裡京都、琵琶湖的車站（含大阪側的阪急大阪梅田、京阪淀屋橋） | T87（例外允許，`scripts/kyoto-stations.mjs` 產生）。T87 也可以為了市巴士改 `schema/urban-route.schema.json`、`scripts/validate.mjs`（補測試） |
 | `data/areas/<area>/`、`data/raw/<area>/` | 負責該區的任務（鳥羽 T2～T4c、T7b～T7h；伊勢 T8a～T8f；志摩 T9a～T9f；關西機場周邊 T19；大阪 T27a～T27d；京都 `kyoto`、琵琶湖 `biwako` T86a～T86d）。例外：T7i 改鳥羽、伊勢、二見 `lodging.json` 的 `ratings`、`sources`（不和 T8e 同時做） |
@@ -356,11 +356,12 @@ travel_helper/
 - 快車、慢車混跑的線（JR、南海）：只記會用到的那一種（例如南海的空港急行），特急（ラピート）另外一筆 `id`。京阪本線分「特急」「普通・準急」兩筆（特急不停伏見稲荷、東福寺、清水五条）。
 - **同一班車穿過大站的不要在那裡拆開**（T87）：JR 新快速（大阪 ↔ 京都 ↔ 琵琶湖線）存成一條，拆成兩條引擎會在京都多算一次換車。班距在不同段差很多時可以分兩條、但兩條都從頭列到尾（`jr-shinkaisoku` 到草津、`jr-shinkaisoku-maibara` 到彥根，都從大阪列起）。真的不直通、或在中間站換車才分開（京阪石山坂本線在びわ湖浜大津拆開是例外，notes 有寫）。
 - 時刻表型的 JR（湖西線 `jr/jr-kosei.json`）也一樣：從大阪直通的班次，停站從大阪列起。
-- **市巴士（`mode: bus`，T87）**：停留所不在 `stations.json`，`stops[]` 每站寫 `id`（`citybus-` 前綴）、`name`（ja、zh）、`coords`、`min`，可以加 `station`（旁邊的車站 ID）；票價表的鍵是這條路線的停留所。電車的 `stops` 不能寫 `name`、`coords`、`station`（schema 擋）。
-- 產生方式：大阪的是手寫；京都、琵琶湖用 `scripts/kyoto-urban.mjs`（JR おでかけネット、近鐵 T5／T7、京都市交通局的全列車 CSV 算班距和分鐘；時刻表是圖片或 PDF 的阪急、京阪、嵐電、坂本纜車手寫在 `kyoto-urban.manual.mjs`），改設定再重跑，不要手改 JSON。
+- **市巴士（`mode: bus`，T87）**：停留所不在 `stations.json`，`stops[]` 每站寫 `id`（`citybus-` 前綴）、`name`（ja、zh）、`coords`、`min`，可以加 `station`（旁邊的車站 ID）；票價表的鍵是這條路線的停留所。電車的 `stops` 不能寫 `name`、`coords`、`station`、`near`（schema 擋）。
+  - `near: [{ id, minutes, note }]`：官方寫的「這個停留所下車步行幾分」到哪些資料點（單人分鐘；引擎乘團體係數，有寫的資料點不再用座標估算這條路線的停留所）。只寫來源有分鐘的，note 寫來源。時刻表型巴士的 `near` 是公尺（引擎再乘繞路係數），兩者不同。
+- 產生方式：大阪的是手寫；京都、琵琶湖用 `scripts/kyoto-urban.mjs`（JR おでかけネット、近鐵 T5／T7、京都市交通局的全列車 CSV 算班距和分鐘；時刻表是圖片或 PDF 的阪急、京阪、嵐電、坂本纜車手寫在 `kyoto-urban.manual.mjs`）；市巴士用 `scripts/kyoto-citybus.mjs`（京都市交通局官網的停留所時刻表，見 `data/raw/access/kyoto.md` §9）。改設定再重跑，不要手改 JSON。
 - 日別照巴士的 `weekday`／`saturday`／`holiday`（2/11 國定假日算 holiday）。
 - 不知道的班距、首末班填 `null`，不要猜。
-- validate 另外檢查：停站和票價的車站在 `stations.json`、第一站 min 是 0 而且依序不減少、停站不重複、環狀線的 `loopMin` 大於最後一站、班距時段 from < to。`mode: bus`：停留所 ID 不和資料點撞、`station` 是車站、同一個停留所 ID 在各路線名稱相同、座標相差 100 m 內、票價表的鍵是本路線的停留所。
+- validate 另外檢查：停站和票價的車站在 `stations.json`、第一站 min 是 0 而且依序不減少、停站不重複、環狀線的 `loopMin` 大於最後一站、班距時段 from < to。`mode: bus`：停留所 ID 不和資料點撞、`station` 是車站、`near` 的 ID 是資料點、同一個停留所 ID 在各路線名稱相同、座標相差 100 m 內、票價表的鍵是本路線的停留所。
 
 ### 轉乘（`timetables/urban/_transfers.json`）
 大站的站內轉乘常常要走 10 分鐘以上，對長輩影響比班次大，所以另外記。格式見 `schema/urban-transfers.schema.json`。
@@ -892,7 +893,7 @@ T7c～T8d 每一批都在 session 的 scratchpad 重寫同樣的抽取程式、�
 - 景點 `accessEase`（京都）：電車站步行 10 分內 → 5、11～15 分 → 4、16 分以上或上坡 → 3（同大阪）；**只有巴士到的降一級**：京都站有直達系統、下車步行 5 分內 → 4，下車要走 10 分或上坡 → 3。15 人坐不下巴士不扣分、不寫擠不擠（使用者改搭計程車）。琵琶湖照伊勢志摩（班次多的巴士 4、班次沒查到的巴士或車站計程車 10 分內 3、冬季巴士時刻沒公布 2）。
 - `elderFit` 反映坡、石階、要脫鞋坐地板（餐廳看座敷、掘りごたつ、椅子），可以中途折返的照能走的那一段打；`winterFit` 室內 4～5、寺社戶外 3、2 月有梅花 4，雪景不加分，提早關門寫在理由。
 - 餐廳 `localFlavor`：京都名物的專門店（湯豆腐、京料理・おばんざい、鯖寿司、にしんそば、京都拉麵的老店、抹茶甘味）→ 4～5，鰻魚 → 3；琵琶湖的近江牛、湖魚・郷土料理、近江ちゃんぽん → 4～5，鰻魚（大津的きんし丼）→ 4。
-- **只有巴士到的景點**（金閣寺、銀閣寺、清水寺、三年坂）：`nearestStation` 填最近的電車站和實際步行分鐘（會很遠），`access` 加 `mode: bus`、`from` 是上車的車站，停留所名和系統寫在 note。市巴士的停留所 ID（`citybus-`）等 T87 的市巴士進來再對（見 `data/raw/kyoto/README.md`）。琵琶湖步行 30 分以上的點，`nearestStation` 用巴士或計程車（伊勢 內宮的先例）。
+- **只有巴士到的景點**（金閣寺、銀閣寺、清水寺、三年坂）：`nearestStation` 填最近的電車站和實際步行分鐘（會很遠），`access` 加 `mode: bus`、`from` 是上車的車站，停留所名和系統寫在 note。市巴士 T87 已進來（2026-11-16），停留所名、車上分鐘對過了（見 `data/raw/kyoto/README.md`），下車步行的官方分鐘記在路線檔停留所的 `near`。琵琶湖步行 30 分以上的點，`nearestStation` 用巴士或計程車（伊勢 內宮的先例）。
 
 ### 研究筆記怎麼存
 鳥羽的 `restaurants.md` 長到 97 KB：一半是候選表，四分之一是貼上的腳本輸出，其他是各任務一路追加的過程紀錄。之後每個 session 都要讀它，會越來越吃 context。所以**依內容的性質分開存**：

@@ -1,0 +1,483 @@
+{
+  "id": "citybus-5",
+  "mode": "bus",
+  "operator": "京都市交通局",
+  "name": {
+    "ja": "市バス 5 系統（京都駅前～銀閣寺道）",
+    "zh": "市巴士 5 系統（京都站前～銀閣寺道）"
+  },
+  "serviceType": null,
+  "stops": [
+    {
+      "id": "citybus-kyoto-ekimae",
+      "name": {
+        "ja": "京都駅前",
+        "zh": "京都站前"
+      },
+      "coords": [
+        135.7587,
+        34.9868
+      ],
+      "station": "jr-kyoto",
+      "min": 0,
+      "note": "京都站烏丸口（北側）的巴士總站，各系統的乘車處不同"
+    },
+    {
+      "id": "citybus-shijo-kawaramachi",
+      "name": {
+        "ja": "四条河原町",
+        "zh": "四條河原町"
+      },
+      "coords": [
+        135.769,
+        35.0038
+      ],
+      "station": "hankyu-kyoto-kawaramachi",
+      "min": 18,
+      "note": null
+    },
+    {
+      "id": "citybus-kawaramachi-sanjo",
+      "name": {
+        "ja": "河原町三条",
+        "zh": "河原町三條"
+      },
+      "coords": [
+        135.7689,
+        35.009
+      ],
+      "station": null,
+      "min": 20,
+      "note": null
+    },
+    {
+      "id": "citybus-okazaki-koen-bijutsukan",
+      "name": {
+        "ja": "岡崎公園 美術館・平安神宮前",
+        "zh": "岡崎公園 美術館・平安神宮前"
+      },
+      "coords": [
+        135.7827,
+        35.0123
+      ],
+      "station": null,
+      "min": 32,
+      "note": "平安神宮"
+    },
+    {
+      "id": "citybus-okazaki-koen-dobutsuen",
+      "name": {
+        "ja": "岡崎公園 動物園前",
+        "zh": "岡崎公園 動物園前"
+      },
+      "coords": [
+        135.7839,
+        35.0136
+      ],
+      "station": null,
+      "near": [
+        {
+          "id": "kyoto-city-zoo",
+          "minutes": 2,
+          "note": "京都市動物園官網（2023 年 PDF）：「岡崎公園 動物園前」下車 步行約 2 分（kyoto-city-zoo 的 access）"
+        }
+      ],
+      "min": 34,
+      "note": "京都市動物園"
+    },
+    {
+      "id": "citybus-nanzenji-eikando-michi",
+      "name": {
+        "ja": "南禅寺・永観堂道",
+        "zh": "南禪寺・永觀堂道"
+      },
+      "coords": [
+        135.7905,
+        35.0145
+      ],
+      "station": null,
+      "near": [
+        {
+          "id": "kyoto-nanzenji",
+          "minutes": 10,
+          "note": "南禅寺官網：「南禅寺・永観堂道」下車 步行 10 分（kyoto-nanzenji 的 access）"
+        }
+      ],
+      "min": 36,
+      "note": "南禪寺 步行約 10 分"
+    },
+    {
+      "id": "citybus-ginkakuji-michi",
+      "name": {
+        "ja": "銀閣寺道",
+        "zh": "銀閣寺道"
+      },
+      "coords": [
+        135.7909,
+        35.0277
+      ],
+      "station": null,
+      "near": [
+        {
+          "id": "kyoto-ginkakuji",
+          "minutes": 10,
+          "note": "「銀閣寺道」下車 步行約 10 分（京都観光Navi 搜尋摘要，二手；kyoto-ginkakuji 的 access）"
+        }
+      ],
+      "min": 43,
+      "note": "銀閣寺 步行約 10 分"
+    }
+  ],
+  "loop": false,
+  "loopMin": null,
+  "service": {
+    "weekday": {
+      "first": "06:27",
+      "last": "22:47",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 15
+        },
+        {
+          "from": "08:00",
+          "to": "19:00",
+          "min": 10
+        },
+        {
+          "from": "19:00",
+          "to": "20:00",
+          "min": 12
+        },
+        {
+          "from": "20:00",
+          "to": "23:00",
+          "min": 20
+        }
+      ],
+      "note": "數京都駅前（往外）、銀閣寺道（往回）兩張停留所時刻表：往外 93 班（首 06:27、末 23:00）、往回 92 班（首 06:15、末 22:47）"
+    },
+    "saturday": null,
+    "holiday": {
+      "first": "06:27",
+      "last": "22:47",
+      "headway": [
+        {
+          "from": "06:00",
+          "to": "07:00",
+          "min": 30
+        },
+        {
+          "from": "07:00",
+          "to": "08:00",
+          "min": 15
+        },
+        {
+          "from": "08:00",
+          "to": "09:00",
+          "min": 12
+        },
+        {
+          "from": "09:00",
+          "to": "17:00",
+          "min": 10
+        },
+        {
+          "from": "17:00",
+          "to": "20:00",
+          "min": 12
+        },
+        {
+          "from": "20:00",
+          "to": "23:00",
+          "min": 20
+        }
+      ],
+      "note": "數京都駅前（往外）、銀閣寺道（往回）兩張停留所時刻表：往外 86 班（首 06:27、末 23:00）、往回 88 班（首 06:15、末 22:47）"
+    }
+  },
+  "fares": {
+    "currency": "JPY",
+    "adult": {},
+    "child": "均一區間 120 円",
+    "note": "均一區間 大人 230 円（交通局 2026-11-10 更新）；觀光客較貴的「市民優先価格」官方寫令和 9 年度中（2027-04 以後）才實施"
+  },
+  "passes": {
+    "kintetsu-rail-pass-5day": false
+  },
+  "notes": "京都駅前 ↔ 四条河原町有兩種經路（四条烏丸經由、五条通經由），四条河原町以北相同。地下鉄・バス 1 日券（1,100／550）可以搭（kyoto.md §10）。",
+  "validFrom": "2026-03-20",
+  "retrieved": "2026-11-16",
+  "sources": [
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/keitou/kto/00500.htm",
+      "retrieved": "2026-11-16",
+      "note": "京都市交通局 ハイパー市バスダイヤ 5 系統的停車停留所（2026-03-20 実施）"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/06121101.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：京都駅前 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05940001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸七条 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05932001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸七条 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05740001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸五条（地下鉄五条駅） 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05730001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸五条（地下鉄五条駅） 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05640001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸松原 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05630001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：烏丸松原 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05542001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条烏丸（地下鉄四条駅） 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/05531001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条烏丸（地下鉄四条駅） 發 京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/07210002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条高倉 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/07220002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条高倉 發 四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/07341001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条河原町 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/07332001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条河原町 發 四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/07331002.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：四条河原町 發 烏丸五条京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/00344001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：河原町三条 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/00332001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：河原町三条 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/00411001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：京都市役所前 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11410001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：三条京阪前 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11440001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：三条京阪前 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11310001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：東山三条（地下鉄東山駅） 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11322001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：東山三条（地下鉄東山駅） 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11240001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：神宮道 發 岡崎公園平安神宮銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11220001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：神宮道 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11140001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：岡崎公園 美術館・平安神宮前 發 銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11130001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：岡崎公園 美術館・平安神宮前 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11010001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：岡崎公園 動物園前 發 銀閣寺･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/11020001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：岡崎公園 動物園前 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10910001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：岡崎法勝寺町 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10920001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：岡崎法勝寺町 發 四条河原町四条烏丸京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10840001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：南禅寺・永観堂道 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10830001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：南禅寺・永観堂道 發 三条京阪四条河原町京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10740001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：東天王町 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10730001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：東天王町 發 三条京阪四条河原町京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10640001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：真如堂前 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10630001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：真如堂前 發 三条京阪四条河原町京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10540001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：錦林車庫前 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10530001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：錦林車庫前 發 三条京阪四条河原町京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10440001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：浄土寺 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10430001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：浄土寺 發 三条京阪四条河原町京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10340001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：銀閣寺道 發 国際会館駅･岩倉行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www2.city.kyoto.lg.jp/kotsu/busdia/hyperdia/10330001.htm",
+      "retrieved": "2026-11-16",
+      "note": "停留所時刻表：銀閣寺道 發 三条京阪四条河原町京都駅行き"
+    },
+    {
+      "type": "official",
+      "url": "https://www.city.kyoto.lg.jp/kotsu/page/0000240682.html",
+      "note": "市バスの運賃",
+      "retrieved": "2026-11-16"
+    },
+    {
+      "type": "other",
+      "url": "https://www.google.com/maps",
+      "note": "停留所座標：Google Maps 的停留所標記（Claude in Chrome 少量查看）；一個停留所有好幾根站牌時取該系統經過那條路的站牌平均，取到小數 4 位",
+      "retrieved": "2026-11-16"
+    }
+  ]
+}

@@ -203,6 +203,18 @@ function findAccess(e: Endpoint, ctx: LegContext, factor: number, net: Network, 
         put(sid, minutesForMeters(n.meters * cfg.walk.detourFactor, { metersPerMinute: cfg.walk.metersPerMinute, groupFactor: factor }));
       }
     }
+    // 班距型市巴士（T87）：停留所的 near 是官方的步行分鐘（單人），乘團體係數；網路裡的停留所 ID 就是路線檔的 ID
+    if (!station) {
+      for (const u of data.urban ?? []) {
+        if (u.mode !== 'bus') continue;
+        for (const s of u.stops) {
+          const n = s.near?.find((x) => x.id === e.id);
+          if (!n || !net.routesAt.has(s.id)) continue;
+          nearDocs.add(u.id);
+          put(s.id, n.minutes * factor);
+        }
+      }
+    }
   }
   if (!station && isLonLat(e.coords)) {
     // 每種 group 最近的 2 個（直線距離）
