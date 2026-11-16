@@ -19,6 +19,11 @@ export interface EngineConfig {
     dailyMaxWhole: number;
     /** 走到車站、停留所的最遠直線距離（公尺）；next-bus 的停留所 near 是 500 m 內 */
     accessMaxMeters: number;
+    /**
+     * 交通卡選了「大眾運輸」、上限內沒有車站時，上下車那段最多走幾分（套係數後，全員；T89）：
+     * 例如京都站 → 伏見稻荷（JR 稲荷 11 分 × 1.4）自動是計程車，選大眾運輸就搭 JR 再走過去
+     */
+    pickedTransitMaxWhole: number;
   };
 
   transit: {
@@ -52,6 +57,8 @@ export interface EngineConfig {
     transferPenalty: number;
     /** 自動選的時候，搭 2 程以上的走法比計程車晚超過這個分鐘到就不搭（計程車叫得到時）；只搭 1 程的不比 */
     transitMaxLateVsTaxi: number;
+    /** 其他走法：比選的那條晚超過這個分鐘到的不列（T89：伊勢市 9:00 → 京都，直達特急 17:15 才到） */
+    alternativeMaxLate: number;
     /**
      * 買票站（ticket.ts）到站後至少留幾分買票（T29c spec §8.6）：不加進行程時間，
      * 只用在挑班次（到達一樣時優先挑留得出的）、ticket-tight 警告、「前一站可以多待」
@@ -67,6 +74,13 @@ export interface EngineConfig {
     overheadMinutes: number;
     /** 直線超過這個距離（公里）就不建議計程車，改成「交通方式未知」 */
     maxKm: number;
+    /**
+     * 計程車要開這麼久（分）以上時，自動選的不整段搭計程車（T89，👤：15 人要 4 台車開一小時不實際）：
+     * 大眾運輸（等太久的也算；終點、起點沒有車站時前後接計程車）比計程車晚到不超過 transitMaxLateVsTaxi 分就搭
+     */
+    longMinutes: number;
+    /** 大眾運輸接計程車挑車站時，計程車每坐 1 分加的分數（只用來挑；T89：彥根城不要從近江高島搭計程車繞琵琶湖） */
+    connectPenalty: number;
   };
 
   day: {
@@ -127,6 +141,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     legMaxWhole: 15,
     dailyMaxWhole: 60,
     accessMaxMeters: 1200,
+    pickedTransitMaxWhole: 30,
   },
   transit: {
     busMaxWait: 20,
@@ -142,6 +157,7 @@ export const DEFAULT_CONFIG: EngineConfig = {
     stopChangeMin: { 'yamato-yagi': 4 },
     transferPenalty: 10,
     transitMaxLateVsTaxi: 30,
+    alternativeMaxLate: 90,
     ticketMargin: 10,
   },
   taxi: {
@@ -149,6 +165,8 @@ export const DEFAULT_CONFIG: EngineConfig = {
     roadDetour: 1.3,
     overheadMinutes: 0,
     maxKm: 40,
+    longMinutes: 40,
+    connectPenalty: 1,
   },
   day: {
     start: '09:30',

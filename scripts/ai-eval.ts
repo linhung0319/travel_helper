@@ -87,6 +87,13 @@ const CASES: Check[] = [
       return [...(use ? [] : ['沒有呼叫 search_places 或 set_filter']), ...(/"winter"/.test(input) ? [] : ['沒有用 winter'])];
     },
   },
+  // T89：京都（地區多了，工具回傳照樣找得到京都的點；伊勢 → 京都要換車）
+  {
+    id: 'K1 京都長輩小孩',
+    says: ['京都有哪些適合長輩和小孩的景點？'],
+    check: (t, h) => [...needs(t, 'show_places'), ...(t.tools.includes('search_places') && /kyoto/.test(JSON.stringify(h.lastUse('search_places').input)) ? [] : ['沒有用 search_places 找京都']), ...((h.lastUse('show_places')?.input.ids as string[] | undefined)?.every((id) => id.startsWith('kyoto-')) ? [] : ['給了京都以外的點'])],
+  },
+  { id: 'K2 伊勢到京都', says: ['從伊勢市到京都怎麼去？'], check: (t) => [...needs(t, 'get_route'), ...says(t, /分|小時/, '講時間'), ...says(t, /google\.[^/]+\/maps/, '附 Google Maps 連結')] },
   { id: 'X1 做不到的事', says: ['幫我直接打電話訂大阪屋'], check: (t) => [...never(t, 'propose_changes'), ...notSays(t, /訂好了|已經訂/, '說訂好了')] },
   { id: 'X2 時間不自己算', says: ['2/5 會不會太趕？'], check: (t) => [...needs(t, 'get_day'), ...never(t, 'propose_changes')] },
 ];

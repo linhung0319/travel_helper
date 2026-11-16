@@ -94,7 +94,7 @@ export function loginPage(returnTo: string): Response {
 <body><div class="lg-sun"></div>${LOGIN_ART}<main class="lg">
 <div class="lg-title"><h1>伊勢志摩</h1><p class="lg-date">二〇二七年二月</p><div class="lg-sub"><p class="lg-family lg-serif">一家人的行程</p><span class="lg-seal lg-serif" aria-hidden="true">旅</span></div></div>
 <div class="lg-card">
-<p class="lg-route"><span>2/2（二）– 2/13（六）· 11 晚</span><b>志摩 › 鳥羽 › 伊勢 › 大阪</b></p>
+<p class="lg-route"><span>2/2（二）– 2/13（六）· 11 晚</span><b>志摩 › 鳥羽 › 伊勢 › 京都 › 大阪</b></p>
 <p class="lg-lead">一家人的行程</p>
 <a class="lg-btn" href="${esc(href)}">登入</a>
 <p class="lg-note">只有家人能進來。按了會跳到 LINE 確認身分，第一次按「許可」就好。</p>

@@ -191,3 +191,62 @@ test('琵琶湖的住宿 → 大阪的住宿：到得了、沒有「找不到交
   assert.ok(leg.minutes < 150, `${leg.minutes} 分`);
   assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
 });
+
+// --- T89：計程車要開很久時搭大眾運輸、選了大眾運輸時放寬 ---------------------------------
+
+test('京都站 → 白鬚神社（自動）：計程車要開一個半小時，改搭湖西線到近江高島再接計程車', () => {
+  const { leg, warnings } = planLeg(P('jr-kyoto'), P('biwako-shirahige-jinja'), ctx({ date: '2027-02-09', depart: hm(9) }));
+  assert.equal(leg.mode, 'train');
+  assert.equal(leg.rides.at(-1)?.to, '近江高島');
+  assert.deepEqual(leg.taxiAfter, { station: 'jr-omi-takashima', minutes: 5 });
+  assert.ok(leg.minutes < 90, `${leg.minutes} 分`);
+  assert.ok(warnings.some((w) => w.code === 'rail-taxi'));
+  assert.equal(leg.transitAvailable, true);
+});
+
+test('京都站 → 近江八幡（自動）：新快速要等一小時，但比計程車晚不到 30 分，照樣搭電車', () => {
+  const { leg } = planLeg(P('jr-kyoto'), P('jr-omi-hachiman'), ctx({ date: '2027-02-09', depart: hm(9) }));
+  assert.equal(leg.mode, 'train');
+  assert.equal(leg.rides.length, 1);
+});
+
+test('京都站 → 彥根城：接計程車挑彥根站（3 分），不從近江高島搭計程車繞琵琶湖', () => {
+  const { leg } = planLeg(P('jr-kyoto'), P('biwako-hikone-castle'), ctx({ date: '2027-02-09', depart: hm(9) }));
+  assert.ok(leg.rides.at(-1)?.to === 'jr-hikone' || leg.rides.at(-1)?.to === '彥根', leg.rides.at(-1)?.to);
+  assert.equal(leg.taxiAfter?.station, 'jr-hikone');
+});
+
+test('雄琴溫泉的住宿 → 伏見稻荷（自動）：先搭計程車（或旅館接送）到車站再搭 JR，不整段計程車；提醒可以問接送', () => {
+  const { leg, warnings } = planLeg(P('biwako-yumotokan'), P('kyoto-fushimi-inari'), ctx({ date: '2027-02-10', depart: hm(9, 30) }));
+  assert.equal(leg.mode, 'train');
+  assert.ok(leg.taxiBefore, '住宿到車站計程車');
+  assert.ok(warnings.some((w) => w.code === 'rail-taxi' && /接送/.test(w.message)), JSON.stringify(warnings));
+});
+
+test('計程車沒那麼久（京都站 → 伏見稻荷）：自動照舊是計程車；選大眾運輸就搭 JR 再走過去（放寬步行），不是查不到', () => {
+  const auto = planLeg(P('jr-kyoto'), P('kyoto-fushimi-inari'), ctx({ date: '2027-02-09', depart: hm(9) })).leg;
+  assert.equal(auto.mode, 'taxi');
+  assert.equal(auto.transitAvailable, true, '大眾運輸的按鈕不能灰掉');
+  const { leg, warnings } = planLeg(P('jr-kyoto'), P('kyoto-fushimi-inari'), ctx({ date: '2027-02-09', depart: hm(9) }), { mode: 'transit' });
+  assert.equal(leg.mode, 'train');
+  assert.ok(leg.rides.some((r) => r.to === 'jr-inari' || r.to === '稻荷'), leg.rides.map((r) => r.to).join(','));
+  assert.ok(!leg.taxiAfter);
+  assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
+});
+
+test('選了大眾運輸、附近沒有車站（京都站 → 白鬚神社）：搭到近江高島再接計程車，不是查不到', () => {
+  const { leg, warnings } = planLeg(P('jr-kyoto'), P('biwako-shirahige-jinja'), ctx({ date: '2027-02-09', depart: hm(9) }), { mode: 'transit' });
+  assert.equal(leg.mode, 'train');
+  assert.equal(leg.specified, true);
+  assert.equal(leg.taxiAfter?.station, 'jr-omi-takashima');
+  assert.ok(!warnings.some((w) => w.code === 'travel-unknown'));
+});
+
+test('其他走法不列晚太多才到的：伊勢市 9:00 → 京都（八木換車 12:00 到），不列 17:15 才到的直達特急', () => {
+  const { leg } = planLeg(P('iseshi'), P('kyoto'), ctx({ date: '2027-02-08', depart: hm(9) }));
+  const first = Number(leg.arrive.replace(':', ''));
+  for (const alt of leg.alternatives ?? []) {
+    const late = (Math.floor(Number(alt.arrive.replace(':', '')) / 100) * 60 + (Number(alt.arrive.replace(':', '')) % 100)) - (Math.floor(first / 100) * 60 + (first % 100));
+    assert.ok(late <= cfg.transit.alternativeMaxLate, `${alt.summary} ${alt.arrive}`);
+  }
+});

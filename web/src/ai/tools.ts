@@ -124,7 +124,7 @@ export function createTools(d: AiDeps & { stage?: Pick<Stage, 'exploreFilter'> }
     {
       name: 'get_place',
       kind: 'read',
-      description: `地點的細節。只回要的分區（${PLACE_SECTIONS.join('、')}；不給是 summary、group、hours）。值是 null 表示資料沒寫，要回答「不知道」，不可以說成沒有。hours 分區附 closedOnTripDays（旅程中哪幾天公休，已經對好星期）；scores（長輩、小孩等的分數）一定帶，理由在 assessment。一次最多 6 個點。`,
+      description: `地點的細節。只回要的分區（${PLACE_SECTIONS.join('、')}；不給是 summary、group、hours）。值是 null 表示資料沒寫，要回答「不知道」，不可以說成沒有。hours 是營業時段（時段一樣的幾天併成一個鍵，例如「mon、tue、wed」；沒列的天是沒寫），附 closedOnTripDays（旅程中哪幾天公休，已經對好星期）；scores（長輩、小孩等的分數）一定帶，理由在 assessment。一次最多 6 個點。`,
       input_schema: obj({ ids: strs('資料點 ID'), sections: strs('要哪些分區') }, ['ids']),
       run: ro(read.get_place),
     },
@@ -148,8 +148,8 @@ export function createTools(d: AiDeps & { stage?: Pick<Stage, 'exploreFilter'> }
     {
       name: 'get_timetable',
       kind: 'read',
-      description: '時刻表。station：近鐵車站（資料點 ID 或站名，例如「鳥羽」「伊勢市」），回兩個方向的班次；route：巴士、船、JR 的路線 ID 或名稱（對到好幾條時全部一起查），再給 from（上車站名）、to（下車站名）只回這兩站的時間，不給就只回站名和每班的起訖。兩點之間怎麼走用 get_route，這裡只在使用者問班次、班距時用。',
-      input_schema: obj({ station: str('近鐵車站的資料點 ID 或站名'), route: str('路線 ID 或名稱'), from: str('路線的上車站名'), to: str('路線的下車站名'), date: str(DATE), after: str('從幾點開始 HH:MM（車站預設 09:00，路線預設從頭）') }, ['date']),
+      description: '時刻表。station：車站（資料點 ID 或站名，例如「鳥羽」「伊勢市」）：伊勢志摩的近鐵站回兩個方向的班次；大阪、京都的站回停這站的每條線大概幾分一班、首末班（班距型，沒有逐班時刻）。route：巴士、船、JR、地鐵、市巴士的路線 ID 或名稱（例如「湖西線」「206」「烏丸線」，對到好幾條時全部一起查），再給 from（上車站名）、to（下車站名）只回這兩站的時間（班距型回車上分鐘），不給就只回站名和每班的起訖（班距型回班距和停靠站）。兩點之間怎麼走用 get_route，這裡只在使用者問班次、班距時用。',
+      input_schema: obj({ station: str('車站的資料點 ID 或站名'), route: str('路線 ID 或名稱'), from: str('路線的上車站名'), to: str('路線的下車站名'), date: str(DATE), after: str('從幾點開始 HH:MM（車站預設 09:00，路線預設從頭）') }, ['date']),
       run: ro(read.get_timetable),
     },
     {
@@ -164,7 +164,7 @@ export function createTools(d: AiDeps & { stage?: Pick<Stage, 'exploreFilter'> }
       kind: 'read',
       description:
         '旅程的參考資料，只回要的分項（passes、airport 一定要給 sections，一次可以給幾個）。topic：' +
-        'passes（近鐵票券）：passes 各種票券的價格和範圍、fares 車資和特急費、comparison 划不划算的試算、groupTicket 團體票、booking 訂票和開賣、childRules 兒童票、shimakaze 島風號、otherExpress 其他特急、passNotes 票券補充、notes 計價規則；' +
+        'passes（近鐵票券）：passes 各種票券的價格和範圍、fares 車資和特急費（區間兩個方向一樣，例如京都 → 伊勢市就是伊勢市 → 京都）、comparison 划不划算的試算、groupTicket 團體票、booking 訂票和開賣、childRules 兒童票、shimakaze 島風號、otherExpress 其他特急、passNotes 票券補充、notes 計價規則；' +
         'airport（關西機場交通）：day1 第一天從機場到志摩的建議走法和班次、lastDay 最後一天回機場、routes 各種路線的比較（含包車）、luggage 行李、accessibility 電梯和無障礙、flights 航班、openQuestions 還沒查到的事；' +
         'party（人數，不用 sections）。',
       input_schema: obj({ topic: { enum: ['passes', 'airport', 'party'] }, sections: strs('要哪些分項') }, ['topic']),

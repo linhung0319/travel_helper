@@ -170,7 +170,8 @@ test('第一天機場到遠的住宿：搭到附近車站再接計程車，不�
   assert.equal(leg.minutes, toMin(leg.arrive) - toMin(leg.depart));
   const rt = day.warnings.find((x) => x.code === 'rail-taxi');
   assert.equal(rt?.level, 'note');
-  assert.match(rt?.message ?? '', /^賢島(站|駅)?以後沒有車，要先預約計程車$/);
+  // T89：住宿那端多一句可以問接送
+  assert.match(rt?.message ?? '', /^賢島(站|駅)?以後沒有車，要先預約計程車；可以問一樂溫泉飯店有沒有接送$/);
   const steps = compactSteps(leg, '關西機場', '一樂', (id) => id, 10);
   assert.equal(steps.at(-2)?.kind, 'taxi');
   assert.equal(legTitle(leg).startsWith('大眾運輸＋計程車'), true);
