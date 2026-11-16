@@ -66,6 +66,17 @@ export async function waitIdle(page: Page) {
 
 export { expect };
 
+/** 探索的概覽：卡片預設收合，點那幾區的收合列展開（已展開的不動）；回傳最後一張卡 */
+export async function openOverviewCard(page: Page, ...areas: string[]) {
+  let card = page.locator('[data-testid="overview-card"]').first();
+  for (const area of areas) {
+    card = page.locator(`[data-testid="overview-card"][data-area="${area}"]`);
+    if ((await card.getAttribute('data-open')) === 'false') await card.getByTestId('overview-toggle').click();
+    await expect(card).toHaveAttribute('data-open', 'true');
+  }
+  return card;
+}
+
 /** 電腦版：打開右欄右上的頭像選單，點其中一項（預約、下載行程（PDF、MD、備份）、過去的版本）；選單點完會收起來 */
 export async function openAccountItem(page: Page, item: 'reservations' | 'export' | 'versions') {
   await page.getByTestId('account-menu').click();

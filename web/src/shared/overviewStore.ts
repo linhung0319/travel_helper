@@ -1,4 +1,4 @@
-// 探索的概覽（T63，interaction-design §28）：每張卡選了哪個子地區、網頁地圖框著哪一張卡。手機、網頁共用一份，不記住（重新打開回到全區）。
+// 探索的概覽（T63，interaction-design §28）：每張卡選了哪個子地區、網頁地圖框著哪一張卡、哪幾張卡展開了。手機、網頁共用一份，不記住（重新打開回到全區、全部收合）。
 // 選子地區只在卡片裡換內容，不進那區；地區列的「概覽」鈕、地圖的「看全部地區」呼叫 reset 全部換回全區。
 
 import { createStore } from 'zustand/vanilla';
@@ -15,6 +15,10 @@ export interface OverviewState {
   picks: Record<string, string | null>;
   /** 網頁地圖框著的（最後點的那張卡）；null＝一進概覽時的範圍 */
   focus: OverviewFocus | null;
+  /** 展開的卡（地區 ID）；預設全部收合，reset 不動它（進一區再回概覽，展開的還是展開） */
+  open: readonly string[];
+  /** 展開／收合一張卡 */
+  toggle(area: string): void;
   /** 點了一張卡的子地區一行（region null＝「志摩全區」）：換那張卡的內容、地圖框到那裡 */
   pick(area: string, region: string | null): void;
   /** 全部換回全區、地圖的框拿掉 */
@@ -27,6 +31,8 @@ export const createOverviewStore = () =>
   createStore<OverviewState>()((set) => ({
     picks: {},
     focus: null,
+    open: [],
+    toggle: (area) => set((s) => ({ open: s.open.includes(area) ? s.open.filter((a) => a !== area) : [...s.open, area] })),
     pick: (area, region) => set((s) => ({ picks: { ...s.picks, [area]: region }, focus: { area, region } })),
     reset: () => set({ picks: {}, focus: null }),
     clearFocus: () => set((s) => (s.focus ? { focus: null } : s)),

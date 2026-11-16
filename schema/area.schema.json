@@ -25,7 +25,7 @@
         "type": "string"
       },
       "tripOrder": {
-        "description": "行程順序：志摩 → 鳥羽 → 伊勢（含二見）→ 關西機場周邊",
+        "description": "地區的順序（畫面的地區列、概覽、區域顏色都照這個）：志摩 → 鳥羽 → 伊勢（含二見）→ 大阪 → 京都、琵琶湖 → 關西機場周邊",
         "type": "integer",
         "minimum": 1
       },

@@ -5,7 +5,7 @@
 // SHOT_DIR 有設時把畫面存下來（和 design-lab/d.html 比）。
 
 import { test, type Page } from '@playwright/test';
-import { centerOn, expect, likeMany, ready, waitIdle } from './helpers.ts';
+import { centerOn, expect, likeMany, openOverviewCard, ready, waitIdle } from './helpers.ts';
 
 const shot = async (page: Page, name: string) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}.png` });
@@ -27,7 +27,7 @@ test('網頁探索：主題、區段、篩選跟著換區、詳情彈窗、revea
   await shot(page, 't78-overview');
 
   // 概覽卡的主題列「吃」：直接進志摩的吃
-  await page.locator('[data-testid="overview-card"][data-area="shima"]').getByTestId('theme-restaurant').click();
+  await (await openOverviewCard(page, 'shima')).getByTestId('theme-restaurant').click();
   await expect(home(page)).toHaveAttribute('data-area', 'shima');
   await expect(home(page)).toHaveAttribute('data-theme', 'restaurant');
   await expect(page.getByTestId('theme-restaurant')).toHaveAttribute('aria-selected', 'true');

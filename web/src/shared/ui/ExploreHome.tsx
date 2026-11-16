@@ -2,6 +2,8 @@
 // 概覽（§35.6；T81 改成 §36.T81 的樣子）：一區一張卡，由上往下是照片 2:1（點了進那區）→ 子地區一排文字（📍 開頭，點了在卡片裡換內容，
 // overviewStore 記每張卡選了哪個；網頁的地圖跟著框，onFocus）→ 主題列（點了直接進那區那個主題）→ 一句特色（16.5 px）→ 「● 2 月注意 N 則 ›」收合；
 // 住幾晚、作者授權照舊。代表地點 T81 拿掉了（進那區的「玩」第一排「一定要去」就是它們）。
+// 卡片預設收合（T89 前的小修正）：收合是一列（縮圖、區名、住幾晚、一句特色、⌄），一眼看完有哪些地區；點了展開成上面那張卡，
+// 照片左上的 ⌃ 收回去。展開哪幾張記在 overviewStore.open。
 // 選了一區是 AreaThemeHome（§35.4）：「2 月注意」一行收合＋目前主題的區段（Section.tsx；一定要去、其他景點…），
 // 最下面「問 AI 幫我挑」「找不到？自己加一個」兩行小字。0 個的區段、搜尋篩到 0 個用 NextSteps（lib/listConditions.ts）。
 // 子地區列（RegionChips）由呼叫的畫面放進篩選列（FilterBar 的 subRow），緊接在地區列下面。
@@ -37,7 +39,7 @@ export interface OverviewActions {
   onPickTheme?: (area: string, region: string | null, theme: Theme) => void;
 }
 
-/** 概覽：一區一張卡 */
+/** 概覽：一區一張卡（預設收合） */
 export function ExploreOverview({ surface, ...actions }: { surface: HomeSurface } & OverviewActions) {
   const areas = useData((s) => s.areas);
   return (
@@ -52,21 +54,72 @@ export function ExploreOverview({ surface, ...actions }: { surface: HomeSurface 
 /** 照片右下的一行：作者 · 授權（資料裡的「Wikimedia: 」拿掉） */
 const creditOf = (p: PhotoData | undefined) => (p ? [p.credit?.replace(/^Wikimedia:s*/, ''), p.license].filter(Boolean).join(' · ') : '');
 
+/** 概覽的一張卡：收合是一列，展開是整張卡 */
+function AreaCard(props: { area: Area; surface: HomeSurface } & OverviewActions) {
+  const open = useOverview((s) => s.open.includes(props.area.id));
+  return open ? <AreaCardOpen {...props} /> : <AreaCardClosed area={props.area} />;
+}
+
+/** 這區住幾晚（「住 3 晚 · 2/2–2/5」）；沒有行程或沒住是 null */
+function useAreaStay(areaId: string) {
+  const byId = useData((s) => s.byId);
+  const itinerary = useData((s) => s.itinerary);
+  return useMemo(() => (itinerary ? areaStayLine(itinerary, areaId, byId) : null), [itinerary, areaId, byId]);
+}
+
+/** 收合的卡：一整列是展開鈕；縮圖、區名和日文名、住幾晚、那區的一句特色（最多兩行）、右邊 ⌄ */
+function AreaCardClosed({ area }: { area: Area }) {
+  const name = displayName(area.name, area.id);
+  const sub = areaSubName(area);
+  const stay = useAreaStay(area.id);
+  const summary = area.intro?.summary;
+  return (
+    <article className="xo-card xo-closed" data-testid="overview-card" data-area={area.id} data-open="false">
+      <button type="button" className="xo-head" aria-expanded={false} onClick={() => overviewStore.getState().toggle(area.id)} data-testid="overview-toggle">
+        <span className="xo-thumb">
+          <AreaPhoto photo={area.photos?.[0]} alt="" />
+        </span>
+        <span className="xo-head-text">
+          <span className="xo-head-name">
+            {name}
+            {sub && (
+              <small className="xo-head-ja" lang="ja">
+                {sub}
+              </small>
+            )}
+          </span>
+          {stay && (
+            <span className="xo-head-nights" data-testid="overview-nights">
+              {stay}
+            </span>
+          )}
+          {summary && (
+            <span className="xo-head-summary" data-testid="overview-summary">
+              {summary}
+            </span>
+          )}
+        </span>
+        <span className="xo-head-chev" aria-hidden>
+          <Icon name="chevron" size={20} />
+        </span>
+      </button>
+    </article>
+  );
+}
+
 /**
- * 概覽的一張卡（T52、T63、T81）：上半是那區的代表照片（2:1；區名和日文名壓在左下、住幾晚在右上、作者和授權在右下），
+ * 概覽展開的一張卡（T52、T63、T81）：上半是那區的代表照片（2:1；區名和日文名壓在左下、住幾晚在右上、作者和授權在右下），
  * 下面子地區一排文字（「志摩全區」加全部的子地區，點了在卡片裡換內容）、主題列、簡介、「2 月注意」一行。
  */
-function AreaCard({ area, onPickArea, onPickRegion, onFocus, onPickTheme }: { area: Area; surface: HomeSurface } & OverviewActions) {
-  const byId = useData((s) => s.byId);
+function AreaCardOpen({ area, onPickArea, onPickRegion, onFocus, onPickTheme }: { area: Area; surface: HomeSurface } & OverviewActions) {
   const places = useData((s) => s.places);
-  const itinerary = useData((s) => s.itinerary);
   const picked = useOverview((s) => s.picks[area.id] ?? null);
   const content = overviewContent(area, picked);
   const name = displayName(area.name, area.id);
   const sub = areaSubName(area);
   // 進那一區；選了子地區時再選好那個子地區
   const onPick = () => (content.regionId ? onPickRegion(area.id, content.regionId) : onPickArea(area.id));
-  const stay = useMemo(() => (itinerary ? areaStayLine(itinerary, area.id, byId) : null), [itinerary, area.id, byId]);
+  const stay = useAreaStay(area.id);
   const photo = area.photos?.[0];
   const credit = creditOf(photo);
   const regions = area.regions ?? [];
@@ -81,10 +134,13 @@ function AreaCard({ area, onPickArea, onPickRegion, onFocus, onPickTheme }: { ar
   const region = content.regionId ? regions.find((r) => r.id === content.regionId) : undefined;
   const feb = region ? (region.intro?.febNote ? [region.intro.febNote] : []) : (area.intro?.february ?? []).map((x) => x.text);
   return (
-    <article className="xo-card" data-testid="overview-card" data-area={area.id} data-region={content.regionId ?? ''}>
+    <article className="xo-card" data-testid="overview-card" data-area={area.id} data-region={content.regionId ?? ''} data-open="true">
       <div className="xo-cover">
         <button type="button" className="xo-photo" onClick={onPick} aria-label={`看${content.label}`} tabIndex={-1}>
           <AreaPhoto photo={photo} alt={name} />
+        </button>
+        <button type="button" className="xo-collapse" aria-expanded aria-label={`收合${name}`} onClick={() => overviewStore.getState().toggle(area.id)} data-testid="overview-toggle">
+          <Icon name="chevron" size={20} />
         </button>
         <h3 className="xo-name">
           <button type="button" onClick={onPick} data-testid="overview-name">

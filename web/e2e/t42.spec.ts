@@ -5,7 +5,7 @@
 // SHOT_DIR 有設時把畫面存下來（給 👤 看的截圖）。
 
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { openOverviewCard, ready } from './helpers.ts';
 
 const shot = async (page: Page, name: string) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}.png` });
@@ -17,17 +17,25 @@ test('進網站是探索的概覽：一區一張卡，點區名進那一區（�
   const overview = page.getByTestId('explore-overview');
   await expect(overview).toBeVisible();
   await expect(page.getByTestId('ex-area-all')).toHaveAttribute('aria-pressed', 'true');
-  // 照行程順序：志摩在最前面
+  // 照 tripOrder：伊勢志摩往北，再來大阪、京都、琵琶湖、關西機場周邊；預設全部收合（一列：區名、一句特色）
   const cards = overview.getByTestId('overview-card');
-  await expect(cards.first()).toHaveAttribute('data-area', 'shima');
+  expect(await cards.evaluateAll((els) => els.map((e) => e.getAttribute('data-area')))).toEqual(['shima', 'toba', 'futami', 'ise', 'osaka', 'kyoto', 'biwako', 'kix']);
+  expect(await page.getByTestId('ex-area-chips').locator('[data-testid^="ex-area-"]:not([data-testid="ex-area-all"])').evaluateAll((els) => els.map((e) => e.getAttribute('data-testid')!.replace('ex-area-', '')))).toEqual(['shima', 'toba', 'futami', 'ise', 'osaka', 'kyoto', 'biwako', 'kix']);
+  await expect(overview.locator('[data-testid="overview-card"][data-open="true"]')).toHaveCount(0);
+  await expect(cards.first().getByTestId('overview-summary')).not.toBeEmpty();
+  await expect(cards.first().getByTestId('overview-themes')).toHaveCount(0);
+  // 點了展開成整張卡、照片左上的 ⌃ 收回去
+  await openOverviewCard(page, 'shima');
   await expect(cards.first().getByTestId('overview-feb')).toContainText('2 月');
+  await cards.first().getByTestId('overview-toggle').click();
+  await expect(cards.first()).toHaveAttribute('data-open', 'false');
   // 代表地點拿掉了（T81）
   await expect(overview.getByTestId('overview-rep')).toHaveCount(0);
   await expect(page.getByTestId('chat-panel')).toContainText('正在看：概覽');
   await shot(page, 'web-overview');
 
   // 點鳥羽的區名：地區列跟著選；不放特色，子地區列在篩選列裡（地區列下面）；主題從「玩」開始
-  await overview.locator('[data-area="toba"]').getByTestId('overview-name').click();
+  await (await openOverviewCard(page, 'toba')).getByTestId('overview-name').click();
   await expect(page.getByTestId('ex-area-toba')).toHaveAttribute('aria-pressed', 'true');
   const home = page.getByTestId('area-home');
   await expect(home).toHaveAttribute('data-area', 'toba');
@@ -48,6 +56,9 @@ test('概覽（T52、T63）：地區照片、住幾晚；沒有四格書架；�
   await ready(page, { tab: 'default' });
   const overview = page.getByTestId('explore-overview');
   const toba = overview.locator('[data-area="toba"]');
+  // 收合列也寫日文名
+  await expect(overview.locator('[data-area="kix"] .xo-head-ja')).toHaveText('関西空港周辺');
+  await openOverviewCard(page, 'toba', 'kix', 'shima');
   // 照片右下：作者和授權，連到 Commons
   await expect(toba.getByTestId('overview-credit')).toHaveText('Michalkun · CC BY-SA 2.5');
   await expect(toba.getByTestId('overview-credit')).toHaveAttribute('href', /commons\.wikimedia\.org/);

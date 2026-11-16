@@ -5049,6 +5049,111 @@ button.ui-sk-stay:disabled {
   color: var(--indigo);
 }
 
+/* 收合的卡（T89 前的小修正）：一整列是展開鈕；左邊縮圖 3:2、中間區名＋住幾晚＋一句特色（兩行截斷）、右邊 ⌄ */
+.xo-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 6px 8px 8px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.xo-head:hover .xo-head-name,
+.xo-head:hover .xo-head-chev {
+  color: var(--indigo);
+}
+
+.xo-thumb {
+  flex: none;
+  width: 96px;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-inner);
+  overflow: hidden;
+  background: var(--wash);
+}
+
+.xo-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.xo-head-name {
+  font-family: var(--font-round);
+  font-size: 1.1875rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.xo-head-ja {
+  margin-left: 6px;
+  color: var(--ink-3);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.xo-head-nights {
+  align-self: flex-start;
+  color: var(--indigo);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.xo-head-summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.xo-head-chev {
+  flex: none;
+  display: inline-flex;
+  color: var(--ink-3);
+  transform: rotate(90deg);
+}
+
+/* 展開的卡：照片左上的 ⌃ 收回去（右上是住幾晚） */
+.xo-collapse {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--shade-2);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.xo-collapse svg {
+  transform: rotate(-90deg);
+}
+
+.xo-collapse:hover {
+  background: var(--shade-3);
+}
+
 /* 選了一區：頂端 */
 
 .xa-regions.m-chips {

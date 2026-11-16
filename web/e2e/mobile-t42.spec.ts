@@ -4,7 +4,7 @@
 // 改測點區名進那區、區段 0 個的下一步、條件帶進問 AI。主題、區段的核心流程在 mobile-t77.spec.ts。
 
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { openOverviewCard, ready } from './helpers.ts';
 
 const shot = async (page: Page, name: string, fullPage = false) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}-${page.viewportSize()!.width}.png`, fullPage });
@@ -14,6 +14,10 @@ test('手機概覽（T52、T63）：地區照片；沒有四格書架；子地�
   await ready(page, { tab: 'default' });
   const overview = page.getByTestId('explore-overview');
   const toba = overview.locator('[data-area="toba"]');
+  // 預設收合；點了展開
+  await expect(overview.locator('[data-testid="overview-card"][data-open="true"]')).toHaveCount(0);
+  await shot(page, 'mobile-overview-collapsed');
+  await openOverviewCard(page, 'toba', 'shima');
   await expect(toba.getByTestId('overview-credit')).toHaveText('Michalkun · CC BY-SA 2.5');
   await expect(overview.getByTestId('overview-shelf')).toHaveCount(0);
   await expect(overview.getByTestId('overview-rep')).toHaveCount(0);
@@ -45,7 +49,7 @@ test('手機：概覽 → 點鳥羽 → 玩的三個區段；子地區列在黏�
   await expect(page.getByTestId('m-feed-area-all')).toHaveAttribute('aria-pressed', 'true');
   await shot(page, 'mobile-overview');
 
-  await overview.locator('[data-area="toba"]').getByTestId('overview-name').click();
+  await (await openOverviewCard(page, 'toba')).getByTestId('overview-name').click();
   await expect(page.getByTestId('m-feed-area-toba')).toHaveAttribute('aria-pressed', 'true');
   const home = page.getByTestId('area-home');
   await expect(home).toHaveAttribute('data-theme', 'spot');
@@ -62,7 +66,7 @@ test('手機：概覽 → 點鳥羽 → 玩的三個區段；子地區列在黏�
 
 test('手機 T64、T75：區段 0 個給下一步；問 AI 到 AI 分頁；有條件時「問 AI 幫我挑」帶現在的條件', async ({ page }) => {
   await ready(page, { tab: 'default' });
-  await page.getByTestId('explore-overview').locator('[data-area="toba"]').getByTestId('overview-name').click();
+  await (await openOverviewCard(page, 'toba')).getByTestId('overview-name').click();
   await page.getByTestId('fb-stick').getByTestId('region-toshijima').click();
   // 答志島只有 B 級：「一定要去」是 0，展開是虛線框、看鳥羽全區、問 AI
   const must = page.locator('[data-testid="area-home"] [data-section="must"]');

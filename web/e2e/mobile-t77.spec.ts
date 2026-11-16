@@ -3,7 +3,7 @@
 // 換鳥羽條件帶過去 → 開詳情、返回字、按我想去有提示、退回停在原位 → 想去分頁三個區段。SHOT_DIR 有設時存截圖。
 
 import { test, expect, type Page } from '@playwright/test';
-import { ready } from './helpers.ts';
+import { openOverviewCard, ready } from './helpers.ts';
 
 const shot = async (page: Page, name: string) => {
   if (process.env.SHOT_DIR) await page.screenshot({ path: `${process.env.SHOT_DIR}/${name}-${page.viewportSize()!.width}.png` });
@@ -21,7 +21,7 @@ test('手機探索（T77）：主題列、收合的區段、子地區、篩選�
   await expect(page.getByTestId('filter-open')).toHaveCount(0);
 
   // 概覽卡的主題列「玩」→ 志摩的景點
-  await overview.locator('[data-area="shima"]').getByTestId('theme-spot').click();
+  await (await openOverviewCard(page, 'shima')).getByTestId('theme-spot').click();
   const home = page.getByTestId('area-home');
   await expect(home).toHaveAttribute('data-theme', 'spot');
   await expect(page.getByTestId('fb-stick').getByTestId('theme-spot')).toHaveAttribute('aria-selected', 'true');
@@ -97,7 +97,7 @@ test('手機探索（T77）：主題列、收合的區段、子地區、篩選�
 
 test('手機探索（T77）：換主題收合區段、篩選留下新主題有的；回概覽收合', async ({ page }) => {
   await ready(page, { tab: 'default' });
-  await page.getByTestId('explore-overview').locator('[data-area="shima"]').getByTestId('theme-restaurant').click();
+  await (await openOverviewCard(page, 'shima')).getByTestId('theme-restaurant').click();
   const home = page.getByTestId('area-home');
   await expect(home).toHaveAttribute('data-theme', 'restaurant');
   await home.locator('[data-section="together"]').getByTestId('section-head').click();
